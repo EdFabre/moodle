@@ -91,23 +91,18 @@ class store implements \tool_log\log\store, \core\log\sql_select_reader {
         // Replace the query with hardcoded mappings required for core.
         list($selectwhere, $params, $sort) = self::replace_sql_legacy($selectwhere, $params, $sort);
 
+        $events = array();
         $records = array();
 
         try {
-            // A custom report + on the fly SQL rewriting = a possible exception.
-            $records = $DB->get_recordset_select('log', $selectwhere, $params, $sort, '*', $limitfrom, $limitnum);
+            $records = $DB->get_records_select('log', $selectwhere, $params, $sort, '*', $limitfrom, $limitnum);
         } catch (\moodle_exception $ex) {
             debugging("error converting legacy event data " . $ex->getMessage() . $ex->debuginfo, DEBUG_DEVELOPER);
-            return array();
         }
-
-        $events = array();
 
         foreach ($records as $data) {
             $events[$data->id] = \logstore_legacy\event\legacy_logged::restore_legacy($data);
         }
-
-        $records->close();
 
         return $events;
     }
@@ -148,10 +143,8 @@ class store implements \tool_log\log\store, \core\log\sql_select_reader {
      * @param    string $info Additional description information
      * @param    int $cm The course_module->id if there is one
      * @param    int|\stdClass $user If log regards $user other than $USER
-     * @param    string $ip Override the IP, should only be used for restore.
-     * @param    int $time Override the log time, should only be used for restore.
      */
-    public function legacy_add_to_log($courseid, $module, $action, $url, $info, $cm, $user, $ip = null, $time = null) {
+    public function legacy_add_to_log($courseid, $module, $action, $url, $info, $cm, $user) {
         // Note that this function intentionally does not follow the normal Moodle DB access idioms.
         // This is for a good reason: it is the most frequently used DB update function,
         // so it has been optimised for speed.
@@ -179,9 +172,9 @@ class store implements \tool_log\log\store, \core\log\sql_select_reader {
             }
         }
 
-        $remoteaddr = (is_null($ip)) ? getremoteaddr() : $ip;
+        $remoteaddr = getremoteaddr();
 
-        $timenow = (is_null($time)) ? time() : $time;
+        $timenow = time();
         if (!empty($url)) { // Could break doing html_entity_decode on an empty var.
             $url = html_entity_decode($url, ENT_QUOTES, 'UTF-8');
         } else {

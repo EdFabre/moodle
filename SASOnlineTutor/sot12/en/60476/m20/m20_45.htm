@@ -1,0 +1,100 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Copy and paste the text. Then submit it.<br><br>';
+solutionText+='<li>Change the MERGE statement as follows and submit the program:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='merge work.adsort<br>';
+solutionText+='      (rename=(date=AdmitDate)<br>'; 
+solutionText+='      in=inad drop=height weight)<br>';
+solutionText+='      work.strsort<br>';
+solutionText+='      (rename=(date=VisitDate)<br>'; 
+solutionText+='      in=instr keep=id tolerance date);<br></pre></font>';
+solutionText+='<li>Submit the program and view the log and output.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Merge the sorted data sets Work.Adsort and Work.Strsort and select variables.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+<table cellpadding="2" align="Center" width="85%">
+  <tr valign="top"> 
+            
+      <td width="24" valign="top"><img border="0" width="37" height="32" src="../navimages/alert.gif" alt="Note:"></td>
+    <td><strong>Work.Adsort</strong> and <strong>Work.Strsort</strong> were created 
+      in a previous practice. If you haven't created these data sets, <a href="m20_6.htm" onClick="suggestBack()" onMouseOver="window.status='Return to a previous practice.';" onMouseOut="window.status=''">return 
+      to the practice</a> and create them before continuing here.</td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <LI>Copy the program below and paste it into the code editing window. 
+            Then submit the program. In the output, notice that the data set contains 
+            16 variables. 
+            <PRE><FONT color="#003399">data sasuser.merged;</FONT>
+<FONT color="#003399">   merge work.adsort</FONT>
+<FONT color="#003399">     (rename=(date=AdmitDate) in=inad)</FONT>
+<FONT color="#003399">      work.strsort</FONT>
+<FONT color="#003399">     (rename=(date=VisitDate) in=instr);</FONT>
+<FONT color="#003399">   by id;</FONT>
+<FONT color="#003399">   if inad and instr;</FONT>
+<FONT color="#003399">run;</FONT>
+<FONT color="#003399">proc print data=sasuser.merged;</FONT>
+<FONT color="#003399">run;</FONT></PRE>
+          
+        <LI>Add two data set options to drop the variables <CODE>Height</CODE> 
+          and <CODE>Weight</CODE> from <STRONG>Work.Adsort</STRONG> and to keep 
+          only the variables <CODE>ID</CODE>, <CODE>Tolerance</CODE>, and <CODE>Date</CODE>&nbsp;from 
+          <STRONG>Work.Strsort</STRONG>. <BR>
+            <BR>
+<LI>Resubmit the program and view log messages about the DATA step. Did the program execute successfully? Scroll through the output. Does the new data set contain 9 variables?
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

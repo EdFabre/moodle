@@ -1,0 +1,176 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      Tools for Summarizing Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using the WHERE= Option in PROC MEANS to Combine Class Variables</h2>
+        <p>Yet another way to specify a combination of class variables is to use 
+          the <strong>WHERE= data set option</strong> in the OUTPUT statement: 
+        <p><br>
+        <table border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, WHERE= data set option in a 
+              basic OUTPUT statement">
+          <tr> 
+            <td align="left"><strong>General form, WHERE= data set option in a 
+              basic OUTPUT statement:</strong> <blockquote> <font color="#003399"><strong>OUTPUT</strong> 
+                <nobr>&lt;<strong>OUT</strong>=<em>SAS-data-set</em>&gt; </nobr><nobr>&lt;<em>output-statistic-specification(s)</em>&gt;</nobr> 
+                <nobr><strong>(WHERE</strong>=</nobr><nobr><strong>(</strong><em>where-expression-1</em></nobr><nobr> 
+                &lt;<em>logical-operator</em></nobr> <nobr><em>where-expression-n</em>&gt;<strong>));</strong></nobr></font></blockquote>
+              <p>where </p>
+              <ul>
+                <li><font color="#003399"><em>SAS-data-set</em></font> specifies 
+                  the new output data set as a 1-level or 2-level name.<br>
+                  <br>
+                </li>
+                <li><font color="#003399"><em>output-statistic-specification(s)</em></font> 
+                  specifies the statistic(s) to store in the output data set and 
+                  names one or more variables that contain the statistics.<br>
+                  <br>
+                </li>
+                <li><font color="#003399"><em>where-expression</em></font> is 
+                  an arithmetic or logical expression that consists of a sequence 
+                  of operators, operands, and SAS functions. An operand is a variable, 
+                  a SAS function, or a constant. An operator is a symbol that 
+                  requests a comparison, logical operation, or arithmetic calculation. 
+                  The expression must be enclosed in parentheses. <br>
+                  <br>
+                </li>
+                <li> <font color="#003399"><em>logical-operator</em></font> can 
+                  be AND, AND NOT, OR, or OR NOT.</li>
+              </ul></td>
+          </tr>
+        </table>
+        <p><br>
+          When you use the WHERE= option in the OUTPUT statement, SAS must calculate 
+          all possible combinations of class variables, and subsetting does not 
+          occur until the results are written to output. 
+        <p><br>
+        <h2>Example: Using the WHERE= Option in PROC MEANS</h2>
+        <p>Suppose you want to calculate average employee salaries and to group 
+          results for two 2-way combinations of the three class variables <code>Employee_Country, 
+          </code><code>Department</code>, and <code>Employee_Gender</code>. All 
+          possible combinations of these variables are listed below, and the two 
+          combinations that you want are highlighted: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="_TYPE_ values for three class variables">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1"><code>_TYPE_</code> Value</font></th>
+            <th><font size="-1">Variables Combined</font></th>
+            <th><font size="-1">Dimension</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">1</td>
+            <td><code>Employee_Gender</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">2</td>
+            <td><code>Department</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">3</td>
+            <td><code>Department * Employee</code><code>_Gender</code></td>
+            <td>2-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">4</td>
+            <td><code>Employee_Country</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top" bgcolor="#ffff99"> 
+            <td align="center"><strong>5</strong></td>
+            <td><strong><code>Employee_Country * Employee_Gender</code></strong></td>
+            <td><strong>2-way</strong></td>
+          </tr>
+          <tr valign="top" bgcolor="#ffff99"> 
+            <td align="center"><strong>6</strong></td>
+            <td><strong><code>Employee_Country * Department</code></strong></td>
+            <td><strong>2-way</strong></td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">7</td>
+            <td><code>Employee_Country * Department * Employee_Gender</code><code></code></td>
+            <td>3-way</td>
+          </tr>
+        </table>
+        <p><br>
+          To specify the types by <code>_TYPE_</code> value, you can use the WHERE= 
+          option in the OUTPUT statement as shown below: 
+        <pre>     <font color="#003399">proc means data=company.organization;
+        class employee_country department 
+              employee_gender;
+        var salary;
+        output out=summary <strong>
+               (where=(_type_ in (<font color="#FF0000">5,6</font>)))</strong>
+               n=employees
+               mean=average;
+     run;</font></pre> <p>A partial 
+          view of the output report is shown below: </td>
+    </tr>
+  </table>
+  <p><br>
+    <a href="JavaScript: openOther('m85_39a.htm')"><img src="images/m85_39a.gif" alt="Partial PROC MEANS output report" width="450" height="151" border="0"></a> 
+    <br>
+    <em><font color="#003399">Click to view the full output report.</font></em> 
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>A partial view of the output data set <strong>Work.Summary</strong> 
+          is shown below: </td>
+    </tr>
+  </table>
+  <p><br>
+    SAS Data Set Work.Summary<br>
+    <a href="JavaScript: openOther2('m85_39b.htm')"><img src="images/m85_39b.gif" alt="Partial PROC MEANS output data set" width="450" height="154" border="0"></a> 
+    <br>
+    <em><font color="#003399">Click to view the full output data set.</font></em> 
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>Next, let's compare the resources that are used by these summarization 
+          techniques: 
+        <ul>
+          <li> the TYPES statement in PROC MEANS</li>
+          <li> the NWAY option in multiple PROC MEANS steps</li>
+          <li>the WHERE= option in PROC MEANS.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,454 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      BY-Group Processing<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> <strong>Finding the First and Last Observations in a Group</strong> 
+        <p>If you completed the lesson 
+        <!--lesson reference--><strong><script>document.write(m4title);</script></strong>, you learned to use a BY statement 
+        in PROC SORT to sort observations and in PROC PRINT to group observations 
+        for subtotals. You can also use the BY statement in the DATA step to group 
+        observations for processing. 
+      <pre><font color="#003399">     data temp;
+        set salary;
+        <strong>by dept;
+</strong>     run;</font></pre>
+      <p> When you use the BY statement with the SET statement, 
+      <ul>
+        <li>the data sets that are listed in the SET statement must be sorted 
+          by the values of the BY variable(s), or they must have an appropriate 
+          index. <br>
+          <br>
+        </li>
+        <li>the DATA step creates two temporary variables for each BY variable. 
+          One is named <code><strong>FIRST.<em>variable</em></strong></code>, 
+          where <code><em>variable</em></code> is the name of the BY variable, 
+          and the other is named <code><strong>LAST.<em>variable</em></strong></code>. 
+          Their values are either <em>1</em> or <em>0</em>. <code>FIRST.<em>variable</em></code> 
+          and <code>LAST.<em>variable</em></code> &nbsp;identify the first and 
+          last observation in each BY group.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table border="1" cellpadding="4" cellspacing="0" bgcolor="#FFFFFF" title="Temporary 
+  Variables">
+    <tr> 
+      <td bgcolor="#F7F7DE">&nbsp;<nobr><strong>This variable . . .</strong></nobr>&nbsp;</td>
+      <td bgcolor="#F7F7DE">&nbsp;<nobr><strong>Equals . . .</strong></nobr>&nbsp;</td>
+    </tr>
+    <tr valign="middle"> 
+      <td>&nbsp;&nbsp;<strong><code>FIRST.<em>variable</em></code></strong></td>
+      <td><br>
+        &nbsp;<em>1</em> for the <strong>first</strong> observation<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in a BY group 
+        <p> <nobr>&nbsp;<em>0</em> for any other observation&nbsp;</nobr><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in a BY group<br>
+          &nbsp;
+      </td>
+    </tr>
+    <tr valign="middle"> 
+      <td>&nbsp;&nbsp;<strong><code></code></strong><strong><code>LAST.<em>variable</em></code></strong></td>
+      <td><br>
+        <nobr>&nbsp;<em>1</em> for the <strong>last</strong> observation&nbsp;</nobr><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in a BY group 
+        <p> &nbsp;<em>0</em> for any other observation<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in a BY group <br>
+          &nbsp;
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+  <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p><strong>Example</strong></p>
+        <p>To work with <code>FIRST.<em>variable</em></code> and <code>LAST.<em>variable</em></code>, 
+          let's look at a different set of data. The <strong>Company.USA</strong> 
+          data set contains payroll information for individual employees. Suppose 
+          you want to compute the annual payroll by department. Assume 2,000 work 
+          hours per year for hourly employees.</p>
+        <p>Before computing the annual payroll, you need to group observations 
+          by values of the variable <code>Dept</code>.</p>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+  SAS Data Set Company.USA<br>
+  (Partial Listing) 
+<center>
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Dept</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>WageCat</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>WageRate</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM20</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">S</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3392.50</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM30</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">S</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">5093.75</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">CAM10</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">S</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1813.30</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">CAM10</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">S</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1572.50</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">CAM10</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">H</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        13.48</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM30</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">S</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2192.25</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p>The following program computes the annual payroll by department. Notice 
+          that the variable name <code>Dept</code> has been appended to <code>FIRST.</code> 
+          and <code>LAST.</code> </p>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center">
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre><font color="#003399">     proc sort data=company.usa out=work.temp;
+        by dept;
+     run;
+     data company.budget(keep=dept payroll); 
+        set work.temp;
+        by dept; 
+        if wagecat='S' then Yearly=wagerate*12;
+        else if wagecat='H' then Yearly=wagerate*2000; 
+        if <strong>first.dept</strong> then Payroll=0;            
+        payroll+yearly; 
+        if <strong>last.dept</strong>; 
+     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p>If you could look behind the scenes at the program data vector (PDV) 
+          as the <strong>Company.Budget</strong> data set is being created, you 
+          would see the following. Notice the values for <code>FIRST.Dept</code> 
+          and <code>LAST.Dept</code>.</p>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+  Selected PDV Variables<br>
+<center>
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="Selected PDV Variables">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>_N_</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Dept</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Payroll</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FIRST.Dept</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>LAST.Dept</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM10</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        70929.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#FF0000"><strong>1</strong></font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM10</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">119479.2</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM10</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">173245.2</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM10</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">255516.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM10</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">293472.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#FF0000"><strong>1</strong></font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF" colspan="5">&nbsp; 
+        
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM20</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        40710.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#FF0000"><strong>1</strong></font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM20</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        68010.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM20</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        94980.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM20</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">136020.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM20</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">177330.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#FF0000"><strong>1</strong></font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF" colspan="5">&nbsp; 
+        
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ADM30</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        61125.0</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#FF0000"><strong>1</strong></font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#FF0000"><strong>1</strong></font></div>
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font>
+</center>
+<p align="center"> 
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p>When you print the new data set, you can now list and sum the annual 
+          payroll by department. 
+        <pre><font color="#003399">     proc print data=company.budget noobs;
+        sum payroll;
+        format payroll dollar12.2;<strong>
+</strong>     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Dept</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Payroll</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">ADM10</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">$293,472.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">ADM20</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">$177,330.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">ADM30</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">$173,388.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">CAM10</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">$130,709.60</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">CAM20</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">$156,731.20</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>&nbsp;</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>$931,630.80</b></font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

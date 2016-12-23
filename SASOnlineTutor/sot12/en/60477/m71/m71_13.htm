@@ -1,0 +1,278 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Inner Joins<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>So far, you've seen relatively simple examples of inner joins. However, 
+          as in any other PROC SQL query, inner joins can include more advanced 
+          components, such as </p>
+        <ul>
+          <li>titles and footers</li>
+          <li>functions and expressions in the SELECT clause</li>
+          <li> multiple conditions in the WHERE clause</li>
+          <li>an ORDER BY clause for sorting</li>
+          <li> summary functions with grouping. </li>
+        </ul>
+        <p>Let&#8217;s look at a few examples of more complex inner joins.</p>
+        <br> <h2> Example: Complex PROC SQL Inner Join</h2>
+        <p> Suppose you want to display the names (first initial and last name), 
+          job codes, and ages of all company employees who live in New York. You 
+          also want the results to be sorted by job code and age. </p>
+        <p> The data that you need is stored in the two tables listed below.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Data Needed for Query">
+    <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+      <th width="62"><font size="-1">Table</font></th>
+      <th width="289"><font size="-1">Relevant Columns</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td width="62"><strong><a href="JavaScript: openOther('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a></strong></td>
+      <td width="289"><code>EmpID, LastName, FirstName, State</code></td>
+    </tr>
+    <tr valign="top"> 
+      <td width="62"><strong><a href="JavaScript: openOther2('../linklib/payrmstr.htm')">Sasuser.Payrollmaster</a></strong></td>
+      <td width="289"><code>EmpID, JobCode, DateOfBirth</code></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>Of the three columns that you want to display, <code>JobCode</code> 
+          is the only column that already exists in the tables. The other two 
+          columns will need to be created from existing columns.</p>
+        <p> The PROC SQL query shown here uses an inner join to generate the output 
+          that you want:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql outobs=15;
+     title 'New York Employees';
+        select substr(firstname,1,1) || '. ' || lastname 
+               as Name,
+               jobcode,
+               int((today() - dateofbirth)/365.25)
+               as Age
+           from sasuser.payrollmaster as p,
+                sasuser.staffmaster as s
+           where p.empid =
+                 s.empid
+                 and state='NY'
+           order by 2, 3;</font>
+</pre></td>
+    </tr>
+  </table>
+  <br> 
+  <CENTER>
+    <TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#fffff0" title="PROC SQL Output Title">
+      <TR> 
+        <TD ALIGN=CENTER bgcolor="#fffff0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>New 
+          York Employees</i></b></font></TD>
+      </TR>
+    </TABLE>
+  </CENTER>
+  <br>
+  <CENTER>
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+      <thead>
+        <TR> 
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Name</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCode</b></font></TD>
+          <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Age</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">R. 
+            LONG</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BCK</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">32</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">T. 
+            BURNETTE</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BCK</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">36</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">J. 
+            MARKS</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BCK</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">37</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">N. 
+            JONES</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BCK</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">38</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">R. 
+            VANDEUSEN</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BCK</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">44</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">J. 
+            PEARSON</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BCK</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">45</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">L. 
+            GORDON</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BCK</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">45</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">C. 
+            PEARCE</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">32</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">D. 
+            WOOD</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">33</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">C. 
+            RICHARDS</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">35</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">R. 
+            MCDANIEL</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">36</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">L. 
+            JONES</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">36</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">A. 
+            PARKER</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">40</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">D. 
+            FIELDS</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">46</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">R. 
+            PATTERSON</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">35</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+  </CENTER>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The SELECT clause, shown below, specifies the new column <code>Name</code>, 
+          the existing column <code>JobCode</code>, and the new column <code>Age</code>:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><pre>     <font color="#003399">select substr(firstname,1,1) || '. ' || lastname 
+            as Name,
+            jobcode,
+            int((today() - dateofbirth)/365.25)
+            as Age</font>
+</pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>To create the two new columns, the SELECT clause uses functions and 
+          expressions as follows:</p>
+        <ul>
+          <li> To create <code>Name</code>, the SUBSTR function extracts the first 
+            initial from <code>FirstName</code>. Then the concatenation operator 
+            combines the first initial with a period, a space, and then the contents 
+            of the <code>LastName</code> column. Finally, the keyword AS names 
+            the new column.<br>
+            <br>
+          </li>
+          <li> To calculate <code>Age</code>, the INT function returns the integer 
+            portion of the result of the calculation. In the expression that is 
+            used as an argument of the INT function, the employee&#8217;s birth 
+            date (<code>DateOfBirth</code>) is subtracted from today&#8217;s date 
+            (returned by the TODAY function), and the difference is divided by 
+            the number of days in a year (365.25).</li>
+        </ul>
+        <p> The WHERE clause contains two expressions linked by the logical operator 
+          AND:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><pre>     <font color="#003399">where p.empid =
+           s.empid
+           <strong>and</strong> state='NY'</font>
+</pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>This query only outputs rows that have matching values of <code>EmpID</code> 
+          <strong>and</strong> rows in which the value of <code>State</code> is 
+          <em>NY</em>. You don't need to prefix the column name <code>State</code> 
+          with a table name, because <code>State</code> occurs in only one of 
+          the tables.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

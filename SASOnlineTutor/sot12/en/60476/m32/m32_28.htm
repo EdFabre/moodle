@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Your Own Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>Combining Macro Variable References with Suffixes</strong> </p>
+      <p> You can also combine macro variable references with suffixes. For example, 
+        the subsetting IF statement in this DATA step uses the YEAR function to 
+        extract the year value from the data set variable <code>EndDate</code>. 
+      <pre><font color="#003399">     %let yr=1999;</font>
+   <font color="#003399">  title "Temporary Employees for &amp;yr";</font>
+<font color="#003399">     data hrd.temp&amp;yr;</font>
+<font color="#003399">        set hrd.temp;</font>
+       <font color="#003399"> if year(<strong>enddate</strong>)=&amp;yr;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.temp&amp;yr;</font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> Sometimes, however, you need to run this program using the data set 
+        variable <code>BeginDate</code> in the subsetting IF statement. 
+      <pre><font color="#003399">     %let yr=1999;</font>
+<font color="#003399">     title "Temporary Employees for &amp;yr";</font>
+<font color="#003399">     data hrd.temp&amp;yr;</font>
+<font color="#003399">        set hrd.temp;</font>
+       <font color="#003399"> if year(<strong>begindate</strong>)=&amp;yr;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.temp&amp;yr;</font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> You can create a macro variable to easily change the beginning or ending 
+        date variable throughout the program. You create a macro variable name 
+        whose value is the first three digits of the variable name that you want 
+        to create, either <code>end</code> or <code>beg</code>, using the <nobr>%LET</nobr> 
+        statement. 
+      <p> Then you reference the macro variable in the subsetting IF statement 
+        and concatenate the suffix <code>date</code> to finish the variable name.
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td width="41"><img src="../navimages/alert.gif" border="0" width="37" height="32"
+	    hspace="10" alt="Alert:"></td>
+      <td>When combining a macro variable prefix and a suffix, you must separate 
+        them with a <strong>period</strong>. If you don't separate them with a 
+        period, SAS has no way of knowing where your macro variable reference 
+        ends and the suffix begins. </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>In the following example, the macro variable <code>endtime</code> is 
+        created with the value <code>end</code>. When the IF statement resolves, 
+        SAS reads <code>endtime </code>as the macro variable reference. Then it 
+        replaces the reference with the value of <code>&amp;endtime</code> to 
+        create the variable name <code>EndDate</code>. 
+        <p> The program looks like this: 
+        <pre><font color="#003399">     %let yr=1999;</font>
+    <font color="#003399"> <strong>%let endtime=end;</strong></font>
+   <font color="#003399">  title "Temporary Employees for &amp;yr";</font>
+<font color="#003399">     data hrd.temp&amp;yr;</font>
+<font color="#003399">          set hrd.temp;</font>
+         <font color="#003399"> if year(<strong>&amp;endtime.date</strong>)=&amp;yr;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.temp&amp;yr;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

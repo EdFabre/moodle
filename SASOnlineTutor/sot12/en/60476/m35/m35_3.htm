@@ -1,0 +1,203 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      One-Dimensional Arrays<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Defining an Array</strong> </p>
+      <p> To group previously defined data set variables into an array, use an 
+        ARRAY statement.
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, ARRAY statement">
+    <tr> 
+      <td><strong>General form, ARRAY statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>ARRAY </strong><em>array-name</em><strong>{</strong><em>dimension</em><strong>}<em> 
+            </em></strong><em>&lt;elements&gt;</em><strong>;</strong></font></nobr> 
+          </blockquote>
+        <p> where 
+        <ul>
+          <li> <font color="#003399"><em>array-name</em></font> specifies the 
+            name of the array. 
+          <li> <font color="#003399"><em>dimension</em></font> describes the number 
+            and arrangement of array elements. The default dimension is one. 
+            <li> <font color="#003399"><em>elements</em></font> lists the variables 
+              to include in the array. Array elements must be either all numeric 
+              or all character. If no elements are listed, new variables will 
+              be created with default names.
+          </ul>
+        <table border="0" cellspacing="0" cellpadding="2" width="100%">
+          <tr valign="top"> 
+            <td width="42"><img src="../navimages/alert.gif" border="0" width="37" height="32" alt="Note:"></td>
+            <td>Do not give an array the same name as a variable in the same DATA 
+              step. Also, avoid using the name of a SAS function; the array will 
+              be correct, but you won't be able to use the function in the same 
+              DATA step, and a warning message will appear in the SAS log.</td>
+          </tr>
+        </table>
+        <br>
+        <table border="0" cellspacing="0" cellpadding="2" width="100%">
+          <tr valign="top"> 
+            <td width="42"><img src="../navimages/alert.gif" border="0" width="37" height="32" alt="Note:"></td>
+            <td>You cannot use array names in LABEL, FORMAT, DROP, KEEP, or LENGTH 
+              statements. Arrays exist only for the duration of the DATA step. 
+              They do not become part of the output data set.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>For example, in the data set <strong>Finance.Sales91</strong>, you might 
+        want to process the variables <code>Qtr1</code>, <code>Qtr2</code>, <code>Qtr3</code>, 
+        and <code>Qtr4</code> in the same way.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellpadding="0" cellspacing="0" width="85%">
+    <tr> 
+      <td align="center">Description of Finance.Sales91 <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        <table border="1" cellspacing="0" cellpadding="5" title="Data Set Description" bgcolor="#FFFFFF">
+          <tr>
+            <td>
+              <table border=0 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF">
+                <thead> 
+                <tr> 
+                  <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Variable</b></font></td>
+                  <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Type</b></font></td>
+                  <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Length</b></font></td>
+                </tr>
+                </thead> <tbody> 
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">SalesRep</font></td>
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">char</font></td>
+                  <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Qtr1</font></td>
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                  <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Qtr2</font></td>
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                  <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Qtr3</font></td>
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                  <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Qtr4</font></td>
+                  <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                  <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+                </tr>
+                </tbody> 
+              </table>
+            </td>
+          </tr>
+        </table>
+        </font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Specifying the Array Name</strong> 
+        <p> To group the variables in the array, first give the array a <strong>name</strong>. 
+          In this example, make the array name <code>sales</code>. 
+        <pre>     <font color="#003399">array <strong>sales</strong>{4} qtr1 qtr2 qtr3 qtr4;</font></pre>
+        <p><br>
+          <strong>Specifying the Dimension</strong> 
+        <p> Following the array name, you must specify the <strong>dimension</strong> 
+          of the array. The dimension describes the number and arrangement of 
+          <strong>elements</strong> in the array. There are several ways to specify 
+          the dimension. 
+        <ul>
+          <li>In a one-dimensional array, you can simply specify the number of 
+            array elements. The array elements are the existing variables that 
+            you want to reference and process elsewhere in the DATA step. 
+            <pre><font color="#003399">array sales<strong>{4}</strong> qtr1 qtr2 qtr3 qtr4;</font></pre>
+            <li>The dimension of an array doesn't have to be the number of array 
+              elements. You can specify a range of values for the dimension when 
+              you define the array. For example, you can define the array <code>sales</code> 
+              as follows: 
+              <pre><font color="#003399">array sales<strong>{96:99}</strong> totals96 totals97 totals98 totals99;</font></pre>
+          <li>You can also indicate the dimension of a one-dimensional array by 
+            using an asterisk (*). This way, SAS determines the dimension 
+            of the array by counting the number of elements. 
+            <pre><font color="#003399">array sales<strong>{*}</strong> qtr1 qtr2 qtr3 qtr4;</font></pre>
+          <li>Enclose the dimension in either parentheses, braces, or brackets. 
+            <pre>           <font color="#003399"><strong>( )</strong></font>
+<font color="#003399">array sales<strong>{</strong>4<strong>}</strong> qtr1 qtr2 qtr3 qtr4;</font>
+           <font color="#003399"><strong>[ ]</strong></font></pre>
+        </ul>
+        <br>
+        <strong>Specifying Array Elements</strong> 
+        <p> When specifying the elements of an array, you can list each <strong>variable 
+          name</strong> that you want to include in the array. When listing elements, 
+          separate each element with a space. As with all SAS statements, you 
+          end the ARRAY statement with a semicolon (;). 
+        <pre>     <font color="#003399">array sales{4} <strong>qtr1 qtr2 qtr3 qtr4</strong>;</font>
+</pre>
+        You can also specify array elements as a <strong>variable list</strong>. 
+        Here is an example of an ARRAY statement that groups the variables <code>Qtr1</code> 
+        through <code>Qtr4</code> into a one-dimensional array, using a variable 
+        list. 
+        <pre>     <font color="#003399">array sales{4} <strong>qtr1-qtr4</strong>;</font></pre>
+        Let's look more closely at array elements that are specified as variable 
+        lists.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,289 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Detecting 
+      the End of a Data Set<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Instead of reading specific observations, you may want to determine when 
+        the last observation in an input data set has been read, so that you can 
+        perform specific processing. For example, you might want to write to output 
+        only an observation that contains totals for variables in all observations 
+        in the data set. </p>
+      <p> To create a temporary numeric variable whose value is used to detect 
+        the last observation, you can use the <strong>END= option</strong> in 
+        the SET statement. 
+    </td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table border cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, END= option">
+    <tr> 
+      <td align="left"><strong>General form, END= option:</strong> 
+        <blockquote> 
+          <p><nobr> <font color="#003399"><strong>END=</strong><em>variable</em></font> 
+            </nobr></p>
+        </blockquote>
+        <p>where <font color="#003399"><em>variable</em></font> creates and names 
+          a temporary variable that contains an end-of-file marker. The variable, 
+          which is initialized to <em>0</em>, is set to <em>1</em> when the SET 
+          statement reads the last observation of the data set.</p>
+        <p>This variable is <strong>not</strong> added to the data set.</p>
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Note:" border="0"></td>
+            <td> 
+              <p>Do not specify END= with POINT=. POINT= reads only a specific 
+                observation, so the last observation in the data set is not encountered.</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p><strong>Example</strong></p>
+        <p>Suppose you want to sum the number of seconds for treadmill stress 
+          tests. If you submit the following program, you produce a new data set 
+          that contains cumulative totals for each of the values of <code>TotalTime</code>.</p>
+        <pre><font color="#003399">     data work.addtoend(drop=timemin timesec);
+        set clinic.stress2(keep=timemin timesec);
+        TotalMin+timemin;
+        TotalSec+timesec;
+        TotalTime=totalmin*60+timesec;
+     run;
+     proc print data=work.addtoend noobs;
+     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TotalMin</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TotalSec</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TotalTime</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        12</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        38</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        758</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        22</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        43</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        1325</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        33</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        56</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        1993</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        42</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        98</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        2562</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        53</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">144</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        3226</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        65</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">170</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        3926</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        80</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">211</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        4841</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        93</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">224</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        5593</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">103</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">246</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        6202</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">119</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">295</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        7189</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">134</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">297</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        8042</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">146</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">308</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        8771</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">160</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">317</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        9609</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">171</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">343</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">10286</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">185</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">370</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11127</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">198</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">389</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11899</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">214</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">396</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12847</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">231</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">431</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">13895</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">246</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">472</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14801</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">260</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">529</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">15657</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">272</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">539</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16330</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font>
+</center>
+<p align="center">&nbsp; 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p>But what if you only want the <strong>final</strong> total (the last 
+          observation) in the new data set? The following program uses the END= 
+          variable <code>last</code> to select only the last observation of the 
+          data set. You specify END= in the SET statement and <code>last</code> 
+          wherever you need it in processing (here, in the subsetting IF statement).</p>
+        <pre><font color="#003399">     data work.addtoend(drop=timemin timesec);
+        set clinic.stress2(keep=timemin timesec) <strong>end=last</strong>;
+        TotalMin+timemin;
+        TotalSec+timesec;
+        TotalTime=totalmin*60+timesec;
+        <strong>if last;</strong>
+     run;
+     proc print data=work.addtoend noobs;
+     run;</font></pre>
+        <p>Now the new data set has one observation:</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TotalMin</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TotalSec</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TotalTime</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">272</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">539</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16330</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font><br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,165 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      and Writing Only Essential Data<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Creating a SAS Data Set That Contains Only Certain Variables 
+      </h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Suppose you want to read data from an external file that is referenced 
+        by the fileref <strong> Rawdata </strong> and to create a SAS data set 
+        that contains only the variables <code>Customer_ID</code>, <code>Country</code>, 
+        <code>Gender</code>, and <code>Customer_Name</code></font>. 
+      <p>Techniques for accomplishing this task include
+<ol>
+        <li><a href="#1">Reading All Fields</a></li>
+        <li><a href="#2">Reading Selected Fields.</a></li>
+             </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results may vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for reading and writing only essential data. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        Reading All Fields</strong></p>
+      <blockquote> 
+        <p>In this program, the KEEP= data set option writes only the variables 
+          that are needed to the output data set, whereas the INPUT statement 
+          reads all fields from the external file.</p>
+          </blockquote>
+      <blockquote>
+        <pre><font color="#003399">     data retail.customers<strong>(keep=Customer_ID Country Gender Customer_Name)</strong>;
+        infile rawdata;
+        input @1   <strong>Customer_ID</strong>         12.
+              @13  <strong>Country</strong>             $2.
+              @15  <strong>Gender</strong>              $1.
+              @16  <strong>Personal_ID</strong>        $15.
+              @31  <strong>Customer_Name</strong>      $40.
+              @71  <strong>Customer_FirstName</strong> $20.
+              @91  <strong>Customer_LastName</strong>  $30.
+              @121 <strong>Birth_Date </strong>      date9.
+              @130 <strong>Customer_Address</strong>   $45.
+              @175 <strong>Street_ID</strong>           12.
+              @199 <strong>Street_Number</strong>       $8.
+              @207 <strong>Customer_Type_ID</strong>     8.;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Reading Selected Fields</strong></p>
+      <blockquote> 
+        <p>In this program, the INPUT statement reads selected fields from the 
+          external file, and by default, these are written to the output data 
+          set.</p>
+          </blockquote>
+           <blockquote> 
+        <pre><font color="#003399">     data retail.customers;
+        infile rawdata;
+        input @1   <strong>Customer_ID</strong>         12.
+              @13  <strong>Country</strong>             $2.
+              @15  <strong>Gender</strong>              $1.
+              @31  <strong>Customer_Name</strong>      $40.;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <ul>
+        <li>When possible, read only the fields you need from an external data 
+          file to save CPU and real-time resources.</li>
+        <br>
+        <br>
+        <li>To save CPU resources, avoid converting numerics that you do not need 
+          in further processing. </li>
+      </ul>
+      <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top"><p>Remember that numeric data is moved into the program 
+              data vector after being converted to real binary, floating point 
+              numbers; multiple digits are stored in one byte. Character data 
+              is moved into the program data vector with no conversion; one character 
+              is stored in one byte.</p></td>
+        </tr>
+      </table> 
+      </td>
+  </tr>
+</table>
+<p><br>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

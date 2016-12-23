@@ -1,0 +1,281 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      the Length of Character Values<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p>Remember that when you use list input to read raw data, <strong>character</strong> 
+        values are assigned a default length of 8. Let's look at what happens 
+        when list input is used to read character variables whose values are longer 
+        than 8. </p>
+      <p> The raw data file referenced by the fileref <strong>Citydata </strong>contains 
+        1970 and 1980 population figures for several large U.S. cities. Notice 
+        that some city names are rather long. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<div align="center"> <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <tr> 
+      <td align=LEFT bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+----20---+----</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="teal"><strong><font color="#003399">ANCHORAGE</font></strong></font><font  face="Courier New, Courier" size="2" color="#000000"> 
+        48081 174431</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">ATLANTA 
+        495039 425022</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">BOSTON 
+        641071 562994</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="teal"><strong><font color="#003399">CHARLOTTE</font></strong></font><font  face="Courier New, Courier" size="2" color="#000000"> 
+        241420 314447</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">CHICAGO 
+        3369357 3005072</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">DALLAS 
+        844401 904078</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">DENVER 
+        514678 492365</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">DETROIT 
+        1514063 1203339</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MIAMI 
+        334859 346865</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="teal"><strong><font color="#003399">PHILADELPHIA</font></strong></font><font  face="Courier New, Courier" size="2" color="#000000"> 
+        1949996 1688210</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="teal"><strong><font color="#003399">SACRAMENTO</font></strong></font><font  face="Courier New, Courier" size="2" color="#000000"> 
+        257105 275741</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font></div>
+<p align="center"> <br>
+<div align="center">
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The longer character values are truncated when they are 
+        written to the program data vector.</td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p align="center"> <img src="images/m23h1g1.gif" width="272" height="73" alt="Program Data Vector"> 
+<p align="center"> 
+<div align="center">
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>PROC PRINT output shows the truncated values for <code>City</code>. 
+        <pre>     <font color="#003399">data perm.growth;</font>
+<font color="#003399">        infile citydata;</font>
+<font color="#003399">        input City $ Pop70 Pop80;</font>
+     <font color="#003399">run;</font>
+<font color="#003399">     proc print data=perm.growth;</font>
+<font color="#003399">     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p align="center"> 
+<div align="center">
+  <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+    bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>City</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Pop70</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Pop80</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        1</font></b></td>
+      <td align=LEFT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">ANCHORAG</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">48081</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">174431 </font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        2</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">ATLANTA</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">495039</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">425022</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        3</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">BOSTON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">641071</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">562994</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        4</font></b></td>
+      <td align=LEFT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">CHARLOTT</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">241420</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">314447</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        5</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">CHICAGO</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">3369357</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">3005072</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        6</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">DALLAS</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">844401</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">904078</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC" bordercolor="#000000"> 
+        <p align=Right> <font size="3" color="#0033AA"><b><font face="Arial, Helvetica, Helv"> 
+          7</font> </b></font>
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">DENVER</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">514678</font> 
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          492365</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC" bordercolor="#000000"> 
+        <p align=Right> <font size="3" color="#0033AA"><b><font face="Arial, Helvetica, Helv">8</font> 
+          </b></font>
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">DETROIT</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">1514063</font> 
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">1203339</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC" bordercolor="#000000"> 
+        <p align=Right> <font size="3" color="#0033AA"><b><font face="Arial, Helvetica, Helv">9</font> 
+          </b></font>
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">MIAMI</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">334859</font> 
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">346865</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC" bordercolor="#000000"> 
+        <p align=Right> <font size="3" color="#0033AA"><b><font face="Arial, Helvetica, Helv">10</font> 
+          </b></font>
+      </td>
+      <td bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">PHILADEL</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">1949996</font> 
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">1688210</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">11</font></b></td>
+      <td align=LEFT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">SACRAMEN</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">257105</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">275741</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</div>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

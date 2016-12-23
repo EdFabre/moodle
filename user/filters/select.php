@@ -75,10 +75,8 @@ class user_filter_select extends user_filter_type {
      */
     public function setupForm(&$mform) {
         $objs = array();
-        $objs['limiter'] = $mform->createElement('select', $this->_name.'_op', null, $this->get_operators());
-        $objs['limiter']->setLabel(get_string('limiterfor', 'filters', $this->_label));
-        $objs['country'] = $mform->createElement('select', $this->_name, null, $this->_options);
-        $objs['country']->setLabel(get_string('valuefor', 'filters', $this->_label));
+        $objs[] = $mform->createElement('select', $this->_name.'_op', null, $this->get_operators());
+        $objs[] = $mform->createElement('select', $this->_name, null, $this->_options);
         $grp =& $mform->addElement('group', $this->_name.'_grp', $this->_label, $objs, '', false);
         $mform->disabledIf($this->_name, $this->_name.'_op', 'eq', 0);
         if (!is_null($this->_default)) {

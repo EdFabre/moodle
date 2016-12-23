@@ -1,0 +1,145 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Using PROC SQL to Create a Table from the Results of an Inner Join</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Using 
+      PROC SQL to Create a Table from the Results of an Inner Join<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> You can use PROC SQL to combine data from multiple data sets and write 
+      the results to a new data set.</td>
+  </tr>
+  </table><P><BR>
+  <table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC SQL step to create a table from the results of an inner join">
+            <tr> 
+              
+      
+    <td align="left"><strong>General form, PROC SQL step to create a table from 
+      the results of an inner join:</strong> 
+      <blockquote> <font color="#003399"><dl><dt><strong>PROC SQL</strong><strong>;</strong></dt>
+		<dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>CREATE TABLE</strong> <em>SAS-data-set</em> <strong>AS</strong></dt>
+		  <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SELECT</strong> 
+            <em>column-1&lt;, column-2...,column-n&gt;</em></dt>
+		  <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FROM</strong> 
+            <em>table-1&lt;, table-2...,table-n&gt;</em></dt>
+		<dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>WHERE</strong> <em>joining criteria</em><strong>;</strong></dt>
+		</dl>
+		  </font> </blockquote>
+		  where
+		  <ul>
+		  <li><font color="#003399"><em>SAS-data-set</em></font> names the table that is created to hold the results
+		  
+        <li><font color="#003399"><em>column-1&lt;..., column-n</em></font>&gt; 
+          specifies the columns that are contained in the new table 
+        <li><font color="#003399"><em>table-1&lt;..., table-n&gt;</em></font> 
+          specifies the input tables 
+        <li><font color="#003399"><em>joining criteria</em></font> refers to one or more expressions that specify the column or columns on which the tables are to be joined.
+		  </ul> 
+                </td>
+            </tr>
+          </table><p><br>
+		  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <h2>Example</h2>
+	The following program combines data from the <strong>Sasuser.Empdata</strong> 
+      and the <strong>Sasuser.Jcodedat</strong> data sets into a new data set 
+      named <strong>Sasuser.Combined</strong>:<font color="#003399"> 
+      <pre>     proc sql;
+        create table sasuser.combined as
+           select empdata.lastname, empdata.jobcode, 
+		          jcodedat.descript
+              from sasuser.empdata, sasuser.jcodedat
+              where empdata.jobcode=jcodedat.jobcode;
+     quit;</pre>
+      </font> Printing the first eight observations of the <strong>Sasuser.Combined</strong> 
+      data set gives the following results. 
+      <P><BR> <CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+<thead>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCode</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Descript</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 1</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BROCKLEBANK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BAGCLK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BAGGAGE CLERK</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 2</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANDERSON</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BAGCLK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BAGGAGE CLERK</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 3</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JOHNSON</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACCLK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACILITIES CLERK</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 4</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JOHNSON</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACCLK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACILITIES CLERK</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 5</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SMITH</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACCLK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACILITIES CLERK</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 6</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">MCKINNON</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACCLK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACILITIES CLERK</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 7</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JUDD</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACMNT</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACILITIES MAINTENANCE OPERATIVE</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 8</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CROSS</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACMNT</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FACILITIES MAINTENANCE OPERATIVE</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER><P>
+  </td>
+  </tr></table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

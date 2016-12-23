@@ -1,0 +1,185 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Tasks 
+      in Creating Drill-Down Graphs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>If you completed the lesson 
+        <!--lesson reference-->
+        <strong><script>document.write(m18title);</script></strong>, you learned how to generate HTML 
+        output. You can combine the same method with SAS/GRAPH procedures to create 
+        drill-down graphs. You define the links that connect a chart to its drill-down 
+        locations. These links are then assigned in the HTML when ODS writes the 
+        output. </p>
+      <p> To create a drill-down graph, you write a SAS program to do the following: 
+      <ol>
+        <li> Create the initial chart that you want to use, using SAS/GRAPH software. 
+          This chart will become the primary chart in your linked series of graphs.<br>
+          <br>
+        <li> Create a variable to hold HREF addresses for the linked HTML files.<br>
+          <br>
+        <li> Define values for the new variable.<br>
+          <br>
+        <li> Set the output format to HTML by using the ODS HTML statement.<br>
+          <br>
+        <li> Attach links to the primary chart by identifying the HREF variable 
+          in the SAS/GRAPH procedure.<br>
+          <br>
+        <li> Create the secondary, linked charts and tables. 
+      </ol>
+      <p> <br>
+        We'll go over each of these steps on the following pages.
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Data Used in Examples</strong> 
+        <p> This lesson builds a detailed example of a program that creates a 
+            drill-down graph. It uses the data set <strong>Finance.Prdsal2</strong>, 
+            which contains sales figures for an imaginary furniture company. Sales 
+            are tracked by region for every month from 1995 to 1998. </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+  <p align="center"> Description of Finance.Prdsal2 
+  <center>
+  <table bgcolor="#FFFFFF" border="1" cellspacing="0" cellpadding="10" title="descriptor portion of SAS data set">
+    <tr> 
+      <td align="center"> 
+        <table border="0" cellspacing="0" cellpadding="3">
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2" color="#003399"><strong>Variable</strong></font></td>
+            <td><font face="Courier New,Courier,mono" size="2" color="#003399"><strong>Type</strong></font></td>
+            <td><font face="Courier New,Courier,mono" size="2" color="#003399"><strong>Format</strong></font></td>
+            <td><font face="Courier New,Courier,mono" size="2" color="#003399"><strong>Label</strong></font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">COUNTRY</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Char</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">$CHAR10.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Country</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">STATE</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Char</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">$CHAR22.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">State/Province</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">COUNTY</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Char</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">$CHAR20.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">County</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">ACTUAL</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Num</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">DOLLAR12.2</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Actual Sales</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">PREDICT</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Num</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">DOLLAR12.2</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Predicted Sales</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">PRODTYPE</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Char</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">$CHAR10.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Product Type</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">PRODUCT</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Char</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">$CHAR10.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Product</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">YEAR</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Num</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">4.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Year</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">QUARTER</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Num</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">8.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Quarter</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">MONTH</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Num</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">MONNAME3.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Month</font></td>
+          </tr>
+          <tr valign="top"> 
+            <td><font face="Courier New,Courier,mono" size="2">MONYR</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Num</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">MONYY.</font></td>
+            <td><font face="Courier New,Courier,mono" size="2">Month/Year</font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table border="0" cellspacing="0" cellpadding="2" width="85%">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" border="0" width="20"
+	    height="20" alt="Note:"></td>
+        <td valign="top">If you would like to run the program that is developed 
+          in this lesson, create the data set <strong>Finance.Prdsal2</strong> 
+          by submitting the following code: 
+          <pre><font color="#003399">     data finance.prdsal2;</font>
+<font color="#003399">        set sashelp.prdsal2;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

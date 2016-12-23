@@ -1,0 +1,167 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      the Secondary Charts and Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Now you can link the bars on your secondary charts to <strong>tables 
+        that hold summary data for each quarter</strong>. This time, instead of 
+        pointing to separate HTML files, the links point to <strong>HREF anchors 
+        </strong>further down the same page.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<p align="center"> <img src="images/m9f1g1.gif" width=139 height=240 alt="primary chart" border="0"><img
+      src="images/m9f2g1b.gif" width=171 height=240 alt="secondary charts" border="0"> 
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Creating the Anchor Links</strong> 
+        <p> As with the previous links, you start by creating a variable for storing 
+          the HREF locations. 
+        <ol>
+          <li> In the DATA step, use the LENGTH statement to define a variable 
+            named <code>SecDrill</code>. <br>
+            <br>
+          <li> Assign values to <code>SecDrill</code> according to the value of 
+            <code>QUARTER</code>. Assign the HTML anchor names <strong>salesq1</strong>, 
+            <strong>salesq2</strong>, <strong>salesq3</strong>, and <strong>salesq4</strong>. 
+            <br>
+            <br>
+          <li> Because these anchors will be on the same page as the charts, begin 
+            each address string with a <strong>pound sign</strong> (<strong>#</strong>), 
+            and omit the <strong>.html</strong> extension. Notice the difference 
+            between <code>PriDrill</code> and <code>SecDrill</code> below. 
+        </ol>
+      </td>
+    </tr>
+  </table>
+</center>
+
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     data work.saletrnd;</font>
+<font color="#003399">        set finance.prdsal2;</font>
+<font color="#003399">     length PriDrill $ 40 <strong>SecDrill $ 40</strong>;</font>
+<font color="#003399">     if year=1995 then pridrill='HREF="sales95.html"';</font>
+<font color="#003399">     if year=1996 then pridrill='HREF="sales96.html"';</font>
+<font color="#003399">     if year=1997 then pridrill='HREF="sales97.html"';</font>
+<font color="#003399">     if year=1998 then pridrill='HREF="sales98.html"';</font>
+<font color="#003399">     <strong>if quarter=1 then secdrill='HREF="#salesq1"';</strong></font>
+<font color="#003399">     <strong>if quarter=2 then secdrill='HREF="#salesq2"';</strong></font>
+<font color="#003399">     <strong>if quarter=3 then secdrill='HREF="#salesq3"';</strong></font>
+<font color="#003399">     <strong>if quarter=4 then secdrill='HREF="#salesq4"';</strong></font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <ol start="4">
+          <li> To associate these new HREF strings with the bars of the secondary 
+            charts, add the HTML option to each GCHART procedure that produces 
+            the quarterly graphs. 
+        </ol>
+      </td>
+    </tr>
+  </table>
+</center>
+
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     ods html body='sales95.html';</font>
+<font color="#003399">     title 'Sales for 1995 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete</font>
+<font color="#003399">             <strong>html=secdrill</strong>;</font>
+<font color="#003399">        where year=1995;</font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html body='sales96.html';</font>
+<font color="#003399">     title 'Sales for 1996 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete</font>
+<font color="#003399">             <strong>html=secdrill</strong>;</font>
+<font color="#003399">        where year=1996;</font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html body='sales97.html';</font>
+<font color="#003399">     title 'Sales for 1997 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete</font>
+<font color="#003399">             <strong>html=secdrill</strong>;</font>
+<font color="#003399">        where year=1997;</font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html body='sales98.html';</font>
+<font color="#003399">     title 'Sales for 1998 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete</font>
+<font color="#003399">             <strong>html=secdrill</strong>;</font>
+<font color="#003399">        where year=1998;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>If you want, you can view an <a href="JavaScript: openOther('../linklib/drilldga.htm')" onMouseOver="window.status='View annotated drill-down program.';return true"
+	    onMouseOut="window.status='';return true">annotated version of the example 
+        program</a> so far.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

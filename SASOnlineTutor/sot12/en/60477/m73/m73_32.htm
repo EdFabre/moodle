@@ -1,0 +1,135 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Handling 
+      Errors in Row Insertions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p><strong>Using the UNDO_POLICY= Option to Control UNDO Processing 
+          </strong></p>
+        <p>When you use the INSERT or UPDATE statement to add or modify data in 
+          a table, you can control how PROC SQL handles updated data if any errors 
+          occur during the insertion or update process. You can use the <strong>UNDO_POLICY=</strong> 
+          option in the PROC SQL statement to specify whether PROC SQL will make 
+          or undo the changes you submitted up to the point of the error. </p>
+        <p>You can specify one of the following values for the UNDO_POLICY= option.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="476" border="1" align="center" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="UNDO_POLICY= option">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th align="center" nowrap> <font size="-1">UNDO_POLICY= Setting</font></th>
+      <th width="385" align="center"> <font size="-1">Description</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>REQUIRED</strong></td>
+      <td><p>PROC SQL performs UNDO processing for INSERT and UPDATE statements. 
+          If the UNDO operation cannot be done reliably, PROC SQL <strong>does 
+          not execute the statement</strong> and issues an ERROR message.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">This is the PROC SQL default.</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr valign="top"> 
+      <td width="77"><strong>NONE</strong></td>
+      <td>PROC SQL <strong>skips records that cannot be inserted or updated</strong>, 
+        and writes a warning message to the SAS log similar to that written by 
+        PROC APPEND. Any data that meets the integrity constraints <strong>is</strong> 
+        added or updated.</td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>OPTIONAL</strong></td>
+      <td><p>PROC SQL <strong>performs UNDO processing if it can be done reliably</strong>. 
+          If the UNDO cannot be done reliably, then no UNDO processing is attempted. 
+        </p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">This action is a combination of REQUIRED and NONE. 
+              If UNDO can be done reliably, then it is done, and PROC SQL proceeds 
+              as if UNDO_POLICY=REQUIRED is in effect. Otherwise, it proceeds 
+              as if UNDO_POLICY=NONE was specified.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top"><p>In the following situations, you cannot reliably attempt 
+          the UNDO operation:</p>
+        <ul>
+          <li> A SAS data set that is accessed through a SAS/SHARE server and 
+            opened with CNTLLEV=RECORD can allow other users to update newly inserted 
+            records. An error during the insert deletes the record that the other 
+            user updated.<br>
+            <br>
+          </li>
+          <li>Changes made through a SAS/ACCESS view might not be able to reverse 
+            changes made by the INSERT or UPDATE statement without reversing other 
+            changes at the same time.</li>
+        </ul></td>
+    </tr>
+  </table>
+<table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>The ANSI standard for SQL includes a ROLLBACK statement 
+          that is used for UNDO processing. The ROLLBACK statement is not currently 
+          supported in PROC SQL.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>When you use the UNDO_POLICY= option, the value that 
+          you set remains in effect for the entire PROC SQL statement or until 
+          a RESET statement is used to change the option. To learn more about 
+          the RESET statement, see the lesson 
+          <!--lesson reference-->
+          <strong><script>document.write(m76title);</script></strong>.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

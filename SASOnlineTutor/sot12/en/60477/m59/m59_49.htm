@@ -1,0 +1,115 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Initiating 
+      Generation Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>To initiate generation data sets and to specify the maximum number 
+          of versions to maintain, you use the output data set option <strong>GENMAX=</strong> 
+          when creating or replacing a data set. If the data set already exists, 
+          you can use the GENMAX= option with the DATASETS procedure and the MODIFY 
+          statement.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATASETS procedure and MODIFY statement with the GENMAX= option">
+    <tr> 
+      <td align="left"><strong>General form, DATASETS procedure and MODIFY statement 
+        with the GENMAX= option:</strong> <blockquote> 
+          <p><font color="#003399"><nobr><strong>PROC DATASETS LIB<em>=</em></strong><em>libref 
+            </em>&lt;<strong>NOLIST</strong>&gt;<em> </em><strong>;</strong></nobr><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>MODIFY</strong> 
+            </font><font color="#003399"><nobr><em>SAS-data-set</em> (<strong>GENMAX=</strong><em>n</em>);</nobr><br>
+            <strong>QUIT; </strong></font><font color="#003399"><nobr></nobr></font></p>
+        </blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>libref</em></font> is the library that 
+            contains the data you want to modify 
+          <li><font color="#003399"><strong>NOLIST</strong></font> suppresses the directory listing
+          <li> <font color="#003399"><em>SAS-data-set</em></font> is the name 
+            of the SAS data set that you want to modify 
+          <li> <font color="#003399"><em>n </em></font> is the number of historical 
+            versions you want to keep, including the base version 
+            <ul>
+              <li><em><font color="#003399">n</font></em><font color="#003399"> 
+                </font>=<em>0</em>, no historical versions are kept (this is the 
+                default).</li>
+              <li><em><font color="#003399">n</font></em>&gt;<em>0</em>, the specified 
+                number of versions of the file will be kept. The number includes 
+                the base version.</li>
+            </ul>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>The following DATASETS procedure modifies the data set <strong>Cargorev</strong> 
+          and requests that up to four versions be kept (one base version and 
+          three historical versions).</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If you choose to run this example, you must copy 
+              the data set <strong>Cargorev</strong> from the <strong>Sasuser</strong> library 
+              to the <strong>Work</strong> library.</td>
+          </tr>
+        </table>
+        <pre>     <font color="#003399">proc datasets nolist;
+        modify cargorev (genmax=4);
+     quit;</font></pre>
+	 <p>No message is written to the log when you specify the GENMAX= option.</p>
+        <h2><br>
+          Creating Generation Data Sets</h2>
+        <p>Remember, new versions of a generation data set are created only when 
+          a data set is replaced, not when it is modified in place. To create 
+          new generations, use </p>
+        <ul>
+          <li>a DATA step with a SET statement</li>
+          <li>a DATA step with a MERGE statement</li>
+          <li>PROC SORT without the OUT= option</li>
+          <li>PROC SQL with a CREATE TABLE statement.</li>
+        </ul>
+        </td>
+    </tr>
+  </table>
+  <p> <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,178 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->SAS 
+      Programs<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You've seen the results of submitting our sample program. For other SAS programs, 
+          the results of processing might vary: 
+        </p><p>
+    </td>
+  </tr>
+</table> <center>
+<div id="v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0">
+<tr valign="top"><td><UL><LI> 
+Some SAS programs open an <STRONG>interactive window</STRONG> (a window that you can use to directly modify data), such 
+as the REPORT window. 
+<PRE><FONT color="#003399">    
+proc report data=clinic.admit;<br>
+columns id name sex age actlevel;<br>
+   label name='Name' sex='Sex' age='Age' <br>
+         actlevel='ActLevel';<br>
+run;</FONT></PRE></UL></td></tr></table>
+<p align="center"> <img border="0" src="images/m1b5s1.gif" alt="REPORT window" width="408" height="265"></p> <br>
+<hr width=85%><br>
+</div>		
+<div id="le1_le2_eg1_eg2_eg3" class="eg_div"></div>
+
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        
+        <ul>
+            <li> SAS programs often invoke procedures that create <strong>output</strong> 
+              in the form of a report, as is the case with the TABULATE procedure: 
+              <pre>    <font color="#003399"> proc tabulate data=clinic.admit;</font>
+<font color="#003399">        class sex;</font>
+<font color="#003399">        var height weight;</font>
+<font color="#003399">        table sex*(height weight),mean;</font>
+<font color="#003399">     run;</font>
+</pre>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC TABULATE output">
+    <thead> 
+    <tr> 
+      <td colspan=2 align=CENTER valign=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>&nbsp;</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Mean</b></font></td>
+    </tr>
+    </thead> 
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Sex</b></font></td>
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>&nbsp;</b></font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        64.82</font></td>
+    </tr>
+    <tr> 
+      <td rowspan=2 align=LEFT valign=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>F</b></font></td>
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Height</b></font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Weight</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        141.73</font></td>
+    </tr>
+    <tr> 
+      <td rowspan=2 align=LEFT valign=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>M</b></font></td>
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Height</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        72.00</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Weight</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        172.80</font></td>
+    </tr>
+  </table>
+</center>
+<p align="center">&nbsp; 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <hr>
+        <ul>
+          <li> Other SAS programs perform tasks such as sorting and managing data, 
+            which have no visible results except for <strong>messages in the log</strong>. 
+            (All SAS programs produce log messages, but some SAS programs produce 
+            <strong>only</strong> log messages.) 
+              <pre><font color="#003399">     proc copy in=clinic out=work;</font>
+<font color="#003399">        select admit;
+     run;</font>
+</pre>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> SAS Log 
+<center>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> 
+        <pre>6  proc copy in=clinic out=work;
+7  select admit;
+8  run;
+
+NOTE: Copying CLINIC.ADMIT to WORK.ADMIT (memtype=DATA).
+NOTE: There were 21 observations read from the data set 
+      CLINIC.ADMIT.
+NOTE: The data set WORK.ADMIT has 21 observations and 9 
+      variables.
+NOTE: PROCEDURE COPY used (Total process time):
+      real time           0.13 seconds
+      cpu time            0.08 seconds
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellspacing="0" cellpadding="2" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" alt="Note:" width="20" height="20"></td>
+      <td>You can turn off log messages by using system options, which you can 
+        learn about in the lesson 
+        <!--lesson reference--><strong><script>document.write(m16title);</script></strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

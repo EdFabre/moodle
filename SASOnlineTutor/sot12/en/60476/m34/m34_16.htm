@@ -1,0 +1,183 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Iteratively 
+      Processing Data That Is Read from a Data Set<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>So far, you have seen examples of DATA steps that use DO loops to generate 
+        one or more observations from one iteration of the DATA step. Now, let's 
+        look at a DATA step that reads a data set to compute the value of a new 
+        variable. </p>
+      <p> The SAS data set <strong>Finance.CDRates</strong>, shown below, contains 
+        interest rates for certificates of deposit (CDs) that are available from 
+        several institutions.
+    </td>
+  </tr>
+</table>
+<center>
+  <p> <br>
+    SAS Data Set Finance.CDRates 
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Institution</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rate</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Years</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">MBNA 
+        America</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.0817</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Metropolitan 
+        Bank</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.0814</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Standard 
+        Pacific</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.0806</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font>
+<p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Suppose you want to compare how much each CD will earn at maturity with 
+        an investment of $5,000. The DATA step below creates a new data set, <strong>Work.Compare</strong>, 
+        that contains the added variable, <code>Investment</code>.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="0" cellpadding="0" cellspacing="0" width="85%">
+    <tr valign="top"> 
+      <td width="49%"> 
+        <pre><font color="#003399">   data work.compare(drop=i);</font>
+<font color="#003399">      set finance.cdrates;</font>
+<font color="#003399">      Investment=5000;</font>
+<font color="#003399">      do i=1 to years;</font>
+<font color="#003399">         investment+rate*investment;</font>
+<font color="#003399">      end;</font>
+<font color="#003399">   run;</font></pre>
+      </td>
+      <td align="center" width="51%">SAS Data Set Work.Compare <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set Variables">
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Institution</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rate</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Years</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Investment</b></font></td>
+          </tr>
+          </thead> <tbody> </tbody> 
+        </table>
+        </font></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The index variable is used only to execute the DO loop, so it is dropped 
+        from the new data set. Notice that the data set variable <code>Years</code> 
+        is used as the stop value in the iterative DO statement. As a result, 
+        the DO loop executes the number of times specified by the current value 
+        of <code>Years</code>. 
+        <p> During each iteration of the DATA step, 
+        <ul>
+          <li>an observation is read from <strong>Finance.CDRates</strong> 
+          <li>the value <em>5000</em> is assigned to the variable <code>Investment</code> 
+          <li>the DO loop executes, based on the current value of <code>Years</code> 
+          <li>the value of <code>Investment</code> is computed (each time that 
+            the DO loop executes), using the current value of <code>Rate</code>. 
+        </ul>
+        <p>At the bottom of the DATA step, the first observation is written to 
+          the <strong>Work.Compare</strong> data set. Control returns to the top 
+          of the DATA step, and the next observation is read from <strong>Finance.CDRates</strong>. 
+          These steps are repeated for each observation in <strong>Finance.CDRates</strong>. 
+          The resulting data set contains the computed values of <code>Investment</code> 
+          for all observations that have been read from <strong>Finance.CDRates</strong>.
+      </td>
+    </tr>
+  </table>
+  <p><br>
+    SAS Data Set Work.Compare 
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Institution</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rate</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Years</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Investment</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">MBNA 
+        America</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.0817</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">7404.64</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Metropolitan 
+        Bank</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.0814</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">6323.09</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Standard 
+        Pacific</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.0806</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">6817.57</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font><br>
+  <br>
+</center>
+<p>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

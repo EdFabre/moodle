@@ -94,13 +94,10 @@ class auth_plugin_email extends auth_plugin_base {
             $user->calendartype = $CFG->calendartype;
         }
 
-        $user->id = user_create_user($user, false, false);
+        $user->id = user_create_user($user, false);
 
         // Save any custom profile field information.
         profile_save_data($user);
-
-        // Trigger event.
-        \core\event\user_created::create_from_userid($user->id)->trigger();
 
         if (! send_confirmation_email($user)) {
             print_error('auth_emailnoemail','auth_email');
@@ -139,11 +136,11 @@ class auth_plugin_email extends auth_plugin_base {
         $user = get_complete_user_data('username', $username);
 
         if (!empty($user)) {
-            if ($user->auth != $this->authtype) {
-                return AUTH_CONFIRM_ERROR;
-
-            } else if ($user->secret == $confirmsecret && $user->confirmed) {
+            if ($user->confirmed) {
                 return AUTH_CONFIRM_ALREADY;
+
+            } else if ($user->auth != $this->authtype) {
+                return AUTH_CONFIRM_ERROR;
 
             } else if ($user->secret == $confirmsecret) {   // They have provided the secret key to get in
                 $DB->set_field("user", "confirmed", 1, array("id"=>$user->id));

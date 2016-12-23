@@ -1,0 +1,194 @@
+<html><!-- InstanceBegin template="/Templates/overview.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(overviewTitle)</script></strong></font>
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center>
+
+<p> 
+ <!-- InstanceBeginEditable name="overview" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <h2>Introduction</h2>
+        <p>The SELECT statement is the primary tool of PROC SQL. Using the SELECT 
+          statement, you can identify, manipulate, and retrieve columns of data 
+          from one or more tables and views. </p>
+        <p>You should already know how to create basic PROC SQL queries by using 
+          the SELECT statement and most of its subordinate clauses. To build on 
+          your existing skills, this lesson presents a variety of useful query 
+          techniques, such as the use of subqueries to subset data. </p>
+        <p>The PROC SQL query shown below illustrates some of the new query techniques 
+          that you will learn in this lesson<font color="#003399">:</font></p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><pre><font color="#003399">     proc sql outobs=20;
+     title 'Job Groups with Average Salary';
+     title2 '&gt; Company Average';
+        select jobcode, 
+               avg(salary) as AvgSalary format=dollar11.2,
+               count(*) as Count
+           from sasuser.payrollmaster
+           group by jobcode
+           having avg(salary) &gt;
+              (select avg(salary)
+                 from sasuser.payrollmaster)
+           order by avgsalary desc;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <!-- InstanceEndEditable -->
+  <!-- InstanceBeginEditable name="overview_graphic" --> 
+  <CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100%>
+      <TR> 
+        <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Job 
+          Groups with Average Salary</i></b></font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i> 
+          &gt; Company Average</i></b></font></TD>
+      </TR>
+    </TABLE>
+    </font> 
+	    <br>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+      <thead>
+        <TR> 
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCode</b></font></TD>
+          <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>AvgSalary</b></font></TD>
+          <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Count</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PT3</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$154,706.50</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PT2</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$122,253.40</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">10</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PT1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$95,071.13</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA2</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$73,336.00</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">3</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ME3</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$59,374.86</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">7</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$58,845.00</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">5</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">TA3</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$55,551.42</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <p>
+    <br>
+    </font> 
+  </CENTER><!-- InstanceEndEditable -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewTimeToComplete)</script></h2>
+      <p><script>document.write(overviewTimeIntro)</script><!-- InstanceBeginEditable name="time_to_complete" -->3 
+          hours<!-- InstanceEndEditable --><script>document.write(overviewTimeEnd)</script></p>
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewObjectives)</script></h2>
+      <!-- InstanceBeginEditable name="objectives" --> 
+        <p>In this lesson, you learn to</p>
+        <ul>
+          <li>display all rows, eliminate duplicate rows, and limit the number 
+            of rows displayed</li>
+          <li> subset rows using other conditional operators and calculated values</li>
+          <li>enhance the formatting of query output</li>
+          <li>use summary functions, such as COUNT, with and without grouping</li>
+          <li> subset groups of data by using the HAVING clause</li>
+          <li> subset data by using correlated and noncorrelated subqueries</li>
+          <li>validate query syntax.</li>
+        </ul>
+        <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewPrerequisites)</script></h2>
+      <p><script>document.write(overviewPrerequisitesIntro)</script><!-- InstanceBeginEditable name="prerequisites_leadin" -->complete 
+        the following lessons:<!-- InstanceEndEditable --></p>
+      <ul><!-- InstanceBeginEditable name="prerequisites" --> 
+          <li><strong><script>document.write(m1title);</script></strong></li>
+          <li><strong><script>document.write(m3title);</script></strong></li>
+          <li><strong><script>document.write(m16title);</script></strong></li>
+          <li><strong><script>document.write(m2title);</script></strong></li>
+          <li><strong><script>document.write(m4title);</script></strong></li>
+          <li><strong><script>document.write(m12title);</script></strong></li>
+          <li><strong><script>document.write(m22title);</script></strong></li>
+          <li><strong><script>document.write(m30title);</script></strong></li>
+          <li><strong><script>document.write(m10title);</script></strong>.</li>
+          <!-- InstanceEndEditable -->
+      </ul>
+    </td>
+  </tr>
+</table>
+
+  <br>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

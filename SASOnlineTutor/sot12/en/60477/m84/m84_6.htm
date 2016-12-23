@@ -1,0 +1,347 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Sorts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p><strong>Example</strong></p>
+        <p>Suppose you want to use the PRINT procedure to print the contents of 
+          the data set <strong>Retail.Europe</strong>, which contains data about 
+          European customers. The data set includes values for country names (<code>Country_Name</code>) 
+          as well as two-letter country codes (<code>Country_Code</code>). </p>
+        <p>The data is grouped and sorted by the values of <code>Country_Code</code>. 
+          However, you want the observations in the output to be grouped by the 
+          values of <code>Country_Name</code>.</p></td>
+    </tr>
+  </table>
+  <p>Country Codes and Country Names 
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="Country Codes and Names">
+    <thead>
+      <TR> 
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Country 
+          Code</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Country 
+          Name</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">BE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Belgium</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">DE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Germany</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">DK</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Denmark</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ES</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Spain</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FI</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Finland</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FR</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">France</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">GB</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">United 
+          Kingdom</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">GR</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Greece</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">IE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Ireland</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">IT</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Italy</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">LU</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Luxembourg</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NL</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Netherlands</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+    SAS Data Set Retail.Europe, Selected Observations
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set Retail.Europe, Selected Observations">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Customer_ID</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Customer_Country</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Customer_Name</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Country</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          374</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          93803</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">BE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Luc 
+          Vandeloo</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Belgium</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          375</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          93980</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">BE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Saida 
+          Van Itterbeeck</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Belgium</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          376</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          94040</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">BE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Pat 
+          Sodergard</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Belgium</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          377</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          13</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">DE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Markus 
+          Sepke</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Germany</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          378</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          19</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">DE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Oliver 
+          S. Füßling</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Germany</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          379</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          50</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">DE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Gert-Gunter 
+          Mendler</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Germany</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>You can use the NOTSORTED option with a BY statement to accomplish 
+          this task without using the SORT procedure.</p>
+        <pre>    <font color="#003399"> proc print data=retail.europe;
+        by country_name <strong>notsorted</strong>;
+     run;</font></pre>
+        PROC PRINT output shows that the data is grouped but is not in sorted 
+        order. For example, observations in which the value of <code>Country_Name</code> 
+        is <em>Germany</em> are followed by observations in which the value of 
+        <code>Country_Name</code> is <em>Denmark</em>.</td>
+    </tr>
+  </table>
+  <P> 
+  <CENTER>
+    PROC PRINT Output, Selected Observations 
+    <table border="1" cellspacing="0" cellpadding="10" title="PROC Print Output">
+      <tr> 
+        <td><CENTER>
+            <CENTER>
+              <TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=85%>
+                <TR> 
+                  <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Country_Name=Germany</b></font></TD>
+                </TR>
+              </TABLE>
+            </CENTER>
+            <P> 
+            <CENTER>
+              <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000">
+                <thead>
+                  <TR> 
+                    <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Obs</b></font></TD>
+                    <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Customer_ID</b></font></TD>
+                    <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Customer_Name</b></font></TD>
+                    <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Country_Code</b></font></TD>
+                  </TR>
+                </thead>
+                <tbody>
+                  <TR> 
+                    <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                      2340</b></font></TD>
+                    <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2"> 
+                      65751</font></TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF">Dieter Kr&uuml;ger </TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DE</font></TD>
+                  </TR>
+                  <TR> 
+                    <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                      2341</b></font></TD>
+                    <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2"> 
+                      65769</font></TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF">Fredy Ensinger</TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DE</font></TD>
+                  </TR>
+                  <TR> 
+                    <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                      2342</b></font></TD>
+                    <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2"> 
+                      65772</font></TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF">Dieter Wein </TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DE</font></TD>
+                  </TR>
+                  <TR> 
+                    <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                      2343</b></font></TD>
+                    <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2"> 
+                      65784</font></TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF">Claudia Martin </TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DE</font></TD>
+                  </TR>
+                  <TR> 
+                    <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                      2344</b></font></TD>
+                    <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2"> 
+                      65793</font></TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF">York B&uuml;ckel </TD>
+                    <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DE</font></TD>
+                  </TR>
+                </tbody>
+              </TABLE>
+            </CENTER>
+          </CENTER>
+          <CENTER>
+            <p> 
+            <hr width="85%" size="1" noshade>
+            <CENTER>
+              <CENTER>
+                <TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=85%>
+                  <TR> 
+                    <TD ALIGN=CENTER ><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Country_Name=Denmark</b></font></TD>
+                  </TR>
+                </TABLE>
+              </CENTER>
+              <P> 
+              <CENTER>
+                <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000">
+                  <thead>
+                    <TR> 
+                      <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Obs</b></font></TD>
+                      <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Customer_ID</b></font></TD>
+                      <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Customer_Name</b></font></TD>
+                      <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Country_Code</b></font></TD>
+                    </TR>
+                  </thead>
+                  <tbody>
+                    <TR> 
+                      <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                        2345</b></font></TD>
+                      <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                        1331</font></TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF">Else Gade Jensen</TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DK</font></TD>
+                    </TR>
+                    <TR> 
+                      <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                        2346</b></font></TD>
+                      <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                        1531</font></TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF">Maria Bargmann Hersom </TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DK</font></TD>
+                    </TR>
+                    <TR> 
+                      <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                        2347</b></font></TD>
+                      <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                        1751</font></TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF"><nobr>Flemming Sch&oslash;nberg 
+                        Schleiss</nobr></TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DK</font></TD>
+                    </TR>
+                    <TR> 
+                      <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                        2348</b></font></TD>
+                      <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                        2175</font></TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF">Marlene L&aelig;rke Shah 
+                      </TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DK</font></TD>
+                    </TR>
+                    <TR> 
+                      <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+                        2349</b></font></TD>
+                      <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                        2486 </font></TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF">Lars Flensted-Jensen <br></TD>
+                      <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DK</font></TD>
+                    </TR>
+                  </tbody>
+                </TABLE>
+              </CENTER>
+            </CENTER>
+            </CENTER></td>
+      </tr>
+    </table>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> </font> 
+  </CENTER>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,195 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_4.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 3;
+
+salute  = "<strong>Correct.</strong><p>";
+
+correct = "The third statement is true. You can optimize an equijoin by  " +
+          "using an index if the index is based on all columns that are " +
+          "specified in the join expression.";
+
+choice1 = "<strong>Incorrect.</strong><p>"+
+          "You can create multiple indexes on a table, although it may " +
+          "not always be efficient to do so. " +
+          "";
+
+choice2 = "<strong>Incorrect.</strong><p>"+
+          "An index does not optimize a query that contains only the SELECT " +
+          "and FROM clauses. You might want to review the classes of queries " +
+          "that are optimized by using an index.";
+
+choice3 = salute + correct;
+
+choice4 = "<strong>Incorrect.</strong><p>"+
+          "When you create a <strong>composite</strong> index, you cannot specify " +
+          "the name of any column in the table as the index name. However, the name " +
+          "of a <strong>simple</strong> index <strong>must</strong> be the same as the name of the key column.";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Deciding Whether to Create an Index<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+ <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>You are deciding whether to create an index on the table <strong>Sasuser.Supervisors</strong>, 
+            the first eight rows of which are shown below.
+          <p>
+          <TABLE  Border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+            <thead>
+              <TR> 
+                <TD ALIGN=left VALIGN=BOTTOM bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Supervisor 
+                  ID </b></font></TD>
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>State</b></font></TD>
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Job 
+                  Category</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=left bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1106</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">CT</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">PT</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=left bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1118</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NY</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">PT</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=left bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1126</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NY</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">TA</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=left bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1352</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NY</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NA</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=left bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1385</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">CT</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ME</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=left bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1401</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NJ</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">TA</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=left bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1405</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NJ</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">SC</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=left bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1417</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NJ</font></TD>
+                <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NA</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+<br>
+          <table border="0" align="center" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+              <td valign="top">The first column has the column name <code>EmpID</code> 
+                and the label <code>Supervisor ID</code>.</td>
+            </tr>
+          </table>
+          <p>
+		  Which of the following statements is true? <p>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" --> 
+          <p>You can create only one index on this, or any other, table.</p>
+          <!-- InstanceEndEditable --></td>
+        <td rowspan="4"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" -->
+          <p>To run the following PROC SQL query more efficiently, you should 
+            create a composite index on all three columns in the table:</p>
+          <pre><font color="#003399">     proc sql;
+        select *
+        from sasuser.supervisors;</font></pre><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" -->If you need 
+          to join <strong>Sasuser.Supervisors</strong> with another table, and 
+          you are combining rows by using the equals (=) operator to match the 
+          values of <code>EmpID</code>, you can improve the performance of the 
+          join by creating an index on <code>EmpID</code>.<!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value4" onClick="openAnswer(choice4)">
+         </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice4" -->Whether 
+          you create a simple or composite index, you cannot specify the name 
+          of any column in the table as the index name.<!-- InstanceEndEditable --></td>
+      </tr>
+      <tr> 
+        <td colspan="3"> 
+         <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

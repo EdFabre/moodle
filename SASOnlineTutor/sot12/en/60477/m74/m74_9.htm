@@ -1,0 +1,135 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: Creating a Simple Index</h2>
+        <p>The following PROC SQL step uses the CREATE INDEX statement to create 
+          a simple, unique index that is based on the column <code>EmpID</code> 
+          in the temporary table <strong>Work.Payrollmaster</strong>. (<strong>Work.Payrollmaster</strong> 
+          is a duplicate of the table <strong>Sasuser.Payrollmaster</strong>.)</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        create unique index <strong>EmpID</strong>
+           on work.payrollmaster(<strong>empid</strong>);</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The specified index name (<strong>EmpID</strong>) must be the same 
+          as the name of the key column.</p>
+        <p>When this step is submitted, the SAS log displays the following message.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: Simple index EmpID has been defined.</pre></td>
+      </tr>
+    </table>
+    <p><br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <h2>Example: Creating a Composite, Unique Index</h2>
+          <p>The following PROC SQL step uses the CREATE INDEX statement to create 
+            the composite, unique index <strong>daily</strong> on the columns 
+            <code>FlightNumber</code> and <code>Date</code>:</p></td>
+      </tr>
+    </table>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <pre><font color="#003399">     proc sql;
+        create unique index <strong>daily</strong>
+           on work.marchflights(<strong>flightnumber,date</strong>);</font></pre></td>
+      </tr>
+    </table>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p>When this step is submitted, the SAS log displays the following 
+            message.</p>
+          </td>
+      </tr>
+    </table>
+    <p> <br>
+    <div align="center">SAS Log<br>
+      <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+        <tr> 
+          <td> <pre>NOTE: Composite index daily has been defined.</pre></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+    </div>
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">The note in the SAS log displays the index name exactly 
+          as you specified it. In this example, the index name <strong>daily</strong> 
+          was specified in lowercase. In the previous example, the index name 
+          <strong>EmpID</strong> was specified in mixed case. However, the use 
+          of uppercase and lowercase for index names is not significant because 
+          SAS recognizes index names regardless of how they are formatted in code.</td>
+      </tr>
+    </table>
+    <p>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p>If the set of key columns <code>FlightNumber</code> and <code>Date</code> 
+            had duplicate values, the index would <strong>not</strong> be created. 
+            Instead, the SAS log would display a message like the following.</p></td>
+      </tr>
+    </table>
+    <p> <br>
+    <div align="center">SAS Log<br>
+      <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+        <tr> 
+          <td> <pre>ERROR: Duplicate values not allowed on 
+index daily for file MARCHFLIGHTS.</pre></td>
+        </tr>
+      </table>
+    </div>
+    <p> <br>
+  </div>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

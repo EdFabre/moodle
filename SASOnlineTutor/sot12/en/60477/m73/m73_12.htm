@@ -1,0 +1,172 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_4.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 4;
+
+salute  = "<strong>Correct.</strong><p>";
+
+correct = "This PROC SQL step uses valid syntax and generates the table as specified. " +
+          "The CREATE TABLE statement includes the DROP= data set option and a LIKE clause. " +
+          "The DROP= option uses spaces (not commas) to separate column names, and the entire DROP= option is enclosed in parentheses.";
+
+choice1 = "<strong>Incorrect.</strong><p>"+
+          "This PROC SQL step has invalid syntax. When you create a table that is " +
+          "<strong>like</strong> another table, you cannot use column specifications.  " +
+          " ";
+
+choice2 = "<strong>Incorrect.</strong><p>"+
+          "This PROC SQL step contains one syntax error: the last clause should be a " +
+          "LIKE clause rather than a FROM clause. " +
+          "";
+
+choice3 = "<strong>Incorrect.</strong><p>"+
+          "This PROC SQL step contains one syntax error: the DROP= data " +
+          "set option should <strong>not</strong> use commas to separate column " +
+          "names. ";
+
+choice4 = salute + correct;
+
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      an Empty Table That Is Like Another Table<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+ <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->
+          <p>You want to use PROC SQL to create a new, empty table named <strong>Work.Morph_Jr</strong>. 
+            The new table should contain two of the four columns and column attributes 
+            in the existing table <strong>Morph</strong>: <code>NeurID</code> 
+            and <code>SomaArea</code>. <strong>Morph</strong> is shown below.</p>
+<p><br>
+          <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+            <thead>
+              <TR align="left" valign="top"> 
+                <TD align="right" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>NeurID</b></font></TD>
+                <TD align="right" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>SomaArea</b></font></TD>
+                <TD align="right" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Neurites</b></font></TD>
+                <TD align="right" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>BrPts</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR align="left" valign="top"> 
+                <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">001</font></TD>
+                <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">15.61</font></TD>
+                <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">3</font></TD>
+                <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">24</font></TD>
+              </TR>
+              <TR align="left" valign="top"> 
+                <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">002</font></TD>
+                <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">22.49</font></TD>
+                <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">5</font></TD>
+                <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">43</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+		  <p><br>
+            Which PROC SQL step will create <strong>Work.Morph_Jr</strong>, exactly 
+            as specified?<br>
+          <br>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" --> 
+          <pre><font color="#003399">proc sql;
+   create table work.morph_jr
+          (NeurID num,
+          SomaArea num Format=5.2)
+      like morph;</font></pre>
+          <!-- InstanceEndEditable --></td>
+        <td rowspan="4"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" --> 
+          <pre><font color="#003399">proc sql;
+   create table work.morph_jr
+          (drop = neurites brpts)
+      from morph;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" --> 
+          <pre><font color="#003399">proc sql;
+   create table work.morph_jr 
+          (drop = neurites, brpts)
+      like morph;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value4" onClick="openAnswer(choice4)">
+         </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice4" -->
+          <pre><font color="#003399">proc sql; 
+   create table work.morph_jr
+          (drop = neurites brpts)
+      like morph; </font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr> 
+        <td colspan="3"> 
+         <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

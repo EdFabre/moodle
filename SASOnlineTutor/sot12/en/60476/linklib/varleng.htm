@@ -1,0 +1,98 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Variable Types and Lengths Produced When Not Explicitly Set </TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" --><B>Variable 
+      Types and Lengths Produced When Not Explicitly Set</B> <!-- InstanceEndEditable --></font></strong> 
+    </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<TABLE width="85%" border="1" align="center" cellpadding="2" cellspacing="0" title="Variable Lengths">
+  <CAPTION align="top">
+  <B><I> </I></B> 
+  </CAPTION>
+  <TR valign="bottom" bgcolor="#F7F7DE"> 
+    <TH  align="LEFT" valign="TOP" ><B>Expression</B></TH>
+    <TH  align="LEFT" valign="TOP" ><B>Example</B></TH>
+    <TH  align="LEFT" valign="TOP" ><B>Resulting Type of X</B></TH>
+    <TH  align="LEFT" valign="TOP" ><B>Resulting Length of X</B></TH>
+    <TH  align="LEFT" valign="TOP" ><B>Explanation</B></TH>
+  </TR>
+  <TR valign="top" bgcolor="#FFFFFF"> 
+    <TD  align="LEFT" valign="TOP">Character variable</TD>
+    <TD  align="LEFT" valign="TOP"><CODE><B>length a $ 4;</B></CODE> <P><CODE><B>x=a;</B></CODE><BR>
+    </TD>
+    <TD  align="LEFT" valign="TOP">Character variable</TD>
+    <TD  align="LEFT" valign="TOP">4</TD>
+    <TD  align="LEFT" valign="TOP">Length of source variable</TD>
+  </TR>
+  <TR valign="top" bgcolor="#FFFFFF"> 
+    <TD  align="LEFT" valign="TOP">Character literal (character constant)</TD>
+    <TD  align="LEFT" valign="TOP"><CODE><B>x='ABC';</B></CODE><BR> <P><CODE><B>x='ABCDE';</B></CODE><BR>
+      <P><BR>
+    </TD>
+    <TD  align="LEFT" valign="TOP">Character variable</TD>
+    <TD  align="LEFT" valign="TOP">3</TD>
+    <TD  align="LEFT" valign="TOP">Length of first literal (constant) encountered</TD>
+  </TR>
+  <TR valign="top" bgcolor="#FFFFFF"> 
+    <TD  align="LEFT" valign="TOP">Concatenation of variables</TD>
+    <TD  align="LEFT" valign="TOP"><CODE><B>length a $ 4</B></CODE><BR> <P><CODE><B>b 
+        $ 6</B></CODE>
+      <P><CODE><B>c $ 2;</B></CODE>
+      <P><CODE><B>x=a||b||c;</B></CODE></TD>
+    <TD  align="LEFT" valign="TOP">Character variable</TD>
+    <TD  align="LEFT" valign="TOP">12</TD>
+    <TD  align="LEFT" valign="TOP">Sum of the lengths of all variables</TD>
+  </TR>
+  <TR valign="top" bgcolor="#FFFFFF"> 
+    <TD  align="LEFT" valign="TOP">Concatenation of variables and literal</TD>
+    <TD  align="LEFT" valign="TOP"><CODE><B>length a $ 4; </B></CODE> <P><CODE><B>x=a||'CAT';</B></CODE>
+      <P><CODE><B>x=a||'CATNIP';</B></CODE></TD>
+    <TD  align="LEFT" valign="TOP">Character variable</TD>
+    <TD  align="LEFT" valign="TOP">7</TD>
+    <TD  align="LEFT" valign="TOP">Sum of the lengths of variables and literals 
+      (constants) encountered in first assignment statement</TD>
+  </TR>
+  <TR valign="top" bgcolor="#FFFFFF"> 
+    <TD  align="LEFT" valign="TOP">Numeric variable</TD>
+    <TD  align="LEFT" valign="TOP"><CODE><B>length a 4;</B></CODE> <P><CODE><B>x=a;</B></CODE><BR>
+    </TD>
+    <TD  align="LEFT" valign="TOP">Numeric variable</TD>
+    <TD  align="LEFT" valign="TOP">8</TD>
+    <TD  align="LEFT" valign="TOP"><p>Default numeric length (8 bytes unless otherwise 
+        specified)</p>
+      <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">In general, it is not recommended that you change the 
+            default length of numeric variables, as this as can affect numeric 
+            precision. See the SAS documentation for more information.</td>
+        </tr>
+      </table></TD>
+  </TR>
+</TABLE>
+
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

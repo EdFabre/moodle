@@ -1,0 +1,110 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Observations Using Direct Access<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>As you learned in a previous lesson, the DATA step continues to read 
+        observations until it reaches the end-of-file marker in the input data. 
+        However, because the POINT= option reads only specified observations, 
+        SAS cannot read an end-of-file indicator as it would if the file 
+        were being read sequentially. So submitting the following program would 
+        cause <font color="red"><strong>continuous looping</strong></font>. </p>
+      <pre><font color="#003399">     data work.getobs5(drop=obsnum);</font>
+<font color="#003399">        <strong>obsnum=5;</strong></font>
+<font color="#003399">        set company.usa(keep=manager payroll) <strong>point=obsnum</strong>;</font><font color="#003399">
+     run;</font></pre>
+      <p><strong><br>
+        Preventing Continuous Looping with POINT=</strong> 
+      <p>Because there is no end-of-file condition when you use direct access 
+        to read data, you <strong><font color="red">must</font></strong> take 
+        either or both of the following precautions: 
+      <ul>
+        <li>Use a <strong>STOP statement</strong> to prevent continuous looping. 
+          The STOP statement causes SAS to stop processing the current DATA step 
+          immediately and to resume processing statements after the end of the 
+          current DATA step. <br>
+          <br>
+        </li>
+        <li>Use programming logic that checks for an <strong>invalid value of 
+          the POINT= variable</strong>. If SAS reads an invalid value for the 
+          POINT= variable, it sets the automatic variable <code>_ERROR_</code> 
+          to <em>1</em>. You can use this information to check for conditions 
+          that cause continuous processing. </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table border cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, STOP statement">
+    <tr> 
+      <td align="left"><strong>General form, STOP statement:</strong> 
+        <blockquote> <nobr> <font color="#003399"><strong>STOP</strong><strong>;</strong></font> 
+          </nobr></blockquote>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p>So, if you add a STOP statement, your program no longer loops continuously. 
+        </p>
+        <pre><font color="#003399">     data work.getobs5(drop=obsnum);</font>
+<font color="#003399">        <strong>obsnum=5;</strong></font>
+<font color="#003399">        set company.usa(keep=manager payroll) <strong>point=obsnum</strong>;</font>
+<font color="#003399">        <font color="red"><strong>stop;</strong></font>
+     run;</font></pre>
+        <p>But it doesn't write any observations to output, either! Remember from 
+            the lesson <!-- lesson reference --><strong><script>document.write(m22title);</script></strong> that 
+            the DATA step writes observations to output at the end of the DATA 
+            step. However, in this program, the STOP statement immediately stops 
+            processing before the end of the DATA step. </p>
+        <p>Let's see how you can write the observation to output before processing 
+          stops. </p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,119 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      DATA Step Match-Merges and PROC SQL Joins<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The following two steps show two different ways to produce the same 
+          combination of two data sets, <strong>Data1</strong> and <strong>Data2</strong>, 
+          that have a common variable, <code>X</code>. If <strong>Data1</strong> 
+          contains two variables, <code>X </code>and <code>Y</code>, and <strong>Data2</strong> 
+          contains two variables, <code>X</code> and <code>Z</code>, then both 
+          of the following steps produce an output data set named <strong>Data3</strong> 
+          that contains three variables, <code>X,</code> <code>Y</code>, and <code>Z</code>. 
+        </p></td>
+    </tr>
+  </table>
+  <P> 
+  <table width="85%" align="center" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The code shown in the following two steps illustrates a 
+        simple comparison of a DATA step match-merge and a PROC SQL join. This 
+        comparison will be explored over the next few pages. However, since the 
+        <strong>Data1</strong> and <strong>Data2</strong> data sets do not exist, 
+        this code will not run successfully in your SAS session.</td>
+    </tr>
+  </table>
+  <P> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <font color="#003399"> 
+        <pre>     data data3;
+        merge data1 data2;
+        by x;
+     run;
+	 
+     proc sql;
+        create table data3 as
+           select data1.x, data1.y, data2.z
+             from data1, data2
+             where data1.x=data2.x;
+     quit;</pre>
+        </font></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p> The contents of <strong>Data3</strong> will vary depending on the 
+          values that are in each input data set and on the method used for merging. 
+          Let's take a closer look at some examples.</p>
+        <br> <h2>Examples</h2>
+        <p><strong>One-to-one matches</strong> produce <strong>identical results</strong> 
+          whether the data sets are merged in a DATA step or joined in a PROC 
+          SQL step. Suppose that <strong>Data1</strong> and <strong>Data2</strong> 
+          contain the same number of observations. Also, suppose that in each 
+          data set, the values of <code>X</code> are unique, and that each value 
+          appears in both data sets. </p>
+        <p>When these data sets are either merged in a DATA step or joined in 
+          a PROC SQL step, <strong>Data3</strong> will contain one observation 
+          for each unique value of <code>X</code>, and it will have the same number 
+          of observations as <strong>Data1</strong> and <strong>Data2</strong>.</p></td>
+    </tr>
+  </table>
+  <P> <img src="images/m56_19a.gif" width="197" height="269" alt="Combining one-to-one matches"> 
+  <P> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <strong>One-to-many matches</strong> produce <strong>identical results</strong> 
+        whether the data sets are merged in a DATA step or joined in a PROC SQL 
+        step. Suppose that <strong>Data1</strong> contains unique values for <code>X</code>, 
+        but that <strong>Data2</strong> does not contain unique values for <code>X</code>. 
+        That is, <strong>Data2</strong> contains multiple observations that have 
+        the same value of <code>X</code> and therefore contains more observations 
+        than <strong>Data1</strong>. 
+        <P>When these two data sets are either merged in a DATA step or joined 
+          in a PROC SQL step, <strong>Data3</strong> will contain the same number 
+          of observations as <strong>Data2</strong>. In <strong>Data3</strong>, 
+          one observation from <strong>Data1</strong> that has a particular value 
+          for <code>X </code>might be matched with multiple observations from 
+          <strong>Data2</strong> that have the same value for <code>X</code>. 
+      </td>
+    </tr>
+  </table>
+  <P> <img src="images/m56_19b.gif" width="225" height="314" alt="Combining one-to-many matches"><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

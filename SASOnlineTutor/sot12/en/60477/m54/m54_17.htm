@@ -1,0 +1,234 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Random Sample without Replacement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You can also create a random sample <strong>without replacement</strong>. A 
+          sample without replacement <strong>cannot </strong>contain duplicate 
+          observations because after an observation is chosen from the original 
+          data set and output to the sample, it is programmatically excluded from 
+          being chosen again.</p>
+        <br>
+      <p><h2>Example</h2></p>
+      <p>You can use a DO WHILE loop to avoid replacement as you create your random 
+          sample. In the following example, 
+        <ul>
+          <li><strong>Sasuser.Sale2000</strong> is the original data set. 
+          <li><code>sampsize</code> is the number of observations to read into 
+            the sample. 
+          <li><strong>Work.Rsubset </strong>is the data set that contains the 
+            random sample that you are creating. 
+          <li><code>obsleft</code> is the number of observations in the original 
+            data set that have not yet been considered for selection. 
+          <li><code>totobs</code> is the total number of observations in the original 
+            data set. 
+          <li><code>pickit</code> is the number of the observation to be read 
+            into the sample data set (if the RANUNI expression is true), and its 
+            starting value is <em>0</em>. 
+        </ul>
+        <p>With each iteration of the DO loop, <code>pickit</code> is incremented 
+          by <em>1</em>. If the RANUNI expression is true, the observation that 
+          is indicated by the value of<code> pickit</code> is selected for the 
+          sample, and <code>sampsize</code> is decreased by <em>1</em>. If the 
+          RANUNI expression is not true, the observation that is indicated by 
+          the value of <code>pickit</code> is not added to the sample. On each 
+          iteration of the loop, <code>obsleft</code> is decreased by <em>1</em> 
+          regardless of whether the observation is selected for the sample. The 
+          process ends when the value of <code>sampsize</code> is<em> 0</em> and 
+          no additional observations are needed.</p>
+      <font color="#003399">
+        <pre>     data work.rsubset(drop=obsleft sampsize);
+        <strong>sampsize=10</strong>;
+        <strong>obsleft=totobs</strong>;
+        do while(<strong>sampsize>0</strong>);
+        <strong>   pickit+1</strong>;
+           if <strong>ranuni(0)&lt;sampsize/obsleft</strong> then do;
+              set sasuser.revenue <strong>point=pickit 
+                  nobs=totobs</strong>;
+              output;
+              <strong>sampsize=sampsize-1</strong>;
+           end;
+           <strong>obsleft=obsleft-1</strong>;
+        end;
+        stop;
+     run;
+
+     proc print data=work.rsubset heading=h label;
+        title 'A Random Sample without Replacement';
+     run;</pre>
+      </font>
+	  <p>Note that each observation is considered for selection once and only 
+          once. </p>
+        <p>Because the program above uses a seed of <em>0</em> for the RANUNI 
+          function, <strong>Work.Rsubset</strong> will contain different observations 
+          each time you run this code. Here is an example of the possible output.</p>
+        </td>
+  </tr>
+</table>
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100%>
+<TR>
+ <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>A Random Sample without Replacement</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+<thead>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Origin</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Dest</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FlightID</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Date</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Rev1st</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>RevBusiness</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>RevEcon</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 1</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CBR</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WLG</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA10500</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">28DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16092</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">21164</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 27324</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 2</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CBR</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WLG</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA10501</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">13112</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16280</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 23760</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 3</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CCU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">HKG</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA09901</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16272</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">19404</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 27225</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 4</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CCU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SIN</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA09300</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">18575</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25350</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 29393</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 5</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JED</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA08200</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">08DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">23161</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">44820</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 51435</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 6</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JNB</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA08301</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">09DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">41940</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">76224</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">111456</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 7</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00200</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">07DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20800</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">30520</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 79650</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 8</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRA</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00301</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">03DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">24654</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">31226</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 72540</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 9</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00101</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">29DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20800</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25070</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 75933</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>10</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SFO</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">HNL</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA02900</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">26DEC1999</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11856</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16152</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 48216</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

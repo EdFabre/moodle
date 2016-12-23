@@ -1,0 +1,123 @@
+<html><!-- InstanceBegin template="/Templates/opt_summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong>
+      <script>document.write(summaryTitle)</script>
+      </strong></font>
+	  
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left">
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+  <br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td><!-- InstanceBeginEditable name="TextSummary" --><strong>Controlling Page 
+      Size and the Number of Buffers</strong><br>
+      When you read a SAS data set or an external file, <a href="m81_2.htm" onClick="suggestBack()">I/O 
+      is measured</a> when the input data is copied to the buffer in memory and 
+      when it is read from the output buffer to the output data set. 
+      <p>A <a href="m81_3.htm" onClick="suggestBack()">page</a> is the unit of 
+        data transfer between the storage device and memory. When you create a 
+        SAS data set, SAS takes the data and copies it to a buffer. Each buffer 
+        can hold one page of data.</p>
+      <p>The amount of data that can be transferred to one buffer in a single 
+        I/O operation is referred to as the <a href="m81_3.htm" onClick="suggestBack()">page 
+        size</a>. Increasing the page size can speed up execution time by reducing 
+        the number of times SAS has to read from or write to the storage medium. 
+        You can use the CONTENTS procedure to <a href="m81_4.htm" onClick="suggestBack()">report 
+        the page size and the number of pages</a>.</p>
+      <p>You can use the <a href="m81_7.htm" onClick="suggestBack()">BUFSIZE=</a> 
+        system option or data set option to control the page size of an output 
+        SAS data set. The new buffer size is permanent; after it is specified, 
+        it is used whenever the data set is processed. </p>
+      <p>You can use the <a href="m81_8.htm" onClick="suggestBack()">BUFNO=</a> 
+        system or data set option to control how many buffers are available for 
+        reading or writing a SAS data set. By increasing the number of buffers, 
+        you can control how many pages of data are loaded into memory with each 
+        I/O transfer. </p>
+      <p>The <a href="m81_9.htm" onClick="suggestBack()">product of BUFNO= and 
+        BUFSIZE=</a>, rather than the specific value of either option, determines 
+        how much data can be transferred in one I/O operation. Increasing either 
+        option increases the amount of data that can be transferred in one I/O 
+        operation. However, the improvement in I/O comes at the cost of increased 
+        memory consumption.</p>
+      <p> Review the related comparative example:</p>
+      <ul>
+        <li><a href="m81_10.htm" onClick="suggestBack()">Using the BUFSIZE= Option 
+          and the BUFNO= Option</a>.</li>
+      </ul>
+      <hr size="1" noshade>
+      <p><strong>Using the SASFILE Statement<br>
+        </strong> Another way of improving performance is to use the <a href="m81_13.htm" onClick="suggestBack()">SASFILE 
+        statement</a> to hold a SAS data file in memory so that the data is available 
+        to multiple program steps. Keeping the data set open reduces open/close 
+        operations, including the allocation and freeing of memory for buffers.</p>
+      <p>When the SASFILE statement executes, SAS allocates the number of buffers 
+        based on the number of pages for the data file and index file. If the 
+        file in memory increases in size during processing because of changes 
+        or additions to the data, the number of buffers also increases.</p>
+      <p>It is important to note that I/O processing is reduced only if there 
+        is sufficient <a href="m81_14.htm" onClick="suggestBack()">real memory</a>. 
+        If SAS uses virtual memory, there can be a degradation in performance. 
+      </p>
+      <p> Review the related comparative example:</p>
+      <ul>
+        <li><a href="m81_15.htm" onClick="suggestBack()">Using the SASFILE Statement</a>.</li>
+      </ul>
+      <hr size="1" noshade>
+      <br>
+      <strong>Additional Features</strong><br>
+      The <a href="m81_18.htm"  onClick="suggestBack()">IBUFSIZE= system option</a> 
+      specifies the page size for an index file. Typically, you do not need to 
+      specify an index page size. However, you might need to use the IBUFSIZE= 
+      option if
+<ul>
+        <li>there are many levels in the index </li>
+        <li>the length of an index value is very large. </li>
+      </ul>
+      <p>The main resource that is saved when reducing levels in the index is 
+        I/O. If your application is experiencing a lot of I/O in the index file, 
+        increasing the page size might help. However, you must re-create the index 
+        file after increasing the page size. The number of pages that are required 
+        for the index varies with the page size, the length of the index value, 
+        and the values themselves.</p>
+      <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<P> <br>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

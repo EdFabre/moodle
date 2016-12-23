@@ -1,0 +1,147 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reducing 
+      Data Storage Space for Numeric Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Maintaining Precision in Reduced-Length Numeric Variables </h2>
+        <p> There is a limit to the values that you can precisely store in a reduced-length 
+          numeric variable. You have learned that reducing the number of bytes 
+          that are used for storing a numeric variable does <strong>not</strong> 
+          affect how the numbers are stored in the program data vector. Instead, 
+          specifying a value of less than 8 in the LENGTH statement causes the 
+          number to be truncated to the specified length when the value is written 
+          to the SAS data set. </p>
+        <p>You should never use the LENGTH statement to reduce the length of your 
+          numeric variables if the values are not integers. Fractional numbers 
+          lose precision if truncated. Even if the values are integers, you should 
+          keep in mind that reducing the length of a numeric variable limits the 
+          integer values that can accurately be stored as a value. </p>
+        <p> The following table lists the possible storage length for integer 
+          values on UNIX or Windows operating environments. 
+        <P><BR>
+	    <center>UNIX/Windows</center>	<table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Value limits of reduced-length numeric variables for UNIX or Windows">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Length (bytes)</font></th>
+            <th><font size="-1">Largest Integer Represented Exactly</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">3</td>
+            <td align="right">8,192</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">4<em></em></td>
+            <td align="right">2,097,152</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">5<em></em></td>
+            <td align="right">536,870,912</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">6<em></em></td>
+            <td align="right">137,438,953,472</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">7<em></em></td>
+            <td align="right">35,184,372,088,832</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">8</td>
+            <td align="right">9,007,199,254,740,992</td>
+          </tr>
+        </table>
+		<P><BR>
+          The following table lists the possible storage length for integer values 
+          on the z/OS operating environment. 
+        <P><BR>
+		  <center>
+            z/OS 
+          </center><table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Value limits of reduced length numeric variables for z/OS">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Length (bytes)</font></th>
+            <th><font size="-1">Largest Integer Represented Exactly</font></th>
+          </tr>
+		      <tr valign="top"> 
+            <td align="center">2</td>
+            <td align="right">256
+              </td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">3</td>
+            <td align="right">65,536</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">4</td>
+            <td align="right">16,777,216</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">5</td>
+            <td align="right">4,294,967,296</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">6</td>
+            <td align="right">1,099,511,627,776</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">7</td>
+            <td align="right">281,474,946,710,656</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">8</td>
+            <td align="right">72,057,594,037,927,936</td>
+          </tr>
+        </table>
+		<P><BR>
+          When you store an integer that is equal to or less than the number listed 
+          above as the largest integer that can be represented exactly in a reduced-length 
+          variable, SAS truncates bytes that contain only zeros. If the integer 
+          that is stored in a reduced-length variable is larger than the recommended 
+          limit, SAS truncates bytes that contain numbers other than zero, 
+          and the integer value is changed. Similarly, you should not reduce 
+          the stored size of non-integer data because it can result in a loss 
+          of precision due to the truncation of nonzero bytes. 
+        <P>If you decide to reduce the length of your numeric variables, you might 
+          want to verify that you have not lost any precision in your values. 
+          Let's look at one way to do this.</td>
+    </tr>
+  </table>
+
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

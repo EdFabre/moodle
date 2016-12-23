@@ -1,0 +1,152 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Indexes in the DATA Step<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>When you create or use an index, you might want to verify that it has been 
+          created or used correctly. To display information in the SAS log concerning 
+          index creation or index usage, set the value of the <strong>MSGLEVEL=</strong> 
+          system option to I. </td>
+  </tr>
+</table>
+<P><BR>
+<table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, MSGLEVEL= system option">
+            <tr> 
+              <td align="left"><strong>General form, MSGLEVEL= system option:</strong> <blockquote> <font color="#003399"><nobr><strong>OPTIONS 
+                   MSGLEVEL=</strong> N | I<strong>;</strong></nobr></font> 
+                </blockquote>
+                where
+				<ul>
+            <li><font color="#003399">N</font> prints notes, warnings, and error 
+              messages only. This is the default. <br>
+              <br>
+            </li>
+            
+          <li><font color="#003399">I</font> prints additional notes or INFO messages 
+            pertaining to index usage, merge processing, and sort utilities along 
+            with standard notes, warnings, and error messages. </li>
+          </ul>
+                  </td>
+            </tr>
+          </table>
+		  <P><BR>
+		  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <h2>Example</h2>
+The following code sets the MSGLEVEL= system option to I and creates 
+        the <strong>Sasuser.Sale2000</strong> data set with two indexes<font color="#003399">: 
+        <pre>     options msglevel=i;
+     data sasuser.sale2000(index=(origin
+          flightdate=(flightid date)/unique));
+        infile sale2000 dsd;
+        input FlightID $ RouteID $ Origin $
+              Dest $ Cap1st CapBusiness
+              CapEcon CapTotal CapCargo
+              Date Psgr1st PsgrBusiness
+              PsgrEcon Rev1st RevBusiness
+              RevEcon SaleMon $ CargoWgt
+              RevCargo;
+        format date date9.;
+     run;<br></pre>
+        </font> 
+        <p>Here are the messages that are written to the SAS log when the program 
+          above is submitted.</p></td>
+	</tr>
+	</table><P><BR>
+	<center>SAS Log
+	<table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log"> 
+	<tr>
+        <td> <pre>NOTE: The infile SALE2000 is:
+      File Name=C:\My SAS Files\9.0\sale2000.dat,
+      RECFM=V,LRECL=256
+
+NOTE: 153 records were read from the infile SALE2000.
+      The minimum record length was 82.
+      The maximum record length was 100.
+NOTE: The data set SASUSER.SALE2000 has 153 observations 
+      and 19 variables.
+<strong>NOTE: Composite index flightdate has been defined.
+NOTE: Simple index origin has been defined.</strong>
+NOTE: DATA statement used (Total process time):
+      real time           1.08 seconds
+      cpu time            0.04 seconds</pre>
+</td></tr>
+
+	</table></center>
+<P><BR>  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><P>
+        <h2><a name="useindex"></a>Determining Whether SAS Is Using an Index</h2>
+<P>It is not always possible or more efficient for SAS to use an existing index 
+          to access specific observations directly. An index is <strong>not used 
+          </strong> 
+        <ul>
+          <li>with a subsetting IF statement in a DATA step 
+          <li>with particular WHERE expressions 
+          <li>if SAS determines it is more efficient to read the data sequentially. 
+        </ul>
+		<P><BR><h2>Example</h2>
+		<P>You can use the MSGLEVEL= option to determine whether SAS is using 
+          an index. The following SAS log messages show examples of the INFO messages 
+          that indicate whether an index was used.
+<P><BR>	<center>SAS Log
+	<table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log"> 
+	<tr>
+        <td> <pre>6  options msglevel=i;
+7
+8  proc print data=sasuser.revenue;
+9     where flightid ne 'IA11200';
+<strong>INFO: Index FlightID not used. Increasing bufno to 3 may help.</strong></pre></td></tr>
+
+	</table></center>
+	<P><BR>
+		<center>SAS Log
+	<table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log"> 
+	<tr>
+        <td> <pre>11  options msglevel=i;
+12
+13  data somflights;
+14     set sasuser.revenue;
+15     where flightid > 'IA11200';
+<strong>INFO: Index FlightID selected for WHERE clause optimization.</strong></pre></td></tr>
+
+	</table></center>
+      </td></tr></table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

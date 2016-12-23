@@ -1,0 +1,151 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Rows by Using Conditional Operators<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><h2>Using the CONTAINS or Question Mark (?) Operator to Select a String 
+        </h2>
+        <p>The <strong>CONTAINS</strong> or question mark (<strong>?</strong>) 
+          operator is usually used to select rows for which a character column 
+          includes a particular string. These operators are interchangeable.</p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, CONTAINS operator">
+    <tr> 
+      <td align="left"><strong>General form, CONTAINS operator:</strong> <blockquote><font color="#003399"><nobr><em>sql-expression</em> 
+          <strong>CONTAINS</strong> <em>sql-expression</em></nobr><br>
+          <br>
+          <nobr><em>sql-expression</em> <strong>?</strong> </nobr><em>sql-expression</em></font></blockquote>
+        <p> where <font color="#003399"><em> </em></font><font color="#003399"><em>sql-expression</em></font> 
+            is a character column, string (character constant), or expression. 
+            A string is a sequence of characters to be matched that must be enclosed 
+            in quotation marks. 
+       
+        <br>
+        <br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">PROC SQL retrieves a row for output no matter where 
+              the string (or second sql-expression) occurs within the column's 
+              (or first sql-expression's) values. Matching is case sensitive when 
+              making comparisons.</td>
+          </tr>
+        </table>
+        <br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The CONTAINS or question mark (?) operator is not 
+              part of the ANSI standard; it is a SAS enhancement.</td>
+          </tr>
+        </table> </td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><h2> Example</h2>
+        <p> The following PROC SQL query uses CONTAINS to select rows in which 
+          the <code>Name</code> column contains the string <em>ER</em>. As the 
+          output shows, all rows that contain <em>ER</em> anywhere within the 
+          <code>Name</code> column are displayed.</p>
+        </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td>
+<pre><font color="#003399"> </font><font color="#003399">    proc sql outobs=10;
+        select name
+           from sasuser.frequentflyers
+           where name <strong>contains</strong> 'ER';</font></pre></td>
+    </tr>
+  </table>
+  <br>
+
+  <CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Name</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">COOPER, LESLIE</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">COOPER, ANTHONY</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">COOK, JENNIFER</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FOSTER, GERALD</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRADLEY, JEREMY</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BURKE, CHRISTOPHER</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AVERY, JERRY</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">EDGERTON, JOSHUA</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SAYERS, RANDY</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WANG, CHRISTOPHER</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

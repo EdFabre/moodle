@@ -1,0 +1,196 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Multiple Macro Variables During DATA Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Example</h2>
+        <P> In this example, you use one call to the SYMPUT routine in order to 
+          create one macro variable for <strong>each value </strong>of the DATA 
+          step variable <code>Course_code</code> and to assign the corresponding 
+          value of <code>Course_title</code> to each macro variable. That is, 
+          for each observation in <strong><a href="JavaScript: openOther('../linklib/courses.htm')">Sasuser.Courses</a></strong>, 
+          the macro processor will create a new macro variable. The new macro 
+          variable will have the same name as the value of the data set variable 
+          <code>Course_code</code> for that observation. The value of the new 
+          macro variable will be the value of the data set variable <code>Course_title</code> 
+          for that observation. 
+        <pre><font color="#003399">    data _null_;
+       set sasuser.courses;
+       <strong>call symput(course_code, trim(course_title));</strong>
+    run;
+    %put _user_;
+</font></pre>
+<P>The SAS log shows that six observations were read from the data set <strong>Sasuser.Courses</strong> and that six global macro variables
+ were created and were assigned values.<P>
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+2   data _null_;
+3      set sasuser.courses;
+4      call symput(course_code, trim(course_title));
+5   run;
+
+NOTE: There were 6 observations read from the dataset 
+      SASUSER.COURSES.
+NOTE: DATA statement used:
+      real time           0.52 seconds
+      cpu time            0.13 seconds
+
+7   %put _user_;
+<strong>GLOBAL C006 Computer Aided Design
+GLOBAL C001 Basic Telecommunications
+GLOBAL C002 Structured Query Language
+GLOBAL C003 Local Area Networks
+GLOBAL C004 Database Design
+GLOBAL C005 Artificial Intelligence</strong>
+</pre></td></tr>
+</table> </div>
+<P><BR>
+          You can then use these new macro variables to print listings of information 
+          for various courses, using only one DATA step, as follows:
+        <pre><font color="#003399">    data _null_;
+       set sasuser.courses;
+       call symput(course_code,trim(course_title));
+    run; 
+
+    %let crsid=C005;
+    proc print data=sasuser.schedule noobs label;
+       where course_code=&quot;&amp;crsid&quot;;
+       var location begin_date teacher;
+       title1 &quot;Schedule for <strong>&amp;c005</strong>&quot;;
+    run;
+
+    %let crsid=C002;
+    proc print data=sasuser.schedule noobs label;
+       where course_code=&quot;&amp;crsid&quot;;
+       var location begin_date teacher;
+       title1 &quot;Schedule for <strong>&amp;c002</strong>&quot;;
+    run;
+</font></pre>
+<P> This is the output from the first PROC PRINT step.
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Schedule for Artificial Intelligence</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Location</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Begin</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Instructor</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Dallas</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">26FEB2001</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Hallis, Dr. George</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">17SEP2001</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Tally, Ms. Julia</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Seattle</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25FEB2002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Hallis, Dr. George</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+<P><BR>
+          This is the output from the second PROC PRINT step.
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Schedule for Structured Query Language</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv"  color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Location</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Begin</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Instructor</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Dallas</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">04DEC2000</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Wickam, Dr. Alice</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11JUN2001</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Wickam, Dr. Alice</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Seattle</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">03DEC2001</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Wickam, Dr. Alice</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+<P><BR>
+          The program on this page is more efficient than the program shown on 
+          the previous page since the <strong>Sasuser.Courses</strong> data set 
+          is only read once in the latest example. However, there is still room 
+          for improvement. 
+      </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

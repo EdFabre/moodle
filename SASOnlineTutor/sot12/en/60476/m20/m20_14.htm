@@ -1,0 +1,145 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Match-Merging<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>So far in this lesson, you've combined data sets based on the order of 
+        the observations in the input data sets. But sometimes you need to combine 
+        observations from two or more data sets into a single observation in a 
+        new data set according to the values of a common variable. This is called 
+        <strong>match-merging</strong>. </p>
+      <p> When you match-merge, you use a MERGE statement rather than a SET statement 
+        to combine data sets.
+    </td>
+  </tr>
+</table>
+<p><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, basic DATA step for match-merging">
+    <tr> 
+      <td align="left"><strong>General form, basic DATA step for match-merging:</strong> 
+        <blockquote> <font color="#003399"><strong>DATA </strong><em>output-SAS-data-set</em><strong>; 
+          </strong><br>
+          <nobr>&nbsp; &nbsp; &nbsp; <strong>MERGE</strong>&nbsp;<em>SAS-data-set-1&nbsp;SAS-data-set-2</em><strong>;</strong></nobr><br>
+            &nbsp; &nbsp; &nbsp; <strong>BY </strong>&lt;DESCENDING&gt;<em> variable(s)</em><strong>;</strong> 
+            <br>
+          <strong>RUN;</strong></font> </blockquote>
+        <p> where 
+         <ul>
+            <li> <font color="#003399"><em>output-SAS-data-set</em></font> names 
+              the data set to be created.
+            <li> <font color="#003399"><em>SAS-data-set-1</em></font> and <font color="#003399"><em>SAS-data-set-2</em></font> 
+              specify the data sets to be read.
+            <li> <font color="#003399"><em>variable(s)</em></font> in the <strong>BY</strong> 
+              statement specifies one or more variables whose values are used 
+              to match observations.
+            <li><font color="#003399">DESCENDING</font> indicates that the input 
+              data sets are sorted in descending order (largest to smallest numerically, 
+              or reverse alphabetical for character variables) by the variable 
+              that is specified. If you have more that one variable in the BY 
+              statement, DESCENDING applies only to the variable that immediately 
+              follows it. <br>
+            
+          </ul>
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+              <td>Each input data set in the MERGE statement <strong>must</strong> 
+                be sorted in order of the values of the BY variable(s), or it 
+                must have an appropriate index. Each BY variable must have the 
+                same type in all data sets to be merged.</td>
+          </tr>
+        </table>
+          <br>
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr valign="Top"> 
+              <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+              <td>You cannot use the DESCENDING option with indexed data sets 
+                because indexes are always stored in ascending order.</td>
+            </tr>
+          </table> </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>How Match-Merging Selects Data</strong> 
+        <p> Generally speaking, during match-merging SAS sequentially 
+          checks each observation of each data set to see whether the BY values 
+          match, then writes the combined observation to the new data set. 
+        <pre><font color="#003399">     data merged;</font>
+<font color="#003399">        merge a b;</font>
+<font color="#003399">        by num;</font>
+<font color="#003399">     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <img src="images/m20e1g1.gif" border="0" width="322" height="270" alt="Match-Merging Data"> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>Basic DATA step match-merging produces an output data set that contains 
+        values from <strong>all observations in all input data sets</strong>. 
+        (You can add statements and options to select only observations that match 
+        for two or more specific input data sets.) 
+        <p> If an input data set doesn't have any observations for a particular 
+          value of the same-named variable, then the observation in the output 
+          data set contains <strong>missing values</strong> for the variables 
+          that are unique to that input data set. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <img src="images/m20e1g2.gif" border="0" width="380" height="168" alt="missing values in merged data"> 
+<p align="center"> 
+<center>
+  <table cellpadding="2" width="85%">
+    <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+      <td>In match-merging, often one data set contains unique values for the 
+        same-named variable and other data sets contain multiple values for the 
+        same-named variable. </td>
+    </tr>
+  </table>
+</center><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

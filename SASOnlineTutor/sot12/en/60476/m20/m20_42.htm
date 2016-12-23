@@ -1,0 +1,312 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Selecting 
+      Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p>As with reading raw data or reading SAS data sets, you can specify the 
+        variables you want to drop or keep by using the <STRONG>DROP= and KEEP= 
+        data set options</STRONG>. 
+      <P> For example, the DATA step below reads all variables from <STRONG>Clinic.Demog 
+        </STRONG>and all variables except <CODE>Weight</CODE> from <STRONG>Clinic.Visit</STRONG>. 
+        It then excludes the variable <CODE>ID</CODE> from <STRONG>Clinic.Merged</STRONG> 
+        after the merge processing is complete. 
+      <PRE>     <FONT color="#003399">data clinic.merged<STRONG>(drop=id)</STRONG>;</FONT>
+<FONT color="#003399">        merge clinic.demog(in=indemog</FONT>
+<FONT color="#003399">                           rename=(date=BirthDate))</FONT>
+              <FONT color="#003399">clinic.visit<STRONG>(drop=weight</STRONG> in=invisit</FONT>
+                           <FONT color="#003399">rename=(date=VisitDate)<STRONG>)</STRONG>;</FONT>
+        <FONT color="#003399">by id;</FONT>
+        <FONT color="#003399">if indemog and invisit;</FONT>
+     <FONT color="#003399">run;</FONT>
+     <FONT color="#003399">proc print data=clinic.merged;</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+    </td>
+  </tr>
+</table>
+<center>
+  <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+        bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="3" color="#0033AA"><b>Age</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="3" color="#0033AA"><b>Sex</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="3" color="#0033AA"><b>BirthDate</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="3" color="#0033AA"><b>Visit</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="3" color="#0033AA"><b>SysBP</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="3" color="#0033AA"><b>DiasBP</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="3" color="#0033AA"><b>VisitDate</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        1</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">21</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">m</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">05/22/75</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">140</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">85</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">11/05/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        2</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">21</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">m</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">05/22/75</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">138</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">90</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">10/13/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        3</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">21</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">m</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">05/22/75</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">3</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">145</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">95</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">07/04/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        4</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">32</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">m</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">06/15/63</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">121</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">75</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">04/14/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        5</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">24</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">f</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">08/17/72</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">118</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">68</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">08/12/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        6</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">24</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">f</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">08/17/72</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">112</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">65</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">08/21/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        7</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000"> .</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">&nbsp;</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">03/27/69</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">143</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">86</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">03/30/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        8</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">44</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">f</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">02/24/52</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">132</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">76</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">02/27/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        9</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">44</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">f</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">02/24/52</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">132</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">78</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">07/11/98</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">10</font></b></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">44</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">f</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">02/24/52</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">3</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">134</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">78</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+                    size="2" color="#000000">04/16/98</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Where to Specify DROP= and KEEP=</strong> 
+        <p> As you've seen in previous lessons, you can specify the DROP= and 
+          KEEP= options wherever you specify a SAS data set. When match-merging, 
+          you can specify these options in either the <strong>DATA statement </strong>or 
+          the <strong>MERGE statement</strong>, depending on whether or not you 
+          want to process values of the variables in that DATA step: 
+        <ul>
+          <li> If you <strong>don't </strong>process certain variables and you 
+            don't want them to appear in the new data set, specify them in the 
+            DROP= option in the <strong>MERGE statement</strong>. 
+            <pre>
+<font color="#003399">&nbsp; &nbsp;merge clinic.demog(in=indemog </font>
+<font color="#003399">                      rename=(date=BirthDate)) </font>
+         <font color="#003399">clinic.visit<strong>(drop=weight</strong> in=invisit</font>
+                      <font color="#003399">rename=(date=VisitDate)<strong>)</strong>;</font>
+</pre>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <ul>
+          <li>If you <strong>do</strong> need to process a variable in the original 
+            data set (in a subsetting IF statement, for example), then you must 
+            specify the variable in the DROP= option in the <strong>DATA statement</strong>. 
+            Otherwise, the statement that uses the variable for processing causes 
+            an error. 
+            <pre>     <font color="#003399">data clinic.merged<strong>(drop=id)</strong>;</font>
+</pre>
+            When used in the DATA statement, the DROP= option simply drops the 
+            variables from the new data set. However, they are still read from 
+            the original data set and are available for processing within the 
+            DATA step. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

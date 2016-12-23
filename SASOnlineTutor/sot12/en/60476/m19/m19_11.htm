@@ -1,0 +1,178 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Formatted Input<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Reading Columns in Any Order</strong> </p>
+      <p> Column pointer controls are very useful. For example, you can use the 
+        @<em>n</em> to move a pointer forward or backward when reading a record. 
+      <p> In this INPUT statement, the value for <code>FirstName</code> is read 
+        first, starting in column 9. 
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">input <strong>@9 FirstName</strong> $5.</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+---<font color="red"><strong>V</strong></font>10---+----20---+---</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">EVANS&nbsp;&nbsp;&nbsp;<span style="background-color: #CCCC99">DONNY</span>&nbsp;112&nbsp;29,996.63&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HELMS&nbsp;&nbsp;&nbsp;<span style="background-color: #CCCC99">LISA&nbsp;</span>&nbsp;105&nbsp;18,567.23&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HIGGINS&nbsp;<span style="background-color: #CCCC99">JOHN&nbsp;</span>&nbsp;111&nbsp;25,309.00&nbsp;</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>Now let's read the values for <code>LastName</code>, which begin in 
+        the first column. Here you must use the @<em>n</em> pointer control to 
+        move the pointer back to column 1.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre>     <font color="#003399">input @9 FirstName $5. <strong>@1 LastName</strong> $7.</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr><strong><font color="red">V</font></strong>---+----10---+----20---+---</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">EVANS&nbsp;&nbsp;</span>&nbsp;DONNY&nbsp;112&nbsp;29,996.63&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">HELMS&nbsp;&nbsp;</span>&nbsp;LISA&nbsp;&nbsp;105&nbsp;18,567.23&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">HIGGINS</span>&nbsp;JOHN&nbsp;&nbsp;111&nbsp;25,309.00&nbsp;</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The rest of the INPUT statement specifies the column locations 
+        of the raw data value for <code>JobTitle</code> and <code>Salary</code>.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     input @9 FirstName $5. @1 LastName $7. <strong>@15 JobTitle</strong> 3. </font>
+<font color="#003399">           <strong>@19 Salary</strong> comma9.; </font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2"><nobr><font color="#000000">1</font></nobr></font><font face="Courier New, Courier" size="2" color="#000000"><nobr></nobr><nobr></nobr></font><font  face="Courier New, Courier" size="2" color="#000000"><nobr>---+----10---<font color="red"><strong>V</strong></font>---<font color="red"><strong>V</strong></font>20---+---</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">EVANS&nbsp;&nbsp;&nbsp;DONNY&nbsp;<span style="background-color: #CCCC99">112</span>&nbsp;<span style="background-color: #CCCC99">29,996.63</span>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HELMS&nbsp;&nbsp;&nbsp;LISA&nbsp;&nbsp;<span style="background-color: #CCCC99">105</span>&nbsp;<span style="background-color: #CCCC99">18,567.23</span>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HIGGINS&nbsp;JOHN&nbsp;&nbsp;<span style="background-color: #CCCC99">111</span>&nbsp;<span style="background-color: #CCCC99">25,309.00</span>&nbsp;</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=2 cellspacing=0 border=0 width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:"></td>
+      <td>The $5., $7., 3., and comma9. informats are explained later in this lesson.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

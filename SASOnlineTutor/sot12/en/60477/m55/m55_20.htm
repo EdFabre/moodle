@@ -1,0 +1,396 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Appending 
+      SAS Data Sets <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><h2> Appending Variables with Different Lengths</h2>
+        <p>If the DATA= data set contains variables that are longer than the variables 
+          in the BASE= data set, the FORCE option must be used with PROC APPEND. 
+          Using the FORCE option enables you to append the data sets. However, 
+          the DATA= variable values will be truncated.<br>
+          <br>
+          <br>
+        </p>
+        <h2>Example</h2>
+        <p>In the SAS data set <strong>Work.Acities</strong>, the variable <code>City</code> 
+          has a length of 22. In the SAS data set <strong>Work.WestAust</strong>, 
+          <code>City</code> has a length of 50. You can use the CONTENTS procedure 
+          to view the attributes of the variables in each data set.</p></td>
+    </tr>
+  </table>
+  <br>
+  <p> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     proc contents data=work.acities;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <font face="Arial, Helvetica, Helv" size="2"><font  face="Arial, Helvetica, Helv" size="2"> 
+  Partial Output</font></font><font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC CONTENTS Output">
+    <thead>
+      <TR> 
+        <TD COLSPAN=5 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Alphabetic 
+          List of Variables and Attributes</b></font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>#</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variable</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Type</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Len</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Label</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">City</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">City 
+          Where Airport is Located</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>2</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Code</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">3</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Start 
+          Point</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>4</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Country</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Country 
+          Where Airport is Located</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>3</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Name</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">50</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Airport 
+          Name</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  </font></font> 
+  <p> <br>
+    
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     proc contents data=work.westaust;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <font  face="Arial, Helvetica, Helv" size="2"><font  face="Arial, Helvetica, Helv" size="2">Partial 
+  Output </font></font><font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC CONTENTS Output">
+    <thead>
+      <TR> 
+        <TD COLSPAN=5 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Alphabetic 
+          List of Variables and Attributes</b></font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>#</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variable</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Type</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Len</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Label</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>2</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">City</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">50</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">City 
+          Where Airport is Located</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Code</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">3</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Airport 
+          Code</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>3</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Country</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Country 
+          Where Airport is Located</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>4</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Name</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">50</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Airport 
+          Name</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+<P>
+  <br>
+  </font></font> 
+
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> When the following program is submitted, the SAS log indicates that 
+        the data sets were not appended due to different lengths for <code>City</code> 
+        in the BASE= and DATA= data sets. 
+        <pre><font color="#003399">     proc append base=work.acities 
+                 data=work.westaust;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td><pre>
+NOTE: Appending WORK.WESTAUST to WORK.ACITIES.<br><strong>WARNING: Variable City has different lengths on BASE and 
+         DATA files (BASE 22 DATA 50).<br>ERROR: No appending done because of anomalies listed above.<br>       Use FORCE option to append these files.</strong><br>NOTE: 0 observations added.<br>NOTE: The data set WORK.ACITIES has 50 observations and 4 variables.<br>NOTE: Statements not processed because of errors noted above.<br>NOTE: PROCEDURE APPEND used (Total process time):<br>      real time           1.44 seconds<br>      cpu time            0.06 seconds
+NOTE: The SAS System stopped processing this step because of errors.
+</pre></td>
+      </tr>
+    </table>
+   <P>
+    <br>
+    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td> When the FORCE option is used, the SAS log indicates that the data 
+          sets are appended, but that dropping or truncating will occur. 
+          <pre><font color="#003399">     proc append base=work.acities 
+                 data=work.airports <strong>force</strong>;
+     run;</font></pre></td>
+      </tr>
+    </table>
+    <br>
+    <div align="center">SAS Log<br>
+      <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+        <tr> 
+          <td> <pre>
+NOTE: Appending WORK.WESTAUST to WORK.ACITIES.<br><strong>WARNING: Variable City has different lengths on BASE and DATA files 
+         (BASE 22 DATA 50).<br>NOTE: FORCE is specified, so dropping/truncating will occur.</strong><br>NOTE: There were 50 observations read from the data set WORK.WESTAUST.<br>NOTE: 50 observations added.<br>NOTE: The data set WORK.ACITIES has 100 observations and 4 variables.<br>NOTE: PROCEDURE APPEND used (Total process time):<br>      real time           1.44 seconds<br>      cpu time            0.06 seconds<br></pre></td>
+        </tr>
+      </table>
+     <P>
+    </div>
+    <br>
+  </div>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> PROC CONTENTS output for the appended version of <strong>Work.Acities</strong> 
+        shows that the variable <code>City</code> has retained a length of 22 
+        from the BASE= data set. Also notice that the variable <code>Code</code> 
+        has retained the label <strong>Start Point</strong> from the BASE= data 
+        set. 
+        <pre><font color="#003399">     proc contents data=work.acities;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <p align="center"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC CONTENTS Output">
+    <thead>
+      <TR> 
+        <TD COLSPAN=5 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Alphabetic 
+          List of Variables and Attributes</b></font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>#</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variable</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Type</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Len</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Label</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">City</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">City 
+          Where Airport is Located</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>2</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Code</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">3</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Start 
+          Point</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>4</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Country</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Country 
+          Where Airport is Located</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>3</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Name</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">50</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Airport 
+          Name</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+ <P>
+  <br>
+  </font></font> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>PROC PRINT output shows that some of the values of <code>City</code> 
+          are truncated in the appended version of <strong>Work.Acities</strong>.</p>
+        <pre><font color="#003399">     proc print data=work.acities (firstobs=45 obs=55);
+     run;</font></pre></td>
+    </tr>
+  </table><P>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+    <thead>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>City</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Code</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Name</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Country</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 45</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Portland, ME</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PWM</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Portland International Jetport</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">USA</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 46</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Raleigh-Durham, NC</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Raleigh-Durham International Airport</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">USA</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 47</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Seattle, WA</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SEA</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Seattle-Tacoma International Airport</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">USA</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 48</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">San Francisco, CA</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SFO</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">San Francisco International Airport</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">USA</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 49</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Singapore</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SIN</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Changi International Airport</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Singapore</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 50</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Sydney, New South Wale</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SYD</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Kingsford Smith</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Australia</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 51</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Argyle 
+          Downs, Western</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AGY</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Australia</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 52</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Albany, 
+          Western Austra</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ALH</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Australia</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 53</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Big 
+          Bell, Western Aust</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BBE</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Australia</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 54</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Bedford 
+          Downs, Western</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BDW</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Australia</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 55</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Beagle 
+          Bay, Western Au</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BEE</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Australia</font></TD>
+</TR>
+</tbody>
+</TABLE>
+  </font></font><p>
+  <br>
+  </font></font>  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

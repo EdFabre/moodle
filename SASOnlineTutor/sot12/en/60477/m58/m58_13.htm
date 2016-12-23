@@ -1,0 +1,167 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Managing 
+      Custom Formats <!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <h2>Using PROC CATALOG to Manage Formats</h2>
+        <p> Because formats are saved as catalog entries, you can use the CATALOG 
+          procedure to manage your formats. Using PROC CATALOG, you can</p>
+        <ul>
+          <li>create a listing of the contents of a catalog</li>
+          <li>copy a catalog or selected entries within a catalog</li>
+          <li>delete or rename entries within a catalog.</li>
+        </ul></td>
+    </tr>
+  </table><p></p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC CATALOG step">
+    <tr> 
+      <td align="left"><strong>General form, PROC CATALOG step:</strong> 
+        <blockquote> 
+          <p><font color="#003399"><strong>PROC CATALOG CATALOG<em>=</em></strong><em>libref.catalog</em>;<br>
+            </font><font color="#003399"><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em><strong>CONTENTS</strong><em> 
+            &lt;</em>OUT<em>=SAS-data-set&gt;</em>;<em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em><strong>&nbsp;&nbsp;COPY</strong><em> 
+            </em><strong>OUT<em>=</em></strong><em>libref.catalog &lt;options&gt;</em>;<em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em><strong>SELECT</strong><em> 
+            entry-name.entry-type(s)</em>;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>EXCLUDE</strong> 
+            <em>entry-name.entry-type(s)</em>;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>DELETE</strong> 
+            <em>entry-name.entry-type(s)</em>;<br>
+            <strong>RUN;</strong><br>
+            <strong>QUIT;</strong></font></p>
+        </blockquote>
+        <p>where</p>
+        <ul>
+          <li><font color="#003399"><em>libref.catalog</em> </font>with the CATALOG= 
+            argument is the SAS catalog to be processed</li>
+          <li><font color="#003399"><em>SAS-data-set</em></font> is the name of 
+            the data set that will contain the list of the catalog contents </li>
+          <li><font color="#003399"><em>libref.catalog</em></font> with the OUT= 
+            argument is the SAS catalog to which the catalog entries will be copied</li>
+          <li><font color="#003399"><em>entry-name.entry-type(s)</em></font> are 
+            the full names of catalog entries (in the form <em>name.type</em>) 
+            that you want to process.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p>
+    <br>
+  
+ 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>
+	    <div id="le2_eg1_eg2_eg3_v89_v91" class="eg_div"></div>
+	   <div id="le1" class="eg_div">
+	  <table border="0" cellpadding="2" cellspacing="0"><tr> 
+<td width="24" height="36" valign="top"><img src="../navimages/alert.gif" width="37" 
+height="32" alt="Caution:"></td>
+
+              <td valign="top">If you are using the SAS Learning Edition, you 
+                will not be able to submit a PROC CATALOG step because the CATALOG 
+                procedure is not included in the software. </td>
+            </tr></table><br><br>
+</div>
+        <h2>Example</h2>
+        <p>The first PROC CATALOG step below copies the $ROUTES. format from the 
+          <strong>Library.Formats</strong> catalog to the <strong>Work.Formats</strong> 
+          catalog. Notice that in the SELECT statement, you specify the $ROUTES. 
+          character format using the full catalog entry name, ROUTES.FORMATC.</p>
+        <pre>   <font color="#003399">  proc catalog catalog=library.formats;
+        copy out=work.formats;
+        select routes.formatc;
+     run;
+     proc catalog cat=work.formats;
+        contents;
+     run;
+     quit;</font></pre>
+        <p>The second PROC CATALOG step displays the contents of the <strong>Work.Formats</strong> 
+          catalog. A note is written to the log when the format is copied from 
+          one catalog to another.</p>
+        <p> <br>
+        <div align="center"> 
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC CATALOG Output">
+            <thead>
+              <TR> 
+                <TD COLSPAN=6 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Contents 
+                  of Catalog WORK.FORMATS</b></font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>#</b></font></TD>
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Name</b></font></TD>
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Type</b></font></TD>
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Create 
+                  Date</b></font></TD>
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Modified 
+                  Date</b></font></TD>
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Description</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ROUTES</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FORMATC</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">17OCT2002:10:30:24</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">17OCT2002:10:30:24</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+          <p><br>
+          </p>
+          <table border="0" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+              <td valign="top">For more information about PROC CATALOG, including 
+                other statements and options that you can use, see the <font size="-1" face="Arial, Helvetica, sans-serif"> 
+                <!--doc reference-->
+                </font>SAS documentation.</td>
+            </tr>
+          </table>
+        
+        </div></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

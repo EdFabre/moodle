@@ -140,7 +140,6 @@ class backup_assign_activity_structure_step extends backup_activity_structure_st
 
         // Define id annotations.
         $userflag->annotate_ids('user', 'userid');
-        $userflag->annotate_ids('user', 'allocatedmarker');
         $submission->annotate_ids('user', 'userid');
         $submission->annotate_ids('group', 'groupid');
         $grade->annotate_ids('user', 'userid');

@@ -1,0 +1,106 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --><TITLE>The INTO Clause</TITLE><!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->The 
+      INTO Clause<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <P>You can create or update macro variables during the execution 
+        of a PROC SQL step by using an <strong>INTO clause</strong> in 
+        a SELECT statement. 
+      <P><BR>
+      <table border="1" cellspacing="0" cellpadding="10"  bgcolor="#F7F7DE" align="center" title="General form, SELECT statement with the INTO clause">
+        <tr> 
+          <td align="left"><STRONG>General form, SELECT statement with the INTO 
+            clause:</STRONG> <FONT COLOR="#003399"> 
+            <BLOCKQUOTE> 
+              <dl>
+                <dt><STRONG>SELECT</STRONG> <em>column1</em><,<em>column2</em>,...&gt; </dt>
+				<dd>
+                  <nobr><strong>INTO</strong> <strong>:</strong><em>macro-variable-1</em>&lt;, 
+                  <strong>:</strong><em>macro-variable-2</em>,...&gt;</nobr>
+                </dd>
+                <dd><strong>FROM</strong> <em>table-1 | view-1</em> </dd>
+                <dd>&lt;<strong>WHERE</strong> <em>expression</em>&gt; </dd>
+                <dd><em>&lt;other clauses</em>>;</dd>
+              </dl>
+            </BLOCKQUOTE>
+            </FONT> 
+			where 
+			<ul>
+			  <li><font color="#003399"><em>column-1, column-2,...</em></font> 
+                specifies one or more columns of the SQL table specified by <font color="#003399"><em>table-1 
+                | view-1</em></font> 
+              <li><font color="#003399"><em>:macro-variable-1, :macro-variable-2,...</em></font> 
+                names the macro variables to create. 
+            </ul><P>
+            <table cellpadding="2">
+              <tr valign="Top"> 
+                <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+                <td>Macro variable names are preceded by a colon.</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+      <P><BR>
+        For example, the INTO clause in the following step creates a macro variable 
+        named <code>totalfee</code> and assigns the sum of the values of the DATA 
+        step variable <code>Fee</code> to it as a value. <font color="#003399">
+      <pre>    proc sql;
+       select sum(fee) format=dollar10. 
+          <strong>into :totalfee</strong>
+          from sasuser.all;
+    quit;</pre>
+      </font> Another form of the INTO clause enables you to create a range of 
+      macro variables. For example, the INTO clause in the following step creates 
+      three macro variables, named <code>place1</code>, <code>place2</code>, and 
+      <code>place3</code>. This INTO clause assigns the new macro variables values 
+      that are the same as the values of the DATA step variable <code>Location</code>. 
+      <font color="#003399"> 
+      <pre>    proc sql;
+       select location 
+          <strong>into :place1-:place3</strong>
+          from sasuser.schedule
+          where year(begin_date)=2002;
+    quit;</pre>
+      </font> You can use another alternate form of the INTO clause in order to 
+      take all of the values of a column (variable) and concatenate 
+      them< into the value of one macro variable. For example, the INTO 
+      clause in the following step creates a macro variable named <code>Sites</code> 
+      and assigns a value of the names of all training centers that appear in 
+      the <strong>Sasuser.Schedule</strong> data set to it. The names will be 
+      separated by blanks. <font color="#003399"> 
+      <pre>    proc sql noprint;
+       select distinct location 
+          <strong>into :sites separated by ' '</strong>
+          from sasuser.schedule;
+    quit;</pre>
+      </font> </td>
+  </tr>
+  </table>
+   <!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

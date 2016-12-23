@@ -76,22 +76,6 @@ class core_userliblib_testcase extends advanced_testcase {
         user_update_user($user, false);
         $dbuser = $DB->get_record('user', array('id' => $user->id));
         $this->assertSame($password, $dbuser->password);
-
-        // Verify event is not triggred by user_update_user when needed.
-        $sink = $this->redirectEvents();
-        user_update_user($user, false, false);
-        $events = $sink->get_events();
-        $sink->close();
-        $this->assertCount(0, $events);
-
-        // With password, there should be 1 event.
-        $sink = $this->redirectEvents();
-        user_update_user($user, true, false);
-        $events = $sink->get_events();
-        $sink->close();
-        $this->assertCount(1, $events);
-        $event = array_pop($events);
-        $this->assertInstanceOf('\core\event\user_password_updated', $event);
     }
 
     /**
@@ -112,7 +96,7 @@ class core_userliblib_testcase extends advanced_testcase {
             'lastnamephonetic' => '最後のお名前のテスト一号',
             'firstnamephonetic' => 'お名前のテスト一号',
             'alternatename' => 'Alternate Name User Test 1',
-            'email' => 'usertest1@example.com',
+            'email' => 'usertest1@email.com',
             'description' => 'This is a description for user 1',
             'city' => 'Perth',
             'country' => 'au'
@@ -144,14 +128,6 @@ class core_userliblib_testcase extends advanced_testcase {
         $this->assertEventLegacyData($dbuser, $event);
         $expectedlogdata = array(SITEID, 'user', 'add', '/view.php?id='.$event->objectid, fullname($dbuser));
         $this->assertEventLegacyLogData($expectedlogdata, $event);
-
-        // Verify event is not triggred by user_create_user when needed.
-        $user = array('username' => 'usernametest2'); // Create another user.
-        $sink = $this->redirectEvents();
-        user_create_user($user, true, false);
-        $events = $sink->get_events();
-        $sink->close();
-        $this->assertCount(0, $events);
     }
 
     /**

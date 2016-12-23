@@ -1,0 +1,157 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Manipulating 
+      SAS Date Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><STRONG>INTCK Function</STRONG> </p>
+      <P> The <STRONG>INTCK</STRONG> function returns the number of time intervals 
+        that occur in a given time span. You can use it to count the passage of 
+        days, weeks, months, and so on.</td>
+  </tr>
+</table>
+<P align="center"> <BR>
+<center>
+  <TABLE width="85%" BORDER="1" CELLPADDING="10" CELLSPACING="0" bgcolor="#F7F7DE" title="General form, INTCK function">
+    <TR> 
+      <TD><STRONG>General form, INTCK function:</STRONG> <BLOCKQUOTE> <FONT color="#003399"><STRONG>INTCK(</STRONG><EM>'interval',from,to</EM><STRONG>)</STRONG></FONT> 
+        </BLOCKQUOTE>
+        <P> where 
+          <UL>
+            <LI><FONT color="#003399"><EM>'interval'</EM></FONT> specifies a character 
+              constant or variable. The value must be one of the following: 
+              <DL>
+                <DT> 
+                <DD>DAY 
+                <DD>WEEKDAY 
+                <DD>WEEK 
+                <DD>TENDAY 
+                <DD>SEMIMONTH 
+                <DD>MONTH 
+                <DD>QTR 
+                <DD>SEMIYEAR 
+                <DD>YEAR 
+              </DL>
+            <LI><FONT color="#003399"><EM>from</EM></FONT> specifies a SAS date, 
+              time, or datetime value that identifies the beginning of the time 
+              span.
+            <LI><FONT color="#003399"><EM>to</EM></FONT> specifies a SAS date, 
+              time, or datetime value that identifies the end of the time span. 
+          </UL>
+        <TABLE border="0" cellpadding="2" cellspacing="0" width="100%">
+          <TR valign="top"> 
+            <TD width="24"><IMG src="../navimages/note.gif" border="0" width="20" height="20" hspace="5" alt="NOTE:"></TD>
+            <TD>The type of interval (date, time, or datetime) must match the 
+              type of value in <FONT color="#003399"><EM>from</EM></FONT>.</TD>
+          </TR>
+        </TABLE></TD>
+    </TR>
+  </table>
+</center>
+<P align="center"><BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+        <TD><p>The INTCK function counts intervals from fixed interval beginnings, 
+            not in multiples of an interval unit from the <em>from</em> value. 
+            Partial intervals are not counted. For example, WEEK intervals are 
+            counted by Sundays rather than seven-day multiples from the <em>from</em> 
+            argument. MONTH intervals are counted by day 1 of each month, and 
+            YEAR intervals are counted from 01JAN, not in 365-day multiples. </p>
+          <p>Consider the results in the following table. The values that are 
+            assigned to the variables <code>Weeks</code>, <code>Months</code>, 
+            and <code>Years</code> are based on consecutive days.</p>
+          </TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"><br>
+<center>
+  <TABLE border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="SAS Statements using the INTCK function">
+    <TR valign="top"> 
+      <TD nowrap bgcolor="#F7F7DE"><p align="center"><strong>SAS Statement</strong></p></TD>
+      <TD nowrap bgcolor="#F7F7DE"><strong>Value</strong></TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><div align="left"><TT><FONT color="#003399">Weeks=intck('week','31dec2000'd,'01jan2001'd);</FONT></TT></div></TD>
+      <TD nowrap><div align="center"><em>0</em></div></TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><div align="left"><TT><FONT color="#003399">Months=intck('month','31dec2000'd,'01jan2001'd);</FONT></TT></div></TD>
+      <TD nowrap><div align="center"><em>1</em></div></TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><div align="left"><TT><FONT color="#003399">Years=intck('year','31dec2000'd,'01jan2001'd);</FONT></TT></div></TD>
+      <TD nowrap><div align="center"><em>1</em></div></TD>
+    </TR>
+  </table>
+</center>
+<P align="center"><BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+      <TR> 
+        <TD>
+<p>Because December 31, 2000, is a Sunday, no WEEK interval is 
+            crossed between that day and January 1, 2001. However, both MONTH 
+            and YEAR intervals are crossed.
+          </p>
+          <P><br><strong>Examples </strong> 
+          <P>The following statement creates the variable <CODE>Years</CODE> and 
+            assigns it a value of <EM>2</EM>. The INTCK function determines that 
+            2 years have elapsed between June 15, 1999, and June 15, 2001.
+          <PRE>     <FONT color="#003399">Years=intck('year','15jun1999'd,'15jun2001'd);</FONT></PRE> <table border="0" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+              <td valign="top">As shown here, the <em>from</em> and <em>to</em> 
+                dates are often specified as <a href="JavaScript: openOther('../linklib/datecons.htm')">date 
+                constants</a>.</td>
+            </tr>
+          </table>
+          <p>Likewise, the following statement assigns the value <EM>24</EM> to 
+            the variable <CODE>Months</CODE>. </p>
+          <PRE>     <FONT color="#003399">Months=intck('month','15jun1999'd,'15jun2001'd);</FONT></PRE>
+          However, the following statement assigns <EM>0</EM> to the variable 
+          <CODE>Years</CODE>, even though 364 days have elapsed. In this case 
+          the YEAR boundary (01JAN) is not crossed. 
+          <PRE>     <FONT color="#003399">Years=intck('year','01jan2002'd,'31dec2002'd);</FONT></PRE></TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

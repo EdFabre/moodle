@@ -96,7 +96,7 @@ class assign_feedback_comments extends assign_feedback_plugin {
         }
         // Note that this handles the difference between empty and not in the quickgrading
         // form at all (hidden column).
-        $newvalue = optional_param('quickgrade_comments_' . $userid, false, PARAM_RAW);
+        $newvalue = optional_param('quickgrade_comments_' . $userid, false, PARAM_TEXT);
         return ($newvalue !== false) && ($newvalue != $commenttext);
     }
 
@@ -176,16 +176,17 @@ class assign_feedback_comments extends assign_feedback_plugin {
     public function save_quickgrading_changes($userid, $grade) {
         global $DB;
         $feedbackcomment = $this->get_feedback_comments($grade->id);
-        $quickgradecomments = optional_param('quickgrade_comments_' . $userid, null, PARAM_RAW);
-        if (!$quickgradecomments) {
+        $feedbackpresent = optional_param('quickgrade_comments_' . $userid, false, PARAM_TEXT) !== false;
+        if (!$feedbackpresent) {
+            // Nothing to save (e.g. hidden column).
             return true;
         }
         if ($feedbackcomment) {
-            $feedbackcomment->commenttext = $quickgradecomments;
+            $feedbackcomment->commenttext = optional_param('quickgrade_comments_' . $userid, '', PARAM_TEXT);
             return $DB->update_record('assignfeedback_comments', $feedbackcomment);
         } else {
             $feedbackcomment = new stdClass();
-            $feedbackcomment->commenttext = $quickgradecomments;
+            $feedbackcomment->commenttext = optional_param('quickgrade_comments_' . $userid, '', PARAM_TEXT);
             $feedbackcomment->commentformat = FORMAT_HTML;
             $feedbackcomment->grade = $grade->id;
             $feedbackcomment->assignment = $this->assignment->get_instance()->id;
@@ -235,7 +236,7 @@ class assign_feedback_comments extends assign_feedback_plugin {
 
         foreach ($this->assignment->get_submission_plugins() as $plugin) {
             $fields = $plugin->get_editor_fields();
-            if ($plugin->is_enabled() && $plugin->is_visible() && !$plugin->is_empty($submission) && !empty($fields)) {
+            if ($plugin->is_enabled() && $plugin->is_visible() && !empty($fields)) {
                 foreach ($fields as $key => $description) {
                     $rawtext = strip_pluginfile_content($plugin->get_editor_text($key, $submission->id));
 
@@ -252,12 +253,8 @@ class assign_feedback_comments extends assign_feedback_plugin {
             }
         }
 
-        if ($format === false) {
-            $format = FORMAT_HTML;
-        }
         $data->assignfeedbackcomments_editor['text'] = $text;
         $data->assignfeedbackcomments_editor['format'] = $format;
-
         return true;
     }
 

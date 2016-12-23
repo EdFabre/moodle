@@ -1,0 +1,150 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Removing 
+      Duplicate Observations Efficiently<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Removing Duplicate Observations Efficiently</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Suppose you want to remove observations from the data set <strong>Retail.Order_fact 
+        </strong>in which the value of <code>Order_Date</code> is duplicated. 
+        Among the techniques you could use are 
+      <ol>
+        <li><a href="#1">The NODUPKEY Option and the EQUALS Option</a></li>
+        <li><a href="#2">The NODUPKEY Option and the NOEQUALS Option</a></li>
+        <li><a href="#3">PROC SORT and a DATA Step with BY-Group and FIRST. Processing</a></li>
+      </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results might vary depending on the structure of your 
+        data, your operating environment, and the resources that are available at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for eliminating duplicates. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 1">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        The NODUPKEY Option and the EQUALS Option</strong></p>
+      <blockquote> 
+        <p>This program uses the NODUPKEY option and the EQUALS option to check 
+          for and eliminate observations that have duplicate BY-variable values. 
+          For observations that have identical BY-variable values, the EQUALS 
+          option maintains the order from the input data set in the output data 
+          set.</p>
+      </blockquote>
+      <blockquote> 
+        <pre><font color="#003399">     proc sort data=retail.order_fact<br>               out=work.sorted<br>        <strong>nodupkey equals;</strong><br>        <strong>by order_date;</strong><br>     run;<br></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 2">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        The NODUPKEY Option and the NOEQUALS Option</strong></p>
+      <blockquote> 
+        <p>This program uses the NODUPKEY option and the NOEQUALS option to check 
+          for and eliminate observations that have duplicate BY-variable values. 
+          For observations that have identical BY-variable values, the NOEQUALS 
+          option does not necessarily maintain the order from the input data set 
+          in the output data set. </p>
+      </blockquote>
+      <blockquote> 
+        <pre><font color="#003399">     proc sort data=retail.order_fact<br>               out=work.sorted<br>         <strong>nodupkey noequals;</strong><br>         <strong>by order_date;</strong><br>     run;<br></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 3">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="3" id="3"></a><img src="../navimages/opt_3.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        PROC SORT and a DATA Step with BY-Group and FIRST. Processing</strong></p>
+      <blockquote> 
+        <p>In this program, the input data set is first sorted using the SORT 
+          procedure. Duplicate observations are then removed using BY-group and 
+          FIRST. processing.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     </font><font color="#003399"><strong>proc sort data=retail.order_fact</strong><br>               out=work.sorted;<br>        <strong>by order_date;</strong><br>     run;
+<br>    data work.sorted;<br>       set work.sorted;<br>       <strong>by order_date;<br>       if first.order_date;</strong><br>    run;<br></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <ul>
+        <li>To remove duplicate observations from a SAS data set, use PROC SORT 
+          with the NODUPKEY option rather than a PROC SORT step followed by a 
+          DATA step that uses FIRST. processing.<br>
+          <br>
+        </li>
+        <li>Be careful not to confuse NODUPKEY with NODUPRECS.</li>
+      </ul></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

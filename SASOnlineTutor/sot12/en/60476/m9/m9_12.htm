@@ -1,0 +1,122 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Attaching 
+      Links to the Primary Chart<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td><strong></strong> 
+        <p>You've already created the initial chart that you want to use. Now it's 
+        time to modify the code for the chart in order to <strong>create the primary 
+        chart</strong> and <strong>attach links </strong>to it.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<p align="center"> <img src="images/m9e1g1.gif" width=139 height=240 border="0" alt="primary chart"><img
+      src="images/m9e1g1b.gif" width=95 height=240 border="0" alt="secondary charts"> 
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>First, let's look at the code that created the initial chart:</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre>      <font color="#003399">goptions hsize=5in vsize=4in;</font>
+<font color="#003399">      title 'Total Sales by Year';</font>
+<font color="#003399">      proc gchart data=work.saletrnd;</font>
+<font color="#003399">           vbar year / subgroup=prodtype discrete</font>
+<font color="#003399">           sumvar=actual;</font>
+<font color="#003399">      run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>To create the drill-down graph, change the <a href="JavaScript: openOther('../linklib/goptions.htm')" onMouseOver="window.status='Learn more about the GOPTIONS statement.';return true"
+	    onMouseOut="window.status='';return true">GOPTIONS statement</a> to specify 
+        <strong>GIF output </strong>as well as a <strong>size</strong> for the 
+        SAS/GRAPH chart.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">goptions device=gif xpixels=480 ypixels=360;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Next, add the <strong>HTML= option</strong> to the VBAR statement. The 
+        HTML= option assigns elements of the chart to the variable that you created 
+        for holding the HREF address strings (<code>PriDrill</code>). In turn, 
+        the <strong>HTML= variable</strong> identifies the link-destination variable 
+        to the GRAPH procedure for use in creating the image map in the HTML output 
+        file.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre>
+<font color="#003399">     <strong>goptions device=gif xpixels=480 ypixels=360;</strong></font>
+<font color="#003399">     title 'Total Sales by Year';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar year / subgroup=prodtype discrete</font>
+<font color="#003399">             sumvar=actual <strong>html=pridrill;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

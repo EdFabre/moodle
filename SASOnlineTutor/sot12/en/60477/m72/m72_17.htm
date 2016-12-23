@@ -1,0 +1,160 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using the INTERSECT Set Operator<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: INTERSECT Operator</h2>
+        <p> Now that you have seen how the INTERSECT set operator works with very 
+          small tables, let&#8217;s use INTERSECT in a realistic business problem. 
+          Suppose you want to display the names of the existing employees who 
+          <strong>have changed</strong> their salary or job code. (This query 
+          is the opposite of the query that you solved with the EXCEPT operator.)</p>
+        <p> Once again, you will use the following tables.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Data Needed for Query">
+    <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+      <th width="65%" bgcolor="#F7F7DE"><font size="-1">Table</font></th>
+      <th width="35%" nowrap><font size="-1">Relevant Columns</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong><a href="JavaScript: openOther('../linklib/stafchng.htm')">Sasuser.Staffchanges</a></strong> 
+        lists information for all new employees and existing employees who have 
+        had a change in salary or job code</td>
+      <td><code>FirstName, LastName</code></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong><a href="JavaScript: openOther2('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a></strong> 
+        lists information for all existing employees </td>
+      <td><code>FirstName, LastName</code></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>The relationship between these two tables is shown in the diagram below:</td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="0" align="center">
+    <tr> 
+      <td valign="top"><strong>Sasuser.Staffchanges</strong></td>
+      <td align="center"> <p><img src="images/m72_2g2.gif" alt="Diagram of 2 vertical intersecting circles with intersecting portion highlighted" width="61" height="92"></p></td>
+      <td valign="bottom"><strong>Sasuser.Staffmaster</strong></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>As shown in the earlier example with EXCEPT, the intersection of these 
+        two tables includes information for all existing employees who have had 
+        changes in job code or salary. It is the intersection of these two tables, 
+        shaded above, that you want to display.</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>To display the unique rows that are common to both tables, you use 
+          a PROC SQL set operation that contains INTERSECT. It is known that these 
+          tables contain no duplicates, so ALL is used to speed up query processing. 
+          The PROC SQL set operation is shown below:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        select firstname, lastname
+           from sasuser.staffchanges
+        <strong>intersect all</strong>
+        select firstname, lastname
+           from sasuser.staffmaster;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In this PROC SQL step, which contains just <strong>one</strong> 
+        INTERSECT set operator, the order in which you list the tables in the 
+        SELECT statement does <strong>not</strong> make a difference. However, 
+        in a more complex PROC SQL step that contains multiple stacked INTERSECT 
+        set operators, it is important to think through the table order carefully, 
+        depending on when you want the non-matches to be eliminated.</td>
+    </tr>
+  </table>
+   <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>The output shows that there are four existing employees who have changed 
+        their salary or job code.</td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FirstName</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DIANE</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">WALTERS</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">KAREN</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">CARTER</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NEIL</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">CHAPMAN</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">RAYMOND</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">SANDERS</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

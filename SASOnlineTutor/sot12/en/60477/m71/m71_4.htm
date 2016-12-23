@@ -1,0 +1,161 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Generating 
+      a Cartesian Product<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>In most cases, generating all possible combinations of rows from 
+          multiple tables does <strong>not</strong> yield useful results, so a 
+          Cartesian product is rarely the query outcome that you want. For example, 
+          in the Cartesian product of two tables that contain employee information, 
+          each row of output might contain information about two different employees. 
+          Usually, you want your join to return only a subset of rows from the 
+          tables. </p>
+        <p> The size of a Cartesian product can also be problematic. The number 
+          of rows in a Cartesian product is equal to the product of the number 
+          of rows in the contributing tables. </p>
+        <p>The tables <strong>One</strong> and <strong>Two</strong>, used in the 
+          preceding example, contain three rows each, as shown below.</p></td>
+    </tr>
+  </table>
+  <p>
+  <table border="0" cellspacing="10">
+    <tr> 
+      <td width="98" align="center" valign="top"> One 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">a</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">b</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">d</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td width="98" align="center" valign="top"> Two 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">x</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">y</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">v</font> 
+              </td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td height="253">
+<p>The number of rows in the Cartesian product of tables <strong>One</strong> 
+          and <strong>Two</strong> is calculated as follows:</p>
+        <blockquote> 
+          <p> <strong>3 x 3 = 9 rows</strong></p>
+        </blockquote>
+        <p> Joining small tables such as <strong>One</strong> and <strong>Two</strong> 
+          results in a relatively small Cartesian product. However, the Cartesian 
+          product of large tables can be huge and can require a large amount of 
+          system resources for processing. </p>
+        <p>For example, joining two tables of 1,000 rows each results in output 
+          of the following size:</p>
+        <blockquote> 
+          <p> <strong>1,000 x 1,000 = 1,000,000 rows</strong></p>
+        </blockquote>
+        <p> When you run a query that involves a Cartesian product that cannot 
+          be optimized, PROC SQL writes the following warning message to the SAS 
+          log.</p></td>
+    </tr>
+  </table>
+  <p>
+  <div align="center">SAS Log<br>
+    <table border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: The execution of this query involves performing <br>one or more Cartesian product joins that can not be optimized.<br></pre></td>
+      </tr>
+    </table>
+  </div>
+  <p>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td height="18">Although you will not often choose to create a query that 
+        returns a Cartesian product, it is important to understand how a Cartesian 
+        product is built. In all types of joins, PROC SQL generates a Cartesian 
+        product first, and then eliminates rows that do not meet any subsetting 
+        criteria that you have specified.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In many cases, PROC SQL can optimize the processing of 
+        a join, thereby minimizing the resources that are required to generate 
+        a Cartesian product.</td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

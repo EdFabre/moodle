@@ -1,0 +1,95 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit the following program:  ';
+solutionText+='<font color="#003399"><pre>options mstored sasmstore=sasuser;<br>';
+solutionText+='%macro printit(dataset)/store;<br>';
+solutionText+='   proc print data=&dataset(obs=5);<br> ';
+solutionText+='      title "Listing of the &dataset data set";<br> ';
+solutionText+='   run;<br>';
+solutionText+='%mend;</pre></font>';
+solutionText+='<li>Submit the following step:';
+solutionText+='<font color="#003399"><pre>proc catalog catalog=sasuser.sasmacr;<br>';
+solutionText+='   contents;<br>';
+solutionText+='quit;</pre></font>';
+solutionText+='The output should indicate that the <strong>Printit</strong> macro is now stored in the <strong>Sasuser.Sasmacr</strong> catalog.<br><br>';
+solutionText+='<li>To execute the <strong>Printit</strong> macro in a new SAS session, you would submit the following code:';
+solutionText+='<font color="#003399"><pre>options mstored sasmstore=sasuser;<br>';
+solutionText+='%printit(sasuser.courses)</pre></font></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create and access a stored compiled macro.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+        
+          <li>Copy the following program and paste it into the code editing window:<font color="#003399"> 
+            <pre>%macro printit(dataset);
+   proc print data=&dataset(obs=5);
+      title "Listing of &dataset data set";
+   run;
+%mend;
+</pre>
+            </font> Modify this macro definition in order to save it permanently 
+            in the <strong>Sasuser.Sasmacr</strong> catalog. Submit the program.<br>
+            <br>
+			
+          <li>Write a PROC CATALOG step to list the contents of the <strong>Sasuser.Sasmacr</strong> 
+            catalog. Submit the program and examine the output to verify that 
+            the <strong>Printit</strong> macro has been saved to the catalog.<br>
+            <br>
+<li>Suppose you were to exit your SAS session <strong>(do not exit SAS at this time)</strong> and begin a new session. In the new SAS session, how would you
+call the <strong>Printit</strong> macro to print the <strong>Sasuser.Courses</strong> data set?  
+	
+
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

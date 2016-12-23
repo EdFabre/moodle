@@ -1,0 +1,150 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+<!--STEP 1-->
+solutionText='<ol><li>Write and submit the following PROC SQL step that contains a CREATE TABLE statement and a DESCRIBE TABLE statement: <br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   create table work.newadmit3<br>';
+solutionText+='      like sasuser.newadmit;<br>';
+solutionText+='   describe table work.newadmit3;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The following message should appear in the SAS log: <br>';
+solutionText+='<pre>NOTE: SQL table WORK.NEWADMIT3 was created <br>';
+solutionText+='like: <br>';
+solutionText+='    <br>';
+solutionText+='create table WORK.NEWADMIT3( bufsize=8192 )<br>';
+solutionText+='  (                  <br>';
+solutionText+='   ID char(4),       <br>';
+solutionText+='   Name char(14),    <br>';
+solutionText+='   Sex char(1),      <br>';
+solutionText+='   Age num,          <br>';
+solutionText+='   Date num,         <br>';
+solutionText+='   Height num,       <br>';
+solutionText+='   Weight num,       <br>';
+solutionText+='   ActLevel char(4), <br>';
+solutionText+='   Fee num format=6.2, <br>';
+solutionText+='   MeterHgt num format=7.5, <br>';
+solutionText+='   KgWgt num format=7.4  <br>';
+solutionText+='  );</pre>';
+<!--STEP 2-->
+solutionText+='<li>Write and submit the following PROC SQL step that contains an ALTER TABLE statement and a DESCRIBE TABLE statement: <br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   alter table work.newadmit3     <br>';
+solutionText+='      drop height, weight, actlevel  <br>'; 
+solutionText+="      modify fee label='Admit Fee'  <br>";
+solutionText+='      add Pulse num format=3.;  <br>';
+solutionText+='   describe table work.newadmit3;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The following message should appear in the SAS log: <br>';
+solutionText+='<pre>NOTE: SQL table WORK.NEWADMIT3 was created <br>';
+solutionText+='like: <br>';
+solutionText+='    <br>';
+solutionText+='create table WORK.NEWADMIT3( bufsize=8192 )<br>';
+solutionText+='  (                  <br>';
+solutionText+='   ID char(4),       <br>';
+solutionText+='   Name char(14),    <br>';
+solutionText+='   Sex char(1),      <br>';
+solutionText+='   Age num,          <br>';
+solutionText+='   Date num,         <br>';
+solutionText+="   Fee num format=6.2 label='Admit Fee', <br>";
+solutionText+='   MeterHgt num format=7.5, <br>';
+solutionText+='   KgWgt num format=7.4  <br>';
+solutionText+='   Pulse num format=3.     <br>';
+solutionText+='  );</pre>';
+<!--STEP 3-->
+solutionText+='<li>Write and submit the following PROC SQL step: <br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   drop table newadmit3;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The following message should appear in the SAS log: <br>';
+solutionText+='<pre>NOTE: Table WORK.NEWADMIT3 has been dropped. </pre>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --> 
+            <p><strong>Create a temporary table that is like the table <a href="JavaScript: openOther('../linklib/newadmit.htm')">Sasuser.Newadmit</a>, 
+              alter and drop columns in the new table, and drop the new table.</strong></p>
+            <!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --> <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write a PROC SQL step that creates the temporary table <strong>Work.Newadmit3</strong> 
+            as an empty table that has the same columns and attributes as <strong>Sasuser.Newadmit</strong>. 
+            In the same step, include a statement to display the structure of 
+            <strong>Work.Newadmit3</strong> in the SAS log. <br>
+            <br>
+            Add a QUIT statement to the step. Submit the step and view the SAS 
+            log to verify that the table was created.<br>
+            <br>
+          <li>Write a PROC SQL step to alter columns in <strong>Work.Newadmit3</strong> 
+            as follows: <br>
+            <br>
+            <ul>
+              <li>drop the columns <code>Height</code>, <code>Weight</code>, and 
+                <code>ActLevel</code></li>
+              <li>add this label to the column <code>Fee</code>: <strong>Admit 
+                Fee</strong></li>
+              <li>add the numeric column <code>Pulse</code> and assign a format 
+                of 3. </li>
+            </ul>
+            <br>
+            In the same step, include a statement to display the altered structure 
+            of <strong>Work.Newadmit3</strong> in the SAS log. Add a QUIT statement 
+            to the step. Submit the step and view the SAS log to verify that the 
+            alterations were made correctly.<br>
+            <br>
+          <li>Write a PROC SQL step to drop the table <strong>Work.Newadmit3</strong>. 
+            Add a QUIT statement to the step. Submit the step and view the SAS 
+            log to verify that the table was dropped. <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

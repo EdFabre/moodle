@@ -1,0 +1,183 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Limiting 
+      Decimal Places<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p> By default, PROC MEANS output automatically uses the BEST<em>w</em>. 
+          format to display numeric values in the report. 
+        <p>The BEST<em>w</em>. format is the default format that SAS uses for 
+          writing numeric values. When there is no format specification, SAS chooses 
+          the format that provides the most information about the value according 
+          to the available field width. At times, this can result in unnecessary 
+          decimal places, making your output hard to read. </td>
+    </tr>
+  </table>
+  <p>
+  <center>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td> <pre><font color="#003399">     proc means data=clinic.diabetes min max;</font>
+<font color="#003399">     run;</font>
+</pre></td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> 
+  <center>
+    <table cellspacing="1" border="1" cellpadding="2" rules=GROUPS frame=BOX
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC MEANS Output">
+      <thead>
+        <tr> 
+          <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Variable</b></font></td>
+          <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Minimum</b></font></td>
+          <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Maximum</b></font></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">Age<br>
+            Height<br>
+            Weight<br>
+            Pulse<br>
+            FastGluc<br>
+            PostGluc</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">15.0000000<br>
+            61.0000000<br>
+            102.0000000<br>
+            65.0000000<br>
+            152.0000000<br>
+            206.0000000</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">63.0000000<br>
+            75.0000000<br>
+            240.0000000<br>
+            100.0000000<br>
+            568.0000000<br>
+            625.0000000</font></td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>To limit decimal places, use the <strong>MAXDEC=</strong> option 
+          in the PROC MEANS statement, and set it equal to the length that you 
+          prefer. </td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <center>
+    <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC MEANS statement with MAXDEC= option">
+      <tr> 
+        <td><strong>General form, PROC MEANS statement with MAXDEC= option:</strong> 
+          <blockquote> 
+            <dl>
+              <dt> <nobr><font color="#003399"><strong>PROC MEANS</strong> &lt;<strong>DATA</strong>=<em>SAS-data-set&gt;</em></font></nobr> 
+              <dd> <nobr><font color="#003399">&lt;<em>statistic-keyword(s)</em>&gt; 
+                <strong>MAXDEC=</strong><em>n</em><strong>;</strong></font></nobr> 
+            </dl>
+          </blockquote>
+          <p> where <font color="#003399"><em>n</em></font> specifies the maximum 
+            number of decimal places. </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <center>
+  </center>
+  <center>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td> <pre><font color="#003399">     proc means data=clinic.diabetes min max <strong>maxdec=0</strong>;</font>
+<font color="#003399">     run;</font>
+</pre></td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> 
+  <center>
+    <table cellspacing="1" border="1" cellpadding="2" rules=GROUPS frame=BOX
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC MEANS Output">
+      <thead>
+        <tr> 
+          <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Variable</b></font></td>
+          <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Minimum</b></font></td>
+          <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Maximum</b></font></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">Age<br>
+            Height<br>
+            Weight<br>
+            Pulse<br>
+            FastGluc<br>
+            PostGluc</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">15<br>
+            61<br>
+            102<br>
+            65<br>
+            152<br>
+            206</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">63<br>
+            75<br>
+            240<br>
+            100<br>
+            568<br>
+            625</font></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

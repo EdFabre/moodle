@@ -1,0 +1,162 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+            HTML output using the SAS data sets <a href="JavaScript: openOther('../linklib/admit.htm')" onMouseOver="window.status='Display a raw data file description and sample data.';  "
+	    onMouseOut="window.status=''">Sasuser.Admit</a> and&nbsp;<a href="JavaScript: openOther('../linklib/insure.htm')" onMouseOver="window.status='Display a raw data file description and sample data.';  "
+	    onMouseOut="window.status=''">Sasuser.Insure</a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+
+<div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <LI>Write a SAS program to<BR>
+          <BR>
+          <UL>
+              <LI> create <strong>only</strong> HTML output using the PRINT procedure 
+                and the SAS data sets <STRONG>Sasuser.Admit </STRONG>and <STRONG>Sasuser.Insure</STRONG><BR>
+              <BR>
+            <LI>save the HTML output as <STRONG>billing2.htm</STRONG> to any location on your computer<br><br>
+              <LI> close the HTML destination and reset the Listing destination.<BR>
+              <BR>
+          </UL>
+        <LI> Submit the program and view the output.
+		      </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+
+<div id="v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+        <td> <ol>
+            <LI>Write a SAS program to<BR>
+              <BR>
+              <UL>
+                <LI> create <strong>only</strong> HTML output using the PRINT 
+                  procedure and the SAS data sets <STRONG>Sasuser.Admit </STRONG>and 
+                  <STRONG>Sasuser.Insure</STRONG><BR>
+                  <BR>
+                <LI>save the HTML output as <STRONG>billing2.htm</STRONG> in your 
+                  My SAS Files directory (or your default storage location). <br>
+                  <br>
+                  In the CMS operating environment: specify <strong>billing2 htm</strong> 
+                  as the HTML filename and filetype. <br>
+                  <BR>
+                <LI> close the HTML destination and reset the Listing destination.<BR>
+                  <BR>
+              </UL>
+            <LI> Submit the program and view the output. </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+ <!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_eg3_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+        <td> <ol>
+            <li>Submit the following program, replacing <font color="#003399">&lt;my-location&gt;</font> 
+              with your directory path: <font color="#003399"> 
+              <pre>
+ods listing close;
+ods html body='<font color="#003399">&lt;my-location&gt;</font>billing2.htm';
+proc print data=sasuser.admit;
+run;
+proc print data=sasuser.insure;
+run;
+ods html close;
+ods listing;</pre>
+              </font> 
+            <li>Using Windows Explorer, navigate to the location where you stored 
+              <strong>billing2.htm</strong> and double-click the file to open 
+              it in your browser. <br>
+              <br>
+          </ol>     
+       </td>
+  </tr>
+</table>
+</div>
+
+<div id="v89_v91_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+     <ol>
+            <li>Submit the following program, replacing <font color="#003399">&lt;my-location&gt;</font> 
+              with your directory path or storage location:<font color="#003399"> 
+              <pre>
+ods listing close;
+ods html body=<font color="#003399">&lt;my-location&gt;</font>billing2.htm';
+proc print data=sasuser.admit;
+run;
+proc print data=sasuser.insure;
+run;
+ods html close;
+ods listing;</pre>
+              </font> 
+            <li>Select the link to the output in the Results window. Or, from the internal browser or your preferred Web browser, select <strong>File<img src="../navimages/arrow.gif" width="14" height="10" alt="then">Open</strong>. Then open the body file, <strong>billing2.htm</strong>, to view the output.
+              <p>If you are running SAS software in an operating environment that 
+                doesn't have a Web browser, you can transfer the HTML file to 
+                the operating environment where your browser is located. Then 
+                select <strong>File<img src="../navimages/arrow.gif" width="14" height="10" alt="then">Open</strong> 
+                in your browser and select the body file to view it.</ol>
+</ol>
+       </td>
+  </tr>
+</table>
+</div>
+<!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

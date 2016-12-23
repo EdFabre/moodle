@@ -1,0 +1,136 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+<!--STEP 1-->
+solutionText='<ol><li>Write and submit the following PROC SQL step that contains a CREATE TABLE statement and a SELECT statement: <br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   create table work.newadmit2 as<br>';
+solutionText+='      select id, name, sex, age,<br>';
+solutionText+='             weight, actlevel<br>';
+solutionText+='         from sasuser.newadmit;<br>';
+solutionText+='   select *<br>';
+solutionText+='      from work.newadmit2;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 1 in this practice.<br><br>';
+<!--STEP 2-->
+solutionText+='<li>Write and submit the following PROC SQL step that contains an UPDATE statement and a SELECT statement: <br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   update work.newadmit2<br>';
+solutionText+='      set weight=weight*1.02;<br>';
+solutionText+='   select *<br>';
+solutionText+='      from work.newadmit2;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 2 in this practice.<br><br>';
+<!--STEP 3-->
+solutionText+='<li>Write and submit the following PROC SQL step that contains an UPDATE statement that contains a CASE expression, and a SELECT statement: <br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   update work.newadmit2<br>';
+solutionText+='      set actlevel=<br>';
+solutionText+='         case<br>';
+solutionText+="            when actlevel='LOW'<br>";
+solutionText+="                 then '1'<br>";
+solutionText+="            when actlevel='MOD'<br>";
+solutionText+="                 then '2'<br>";
+solutionText+="            when actlevel='HIGH'<br>";
+solutionText+="                 then '3'<br>";
+solutionText+="            else '0'<br>";
+solutionText+="         end;<br>";
+solutionText+='   select *<br>';
+solutionText+='      from newadmit2;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 3 in this practice.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --> 
+            <p><strong>Create a temporary table by querying <a href="JavaScript: openOther('../linklib/newadmit.htm')">Sasuser.Newadmit</a>, 
+              and update rows in the new table.</strong></p>
+            <!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --> <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write a PROC SQL step that creates the temporary table <strong>Work.Newadmit2</strong> 
+            by querying the table <strong>Sasuser.Newadmit</strong>. The new table 
+            should contain<br>
+            <br>
+            <ul>
+              <li>only the columns <code>ID</code>, <code>Name</code>, <code>Sex</code>, 
+                <code>Age</code>, <code>Weight</code>, and <code>ActLevel</code>.</li>
+              <li>all 21 rows from <strong>Sasuser.Newadmit</strong>.</li>
+            </ul>
+            <br>
+            In the same step, include a statement to generate a report showing 
+            the new table. Add a QUIT statement to the step. Submit the step and 
+            view the <a href="JavaScript: openOther('m73_47a.htm')">output</a>.<br>
+            <br>
+          <li>Write a PROC SQL step to increase the values for <code>Weight</code> 
+            by 2% in all of the rows in <strong>Work.Newadmit2</strong>. In the 
+            same step, include a statement to generate a report showing the new 
+            table. Add a QUIT statement to the step. Submit the step and view 
+            the <a href="JavaScript: openOther('m73_47b.htm')">output</a>.<br>
+            <br>
+          <li>Write a PROC SQL step to update the values for <code>ActLevel</code> 
+            in <strong>Work.Newadmit2</strong> as follows: <br>
+            <br>
+            <ul>
+              <li>If the value is <em>LOW</em>, change it to <em>1</em>.</li>
+              <li>If the value is <em>MOD</em>, change it to <em>2</em>.</li>
+              <li>If the value is <em>HIGH</em>, change it to <em>3</em>.<br>
+              </li>
+            </ul>
+            <br>
+            In the same step, include a statement to generate a report showing 
+            the new table. Add a QUIT statement to the step. Submit the step and 
+            view the <a href="JavaScript: openOther('m73_47c.htm')">output</a>.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

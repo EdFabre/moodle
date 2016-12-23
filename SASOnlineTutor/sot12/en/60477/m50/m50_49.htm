@@ -1,0 +1,121 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      SAS Functions with Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The %SYSFUNC Function</h2> 
+You've learned that by using the automatic macro variables <code>SYSDATE9</code> and <code>SYSTIME</code> you can include the date and time in a title:
+ <PRE><font color="#003399">    title1 &quot;Report Produced on &amp;sysdate9&quot;;
+    title2 &quot;at &amp;systime&quot;;
+</font></PRE>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="3" color="#002288"> 
+<TABLE  cellspacing=0 cellpadding=0 rules=NONE frame=VOID border=0 width=100% bgcolor="#E0E0E0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><em>Report Produced on 08JUN2000</em></b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><em>at 12:11</em></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P><BR>
+          <code>SYSDATE9</code> represents the date on which the SAS session started, 
+          and <code>SYSTIME</code> represents the time at which the SAS session 
+          started. Suppose you would rather see the date in some other format, 
+          or suppose you would rather see the current date or time. You can use 
+          the <nobr>%SYSFUNC</nobr> function to execute other SAS functions as 
+          part of the macro facility. </td></tr></table><P><BR>
+ <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, %SYSFUNC function">
+    <tr> 
+      <td align="left"><strong>General form, %SYSFUNC function:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>%SYSFUNC </strong>( <em>function</em>
+	 ( <em>argument(s)</em> ) <<em>,format</em>> )</font></nobr> 
+        </blockquote>
+        <p> where 
+	<ul>
+	      <li><font color="#003399"><em>function</em></font> is the name of the 
+            SAS function to execute. 
+          <li> <font color="#003399"><em>argument(s)</em></font> is one or more arguments that are used by <font color="#003399"><em>function</em></font>. 
+	Use commas to separate all arguments. An argument can be a macro variable reference or a text expression that produces arguments for a function.
+	<li><font color="#003399"><em>format</em></font> is an optional format to apply to the result of <font color="#003399"><em>function</em></font>. 
+	By default, numeric results are converted to a character string using the BEST12. format, and character results are used as they are, without formatting or translation. 
+	</ul>
+     <P>
+	</td></tr></table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P>
+All SAS functions can be used with <nobr>%SYSFUNC</nobr> <strong>except</strong>
+        <UL>
+          <LI>DIF</LI>
+          <LI>DIM</LI>
+          <LI>HBOUND</LI>
+          <LI>INPUT</LI>
+          <LI>IORCMSG</LI>
+          <LI>LAG</LI>
+          <LI>LBOUND</LI>
+          <LI>MISSING</LI>
+          <LI>PUT</LI>
+          <LI>RESOLVE</LI>
+          <LI>SYMGET</LI>
+          <LI>all Variable Information functions, including functions such as 
+            VNAME and VLABEL. For a complete list of Variable Information functions, 
+            see the 
+            <!--doc reference-->
+            SAS documentation. 
+        </UL>
+
+<P><BR>
+<h2>Example</h2>
+Suppose the following code was submitted on Friday, June 7, 2002:
+<PRE><font color="#003399">    title &quot;%sysfunc(today(),weekdate.) - SALES REPORT&quot;;
+</font></PRE>
+The title on the next report would be <strong>Friday, June 7, 2002 - SALES REPORT</strong>.
+
+
+    </td>
+  </tr>
+</table><P><BR>
+
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

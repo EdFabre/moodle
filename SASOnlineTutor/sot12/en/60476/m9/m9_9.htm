@@ -1,0 +1,148 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Setting 
+      ODS HTML Options<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>As the next step, before creating linked graphs and HTML pages, you must 
+        specify HTML as your output destination (or format).</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <img src="images/m9d1g1.gif" width=400 height=217 border="0" alt="specifying HTML output"> 
+<center>
+  <table border="0" cellpadding="0" cellspacing="0" width="85%">
+    <tr> 
+      <td>If you completed the lesson 
+        <!--lesson reference-->
+        <strong><script>document.write(m18title);</script></strong>, you learned that the ODS HTML 
+        statement writes program output to HTML files. To conserve system resources, 
+        you should close ODS listing output, and then open ODS HTML output. 
+        <pre><font color="#003399">     ods listing close;</font>
+<font color="#003399">     ods html;</font>
+</pre>
+        <p> <br>
+          <strong>The ODS HTML Statement for Drill-Down Graphs</strong> 
+        <p> For drill-down graphs, add two options to the ODS HTML statement: 
+        <ol>
+          <li> First, use the <strong>PATH=</strong> option to specify a <strong>location</strong> 
+            for storing GIF files and HTML files. The directory that you specify 
+            must already exist on your system; ODS will not create it for you. 
+        </ol>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     ods html <strong>path='c:\data\sales\reports'</strong>;</font>
+</pre>
+        <blockquote> 
+          <table cellpadding="2">
+            <tr valign="Top"> 
+              <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Tip:" border="0"></td>
+                <td>You can add the <strong>GPATH=</strong> option to specify a 
+                  separate location for graphics output. For details, see the 
+                  <!--doc reference-->
+                  SAS/GRAPH documentation.</td>
+            </tr>
+          </table>
+        </blockquote>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <ol start="2">
+          <li> Next, use the <strong>BODY=</strong> option to name the <strong>HTML 
+            file</strong> that will hold the drill-down chart. This file will 
+            be created in the location that you specified in the PATH= option. 
+        </ol>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     ods html path='c:\data\sales\reports'</font>
+<font color="#003399">         <strong>body='totsales.html'</strong>;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Example</strong> 
+        <p> In this example, both SAS/GRAPH GIF files and HTML output will be 
+          stored in <strong><nobr>C:\Data\Sales\Report</nobr></strong> in the 
+          Windows operating environment. The file <strong>totsales.html</strong> 
+          will display your program's SAS/GRAPH output when that output is viewed 
+          using a Web browser. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     data work.saletrnd;</font>
+<font color="#003399">        set finance.prdsal2;</font>
+<font color="#003399">        format actual dollar10.0;</font>
+<font color="#003399">        length PriDrill $ 40;</font>
+<font color="#003399">        if year=1995 then pridrill='HREF="sales95.html"';</font>
+<font color="#003399">        if year=1996 then pridrill='HREF="sales96.html"';</font>
+<font color="#003399">        if year=1997 then pridrill='HREF="sales97.html"';</font>
+<font color="#003399">        if year=1998 then pridrill='HREF="sales98.html"';</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     <strong>ods listing close;</strong></font>
+<font color="#003399">     <strong>ods html path='c:\data\sales\reports'</strong></font>
+<font color="#003399">         <strong>body='totsales.html';</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,311 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Expanding 
+      Your Use of Arrays<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Creating Variables in an ARRAY Statement</strong> </p>
+        <p> So far, you have learned several ways to reference existing variables 
+          in an ARRAY statement. You can also <strong>create</strong> variables 
+          in an ARRAY statement by omitting the array elements from the statement. 
+          Because you are not referencing existing variables, SAS automatically 
+          creates the variables for you and assigns default names to them. 
+      </td>
+  </tr>
+</table>
+<P><BR>
+
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, ARRAY statement">
+    <tr> 
+      <td><strong>General form, ARRAY statement to create new variables:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>ARRAY </strong><em>array-name</em><strong>{</strong><em>dimension</em><strong>}</strong>;</strong></font></nobr> 
+          </blockquote>
+        <p> where 
+        <ul>
+          <li> <font color="#003399"><em>array-name</em></font> specifies the 
+            name of the array. 
+          <li> <font color="#003399"><em>dimension</em></font> describes the number 
+            and arrangement of array elements. The default dimension is one. 
+          
+        </ul>
+       
+       
+      </td>
+    </tr>
+  </table>
+
+<p><br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+For example, suppose you need to calculate the weight gain or loss from week to week 
+        for each member of a fitness class, shown below.
+      </td>
+  </tr>
+</table><P><BR>
+ <center> SAS Data Set Hrd.Convert </center>
+<center>
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <TR bgcolor="#F7F7DE"> 
+      <TD ALIGN=LEFT><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight1</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight2</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight3</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight4</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight5</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight6</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Alicia</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">153.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">151.9</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">151.7</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">148.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">145.5</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">145.9</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Betsy</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">116.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">116.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">114.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">111.1</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">109.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">108.2</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Brenda</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">151.2</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">149.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">147.7</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">146.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">145.1</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">143.7</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Carl</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">149.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">146.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">145.5</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">144.2</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">142.9</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">141.5</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Carmela</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">140.2</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">137.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">136.5</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">135.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">134.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">128.3</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td> You'd like to create variables that contain this weekly difference. 
+          To perform the calculation, you first group the variables <code>Weight1</code> 
+          through <code>Weight6</code> into an array. 
+          <pre><font color="#003399">     data hrd.diff;</font>
+<font color="#003399">        set hrd.convert;</font>
+<font color="#003399">        <strong>array wt{6} weight1-weight6;</strong></font></pre>
+          Next, you want to create the new variables to store the differences 
+          between the six recorded weights. You can use an additional ARRAY statement 
+          without elements to create the new variables. 
+          <pre><font color="#003399">     data hrd.diff;</font>
+<font color="#003399">        set hrd.convert;</font>
+<font color="#003399">        array wt{6} weight1-weight6;</font>
+<font color="#003399">        <strong>array WgtDiff{5};</strong></font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> SAS Data Set Hrd.Convert 
+<center>
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <TR bgcolor="#F7F7DE"> 
+      <TD ALIGN=LEFT><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight1</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight2</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight3</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight4</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight5</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight6</b></font></TD>
+    </TR>
+    </thead> <tbody> 
+    
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Alicia</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">153.4</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font color="#FF0000"><strong><-1-></strong></font>151.9</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font color="#FF0000"><strong><-2-></strong></font>151.7</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font color="#FF0000"><strong><-3-></strong></font>148.6</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font color="#FF0000"><strong><-4-></strong></font>145.5</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font color="#FF0000"><strong><-5-></strong></font>145.9</font></td>
+    </tr>
+    <TR> 
+      <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Betsy</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">116.0</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">116.0</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">114.0</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">111.1</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">109.8</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">108.2</font></TD>
+    </TR>
+    <TR> 
+      <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Brenda</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">151.2</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">149.0</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">147.7</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">146.4</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">145.1</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">143.7</font></TD>
+    </TR>
+    <TR> 
+      <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Carl</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">149.0</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">146.8</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">145.5</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">144.2</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">142.9</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">141.5</font></TD>
+    </TR>
+    <TR> 
+      <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Carmela</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">140.2</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">137.8</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">136.5</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">135.4</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">134.0</font></TD>
+      <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">128.3</font></TD>
+    </TR>
+    </tbody> 
+  </TABLE>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>Remember, when creating variables in an ARRAY statement, you do not 
+          need to specify array elements as long as you specify how many elements 
+          will be in the array. 
+          <pre><font color="#003399">     array WgtDiff{5};</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Default Variable Names</strong> 
+        <p> The default variable names are created by concatenating the array 
+          name and the numbers 1, 2, 3, and so on, up to the array dimension. 
+        <pre>                   <font color="#003399">array WgtDiff{<strong>5</strong>};</font>
+                         . . . . .
+                      .   .  .  .   .
+                   .     .   .   .     .
+                .       .    .    .       .
+             .         .     .     .         .
+          .           .      .      .           .
+     WgtDiff1  WgtDiff2  WgtDiff3  WgtDiff4  WgtDiff5</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" alt="Note:" width="20"
+            height="20" border="0"></td>
+      <td>If you prefer, you can specify individual variable names. To specify 
+        variable names, you list each name as an element of the array. The following 
+        ARRAY statement creates the numeric variables <code>Oct12</code>, <code>Oct19</code>, 
+        <code>Oct26</code>, <code>Nov02</code>, and <code>Nov09</code>.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">array WgtDiff{5} <strong>Oct12 Oct19 Oct26 Nov02 Nov09</strong>;</font>
+        
+                      <font color="#003399">array WgtDiff{<strong>5</strong>};</font>
+                            . . . . .
+                          .  .  .  .  .
+                        .   .   .   .   .
+                      .    .    .    .    .
+                    .     .     .     .     .
+                  .      .      .      .      .
+                Oct12  Oct19  Oct26  Nov02  Nov09</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td><strong>Arrays of Character Variables</strong> 
+        <p> To create an array of character variables, add a dollar sign ($) after 
+          the array dimension. 
+        <pre><font color="#003399">     array firstname{5} <strong>$</strong>;</font></pre>
+        By default, all character variables that are created in an ARRAY statement 
+        are assigned a length of 8. You can assign your own length by specifying 
+        the length after the dollar sign. 
+        <pre><font color="#003399">     array firstname{5} $ <strong>24</strong>;</font></pre>
+        The length that you specify is automatically assigned to all variables 
+        that are created by the ARRAY statement.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

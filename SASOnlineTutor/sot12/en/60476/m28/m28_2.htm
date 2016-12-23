@@ -1,0 +1,199 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Variable-Length Fields<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>The LENGTH= Option</strong> </p>
+      <p> Each record in the file that is referenced by the fileref <strong>Phonedat 
+        </strong>contains a value for the ID number, name, and phone extension 
+        of an employee. &nbsp;The first and third fields (<code>ID</code> <code>a</code>nd 
+        <code>PhoneExt</code>) have the same length in every record. However, 
+        the second field (<code>Name</code>) varies in length from record to record. 
+    </td>
+  </tr>
+</table>
+<center>
+  <p> 
+  <center>
+    <center>
+      Raw Data File Phonedat <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000">
+      <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#F7F7DE" title="Raw Data File">
+        <thead> 
+        <tr> 
+          <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+        </tr>
+        </thead> <tbody> 
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1802<b><font color="#003399">JOHNSON</font></b>2123</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1803<b><font color="#003399">BARKER</font></b>2142</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1804<b><font color="#003399">EDMUNDSON</font></b>2325</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1805<b><font color="#003399">RIVERS</font></b>2543</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1806<b><font color="#003399">MASON</font></b>2646</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1807<b><font color="#003399">JACKSON</font></b>2049</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1808<b><font color="#003399">LEVY</font></b>2856</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1809<b><font color="#003399">THOMAS</font></b>2222</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1810<b><font color="#003399">WARREN</font></b>2003</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1811<b><font color="#003399">VANDENBERGH</font></b>2110</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1812<b><font color="#003399">YEAGER</font></b>2145</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1813<b><font color="#003399">SMITH</font></b>2025</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1814<b><font color="#003399">HINES</font></b>2243</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1815<b><font color="#003399">TAYLOR</font></b>2746</font></td>
+        </tr>
+        </tbody> 
+      </table>
+      </font></font>
+</center>
+  </center>
+</center>
+<p>
+  <center>
+    <center>
+      <br>
+    </center>
+  </center>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">As you write the DATA step to read these values, you must 
+        accommodate the varying length of <code>Name</code> in each individual 
+        record.</td>
+    </tr>
+  </table>
+</center>
+<p>
+  <center>
+  </center>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">
+        <pre><font color="#003399">     data perm.phones; </font>
+<font color="#003399">        infile phonedat . . .;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">But first, you need to determine the total length of each 
+        record. This is easily accomplished by using the LENGTH= option.</td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table BORDER cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, INFILE statement with LENGTH= option">
+    <tr> 
+      <td align="left"><strong>General form, INFILE statement with LENGTH= option:</strong> 
+        <blockquote> <nobr> <strong>INFILE</strong><font color="#003399"><strong>&nbsp;</strong><em>file-specification</em><strong><em> 
+          </em>LENGTH<em>=</em></strong><em>variable</em><strong>;</strong></font> 
+          </nobr> </blockquote>
+        <p> where <font color="#003399"><em>variable </em></font>defines a numeric 
+          variable whose value is set to the length of the current record. 
+        <p> 
+        <center>
+          <table cellpadding=2 cellspacing=0 border=0 width="100%">
+            <tr> 
+              <td valign="Top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" hspace="4"></td>
+              <td align="left">Although the LENGTH= option is specified in the 
+                INFILE statement, the variable is not assigned a value until an 
+                INPUT statement is executed and SAS determines the 
+                length of the record that is being read.</td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">Here, the length of each record is assigned to the variable 
+        <code>reclen</code>. As each record is read, the value of <code>reclen</code> 
+        changes.</td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">
+        <pre><font color="#003399">     data perm.phones; </font>
+<font color="#003399">        infile phonedat length=reclen;</font>
+        <font color="#003399">input . . .;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <center>
+    <img src="images/m28_2g1.gif" width="300" height="181" alt="Raw Data File Phonedat"><br>
+    <br>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,252 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Multiple Records Non-Sequentially<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Execution of the DATA Step</strong> </p>
+      <p> The #<em>n</em> pointer controls in the program below cause four records 
+        to be read for each execution of the DATA step. 
+      <pre><font color="#003399">     data perm.patients;</font>
+<font color="#003399">        infile patdata;</font>
+<font color="#003399">        input #4 ID $5.</font>
+<font color="#003399">              #1 Fname $ Lname $ </font>
+<font color="#003399">              #2 Address $23.</font>
+<font color="#003399">              #3 City $ State $ Zip $</font>
+<font color="#003399">              #4 @7 Doctor $6.;</font>
+<strong><font color="#003399">     </font></strong><font color="#003399">run;</font></pre>
+    </td>
+  </tr>
+</table>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The first time the DATA step executes, the first four records are read, 
+        and an observation is written to the data set.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <thead> 
+    <tr> 
+      <td align=LEFT bgcolor="#F7F7DE" nowrap><font face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---</font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#CCCC99"><font face="Courier New, Courier" size="2" color="#000000">ALEX&nbsp;BEDWAN&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCC99"><font face="Courier New, Courier" size="2" color="#000000">609&nbsp;WILTON&nbsp;MEADOW&nbsp;DRIVE&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCC99"><font face="Courier New, Courier" size="2" color="#000000">GARNER&nbsp;NC&nbsp;27529&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCC99"><font face="Courier New, Courier" size="2" color="#000000">XM034&nbsp;FLOYD&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">ALISON&nbsp;BEYER&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">8521&nbsp;HOLLY&nbsp;SPRINGS&nbsp;ROAD&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">APEX&nbsp;NC&nbsp;27502&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">XF124&nbsp;LAWSON&nbsp;</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>During the second iteration, the next four records are read, and the 
+        second observation is written to the data set, and so on.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <thead> 
+    <tr> 
+      <td align=LEFT bgcolor="#F7F7DE" nowrap><font face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---</font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">ALEX&nbsp;BEDWAN&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">609&nbsp;WILTON&nbsp;MEADOW&nbsp;DRIVE&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">GARNER&nbsp;NC&nbsp;27529&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">XM034&nbsp;FLOYD&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCC99"><font face="Courier New, Courier" size="2" color="#000000">ALISON&nbsp;BEYER&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCC99"><font face="Courier New, Courier" size="2" color="#000000">8521&nbsp;HOLLY&nbsp;SPRINGS&nbsp;ROAD&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCC99"><font face="Courier New, Courier" size="2" color="#000000">APEX&nbsp;NC&nbsp;27502&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCC99"><font face="Courier New, Courier" size="2" color="#000000">XF124&nbsp;LAWSON&nbsp;</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The PROC PRINT output of the data set shows how information that was 
+        spread over several records has been condensed into one observation. 
+        <pre>     <font color="#003399">proc print data=perm.patients noobs;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="1" cellpadding="2" cellspacing="1" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>ID</b></font></td>
+      <td bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Fname</b></font></td>
+      <td bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Lname</b></font></td>
+      <td bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Address</b></font></td>
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>City</b></font></td>
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>State</b></font></td>
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Zip</b></font></td>
+      <td bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Doctor</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          XM034</font> 
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">ALEX</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">BEDWAN</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"><nobr>609 WILTON MEADOW DRIVE</nobr></font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">GARNER</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NC</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">27529</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> FLOYD</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          XF124</font> 
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">ALISON </font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">BEYER </font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">8521 HOLLY SPRINGS ROAD</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">APEX</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NC</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">27502</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> LAWSON</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          XF232</font> 
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">LISA</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">BONNER</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">109 BRAMPTON AVENUE</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">CARY</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NC</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">27511</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">LAWSON</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          XM065</font> 
+      </td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">GEORGE</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">CHESSON</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">3801 WOODSIDE COURT</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">GARNER</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NC</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">27529</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">FLOYD</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<p align="center"> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

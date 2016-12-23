@@ -1,0 +1,157 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Macro Variables During PROC SQL Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Creating a Delimited List of Values</h2>
+        <P> Sometimes, during execution of a PROC SQL step, you might want to 
+          create one macro variable that will hold all values of a certain data 
+          set variable. You can use an alternate form of the INTO clause in order 
+          to take all of the values of a column (variable) and <strong>concatenate 
+          </strong>them into the value of one macro variable. <td></tr></table>
+<P><BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, SELECT statement with INTO clause for combining values into one macro variable">
+    <tr> 
+      <td align="left"><STRONG>General form, SELECT statement with INTO clause 
+        for combining values into one macro variable:</STRONG> <FONT COLOR="#003399"> 
+        <BLOCKQUOTE>
+	      <dl>
+		  <dt><font color="#003399"><strong>PROC SQL NOPRINT;</strong></font>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SELECT</strong> <em>column1</em></dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>INTO</strong> <strong>:</strong><em>macro-variable-1</em></dt>
+              <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SEPARATED BY</strong> '<em>delimiter1</em>'</dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FROM</strong> <em>table-1 | view-1</em></dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>WHERE</strong> <em>expression&gt;</em></dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>&lt;other clauses&gt;</em><strong>;</strong></dt>
+          <dt><font color="#003399"><strong>QUIT;</strong></font></dt></dl>
+
+	  </BLOCKQUOTE></FONT>
+	  <P>where 
+        <ul>
+          <li><font color="#003399"><em>column-1</em></font> specifies the column 
+            of the SQL table specified by <font color="#003399"><em>table-1 | 
+            view-1</em></font> 
+          <li><font color="#003399"><em>:macro-variable-1</em></font> names the 
+            macro variable to create
+          <li> <font color="#003399"><em>delimiter1</em></font> is enclosed in quotation marks and specifies the character that will be used as a delimiter in the value of the macro variable
+          <li><font color="#003399"><em>expression</em></font> produces a value 
+            that is used to subset the data 
+          <li><font color="#003399"><em>other clauses</em></font> are other valid 
+            clauses that group, subset or order the data. </ul>
+	
+       
+      </td>
+    </tr>
+  </table>
+
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><h2>Example</h2>
+        <P> You can use the SQL procedure to create one macro variable named <code>sites</code> 
+          that contains the names of all training centers that appear in the <strong>Sasuser.Schedule</strong> 
+          data set. The names will be separated by blanks. 
+        <pre><font color="#003399">    proc sql noprint;
+       select distinct location <strong>into :sites separated by ' '</strong>
+          from sasuser.schedule;
+    quit;
+</font></pre>
+<P> Here is a representation of the macro variable <code>sites</code> as it is 
+          stored in the global symbol table after this PROC SQL step has run. 
+        <P><BR><div align="center">
+<table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr><td><code>Sites</code></td><td><em>Boston Dallas Seattle</em>
+</td></tr>
+</table></div>
+
+<P><BR>
+Now you can use the new macro variable in a title.
+<pre><font color="#003399">    proc means data=sasuser.all sum maxdec=0;
+       var fee;
+       title1 'Total Revenue';
+       title2 &quot;from Course Sites: <strong>&amp;sites</strong>&quot;;
+    run;
+</font></pre>
+<P>This is the output from the PROC MEANS step.<P><BR> 
+
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Total Revenue</i></b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>from Course Sites: Boston Dallas Seattle</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>The MEANS Procedure</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Analysis Variable: Fee Course Fee</b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Sum</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">343815</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

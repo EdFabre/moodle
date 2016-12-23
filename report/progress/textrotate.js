@@ -8,9 +8,9 @@ function textrotate_make_svg(el)
   var abs=document.createElement('div');
   abs.appendChild(document.createTextNode(string));
   abs.style.position='absolute';
-  document.body.appendChild(abs);
-  var textWidth=abs.offsetWidth * 1.2,textHeight=abs.offsetHeight;
-  document.body.removeChild(abs);
+  el.parentNode.insertBefore(abs,el);
+  var textWidth=abs.offsetWidth,textHeight=abs.offsetHeight;
+  el.parentNode.removeChild(abs);
 
   // Create SVG
   var svg=document.createElementNS(SVGNS,'svg');

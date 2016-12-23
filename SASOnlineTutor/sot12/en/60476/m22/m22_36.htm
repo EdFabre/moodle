@@ -1,0 +1,97 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Debugging 
+      a DATA Step<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>When you read raw data with the DATA step, it's important to check the 
+        SAS log to verify that your data was read correctly. Here is a typical 
+        message: </p>
+    </td>
+  </tr>
+</table>
+<p align="center"> SAS Log 
+<center>
+  <table bgcolor="#F7F7DE" border="1" cellspacing="0" cellpadding="10" title="SAS Log">
+    <tr> 
+      <td> 
+        <pre>WARNING: The data set PERM.UPDATE may be incomplete.
+         When this step was stopped there were
+         0 observations and 5 variables.
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>When no observations are written to the data set, you should check to 
+        see whether your DATA step was completely executed. Most likely, a syntax 
+        error or another error is being detected at the beginning of the execution 
+        phase.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> SAS Log 
+<center>
+  <table bgcolor="#F7F7DE" border="1" cellspacing="0" cellpadding="10" title="SAS Log">
+    <tr> 
+      <td> 
+        <pre>NOTE: Invalid data for IDnum in line 7 15-19.
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>An <strong>invalid data</strong> message indicates that the program 
+        executed, but the data is not acceptable. Typically, the message indicates 
+        that a variable's type has been incorrectly identified in the INPUT statement, 
+        or that the raw data file contains some invalid data value(s).</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

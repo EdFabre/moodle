@@ -77,8 +77,7 @@ class lesson_page_type_shortanswer extends lesson_page {
         $answers = $this->get_answers();
         foreach ($answers as $answer) {
             $i++;
-            // Applying PARAM_TEXT as it is applied to the answer submitted by the user.
-            $expectedanswer  = clean_param($answer->answer, PARAM_TEXT);
+            $expectedanswer  = $answer->answer; // for easier handling of $answer->answer
             $ismatch         = false;
             $markit          = false;
             $useregexp       = ($this->qoption);
@@ -320,8 +319,7 @@ class lesson_add_page_form_shortanswer extends lesson_add_page_form_base {
 
         for ($i = 0; $i < $this->_customdata['lesson']->maxanswers; $i++) {
             $this->_form->addElement('header', 'answertitle'.$i, get_string('answer').' '.($i+1));
-            // Only first answer is required.
-            $this->add_answer($i, null, ($i < 1));
+            $this->add_answer($i);
             $this->add_response($i);
             $this->add_jumpto($i, null, ($i == 0 ? LESSON_NEXTPAGE : LESSON_THISPAGE));
             $this->add_score($i, null, ($i===0)?1:0);
@@ -345,9 +343,6 @@ class lesson_display_answer_form_shortanswer extends moodleform {
                 $hasattempt = true;
             }
         }
-
-        // Disable shortforms.
-        $mform->setDisableShortforms();
 
         $mform->addElement('header', 'pageheader');
 

@@ -1,0 +1,333 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Calculating 
+      and Allocating Sort Resources<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <strong>Sort Space Requirements</strong></td>
+    </tr>
+  </table>
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>When data is sorted, SAS requires enough space in the data library 
+          for two copies of the data file that is being sorted as well as additional 
+          workspace. </p>
+        <p>In releases prior to SAS 9, the workspace required for an uncompressed 
+          data file is approximately three to four times the size of the data 
+          file. Beginning with SAS 9, the workspace required for an uncompressed 
+          data file is approximately twice the size of the data file. The workspace 
+          can be allocated in memory and/or on disk as a utility file, depending 
+          on the sort utility and on the options chosen. </p></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>You can use the following formula to calculate the amount of workspace 
+        that the SORT procedure requires:</td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="Formula for calculating the amount of workspace 
+        needed to sort a SAS data set">
+    <tr> 
+      <td align="left"><strong>Formula for calculating the amount of workspace 
+        needed to sort a SAS data set:</strong> <blockquote> <font color="#003399"><nobr>bytes 
+          required = (<em>key-variable-length</em> + <em>observation-length</em>) 
+          * <em>number-of-observations</em> * <em>4</em></nobr> </font> </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>key-variable-length</em></font> is the 
+            length of all key variables added together 
+          <li><font color="#003399"><em>observation-length </em></font> is the 
+            maximum observation length 
+          <li><font color="#003399"><em>number-of-observations </em></font> is 
+            the number of observations. 
+        </ul>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The multiplier <em><font color="#003399">4</font></em> 
+              applies only to utility files used in releases prior to SAS 9, when 
+              PROC SORT needs to use disk space in order to sort the data. For 
+              in-memory sorting and sorting with SAS 9 and later, the multiplier 
+              is <em> <font color="#003399">2</font></em> or less.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <h2>Example </h2>
+        <p>Suppose you want to submit the following program under SAS 9:</p>
+        <pre><font color="#003399">     proc sort data=company.customers;
+        by customer_group customer_lastname;
+     </font><font color="#003399">run;</font></pre> 
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>You can use the CONTENTS procedure or the DATASETS procedure to obtain 
+          the information that is required for the calculation.</p></td>
+    </tr>
+  </table>
+  <p>Partial PROC CONTENTS Output<font color="#FF0000"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="Partial PROC CONTENTS Output">
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Data 
+          Set Name</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">COMPANY.CUSTOMERS</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Observations</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFF99"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">89954</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Member 
+          Type</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DATA</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variables</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Engine</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">V9</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Indexes</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Created</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">13:36 
+          Thursday, August 7, 2003</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Observation 
+          Length</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFF99"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">200</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Last 
+          Modified</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">10:38 
+          Friday, August 8, 2003</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Deleted 
+          Observations</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Protection</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Compressed</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NO</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Data 
+          Set Type</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Sorted</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NO</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Label</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>&nbsp;</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Data 
+          Representation</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WINDOWS</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>&nbsp;</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Encoding</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">wlatin1 
+          Western (Windows)</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>&nbsp;</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  </font></font></font> 
+  <p> <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="Partial PROC CONTENTS Output">
+    <thead>
+      <TR> 
+        <TD COLSPAN=6 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Alphabetic 
+          List of Variables and Attributes</b></font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>#</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variable</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Type</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Len</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Format</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Label</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>11</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_Age</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">3</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Age</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>8</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_Age_Group</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Age Group</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>7</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_BirthDate</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">4</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DATE9.</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Birth Date</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>2</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_Country</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$COUNTRY.</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Country</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>5</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_FirstName</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          First Name</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>3</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_Gender</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$GENDER.</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Gender</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>10</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_Group</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFF99"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Group Name</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_ID</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12.</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          ID</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>6</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_LastName</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFF99"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">30</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Last Name</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>4</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_Name</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Name</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>9</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer_Type</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Customer 
+          Type Name</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  </font></font> 
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>In this case, the amount of workspace needed to sort the data set 
+          is 48,575,160 bytes.</p>
+        <pre><font color="#003399">    48,575,160 bytes=(70+200)*89954*2</font></pre></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>The SORT procedure is very I/O intensive. If the file 
+          that you are sorting is located in the <strong>Work</strong> library, 
+          all of the I/O for the procedure takes place on the file system in which 
+          the <strong>Work</strong> library is stored because, by default, the 
+          utility files that the SORT procedure creates are created in the <strong>Work</strong> 
+          library. </p>
+        <p>Beginning with SAS 9, you can use the UTILLOC= system option to specify 
+          one or more file systems in which utility files can be stored. For information 
+          about the UTILLOC= option, see the SAS documentation.<!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --></p></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

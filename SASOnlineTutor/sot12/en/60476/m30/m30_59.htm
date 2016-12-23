@@ -1,0 +1,165 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Character Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>SCAN Function Syntax</strong> </p>
+      <p> Now that you are familiar with how the SCAN function works, let's examine 
+        the syntax of the function.</td>
+  </tr>
+</table>
+<P align="center"> <BR>
+<center>
+  <TABLE width="85%" BORDER="1" CELLPADDING="10" CELLSPACING="0" bgcolor="#F7F7DE" title="General form, SCAN function">
+    <TR> 
+      <TD align="left"><STRONG>General form, SCAN function:</STRONG> <BLOCKQUOTE> 
+            <FONT color="#003399"><nobr><STRONG>SCAN(</STRONG><EM>argument,n,&lt;delimiters&gt;</EM><strong>)</strong></nobr></FONT> 
+          </BLOCKQUOTE>
+        <P> where 
+        <UL>
+            <LI> <FONT color="#003399"><EM>argument</EM></FONT> specifies the character 
+              variable or expression to scan.<br>
+              <br> 
+            <LI> <FONT color="#003399"><EM>n</EM></FONT> specifies which word to 
+              read. <br>
+              <br>
+            <LI> <FONT color="#003399"><EM>delimiters</EM></FONT> are special 
+              characters that must be enclosed in single quotation marks <NOBR>(' 
+              ')</NOBR>. If you do not specify <font color="#003399"><em>delimiters</em></font>, default delimiters 
+              are used.
+          </UL>
+		</TD>
+    </TR>
+  </table>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>Use the SCAN function to create your new name variables for <STRONG>Hrd.Temp</STRONG>. 
+        To begin, examine the values of the existing <CODE>Name</CODE> variable 
+        to determine which characters separate the names in the values. Notice 
+        that blanks and commas appear between the names and that the employee's 
+        last name appears first, then the first name, and then the middle name.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> SAS Data Set Hrd.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Agency</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F274</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>CICHOCK, 
+          ELIZABETH MARIE</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F101</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>BENINCASA, 
+          HANNAH LEE</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">OD Consulting, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F054</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>SHERE, 
+          BRIAN THOMAS</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">New Time Temps Agency</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F077</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>HODNOFF, 
+          RICHARD LEE</STRONG></font></TD>
+</TR>
+</tbody>
+</table></center>
+<P> <BR>
+<TABLE width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <TR> 
+    <TD>To create the <CODE>LastName</CODE> variable to store the employee's last 
+      name, you write an assignment statement that contains the following SCAN 
+      function: 
+      <PRE>     <FONT color="#003399">LastName=scan(name,1,' ,');</FONT>
+</PRE> <P> Note that a blank and a comma 
+        are specified as delimiters. You can also write the function without listing 
+        delimiters, because the blank and comma are default delimiters. 
+      <PRE>     <FONT color="#003399">LastName=scan(name,1);</FONT>
+</PRE> <P> The complete DATA step that 
+        is needed to create <CODE>LastName</CODE>, <CODE>FirstName</CODE>, and 
+        <CODE>MiddleName</CODE> appears below. Notice that the original <CODE>Name</CODE> 
+        variable is dropped from the new data set. 
+      <PRE>     <FONT color="#003399">data hrd.newtemp(drop=name);</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399">LastName=scan(name,1);</FONT>
+        <FONT color="#003399">FirstName=scan(name,2);</FONT>
+        <FONT color="#003399">MiddleName=scan(name,3);</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE> 
+      <P> <BR>
+      <P> <STRONG>Specifying Variable Length</STRONG> 
+      <P> Note that the SCAN function assigns a length of 200 to each target variable. 
+        (Remember, a target variable is the variable that receives the result 
+        of the function.) So, if you submit the DATA step above, the <CODE>LastName</CODE>, 
+        <CODE>FirstName</CODE>, and <CODE>MiddleName</CODE> variables are each 
+        assigned a length of 200. This length is longer than necessary for these 
+        variables. 
+      <P> To save storage space, add a <STRONG>LENGTH statement</STRONG> to your 
+        DATA step, and specify an appropriate length for all three variables. 
+        Because SAS sets the length of a new character variable the first 
+        time it is encountered in the DATA step, be sure to place the LENGTH statement 
+        <STRONG>before</STRONG> the assignment statements that contain the SCAN 
+        function. 
+      <PRE>     <FONT color="#003399">data hrd.newtemp(drop=name);</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399"><strong>length LastName FirstName MiddleName $ 10;</strong></FONT>
+        <FONT color="#003399">lastname=scan(name,1);</FONT>
+        <FONT color="#003399">firstname=scan(name,2);</FONT>
+        <FONT color="#003399">middlename=scan(name,3);</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE></TD>
+  </TR>
+</TABLE>
+<br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

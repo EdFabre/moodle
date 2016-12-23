@@ -1,0 +1,106 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Processing a DATA Step That Creates One Observation per Detail Record</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Processing 
+      a DATA Step That Creates One Observation per Detail Record<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows the processing of a DATA step that creates one 
+        observation per detail record using the raw data file <strong>Census</strong>.</p>
+      <p align="center">Raw Data File Census
+      <table  border=1 align="center" cellpadding=0 cellspacing=0 bgcolor="#CCCCCC" frame=BOX rules=NONE title="Raw Data File">
+        <thead>
+          <tr> 
+            <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">H&nbsp;321&nbsp;S.&nbsp;MAIN&nbsp;ST&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;MARY&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;F</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;WILLIAM&nbsp;M&nbsp;23&nbsp;M&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;SUSAN&nbsp;K&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;F</font></td>
+          </tr>
+      </table>
+      <ol>
+        <li> The following program is submitted to SAS: 
+          <pre><font color="#003399">data perm.people (drop=type); <br>   infile census;<br>   retain Address;<br>   input type $1. @;<br>   if type='H' then input @3 address $15.;<br>   if type='P';<br>   input @3 Name $10. @13 Age 3. @16 Gender $1.;<br>run;</font></pre>
+        At compile time, the variable <code>type</code> is flagged so that 
+          its values are not written to the data set. <code>Address</code> is 
+          flagged so that its value is retained across iterations of the DATA 
+          step. <br>
+          <br>
+        </li>
+        <li>As the DATA step begins to execute, the INPUT statement reads the 
+          value for <code>type</code> and holds the first record. <br>
+          <br>
+        </li>
+        <li>The condition <code>type</code>='<em>H</em>' is checked and found 
+          to be true, so the INPUT statement reads the value for <code>Address</code> 
+          in the first record.<br>
+          <br>
+        </li>
+        <li>Next, the subsetting IF statement checks for the condition <code>type</code>='<em>P</em>'. 
+          Because the condition is not true, the remaining statements are not 
+          executed and control returns to the top of the DATA step. <br>
+          <br>
+        </li>
+        <li>As the second iteration begins, the input pointer moves to the next 
+          record and a new value for <code>type</code> is read. The condition 
+          expressed in the IF-THEN statement is not true, so the statement following 
+          the THEN keyword is not executed. <br>
+          <br>
+        </li>
+        <li>Now the subsetting IF statement checks for the condition <code>type</code>='<em>P</em>'. 
+          In this iteration, the condition is true, so the remaining INPUT statement 
+          is executed. <br>
+          <br>
+        </li>
+        <li>The INPUT statement reads the values for <code>Name</code>, <code>Age</code>, 
+          and <code>Gender.</code> <br>
+          <br>
+        </li>
+        <li>Then the values in the program data vector are written as the first 
+          observation, and control returns to the top of the DATA step. Notice 
+          that the values for <code>type</code> are not included. <br>
+          <br>
+        </li>
+        <li>As the execution phase continues, observations are produced from the 
+          third and fourth records. However, notice that the fifth record is a 
+          header record. During the fifth iteration, the condition <code>type</code>='<em>H</em>' 
+          is true, so the new value for <code>Address</code> is read in to the 
+          program data vector. </li>
+      </ol>
+      <p>&nbsp;</p></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

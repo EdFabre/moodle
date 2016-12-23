@@ -1,0 +1,219 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Multiple Records Sequentially<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Number of Records Per Observation</strong> </p>
+      <p> Note that the raw data file must contain the <strong>same number of 
+        records</strong> for each observation that is being created. 
+      <p> For example, suppose that there are only two records for the second 
+        member. However, the INPUT statement is set up to read three records.
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="0" cellspacing="0" cellpadding="4" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre>   <font color="#003399">  data perm.members;</font>
+<font color="#003399">        infile memdata;</font>
+<font color="#003399">        <strong>input Fname $ Lname $ /</strong></font>
+        <font color="#003399"><strong>Address $ 1-20 /</strong></font>
+<strong><font color="#003399">        City &amp; $10. State $ Zip $;</font></strong>
+</pre>
+      </td>
+      <td align="center"> <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <thead> 
+          <tr> 
+            <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">LEE&nbsp;ATHNOS&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1215&nbsp;RAINTREE&nbsp;CIRCLE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">PHOENIX&nbsp;&nbsp;AZ&nbsp;85044&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#CCCC99"><font  face="Courier New, Courier" size="2" color="#000000">HEIDIE&nbsp;BAKER&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#CCCC99"><font  face="Courier New, Courier" size="2" color="#000000">1751&nbsp;DIEHL&nbsp;ROAD&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MYRON&nbsp;BARKER&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">131&nbsp;DONERAIL&nbsp;DRIVE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">ATLANTA&nbsp; 
+              GA&nbsp;30363&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">JOYCE&nbsp;BENEFIT&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">85&nbsp;MAPLE&nbsp;AVENUE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MENLO&nbsp;PARK&nbsp; 
+              CA&nbsp;94025&nbsp;</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The second member's name and address are read and assigned to corresponding 
+        variables. Then the input pointer advances to the next record, as directed 
+        by the INPUT statement, and the third member's name is read as a value 
+        for <code>City</code>. 
+        <p> The DATA step is still looking for a value for <code>State</code> 
+          and <code>Zip</code>, so the input pointer advances to the next record 
+          and reads the values for the member's address. 
+        <p> The PROC PRINT output for this data set illustrates the problem.
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<p align="center"> 
+<center>
+  <table border="1" cellpadding="2" cellspacing="1" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Fname</b></font></td>
+      <td bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Lname</b></font></td>
+      <td bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Address</b></font></td>
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>City</b></font></td>
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>State</b></font></td>
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Zip</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="2" color="#003399">1</font></b></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">LEE</font></td>
+          <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">ATHNOS</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"><nobr>1215 RAINTREE CIRCLE</nobr></font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">PHOENIX</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">AZ</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">85044</font></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="2" color="#003399">2</font></b></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">HEIDIE</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">BAKER</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">1751 DIEHL ROAD</font></td>
+      <td bgcolor="#FFFF9C" ><font face="Arial, Helvetica, Helv" size="2" color="#000000"><nobr>MYRON 
+        BARK</nobr></font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">131 
+        </font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">DONERAIL 
+        </font></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="2" color="#003399">3</font></b></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">ATLANTA</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">GA</font></td>
+      <td bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">JOYCE BENEFIT</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">85 
+        MAPLE A</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">MENLO 
+        </font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        PARK</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="0" cellspacing="0" cellpadding="4" width="85%">
+    <tr valign="top"> 
+        <td>So, before you write the INPUT statement, make sure the raw data file 
+          contains the same number of records for each observation. In this raw 
+          data file there are now three records for each observation.</td>
+        <td align="center"> <img src="images/m25_9.gif" alt="Raw data files with records numbered and showing that there are 3 records for each observation." width="190" height="214"><font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+          </font></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="Top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:"></td>
+        <td> For more information about working with raw data files that contain 
+          missing records, see the 
+          <!--doc reference-->
+          SAS documentation.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

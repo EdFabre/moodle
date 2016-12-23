@@ -28,9 +28,8 @@ require_once($CFG->dirroot.'/tag/lib.php');
 require_once($CFG->libdir . '/filelib.php');
 require_once($CFG->libdir . '/badgeslib.php');
 
-$id             = optional_param('id', 0, PARAM_INT); // User id.
-$courseid       = optional_param('course', SITEID, PARAM_INT); // course id (defaults to Site).
-$showallcourses = optional_param('showallcourses', 0, PARAM_INT);
+$id        = optional_param('id', 0, PARAM_INT); // User id.
+$courseid  = optional_param('course', SITEID, PARAM_INT); // course id (defaults to Site).
 
 // See your own profile by default.
 if (empty($id)) {
@@ -52,36 +51,27 @@ $systemcontext = context_system::instance();
 $coursecontext = context_course::instance($course->id);
 $usercontext   = context_user::instance($user->id, IGNORE_MISSING);
 
-// Check we are not trying to view guest's profile.
+// Require login first.
 if (isguestuser($user)) {
     // Can not view profile of guest - thre is nothing to see there.
     print_error('invaliduserid');
 }
-
-$PAGE->set_context($coursecontext);
 
 if (!empty($CFG->forceloginforprofiles)) {
     require_login(); // We can not log in to course due to the parent hack below.
 
     // Guests do not have permissions to view anyone's profile if forceloginforprofiles is set.
     if (isguestuser()) {
-        echo $OUTPUT->header();
-        echo $OUTPUT->confirm(get_string('guestcantaccessprofiles', 'error'),
-                              get_login_url(),
-                              $CFG->wwwroot);
-        echo $OUTPUT->footer();
-        die;
+        $SESSION->wantsurl = $PAGE->url->out(false);
+        redirect(get_login_url());
     }
 }
 
+$PAGE->set_context($coursecontext);
 $PAGE->set_course($course);
 $PAGE->set_pagetype('course-view-' . $course->format);  // To get the blocks exactly like the course.
 $PAGE->add_body_class('path-user');                     // So we can style it independently.
 $PAGE->set_other_editing_capability('moodle/course:manageactivities');
-
-// Set the Moodle docs path explicitly because the default behaviour
-// of inhereting the pagetype will lead to an incorrect docs location.
-$PAGE->set_docs_path('user/profile');
 
 $isparent = false;
 
@@ -112,9 +102,8 @@ if ($currentuser) {
         // Need to have full access to a course to see the rest of own info.
         echo $OUTPUT->header();
         echo $OUTPUT->heading(get_string('notenrolled', '', $fullname));
-        $referer = clean_param($_SERVER['HTTP_REFERER'], PARAM_LOCALURL);
-        if (!empty($referer)) {
-            echo $OUTPUT->continue_button($referer);
+        if (!empty($_SERVER['HTTP_REFERER'])) {
+            echo $OUTPUT->continue_button($_SERVER['HTTP_REFERER']);
         }
         echo $OUTPUT->footer();
         die;
@@ -144,21 +133,16 @@ if ($currentuser) {
             $PAGE->navbar->add($struser);
             echo $OUTPUT->heading(get_string('notenrolledprofile'));
         }
-        $referer = clean_param($_SERVER['HTTP_REFERER'], PARAM_LOCALURL);
-        if (!empty($referer)) {
-            echo $OUTPUT->continue_button($referer);
+        if (!empty($_SERVER['HTTP_REFERER'])) {
+            echo $OUTPUT->continue_button($_SERVER['HTTP_REFERER']);
         }
         echo $OUTPUT->footer();
         exit;
     }
 
     // If groups are in use and enforced throughout the course, then make sure we can meet in at least one course level group.
-    // Except when we are a parent, in which case we would not be in any group.
-    if (groups_get_course_groupmode($course) == SEPARATEGROUPS
-            and $course->groupmodeforce
-            and !has_capability('moodle/site:accessallgroups', $coursecontext)
-            and !has_capability('moodle/site:accessallgroups', $coursecontext, $user->id)
-            and !$isparent) {
+    if (groups_get_course_groupmode($course) == SEPARATEGROUPS and $course->groupmodeforce
+      and !has_capability('moodle/site:accessallgroups', $coursecontext) and !has_capability('moodle/site:accessallgroups', $coursecontext, $user->id)) {
         if (!isloggedin() or isguestuser()) {
             // Do not use require_login() here because we might have already used require_login($course).
             redirect(get_login_url());
@@ -288,7 +272,7 @@ if (!isset($hiddenfields['lastaccess'])) {
     } else {
         $datestring = get_string("never");
     }
-    echo html_writer::tag('dt', get_string('lastcourseaccess'));
+    echo html_writer::tag('dt', get_string('lastaccess'));
     echo html_writer::tag('dd', $datestring);
 }
 
@@ -334,29 +318,23 @@ if (!isset($hiddenfields['mycourses'])) {
                 $ccontext = context_course::instance($mycourse->id);
                 $cfullname = $ccontext->get_context_name(false);
                 if ($mycourse->id != $course->id) {
-                    $linkattributes = null;
+                    $class = '';
                     if ($mycourse->visible == 0) {
                         if (!has_capability('moodle/course:viewhiddencourses', $ccontext)) {
                             continue;
                         }
-                        $linkattributes['class'] = 'dimmed';
+                        $class = 'class="dimmed"';
                     }
-                    $params = array('id' => $user->id, 'course' => $mycourse->id);
-                    if ($showallcourses) {
-                        $params['showallcourses'] = 1;
-                    }
-                    $url = new moodle_url('/user/view.php', $params);
-                    $courselisting .= html_writer::link($url, $ccontext->get_context_name(false), $linkattributes);
-                    $courselisting .= ', ';
+                    $courselisting .= "<a href=\"{$CFG->wwwroot}/user/view.php?id={$user->id}&amp;course={$mycourse->id}\" $class >"
+                        . $cfullname . "</a>, ";
                 } else {
                     $courselisting .= $cfullname . ", ";
                     $PAGE->navbar->add($cfullname);
                 }
             }
             $shown++;
-            if (!$showallcourses && $shown >= 20) {
-                $url = new moodle_url('/user/view.php', array('id' => $user->id, 'course' => $courseid, 'showallcourses' => 1));
-                $courselisting .= html_writer::link($url, '...', array('title' => get_string('viewmore')));
+            if ($shown >= 20) {
+                $courselisting .= "...";
                 break;
             }
         }
@@ -400,8 +378,7 @@ if (isloggedin() && has_capability('moodle/site:sendmessage', $usercontext)
     echo '</div>';
 }
 
-if (empty($CFG->forceloginforprofiles) || $currentuser || has_capability('moodle/user:viewdetails', $usercontext)
-        || has_coursecontact_role($id)) {
+if ($currentuser || has_capability('moodle/user:viewdetails', $usercontext) || has_coursecontact_role($id)) {
     echo '<div class="fullprofilelink">';
     echo html_writer::link($CFG->wwwroot.'/user/profile.php?id='.$id, get_string('fullprofile'));
     echo '</div>';

@@ -150,11 +150,6 @@ class award_criteria_manual extends award_criteria {
     public function review($userid, $filtered = false) {
         global $DB;
 
-        // Roles should always have a parameter.
-        if (empty($this->params)) {
-            return false;
-        }
-
         // Users were already filtered by criteria completion.
         if ($filtered) {
             return true;

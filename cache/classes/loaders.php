@@ -166,12 +166,12 @@ class cache implements cache_loader {
      * @param string $component The component for the definition
      * @param string $area The area for the definition
      * @param array $identifiers Any additional identifiers that should be provided to the definition.
-     * @param string $unused Used to be datasourceaggregate but that was removed and this is now unused.
+     * @param string $aggregate Super advanced feature. More docs later.
      * @return cache_application|cache_session|cache_store
      */
-    public static function make($component, $area, array $identifiers = array(), $unused = null) {
+    public static function make($component, $area, array $identifiers = array(), $aggregate = null) {
         $factory = cache_factory::instance();
-        return $factory->create_cache_from_definition($component, $area, $identifiers);
+        return $factory->create_cache_from_definition($component, $area, $identifiers, $aggregate);
     }
 
     /**

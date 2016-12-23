@@ -1,0 +1,278 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Custom Formats Using the PICTURE Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The final way to specify a picture is with a directive. <strong>Directives</strong> 
+          are special characters that you can use in the picture to format <strong>date</strong>, 
+          <strong>time</strong>, or <strong>datetime</strong> values. If you use 
+          a directive, you must specify the <strong>DATATYPE= option</strong> 
+          in the PICTURE statement. This option specifies that the picture applies 
+          to a SAS date, SAS time, or SAS datetime value.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PICTURE statement with the DATATYPE= option">
+    <tr> 
+      <td align="left"><strong>General form, PICTURE statement with the DATATYPE= 
+        option:</strong> <blockquote> <font color="#003399"><nobr><strong> &nbsp;PICTURE 
+          </strong><em>format-name<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value-or-range</em>='<em>picture</em>'&nbsp;<strong>(DATATYPE=</strong><em>SAS-date-value-type</em><strong>);</strong></nobr></font> 
+        </blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>format-name</em></font> is the name of 
+            the format you are creating 
+          <li> <font color="#003399"><em>value-or-range</em></font> is the individual 
+            value or range of values you want to label 
+          <li> <font color="#003399"><em>picture</em></font> specifies a template 
+            with directives for formatting values of numeric variables 
+          <li> <font color="#003399"><em>SAS-date-value-type </em></font> is either 
+            <strong><font color="#003399">DATE</font></strong>, <strong><font color="#003399">TIME</font></strong> 
+            or <font color="#003399"><strong>DATETIME</strong></font>. </ul></td>
+    </tr>
+  </table>
+  <p><br>
+
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Guidelines for Specifying Directives </h2>
+        <p>The percent sign (%) followed by a letter indicates a directive. Directives 
+          that you can use to create a picture format are listed in the table 
+          below. </p>
+        <p><br>
+        </p>
+        <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Directives to Create a Picture Format">
+          <tr bgcolor="#F7F7DE"> 
+            <th width="62"><font size="-1">Directive</font></th>
+            <th width="289"><font size="-1">Result</font></th>
+          </tr>
+          <tr> 
+            <td width="62">%a<em></em></td>
+            <td width="289">abbreviated weekday name</td>
+          </tr>
+          <tr> 
+            <td width="62">%A<em></em></td>
+            <td width="289">full weekday name</td>
+          </tr>
+          <tr> 
+            <td width="62">%b<em></em></td>
+            <td width="289">abbreviated month name</td>
+          </tr>
+          <tr> 
+            <td width="62">%B<em></em></td>
+            <td width="289"><p>full month name</p></td>
+          </tr>
+          <tr> 
+            <td width="62">%d<em></em></td>
+            <td width="289">day of the month as a number 1-31, with no leading 
+              zero </td>
+          </tr>
+          <tr> 
+            <td width="62">%H</td>
+            <td width="289">24-hour clock as a number 0-23, with no leading zero 
+            </td>
+          </tr>
+          <tr> 
+            <td width="62">%I</td>
+            <td width="289">12-hour clock as a number 1-12, with no leading zero 
+            </td>
+          </tr>
+          <tr> 
+            <td>%j</td>
+            <td>day of the year as a number 1-366, with no leading zero</td>
+          </tr>
+          <tr> 
+            <td>%m</td>
+            <td><p>month as a number 1-12, with no leading zero</p></td>
+          </tr>
+          <tr> 
+            <td>%M</td>
+            <td>minute as a decimal number 0-59, with no leading zero</td>
+          </tr>
+          <tr> 
+            <td>%p</td>
+            <td>AM or PM</td>
+          </tr>
+          <tr> 
+            <td>%S</td>
+            <td>second as a number 0-59, with no leading zero</td>
+          </tr>
+          <tr> 
+            <td>%U</td>
+            <td>week number of the year (Sunday is the first day of the week) 
+              as a number 0-53, with no leading zero</td>
+          </tr>
+          <tr> 
+            <td>%w</td>
+            <td>weekday as a number (1=Sunday, to 7)</td>
+          </tr>
+          <tr> 
+            <td>%y</td>
+            <td>year without century as a number 0-99, with no leading zero</td>
+          </tr>
+          <tr> 
+            <td>%Y</td>
+            <td>year with century as a number</td>
+          </tr>
+        </table>
+        <br> <br> <p>Although directives generally return numeric values with 
+          no leading zeros, you can add 0 in the directive so that if a one-digit 
+          numeric value is returned, it is preceded by a 0. </p>
+        <p>As shown below, when you create a picture with directives, the number 
+          of characters inside quotation marks is the maximum length of the formatted 
+          value. You must add trailing blanks to the directive if your values 
+          will contain more characters than the picture. The formatted value will 
+          be truncated if you do not.</p>
+        <br> 
+        <table width="69%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Formatted Result versus Picture Definition">
+          <tr bgcolor="#F7F7DE"> 
+            <th nowrap><font size="-1">Formatted Result</font></th>
+            <th width="210"><font size="-1">Picture Definition</font></th>
+          </tr>
+          <tr> 
+            <td width="211"><img src="images/m58_8a.gif" alt="images showing number of spaces in the formatted result" width="198" height="45"></td>
+            <td><img src="images/m58_8b.gif" alt="image showing picture definition needed to achieve formatted result" width="198" height="45"></td>
+          </tr>
+        </table>
+        <p><br>
+        <h2>Example</h2>
+        <p>Suppose you want to display values for employee hire dates in the format 
+          <nobr><em>dd-mmmyyyy</em></nobr> (such as <nobr><em>25-JAN2000</em></nobr>). This format requires 
+          spaces for 10 characters. </p>
+        <p>The following code creates this format. There are a few things you 
+          should notice about the picture definition:</p>
+        <ul>
+          <li>The keywords LOW and HIGH are used to include all values. </li><br><br>
+          <li>The 0 in the %d directive indicates that if the day of the month 
+            is one digit, it should be preceded by a 0. </li><br><br>
+          <li>Because there are only eight characters inside the single quotation 
+            marks, you must add two blank spaces to set the length to 10. 
+            
+          </li>
+        </ul>
+        <pre><font color="#003399">     proc format;
+        picture mydate
+                low-high=<strong>'%0d-%b%Y  '</strong> (datatype=date);
+     run;
+
+     proc print data=sasuser.empdata 
+          (keep=division hireDate lastName obs=5);
+        format hiredate mydate.;
+     run;</font></pre>
+        <CENTER>
+          <p align="left">The output below shows the values for <code>HireDate</code> 
+            formatted with the MYDATE. picture format.<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+            </font></p>
+          <p></p>
+          <br>
+          <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+            <thead>
+              <TR> 
+                <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Division</b></font></TD>
+                <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>HireDate</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                  1</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FLIGHT 
+                  OPERATIONS</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11-MAR1992</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">MILLS</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                  2</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FINANCE 
+                  & IT</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">19-DEC1983</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BOWER</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                  3</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">HUMAN 
+                  RESOURCES & FACILITIES</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12-MAR1985</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">READING</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                  4</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">HUMAN 
+                  RESOURCES & FACILITIES</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16-OCT1989</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JUDD</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                  5</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AIRPORT 
+                  OPERATIONS</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">19-DEC1981</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WONSILD</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+          <br>
+          <br>
+          </font> 
+          <table border="0" align="left" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="Note"></td>
+              <td valign="top">For more information about using the PICTURE statement, 
+                see the <font size="-1" face="Arial, Helvetica, sans-serif"> 
+                <!--doc reference-->
+                SAS</font> documentation for<font size="-1" face="Arial, Helvetica, sans-serif">&nbsp;</font> 
+                the FORMAT procedure.</td>
+            </tr>
+          </table>
+        </center>
+        <div align="left"></div></td>
+    </tr>
+  </table>
+  <p> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

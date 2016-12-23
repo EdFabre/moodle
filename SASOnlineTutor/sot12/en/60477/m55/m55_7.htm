@@ -1,0 +1,159 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      an INFILE Statement <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Using the COMPRESS Function</h2>
+        <p>Note the space between <em>month</em> and <em>9</em> in <em>c:\sasuser\month&nbsp;9.dat</em>. 
+          You can eliminate the space by using the COMPRESS function.</p></td>
+  </tr>
+</table>
+<P><br>
+<table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Corresponding Values of i and nextfile">
+  <tr bgcolor="#F7F7DE"> 
+      <th><font size="-1">When i=</font></th>
+      <th><font size="-1">nextfile=</font></th>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>9</em><em></em></div></td>
+      <td><em>c:\sasuser\month<span style="background-color: #CCCC99">&nbsp;</span>9.dat</em></td>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>10</em></div></td>
+      <td><em>c:\sasuser\month10.dat</em></td>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>11</em></div></td>
+      <td><em>c:\sasuser\month11.dat</em></td>
+  </tr>
+</table>
+<p> 
+<br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, COMPRESS function">
+  <tr> 
+    <td align="left"><strong>General form, COMPRESS function:</strong> <blockquote> 
+        <font color="#003399"><nobr><strong>COMPRESS</strong>(<em>source, </em>&lt;<em>characters-to-remove</em>&gt;)<strong>;</strong></nobr></font> 
+      </blockquote>
+where
+      <ul>
+          <li><font color="#003399"><em>source</em></font> specifies a source string 
+            that contains the characters to remove 
+          <li><font color="#003399"><em>characters-to-remove</em></font> specifies 
+          the character or characters that SAS removes from the source string. 
+      </ul>
+      <table border="0" align="center" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If the <em><font color="#003399">characters-to-remove</font></em> is omitted, the 
+              COMPRESS function removes blank spaces from the source.</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <p><strong>Example </strong></p>
+        <p>In the following code, the COMPRESS function removes blank spaces from 
+          the value of <code>nextfile</code>:
+<pre><font color="#003399">     data work.quarter;
+        do i = 9, 10, 11;
+           nextfile=&quot;c:\sasuser\month&quot;!!put(i,2.)!!&quot;.dat&quot;;
+     <strong>      nextfile=compress (nextfile,' ');</strong>
+           infile temp filevar=nextfile;
+           input Flight $ Origin $ Dest $ 
+                 Date : date9. RevCargo : comma15.2;
+           end;</font></pre> 
+        <p>The COMPRESS function can be combined with the assignment statement 
+          for greater efficiency:
+<pre><font color="#003399">     data work.quarter;
+        do i = 9, 10, 11;
+           nextfile=&quot;c:\sasuser\month&quot;!!<strong>compress(put(i,2.)</strong>!!&quot;.dat&quot;,' ');
+           infile temp filevar=nextfile;
+           input Flight $ Origin $ Dest $ 
+                 Date : date9. RevCargo : comma15.2;
+           end;</font></pre> 
+        <p>With the addition of the COMPRESS function, when the value of <code>i</code> 
+          equals <em>9</em>, <code>nextfile</code> is assigned the correct value, 
+          <em>c:\sasuser\month9.dat</em>.</p></td>
+  </tr>
+</table>
+<p> <br>
+<table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Corresponding Values of I and NextFile">
+  <tr bgcolor="#F7F7DE"> 
+      <th><font size="-1">When i=</font></th>
+      <th><font size="-1">nextfile=</font></th>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>9</em></div></td>
+      <td><em>c:\sasuser\month9.dat</em></td>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>10</em></div></td>
+      <td><em>c:\sasuser\month10.dat</em></td>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>11</em></div></td>
+      <td><em>c:\sasuser\month11.dat</em></td>
+  </tr>
+</table>
+<p> 
+<br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><p>Let's add a few more statements to the program. An OUTPUT statement 
+          within the DO loop outputs each record to the SAS data set <strong>Work.Quarter</strong> 
+          and a STOP statement prevents an infinite loop of the DATA step. </p>
+        <pre><font color="#003399">
+     data work.quarter;
+        do i = 9, 10, 11;
+           nextfile=&quot;c:\sasuser\month&quot;
+                    !!compress(put(i,2.)!!&quot;.dat&quot;,' ');<br>           infile temp filevar=nextfile;
+           input Flight $ Origin $ Dest $ Date : date9.
+                 RevCargo : comma15.2;
+           <strong>output;
+        end;
+        stop;</strong></font></pre>
+        The program is almost complete. However, there are several other statements 
+        that need to be added in order to read all of the input data.</td>
+  </tr>
+</table>
+<p><br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

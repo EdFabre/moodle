@@ -331,9 +331,8 @@
 
     echo $OUTPUT->header();
 
-    // Check to see if groups are being used here.
-    // We need the most up to date current group value. Make sure it is updated at this point.
-    $currentgroup = groups_get_activity_group($cm, true);
+/// Check to see if groups are being used here
+    $currentgroup = groups_get_activity_group($cm);
     $groupmode = groups_get_activity_groupmode($cm);
     $canmanageentries = has_capability('mod/data:manageentries', $context);
     // If a student is not part of a group and seperate groups is enabled, we don't
@@ -775,7 +774,7 @@ if ($showactivity) {
                     $records = $rm->get_ratings($ratingoptions);
                 }
 
-                data_print_template('singletemplate', $records, $data, $search, $page, false, new moodle_url($baseurl));
+                data_print_template('singletemplate', $records, $data, $search, $page);
 
                 echo $OUTPUT->paging_bar($totalcount, $page, $nowperpage, $baseurl);
 
@@ -796,7 +795,7 @@ if ($showactivity) {
                     data_generate_default_template($data, 'listtemplate', 0, false, false);
                 }
                 echo $data->listtemplateheader;
-                data_print_template('listtemplate', $records, $data, $search, $page, false, new moodle_url($baseurl));
+                data_print_template('listtemplate', $records, $data, $search, $page);
                 echo $data->listtemplatefooter;
 
                 echo $OUTPUT->paging_bar($totalcount, $page, $nowperpage, $baseurl);
@@ -820,25 +819,14 @@ if ($showactivity) {
     }
     echo html_writer::end_tag('form');
 
-    // Check to see if we can export records to a portfolio. This is for exporting all records, not just the ones in the search.
     if ($mode == '' && !empty($CFG->enableportfolios) && !empty($records)) {
-        $canexport = false;
-        // Exportallentries and exportentry are basically the same capability.
-        if (has_capability('mod/data:exportallentries', $context) || has_capability('mod/data:exportentry', $context)) {
-            $canexport = true;
-        } else if (has_capability('mod/data:exportownentry', $context) &&
-                $DB->record_exists('data_records', array('userid' => $USER->id))) {
-            $canexport = true;
+        require_once($CFG->libdir . '/portfoliolib.php');
+        $button = new portfolio_add_button();
+        $button->set_callback_options('data_portfolio_caller', array('id' => $cm->id), 'mod_data');
+        if (data_portfolio_caller::has_files($data)) {
+            $button->set_formats(array(PORTFOLIO_FORMAT_RICHHTML, PORTFOLIO_FORMAT_LEAP2A)); // no plain html for us
         }
-        if ($canexport) {
-            require_once($CFG->libdir . '/portfoliolib.php');
-            $button = new portfolio_add_button();
-            $button->set_callback_options('data_portfolio_caller', array('id' => $cm->id), 'mod_data');
-            if (data_portfolio_caller::has_files($data)) {
-                $button->set_formats(array(PORTFOLIO_FORMAT_RICHHTML, PORTFOLIO_FORMAT_LEAP2A)); // No plain html for us.
-            }
-            echo $button->to_html(PORTFOLIO_ADD_FULL_FORM);
-        }
+        echo $button->to_html(PORTFOLIO_ADD_FULL_FORM);
     }
 
     //Advanced search form doesn't make sense for single (redirects list view)

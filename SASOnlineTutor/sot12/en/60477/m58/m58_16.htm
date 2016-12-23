@@ -1,0 +1,130 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Custom Formats<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>After you have created a custom format, you can use <a href="JavaScript: openOther('../linklib/pformat.htm#ref')">SAS 
+          statements</a> to permanently assign the format to a variable in a DATA 
+          step, or you can temporarily specify a format in a PROC step to determine 
+          the way that the data values appear in output. You should already be 
+          familiar with referencing a format in a <a href="JavaScript: openOther('../linklib/formatst.htm')">FORMAT 
+          statement</a>.</p>
+        <p>Another way to assign, change, or remove the format associated with 
+          a variable in an existing SAS data set is to use the DATASETS procedure 
+          to modify the descriptor portion of a data set. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATASETS procedure with the MODIFY and FORMAT statements">
+    <tr> 
+      <td align="left"><strong>General form, DATASETS procedure with the MODIFY 
+        and FORMAT statements:</strong> <blockquote> <font color="#003399"><nobr><strong>PROC 
+          DATASETS LIB<em>=</em></strong><em>SAS-library </em>&lt;<strong>NOLIST</strong>&gt;<strong>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODIFY </strong><em>SAS-data-set</em><strong>;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FORMAT</strong><em> variable(s) 
+          format</em><strong>;<br>
+          QUIT;</strong></nobr></font></blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>SAS-library</em></font> is the name of 
+            the SAS library that contains the data you want to modify. 
+          <li><font color="#003399"><strong>NOLIST</strong></font> suppresses 
+            the directory listing. 
+          <li><font color="#003399"><em>SAS-data-set</em></font> is the name of 
+            the SAS data set you want to modify. 
+          <li> <font color="#003399"><em>variable</em></font> is the name of one 
+            or more variables whose format you want to assign, change, or remove. 
+          <li> <font color="#003399"><em>format</em></font> is the name of a format 
+            to apply to the variable or variables listed before it. If you do 
+            not specify a format, any format associated with the variable is removed. 
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The DATASETS procedure is interactive and will run 
+              until you issue the QUIT statement.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+ 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p><strong>Example</strong></p>
+        <p>In the following code, two variables in the SAS data set <strong>Flights</strong> 
+          are changed. The format $DEST. is associated with the variable <code>Dest</code> 
+          and the format is removed from the variable <code>Baggage</code>.</p>
+        <pre><font color="#003399">     proc datasets lib=Mylib;
+        modify flights;
+        format dest $dest.;
+        format baggage;
+     quit;</font></pre>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You cannot run this example because <strong>Flights</strong> is a 
+              fictitious data set.</td>
+          </tr>
+        </table>
+        <h2><br>
+          Using a Permanent Storage Location for Formats</h2>
+        <p>When you permanently associate a format with a variable in a data set, 
+          it is important to be sure that the format you are referencing is stored 
+          in a permanent location. Remember that the storage location for the 
+          format is determined when the format is created in the FORMAT procedure.</p>
+        <p>When you create formats that you want to use in subsequent SAS sessions, 
+          it is useful to </p>
+        <ol>
+          <li>assign the <strong>Library</strong> libref to a SAS library in the 
+            SAS session in which you are running the PROC FORMAT step</li>
+          <li>specify LIB=LIBRARY in the PROC FORMAT step that creates the format</li>
+          <li>include a LIBNAME statement in the program that references the format 
+            to assign the <strong>Library</strong> libref to the library that 
+            contains the permanent format catalog.</li>
+        </ol>
+        <p>You can store formats in any catalog you choose; however, you must 
+          identify the format catalogs to SAS before you can access them. You 
+          learn about this in the next topic.</p></td>
+    </tr>
+  </table>
+  <p> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,171 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Managing 
+      Index Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2> Determining Whether SAS Is Using an Index</h2>
+        <p>After you create an index, it is important to monitor whether the index 
+          is being used. If an index is <strong>not</strong> being used, the costs 
+          of maintaining the index might be greater than the benefits, and you 
+          should consider dropping (deleting) the index.</p>
+        <p>By default, when a PROC SQL query or any other program is submitted 
+          in SAS, only notes, warnings, and error messages are written to the 
+          SAS log. To display additional messages, such as information about indexes 
+          that have been defined and that have been used in processing the program, 
+          specify the SAS system option <strong>MSGLEVEL=I</strong>. You specify 
+          the MSGLEVEL= option in the <a href="JavaScript: openOther('../linklib/options.htm')">OPTIONS 
+          statement</a>, before the PROC SQL statement. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, MSGLEVEL= option">
+    <tr> 
+      <td align="left"><strong>General form, MSGLEVEL= option:</strong> <blockquote> 
+          <font color="#003399"><nobr><strong>OPTIONS MSGLEVEL=</strong> N</nobr></font><nobr> 
+          | </nobr><font color="#003399"><nobr>I<strong>;</strong></nobr></font> 
+        </blockquote>
+        <p>where</p>
+        <ul>
+          <li><font color="#003399">N</font> displays notes, warnings, and error 
+            messages only. This is the default. <br>
+            <br>
+          </li>
+          <li><font color="#003399">I</font> displays additional notes pertaining 
+            to index usage, merge processing, and sort utilities along with standard 
+            notes, warnings, and error messages. </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Usually, the option MSGLEVEL= is set to I for debugging and testing, 
+          and set to N for production jobs. 
+        <p><br>
+        <h2>Example: Query That Uses an Index</h2>
+        <p>Suppose you are writing a PROC SQL query that references the temporary 
+          table <strong>Marchflights</strong>. Earlier in this lesson, a unique 
+          composite index named <strong>daily</strong> was created on the columns 
+          <code>FlightNumber</code> and <code>Date</code> in <strong>Marchflights</strong>. 
+          The WHERE expression in your query specifies the key column <code>FlightNumber</code>. 
+          To determine whether PROC SQL uses the index <strong>daily</strong> 
+          when your query is processed, you specify MSGLEVEL=I before the query:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     <strong>options msglevel=i;</strong>
+     proc sql;
+        select *
+           from marchflights
+           where flightnumber='182';</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The message in the SAS log shows that the index was used in processing.</td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>INFO: Index daily selected for WHERE clause optimization.<strong></strong>
+</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: Query That Does Not Use an Index</h2>
+        <p>Suppose you submit a different query that also references the key column 
+          <code>FlightNumber</code>:</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        select *
+           from marchflights
+           where flightnumber in ('182','202');</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>In this example, the SAS log shows that the query does <strong>not</strong> 
+          use the index.</td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>INFO: Index daily not used.  Sorting into index order may help.<br>INFO: Index daily not used.  Increasing bufno to 8 may help.<strong></strong>
+</pre></td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">SAS Version 8 displays informational messages that indicate 
+        when an index <strong>is</strong> used, but does <strong>not</strong> 
+        display messages that indicate when an index is <strong>not</strong> used. 
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">Because the OPTIONS statement is global, the settings remain 
+        in effect until you modify them or until you end your SAS session. Therefore, 
+        you do not need to specify MSGLEVEL=I in this second query or any subsequent 
+        queries until you want to change the setting or until your SAS session 
+        ends.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

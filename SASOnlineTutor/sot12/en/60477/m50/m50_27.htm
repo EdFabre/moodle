@@ -1,0 +1,136 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Displaying 
+      Macro Variable Values in the SAS Log<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td><h2>The SYMBOLGEN Option</h2> 
+      When you submit a macro variable reference, the macro processor resolves 
+        the reference and passes the value directly back to the input stack. Therefore, 
+        you will not see the value that the compiler receives. In order to debug 
+        your programs, it might be useful for you to see the value that replaces 
+        your macro variable reference. You can use the <strong>SYMBOLGEN system 
+        option</strong> to monitor the value that is substituted for a macro variable 
+        reference. 
+    </td>
+  </tr>
+</table>
+<P><BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, OPTIONS statement with SYMBOLGEN option">
+  <tr> 
+    <td align="left"><STRONG>General form, OPTIONS statement with SYMBOLGEN option:</STRONG> 
+      <BLOCKQUOTE> <FONT COLOR="#003399"><STRONG>OPTIONS NOSYMBOLGEN</STRONG> 
+        | <STRONG>SYMBOLGEN;</STRONG></FONT> </BLOCKQUOTE>
+      <P> where 
+      <UL>
+          <LI> <FONT COLOR="#003399"><STRONG>NOSYMBOLGEN</STRONG></FONT> specifies 
+            that log messages about macro variable references will <STRONG>not</STRONG> 
+            be displayed. This is the default.<BR>
+          <BR>
+          <LI> <FONT COLOR="#003399"><STRONG>SYMBOLGEN</STRONG></FONT> specifies 
+            that log messages about macro variable references will be displayed. 
+        </UL>
+    </td>
+  </tr>
+</table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr> 
+    <td> This system option displays the results of resolving macro variable references 
+      in the SAS log. That is, when the SYMBOLGEN option is turned on, SAS writes 
+      a message to the log for each macro variable that is referenced in your 
+      program. The message states the macro variable name and the resolved value. 
+    </td>
+  </tr>
+</table>
+<br>
+<table border="0" cellpadding="2" cellspacing="0" align="center" width="85%">
+  <tr> 
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="More Information"></td>
+    <td valign="top">Remember that since SYMBOLGEN is a system option, its setting 
+      remains in effect until you modify it or until you end your SAS session.</td>
+  </tr>
+</table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr>
+    <td> <h2>Example</h2>
+      Suppose you have previously assigned values to the macro variables <code>amount</code>, 
+          <code>city</code>, and <code>company</code>, and you submit the following 
+          code:
+<P> 
+      <font color="#003399">
+      <pre>    data new;
+       set sasuser.all;
+       where fee>&amount;
+       where also city_state contains "&city";
+       where also student_company contains '&company';
+    run;</pre>
+        </font> Here is a sample SAS log that shows the messages that are generated 
+        by the SYMBOLGEN option for this code.</td>
+  </tr>
+</table>
+<P><BR>
+<div align="center"> SAS Log 
+  <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+    <tr>
+      <td>
+        <pre>
+110 where fee>&amount;
+SYMBOLGEN: Macro variable AMOUNT resolves to 975
+111 where city_state contains "&city";
+SYMBOLGEN: Macro variable CITY resolves to Dallas
+112 where student_company contains '&company';
+</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> Notice that no message is displayed for the final macro variable reference 
+      (<code><font color="#003399">'&company'</font></code>). Because this macro 
+      variable reference is enclosed in <strong>single quotation marks</strong> 
+      rather than in double quotation marks, the word scanner <strong>does not 
+      resolve it</strong>. </td>
+  </tr>
+</table>
+<BR>
+<BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

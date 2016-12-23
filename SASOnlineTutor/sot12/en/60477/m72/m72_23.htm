@@ -1,0 +1,173 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the UNION Set Operator<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: UNION Operator and Summary Functions</h2>
+        <p> Let&#8217;s look at another realistic business problem, to see how 
+          summary functions can be used with a set operator (in this case, UNION). 
+          Suppose you want to display the following summarized data for members 
+          of a frequent-flyer program: total points earned, total points used, 
+          and total miles traveled. All three values can be calculated from columns 
+          in the table <strong><a href="JavaScript: openOther('../linklib/freqflyr.htm')">Sasuser.Frequentflyers</a></strong> 
+          by using summary functions. </p>
+        <p> You might wonder why set operations are needed when only one table 
+          is involved. If you wanted to display the three summarized values <strong>horizontally</strong>, 
+          in three separate columns, you could solve the problem <strong>without</strong> 
+          a set operation, using the following simple SELECT statement:<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><pre><font color="#003399">     proc sql;
+        select sum(pointsearned) format=comma12.
+               label='Total Points Earned',
+               sum(pointsused) format=comma12.
+               label='Total Points Used',
+               sum(milestraveled) format=comma12.
+               label='Total Miles Traveled'
+           from sasuser.frequentflyers;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Total 
+          Points Earned</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Total 
+          Points Used</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Total 
+          Miles Traveled</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">10,583,463</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">4,429,670</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">10,477,963</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Assume, however, that you want the three values to be displayed 
+          <strong>vertically</strong> in a single column. To generate this output, 
+          you create three different queries on the same table, and then use two 
+          UNION set operators to combine the three query results:<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><pre><font color="#003399">     proc sql;
+     title 'Points and Miles Traveled';
+     title2 'by Frequent Flyers'; 
+        select 'Total Points Earned:',
+               sum(PointsEarned) format=comma12.
+           from sasuser.frequentflyers
+        <strong>union</strong>
+        select 'Total Points Used:',
+               sum(PointsUsed) format=comma12.
+           from sasuser.frequentflyers
+        <strong>union</strong>
+        select 'Total Miles Traveled:',
+               sum(MilesTraveled) format=comma12.
+           from sasuser.frequentflyers;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>Each SELECT clause defines two columns: a character constant as a label 
+        and the summarized value. The output is shown below.</td>
+    </tr>
+  </table>
+  <p>
+  <br>
+    <TABLE width=100% border=0 cellpadding=1  cellspacing=1 bgcolor="#FFFFFF" frame=VOID rules=NONE>
+    <TR> 
+      <TD ALIGN=CENTER bgcolor="#Fffff0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Points and Miles Traveled</i></b></font></TD>
+    </TR>
+    <TR> 
+      <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>by Frequent Flyers</i></b></font></TD>
+    </TR>
+  </TABLE>
+  <br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>&nbsp;</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>&nbsp;</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total 
+          Miles Traveled:</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">10,477,963</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total 
+          Points Earned:</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">10,583,463</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total 
+          Points Used:</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">4,429,670</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The preceding program reads the same table three times, 
+        so it is <strong>not</strong> the most efficient way to solve this problem.</td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,115 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(2); 
+   answer[1] = "%attend(nocum,start=01jan2002,stop=31oct2002)"
+   answer[2] = "%attend(nocum,stop=31oct2002,start=01jan2002)"
+ 
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='You specify the macro name preceded by a percent sign. You follow the name with ';
+   right2='values for the parameters. The values are separated by commas and are enclosed in parentheses.';
+   right3='The positional parameter value is listed first.';
+   
+   wrong1='Remember to specify the macro name preceded by a percent sign. Do not end the call with a semicolon. ';
+   wrong2='Be sure to list the value for the positional parameter first, and to separate the values for the parameters with commas. ';
+   wrong3='';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="no";
+   var checkSemicolon="no";
+   var useParens="yes";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Parameters<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Issue a call 
+          to invoke the <strong>Attend </strong>macro. In the call, specify <em>nocum</em> 
+          as a value for <code>opts</code>, a start date of <em>01jan2002</em>, 
+          and a stop date of <em>31oct2002</em>. 
+          <P>
+<table width="85%" align="center"><font color="#003399"><PRE>
+%macro attend(opts,start=01jan2001,stop=31dec2001);
+   %let start=%upcase(&amp;start);
+   %let stop=%upcase(&amp;stop);
+   proc freq data=sasuser.all;
+      where begin_date between &quot;&amp;start&quot;d and &quot;&amp;stop&quot;d;
+      table location / &amp;opts;
+      title1 &quot;Enrollment from &amp;start to &amp;stop&quot;;
+   run;
+%mend;</pre></font></table><!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" --> 
+            <INPUT TYPE="text" size="50" NAME="anstext">
+            <!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

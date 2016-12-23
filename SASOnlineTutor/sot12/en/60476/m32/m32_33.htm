@@ -1,0 +1,139 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Macro Variables During DATA Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>In this lesson so far, you have used the <nobr>%LET</nobr> statement 
+        and macro variable references to substitute a variety of information in 
+        your programs. You created macro variables to contain a year value, a 
+        libref, and a portion of a variable name. </p>
+      <p> The <nobr>%LET</nobr> statement can define most of the macro variables 
+        that are needed for your programs. However, if you need a macro variable 
+        to contain a value that is created during the execution of the DATA step, 
+        the <nobr>%LET</nobr> statement cannot define this macro variable. 
+      <p> For example, suppose you need to create a data set that contains the 
+        total number of overtime hours worked by temporary employees. The DATA 
+        step that you write calculates total overtime hours, but how do you create 
+        a macro variable to hold this value? You cannot use a <nobr>%LET</nobr> 
+        statement for this purpose because you do not know the value to specify 
+        in the statement. 
+      <p> <br>
+        <strong>The CALL SYMPUT Routine</strong> 
+      <p> You can use the <strong>CALL SYMPUT</strong> routine to create a macro 
+        variable whose value is assigned during the execution of the DATA step. 
+        To learn how to use this routine, let's look more closely at your DATA 
+        step. 
+      <p> The DATA step below creates the new data set <strong>Hrd.Overtime</strong> 
+        and uses the subsetting IF statement to include only the names of employees 
+        who worked overtime hours. It also calculates the total number of overtime 
+        hours.
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     data hrd.overtime;</font>
+<font color="#003399">        set hrd.temp(keep=name overtime);</font>
+<font color="#003399">        if overtime ne .;</font>
+<font color="#003399">        TotalOvertime+overtime;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.overtime;</font>
+<font color="#003399">     run;</font>
+</pre>
+        <p> Before submitting the program, suppose you decide to add a title that 
+          displays the total number of overtime hours worked by temporary employees. 
+          To substitute the total number of hours into the title, you add a TITLE 
+          statement that contains a macro variable reference.
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre>
+     <font color="#003399"><strong>title "Temporary Employees Worked &amp;total Overtime Hours";</strong></font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+ 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>To create the macro variable <code>total</code>, you must use the CALL 
+        SYMPUT routine. The CALL SYMPUT routine enables you to assign a value 
+        that is produced in the DATA step to a macro variable. The CALL SYMPUT 
+        routine is a CALL routine, which is a program that you can run from the 
+        DATA step. Like all CALL routines, the CALL SYMPUT routine must be invoked 
+        by means of a CALL statement.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, CALL statement for CALL SYMPUT routine ">
+    <tr> 
+      <td><strong>General form, CALL SYMPUT routine:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>CALL SYMPUT(</strong><em>name</em>,<em>value</em><strong>);</strong></font></nobr> 
+          </blockquote>
+        <p> where <br>
+        <ul>
+          <li> <font color="#003399"><em>name</em></font> is the name of the macro 
+            variable to be defined. The variable can be a character string enclosed 
+            in quotation marks, a character variable, or a character expression.<br>
+            <br>
+          <li> <font color="#003399"><em>value</em></font> is the value to be 
+            assigned to the macro variable. The value can be a text string enclosed 
+            in quotation marks, a data set variable, or a DATA step expression. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

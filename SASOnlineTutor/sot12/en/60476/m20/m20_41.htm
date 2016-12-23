@@ -1,0 +1,104 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Copy and paste the text, then submit the program.<br><br> ';
+solutionText+='<li>Change the MERGE statement as follows, add the subsetting IF ';
+solutionText+='statement, and submit the program: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='merge work.adsort(rename=(date=Admitdate) in=inad)<br>';
+solutionText+='      work.strsort(rename=(date=VisitDate) in=instr);<br>';
+solutionText+='if inad and instr;<br></pre></font>';
+solutionText+='<li>Submit the program and view the log and the output. ';
+solutionText+='The new data set should contain 20 observations.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong> 
+      Merge the sorted data sets Work.Adsort and Work.Strsort, and exclude unmatched 
+      observations. </strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+<table cellpadding="2" align="Center" width="85%">
+  <tr valign="top"> 
+            
+      <td width="24" valign="top"><img border="0" width="37" height="32" src="../navimages/alert.gif" alt="Note:"></td>
+    <td><strong>Work.Adsort</strong> and <strong>Work.Strsort</strong> were created 
+      in a previous practice. If you haven't created these data sets, <a href="m20_6.htm" onClick="suggestBack()" onMouseOver="window.status='Return to a previous practice.';" onMouseOut="window.status=''">return 
+      to the practice</a> and create them before continuing here.</td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy the program below and paste it into the code editing window. 
+            Then submit the program. In the output, notice that two observations 
+            were unmatched in the input data sets and contain missing values for 
+            several variables. 
+            <PRE><FONT color="#003399">data sasuser.merged;</FONT>
+<FONT color="#003399">   merge work.adsort</FONT>
+<FONT color="#003399">         (rename=(date=AdmitDate))</FONT>
+<FONT color="#003399">         work.strsort</FONT>
+<FONT color="#003399">         (rename=(date=VisitDate));</FONT>
+<FONT color="#003399">   by id;</FONT>
+<FONT color="#003399">run;</FONT>
+<FONT color="#003399">proc print data=sasuser.merged;</FONT>
+<FONT color="#003399">run;</FONT></PRE>
+        <LI>Add two data set options to create and name variables that indicate 
+          whether the <STRONG>Work.Adsort</STRONG> and <STRONG>Work.Strsort</STRONG> 
+          data sets, respectively, contributed data to the current observation. 
+          Name the variables <CODE>inad</CODE> and <CODE>instr</CODE>. Also add 
+          a statement that checks the IN= values and writes to the merged data 
+          set only those observations that appear in both data sets. <BR>
+          <BR>
+        <LI>Resubmit the program and view log messages about the DATA step. Scroll 
+          through the output. Note that only matched observations now appear in 
+          the data set.
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

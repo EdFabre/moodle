@@ -1,0 +1,318 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Merging 
+      the Transposed Data Set<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Reorganizing the Sasuser.Monthsum Data Set</h2>
+        <p>The data in <strong>Sasuser.Monthsum</strong> must also be reorganized 
+          for the merge because the month and year values in that data set are 
+          combined in the variable <code>SaleMon</code>.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+   
+    SAS Data Set Sasuser.Monthsum<br>
+    (first five observations of selected variables) 
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set Sasuser.Monthsum">
+    <thead>
+      <TR> 
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>SaleMon</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>RevCargo</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>MonthNo</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          1</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JAN1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$171,520,869.10</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          2</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JAN1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$238,786,807.60</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          3</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JAN1999</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$280,350,393.00</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          4</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FEB1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$177,671,530.40</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          2</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          5</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FEB1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$215,959,695.50</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          2</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>The following program creates two new variables, <code>Year</code> 
+          and <code>Month</code>, to hold the year and month values. The values 
+          for <code>Year</code> are created from <code>MonthSum</code> using the 
+          <a href="JavaScript: openOther('../linklib/input.htm')">INPUT</a> and 
+          <a href="JavaScript: openOther('../linklib/substr.htm')">SUBSTR</a> 
+          functions. The values for <code>Month</code> are extracted from <code>MonthSum</code> 
+          using the <a href="JavaScript: openOther('../linklib/lowcase.htm')">LOWCASE</a> 
+          and <a href="JavaScript: openOther('../linklib/substr.htm')">SUBSTR</a> 
+          functions.</p>
+        <pre><font color="#003399">     data work.mnthsum2;
+        set sasuser.monthsum(keep=SaleMon RevCargo);
+        length Month $ 8;
+        <strong>Year=input(substr(SaleMon,4),4.);
+        Month=substr(SaleMon,1,1)
+              ||lowcase(substr(SaleMon,2,2));</strong>
+     run;</font></pre></td>
+    </tr>
+  </table>
+ 
+  <br>
+  SAS Data Set Work.Mnthsum2<br>
+  (first six observations)<br>
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set Work.Mnthsum2">
+    <thead>
+      <TR> 
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>SaleMon</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>RevCargo</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Month</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          1</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JAN1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$171,520,869.10</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Jan</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          2</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JAN1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$238,786,807.60</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Jan</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1998</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          3</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JAN1999</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$280,350,393.00</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Jan</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1999</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          4</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FEB1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$177,671,530.40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Feb</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          5</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FEB1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$215,959,695.50</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Feb</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1998</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          6</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FEB1999</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$253,999,924.00</font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Feb</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1999</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2><a name="sort"></a>Sorting the Work.Mnthsum2 Data Set</h2>
+        <p>As with <strong>Work.Ctarget2</strong>, the last step in preparing 
+          for the merge is to sort the data set by the values of <code>Year</code> 
+          and <code>Month</code> as shown in the following program:</p>
+        <pre><font color="#003399">     proc sort data=work.mnthsum2;
+        <strong>by year month;</strong>
+     run;</font></pre>
+        Notice that in the sorted version of <strong>Work.Mnthsum2</strong>, the 
+        values of month are sorted alphabetically by year.</td>
+    </tr>
+  </table>
+  <p>
+
+  <br>
+  SAS Data Set Work.Mnthsum2<br>
+  (sorted, first twelve observations)<br>
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set Work.Mnthsum2">
+    <thead>
+      <TR> 
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>SaleMon</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>RevCargo</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Month</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          1</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">APR1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$380,804,120.20</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Apr</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          2</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">AUG1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$196,639,501.10</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Aug</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          3</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">DEC1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$196,504,413.00</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Dec</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          4</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FEB1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$177,671,530.40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Feb</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          5</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JAN1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$171,520,869.10</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Jan</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          6</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JUL1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$197,163,278.20</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Jul</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          7</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">JUN1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$190,560,828.50</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Jun</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          8</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">MAR1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$196,591,378.20</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Mar</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          9</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">MAY1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$196,261,573.20</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">May</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>10</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NOV1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$190,228,066.70</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Nov</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>11</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">OCT1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$196,957,153.40</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Oct</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>12</b></font></TD>
+        <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">SEP1997</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$190,535,012.50</font></TD>
+        <TD ALIGN=LEFT bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Sep</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1997</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

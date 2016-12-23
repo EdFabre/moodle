@@ -1,0 +1,92 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Identifying 
+      Conditions That Can Be Optimized<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Requirements for Compound Optimization</h2>
+        <p>Most of the same operators that are acceptable for optimizing a single 
+          condition are also acceptable for compound optimization. However, compound 
+          optimization has special requirements for the operators that appear 
+          in the WHERE expression:</p>
+        <ul>
+          <li>The WHERE conditions must be connected by using either the AND operator 
+            or, if all conditions refer to the same variable, the OR operator.<br>
+            <br>
+          </li>
+          <li>At least one of the WHERE conditions that contains a key variable 
+            must contain the EQ or IN operator. </li>
+        </ul>
+        <p> Also, SAS <strong>cannot</strong> perform compound optimization for 
+          WHERE conditions that include any of the following:</p>
+        <ul>
+          <li>the CONTAINS operator</li>
+          <li>the pattern-matching operators LIKE and NOT LIKE</li>
+          <li>the IS NULL and IS MISSING operators</li>
+          <li>any functions.</li>
+        </ul>
+        <br> <h2>Example: Compound Optimization</h2>
+        <p>Suppose your program contains the following WHERE statement, which 
+          selects all people whose name is John Smith. The WHERE statement contains 
+          two conditions, each of which references a different variable:</p>
+        <pre><font color="#003399">     where <strong>lastname eq 'Smith'</strong> and 
+           <strong>frstname eq 'John'</strong>;</font></pre>
+        <p>Suppose <code>Lastname</code> is the first key variable and <code>Frstname</code> 
+          is the second key variable in a compound index. This WHERE statement 
+          meets all requirements for compound optimization:</p>
+        <ul>
+          <li>The WHERE expression references at least the first two key variables 
+            in one composite index.</li>
+          <li>The two WHERE conditions are connected by the AND operator.</li>
+          <li>At least one of the conditions contains the EQ operator.</li>
+        </ul>
+        <p>If the two conditions in the WHERE statement are reversed, as shown 
+          below, the statement still meets all requirements for compound optimization. 
+          The order in which the key variables appear does not matter.</p>
+        <pre><font color="#003399">     where <strong>frstname eq 'John' </strong>and 
+           <strong>lastname eq 'Smith'</strong>;</font></pre>
+        <p>Now suppose that the conditions in the WHERE statement are joined by 
+          the operator OR instead of AND:</p>
+        <pre><font color="#003399">     where frstname eq 'John' <strong>or</strong>
+           lastname eq 'Smith';</font></pre>
+        <p>These conditions <strong>cannot</strong> be optimized because they 
+          are joined by OR but they do not reference the same variable.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

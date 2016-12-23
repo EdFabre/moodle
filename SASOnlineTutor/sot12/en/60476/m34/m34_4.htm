@@ -1,0 +1,136 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Constructing 
+      DO Loops<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>DO Loop Execution</strong> </p>
+      <p> Using the form of the DO loop that was just presented, let's see how 
+        the DO loop executes in the DATA step. This example calculates how much 
+        interest was earned each month for a one-year investment. 
+      <pre><font color="#003399">     data finance.earnings;</font>
+<font color="#003399">        Amount=1000;</font>
+<font color="#003399">        Rate=.075/12;</font>
+<font color="#003399">        do month=1 to 12;</font>
+<font color="#003399">           Earned+(amount+earned)*(rate);</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre>
+      This DATA step does not read data from an external source. When submitted, 
+      it compiles and then executes only once to generate data. During compilation, 
+      the program data vector is created for the <strong>Finance.Earnings</strong> 
+      data set.</td>
+  </tr>
+</table>
+<p align="center"><br>
+  <img src="images/m34b3g1.gif" border="0" width="270" height="75" alt="Program Data Vector">
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>When the DATA step executes, the values of <code>Amount</code> and <code>Rate</code> 
+        are assigned.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+  <img src="images/m34b3g2.gif" border="0" width="270" height="75" alt="Program Data Vector"> 
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>Next, the DO loop executes. During each execution of the DO loop, the 
+          value of <code>Earned</code> is calculated and is added to its previous 
+          value; then the value of <code>month</code> is incremented. On the twelfth 
+          execution of the DO loop, the value of <code>month</code> is incremented 
+          to 12 and the value of <code>Earned</code> is 77.6326.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+  <img src="images/m34b3g3.gif" border="0" width="270" height="75" alt="Program Data Vector"> 
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>After the twelfth execution of the DO loop, the value of <code>month</code> 
+        is incremented to 13. Because 13 exceeds the stop value of the iterative 
+        DO statement, the DO loop stops executing, and processing continues to 
+        the next DATA step statement. The end of the DATA step is reached, the 
+        values are written to the <strong>Finance.Earnings</strong> data set, 
+        and in this example, the DATA step ends. Only one observation is written 
+        to the data set.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+  SAS Data Set Finance.Earnings 
+<center>
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Amount</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rate</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b><span style="background-color: #CCCC99">month</span></b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Earned</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1000</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.00625</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">13</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">77.6326</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Notice that the index variable <code>month</code> is also stored in 
+        the data set. In most cases, the index variable is needed only for processing 
+        the DO loop and can be dropped from the data set.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

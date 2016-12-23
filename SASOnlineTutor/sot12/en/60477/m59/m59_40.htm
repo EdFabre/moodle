@@ -1,0 +1,189 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Controlling 
+      Data in the Audit Trail<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> 
+        <h2> Audit Trail Variables </h2>
+        <p>Audit trail variables automatically store information about data modifications. 
+          Audit trail variable names begin with AT followed by a specific string, 
+          such as DATETIME. <br>
+          <br>
+          <br>
+        </p>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="AT variables">
+          <tr bgcolor="#F7F7DE"> 
+            <th nowrap> <font size="-1">Audit trail variable</font></th>
+            <th> <font size="-1">Information stored</font></th>
+          </tr>
+          <tr> 
+            <td><code>_ATDATETIME_</code></td>
+            <td>date and time of a modification</td>
+          </tr>
+          <tr> 
+            <td><code>_ATUSERID_</code><em></em></td>
+            <td>login user ID associated with a modification</td>
+          </tr>
+          <tr> 
+            <td><code>_ATOBSNO_</code></td>
+            <td>observation number affected by the modification unless REUSE=YES</td>
+          </tr>
+          <tr> 
+            <td><code>_ATRETURNCODE_</code></td>
+            <td>event return code</td>
+          </tr>
+          <tr> 
+            <td><code>_ATMESSAGE_</code></td>
+            <td>SAS log message at the time of the modification</td>
+          </tr>
+          <tr> 
+            <td><code>_ATOPCODE_</code></td>
+            <td>code describing the type of operation</td>
+          </tr>
+        </table>
+        <br> <br> 
+        <h2> Values of the <code>_ATOPCODE_</code> Variable</h2>
+        <p>The <code>_ATOPCODE_</code> variable contains a code that describes 
+          the type of operation that wrote the observation to the audit file. 
+          For example, if you modified all observations in an audited data set, 
+          the audit file would contain twice as many observations as the original 
+          data set. The audit file would contain one observation that matched 
+          the original observation with an <code>_ATOPCODE_</code> value of <em>DR</em>, 
+          and one updated observation with an <code>_ATOPCODE_</code> value of 
+          <em>DW</em>. </p>
+        <p>The table below shows the possible values of the <code>_ATOPCODE_</code> 
+          variable. <br>
+          <br>
+          <br>
+        </p>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="_ATOPCODE_ values">
+          <tr bgcolor="#F7F7DE"> 
+            <th width="125" nowrap> <font size="-1">_ATOPCODE_ value</font></th>
+            <th width="206"> <font size="-1">Event</font></th>
+          </tr>
+          <tr> 
+            <td> <div align="center">DA<em></em></div></td>
+            <td>added data record image</td>
+          </tr>
+          <tr> 
+            <td> <div align="center">DD<em></em></div></td>
+            <td>deleted data record image</td>
+          </tr>
+          <tr> 
+            <td> <div align="center">DR<em></em></div></td>
+            <td>before-update record image</td>
+          </tr>
+          <tr> 
+            <td> <div align="center">DW<em></em></div></td>
+            <td>after-update record image</td>
+          </tr>
+          <tr> 
+            <td> <div align="center">EA <em></em></div></td>
+            <td>observation add failed</td>
+          </tr>
+          <tr> 
+            <td> <div align="center">ED</div></td>
+            <td>observation delete failed</td>
+          </tr>
+          <tr> 
+            <td> <div align="center">EU</div></td>
+            <td>observation update failed</td>
+          </tr>
+        </table>
+        <br> <br><a name="log"></a>
+        You can define what information is stored in the audit file by using the 
+        LOG statement when you initiate the audit trail. 
+        
+		<h2><br>
+          Using the LOG Statement to Control the Data in the Audit Trail</h2>
+        <p>When you initiate an audit trail, options in the LOG statement determine 
+          the type of entries stored in the audit trail, along with their corresponding 
+          <code>_ATOPCODE_</code> values. The ERROR_IMAGE option controls E operation codes. 
+          The BEFORE_IMAGE option controls the DR operation code, and the DATA_IMAGE 
+          option controls all other D operation codes. If you omit the LOG statement 
+          when you initiate the audit trail, the default behavior is to log all 
+          images.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="1" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, LOG statement">
+    <tr> 
+      <td align="left"><strong>General form, LOG statement:</strong> <blockquote> 
+          <font color="#003399"><strong>LOG</strong> &lt;<em>audit-settings</em>&gt;<strong>;</strong><nobr></nobr></font> 
+        </blockquote>
+        <p>where <em><font color="#003399">audit-settings </font></em>are any 
+          of the following: </p>
+        <ul>
+          <li><font color="#003399">BEFORE_IMAGE<em>=YES|NO</em></font> controls 
+            storage of before-update record images (the 'DR' operation)</li>
+          <li><font color="#003399">DATA_IMAGE<em>=YES|NO</em></font> controls 
+            storage of after-update record images (for example, other operations 
+            starting with 'D')</li>
+          <li><font color="#003399">ERROR_IMAGE<em>=YES|NO</em></font> controls 
+            storage of unsuccessful update record images (for example, operations 
+            starting with 'E').</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p> <br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>The following code initiates an audit trail on the data set <strong>Capinfo</strong> 
+          but stores only error record images. This means that the audit file 
+          will contain only records where an error occurred. The <code>_ATOPCODE_</code> 
+          values can be only <em>EA</em>, <em>ED</em>, and <em>EU</em>.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If you choose to run this example, you must copy 
+              the data set <strong>Capinfo </strong>from the <strong>Sasuser</strong> 
+              library to the <strong>Work</strong> library.</td>
+          </tr>
+        </table>
+        <pre><font color="#003399">     proc datasets nolist;
+        audit capinfo;
+        initiate;
+        log data_image=NO before_image=NO;
+     quit;</font></pre></td>
+    </tr>
+  </table>
+  <p> <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

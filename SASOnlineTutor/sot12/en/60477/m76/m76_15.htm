@@ -1,0 +1,115 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+<!--STEP 1-->
+solutionText='<ol><li>Copy and paste the PROC SQL step into the code editing window.<br><br> ';
+<!--STEP 2-->
+solutionText+='<li>The modified PROC SQL step should look like this:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql stimer;<br>';
+solutionText+='   select empid, jobcode, dateofbirth<br>';
+solutionText+='      from sasuser.payrollmaster<br>';
+solutionText+="      where jobcode in ('FA1','FA2')<br>";
+solutionText+='            and dateofbirth &lt; any<br>';
+solutionText+='               (select dateofbirth<br>';
+solutionText+='                   from sasuser.payrollmaster<br>';
+solutionText+="                   where jobcode='FA3');<br>";
+solutionText+='   select empid, jobcode, dateofbirth<br>';
+solutionText+='      from sasuser.payrollmaster<br>';
+solutionText+="      where jobcode in ('FA1','FA2')<br>";
+solutionText+='            and dateofbirth &lt; all<br>';
+solutionText+='               (select dateofbirth<br>';
+solutionText+='                   from sasuser.payrollmaster<br>';
+solutionText+="                   where jobcode='FA3');<br>";
+solutionText+='quit;';
+solutionText+='</pre></font>';
+<!--STEP 3-->
+solutionText+='<li>Submit the PROC SQL step. The SAS log displays the time used to process each SELECT statement and the total time used to process the entire PROC SQL step.<br></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Compare 
+            the timing information for two queries using the table <a href="JavaScript: openOther('../linklib/payrmstr.htm')"><strong>Sasuser.Payrollmaster</strong></a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+  <table cellpadding="2" align="Center" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/tip.gif" alt="Tip: " width="20" height="20"></td>
+      <td>To view the expected PROC SQL output, click the related link in the 
+        text for each step.</td>
+  </tr>
+</table><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy and paste the following PROC SQL step into the code editing 
+            window:<br>
+            <pre><font color="#003399">proc sql;
+   select empid, jobcode, dateofbirth
+      from sasuser.payrollmaster
+      where jobcode in ('FA1','FA2')
+            and dateofbirth &lt; any          
+               (select dateofbirth
+                   from sasuser.payrollmaster
+                   where jobcode='FA3');
+   select empid, jobcode, dateofbirth      
+      from sasuser.payrollmaster
+      where jobcode in ('FA1','FA2')
+            and dateofbirth &lt; all
+               (select dateofbirth
+                   from sasuser.payrollmaster
+                   where jobcode='FA3');   
+quit;</font></pre>
+          <li>Add an option that writes timing information for each statement 
+            to the SAS log.<br>
+            <br>
+          <li>Submit the PROC SQL step and view the messages in the SAS log. Then 
+            view the <a href="JavaScript: openOther('m76_15a.htm')">output</a>.<br>
+          
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

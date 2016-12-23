@@ -1,0 +1,143 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      a Variable within Categories<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p>You've 
+        seen how to use the TYPE= and SUMVAR= options individually. You can also 
+        combine the SUMVAR= option with <strong>TYPE=MEAN</strong> to request 
+        the <strong>average</strong> of the values of the summary variable for 
+        each unique value of the chart variable.</p></td>
+  </tr>
+</table>
+<center>
+</center>
+<p> 
+<center>
+  <table cellspacing="0" cellpadding="2" align="Center" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+      <td>In order to use TYPE= MEAN, you <strong>must</strong> also use the SUMVAR= 
+        option.</td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong><br>
+        Example</strong> <p> This GCHART step specifies a chart variable (<code>Company</code>) 
+          and an analysis variable (<code>BalanceDue</code>) as before, but it 
+          also uses <strong>TYPE=MEAN</strong> to request the statistic MEAN. 
+          The chart below represents the average balance due for each company. 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        vbar company / sumvar=balancedue <strong>type=mean</strong>;</font>
+<font color="#003399">     run;</font>
+</pre></td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m7f3s1.gif" alt="Vertical bar chart w/analysis variable and TYPE=MEAN option."
+    width="420" height="305"> 
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The GCHART step below is the same as in the example above, 
+        except that it specifies a pie chart rather than a vertical bar chart. 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        <strong>pie</strong> company / sumvar=balancedue <strong>type=mean</strong>;</font>
+<font color="#003399">     run;</font>
+</pre></td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m7f3s2.gif" alt="Pie chart w/analysis variable and TYPE=MEAN option."
+    width="350" height="345"> 
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The pie slices still represent the average of each company's 
+        balance due amounts. But unlike the vertical bar chart, not every company 
+        appears in the pie chart. The companies <em>Employers</em> and <em>Mutuality</em> 
+        do not appear because they have no balance due. The companies <em>A&amp;R</em>, 
+        <em>Essential</em>, and <em>Parnassus</em> do not appear individually 
+        because they represent small percentages and so have been automatically 
+        combined in the category OTHER.
+<p> As shown below, messages in the Log window describe the OTHER slice. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  SAS Log 
+  <table border=1 align="Center" cellpadding="10" cellspacing="0" title="log output">
+    <tr> 
+      <td bgcolor="#F7F7DE"> <pre><nobr>NOTE: The A&amp;R midpoint was included into the OTHER</nobr>
+      slice with a value of 9.48 representing
+      0.8 percent of the pie/donut.
+NOTE: The ESSENTIAL midpoint was included into the
+      OTHER slice with a value of 26.21
+      representing 2.2 percent of the pie/donut.
+NOTE: The PARNASSUS midpoint was included into the
+      OTHER slice with a value of 43.68
+      representing 3.7 percent of the pie/donut.
+</pre></td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<table width="85%" align="center" cellpadding="3" cellspacing="0">
+  <tr valign="Top"> 
+    <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+    <td>Companies that do not appear in the pie chart are still assigned, in turn, 
+      a color from the <a href="JavaScript: openOther('../linklib/colors.htm')">color 
+      list</a>.&nbsp;This color is therefore skipped and affects the color of 
+      any subsequent slices.</td>
+  </tr>
+</table>
+<center>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

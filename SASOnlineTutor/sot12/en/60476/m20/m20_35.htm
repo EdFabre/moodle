@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit these PROC PRINT steps:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc print data=sasuser.repertory;<br>';
+solutionText+='run;<br>';
+solutionText+='proc print data=sasuser.company;<br>';
+solutionText+='run;<br>';
+solutionText+='proc print data=sasuser.finance;<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='<li>Copy and paste the text. Change the MERGE statement ';
+solutionText+='as follows and submit the program:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='merge sasuser.repertory<br>';
+solutionText+='      sasuser.finance(rename=(name=<br>';
+solutionText+='                      LastName date=HireDate))<br>';
+solutionText+='      sasuser.company;<br></pre></font>';
+solutionText+='<li>Submit this PROC PRINT step:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc print data=work.finrep;<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='Work.Finrep does contain all data from the three input data ';
+solutionText+='sets. Observation 1 contains missing values for the first 7 '; solutionText+='variables because Sasuser.Company contains an unmatched ';
+solutionText+='observation.</ol>';
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Merge 
+      the sorted data sets <a href="JavaScript: openOther('../linklib/reptory.htm')" onMouseOver="window.status='Display details about this data set.'"
+            onMouseOut="window.status=''">Sasuser.Repertory</a>, <a href="JavaScript: openOther('../linklib/company.htm')" onMouseOver="window.status='Display details about this data set.'"
+            onMouseOut="window.status=''">Sasuser.Company</a>, and <a href="JavaScript: openOther('../linklib/finance.htm')" onMouseOver="window.status='Display details about this data set.'"
+            onMouseOut="window.status=''">Sasuser.Finance</a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+        <li>Print the data sets <STRONG>Sasuser.Repertory</STRONG>, <STRONG>Sasuser.Company</STRONG>, 
+          and <STRONG>Sasuser.Finance</STRONG> and see how the data is sorted. 
+          Look over the data carefully, checking for potential problems such as 
+          <BR>
+          <BR>
+          <UL>
+            <LI>variables that have the same name but that represent different 
+              data 
+            <LI> same-named variables that have the same data but different attributes 
+              (such as length or type). 
+          </UL>
+          <BR>
+          <LI>Copy the program below and paste it into the code editing window. 
+            <PRE><FONT color="#003399">data work.finrep;</FONT>
+<FONT color="#003399">   merge sasuser.repertory</FONT>
+<FONT color="#003399">         sasuser.finance </FONT>
+<FONT color="#003399">         sasuser.company;</FONT>
+<FONT color="#003399">   by ssn;</FONT>
+<FONT color="#003399">run;</FONT></PRE>
+        <LI>Modify the program as necessary to create an output data set that 
+          contains all variables and observations from the input data sets. <BR>
+          <BR>
+        <LI>Submit the program and view log messages about the DATA step. <STRONG>Work.Finrep</STRONG> 
+          should contain 17 observations and 10 variables. <BR>
+          <BR>
+        <LI>Print <STRONG>Work.Finrep</STRONG> and scroll through the output. 
+          Does the new data set contain all data from the input data sets?
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

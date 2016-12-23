@@ -1,0 +1,130 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='Submit the following program:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='ods listing close;<br>';
+solutionText+='ods html path=\'c:\\data\' body=\'active.html\';<br>';
+solutionText+='proc format;<br>';
+solutionText+='   value $colsex \'F\'=\'lipk\'<br>';
+solutionText+='                 \'M\'=\'pab\';<br>';
+solutionText+='   value agealert low-29=\'lio\'<br>';
+solutionText+='                  other=\'vpag\';<br>';
+solutionText+='run;<br>';
+solutionText+='proc tabulate data=sasuser.admit format=4.1;<br>';
+solutionText+='   var age / style=&lt;parent&gt;;<br>';
+solutionText+='   class sex actlevel / style={background=vpag};<br>';
+solutionText+='   classlev sex / style={background=$colsex.};<br>';
+solutionText+='   classlev actlevel / style=&lt;parent&gt;;<br>';
+solutionText+='   table sex*actlevel*age*{style={background=agealert.<br>';
+solutionText+='         font_weight=bold foreground=black}},<br>';
+solutionText+='         mean / box={style={background=vpag}};<br>';
+solutionText+='   keyword mean / style={background=vpag};<br>';
+solutionText+='run;<br>';
+solutionText+='ods html close;<br>';
+solutionText+='ods listing;<br></pre></font>';  
+   
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Using 
+      the <a href="JavaScript: openOther('../linklib/admit.htm')" onMouseOver="window.status='Display a data set description and sample data.';"
+	    onMouseOut="window.status=''">Sasuser.Admit</a> data set, add trafficlighting 
+      to cells.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy the following program and paste it into the code editing window.<br>
+          <pre><font color="#003399">ods listing close;</font>
+<font color="#003399">ods html path='</font><strong><font color="Red">?</font></strong><font color="#003399">' body='</font><strong><font color="Red">?</font></strong><font color="#003399">';</font>
+<font color="#003399">proc format;</font>
+<font color="#003399">   value $colsex 'F'='lipk'</font>
+<font color="#003399">                 'M'='vpab';</font>
+<font color="#003399">run;</font>
+<font color="#003399">proc tabulate data=sasuser.admit format=4.1;</font>
+<font color="#003399">   var age / style=&lt;parent&gt;;</font>
+<font color="#003399">   class sex actlevel / style={background=vpag};</font>
+<font color="#003399">   classlev sex / style={background=$colsex.};</font>
+<font color="#003399">   classlev actlevel / style=&lt;parent&gt;;</font>
+<font color="#003399">   table sex*actlevel*age*{style={font_weight=bold</font>
+<font color="#003399">         foreground=black}},mean /</font>
+<font color="#003399">         box={style={background=vpag}};</font>
+<font color="#003399">   keyword mean / style={background=vpag};</font>
+<font color="#003399">run;</font>
+<font color="#003399">ods html close;</font>
+<font color="#003399">ods listing;</font>
+</pre>
+        <LI>Replace the question marks (<FONT COLOR="Red"><STRONG>?</STRONG></FONT>) 
+          with PATH= and BODY= values that conform to your operating system's 
+          file structure. Remember that you can use the URL= suboption in PATH=, 
+          BODY=, or both.<BR>
+          <BR>
+        <LI>Submit the program and examine its output in your browser. <BR>
+          <BR>
+        <LI>Create a user-defined 
+          format for trafficlighting. Name the format <CODE>AGEALERT</CODE> and 
+          give it these values:<BR>
+          <BR>
+          <UL>
+            <LI> <STRONG>low-29='lio'</STRONG> (SAS/GRAPH color name light orange)<BR>
+              <BR>
+            <LI> <STRONG>other='vpag'</STRONG> (SAS/GRAPH color name very pale 
+              green)<BR>
+              <BR>
+          </UL>
+        <LI> Apply the format by adding it to the STYLE= option that is attached 
+          to the <CODE>Age</CODE> variable in the TABLE statement. Use <CODE>AGEALERT</CODE> 
+          as the value of the <font face="Courier New, Courier, mono">background</font> 
+          attribute. <BR>
+          <BR>
+        <LI> Submit the program and examine its output in your browser.
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

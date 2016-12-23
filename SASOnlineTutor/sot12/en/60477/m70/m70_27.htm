@@ -1,0 +1,133 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      and Grouping Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Number of Arguments and Summary Function Processing</h2>
+        <p>Summary functions specify one or more arguments in parentheses. In 
+          the examples shown in this lesson, the arguments are always columns 
+          in the table being queried. </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The ANSI-standard summary functions, such as AVG and COUNT, 
+        can only be used with a single argument. The SAS summary functions, such 
+        as MEAN and N, can be used with either single or multiple arguments. </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>The following chart shows how the number of columns specified as arguments 
+        affects the way that PROC SQL calculates a summary function.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Number of Arguments and Summary Function Processing">
+    <tr align="left" valign="top" bgcolor="#F7F7DE"> 
+      <th><font size="-1">If a summary function&nbsp;...</font></th>
+      <th><font size="-1">Then the calculation is&nbsp;...</font></th>
+      <th><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td>specifies <strong>one column</strong> as argument</td>
+      <td>performed <strong>down the column</strong></td>
+      <td><pre><font color="#003399">proc sql;
+   select <strong>avg(salary)</strong>as AvgSalary
+      from sasuser.payrollmaster;</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td>specifies<strong> multiple columns</strong> as arguments</td>
+      <td>performed <strong>across columns</strong> for each row</td>
+      <td><pre><font color="#003399">proc sql outobs=10;
+   select <strong>sum(boarded,transferred,nonrevenue)</strong>
+          as Total
+      from sasuser.marchflights;</font></pre></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2><a name="groupby"></a>Groups and Summary Function Processing</h2>
+        <p>Summary functions perform calculations on groups of data. When PROC 
+          SQL processes a summary function, it looks for a GROUP BY clause:</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Groups and Summary Function Processing">
+    <tr align="left" valign="top" bgcolor="#F7F7DE"> 
+      <th width="20%"><font size="-1">If a <nobr>GROUP&nbsp;BY</nobr> clause&nbsp;...</font></th>
+      <th width="37%"><font size="-1">Then PROC SQL&nbsp;...</font></th>
+      <th width="43%"><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td>is <strong>not present</strong> in the query</td>
+      <td>applies the function to <strong>the entire table</strong></td>
+      <td><pre><font color="#003399">proc sql outobs=10;
+   select jobcode, <strong>avg(salary)</strong>
+          as AvgSalary
+      from sasuser.payrollmaster;</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td>is <strong>present</strong> in the query</td>
+      <td>applies the function to <strong>each group specified in the GROUP BY 
+        clause</strong></td>
+      <td> <pre><font color="#003399">proc sql outobs=10;
+   select jobcode, <strong>avg(salary)</strong>
+          as AvgSalary
+      from sasuser.payrollmaster
+      <strong>group by jobcode;</strong></font></pre> 
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="37"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td width="233" valign="top">If a query contains a GROUP BY clause, all columns 
+              in the SELECT clause that do not contain a summary function should 
+              be listed in the GROUP BY clause or unexpected results might be 
+              returned.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,227 @@
+<html><!-- InstanceBegin template="/Templates/eg_stepByStep.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_stepByStepTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Generating 
+      and Editing Query Code<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_stepByStepTopNav2();</script>
+	
+	<!-- InstanceBeginEditable name="task_desc" -->Edit 
+      and run the query code.<!-- InstanceEndEditable -->
+			
+<script>writeeg_stepByStepTopNav3();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <div id="le2_eg2" class="eg_div">
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td><ol>
+            <li> In the Project window, double-click the code item under the query 
+              that you just ran.<br>
+              <br>
+            </li>
+            <li>Scroll through the code to the PROC SQL statement. Notice that 
+              the SELECT statement lists the columns to include in the query results. 
+              The CASE statement writes the word <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">Reorder</font> 
+              in the <strong>StockLevel</strong> column for each row in which 
+              zero is greater than or equal to the result of the expression.</li>
+            </ol></td>
+    </tr>
+  </table>
+    <br>
+    <a href="JavaScript: openImage('images/m301_39a.gif',556,239)" onMouseOver="window.status='';return true"><img src="images/m301_39as.gif" alt="SQL code generated from the task" width="350" height="150" border="0"></a> 
+    <br>
+  <em><font color="#003399">Click to view the full window.</font></em> 
+    <br>
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li value="3">Place your cursor after <font color="#003399"><code>'Reorder' 
+              </code></font>in the code and press the space bar. A window opens 
+              to prompt you whether to add a modifiable code window. Click <strong>Yes</strong>.<br>
+              <br>
+            </li>
+            <li>You need to use an ELSE statement to specify what to do when the 
+              result of the expression is less than zero (when there is stock 
+              and no need to reorder). In this case, you just want the value of 
+              the expression placed in the StockLevel column for that row. Copy 
+              and paste the following ELSE right before the END statement. 
+              <p><code><font color="#003399">else put((Products.UnitsInStock + 
+                Products.UnitsOnOrder) - Products.ReorderLevel,8.)<br>
+                <br>
+                </font></code>Note that the PUT function is used to convert the 
+                numeric result to a character value.</p>
+            </li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+    <a href="JavaScript: openImage('images/m301_39b.gif',556,279)" onMouseOver="window.status='';return true"><img src="images/m301_39bs.gif" alt="Generated code with user code added" width="350" height="176" border="0"></a> 
+    <br>
+  <em><font color="#003399">Click to view the full window.</font></em> 
+    <br>
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li value="5">Now remove unwanted columns. In the final report you 
+              want only the <strong>ProductName</strong> and <strong>StockLevel</strong> 
+              columns. Remember that because your modified code is detached from 
+              the query, you can't remove these columns by using the Query Builder. 
+              In the SELECT statement, highlight the code for the three columns 
+              that you want to remove and press DELETE.</li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+    <a href="JavaScript: openImage('images/m301_39c.gif',556,279)" onMouseOver="window.status='';return true"><img src="images/m301_39cs.gif" alt="Edits to generated code" width="350" height="176" border="0"></a> 
+    <br>
+  <em><font color="#003399">Click to view the full window.</font></em> 
+    <br>
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li value="6">Press F3 to run the code<strong></strong>. The results 
+              open and you can see that you have modified the query code to get 
+              exactly the report that you wanted.</li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+    <a href="JavaScript: openImage('images/m301_39d.gif',491,495)" onMouseOver="window.status='';return true"><img src="images/m301_39ds.gif" alt="Results of running query code" width="350" height="353" border="0"></a> 
+    <br>
+  <em><font color="#003399">Click to view the full window.</font></em>
+    <br>
+    <br>
+    <br>
+    <span id="divider" class="eg_div"> 
+    <hr width="85%">
+    </span> </div>
+  
+  <span id="divider" class="eg_div"><br>
+  </span>
+  
+  <div id="eg3" class="eg_div">
+
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td><ol>
+            <li> In the Project window, right-click <strong>Query1</strong> and 
+              select <strong>Add as Code Template</strong>.<br>
+              <br>
+            </li>
+            <li>Take a look at the SQL procedure. Notice that the SELECT statement 
+              lists the columns to include in the query results. </li>
+            </ol></td>
+    </tr>
+  </table>
+    <br>
+   <img src="images3/m301_39a.gif" alt="SQL code generated from the task" width="541" height="267" border="0"> 
+    <br>
+  
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li value="3"> You will use a CASE statement to write the word <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">Reorder</font> 
+              in the <strong>StockLevel</strong> column for each row in which 
+              zero is greater than or equal to the result of the expression. You 
+              also need to use an ELSE statement to specify what to do when the 
+              result of the expression is greater than zero (when there is stock 
+              and no need to reorder). In this case, you just want the value of 
+              the expression placed in the StockLevel column for that row.<br>
+              <br>
+              Copy and paste the following statements to replace the existing 
+              expression for the StockLevel column. 
+              <p><code><font color="#003399"> (CASE <br>
+                WHEN 0 >= (Products.UnitsInStock + Products.UnitsOnOrder) <br>
+                - Products.ReorderLevel THEN 'Reorder' <br>
+                else put((Products.UnitsInStock + Products.UnitsOnOrder) - Products.ReorderLevel,8.) 
+                <br>
+                END)AS StockLevel</font></code></p>
+              Note that the PUT function is used to convert the numeric result 
+              to a character value. </li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+  <img src="images3/m301_39b.gif" alt="Generated code with user code added" width="568" height="328" border="0"> 
+    <br>
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li value="5">Now remove unwanted columns. In the final report you 
+              want only the <strong>ProductName</strong> and <strong>StockLevel</strong> 
+              columns. Remember that because your modified code is detached from 
+              the query, you can't remove these columns by using the Query Builder. 
+              In the SELECT statement, highlight the code for the three columns 
+              that you want to remove and press DELETE.</li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+<img src="images3/m301_39c.gif" alt="Edits to generated code" width="570" height="331" border="0">
+    <br>
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li value="6">Press F8 to run the code<strong></strong>. The results 
+              open and you can see that you have modified the query code to get 
+              exactly the report that you wanted.</li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+    <a href="JavaScript: openImage('images/m301_39d.gif',491,495)" onMouseOver="window.status='';return true"><img src="images3/m301_39d.gif" alt="Results of running query code" width="485" height="447" border="0"></a> 
+    <br>
+  <em><font color="#003399">Click to view the full window.</font></em>
+    <br>
+    <br>
+    <br>
+  
+  </div>
+
+  <!-- InstanceEndEditable --> 
+</center>
+<p>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

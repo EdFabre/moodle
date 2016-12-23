@@ -1,0 +1,157 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Displaying 
+      the Structure of a Table<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Sometimes you want to look at the structure (the columns and column 
+          attributes) of a table that you created or of a table that was created 
+          by someone else. When you create a table, the CREATE TABLE statement 
+          writes a message to the SAS log, which indicates the number of rows 
+          and columns in the table that was created. However, that message does 
+          not contain information about column attributes. </p>
+        <p>If you are working with an existing table that contains rows of data, 
+          you can use a PROC SQL query to generate a report that shows all of 
+          the columns in a table. However, the report does not list the column 
+          attributes, and a PROC SQL query will not generate output for an empty 
+          table.</p>
+        <p>To display a list of columns and column attributes for one or more 
+          tables in the SAS log, regardless of whether the tables contain rows 
+          of data, you can use the DESCRIBE TABLE statement in PROC SQL.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, DESCRIBE TABLE statement">
+    <tr> 
+      <td align="left"><p><strong>General form, DESCRIBE TABLE statement:</strong> 
+        </p>
+        <blockquote><font color="#003399"><strong>DESCRIBE TABLE </strong> <em>table-name-1&lt;, 
+          ... table-name-n&gt;</em><nobr><strong>;</strong></nobr></font></blockquote>
+        <p> where <font color="#003399"><em>table-name</em></font> specifies the 
+          table to be described as one of the following:</p>
+        <ul>
+          <li>a one-level name</li>
+          <li> a two-level <strong>libref.table</strong> name</li>
+          <li> a physical pathname that is enclosed in single quotation marks. 
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The DESCRIBE TABLE statement writes a CREATE TABLE statement that 
+          includes column definitions to the SAS log for the specified table, 
+          regardless of how the table was originally created. For example, if 
+          the DESCRIBE TABLE statement specifies a table that was created with 
+          the DATA step, a CREATE TABLE statement will still be displayed. </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The DESCRIBE TABLE statement also displays information 
+        about any indexes that are defined on a table. You can learn more about 
+        using the DESCRIBE TABLE statement to display information about indexes 
+        in the lesson <strong> 
+        <script>document.write(m74title);</script></strong>. </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="Tip:"></td>
+      <td valign="top">As an alternative to the DESCRIBE TABLE statement, you 
+        can use other SAS procedures, like <a href="JavaScript: openOther('../linklib/contents.htm')">PROC 
+        CONTENTS</a>, to list a table's columns and column attributes. PROC CONTENTS 
+        generates a report instead of writing a message to the SAS log, as the 
+        DESCRIBE TABLE statement does. You can learn more about using PROC CONTENTS 
+        in the lesson <strong> 
+        <script>document.write(m54title);</script></strong>.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+        <p> Earlier in this lesson, the empty table <strong>Work.Discount</strong> 
+          was created by using the CREATE TABLE statement and column specifications 
+          shown below:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        create table work.discount 
+               (Destination char(3),
+               BeginDate num format=date9.,
+               EndDate num format=date9.,
+               Discount num);</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The following DESCRIBE TABLE statement writes a CREATE TABLE statement 
+          to the SAS log for the table <strong>Work.Discount</strong>:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        describe table work.discount;</font></pre></td>
+    </tr>
+  </table>
+  <p> 
+  <div align="center">SAS Log<br>
+  </div>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>NOTE: SQL table WORK.DISCOUNT was created like:</pre>
+        <pre><strong>create table WORK.DISCOUNT( bufsize=4096 )
+            (<br>            Destination char(3),
+            BeginDate num format=DATE9.,
+            EndDate num format=DATE9.,
+            Discount num
+            )</strong></pre></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

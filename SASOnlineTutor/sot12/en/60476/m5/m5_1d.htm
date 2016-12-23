@@ -1,0 +1,121 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --> 
+<TITLE>Enhanced Tabular Report </TITLE>
+<!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Enhanced 
+      Tabular Report <!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<p> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>You can enhance your tabular report with titles, footnotes, and labels.</td>
+    </tr>
+  </table>
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>
+        <pre>     <font color="#003399">proc tabulate data=clinic.admit;</font>
+<font color="#003399">        class sex;</font>
+<font color="#003399">        var height weight;</font>
+<font color="#003399">        table sex all,(height weight)*mean;</font>
+<font color="#003399">        <strong>title1 'Average Height and Weight for Males and Females';</strong></font>
+<font color="#003399"><strong>        footnote1 'March 12, 2002;</strong></font>
+<font color="#003399"><strong>        label sex='Sex of Patient'</strong></font>
+<font color="#003399"><strong>              height='Height'</strong></font>
+<font color="#003399"><strong>              weight='Weight';</strong></font>
+<font color="#003399"><strong>        keylabel mean='Average'</strong></font>
+<font color="#003399"><strong>                 all='All Patients';</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+
+  <table cellspacing=1 border=0 width=100% cellpadding=1 rules=NONE frame=VOID>
+    <tr> 
+      <td align="CENTER"><font face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Average 
+        Height and Weight for Males and Females</i></b></font></td>
+    </tr>
+  </table>
+  <p> 
+  <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC TABULATE output">
+    <thead> 
+    <tr> 
+      <td rowspan=2 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>&nbsp;</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Height</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Weight</b></font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Average</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Average</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>Sex of Patient</b></font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 64.82</font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 141.73</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>F</b></font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>M</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 72.00</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 172.80</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>All Patients</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 68.24</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 156.52</font></td>
+    </tr>
+    </tbody> <tfoot> </tfoot> 
+  </table>
+  <p> 
+  <table cellspacing="1" cellpadding="1" border="0" width="100%">
+    <tr> 
+      <td align="CENTER"><font face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>March 
+        12, 2002</i></b></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center">
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

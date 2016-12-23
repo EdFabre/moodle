@@ -1,0 +1,269 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Group 
+      Processing Using the CLASS Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p> You will often want statistics for grouped observations, instead of 
+        for observations as a whole. For example, census numbers are more useful 
+        when grouped by region than when viewed as a national total. To produce 
+        separate analyses of grouped observations, add a <strong>CLASS statement</strong> 
+        to the MEANS procedure.
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, CLASS statement">
+    <tr> 
+      <td><strong>General form, CLASS statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>CLASS </strong><em>variable(s)</em><strong>;</strong></font></nobr> 
+        </blockquote>
+        <p> where <font color="#003399"><em>variable(s)</em></font> specifies 
+          category variables for group processing.
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>PROC MEANS does not generate statistics for CLASS variables, because 
+        their values are used only to categorize data. CLASS variables can be 
+        either character or numeric, but they should contain a limited number 
+        of discrete values that represent meaningful groupings. 
+          <p> The output of the program shown below is categorized by values of 
+            the variables <code>Survive</code> and <code>Sex</code>. The order 
+            of the variables in the CLASS statement determines their order in 
+            the output table. 
+          <pre><font color="#003399">     proc means data=clinic.heart maxdec=1;</font>
+<font color="#003399">        var arterial heart cardiac urinary;</font>
+<font color="#003399">        <strong>class survive sex;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellspacing="1" rules="GROUPS" frame="BOX" border="1" cellpadding="2"
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC MEANS Output">
+    <thead> 
+    <tr> 
+      <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Survive</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Sex</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b><nobr>N Obs</nobr></b></font></td>
+      <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Variable</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>N</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Mean</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><nobr><b>Std Dev</b></nobr></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Minimum</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Maximum</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">DIED</font></td>
+      <td align=RIGHT valign=TOP bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">1</font></td>
+      <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">4</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">Arterial<br>
+        Heart<br>
+        Cardiac<br>
+        Urinary</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">4<br>
+        4<br>
+        4<br>
+        4</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">92.5<br>
+        111.0<br>
+        176.8<br>
+        98.0</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">10.5<br>
+        53.4<br>
+        75.2<br>
+        186.1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">83.0<br>
+        54.0<br>
+        95.0<br>
+        0.0</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">103.0<br>
+        183.0<br>
+        260.0<br>
+        377.0</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">&nbsp;</font></td>
+      <td align=RIGHT valign=TOP bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">2</font></td>
+      <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">6</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">Arterial<br>
+        Heart<br>
+        Cardiac<br>
+        Urinary</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">6<br>
+        6<br>
+        6<br>
+        6</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">94.2<br>
+        103.7<br>
+        318.3<br>
+        100.3</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">27.3<br>
+        16.7<br>
+        102.6<br>
+        155.7</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">72.0<br>
+        81.0<br>
+        156.0<br>
+        0.0</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">145.0<br>
+        130.0<br>
+        424.0<br>
+        405.0</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">SURV</font></td>
+      <td align=RIGHT valign=TOP bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">1</font></td>
+      <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">5</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">Arterial<br>
+        Heart<br>
+        Cardiac<br>
+        Urinary</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">5<br>
+        5<br>
+        5<br>
+        5</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">77.2<br>
+        109.0<br>
+        298.0<br>
+        100.8</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">12.2<br>
+        32.0<br>
+        139.8<br>
+        60.2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">61.0<br>
+        77.0<br>
+        66.0<br>
+        44.0</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">88.0<br>
+        149.0<br>
+        410.0<br>
+        200.0</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">&nbsp;</font></td>
+      <td align=RIGHT valign=TOP bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">2</font></td>
+      <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">5</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">Arterial<br>
+        Heart<br>
+        Cardiac<br>
+        Urinary</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">5<br>
+        5<br>
+        5<br>
+        5</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">78.8<br>
+        100.0<br>
+        330.2<br>
+        111.2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">6.8<br>
+        13.4<br>
+        87.0<br>
+        152.4</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">72.0<br>
+        84.0<br>
+        256.0<br>
+        12.0</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">87.0<br>
+        111.0<br>
+        471.0<br>
+        377.0</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

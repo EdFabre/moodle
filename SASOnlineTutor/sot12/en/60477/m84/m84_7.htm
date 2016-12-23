@@ -1,0 +1,170 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Sorts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using FIRST.<em> </em>and LAST.</h2>
+        <p>The NOTSORTED option can be used with <code>FIRST.<em>variable</em></code> 
+          and <code>LAST.<em>variable</em>,</code> which are temporary automatic 
+          variables in the PDV that identify the first and last observations in 
+          each BY group.</p></td>
+    </tr>
+  </table>
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> These temporary variables are available for DATA step programming but 
+        are not added to the output data set. Their values indicate whether an 
+        observation is 
+        <ul>
+          <li>the first one in a BY group </li>
+          <li>the last one in a BY group </li>
+          <li>neither the first nor the last one in a BY group </li>
+          <li>both first and last, as is the case when there is only one observation 
+            in a BY group. </li>
+        </ul>
+        <p>You can take actions conditionally, based on whether you are processing 
+          the first observation of a BY group or the last. </p>
+        <p>When an observation is the first in a BY group, SAS sets the value 
+          of <code>FIRST.<em>variable</em></code> to <em>1</em>. For all other 
+          observations in the BY group, the value of <code>FIRST.<em>variable</em></code> 
+          is <em>0</em>. Likewise, if an observation is the last in a BY group, 
+          SAS sets the value of <code>LAST.<em>variable</em></code> to <em>1</em>. 
+          For all other observations in the BY group, the value of <code>LAST.<em>variable</em></code> 
+          is <em>0</em>. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>The following program creates a new SAS data set <strong>Work.New</strong>. 
+          In the input data set, observations that have the same value for <code>Ordername</code> 
+          (<em>Retail</em>, <em>Catalog</em>, or <em>Internet</em>) are grouped 
+          together. </p>
+        <pre>     <font color="#003399">data work.new;<br>        set company.sales<br>        by ordername notsorted;<br>     run;</font></pre> 
+        <p>When the program is submitted, SAS creates the temporary variables<code> 
+          FIRST.Ordername</code> and <code>LAST.Ordername</code>. These variables 
+          can be used during the DATA step, but they do not become variables in 
+          the new data set. The value <em>1</em> flags the beginning and end of 
+          each value in the BY group: </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="FIRST. and LAST. values">
+    <thead>
+      <tr valign="top"> 
+        <td colspan="3" align=CENTER bgcolor="#F7F7DE"><strong><font color="#003399">Observations</font></strong></td>
+        <td colspan="2" align=CENTER bgcolor="#F7F7DE"><strong><font color="#003399">Corresponding 
+          FIRST. and LAST. Values</font></strong></td>
+      </tr>
+      <tr valign="top"> 
+        <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></td>
+        <td align=LEFT bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Customer_ID</b></font></td>
+        <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>OrderName</b></font></td>
+        <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FIRST.OrderName</b></font></td>
+        <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>LAST.OrderName</b></font></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr valign="top"> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11791</font></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Retail</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          0</font></td>
+      </tr>
+      <tr valign="top"> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8406</font></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Retail</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          0</font></td>
+      </tr>
+      <tr valign="top"> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">71020</font></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Retail</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></td>
+      </tr>
+      <tr valign="top"> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">21735</font></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Retail</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+      </tr>
+      <tr valign="top"> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">82141</font></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Catalog</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          0</font></td>
+      </tr>
+      <tr valign="top"> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">30993</font></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Catalog</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1</font></td>
+      </tr>
+      <tr valign="top"> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">7</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">579</font></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Internet</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          0</font></td>
+      </tr>
+      <tr valign="top"> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">77184</font></td>
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Internet</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">0</font></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+      </tr>
+    </tbody>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

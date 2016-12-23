@@ -1,0 +1,466 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the EXCEPT Set Operator<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <h2> Using the Keyword ALL with the EXCEPT Operator </h2>
+        <p> To select <strong>all rows</strong> in the <strong>first</strong> 
+          table (both unique and duplicate) that do <strong>not</strong> have 
+          a matching row in the <strong>second</strong> table, add the keyword 
+          <strong>ALL</strong> after the EXCEPT set operator. The modified PROC 
+          SQL set operation, the tables <strong>One</strong> and <strong>Two</strong>, 
+          and the output are shown below:</p></td>
+    </tr>
+  </table>
+  <p> 
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td valign="top"> <pre><font color="#003399">proc sql;
+   select *
+      from one
+   except <strong>all</strong>
+   select *
+      from two;</font></pre></td>
+      <td align="center" valign="top"> One 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">1</font></strong></td>
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">a</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">1</font></strong></td>
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">a</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center bgcolor="#cccc99"><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">1</font></strong></td>
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">b</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">2</font></strong></td>
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">c</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#FFFFFF"> 
+              <td align=center><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">3</font></td>
+              <td align=center><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">v</font></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">4</font></strong></td>
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">e</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">6</font></strong></td>
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">g</font></strong></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td align="center" valign="top"> Two 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top" bgcolor="#FFFFFF"> 
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">1</font></td>
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">x</font></td>
+            </tr>
+            <tr valign="top" bgcolor="#FFFFFF"> 
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">2</font></td>
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">y</font></td>
+            </tr>
+            <tr valign="top" bgcolor="#FFFFFF"> 
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">3</font></td>
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">z</font> 
+              </td>
+            </tr>
+            <tr valign="top" bgcolor="#FFFFFF"> 
+              <td align=center><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">3</font></td>
+              <td align=center><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">v</font></td>
+            </tr>
+            <tr valign="top" bgcolor="#FFFFFF"> 
+              <td align=center><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">5</font></td>
+              <td align=center><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">w</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <br>
+  <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+    <thead>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>A</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, sans-serif" size="2">a</font></TD>
+      </TR>
+      <TR align="center" valign="top" bgcolor="#EFEFEF"> 
+        <TD><font  face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+        <TD><font  face="Arial, Helvetica, sans-serif" size="2">a</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">1</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">b</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, sans-serif" size="2">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, sans-serif" size="2">c</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">4</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">e</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">6</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">g</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>The output now contains six rows. PROC SQL has again eliminated the 
+        one row in table <strong>One</strong> (the fifth row) that has a matching 
+        row in table <strong>Two</strong> (the fourth row). Remember that when 
+        the keyword ALL is used with the EXCEPT operator, PROC SQL does <strong>not</strong> 
+        make an extra pass through the data to remove duplicate rows within table 
+        <strong>One</strong>. Therefore, the second row in table <strong>One</strong>, 
+        which is a duplicate of the first row, is now included in the output.</td>
+    </tr>
+  </table>
+  <p>&nbsp; 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2><a name="corr"></a>Using the Keyword CORR with the EXCEPT Operator 
+        </h2>
+        <p> To display both of the following</p>
+        <ul>
+          <li>only columns that have the <strong>same</strong> <strong>name</strong></li>
+          <li>all <strong>unique</strong> <strong>rows</strong> in the <strong>first</strong> 
+            table that do <strong>not</strong> appear in the <strong>second</strong> 
+            table </li>
+        </ul>
+        <p>add the keyword <strong>CORR</strong> after the set operator. The modified 
+          PROC SQL set operation, the tables <strong>One</strong> and <strong>Two</strong>, 
+          and the output are shown below:<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td valign="top"> <pre><font color="#003399">proc sql;
+   select *
+      from one
+   except <strong>corr</strong>
+   select *
+      from two;
+</font></pre></td>
+      <td align="center" valign="top"> One 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">a</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">a</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">b</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">c</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">v</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font size="2" face="Arial, Helvetica, sans-serif">4</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">e</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font size="2" face="Arial, Helvetica, sans-serif">6</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">g</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td align="center" valign="top"> Two 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">x</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">y</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">z</font> 
+              </td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">v</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">5</font></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">w</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+    <thead>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">4</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">6</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p><code>X</code> is the only column that has the same name in both 
+          tables, so <code>X</code> is the only column that PROC SQL examines 
+          and displays in the output. </p>
+        <p>In the first pass, PROC SQL eliminates the second and third rows of 
+          table <strong>One</strong> from the output because they are not unique 
+          within the table; they contain values of <code>X</code> that duplicate 
+          the value of <code>X</code> in the first row of table <strong>One</strong>. 
+          In the second pass, PROC SQL eliminates the first, fourth, and fifth 
+          rows of table <strong>One</strong> because each contains a value of 
+          <code>X</code> that matches a value of <code>X</code> in a row of table 
+          <strong>Two</strong>. The output displays the two remaining rows in 
+          table <strong>One, </strong>the rows<strong> </strong> that are unique 
+          in table <strong>One</strong> and that do <strong>not</strong> have 
+          a row in table <strong>Two </strong>that has a matching value of <code>X</code>. 
+        </p>
+        <h2><br>
+          <a name="allcorr"></a>Using the Keywords ALL and CORR with the EXCEPT 
+          Operator </h2>
+        <p>If the keywords ALL and CORR are used together, the EXCEPT operator 
+          will display all <strong>unique and duplicate</strong> rows in the <strong>first</strong> 
+          table that do <strong>not</strong> appear in the <strong>second</strong> 
+          table, and will overlay and display only columns that have the <strong>same 
+          name</strong>. The modified PROC SQL set operation, the tables <strong>One</strong> 
+          and <strong>Two</strong>, and the output are shown below:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td valign="top"> <pre><font color="#003399">proc sql;
+   select *
+      from one
+   except <strong>all corr</strong>
+   select *
+      from two;
+</font></pre></td>
+      <td align="center" valign="top"> One 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">a</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font size="2" face="Arial, Helvetica, sans-serif">1</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">a</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font face="Arial, Helvetica, sans-serif" size="2">1</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">b</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">c</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">v</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font size="2" face="Arial, Helvetica, sans-serif">4</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">e</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font size="2" face="Arial, Helvetica, sans-serif">6</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">g</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td align="center" valign="top"> Two 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">x</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">y</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">z</font> 
+              </td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">v</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">5</font></td>
+              <td align=center bgcolor="#FFFFFF"><font color="#000000" size="2" face="Arial, Helvetica, sans-serif">w</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <p>&nbsp; 
+  <CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL output">
+      <thead>
+        <TR> 
+          <TD width="40" ALIGN=center VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399" title="PROC SQL Output"><b>X</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=center bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=center bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=center bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">4</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=center bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">6</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    </font> 
+  </CENTER>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Once again, PROC SQL looks at and displays only the column that has 
+          the same name in the two tables: <code>X</code>. Because the ALL keyword 
+          is used, PROC SQL does <strong>not</strong> eliminate any duplicate 
+          rows in table <strong>One</strong>. Therefore, the second and third 
+          rows in table <strong>One</strong>, which are duplicates of the first 
+          row in table <strong>One</strong>, appear in the output. PROC SQL does 
+          eliminate the first, fourth, and fifth rows in table <strong>One</strong> 
+          from the output because for each one of these three rows there is a 
+          corresponding row in table <strong>Two</strong> that has a matching 
+          value of <code>X</code>.</p>
+        <p>As this example shows, when the ALL keyword is used with the EXCEPT 
+          operator, a row in table <strong>One</strong> cannot be eliminated from 
+          the output unless it has a <strong>separate</strong> matching row in 
+          table <strong>Two</strong>. Table <strong>One</strong> contains three 
+          rows in which the value of <code>X</code> is <em>1</em>, but table <strong>Two</strong> 
+          contains only one row in which the value of <code>X</code> is <em>1</em>. 
+          That one row in table <strong>Two</strong> causes the first of the three 
+          rows in table <strong>One</strong> that have a matching value of <code>X</code> 
+          to be eliminated from the output. However, table <strong>Two</strong> 
+          does <strong>not</strong> have two <strong>additional</strong> rows 
+          in which the value of <code>X</code> is <em>1</em>, so the other two 
+          rows in table <strong>One</strong> are not eliminated, and do appear 
+          in the output. </p>
+        </td>
+    </tr>
+  </table>
+  <p><br><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

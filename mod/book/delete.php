@@ -90,7 +90,6 @@ if ($chapter->subchapter) {
 echo '<br />';
 $continue = new moodle_url('/mod/book/delete.php', array('id'=>$cm->id, 'chapterid'=>$chapter->id, 'confirm'=>1));
 $cancel = new moodle_url('/mod/book/view.php', array('id'=>$cm->id, 'chapterid'=>$chapter->id));
-$title = format_string($chapter->title);
-echo $OUTPUT->confirm("<strong>$title</strong><p>$strconfirm</p>", $continue, $cancel);
+echo $OUTPUT->confirm("<strong>$chapter->title</strong><p>$strconfirm</p>", $continue, $cancel);
 
 echo $OUTPUT->footer();

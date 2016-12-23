@@ -1,0 +1,116 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Submitting 
+      the DATA Step Program<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <p align="center">&nbsp; 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Invalid Data</strong> </p>
+        <p> When you submit the revised DATA step and check the log, you see a 
+          note indicating that invalid data appears for the variable <code>RecHR 
+          </code>in line 14 of the raw data file, columns 35-37. 
+        <p> This note is followed by a column ruler and the actual data line that 
+          contains the invalid value for <code>RecHR</code>. </td>
+    </tr>
+  </table>
+  <p align="center"><br>
+    SAS Log 
+  <center>
+    <table BORDER cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: Invalid data for RecHR in line 14 35-37.
+RULE:     ----+----1----+----2----+----3----+----4----+----5---
+14        2575 Quigley, M           74  152 Q13 11 26 I 45
+ID=2575 Name=Quigley, M RestHR=74 MaxHR=152 RecHR=. TimeMin=11 
+TimeSec=26 Tolerance=I _ERROR_=1 
+_N_=14
+NOTE: 21 records were read from the infile TESTS.
+      The minimum record length was 80.
+      The maximum record length was 80.
+NOTE: The data set SASUSER.STRESS has 21 observations 
+      and 8 variables.
+NOTE: DATA statement used 0.13 seconds      
+</pre> 
+        </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">The value <em>Q13</em> is a data-entry error. It was 
+          entered incorrectly for the variable <code>RecHR</code>. 
+          <p> <code>RecHR </code>is a numeric variable, but <em>Q13</em> is not 
+            a valid number. So <code>RecHR</code> is assigned a missing value, 
+            as indicated in the log. Because <code>RecHR</code> is numeric, the 
+            missing value is represented with a period. 
+          <p> Notice, though, that the DATA step does not fail as a result of 
+            the invalid data but continues to execute. Unlike syntax errors, invalid 
+            data errors do not cause SAS to stop processing a program. 
+          <p> Assuming that you have a way to edit the file and can justify a 
+            correction, you can correct the invalid value and rerun the DATA step. 
+            If you did this, the log would then show that the data set <strong>Sasuser.Stress</strong> 
+            was created with 21 observations, 8 variables, &nbsp;and no messages 
+            about invalid data. </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <p align="center">SAS Log
+  <center>
+    <table BORDER cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: The infile TESTS2 is:
+      File Name=C:\My SAS Files\tests2.dat,
+      RECFM=V,LRECL=256
+
+NOTE: 21 records were read from the infile TESTS2.
+      The minimum record length was 80.
+      The maximum record length was 80.
+NOTE: The data set SASUSER.STRESS has 21 observations 
+      and 8 variables.
+NOTE: DATA statement used 0.14 seconds
+</pre> 
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

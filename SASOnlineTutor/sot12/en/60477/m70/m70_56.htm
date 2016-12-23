@@ -1,0 +1,144 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+<!--STEP 1-->
+solutionText='<ol><li>Write and submit the following PROC SQL query: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+="title 'Frequent Flyers Who Are Employees'; <br>";
+solutionText+='   select name<br>';
+solutionText+='      from sasuser.frequentflyers<br>';
+solutionText+='      where exists<br>';
+solutionText+='         (select *<br>';
+solutionText+='            from sasuser.staffmaster<br>';
+solutionText+="            where name=trim(lastname)||<br>";
+solutionText+="                       ', '||firstname)<br>";
+solutionText+='      order by name;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 1 in this practice.<br><br>';
+<!--STEP 2-->
+solutionText+='<li>Submit this modified query: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+="title 'Frequent Flyers Who Are Not Employees'; <br>";
+solutionText+='   select name<br>';
+solutionText+='      from sasuser.frequentflyers<br>';
+solutionText+='      where not exists<br>';
+solutionText+='         (select *<br>';
+solutionText+='            from sasuser.staffmaster<br>';
+solutionText+="            where name=trim(lastname)||<br>";
+solutionText+="                       ', '||firstname)<br>";
+solutionText+='      order by name;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 2 in this practice.<br><br>';
+<!--STEP 3-->
+solutionText+='<li>Submit this modified query: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+="title 'Frequent Flyers Who Are Not Employees'; <br>";
+solutionText+='   select count(*) as Count<br>';
+solutionText+='      from sasuser.frequentflyers<br>';
+solutionText+='      where not exists<br>';
+solutionText+='         (select *<br>';
+solutionText+='            from sasuser.staffmaster<br>';
+solutionText+="            where name=trim(lastname)||<br>";
+solutionText+="                       ', '||firstname);<br>";
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 3 in this practice. There are 70 frequent flyers who are not employees.<br><br>';
+<!--STEP 4-->
+solutionText+='<li>Submit the following statement:<br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='title;</pre></font></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Query 
+            the tables <a href="JavaScript: openOther('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a> 
+            and <a href="JavaScript: openOther2('../linklib/freqflyr.htm')">Sasuser.Frequentflyers</a> 
+            using a correlated subquery.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><table cellpadding="2" align="Center" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/tip.gif" alt="Tip: " width="20" height="20"></td>
+      <td>To view the expected PROC SQL output, click the related link in the 
+        text for each step.</td>
+  </tr>
+</table><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Create a PROC SQL query to list all frequent-flyer program members 
+            who are also airline employees. Use a correlated subquery, as follows:<br>
+            <br>
+            <ul>
+              <li>In the subquery, select <code> employee data from </code><strong>Sasuser.Staffmaster</strong>.<br>
+                <br>
+              <li>In the outer query, select <code>Name</code> from <strong>Sasuser.Frequentflyers</strong> 
+                for all employees whose name is returned from the subquery.<br>
+                <br>
+            </ul>
+            Note that the names are stored differently in the two tables. (Hint: 
+            Use the TRIM function and concatenation operator in the subquery.)<br>
+            <br>
+            Order the report by <code>Name</code>. Add the title <strong>Frequent 
+            Flyers Who Are Employees</strong>. Add a QUIT statement to the query. 
+            Submit the query and view the <a href="JavaScript: openOther('m70_56a.htm')">output</a>.<br>
+            <br>
+          <li>Modify the previous query to list all frequent-flyer program members 
+            who are <strong>not</strong> employees. Change the title to <strong>Frequent 
+            Flyers Who Are Not Employees</strong>. Submit the query and view the 
+            <a href="JavaScript: openOther('m70_56b.htm')">output</a>.<br>
+            <br>
+          <li>Modify the previous query to display the total number of frequent-flyer 
+            program members who are <strong>not</strong> employees. The output 
+            should display a single column called <code>Count</code>. Submit the 
+            query and view the <a href="JavaScript: openOther('m70_56c.htm')">output</a>.<br>
+            <br>
+          <li>Submit a null TITLE statement to cancel titles.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

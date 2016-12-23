@@ -1,0 +1,98 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>View the SAS log to examine the values of the macro variables that you created in the last practice.<br><br>';
+solutionText+='<li>Submit the following program: ';
+solutionText+='<font color="#003399"><pre>data unpaid;<br>';
+solutionText+='  set sasuser.register;<br>';
+solutionText+='  where paid=\'N\';<br>';
+solutionText+='  Begin=symget(\'start\'||left(course_number));<br>';
+solutionText+='run;</pre></font>';
+solutionText+='<li>Submit the following code:<br>';
+solutionText+='<font color="#003399"><pre>title;<br>';
+solutionText+='proc print data=unpaid;<br>';
+solutionText+='run;</pre></font>';
+solutionText+='Examine the output to verify that the data set was created and that ';
+solutionText+='it contains the new variable <code>Begin</code> whose values are all dates.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Resolve macro variables with the SYMGET function, 
+using the <a href="JavaScript: openOther('../linklib/register.htm')">Sasuser.Register</a> data set.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>In the <A HREF="m51_23.htm" onMouseOver="window.status='Go to the previous practice.';" onMouseOut="window.status=''" onClick="suggestBack()">previous 
+            practice</a> you created the macro variables <code>Start1</code> - 
+            <code>Start18</code>. The value of each variable is the starting date 
+            for the corresponding course number. You can view these variables 
+            in the SAS log if you need a reminder.<BR>
+            <BR>
+		<LI> Create a temporary data set named <strong>Unpaid</strong> that contains the observations for 
+the students in the 
+<strong>Sasuser.Register</strong> data set who have not yet paid their registration fee. 
+            <P>Create a new variable named <code>Begin</code> that indicates the 
+              starting date for the corresponding course number. You can obtain 
+              the value for the starting date from one of the macro variables 
+              that were referred to in step 1.
+<P>
+<table border="0" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="More Information"></td>
+                <td valign="top">Remember that you will need to left-align the value of 
+                  <code>Course_number</code> in order to concatenate it to the 
+                  string <code>start</code> when you indicate the name of the 
+                  macro variable in your statement.</td>
+    </tr>
+  </table> <br>
+	<li>Submit a null TITLE statement to clear any previous titles. Print the <strong>Unpaid</strong> data set and examine the output.
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

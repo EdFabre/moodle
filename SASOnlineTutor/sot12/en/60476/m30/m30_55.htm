@@ -1,0 +1,192 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Character Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td><strong></strong> 
+        <p><STRONG>Introduction to Modifying Character 
+        Values</STRONG> </p>
+      <P> This section teaches you how to use SAS functions to manipulate the 
+        values of character variables. After completing this section, you will 
+        be able to<BR>
+      <UL>
+        <LI> replace the contents of a character value 
+        <LI> trim trailing blanks from a character value 
+        <LI> search a character value and extract a portion of the value 
+        <LI> convert a character value to uppercase or lowercase. 
+      </UL>
+      <P> To begin, let's look at some of the modifications that need to be made 
+        to the character variables in <STRONG>Hrd.Temp</STRONG>. These modifications 
+        include<BR>
+      <UL>
+        <LI> separating the values of one variable into multiple variables </UL></td>
+  </tr>
+</table>
+<P align="center"> SAS Data 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>LastName</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FirstName</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>MiddleName</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+        <TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CICHOCK, 
+          ELIZABETH MARIE</font> <IMG src="../navimages/arrow.gif" border="0" height="10" width="14" alt="--&gt;"></TD>
+<TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CICHOCK</font></TD>
+<TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">ELIZABETH</font></TD>
+<TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">MARIE</font></TD>
+</TR><TR valign="top">
+        <TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BENINCASA, 
+          HANNAH LEE</font> <IMG src="../navimages/arrow.gif" border="0" height="10" width="14" alt="--&gt;"></TD>
+<TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BENINCASA</font></TD>
+<TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">HANNAH</font></TD>
+<TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">LEE</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD><UL>
+          <LI> replacing a portion of a character variable's values </UL></TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> SAS Data 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+        <TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6224549</font> 
+          <IMG src="../navimages/arrow.gif" border="0" height="10" width="14" alt="--&gt;"></TD>
+        <TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><strong>433</strong>4549</font></TD>
+</TR><TR valign="top">
+        <TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6223251</font> 
+          <IMG src="../navimages/arrow.gif" border="0" height="10" width="14" alt="--&gt;"></TD>
+        <TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><strong>433</strong>3251</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD><UL>
+          <LI> searching for a specific string within a variable's values. </UL></TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> SAS Data 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS data">
+<thead>
+<TR valign="top">
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Job</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">filing, administrative duties</font></TD>
+</TR><TR valign="top">
+<TD nowrap bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">bookkeeping, word processing, accounting</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD><STRONG>Character Functions</STRONG> <P> The character functions listed 
+          below can help you complete these tasks. You will learn about these 
+          functions as you continue this lesson.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE WIDTH="450" BORDER="1" CELLPADDING="5" CELLSPACING="0"
+  BGCOLOR="#FFFFFF" title="SAS character functions">
+    <TR bgcolor="#F7F7DE" valign="top"> 
+      <TD><STRONG>Function</STRONG></TD>
+      <TD><STRONG>Purpose</STRONG></TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><STRONG>SCAN</STRONG></TD>
+      <TD>returns a specified word from a character value.</TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><STRONG>SUBSTR</STRONG></TD>
+      <TD>extracts a substring or replaces character values.</TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><STRONG>TRIM</STRONG></TD>
+      <TD>trims trailing blanks from character values.</TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><STRONG>INDEX</STRONG></TD>
+      <TD>searches a character value for a specific string.</TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><STRONG>UPCASE</STRONG></TD>
+      <TD>converts all letters in a value to uppercase.</TD>
+    </TR>
+    <TR valign="top"> 
+      <TD><STRONG>LOWCASE</STRONG></TD>
+      <TD>converts all letters in a value to lowercase.</TD>
+    </TR>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

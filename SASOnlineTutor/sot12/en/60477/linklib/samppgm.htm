@@ -1,0 +1,117 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --> 
+<TITLE>Sample Program for z/OS (OS/390)</TITLE>
+<!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Sample 
+      Program for z/OS (OS/390)<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> The following program shows examples of platform-specific statements 
+      for creating ODS output in the z/OS operating environment. For more details, 
+      see the <font size="-1" face="Arial, Helvetica, sans-serif"> 
+      <!--doc reference-->
+      SAS documentation</font>.<font size="-1" face="Arial, Helvetica, sans-serif">&nbsp; 
+      </font></td>
+  </tr>
+</table>
+<p>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong><br>
+        </strong> 
+        <pre>/* Allocate a PDSE for the HTML output.              */
+
+<font color="#003399">filename pdsehtml '.example.htm' 
+                  dsntype=library dsorg=po
+                  disp=(new, catlg, delete);
+</font>
+/* Prevent error messages related to graph names.    */
+
+<font color="#003399">options fileext=ignore;</font>
+
+/* Create variables to contain link locations.       */
+
+<font color="#003399">data work.activity;
+   set sasuser.diabetes;
+   length DrillVar $ 30;
+   if sex='F' then 
+      drillvar='HREF="females.htm"';
+   if sex='M' then 
+      drillvar='HREF="males.htm"';
+run;
+</font>
+/* Specify the files to create for the HTML output.  */
+/* These files are PDSE members.                     */
+/* The PATH= option specifies the location for the   */
+/* HTML files. The URL= suboption on PATH= prevents  */
+/* information from PATH= from appearing in the      */
+/* links and references that ODS creates. The URLs   */
+/* will be the same as the URL= specifications.      */
+/* The RS= option creates HTML that you can modify   */
+/* in an editor and use on a z/OS (OS/390) web server.     */
+
+<font color="#003399">ods listing close;
+ods html path=pdsehtml(url=none)
+         frame='frame'(url='frame.htm')
+         contents='toc'(url='toc.htm')
+         body='htmlpage'(url='graph.htm')
+         rs=none;</font>
+
+/* Specify graphics options.                         */
+
+<font color="#003399">goptions device=gif xpixels=400 ypixels=300;
+</font>
+/* Create the graph and HTML file.                   */
+
+<font color="#003399">title 'Age Categories by Sex';
+proc gchart data=work.activity;
+   vbar age / subgroup=sex html=drillvar ;
+run;
+quit;
+</font>
+/* Close HTML output and open listing output.        */
+
+<font color="#003399">ods html close;
+ods listing;</font></pre>
+        <font color="#003399">&nbsp;</font></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="2">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:"></td>
+      <td>Remember that using the GPATH= option in addition to the PATH= option 
+        allows you to store HTML files in one place and GIF files in another. 
+        This separation may make it easier to distinguish which files need to 
+        be renamed to <strong>.gif</strong> and which need to be renamed to <strong>.html</strong> 
+        when you FTP them to a PC or UNIX system. </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

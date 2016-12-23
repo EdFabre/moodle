@@ -1,0 +1,138 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Set Operations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>A set operation is a SELECT statement that contains </p>
+        <ul>
+          <li>two groups of query clauses (each group beginning with a SELECT 
+            clause)</li>
+          <li>a set operator</li>
+          <li>optionally, one or both of the keywords ALL and CORR (CORRESPONDING).</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, SELECT statement containing one set operation">
+    <tr> 
+      <td align="left"><p><strong>General form, SELECT statement containing one 
+          set operation:</strong></p>
+        <blockquote> 
+          <p><font color="#003399"><strong>SELECT</strong> <em>column-1&lt;, ... 
+            column-n</em>&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FROM</strong> <em>table-1 
+            | view-1&lt;, ... table-n | view-n&gt;</em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<em>optional query clauses</em>&gt;<br>
+            <em>set-operator</em> &lt;<strong>ALL</strong>&gt; &lt;<strong>CORR</strong>&gt;<br>
+            <strong>SELECT</strong> <em>column-1&lt;, ... column-n</em>&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FROM</strong> <em>table-1 
+            | view-1&lt;, ... table-n | view-n&gt;</em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<em>optional query clauses</em>&gt;</em><strong>;</strong> 
+            </font> </p>
+        </blockquote>
+        <p> where </p>
+        <ul>
+          <li><strong><font color="#003399">SELECT</font></strong> specifies the 
+            column(s) that will appear in the result</li>
+          <li><strong><font color="#003399">FROM</font></strong> specifies the 
+            table(s) or view(s) to be queried </li>
+          <li><em><font color="#003399">optional query clauses</font></em> are 
+            used to refine the query further and include the clauses WHERE, GROUP 
+            BY, HAVING, and ORDER BY</li>
+          <li>the <font color="#003399"><em>set-operator</em></font> is one of 
+            the following: <font color="#003399"><strong>EXCEPT</strong></font> 
+            | <strong><font color="#003399">INTERSECT</font></strong> | <strong><font color="#003399">UNION</font></strong> 
+            | <strong><font color="#003399">OUTER UNION</font></strong></li>
+          <li>the optional keywords <strong><font color="#003399">ALL</font></strong> 
+            and <strong><font color="#003399">CORR</font></strong> (<strong><font color="#003399">CORRESPONDING</font></strong>) 
+            further modify the set operation.</li>
+        </ul>
+        <p>The SELECT statement contains one semicolon, which is placed after 
+          the last group of query clauses.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>In the following PROC SQL step, the SELECT statement contains one set 
+          operation. The set operation uses the set operator UNION to combine 
+          the result of a query on the table <strong>Sasuser.Stress98</strong> 
+          with the result of a query on the table <strong>Sasuser.Stress99</strong>.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        <strong>select</strong> *
+           from sasuser.stress98
+     <strong>   union</strong>
+        <strong>select</strong> *
+           from sasuser.stress99;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You will learn the details about using each set operator later in 
+          this lesson.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2> Processing a Single Set Operation</h2>
+        <p>PROC SQL evaluates a SELECT statement with one set operation as follows: 
+        </p>
+        <ol>
+          <li> Each query is evaluated to produce an intermediate (internal) result 
+            table. <br>
+            <br>
+          </li>
+          <li>Each intermediate result table then becomes an operand linked with 
+            a set operator to form an expression, for example, <code>Table1 <strong>UNION</strong> 
+            Table2</code>. <br>
+            <br>
+          </li>
+          <li>PROC SQL evaluates the entire expression to produce a single output 
+            result set. </li>
+        </ol></td>
+    </tr>
+  </table>
+  <p><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

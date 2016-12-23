@@ -1,0 +1,151 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Documenting 
+      and Maintaining Indexes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> 
+
+      <h2>Copying Data Sets</h2>  
+		<P>You might want to copy an indexed data set to a new location. You can 
+          copy a data set with the <strong>COPY statement</strong> in a PROC DATASETS 
+          step. When you use the COPY statement to copy a data set that has an 
+          index associated with it, a new index file is automatically created 
+          for the new data file. </td>
+    </tr>
+  </table>
+  <p> <BR>
+  <table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC DATASETS with the COPY statement">
+            <tr> 
+              
+      <td align="left"><strong>General form, PROC DATASETS with the COPY statement:</strong> 
+        <blockquote> <font color="#003399">
+          <dl>
+            <dt><strong>PROC DATASETS LIBRARY=</strong><em>old-libref</em><strong> 
+              &lt;NOLIST&gt;;</strong></dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>COPY OUT=</strong><em>new-libref</em><strong>;</strong></dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SELECT</strong> 
+              <em>SAS-data-set-name</em><strong>;</strong></dt>
+            <dt><strong>QUIT;</strong></dt>
+          </dl>
+		</font> 
+        </blockquote> where
+                <ul>
+                  <li><font color="#003399"><em>old-libref</em></font> names the library from which the data set will be copied
+                    
+                  <li><font color="#003399"><em>new-libref</em></font> names the library to which the data set will be copied
+                  
+                  
+          <li> <font color="#003399"><em>SAS-data-set-name</em></font> names the 
+            data set that will be copied. 
+        </ul></td>
+            </tr>
+          </table>
+     
+   
+            
+    
+		<P><BR>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>You can also use the <strong>COPY procedure</strong> to copy data sets 
+        to a new location. Generally, PROC COPY functions the same as the COPY 
+        statement in the DATASETS procedure. When you use PROC COPY to copy a 
+        data set that has an index associated with it, a new index file is automatically 
+        created for the new data file. If you use the MOVE option in the COPY 
+        procedure, the index file is deleted from the original location and rebuilt 
+        in the new location.</td>
+    </tr>
+  </table>
+ <P><BR><table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC COPY step">
+            <tr> 
+              
+      <td align="left"><strong>General form, PROC COPY step:</strong> 
+        <blockquote> <font color="#003399"> 
+          <dl>
+            <dt><strong>PROC COPY OUT=</strong><em>new-libref</em> <strong>IN=</strong><em>old-libref</em></dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&lt;MOVE&gt;</strong><font color="#003399"><strong>;</strong></font></dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SELECT</strong> 
+              <em>SAS-data-set-name(s)</em><strong>;</strong></dt>
+            <dt><strong>RUN;</strong></dt>
+            <dt><strong>QUIT;</strong></dt>
+          </dl>
+          </font> </blockquote>
+        where
+                <ul>
+                  <li><font color="#003399"><em>old-libref</em></font> names the library from which the data set will be copied
+                    
+                  <li><font color="#003399"><em>new-libref</em></font> names the library to which the data set will be copied
+                  
+                  
+          <li> <font color="#003399"><em>SAS-data-set-name</em></font> names the 
+            data set or data sets that will be copied. 
+        </ul></td>
+            </tr>
+          </table>
+<P><BR>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2>Examples</h2>
+	    <P>The following programs produce the same result. Both programs copy 
+          the <strong>Sale2000</strong> data set from the <strong>Sasuser</strong> 
+          library and place it in the <strong>Work</strong> library. Likewise, 
+          both of these programs cause a new index file to be created for <strong>Work.Sale2000</strong> 
+          that contains all indexes that exist in <strong>Sasuser.Sale2000</strong>. 
+        <font color="#003399">
+        <pre>     proc datasets library=sasuser nolist;
+        copy out=work;
+        select sale2000;
+     quit;
+	 
+     proc copy out=work in=sasuser;
+        select sale2000;
+     quit;</pre>
+        </font></td></tr></table>
+	 <P>  
+  <table width="85%" align="center" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        
+      <td valign="top">If you copy and paste a data set in either <strong>SAS 
+        Explorer</strong> or in <strong>SAS Enterprise Guide</strong>, a new index 
+        file is automatically created for the new data file.</td>
+      </tr>
+    </table><P><BR>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

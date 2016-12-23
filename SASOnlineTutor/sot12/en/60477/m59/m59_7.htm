@@ -1,0 +1,299 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Observations Using a Transaction Data Set<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>Suppose you have a master data set, <strong>Capacity</strong>, which 
+          has route numbers for an airline. Some of the route numbers have changed, 
+          and the changes are stored in a transaction data set, <strong>Newrtnum</strong>. 
+          The master data set is updated by matching values of the variable <code>FlightID</code>.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If you choose to run this example, you must copy 
+              the data set <strong>Capacity</strong> from the <strong>Sasuser</strong> 
+              library to the <strong>Work</strong> library.</td>
+          </tr>
+        </table>
+        <pre>   <font color="#003399">  proc print data=capacity(obs=5);
+     run;
+
+     data capacity;
+        modify capacity sasuser.newrtnum;
+        by flightid;
+     run;
+
+     proc print data=capacity(obs=5);
+     run;</font>
+</pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>
+<p>The following PROC PRINT output displays the first five rows of the 
+          data set <strong>Capacity</strong> before updates were applied.</p>
+        <p><br>
+        <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC PRINT Output">
+          <thead>
+            <TR> 
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FlightID</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>RouteID</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Origin</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Dest</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Cap1st</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>CapBusiness</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>CapEcon</b></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                1</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00100</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0000001</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                30</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                163</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                2</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00201</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0000002</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                30</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                163</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                3</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00300</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0000003</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRA</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                30</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                163</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                4</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00400</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0000004</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRA</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                30</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                163</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                5</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00500</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0000005</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JFK</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                16</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                .</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                251</font></TD>
+            </TR>
+          </tbody>
+        </TABLE>
+        <br> <br> <p>As you can see in this PROC PRINT output, three values of 
+          <code>FlightID</code> in <strong>Newrtnum</strong> have matches in <strong>Capacity</strong>. 
+          For each matching observation, the values for <code>RouteID</code> are 
+          updated. </p>
+        <p><br>
+        <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC PRINT Output">
+          <thead>
+            <TR> 
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FlightID</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>RouteID</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Origin</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Dest</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Cap1st</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>CapBusiness</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>CapEcon</b></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                1</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00100</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#FF0000"><strong>0000101</strong></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                30</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                163</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                2</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00201</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0000002</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                30</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                163</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                3</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00300</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0000003</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRA</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                30</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                163</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                4</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00400</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#FF0000"><strong>0000400</strong></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRA</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                30</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                163</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                5</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA00500</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#FF0000"><strong>0000035</strong></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JFK</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                16</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                .</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                251</font></TD>
+            </TR>
+          </tbody>
+        </TABLE>
+		<p><br>
+        <h2>How SAS Updates Data Using the MODIFY and BY Statements</h2>
+        <p><em>Select buttons below to see how SAS matches observations and updates 
+          the data. You can also see a <a href="Javascript: openOther('m59_7a.htm')">text-only 
+          version</a> of the information.</em> <br>
+          <br>
+        </p>
+        <table border="2" cellpadding="2" cellspacing="0" align="center">
+          <tr> 
+            <td> <script language="JavaScript">
+	  <!-- Specify the number of animation graphics -->
+	  var totalanim=6; 
+  	  <!-- Specify the width and height of the images -->
+	  var imageWidth=500;
+	  var imageHeight=500;
+	  <!-- Don't edit the rest of the script or the form -->
+	  if (document.images) document.write('<img width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" name="animation" alt="Animation frame"></a>');else
+	  document.write('<iframe name="animation" width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" scrolling=no frameborder="0"></iframe>');</script> 
+            </td>
+          </tr>
+          <tr valign="Top"> 
+            <td> <table cellspacing="0" cellpadding="0">
+                <tr valign="Top"> 
+                  <td align="center"> <form name="frameplay" onSubmit="return false">
+                      <input type="button" name="back" value="Back" onClick="scroll('back',totalanim);return false">
+                      <input type="text" name="page" value="Start" size="7">
+                      <input type="button" name="next" value="Next" onClick="scroll('next',totalanim);return false">
+                    </form>
+                    <script>document.frameplay.page.value=" 1 of "+totalanim;</script> 
+                  </td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+       
+        <p> 
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">For more information about the MODIFY and BY statements, 
+              see the 
+              <!--doc reference-->
+              SAS documentation.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

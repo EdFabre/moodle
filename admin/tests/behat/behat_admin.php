@@ -80,8 +80,7 @@ class behat_admin extends behat_base {
             // Single element settings.
             try {
                 $fieldxpath = "//*[self::input | self::textarea | self::select][not(./@type = 'submit' or ./@type = 'image' or ./@type = 'hidden')]" .
-                    "[@id=//label[contains(normalize-space(.), $label)]/@for or " .
-                    "@id=//span[contains(normalize-space(.), $label)]/preceding-sibling::label[1]/@for]";
+                    "[@id=//label[contains(normalize-space(.), $label)]/@for]";
                 $fieldnode = $this->find('xpath', $fieldxpath, $exception);
 
                 $formfieldtypenode = $this->find('xpath', $fieldxpath . "/ancestor::div[@class='form-setting']" .
@@ -90,7 +89,7 @@ class behat_admin extends behat_base {
             } catch (ElementNotFoundException $e) {
 
                 // Multi element settings, interacting only the first one.
-                $fieldxpath = "//*[label[.= $label]|span[.= $label]]/ancestor::div[contains(concat(' ', normalize-space(@class), ' '), ' form-item ')]" .
+                $fieldxpath = "//descendant::label[.= $label]/ancestor::div[contains(concat(' ', normalize-space(@class), ' '), ' form-item ')]" .
                     "/descendant::div[@class='form-group']/descendant::*[self::input | self::textarea | self::select][not(./@type = 'submit' or ./@type = 'image' or ./@type = 'hidden')]";
                 $fieldnode = $this->find('xpath', $fieldxpath);
 
@@ -111,30 +110,6 @@ class behat_admin extends behat_base {
             $field->set_value($value);
 
             $this->find_button(get_string('savechanges'))->press();
-        }
-    }
-
-    /**
-     * Sets the specified site settings. A table with | config | value | (optional)plugin | is expected.
-     *
-     * @Given /^the following config values are set as admin:$/
-     * @param TableNode $table
-     */
-    public function the_following_config_values_are_set_as_admin(TableNode $table) {
-
-        if (!$data = $table->getRowsHash()) {
-            return;
-        }
-
-        foreach ($data as $config => $value) {
-            // Default plugin value is null.
-            $plugin = null;
-
-            if (is_array($value)) {
-                $plugin = $value[1];
-                $value = $value[0];
-            }
-            set_config($config, $value, $plugin);
         }
     }
 

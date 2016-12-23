@@ -443,7 +443,7 @@ class enrol_meta_plugin_testcase extends advanced_testcase {
     /**
      * Test user_enrolment_created event.
      */
-    public function test_user_enrolment_created_event() {
+    public function test_user_enrolment_created_observer() {
         global $DB;
 
         $this->resetAfterTest();
@@ -478,9 +478,9 @@ class enrol_meta_plugin_testcase extends advanced_testcase {
     }
 
     /**
-     * Test user_enrolment_deleted event.
+     * Test user_enrolment_deleted observer.
      */
-    public function test_user_enrolment_deleted_event() {
+    public function test_user_enrolment_deleted_observer() {
         global $DB;
 
         $this->resetAfterTest(true);
@@ -514,7 +514,7 @@ class enrol_meta_plugin_testcase extends advanced_testcase {
     /**
      * Test user_enrolment_updated event.
      */
-    public function test_user_enrolment_updated_event() {
+    public function test_user_enrolment_updated_observer() {
         global $DB;
 
         $this->resetAfterTest(true);

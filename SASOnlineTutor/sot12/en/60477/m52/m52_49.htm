@@ -1,0 +1,105 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" --> 
+      Processing Statements Iteratively<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You can also use a macro loop to generate statements that can be placed inside a SAS program step.
+<P><BR> <h2>Example</h2>
+<P>The following macro generates a series of statements within a DATA step. 
+On each iteration, the macro writes a message to the SAS log that puts the current value of the index variable into HEX6. format.
+<font color="#003399">
+        <PRE>    %macro hex(start=1,stop=10,incr=1);
+       %local i;
+       data _null_;
+          %do i=&amp;start %to &amp;stop %by &amp;incr;
+             value=&amp;i;
+             put &quot;Hexadecimal form of &amp;i is &quot; value hex6.;
+          %end;
+       run;
+    %mend hex;
+</pre>
+        </font>
+<P><table border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif"  alt="More information" width="20" height="20"></td>
+      <td valign="top">The HEX6. format converts a number to hexadecimal format.</td>
+    </tr>
+  </table><P><BR>
+          Suppose you submit the following call:<font color="#003399">
+        <pre>    options mprint mlogic symbolgen;
+    %hex(start=20,stop=30,incr=2)
+</pre>
+        </font>
+<P>Some of the messages that are written to the SAS log when <strong>Hex</strong> 
+        executes are shown below. Notice that according to the MLOGIC messages, 
+        the loop stops processing when the value of the index variable is <em>32</em> 
+        (which is one increment beyond the value that is specified for <code>Stop</code>).
+<P><BR>
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+<strong>MLOGIC(HEX): %DO loop index variable I is now 30; loop will
+               iterate again.</strong>
+SYMBOLGEN: Macro variable I resolves to 30
+MPRINT(HEX): value=30;
+SYMBOLGEN: Macro variable I resolves to 30
+MPRINT(HEX): put &quot;Hexadecimal form of 30 is &quot; value hex6.;
+<strong>MLOGIC(HEX): %DO loop index variable I is now 32; loop will
+               not iterate again.</strong>
+MPRINT(HEX): run;
+
+Hexadecimal form of 20 is 000014
+Hexadecimal form of 22 is 000016
+Hexadecimal form of 24 is 000018
+Hexadecimal form of 26 is 00001A
+Hexadecimal form of 28 is 00001C
+Hexadecimal form of 30 is 00001E
+
+NOTE: DATA statement used:
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+
+MLOGIC(HEX): Ending execution.
+</pre></td></tr>
+</table> </div>
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,158 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Manipulating 
+      SAS Date Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><STRONG>DATE and TODAY Functions</STRONG> </p>
+      <P> The <STRONG>DATE</STRONG> and <STRONG>TODAY</STRONG> functions return 
+        the current date from the system clock as a SAS date value. The DATE and 
+        TODAY functions have the same form and can be used interchangeably.</td>
+  </tr>
+</table>
+<P align="center"> <BR>
+<center>
+  <TABLE width="85%" BORDER="1" CELLPADDING="10" CELLSPACING="0" bgcolor="#F7F7DE" title="General form, DATE and TODAY functions">
+    <TR> 
+      <TD align="left"><STRONG>General form, DATE and TODAY functions:</STRONG> 
+        <BLOCKQUOTE> <FONT color="#003399"><STRONG>DATE()<BR>
+          TODAY()</STRONG></FONT> </BLOCKQUOTE>
+        <P> These functions require no arguments, but they must still be followed 
+          by parentheses. </TD>
+    </TR>
+  </table>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>Let's add a new variable, which contains the current date, to the data 
+        set <STRONG>Hrd.Temp</STRONG>. To create this variable, write an assignment 
+        statement such as the following: 
+        <PRE>     <FONT color="#003399">EditDate=date();</FONT>
+</PRE>
+        <P> After this statement is added to a DATA step and the step is submitted, 
+          the data set that contains <CODE>EditDate</CODE> is created. 
+        <PRE>     <FONT color="#003399">data hrd.newtemp;</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399">EditDate=date();</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE>
+        <P> Note: For this example, the SAS date values shown below were created 
+          by submitting this program on January 15, 2000. </TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"><BR>
+  SAS Data Set Hrd.Newtemp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>EndDate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>EditDate</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14621</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14624</STRONG></font></TD>
+</TR><TR valign="top">
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14565</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14624</STRONG></font></TD>
+</TR><TR valign="top">
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14608</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14624</STRONG></font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"><BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>Remember, to display these SAS date values in a different form, you 
+        can associate a SAS format with the values. For example, the FORMAT statement 
+        below associates the DATE9. format with the variable <CODE>EditDate</CODE>. 
+        A portion of the output that is created by this PROC PRINT step appears 
+        below. 
+        <PRE>     <FONT color="#003399">proc print data=hrd.newtemp;</FONT>
+     <FONT color="#003399">   format editdate date9.;</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE></TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> 
+<center>
+  <table border=1 cellpadding="2" cellspacing=1
+  bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC PRINT Output">
+    <thead>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>EndDate</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>EditDate</b></font></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 14621</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">15JAN2000</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 14565</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">15JAN2000</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 14608</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">15JAN2000</font></td>
+      </tr>
+    </tbody>
+  </table>
+    <br>
+    <br>
+    <br>
+  </center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

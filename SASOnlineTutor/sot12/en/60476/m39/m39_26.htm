@@ -1,0 +1,338 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Assigning 
+      Permanent Labels and Formats<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>At this point, you've read and manipulated your raw data to obtain the 
+        observations, variables, and variable values that you want. Your final 
+        task in this lesson is to permanently assign <strong>labels</strong> and 
+        <strong>formats</strong> to variables. </p>
+      <p> If you completed the lesson 
+        <!--lesson reference--><strong><script>document.write(m4title);</script></strong>, you practiced temporarily assigning 
+        labels and formats within a PROC step. These temporary labels and formats 
+        are applicable only for the duration of the step. To permanently assign 
+        labels and formats, you use <strong>LABEL and FORMAT statements in DATA 
+        steps</strong>. 
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table border="0" cellspacing="0" cellpadding="2" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:"></td>
+      <td>Remember that labels and formats do not affect how data is stored in 
+        the data set, only how it appears in output.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+    <table cellspacing="0" cellpadding="7" width="85%" bgcolor="FFFFFF" border="1" title="SAS Statements">
+      <tr valign="top"> 
+        <td nowrap bgcolor="#F7F7DE"><strong>To do this... &nbsp; </strong>&nbsp; 
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+        <td nowrap bgcolor="#F7F7DE"><strong>Use this type of statement...</strong> 
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Reference a SAS data library<br>
+        Reference an external file</td>
+        <td nowrap><font color="#003399"><tt><nobr>libname clinic 'c:\users\may\data';</nobr></tt></font><br>
+        <font color="#003399"><tt><nobr>filename tests 'c:\users\tmill.dat';</nobr></tt></font></td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Name a SAS data set<br>
+        Identify an external file<br>
+        Describe raw data </td>
+        <td nowrap><font color="#003399"><tt>data clinic.stress;</tt></font><br>
+        <font color="#003399"><tt>&nbsp; <strong>&nbsp;</strong><font color="#003399">infile 
+        tests obs=10;</font></tt></font><br>
+          <font color="#003399"><tt><nobr>&nbsp; &nbsp;input ID $ 1-4 Name $ 6-25 
+          ...;</nobr></tt></font></td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Subset data</td>
+        <td nowrap> <tt><font color="#003399"> </font><font color="#003399"><tt>&nbsp; 
+          <strong>&nbsp;</strong><font color="#003399"></font></tt></font><font color="#003399">if 
+          resthr<70 then delete;<br>
+        </font><font color="#003399"><tt>&nbsp; <strong>&nbsp;</strong></tt></font><font color="#003399">if 
+        tolerance='D';</font></tt> </td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Drop unwanted variables</td>
+        <td nowrap> <tt><font color="#003399"> </font><font color="#003399"><tt>&nbsp; 
+          <strong>&nbsp;</strong><font color="#003399"></font></tt></font><font color="#003399">drop 
+          timemin timesec;</font> </tt> </td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Create or modify a variable</td>
+        <td nowrap> <tt><font color="#003399"> </font><font color="#003399"><tt>&nbsp; 
+          <strong>&nbsp;</strong><font color="#003399"></font></tt></font><font color="#003399">TotalTime=(timemin*60)+timesec;</font></tt></td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Initialize a sum variable<br>
+        Sum accumulated values</td>
+        <td nowrap> 
+          <p><tt><font color="#003399"> </font><font color="#003399"><tt>&nbsp; 
+          <strong>&nbsp;</strong><font color="#003399"></font></tt></font><font color="#003399">retain 
+          SumSec 5400;<br>
+          </font><font color="#003399"><tt>&nbsp; <strong>&nbsp;</strong><font color="#003399"></font></tt></font></tt><tt><font color="#003399">sumsec+totaltime;</font> 
+          </tt> </p>
+      </td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Specify a variable's length</td>
+        <td nowrap> <tt><font color="#003399"><strong> </strong></font><font color="#003399"><tt>&nbsp; 
+          <strong>&nbsp;</strong><font color="#003399"></font></tt></font><font color="#003399">length 
+          TestLength $ 6;</font> </tt> </td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Execute statements<br>
+        conditionally</td>
+        <td nowrap> 
+          <p><tt><font color="#003399">&nbsp; &nbsp;if totaltime&gt;800 then TestLength='Long';<br>
+          &nbsp; &nbsp;else if 750<=totaltime<=800 </font></tt><br>
+          <tt><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then 
+          TestLength='Normal';<br>
+            &nbsp; &nbsp;else if totaltime&lt;750 <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then TestLength='Short';</font></tt></p>
+      </td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap> 
+          <p>Label a variable<br>
+          Format a variable</p>
+      </td>
+        <td nowrap> <strong><tt><font color="#003399"><tt>&nbsp; <strong>&nbsp;</strong></tt></font></tt>LABEL 
+          statement<br>
+        <tt><font color="#003399"><tt>&nbsp; <strong>&nbsp;</strong></tt></font></tt>FORMAT 
+        statement</strong> </td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>Execute the DATA step </td>
+        <td nowrap> <tt><font color="#003399">run;</font> </tt> </td>
+    </tr>
+      <tr valign="top"> 
+        <td nowrap>List the data<br>
+        Execute the final program step</td>
+        <td nowrap> 
+          <p><tt><font color="#003399">proc print data=clinic.stress label;<br>
+          </font></tt><tt><font color="#003399">run; </font></tt> </p>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p><strong>Example</strong></p>
+        <p>To specify the label <strong>Cumulative Total Seconds (+5,400)</strong> 
+          and the format COMMA6. for the variable <code>SumSec</code>, you can 
+          submit the following program:</p>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p> 
+          <pre>     <font color="#003399">data clinic.stress;</font>
+        <font color="#003399">infile tests;</font>
+<font color="#003399">        input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">              RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">              Tolerance $ 45;</font>
+<font color="#003399">        if resthr&lt;70 then delete;</font>
+<font color="#003399">        if tolerance='D';</font>
+<font color="#003399">        drop timemin timesec;</font>
+<font color="#003399">        TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">        retain SumSec 5400;</font>
+<font color="#003399">        sumsec+totaltime;</font>
+<font color="#003399">        length TestLength $ 6;</font>
+<font color="#003399">        if totaltime&gt;800 then testlength='Long';</font>
+<font color="#003399">        else if 750<=totaltime<=800 then testlength='Normal';</font>
+<font color="#003399">        else if totaltime&lt;750 then TestLength='Short';</font>
+        <font color="#003399"><strong>label sumsec='Cumulative Total Seconds (+5,400)';</strong></font>
+        <font color="#003399"><strong>format sumsec comma6.;</strong></font>
+<font color="#003399">     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>You're done! When you print the new data set, <code>SumSec</code> is 
+        labeled and formatted as specified. (Don't forget the LABEL option in 
+        the PROC PRINT statement.) 
+        <pre><font color="#003399">     proc print data=clinic.stress label;
+     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>ID</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Name</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>RestHR</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>MaxHR</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>RecHR</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Tolerance</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TotalTime</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Cumulative<br>
+        Total Seconds<br>
+        (+5,400)</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TestLength</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1</b></font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2458</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Murray, 
+        W</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">72</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">185</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">128</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">758</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        6,158</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Normal</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>2</b></font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2539</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LaMance, 
+        K</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">75</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">168</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">141</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">706</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        6,864</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Short</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>3</b></font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2572</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Oberon, 
+        M</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">74</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">177</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">138</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">731</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        7,595</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Short</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>4</b></font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2574</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Peterson, 
+        V</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">80</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">164</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">137</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">849</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        8,444</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Long</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>5</b></font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2584</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Takahashi, 
+        Y</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">76</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">163</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">135</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">967</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        9,411</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Long</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font>
+</center>
+<p align="center"><br>
+<center>
+  <table border="0" cellspacing="0" cellpadding="2" width="85%">
+    <tr valign="top"> 
+      <td width="42">
+        <center>
+          <img src="../navimages/note.gif" width="20" height="20" alt="Note:">
+        </center>
+      </td>
+      <td>Remember that many SAS procedures automatically use permanent labels 
+        and formats in output, without requiring additional statements or options.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellspacing="0" cellpadding="2" width="85%">
+    <tr valign="top"> 
+      <td width="42">
+        <center>
+          <img src="../navimages/alert.gif" width="37" height="32" alt="Caution:"> 
+        </center>
+      </td>
+      <td>If you assign temporary labels or formats within a PROC step, they override 
+        any permanent labels or formats that were assigned during the DATA step.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

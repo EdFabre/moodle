@@ -1,0 +1,442 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Viewing 
+      SAS Libraries<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Viewing the Contents of a SAS Library</strong> </p>
+        <p> You've learned how to use SAS windows to view the contents of a SAS 
+          library or of a SAS file. Alternatively, you can use the <strong>CONTENTS 
+          procedure</strong> to create SAS output that describes either of the 
+          following:
+        <ul>
+          <li>the contents of a library </li>
+          <li>the descriptor information for an individual SAS data set. </li>
+        </ul></td>
+    </tr>
+  </table>
+  <br>
+  <div align="center"> 
+    <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, basic PROC CONTENTS step">
+      <tr> 
+        <td><strong>General form, basic PROC CONTENTS step:</strong> <blockquote><nobr><font color="#003399"><strong>PROC 
+            CONTENTS DATA=</strong><em>SAS-file-specification</em><strong> NODS;</strong></font></nobr><br>
+            <nobr><font color="#003399"><strong>RUN</strong><em></em><strong>;</strong></font></nobr> 
+          </blockquote>
+          <p> where 
+          <ul>
+            <li><font color="#003399"><em>SAS-file-specification</em></font> specifies 
+              an entire library or a specific SAS data set within a library. <font color="#003399"><em>SAS-file-specification</em></font> 
+              can take one of the following forms: <br>
+              <br>
+              <ul>
+                <li><font color="#003399"><em>&lt;libref.&gt;SAS-data-set</em></font> 
+                  names one SAS data set to process.<br>
+                  <br>
+                </li>
+                <li><em><font color="#003399">&lt;libref.&gt;_ALL_</font></em> 
+                  requests a listing of all files in the library. (Use a period 
+                  (<font color="#003399"><strong>.</strong></font>) to append 
+                  _ALL_ to the libref.)<br>
+                  <br>
+                </li>
+              </ul>
+            <li><font color="#003399"><strong>NODS</strong></font> suppresses 
+              the printing of detailed information about each file when you specify 
+              _ALL_. (You can specify NODS <strong>only</strong> when you specify 
+              _ALL_.) </ul></td>
+      </tr>
+    </table>
+  </div>
+  <p align="center"><br>
+  <div align="center"> 
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td><strong>Examples</strong> <p> To view the contents of the entire <strong>Mylib</strong> 
+            library, you can submit the following PROC CONTENTS step: 
+          <pre>     <font color="#003399">proc contents data=mylib._all_ nods;
+     run;</font></pre>
+          The output from this step lists only the names, types, sizes, and modification 
+          dates for the SAS files in the <strong>Mylib</strong> library.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </div>
+  <div align="center"> 
+    <table bgcolor=#fffff0 border=1 bordercolor=#000000 cellpadding=2 cellspacing=1 
+frame=box rules=groups title="PROC CONTENTS output">
+      <thead>
+        <tr bgcolor="#CCCCCC"> 
+          <td align=middle colspan=2 valign=bottom><div align="center"><font 
+      color=#0033aa face="Arial, Helvetica, Helv" 
+      size=4><b><font size="3">Directory</font></b></font></div></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align=left bgcolor="#CCCCCC"><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Libref</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="2">MYLIB</font></td>
+        </tr>
+        <tr> 
+          <td align=left bgcolor="#CCCCCC"><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Engine</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="2">V8</font></td>
+        </tr>
+        <tr> 
+          <td align=left bgcolor="#CCCCCC"><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Physical 
+            Name</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="2">C:\WINNT\Profiles\Personal\My 
+            SAS Files\V8</font></td>
+        </tr>
+        <tr> 
+          <td align=left bgcolor="#CCCCCC"><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>File 
+            Name</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="2">C:\WINNT\Profiles\Personal\My 
+            SAS Files\V8</font></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <table bgcolor=#fffff0 border=1 bordercolor=#000000 cellpadding=2 cellspacing=1 
+frame=box rules=groups title="PROC CONTENTS output">
+      <thead>
+        <tr bgcolor="#CCCCCC"> 
+          <td align=right bgcolor="#CCCCCC" valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>#</b></font></td>
+          <td align=left valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Name</b></font></td>
+          <td align=left valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Memtype</b></font></td>
+          <td align=right valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>File 
+            Size</b></font></td>
+          <td align=left valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Last 
+            Modified</b></font></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>1</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">ADMIT</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">DATA</font></td>
+          <td align=right bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">9216</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">17JUL2003:15:05:38</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>2</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">ADMITJUNE</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">DATA</font></td>
+          <td align=right bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">9216</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">23JUN2000:16:30:38</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>3</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">COMPANY</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">DATA</font></td>
+          <td align=right bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">5120</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">23JUN2000:16:30:38</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>4</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">CREDIT</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">DATA</font></td>
+          <td align=right bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">5120</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">23JUN2000:16:30:38</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>5</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">CUSTDET1</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">DATA</font></td>
+          <td align=right bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">33792</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">04MAY2000:13:45:49</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>6</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">DIABETES</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">DATA</font></td>
+          <td align=right bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">9216</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">23JUN2000:16:30:38</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>7</b></font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">DMDATA</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">CATALOG</font></td>
+          <td align=right bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">21504</font></td>
+          <td align=left bgcolor=#EFEFEF><font face="Arial, Helvetica, Helv" size="2">04MAY2000:13:59:19</font></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td>To view only the descriptor information for the <strong>Mylib.Admit</strong> 
+          data set, you can submit the following PROC CONTENTS step: 
+          <pre>     <font color="#003399">proc contents data=mylib.admit;
+     run;</font></pre>
+          The output from this step lists information for <strong>Mylib.Admit</strong>, 
+          including an alphabetic list of the variables in the data set.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </div>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  <CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000">
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Data 
+            Set Name</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">MYLIB.ADMIT</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Observations</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">21</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Member 
+            Type</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DATA</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Variables</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">9</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Engine</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">V8</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Indexes</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Created</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">15:05 
+            Thursday, July 17, 2003</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Observation 
+            Length</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">64</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Last 
+            Modified</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">15:05 
+            Thursday, July 17, 2003</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Deleted 
+            Observations</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Protection</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Compressed</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NO</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Data 
+            Set Type</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Sorted</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NO</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Label</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>&nbsp;</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Data 
+            Representation </b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">WINDOWS_32</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC">&nbsp;</TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF">&nbsp;</TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Encoding</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">wlatin1 Western 
+            (Windows)</font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC">&nbsp;</TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF">&nbsp;</TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    </font> 
+  </CENTER>
+  <A NAME="IDX1">&nbsp;</A> 
+  <CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000">
+      <thead>
+        <TR> 
+          <TD COLSPAN=2 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Engine/Host 
+            Dependent Information</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Data 
+            Set Page Size</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8192</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Number 
+            of Data Set Pages</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>First 
+            Data Page</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Max 
+            Obs per Page</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">127</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Obs 
+            in First Data Page</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">21</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Number 
+            of Data Set Repairs</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>File 
+            Name</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" face="Arial, Helvetica, Helv" size="2">C:\WINNT\Profiles\Personal\My 
+            SAS Files\V8</font><font color="#000000">\admit.sas7bdat</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Release 
+            Created</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8.0202M0</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Host 
+            Created</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">XP_PRO</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    </font> 
+  </CENTER>
+  <A NAME="IDX2">&nbsp;</A> 
+  <CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000">
+      <thead>
+        <TR> 
+          <TD COLSPAN=5 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Alphabetic 
+            List of Variables and Attributes</b></font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>#</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Variable</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Type</b></font></TD>
+          <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Len</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Format</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>8</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ActLevel</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">4</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>4</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Age</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>5</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Date</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>9</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Fee</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">7.2</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>6</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Height</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ID</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">4</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>2</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Name</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>3</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Sex</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>7</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Weight</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <br>
+    <br>
+    </font> 
+  </CENTER>
+  </font> <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

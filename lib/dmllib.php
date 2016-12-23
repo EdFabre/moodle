@@ -205,7 +205,7 @@ class dml_missing_record_exception extends dml_exception {
             case 'course':
                 $errcode = empty($sql) ? 'invalidcourseid' : 'invalidrecord';
                 break;
-            case 'course_modules':
+            case 'course_module':
                 $errcode = 'invalidcoursemodule';
                 break;
             case 'user':
@@ -344,11 +344,6 @@ function setup_DB() {
         $DB->connect($CFG->dbhost, $CFG->dbuser, $CFG->dbpass, $CFG->dbname, $CFG->prefix, $CFG->dboptions);
     } catch (moodle_exception $e) {
         if (empty($CFG->noemailever) and !empty($CFG->emailconnectionerrorsto)) {
-            $body = "Connection error: ".$CFG->wwwroot.
-                "\n\nInfo:".
-                "\n\tError code: ".$e->errorcode.
-                "\n\tDebug info: ".$e->debuginfo.
-                "\n\tServer: ".$_SERVER['SERVER_NAME']." (".$_SERVER['SERVER_ADDR'].")";
             if (file_exists($CFG->dataroot.'/emailcount')){
                 $fp = @fopen($CFG->dataroot.'/emailcount', 'r');
                 $content = @fread($fp, 24);
@@ -357,7 +352,7 @@ function setup_DB() {
                     //email directly rather than using messaging
                     @mail($CFG->emailconnectionerrorsto,
                         'WARNING: Database connection error: '.$CFG->wwwroot,
-                        $body);
+                        'Connection error: '.$CFG->wwwroot);
                     $fp = @fopen($CFG->dataroot.'/emailcount', 'w');
                     @fwrite($fp, time());
                 }
@@ -365,7 +360,7 @@ function setup_DB() {
                //email directly rather than using messaging
                @mail($CFG->emailconnectionerrorsto,
                     'WARNING: Database connection error: '.$CFG->wwwroot,
-                    $body);
+                    'Connection error: '.$CFG->wwwroot);
                $fp = @fopen($CFG->dataroot.'/emailcount', 'w');
                @fwrite($fp, time());
             }

@@ -1,0 +1,131 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(9); 
+   answer[1] = "from sasuser.register as r, sasuser.students as s"
+   answer[2] = "from sasuser.register as r,sasuser.students as s"
+   answer[3] = "from sasuser.register r,sasuser.students s"
+   answer[4] = "from sasuser.register r,sasuser.students as s"
+   answer[5] = "from sasuser.register as r,sasuser.students s"
+   answer[6] = "from sasuser.students s,sasuser.register r"
+   answer[7] = "from sasuser.students as s,sasuser.register as r"
+   answer[8] = "from sasuser.students as s,sasuser.register r"
+   answer[9] = "from sasuser.students s,sasuser.register as r"
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='The FROM clause uses the table aliases that are specified in the ';
+   right2='WHERE clause. The use of the keyword AS is optional. The tables can ';
+   right3='be listed in the FROM clause in either order.';
+   
+   wrong1='Make sure that you are using the table aliases that are indicated ';
+   wrong2='in the WHERE clause. ';
+   wrong3='';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="no";
+   var checkSemicolon="no";
+   var useParens="no";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Inner Joins<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>You are creating a PROC SQL query that uses an inner join to display 
+            data about students who have registered for classes. The data that 
+            you need is stored in two tables:</p>
+          <ul>
+            <li><strong>Sasuser.Register</strong> contains course data for all 
+              students who are currently registered for courses </li>
+            <li><strong>Sasuser.Students</strong> contains company and address 
+              data for all students.<br>
+            </li>
+          </ul>
+          <p><code>Student_Name</code> is the only common column across tables, 
+            and the two <code>Student_Name</code> columns have an identical format. 
+            Your inner join combines rows from the two tables that have matching 
+            values of <code>Student_Name</code>, and displays only one of the 
+            <code>Student_Name</code> columns.</p>
+          <p> Add a FROM clause that specifies table aliases for the two tables. 
+            List the tables in either order, but be sure to use the alias <strong><code>r</code></strong> 
+            for <strong>Sasuser.Register</strong> and <strong><code>s</code></strong> 
+            for <strong>Sasuser.Students</strong>.</p>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" -->
+		  <pre> <font color="#003399">     proc sql;
+        select r.student_name, student_company, 
+               city_state, course_number, paid
+           <INPUT TYPE="text" size="50" NAME="anstext">      
+           where r.student_name=s.student_name;</font></pre>
+          <!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

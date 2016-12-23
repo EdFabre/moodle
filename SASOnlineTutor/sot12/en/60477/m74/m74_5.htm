@@ -1,0 +1,125 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Deciding Whether to Create an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><strong>Benefits of Using an Index</strong> 
+        <p>For PROC SQL, there are three main benefits to using an index to access 
+          data directly (instead of reading the data sequentially):</p>
+        <ul>
+          <li>A <strong>small subset of data</strong> (&lt;15% of rows) can be 
+            accessed more quickly. (As the size of the subset increases, the advantage 
+            of using an index decreases.)<br>
+            <br>
+          </li>
+          <li><strong>Equijoins</strong> can be performed without internal sorts.<br>
+            <br>
+          </li>
+          <li><strong>Uniqueness</strong> can be enforced by creating a unique 
+            index.</li>
+        </ul>
+        <p><br>
+        <h2>Example: Using an Index to Access a Small Subset of Data</h2>
+        <p>Suppose you are writing a query that references the table <strong>Work.Payrollmaster</strong>. 
+          (<strong>Work.Payrollmaster</strong> is a duplicate of the table <strong>Sasuser.Payrollmaster</strong>.) 
+          <strong>Work.Payrollmaster</strong> stores payroll information for employees, 
+          and it has a simple index defined on the column <code>JobCode</code>. 
+          Your query's WHERE clause expression references the key column:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        select empid, jobcode, salary
+           from work.payrollmaster
+           <strong>where jobcode='FA3'</strong>
+           order by empid;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>If the value of <code>JobCode</code> for <strong>most</strong> of 
+          the rows in the table is <em>FA3</em>, then the use of an index will 
+          <strong>not</strong> significantly improve the efficiency of the following 
+          query. In fact, performance might be degraded.</p>
+        <p>However if only 10% of the rows have a value of <em>FA3</em>, then 
+          PROC SQL can process the query more efficiently by using the index. 
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In this lesson, if you want to submit any sample code that 
+        references a temporary table (a table that is stored in the <strong>Work</strong> 
+        library), you will first need to create the temporary table by copying 
+        the table in the <strong>Sasuser</strong> library that has the same name.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2><a name="costs"></a>Understanding the Costs of Using an Index</h2>
+        <p>When you are deciding whether to create an index, you should consider 
+          the associated increase in resource usage, which includes the following:</p>
+        <ul>
+          <li><strong>Additional CPU time</strong> is necessary to create an index, 
+            to maintain the index when the table is modified, and to use an index 
+            to read a row from a table.<br>
+            <br>
+          </li>
+          <li>Using an index to read rows from a table might require <strong>additional 
+            I/O (input/output) requests</strong> when compared to reading the 
+            table sequentially. <br>
+            <br>
+          </li>
+          <li>Using an index requires <strong>additional memory</strong> for buffers 
+            into which the index pages and code are loaded for processing. <br>
+            <br>
+          </li>
+          <li><strong>Additional disk space</strong> is required to store the 
+            index file, which can show up as a separate file (in the Windows and 
+            UNIX operating environments, for example) or can appear to be part 
+            of the data file (in the z/OS (OS/390) operating environment). </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

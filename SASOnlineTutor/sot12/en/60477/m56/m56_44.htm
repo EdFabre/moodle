@@ -1,0 +1,124 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Copy and paste the program into the code editing window and submit it.<br><br>';
+solutionText+='<li>Submit the following program:';
+solutionText+='<font color="#003399"><pre>data work.newsched;<br>';
+solutionText+='   set sasuser.newtimes;<br>';
+solutionText+='   set sasuser.flighttimes key=flight;<br>';
+solutionText+='   NewDepart=sum(timediff*60, depart);<br>';
+solutionText+='   format newdepart time5.;<br>';
+solutionText+='run;<br> <br>proc print data=work.newsched;<br>run;</pre></font>';
+solutionText+='The output data set should have 31 observations and 5 variables. Also examine the log for any messages.<br><br>';
+solutionText+='<li>There should be one observation written to the log. Revise the program as follows:  ';
+solutionText+='<font color="#003399"><pre>data work.newsched work.errors;<br>';
+solutionText+='   set sasuser.newtimes;<br>   set sasuser.flighttimes key=flight;<br>';
+solutionText+='   if _iorc_=0 then do;<br>';
+solutionText+='      NewDepart=sum(timediff*60, depart);<br>';
+solutionText+='      output work.newsched;<br>';
+solutionText+='   end;<br>   else do;<br>';
+solutionText+='      _error_=0;<br>      output work.errors;<br>';
+solutionText+='   end;<br>   format newdepart time5.;<br>';
+solutionText+='run;<br> <br>proc print data=work.newsched;<br>run;<br> <br>';
+solutionText+='proc print data=work.errors;<br>run;</pre></font>';
+solutionText+='Submit the program. The <strong>Work.NewSched</strong> data set should ';
+solutionText+='contain 30 observations and the <strong>Work.Errors</strong> data set should contain ';
+solutionText+='one observation.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            the Flight index to combine data from <a href="JavaScript: openOther('../linklib/flttimes.htm')">Sasuser.Flighttimes</a> and <a href="JavaScript: openOther2('../linklib/newtimes.htm')">Sasuser.Newtimes</a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li> 
+            <p>Copy the following program and paste it into the code editing window. 
+              Submit the program to create an index named <strong>Flight</strong> 
+              on the <strong>Sasuser.Flighttimes</strong> data set. <font color="#003399"> 
+            <pre>proc datasets library=sasuser;
+   modify flighttimes;
+   index create flight;
+quit;</pre>
+            </font> 
+          <li>Write a DATA step that will create a new data set named <strong>Work.Newsched</strong> 
+            that will combine data from <strong>Sasuser.Newtimes</strong> and 
+            <strong>Sasuser.Flighttimes</strong> using the <strong>Flight</strong> 
+            index. Also in your DATA step, create a new variable named <code>NewDepart</code> 
+            that uses the <code>TimeDiff</code> variable in <strong>Newtimes</strong> 
+            to calculate the new departure time for the flight. In <strong>Work.Newsched</strong>, 
+            display both <code>Depart</code> and <code>NewDepart</code> in the 
+            TIME5. format. <br>
+            <br>
+            <table border="0" cellpadding="2" cellspacing="0">
+              <tr> 
+                <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                <td valign="top"><code>TimeDiff</code> records how long a flight 
+                  is delayed in minutes. <code>Depart</code> records the scheduled 
+                  departure time for a flight as a SAS time value (the number 
+                  of seconds since midnight).</td>
+              </tr>
+            </table>
+            <br>
+            Add a step to print the output data set. Submit the program and examine 
+            the output as well as any messages that are written to the SAS log.<br><br>
+          
+          <li> If you find any observations with nonmatching data written to the 
+            log, revise the program to use <code>_IORC_</code> to detect data 
+            errors. Write any nonmatching observations to a temporary data set 
+            named <strong>Errors</strong>. Add steps to print both output data 
+            sets. Submit the program and examine the output as well as any messages 
+            that are written in the log. <br>
+          
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -560,27 +560,16 @@ class tree extends tree_node {
     public function save() {
         $result = new \stdClass();
         $result->op = $this->op;
-        // Only root tree has the 'show' options.
-        if ($this->root) {
-            if ($this->op === self::OP_AND || $this->op === self::OP_NOT_OR) {
-                $result->showc = $this->showchildren;
-            } else {
-                $result->show = $this->show;
-            }
+        if ($this->op === self::OP_AND || $this->op === self::OP_NOT_OR) {
+            $result->showc = $this->showchildren;
+        } else {
+            $result->show = $this->show;
         }
         $result->c = array();
         foreach ($this->children as $child) {
             $result->c[] = $child->save();
         }
         return $result;
-    }
-
-    /**
-     * Checks whether this tree is empty (contains no children).
-     * @return boolean True if empty
-     */
-    public function is_empty() {
-        return count($this->children) === 0;
     }
 
     /**

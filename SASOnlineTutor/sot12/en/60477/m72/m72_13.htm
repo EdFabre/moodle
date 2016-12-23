@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the EXCEPT Set Operator<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: EXCEPT Operator in an In-Line View</h2>
+        <p> Let&#8217;s look at a variation of the preceding set operation. Suppose 
+          you want to display the <strong>number of existing employees</strong> 
+          who have had <strong>no changes</strong> in salary or job code. Once 
+          again, the query uses the following tables and columns.</p>
+        <br>
+        <table border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Data Needed for Query">
+          <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+            <th width="65%" bgcolor="#F7F7DE"><font size="-1">Table</font></th>
+            <th width="35%"><font size="-1">Relevant Columns</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><strong><a href="JavaScript: openOther('../linklib/stafchng.htm')">Sasuser.Staffchanges</a></strong> 
+              lists information for all new employees and existing employees who 
+              have had a change in salary or job code</td>
+            <td><code>FirstName, LastName</code></td>
+          </tr>
+          <tr valign="top"> 
+            <td width="390"><strong><a href="JavaScript: openOther2('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a></strong> 
+              lists information for all existing employees </td>
+            <td width="354"><code>FirstName, LastName</code></td>
+          </tr>
+        </table>
+        <br>
+        <br>
+        <p>The following PROC SQL query solves this problem:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre>     <font color="#003399">proc sql;
+        select count(*) label='No. of Persons'
+           from (select EmpID
+                   from sasuser.staffmaster
+                 except all
+                 select EmpID
+                   from sasuser.staffchanges);</font>
+</pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>This PROC SQL query uses</p>
+        <ul>
+          <li> the COUNT function with an asterisk (*) as an argument to count 
+            the number of employee IDs returned from the set operation<br>
+            <br>
+          </li>
+          <li> the set operator EXCEPT within an in-line view.</li>
+        </ul>
+          
+        <p>The in-line view returns a virtual table that contains employees who 
+          have had no changes in salary or job code. This virtual table is then 
+          passed to the COUNT(*) summary function, which counts the number of 
+          rows in the virtual table. The output shows that there are 144 existing 
+          employees who have had no changes in salary or job code.</p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>No. 
+          of Persons</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">144</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

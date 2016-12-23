@@ -1,0 +1,122 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      and Grouping Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>Instead of just listing individual rows, you can use a <strong>summary 
+          function</strong> (also called an aggregate function) to produce a statistical 
+          summary of data in a table. For example, in the SELECT clause in the 
+          following query, the AVG function calculates the average (or mean) miles 
+          traveled by frequent-flyer club members. The GROUP BY clause tells PROC 
+          SQL to calculate and display the average for each membership group (<code>MemberType</code>).</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <pre>     <font color="#003399">proc sql;
+        select membertype, <strong>avg(milestraveled)
+               as AvgMilesTraveled</strong>
+           from sasuser.frequentflyers
+           group by membertype;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+      <thead>
+        <TR> 
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>MemberType</b></font></TD>
+          <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>AvgMilesTraveled</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRONZE</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">52938.11</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">GOLD</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">48392.82</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SILVER</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">51119.64</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    </font>
+  </CENTER>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>You should already be familiar with the list of <font color="#FF0000"><a href="JavaScript: openOther('../linklib/summaryf.htm')">summary 
+          functions</a> </font>that can be used in a PROC SQL query.</p>
+        <p> <a name="keyfactors"></a>PROC SQL calculates summary functions and 
+          outputs results in different ways depending on a combination of factors. 
+          Four key factors are</p>
+        <ul>
+          <li>whether the summary function specifies one or multiple columns as 
+            arguments<br>
+            <br>
+          </li>
+          <li>whether the query contains a GROUP BY clause<br>
+            <br>
+          </li>
+          <li>if the summary function is specified in a SELECT clause, whether 
+            there are additional columns listed that are outside of a summary 
+            function<br>
+            <br>
+          </li>
+          <li>whether the WHERE clause, if there is one, contains only columns 
+            that are specified in the SELECT clause.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>To ensure that your PROC SQL queries produce the intended output, it 
+        is important to understand how the factors listed above affect the processing 
+        of summary functions. Let's look at an overview of all the factors, followed 
+        by a detailed example that illustrates each factor.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

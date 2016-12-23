@@ -1,0 +1,89 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing Probable Resource Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Once SAS estimates the number of qualified observations and selects 
+          the index that qualifies the fewest observations, SAS must then determine 
+          whether it is faster (more efficient) to satisfy the WHERE expression 
+          by using the index or by reading all of the observations sequentially. 
+          Specifically, SAS predicts how many <strong>I/O operations</strong> 
+          will be required in order to satisfy the WHERE expression for each of 
+          the access methods. Then it compares the two resource costs. </p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Remember, if SAS estimates that a subset contains 
+              fewer than 3% of the observations in the data set, SAS does not 
+              need to estimate resource usage. In this situation, SAS will use 
+              the index to process the WHERE statement.</td>
+          </tr>
+        </table>
+        <p><br>
+        <h2>How SAS Compares Resource Usage</h2>
+        <p>To compare resource usage, SAS performs the following steps:</p>
+        <ol>
+          <li>SAS predicts how many I/O operations will be required if it uses 
+            the index to satisfy the WHERE expression. To do so, SAS positions 
+            the index at the first entry that contains a qualified value. In a 
+            buffer management simulation that takes into account the current number 
+            of available buffers, the RIDs (record identifiers) on that index 
+            page are processed, indicating how many I/Os will be required in order 
+            to read the observations in the data file.<br>
+            <br>
+          </li>
+          <li>SAS calculates the I/O cost of a sequential pass of the entire data 
+            file.<br>
+            <br>
+          </li>
+          <li>SAS compares the two resource costs and determines which access 
+            method has a lower cost.</li>
+        </ol>
+		<table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If comparing resource costs results in a tie, SAS 
+              chooses the index.</td>
+          </tr>
+        </table> 
+        
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

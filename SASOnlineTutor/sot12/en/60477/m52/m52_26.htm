@@ -1,0 +1,131 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Parameters <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Macros That Include the PARMBUFF Option</h2>
+	  You can use the PARMBUFF option in a macro definition to create a macro 
+        that can accept a <strong>varying number of parameters</strong> at each 
+        invocation. The PARMBUFF option assigns the entire list of parameter values 
+        in a macro call, including the parentheses in a name-style invocation, 
+        as the value of the automatic macro variable <code>SYSPBUFF</code>. </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, macro definition with the PARMBUFF option">
+            <tr> 
+              
+      <td align="left"><strong>General form, macro definition with the PARMBUFF 
+        option:</strong> 
+        <blockquote> <dl><font color="#003399"><dt><strong>%MACRO </strong><em>macro-name 
+          </em><strong>/PARMBUFF;</strong></dt>
+		    <dd><em>text</em></dd>
+		    <dt><strong>%MEND;</strong></dt>
+            </font></dl> </blockquote>
+               where <font color="#003399"><em>text</em></font> contains a reference 
+        to the automatic macro variable <code>SYSPBUFF</code>. </td>
+            </tr>
+          </table><P><BR>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+	The following macro definition creates a macro named <strong>Printz</strong>. 
+        <strong>Printz</strong> uses a varying number of parameters and the automatic 
+        macro variable <code>SYSPBUFF</code> to display the parameters that are 
+        specified in the macro call. The macro also uses a conditional loop to 
+        print the data sets that are named as parameters, and the <nobr>%EVAL</nobr> function 
+        to increment the macro variable <code>num</code>. You will learn more 
+        about the <nobr>%EVAL</nobr> function later in this 
+        <!-- lesson reference-->
+        lesson.<font color="#003399"> 
+        <pre>     %macro printz/<strong>parmbuff</strong>;
+        %put Syspbuff contains: &amp;syspbuff;
+        %let num=1;
+        %let dsname=%scan(<strong>&amp;syspbuff</strong>,&amp;num);
+        %do %while(&dsname ne);
+           proc print data=sasuser.&amp;dsname;
+           run;
+           %let num=%eval(&amp;num+1);
+           %let dsname=%scan(<strong>&amp;syspbuff</strong>,&amp;num);
+        %end;
+     %mend printz;</pre>
+        </font> If you submit a call to the macro that includes two parameters, 
+        the <strong>Printz</strong> macro writes the following line to the SAS 
+        log and causes two data sets to be printed<font color="#003399">: 
+        <pre>     %printz(courses, schedule)</pre>
+        </font>
+<div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>Syspbuff contains: (courses,schedule)
+</pre> 
+      </td>
+    </tr>
+  </table>
+</div><P><BR>
+          If you submit a call to the macro that includes one parameter, the <strong>Printz</strong> 
+          macro writes the following line to the SAS log and causes one data set 
+          to be printed:<font color="#003399"> 
+        <pre>     %printz(courses)</pre>
+        </font>
+<div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>Syspbuff contains: (courses)</pre> 
+      </td>
+    </tr>
+  </table>
+</div><P><BR>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">If the macro definition includes both a set of parameters and the PARMBUFF 
+          option, the macro invocation causes the parameters to receive values 
+          and the entire invocation list of values to be assigned to <code>SYSPBUFF</code>.</td>
+      </tr>
+    </table>
+        
+      </td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,84 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Identifying 
+      Conditions That Can Be Optimized<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>WHERE Conditions That Cannot Be Optimized</h2>
+        <p>SAS does <strong>not</strong> use an index to process a WHERE condition 
+          that contains any of the elements listed below<font color="#FF0000"></font>: 
+        <p><br>
+        <table border="0" align="center" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For all of the following examples, assume that the 
+              data set has simple indexes on the variables <code>Date_ID</code>, 
+              <code>Quarter</code>, and <code>Quantity</code>.</td>
+          </tr>
+        </table>
+        <P><br> <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE conditions that cannot be optimized">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Element in WHERE Condition</font></th>
+            <th><font size="-1">Example</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td>any function other than TRIM or SUBSTR</td>
+            <td><pre><font color="#003399">where <strong><font color="#FF0000">weekday</font></strong>(date_id)=2;</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>a SUBSTR function that searches a string beginning at any position 
+              after the first</td>
+            <td><pre><font color="#003399">where substr(quarter,<strong><font color="#FF0000">6</font></strong>,1)='1';</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>the sounds-like operator (<strong>=*</strong>)</td>
+            <td><pre><font color="#003399">where quarter<strong><font color="#FF0000">=*</font></strong>'1900Q0';</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>arithmetic operators</td>
+            <td><pre><font color="#003399">where quantity=quantity<font color="#FF0000"><strong>+</strong></font>1;</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>a variable-to-variable condition</td>
+            <td><pre><font color="#003399">where <font color="#FF0000"><strong>quantity gt threshold</strong></font>;</font></pre></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

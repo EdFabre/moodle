@@ -48,7 +48,6 @@ define('AJAX_SCRIPT', false); // prevents some warnings later
 define('CACHE_DISABLE_ALL', true); // Disables caching.. just in case.
 define('PHPUNIT_TEST', false);
 define('IGNORE_COMPONENT_CACHE', true);
-define('MDL_PERF_TEST', false);
 
 // Servers should define a default timezone in php.ini, but if they don't then make sure something is defined.
 // This is a quick hack.  Ideally we should ask the admin for a value.  See MDL-22625 for more on this.
@@ -230,9 +229,17 @@ if (defined('COMPONENT_CLASSLOADER')) {
 require('version.php');
 $CFG->target_release = $release;
 
-\core\session\manager::init_empty_session();
+$_SESSION = array();
+$_SESSION['SESSION'] = new stdClass();
+$_SESSION['SESSION']->lang = $CFG->lang;
+$_SESSION['USER'] = new stdClass();
+$_SESSION['USER']->id = 0;
+$_SESSION['USER']->mnethostid = 1;
+
 global $SESSION;
 global $USER;
+$SESSION = &$_SESSION['SESSION'];
+$USER    = &$_SESSION['USER'];
 
 global $COURSE;
 $COURSE = new stdClass();

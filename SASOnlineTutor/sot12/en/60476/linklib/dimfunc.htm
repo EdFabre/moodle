@@ -1,0 +1,93 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>DIM Function</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->DIM 
+      Function <!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<CENTER>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD><p>The DIM function returns the number of elements in a one-dimensional 
+          array or the number of elements in a specified dimension of a multidimensional 
+          array when the lower bound of the dimension is 1. You can use the DIM 
+          function in array processing to avoid changing the upper bound of an 
+          iterative DO group each time you change the number of array elements. 
+        </p>
+        </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <br>
+  <TABLE BORDER="1" CELLSPACING="0" CELLPADDING="10" width="85%" BGCOLOR="#FFFFE0" title="General form, DIM function">
+    <TR> 
+      <TD><STRONG>General form, DIM function:</STRONG> <BLOCKQUOTE> <NOBR><FONT color="Teal"><STRONG><font color="#003399">DIM</font></STRONG><font color="#003399">&lt;<em>n</em>&gt;<STRONG>(</STRONG><EM>array-name</EM><STRONG>)</STRONG></font></FONT></NOBR> 
+        </BLOCKQUOTE>
+        <P> where 
+        <ul>
+          <li><FONT color="#003399"><EM>n</EM></FONT> specifies the dimension, 
+            in a multidimensional array, for which you want to know the number 
+            of elements. If <font color="#003399"><em>n</em></font> is not specified, 
+            the DIM function returns the number of elements in the first dimension 
+            of the array.</li><br><br>
+          <li><FONT color="#003399"><EM>array-name</EM></FONT> specifies the array. 
+          </li>
+        </ul>
+        </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <br>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>In the following example, <CODE>dim(wt)</CODE> returns a value of <EM>6</EM>: 
+        <PRE><FONT color="#003399">     data sasuser.convert;</FONT>
+<FONT color="#003399">        set sasuser.fitclass;</FONT>
+<FONT color="#003399">        array wt{*} weight1-weight6;</FONT>
+<FONT color="#003399">        do i=1 to <STRONG>dim(wt)</STRONG>;</FONT>
+<FONT color="#003399">           wt(i)=wt(i)*2.2046;</FONT>
+<FONT color="#003399">        end;</FONT>
+<FONT color="#003399">     run;</FONT></PRE>
+        When you use the DIM function, you do not have to re-specify the stop 
+        value of an iterative DO statement if you change the dimension of the 
+        array.</TD>
+    </TR>
+  </TABLE>
+  <br>
+  <br>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD><PRE><FONT color="#003399">     data sasuser.convert;                data sasuser.convert;</FONT>
+<FONT color="#003399">        set sasuser.fitclass;                set sasuser.fitclass;</FONT>
+<FONT color="#003399">        array wt{*} weight1-weight<STRONG>6</STRONG>;     array wt{*} weight1-weight<STRONG>10</STRONG>;</FONT>
+<FONT color="#003399">        do i=1 to <STRONG>dim(wt)</STRONG>;               do i=1 to <STRONG>dim(wt)</STRONG>;</FONT>
+<FONT color="#003399">           wt(i)=wt(i)*2.2046;              wt(i)=wt(i)*2.2046;</FONT>
+<FONT color="#003399">        end;                             end;</FONT>
+<FONT color="#003399">     run;                             run;</FONT></PRE></TD>
+    </TR>
+  </TABLE>
+</CENTER>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

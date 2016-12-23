@@ -1,0 +1,157 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      Subsetting Criteria<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> <p>To subset data based on a condition, use a WHERE clause in the SELECT 
+          statement. As in the WHERE statement and the WHERE command used in other 
+          SAS procedures, the expression in the WHERE clause can be any valid 
+          SAS expression. In the WHERE clause, you can specify any column(s) from 
+          the underlying table(s). The columns specified in the WHERE clause do 
+          not have to be specified in the SELECT clause.</p>
+        <p>In the following PROC SQL query, the WHERE clause selects rows in which 
+          the value of the column <code>Salary</code> is less than 32,000. The 
+          output is also shown.</p>
+    </td>
+  </tr>
+</table>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+        <td align="left"> <pre><font color="#003399">     proc sql;
+        select empid,jobcode,salary,
+               salary*.06 as bonus
+           from sasuser.payrollmaster
+           <strong>where salary&lt;32000</strong>
+           order by jobcode;</font></pre></td>
+    </tr>
+  </table>
+    <br>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+      <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+        <thead>
+          <TR> 
+            <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>EmpID</b></font></TD>
+            <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCode</b></font></TD>
+            <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Salary</b></font></TD>
+            <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>bonus</b></font></TD>
+          </TR>
+        </thead>
+        <tbody>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1970</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">FA1</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$31,661</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1899.66</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1422</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">FA1</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$31,436</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1886.16</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1113</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">FA1</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$31,314</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1878.84</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1132</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">FA1</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$31,378</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1882.68</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1094</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">FA1</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$31,175</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1870.5</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1789</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">SCP</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$25,656</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1539.36</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1564</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">SCP</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$26,366</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1581.96</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1354</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">SCP</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$25,669</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1540.14</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1101</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">SCP</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$26,212</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1572.72</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1658</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">SCP</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$25,120</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1507.2</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1405</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">SCP</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$25,278</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1516.68</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1104</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">SCP</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#ffff9c"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">$25,124</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font color="#000000" size="2"  face="Arial, Helvetica, Helv">1507.44</font></TD>
+          </TR>
+        </tbody>
+      </TABLE>
+      </font>
+    </CENTER>
+  </center>
+  <p><br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

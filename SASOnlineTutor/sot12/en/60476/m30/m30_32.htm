@@ -1,0 +1,180 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Manipulating 
+      SAS Date Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Example: Finding the Year and Month </strong>(continued)</p>
+        <p>To create the new data set, you include these functions in a subsetting 
+          IF statement within a DATA step. The subsetting IF statement specifies 
+          that the new data set includes only observations in which the YEAR function 
+          extracts a value of <EM>1999</EM> and the MONTH function extracts a 
+          value of <EM>11</EM> (for November). </p>
+        <PRE>     <FONT color="#003399">data hrd.nov99;</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399">if year(startdate)=1999 and month(startdate)=11;</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        Finally, you add a PROC PRINT step to the program so that you can view 
+        the new data set. Notice that the PROC PRINT step includes a FORMAT statement 
+        to display the variables <CODE>StartDate</CODE> and <CODE>EndDate</CODE> 
+        with the DATE9. format. 
+        <PRE>     <FONT color="#003399">data hrd.nov99;</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399">if year(startdate)=1999 and month(startdate)=11;</FONT>
+     <FONT color="#003399">proc print data=hrd.tempnov;</FONT>
+        <FONT color="#003399">format startdate enddate date9.;</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        Here is a portion of the PROC PRINT output that is created by your program. 
+        Notice that the new data set contains information about only those employees 
+        who were hired in November 1999.</td>
+    </tr>
+  </table>
+  
+  <P><br> 
+  <center>
+    <table border=1 cellpadding="2" cellspacing=1
+  bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC PRINT Output">
+      <thead>
+        <tr valign="top"> 
+          <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>City</b></font></td>
+          <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>State</b></font></td>
+          <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Zip</b></font></td>
+          <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Phone</b></font></td>
+          <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>StartDate</b></font></td>
+          <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>EndDate</b></font></td>
+          <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>PayRate</b></font></td>
+          <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Days</b></font></td>
+          <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Hours</b></font></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">CARY</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">NC</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">27513</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">6224549</font></td>
+          <td align=RIGHT bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">19NOV1999</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">12JAN2000</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">10</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">11</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">88</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">CHAPEL HILL </font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">NC</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">27514</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">9974749</font></td>
+          <td align=RIGHT bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">22NOV1999</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">30DEC1999</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">40</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"> 26</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">208</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">DURHAM</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">NC</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">27713</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">3633618</font></td>
+          <td align=RIGHT bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">02NOV1999</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">13NOV1999</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">12</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">9</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">72</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">CARRBORO</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">NC</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">27510</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">9976732</font></td>
+          <td align=RIGHT bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">16NOV1999</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">04JAN2000</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">15</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">7</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">64</font></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

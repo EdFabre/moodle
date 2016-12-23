@@ -1,0 +1,202 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      Column Justification<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You might also want to specify <strong>justification</strong> for columns 
+        in your report. Remember that by default, PROC REPORT left-justifies character 
+        variables and right-justifies numeric variables. For each variable that 
+        you define, you can specify the justification option <strong>CENTER</strong>, 
+        <strong>LEFT</strong>, or <strong>RIGHT</strong> in the DEFINE statement.</p>
+      <p>Each option justifies both the formatted values of the report item within 
+        the column width and the column headings over the values.</p>
+      <p><br>
+        <strong>Example</strong></p>
+      <p>To center headings and values for <code>Flight</code>, <code>Orig</code>, 
+        and <code>Dest</code>, you can specify the CENTER option as shown below 
+        in your DEFINE statements:</p>
+    </td>
+  </tr>
+</table>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399"><br>     proc report data=flights.europe nowd;
+        where dest in ('LON','PAR'); 
+        column flight orig dest mail freight revenue;
+        define revenue / format=dollar15.2;
+        define flight / width=6 'Flight/Number' <strong>center</strong>;
+        define orig / width=6 spacing=5 'Flight/Origin' <strong>center</strong>;
+        define dest / width=11 spacing=5 'Flight/Destination' <strong>center</strong>;
+     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  Partial PROC REPORT Output, SAS Listing 
+  <table cellpadding=10 cellspacing=0 border=1 bgcolor="#F7F7DE" title="Partial PROC REPORT Output, SAS Listing">
+    <tr> 
+      <td> 
+        <table  border=0 cellspacing=0 cellpadding=0 frame=BOX bgcolor="#F7F7DE" align="center">
+          <thead> 
+          <tr> 
+            <td align=CENTER bgcolor="#F7f7DE"> 
+              <div align="left"><font color="#000000"><font face="Courier New, Courier" size="2"><nobr>Flight<br>
+                Number&nbsp;&nbsp;&nbsp;&nbsp;</font></font></div>
+            </td>
+            <td align=CENTER bgcolor="#F7f7DE"> 
+              <div align="left"><font color="#000000"><font face="Courier New, Courier" size="2">Flight<br>
+                Origin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></font></div>
+            </td>
+            <td align=CENTER bgcolor="#F7f7DE"> 
+              <div align="left"><font color="#000000"><font face="Courier New, Courier" size="2">&nbsp;&nbsp;Flight<br>
+                Destination&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font></font></div>
+            </td>
+            <td align=CENTER bgcolor="#F7f7DE" valign="bottom"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">Mail</font></div>
+            </td>
+            <td align=CENTER bgcolor="#F7f7DE" valign="bottom"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;Freight&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=CENTER bgcolor="#F7f7DE" valign="bottom"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">Revenue</font></div>
+            </td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;821&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE">
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;LGA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;LON</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">403</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">209&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;$150,634.00</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;271&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;LGA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;PAR</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">492</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">308&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;$156,804.00</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;271&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;LGA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;PAR</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">366</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">498&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;$190,098.00</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;821&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;LGA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;LON</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">345</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">243&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;$150,634.00</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;821&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;LGA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;LON</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">248</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7f7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">307&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;$193,930.00</font></td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

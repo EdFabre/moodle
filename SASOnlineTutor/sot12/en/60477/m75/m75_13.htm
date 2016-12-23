@@ -1,0 +1,104 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Managing 
+      PROC SQL Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Creating a View to Enhance Table Security</h2>
+        <p>One advantage of PROC SQL views is that they can bring data together 
+          from separate sources. This enables views to be used to shield sensitive 
+          or confidential columns from some users while enabling the same users 
+          to view other columns in the same table.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">Although PROC SQL views can be used to enhance table security, 
+        it is strongly recommended that you <strong>use the security features 
+        that are available in your operating environment to maintain table security</strong>.</td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>The following PROC SQL step creates the view <strong>Manager.Infoview</strong>. 
+          The view accesses data about flight attendants that is stored in three 
+          SAS libraries: <strong>Fa1</strong>,<strong> Fa2</strong>, and <strong>Fa3</strong>. 
+          The <strong>Fa1</strong>,<strong><strong> Fa2</strong></strong>, <strong>and 
+          <strong>Fa3</strong></strong> libraries can be assigned access privileges 
+          at the operating system level to prevent </p>
+        <ul>
+          <li>Level 1 flight attendants from reading the data stored in the<strong> 
+            Fa2</strong> and <strong>Fa3</strong> libraries</li>
+          <li>Level 2 flight attendants from from reading the data stored in the 
+            <strong>Fa1</strong> and <strong>Fa3</strong> libraries</li>
+          <li>Level 3 flight attendants from reading the data stored in the <strong>Fa1 
+            </strong>and <strong>Fa2</strong> libraries.</li>
+        </ul>
+        Access privileges can also be assigned to permit managers (who are authorized 
+        to access all SAS libraries) to view all of the information.</li> </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        create view <strong>manager.infoview</strong> as 
+           select *
+              <strong>from fa1.info</strong>
+           outer union corr
+           select *
+             <strong> from fa2.info</strong>
+           outer union corr
+           select *
+              <strong>from fa3.info</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You cannot run this example because the referenced tables 
+        are fictitious. </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

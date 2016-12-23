@@ -1,0 +1,186 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Inner Joins<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Joining Tables That Have Rows with Matching Values</h2>
+        <p>Let&#8217;s see what happens when you join two tables in which multiple 
+          rows have duplicate values of the column on which the tables are being 
+          joined. Each of the tables <strong>Three</strong> and <strong>Four</strong> 
+          has multiple rows that contain the value <em>2</em> for column <code>X</code>. 
+          The following PROC SQL inner join matches rows from the two tables based 
+          on the common column <code>X</code>:<br>
+        </p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td valign="top"> <pre><font color="#003399">proc sql;
+   select *
+      from three, four
+      <strong>where three.x=four.x;</strong></font></pre></td>
+      <td align="center" valign="top"> Three 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">a1</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">a2</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font color="#000000" size="2" face="Verdana, Arial, Helvetica">2</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">b1</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">b2</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">d</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td align="center" valign="top"> Four 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">x1</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#cccc99"><strong><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></strong></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">x2</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">y</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">v</font> 
+              </td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <p>The output shows how this inner join handles the duplicate values 
+          of <code>X</code>.</p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+    <thead>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>A</b></font></TD>
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><strong>X</strong></font></TD>
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><strong>B</strong></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b1</font></TD>
+        <TD width="40" bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x1</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b1</font></TD>
+        <TD width="40" bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x2</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b2</font></TD>
+        <TD width="40" bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x1</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b2</font></TD>
+        <TD bgcolor="#FFFF9C"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x2</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>All possible combinations of the duplicate rows are displayed. There 
+          are no matches on any other values of <code>X</code>, so no other rows 
+          are displayed in output.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">A DATA step match-merge would output only two rows, because 
+        it processes data sequentially from top to bottom. Later in this lesson, 
+        there is a comparison of PROC SQL joins and DATA step match-merges.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

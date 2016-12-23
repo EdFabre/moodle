@@ -1,0 +1,211 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Sorts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>Suppose you want to create a summary report that includes the number 
+          of orders for each quarter in 2002. The data for the report is stored 
+          in the SAS data set <strong>Company.Orders</strong>. </p></td>
+    </tr>
+  </table>
+  <p> SAS Data Set Company.Orders, First Five Observations 
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set Retail.Orders, First Five Observations">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Order_ID</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Order_Type</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Employee_ID</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Customer_ID</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Order_Date</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Delivery_Date</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          1</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1230000033</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Internet 
+          Sale</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          99999999</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          8818</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01JAN1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">07JAN1998</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          2</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1230000204</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Internet 
+          Sale</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          99999999</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          47793</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01JAN1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">04JAN1998</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          3</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1230000268</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Internet 
+          Sale</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          99999999</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          71727</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01JAN1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">03JAN1998</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          4</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1230000487</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Internet 
+          Sale</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          99999999</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          74503</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01JAN1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">04JAN1998</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          5</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          1230000494</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Internet 
+          Sale</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          99999999</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          8610</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01JAN1998</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">07JAN1998</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>By creating a format for the data and using the GROUPFORMAT and NOTSORTED 
+          options, you cause SAS to create the variables <code>FIRST.Order_Date</code> 
+          and <code>LAST.Order_Date</code> based on the formatted values, not 
+          the internal values. This groups the data without requiring the creation 
+          of a new variable.</p>
+        </td>
+    </tr>
+  </table>
+  <p>&nbsp; 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     proc format;
+        value qtrfmt '01jan2002' d - '31mar2002' d = '1'
+                     '01apr2002' d - '30jun2002' d = '2'
+                     '01jul2002' d - '30sep2002' d = '3' 
+                     '01oct2002' d - '31dec2002' d = '4';
+     run;         </font></pre>
+        <pre><font color="#003399">     data company.quarters(keep=count order_date
+                rename=(order_date=Quarter));
+        set retail.orders;
+        format order_date qtrfmt.;
+        <strong>by  order_date groupformat notsorted;</strong>
+        where year(order_date)=2002;
+        if first.order_date then Count=0;
+        Count +1;
+        if last.order_date;
+      run;</font></pre></td>
+    </tr>
+  </table>
+  SAS Data Set Company.Quarters 
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set Retail.Quarters">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Quarter</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Count</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          1</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><div align="center"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+            1</font></div></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          4545</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          2</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><div align="center"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+            2</font></div></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          5330</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          3</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><div align="center"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+            3</font></div></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          5508</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          4</b></font></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><div align="center"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+            4</font></div></TD>
+        <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          5649</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

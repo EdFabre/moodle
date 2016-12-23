@@ -1,0 +1,89 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reducing 
+      Data Storage Space for Numeric Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td>Another way to eliminate wasted space and thereby to reduce the amount 
+        of data storage space that you need is to reduce the length of <strong>numeric</strong> 
+        variables.
+        In addition to conserving data storage space, reduced-length numeric variables 
+        use <strong>less I/O</strong>, both when data is written and when it is 
+        read. For a file that is read frequently, this savings can be significant. 
+        However, in order to safely reduce the length of numeric variables, you 
+        need to understand how SAS stores numeric data. 
+        <P><BR>
+	    <h2>How SAS Stores Numeric Variables</h2>
+	    <p>To store numbers of large magnitude and to perform computations that 
+          require many digits of precision to the right of the decimal point, 
+          SAS stores all numeric values using double-precision <a href="Javascript: openOther('../linklib/fltpoint.htm')">floating-point 
+          representation</a>. SAS stores the value of a numeric variable as multiple 
+          digits per byte. A SAS numeric variable can be from 2 to 8 bytes or 
+          3 to 8 bytes in length, depending on your operating environment. The 
+          default length for a numeric variable is 8 bytes. </p>
+        <P>The figures below show how SAS stores a numeric value in 8 bytes. For 
+          mainframe environments, the first bit stores the sign, the next seven 
+          bits store the exponent of the value, and the remaining 56 bits store 
+          the mantissa. 
+        <P><br><center>
+            <img src="images/m82_3g1.gif" width="365" height="109" alt="Detail of numeric variable storage in mainframe environments"> 
+          </center>
+        <P>For non-mainframe environments, the first bit stores the sign, the 
+          next eleven bits store the exponent of the value, and the remaining 
+          52 bits store the mantissa. 
+        <P><br><center>
+            <img src="images/m82_3g2.gif" width="366" height="110" alt="Detail of numeric variable storage in non-mainframe environments"> 
+          </center>
+        <p><table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The minimum length for a numeric variable is 2 bytes 
+              in mainframe environments and 3 bytes in non-mainframe environments.</td>
+      </tr>
+    </table>
+            <P><BR>
+          Now that you have seen how SAS stores numeric variables, let's look 
+          at how you can assign a length to your numeric variables that is less 
+          than the default length of 8 bytes. </td>
+    </tr>
+  </table>
+
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

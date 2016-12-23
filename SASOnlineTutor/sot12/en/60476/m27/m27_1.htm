@@ -1,0 +1,318 @@
+<html><!-- InstanceBegin template="/Templates/overview.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(overviewTitle)</script></strong></font>
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center>
+
+<p> 
+ <!-- InstanceBeginEditable name="overview" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>Introduction</strong></p><p>Raw data files can be hierarchical in structure, consisting of a header 
+          record and one or more detail records. Typically, each record contains 
+          a field that identifies the record type. </p>
+      <p> Here, the <em>P</em> indicates a <strong>header record</strong> that 
+        contains a patient's ID number. The <em>C </em>indicates a <strong>detail 
+        record</strong> that contains the date of the patient's appointment and 
+        the charges that the patient has incurred. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+  Raw Data File 
+<center>
+  <font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <thead>
+    <tr> 
+      <td align=LEFT bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">P</span>&nbsp;&nbsp;1095</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">C</span>&nbsp;&nbsp;01-08-89&nbsp;&nbsp;$45.0&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">C</span>&nbsp;&nbsp;01-17-89&nbsp;&nbsp;$37.5&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">P</span>&nbsp;&nbsp;1096</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">C</span>&nbsp;&nbsp;01-09-89&nbsp;&nbsp;$156.5</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">P</span>&nbsp;&nbsp;1097</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">C</span>&nbsp;&nbsp;01-02-89&nbsp;&nbsp;$109.0 </font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">P</span>&nbsp;&nbsp;1099</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">C</span>&nbsp;&nbsp;01-03-89&nbsp;&nbsp;$45.0&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">C</span>&nbsp;&nbsp;01-05-89&nbsp;&nbsp;$45.0&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">P</span>&nbsp;&nbsp;1201&nbsp;&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">C</span>&nbsp;&nbsp;01-05-89&nbsp;&nbsp;$37.0&nbsp;&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">C</span>&nbsp;&nbsp;01-10-89&nbsp;&nbsp;$45.0&nbsp;</font></td>
+    </tr>
+  </table>
+  </font>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>You can build a SAS data set from a hierarchical file by creating one 
+        observation <strong>per detail record </strong>and storing each header 
+        record as part of the observation.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+  SAS Data Set 
+<center>
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+          <td align=CENTER bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2"><b>Date</b></font></td>    
+          <td align=CENTER bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2"><b>Amount</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1095</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01/08/89</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$45.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1095</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01/17/89</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$37.50</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1096</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01/09/89</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$156.50</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1097</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01/02/89</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$109.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1099</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01/03/89</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$45.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">6</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1099</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01/05/89</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$45.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">7</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1201</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01/05/89</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$37.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1201</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">01/10/89</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$45.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>You can also build a SAS data set from a hierarchical file by creating 
+        one observation <strong>per header record </strong>and combining the information 
+        from detail records into <strong>summary variables. </strong></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+  SAS Data Set 
+<center>
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+          <td align=CENTER bgcolor="#CCCC99"><font  face="Verdana, Arial, Helvetica" size="2"><b>Total</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1095</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$82.50</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1096</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$156.50</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1097</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$109.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1099</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$90.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1201</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">$82.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>In this lesson, you learn how to read from a hierarchical file and create 
+        a SAS data set that contains either one observation for each detail record 
+        or one observation for each header record.</td>
+    </tr>
+  </table>
+    <br>
+    <br>
+  </center>
+  <!-- InstanceEndEditable -->
+  <!-- InstanceBeginEditable name="overview_graphic" --><!-- #BeginLibraryItem "/Library/rawdata_warning.lbi" --><table width="85%" border="1" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><table border="0" cellpadding="5" cellspacing="0" bgcolor="#FFFFcc" width="100%">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Notice:"></td>
+              <td valign="top"> <p><strong>Setting Up Filerefs for Practices in 
+                  This Lesson<br>
+                  </strong><br>
+              <script>checkForRawDataLesson("overview")</script>
+                </p></td>
+            </tr>
+          </table></td>
+      </tr>
+    </table><!-- #EndLibraryItem --><br>
+  <br>
+  <br>
+  <!-- InstanceEndEditable -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewTimeToComplete)</script></h2>
+      <p><script>document.write(overviewTimeIntro)</script><!-- InstanceBeginEditable name="time_to_complete" -->30 
+          minutes <!-- InstanceEndEditable --><script>document.write(overviewTimeEnd)</script></p>
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewObjectives)</script></h2>
+      <!-- InstanceBeginEditable name="objectives" --> 
+      <p>In this lesson, you learn to </p>
+      <ul>
+        <li> retain the value of a variable 
+        <li> conditionally execute a SAS statement 
+        <li> determine when the last observation is being processed 
+        <li> conditionally execute multiple SAS statements. 
+      </ul>
+      <p> You can also review how to 
+      <ul>
+        <li> use a line-hold specifier to hold the current record 
+        <li> explicitly write an observation to a data set. 
+      </ul>
+      <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewPrerequisites)</script></h2>
+      <p><script>document.write(overviewPrerequisitesIntro)</script><!-- InstanceBeginEditable name="prerequisites_leadin" -->complete 
+          the following lessons:<!-- InstanceEndEditable --></p>
+      <ul><!-- InstanceBeginEditable name="prerequisites" --> 
+        <li><strong><script>document.write(m1title);</script></strong></li>
+        <li><strong><script>document.write(m3title);</script></strong></li>
+        <li><strong><script>document.write(m16title);</script></strong></li>
+        <li><strong><script>document.write(m2title);</script></strong></li>
+        <li><strong><script>document.write(m4title);</script></strong></li>
+        <li><strong><script>document.write(m12title);</script></strong></li>
+        <li><strong><script>document.write(m22title);</script></strong></li>
+		<li><strong><script>document.write(m39title);</script></strong></li>
+		<li><strong><script>document.write(m19title);</script></strong></li>
+		<li><strong><script>document.write(m23title);</script></strong></li>
+		<li><strong><script>document.write(m26title);</script></strong>.</li>
+        <!-- InstanceEndEditable -->
+      </ul>
+    </td>
+  </tr>
+</table>
+
+  <br>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

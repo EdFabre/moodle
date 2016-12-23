@@ -1,0 +1,270 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --> 
+<TITLE>Specifying Footnotes</TITLE>
+<!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Specifying 
+      Footnotes<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">To add footnotes to your output, you can use the FOOTNOTE 
+        statement.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <center>
+    <table border="2" cellspacing="0" cellpadding="10" width="450" bgcolor="#F7F7DE" title="General form, FOOTNOTE statement">
+      <tr> 
+        <td align="left"><strong>General form, FOOTNOTE statement:</strong> 
+          <blockquote> <font color="#003399"><strong>FOOTNOTE<em>n</em></strong> 
+            <strong>'</strong><em>footnote-text</em><strong>';</strong> &nbsp; 
+            &nbsp;</font> </blockquote>
+          <p> where <font color="#003399"><em>n</em></font> is a number from 1 to 
+            10 that specifies the footnote line and <font color="#003399"><em>footnote-text 
+            </em></font>is the actual footnote to be displayed. 
+          <p> 
+          <table cellspacing="0" cellpadding="2">
+            <tr> 
+              <td width="41"><img src="../navimages/alert.gif" alt="CAUTION:" width="37" height="32"
+		    border="0" ></td>
+              <td>Be sure to match quotes enclosing the footnote text.</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </center>
+  <p> <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The PROC PRINT step below contains two FOOTNOTE statements, 
+        specified for lines 1 and 3. 
+        <pre><font color="#003399">     proc print data=sasuser.stress noobs;</font>
+<font color="#003399">        var resthr maxhr rechr;</font>
+<font color="#003399">        where tolerance='I';</font>
+<font color="#003399">        <strong>footnote1 'Data from Treadmill Tests';</strong></font>
+<font color="#003399"><strong>        footnote3 '1st Quarter Admissions';</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <table cellpadding="2" width="85%">
+    <tr> 
+      <td colspan=3><strong>Sample Output</strong> 
+        <p> Footnotes appear at the bottom of each page of procedure output. Notice 
+          that footnote lines are "pushed up" from the bottom. The FOOTNOTE statement 
+          with the largest number appears on the bottom line. 
+        <p> 
+      </td>
+    </tr>
+    <tr valign="Top"> 
+      <td>In <strong>SAS listing output</strong>, "skipped" footnote lines appear 
+        blank, as shown in the output below. 
+        <p> 
+        <center>
+          <table border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE">
+            <tr> 
+              <td bgcolor="#F7F7DE"> 
+                <center>
+                  <table  border=0 cellspacing=0 cellpadding=0 frame=BOX bgcolor="#F7F7DE" title="SAS listing output">
+                    <thead> 
+                    <tr> 
+                      <td align=CENTER bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">RestHR</font></td>
+                      <td align=CENTER bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">MaxHr</font></td>
+                      <td align=CENTER bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">RecHR&nbsp;</font></td>
+                    </tr>
+                    <tr> 
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono">&nbsp;</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono">&nbsp;</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono">&nbsp;</font></td>
+                    </tr>
+                    </thead> <tbody> 
+                    <tr> 
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;68</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;171&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;133</font></td>
+                    </tr>
+                    <tr> 
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;78</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;177</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;139</font></td>
+                    </tr>
+                    <tr> 
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;70</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;167</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;122</font></td>
+                    </tr>
+                    <tr> 
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;65</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;181</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;141</font></td>
+                    </tr>
+                    <tr> 
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;74</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;152</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;113</font></td>
+                    </tr>
+                    <tr> 
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;75</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;158</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;108</font></td>
+                    </tr>
+                    <tr> 
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;78</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;189</font></td>
+                      <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier, mono" size="2" color="#000000">&nbsp;&nbsp;138</font></td>
+                    </tr>
+                    </tbody> 
+                  </table>
+                </center>
+                <p align="center">&nbsp;</p>
+                <p align="center">&nbsp;</p>
+                <p align="center">&nbsp;</p>
+                <p align="center"><font  face="Courier New, Courier" size="2" color="#000000"><font face="Courier New, Courier, mono" size="2">Data 
+                  from Treadmill Tests</font></font></p>
+                <p align="center"><font  face="Courier New, Courier" size="2" color="#000000"><font face="Courier New, Courier, mono" size="2">1st 
+                  Quarter Admissions</font><font  face="Courier New, Courier" size="2" color="#000000"> 
+                  </font></font></p>
+              </td>
+            </tr>
+          </table>
+        </center>
+        <p> 
+      </td>
+      <td>&nbsp; &nbsp;</td>
+      <td>In <strong>HTML output</strong>, footnote lines appear consecutively, 
+        without extra spacing for skipped footnotes. 
+        <p> 
+        <center>
+          <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+	  bordercolor="#000000" align="Center" title="SAS HTML output">
+            <thead> 
+            <tr> 
+              <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>RestHR</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>MaxHR</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>RecHR</b></font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">68</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">171</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">133</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">78</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">177</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">139</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">70</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">167</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">122</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">65</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">181</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">141</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">74</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">152</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">113</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">75</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">158</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">108</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">78</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">189</font></td>
+              <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000">138</font></td>
+            </tr>
+            </tbody> 
+          </table>
+        </center>
+        <p> 
+        <table border=0 width=100% cellpadding=1 cellspacing=1 rules=NONE frame=VOID
+	bgcolor="#FFFFF0" title="SAS HTML output">
+          <tr> 
+            <td align=CENTER bgcolor="#FFFFF0"><font face="Arial, Helvetica, Helv" size="4"
+		  color="#002288"><b><i>Data&nbsp;from&nbsp;Treadmill&nbsp;Tests</i></b></font></td>
+          </tr>
+          <tr> 
+            <td align=CENTER bgcolor="#FFFFF0"><font face="Arial, Helvetica, Helv" size="4"
+		  color="#002288"><b><i>1st Quarter Admissions</i></b></font></td>
+          </tr>
+        </table>
+        <p> 
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Modifying and Canceling Footnotes</strong> 
+        <ul>
+          <li> Redefining a footnote line cancels any higher-numbered footnote 
+            lines. <br>
+            <br>
+          <li> To cancel all previous footnotes, specify a null FOOTNOTE statement 
+            (a FOOTNOTE statement with no number or text). 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

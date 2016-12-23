@@ -1,0 +1,143 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" --> 
+      Validating Query Syntax<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>When you are building a PROC SQL query, you might find it more efficient 
+          to check your query without actually executing it. To verify the syntax 
+          and the existence of columns and tables that are referenced in the query 
+          without executing the query, use either of the following:</p>
+        <ul>
+          <li>the <strong>NOEXEC option</strong> in the PROC SQL statement</li>
+          <li>the <strong>VALIDATE keyword</strong> before a SELECT statement.</li>
+        </ul>
+        <p>Let's look at how you specify the NOEXEC option and the VALIDATE keyword, 
+          and examine the minor differences between them.</p>
+        <h2><br>
+          Using the NOEXEC Option</h2>
+        <p>The NOEXEC option is specified in the following PROC SQL statement:<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre>     <font color="#003399">proc sql <strong>noexec</strong>;
+        select empid, jobcode, salary
+           from sasuser.payrollmaster
+           where jobcode contains 'NA'
+           order by salary;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>If the query is valid and all referenced columns and tables exist, the 
+        SAS log displays the following message.</td>
+    </tr>
+  </table>
+  <p><br>
+  SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>NOTE: Statement not executed due to 
+NOEXEC option.</pre></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Or, if there are any errors in the query, SAS displays the standard 
+          error messages in the log. </p>
+        <p>When you invoke the NOEXEC option, SAS checks the syntax of <strong>all</strong> 
+          queries in that PROC SQL step for accuracy but does not execute them.</p>
+        <h2><br>
+          <a name="validate"></a>Using the VALIDATE Keyword</h2>
+        <p>You specify the VALIDATE keyword just before a SELECT statement; it 
+          is not used with any other PROC SQL statement. </p>
+        <p>Let's modify the preceding PROC SQL query by using the VALIDATE keyword 
+          instead of the NOEXEC option:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre>     <font color="#003399">proc sql;
+        <strong>validate</strong>
+        select empid, jobcode, salary
+           from sasuser.payrollmaster
+           where jobcode contains 'NA'
+           order by salary;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Note that the VALIDATE keyword is <strong>not</strong> 
+        followed by a semicolon.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>If the query is valid, the SAS log displays the following message.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>NOTE: PROC SQL statement has valid syntax.</pre></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>If there are errors in the query, SAS displays the standard error 
+          messages in the log.</p>
+        <p>The main difference between the VALIDATE keyword and the NOEXEC option 
+          is that the VALIDATE keyword only affects the SELECT statement that 
+          immediately follows it, whereas the NOEXEC option applies to <strong>all</strong> 
+          queries in the PROC SQL step. If you are working with a PROC SQL query 
+          that contains multiple SELECT statements, the VALIDATE keyword must 
+          be specified before <strong>each</strong> SELECT statement that you 
+          want to check.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

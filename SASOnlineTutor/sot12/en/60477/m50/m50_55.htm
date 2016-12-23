@@ -1,0 +1,73 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Combining 
+      Macro Variable References with Text<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You can place text <strong>immediately after</strong> a macro variable reference as long as the macro variable name can still be tokenized correctly.
+        <P> For example, you can modify the previous program to substitute the 
+          name of an analysis variable:
+<PRE><font color="#003399">    %let year=02;
+    %let month=jan;
+    <B>%let var=sale</B>;
+    proc chart data=sasuser.y&amp;year&amp;month;
+       hbar week / sumvar=<B>&amp;var</B>;
+    run;
+    proc plot data=sasuser.y&amp;year&amp;month;
+       plot <B>&amp;var*day</B>;
+    run;</font></PRE>
+<P><center>
+Code After Substitution
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Code After Substitution">
+<tr bgcolor="#F7F7DE"><td>
+<PRE><font color="#003399">
+proc chart data=sasuser.y02jan;
+    hbar week / sumvar=<strong>sale</strong>;
+run;
+proc plot data=sasuser.y02jan;
+    plot <B>sale*day</B>
+run;
+</font></PRE></td></tr>
+</table></center><P><BR>
+          The generated program is identical to the program in the previous two 
+          examples. That is, although you are changing the code that you submit, 
+          you are not changing the code that the compiler sees. </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

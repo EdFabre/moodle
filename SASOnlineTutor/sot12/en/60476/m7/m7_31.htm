@@ -1,0 +1,117 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Viewing 
+      and Storing Charts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Specifying a Storage Location for Your Graphs</strong> </p>
+      <p> By default, the charts and other graphs&nbsp;that you create with SAS/GRAPH 
+        software are stored as entries in a temporary SAS catalog named <strong>Work.Gseg</strong>. 
+        When you create a graph, it is appended to the catalog. Each stored graph 
+        is known as a <strong>catalog entry</strong> and has the entry type GRSEG. 
+        You can access a stored graph by specifying its four-level name: 
+      <p align=Center> <strong><em>libref.catalog.name.grseg</em></strong> 
+      <p> <strong></strong> 
+      <p> To save&nbsp;graphs&nbsp;in a SAS catalog other than the default catalog, 
+        you use the <strong>GOUT= option</strong> in the <strong>PROC statement 
+        </strong>for the step that creates your graph. So, when you create charts, 
+        you specify GOUT= in the PROC GCHART statement.
+    </td>
+  </tr>
+</table>
+<p> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, GOUT= option" 
+>
+    <tr> 
+      <td align="left"><strong>General form, GOUT= option:</strong> 
+        <p> <font color="#003399"><nobr>&nbsp; &nbsp; &nbsp;<strong>GOUT=</strong><em>&lt;libref.&gt;output-catalog</em></nobr></font> 
+        <p> where 
+        <ul>
+          <li> <font color="#003399"><nobr><em>libref</em></nobr></font> is the 
+            name of the SAS library in which the catalog is (or will be) stored.<br>
+            <br>
+          <li> <font color="#003399"><em>output-catalog </em></font>is the name 
+            of a catalog that either exists or is created when the procedure runs. 
+            If the catalog that you specify in the GOUT= option already exists, 
+            the procedure simply adds a catalog entry to the catalog. 
+        </ul>
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td valign="Top" width="24"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+            <td>If you omit the libref in the GOUT= option, SAS/GRAPH software 
+              looks for the catalog in the temporary library called <strong>Work</strong> 
+              and creates the catalog if it does not exist.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Examples</strong> 
+        <p> The following program creates two vertical bar charts in the temporary 
+          catalog <strong>Work.Newcat</strong>.<br>
+        <pre><font color="#003399">     symbol1 interpol=spline value=none color=red;</font>
+<font color="#003399">     symbol2 interpol=spline value=none color=blue;</font>
+<font color="#003399">     proc gchart data=clinic.therapy1999 <strong>gout=newcat</strong>;</font>
+<font color="#003399">        vbar month / sumvar=swim type=sum;</font>
+<font color="#003399">        vbar month / sumvar=aerclass type=sum;</font>
+<font color="#003399">        where swim&gt;35 and aerclass&gt;35;</font>
+<font color="#003399">     run;</font>
+</pre>
+        <p> This program creates a pie chart in the permanent catalog <strong>Mylib.Permcat</strong> 
+          in the Windows environment.<br>
+        <pre><font color="#003399">     libname mylib 'd:\reports\permfiles';</font>
+<font color="#003399">     symbol1 interpol=spline value=none color=red;</font>
+<font color="#003399">     symbol2 interpol=spline value=none color=blue;</font>
+<font color="#003399">     proc gchart data=clinic.admit</font>
+<font color="#003399">          <strong>gout=mylib.permcat</strong>;</font>
+<font color="#003399">        pie actlevel / fill=s;</font>
+<font color="#003399">        where sex='F';</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

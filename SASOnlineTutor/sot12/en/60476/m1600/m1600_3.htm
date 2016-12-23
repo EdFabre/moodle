@@ -1,0 +1,196 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Defining 
+      SAS Libraries<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Assigning Librefs</strong> </p>
+        <p> To define libraries, you use a <strong>LIBNAME statement</strong>. 
+          You can store the LIBNAME statement with any SAS program so that the 
+          SAS library is assigned each time the program is submitted. </td>
+    </tr>
+  </table>
+  <p align="center"> <br>
+ 
+    <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, basic LIBNAME statement" align="center">
+      <tr> 
+        <td align="left"><strong>General form, basic LIBNAME statement:</strong> 
+          <blockquote> <nobr><font color="#003399"><strong>LIBNAME </strong><em>libref&nbsp; 
+            </em> <strong> '</strong><em>SAS-data-library</em><strong>';</strong></font></nobr> 
+          </blockquote>
+          <p> where 
+          <ul>
+            <li> <font color="#003399"><em>libref</em></font> is 1 to 8 characters 
+              long, begins with a letter or underscore, and contains only letters, 
+              numbers, or underscores.<br>
+              <br>
+            <li> <font color="#003399"><em>SAS-data-library</em></font><font color="Green"><em> 
+              </em></font>is the name of a SAS data library in which SAS data 
+              files are stored. The specification of the physical name of the 
+              library differs by operating environment. </ul></td>
+      </tr>
+    </table>
+
+  <p align="center"> <br>
+
+    <table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+      <tr> 
+        <td align="left">The LIBNAME statement below assigns the libref <strong>Clinic</strong> 
+          to the SAS data library <strong>D:\Users\Qtr\Reports</strong> in the 
+          Windows operating environment: 
+          <pre><font color="#003399"><strong>     </strong>libname clinic 'd:\users\qtr\reports';</font>
+</pre>
+          The table below gives some examples of physical names for SAS data libraries 
+          in various operating environments.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table cellpadding="4" border="1" cellspacing="0" bgcolor="#FFFFFF" title="Physical names for SAS data libraries 
+        in various operating environments" align="center">
+      <tr> 
+        <td bgcolor="#F7F7DE"><strong>Operating Environment</strong></td>
+        <td bgcolor="#F7F7DE"><strong>Sample Physical Name</strong></td>
+      </tr>
+      <tr> 
+        <td><strong>Windows</strong></td>
+        <td><strong>c:\fitness\data</strong></td>
+      </tr>
+      <tr> 
+        <td><strong>UNIX</strong></td>
+        <td><strong>/users/april/fitness/sasdata</strong></td>
+      </tr>
+      <tr valign="Top"> 
+        <td width="205"><strong>OpenVMS</strong></td>
+        <td><strong>dua0:[april.fitness]</strong></td>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong>CMS</strong></td>
+        <td><strong>b</strong></td>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong>z/OS (OS/390)</strong></td>
+        <td><strong>april.fitness.sasdata</strong></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table border="0" cellpadding="2" cellspacing="0" align="center" width="85%">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="More Information"></td>
+        <td valign="top">The code examples in this lesson are shown in the Windows 
+          operating environment. If you are running SAS within another operating 
+          environment, then the platform-specific names and locations will look 
+          different. Otherwise, SAS programming code will be the same across operating 
+          environments.</td>
+      </tr>
+    </table>
+    <p>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p>You can use multiple LIBNAME statements to assign 
+            as many librefs as needed.</p></td>
+      </tr>
+    </table>
+ 
+  <p align="center"><br>
+  
+    <table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+      <tr> 
+        <td align="left"> <p><strong>Verifying Librefs</strong></p>
+          <p>After assigning a libref, it is a good idea to check the Log window 
+            to verify that the libref has been assigned successfully. </p></td>
+      </tr>
+    </table>
+    <br>
+
+  <p align="center"> 
+  <div id="le1_le2_eg1_eg2" class="eg_div">
+  <img src="images/m160_3.gif" width="500" height="168" alt="LOG window">
+  </div>
+  
+  <div id="eg3" class="eg_div"> 
+  <img src="images3/m160_3.gif" alt="LOG window" width="515" height="172"> 
+  </div>
+
+  <br>
+    <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td width="867" valign="top">The log specifies the engine that corresponds 
+        to the version of SAS you are using.</td>
+    </tr>
+  </table>
+  <p align="center">
+ 
+    <table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+      <tr valign="Top"> 
+        <td align="left"><strong><a name="global"></a>How Long Librefs Remain 
+          in Effect</strong> <p> The LIBNAME statement is <strong>global</strong>, 
+            which means that the librefs remain in effect until you modify them, 
+            cancel them, or end your SAS session. (Remember that your SAS session 
+            ends when you exit SAS Enterprise Guide.) 
+          <p> Therefore, the LIBNAME statement assigns the libref for the current 
+            SAS session only. Each time you start SAS Enterprise Guide and begin 
+            a SAS session, you must assign a libref to each permanent SAS data 
+            library that contains files that you want to access in that session. 
+            (Remember that <strong>Work</strong> is the default libref for a temporary 
+            SAS data library.) </td>
+      </tr>
+    </table>
+
+  <p align="center"> <br>
+    <img border="0" src="images/m160_3b.gif" alt="librefs assigned and deassigned"
+      width="426" height="62"> 
+  <p align="center"> <br>
+
+    <table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+      <tr> 
+        <td>When you end your SAS session or delete a libref, SAS no longer has 
+          access to the files in the library. However, the contents of the library 
+          still exist on your operating system.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

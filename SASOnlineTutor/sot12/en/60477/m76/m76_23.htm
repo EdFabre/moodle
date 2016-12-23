@@ -1,0 +1,123 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(17); 
+   answer[1] = "where libname='SASUSER' and name='FlightNumber';"
+   answer[2] = "where libname='sasuser' and name='flightnumber';"
+   answer[3] = "where name='flightnumber' and libname='sasuser';"
+   answer[4] = "where libname eq 'sasuser' and name eq 'flightnumber';"
+   answer[5] = "where name eq 'flightnumber' and libname eq 'sasuser';"
+   answer[6] = "where libname eq 'sasuser' and name='flightnumber';"
+   answer[7] = "where name eq 'flightnumber' and libname='sasuser';"
+   answer[8] = "where libname='sasuser' and name eq 'flightnumber';"
+   answer[9] = "where name='flightnumber' and libname eq 'sasuser';"
+   answer[10] = 'where libname="sasuser" and name="flightnumber";'
+   answer[11] = 'where name="flightnumber" and libname="sasuser";'
+   answer[12] = 'where libname eq "sasuser" and name eq "flightnumber";'
+   answer[13] = 'where name eq "flightnumber" and libname eq "sasuser";'
+   answer[14] = 'where libname eq "sasuser" and name="flightnumber";'
+   answer[15] = 'where name eq "flightnumber" and libname="sasuser";'
+   answer[16] = 'where libname="sasuser" and name eq "flightnumber";'
+   answer[17] = 'where name="flightnumber" and libname eq "sasuser";'
+
+
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "SASUSER";
+   quotedString[2] = "FlightNumber";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='The library name and the column name are specified in a WHERE clause. ';
+   right2='The library name, <strong>SASUSER</strong>, must be specified in uppercase letters ';
+   right3='because that is how it is stored within SAS. The column name must be specified in the same case as it appears in the Dictionary table. ';
+   
+   wrong1='The library name and the column name should be specified in a WHERE clause. ';
+   wrong2='Remember that the library name, <strong>SASUSER</strong>, is stored in ';
+   wrong3='uppercase letters within SAS and that the column name must be specified in the same case as it appears in the Dictionary table.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="yes";
+   var checkSemicolon="yes";
+   var useParens="no";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Dictionary Tables<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->The column 
+          <code>Memname</code> in the table <strong>Dictionary.Columns</strong> 
+          lists the name of each table within a library. Complete the following 
+          query so that it lists the names of the tables in the <strong>Sasuser 
+          </strong>library that contain the column <code>FlightNumber</code>.<!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" --> 
+          <pre><font color="#003399">proc sql;
+   select memname
+      from dictionary.columns
+      <INPUT TYPE="text" size="50" NAME="anstext">            </font></pre>
+          <!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

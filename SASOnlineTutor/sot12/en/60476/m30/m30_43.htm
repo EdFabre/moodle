@@ -1,0 +1,190 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Manipulating 
+      SAS Date Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Example: Finding the Date</strong></p>
+      <p>Let's look at another example of the MDY function. The data set <STRONG>Dec.Review</STRONG> 
+        contains a variable named <CODE>Day</CODE>. This variable contains the 
+        day of the month for each employee's performance appraisal. The appraisals 
+        were all completed in December of 1998.</p></td>
+  </tr>
+</table>
+<P align="center"> <BR>
+  SAS Data Set Dec.Review 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Day</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Westin</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">12</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">A2</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Mitchell, K</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Stockton</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">A5</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Worton, M</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Center City</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">17</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">B1</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Smith, A</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>The following DATA step uses the MDY function to create a new variable 
+        named <CODE>ReviewDate</CODE>. This variable contains the SAS date value 
+        for the date of each performance appraisal. 
+        <PRE>     <FONT color="#003399">data dec.review98;</FONT>
+        <FONT color="#003399">set dec.review;</FONT>
+        <FONT color="#003399">ReviewDate=mdy(12,day,1998);</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE></TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> SAS Data Set Dec.Review98 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Day</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ReviewDate</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Westin</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">12</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">A2</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Mitchell, K</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14225</STRONG></font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Stockton</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">A5</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Worton, M</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14217</STRONG></font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Center City</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">17</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">B1</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Smith, A</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14230</STRONG></font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding=2 cellspacing=0 border=0 width="85%">
+    <TR valign="top"> 
+      <TD width="24"><IMG SRC="../navimages/note.gif" ALT="NOTE:" WIDTH="20" HEIGHT="20" BORDER="0"></TD>
+      <TD>If you specify an invalid date in the MDY function, SAS software assigns 
+        a missing value to the target variable.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD> <PRE>     <FONT color="#003399">data dec.review98;</FONT>
+        <FONT color="#003399">set dec.review;</FONT>
+        <FONT color="#003399">ReviewDate=mdy(<STRONG>15</STRONG>,day,1998);</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE></TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> SAS Data Set Dec.Review98 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Day</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ReviewDate</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Westin</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">12</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">A2</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Mitchell, K</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>.</STRONG></font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Stockton</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">A5</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Worton, M</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>.</STRONG></font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Center City</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">17</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">B1</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Smith, A</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>.</STRONG></font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P> <BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

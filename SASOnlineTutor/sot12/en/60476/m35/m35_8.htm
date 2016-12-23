@@ -1,0 +1,224 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      One-Dimensional Arrays<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Let's look at another example of a DATA step that contains an array with 
+        a DO loop. </p>
+      <p> The Health Center of a company conducts a fitness class for its employees. 
+        Each week, participants are weighed so that they can monitor their progress. 
+        The weight data, currently stored in kilograms, needs to be converted 
+        to pounds. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+  SAS Data Set Hrd.Fitclass 
+<center>
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <TR bgcolor="#F7F7DE"> 
+      <TD ALIGN=LEFT><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight1</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight2</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight3</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight4</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight5</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight6</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Alicia</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">69.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">68.9</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">68.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">67.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">66.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">66.2</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Betsy</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">52.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">52.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">51.7</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">50.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">49.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">49.1</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Brenda</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">68.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">67.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">67.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">66.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">65.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">65.2</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Carl</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">67.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">66.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">66.0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">65.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">64.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">64.2</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Carmela</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">63.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">62.5</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">61.9</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">61.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">60.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">58.2</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">David</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">70.6</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">69.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">69.2</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">68.4</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">67.8</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">67.0</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>You can use a DO loop to update the variables <code>Weight1</code> through 
+        <code>Weight6</code> for each observation in the <strong>Hrd.Fitclass</strong> 
+        data set. 
+          <pre><font color="#003399">     data hrd.convert;</font>
+<font color="#003399">        set hrd.fitclass;</font>
+<font color="#003399">        array wt{6} weight1-weight6;</font>
+<font color="#003399">        <strong>do i=1 to 6;</strong></font>
+<font color="#003399">           <strong>wt{i}=wt{i}*2.2046;</strong></font>
+<font color="#003399">        <strong>end;</strong></font>
+<font color="#003399">     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <table border="0" cellpadding="2" cellspacing="0" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" border="0" width="20" height="20" alt="Note:"></td>
+        <td>The <code>wt{<em>i</em>}</code> that appears on the right side of 
+          the equal sign (=) is an array reference, <strong>not</strong> a variable 
+          name, so it does not violate the rule against having the same variable 
+          and array name in a DATA step.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="0" cellpadding="0" cellspacing="0" width="85%">
+    <tr> 
+      <td><strong>Compilation and Execution</strong> 
+        <p> To understand how the DO loop processes the array elements, let's 
+          examine the compilation and execution phases of this DATA step. 
+        <p> During compilation, the program data vector is created for the <strong>Hrd.Convert</strong> 
+          data set.
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr> 
+      <td align="center"><img src="images/m35b4g1.gif" border="0" height="85"
+	    width="490" alt="Program Data Vector"></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The DATA step is scanned for syntax errors. If there are any syntax 
+        errors in the ARRAY statement, they are detected at this time. 
+        <p> The index values of the array elements are assigned. Note that the 
+          array name and the array references are not included in the program 
+          data vector. The array name and array references exist only for the 
+          duration of the DATA step. 
+        <p> During the first iteration of the DATA step, the first observation 
+          in <strong>Hrd.Fitclass</strong> is read into the program data vector. 
+          <pre><font color="#003399">     data hrd.convert;</font>
+<font color="#003399">        set hrd.fitclass;</font>
+<font color="#003399">        array wt{6} weight1-weight6;</font>
+<font color="#003399">        do i=1 to 6;</font>
+<font color="#003399">           wt{i}=wt{i}*2.2046;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <img src="images/m35b4g2.gif" border="0" height="85"
+	    width="490" alt="Program Data Vector"> 
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Because the ARRAY statement is a compile-time only statement, it is 
+        ignored during execution. The DO loop is executed next. 
+          <p> During the first iteration of the DO loop, the index variable <code>i</code> 
+            is set to <em>1</em>. As a result, the array reference <code>wt{<em>i</em>}</code> 
+            becomes <code>wt{<em>1</em>}</code>. Because <code>wt{<em>1</em>}</code> 
+            refers to the first array element, <code>Weight1</code>, the value 
+            of <code>Weight1</code> is converted from kilograms to pounds. 
+          <pre><font color="#003399">     data hrd.convert;</font>
+<font color="#003399">        set hrd.fitclass;</font>
+<font color="#003399">        array wt{6} weight1-weight6;</font>
+<font color="#003399">        <strong>do i=1 to 6;</strong></font>
+<font color="#003399">           wt{<strong>1</strong>}=wt{<strong>1</strong>}<strong>*2.2046;</strong></font>
+<font color="#003399">        <strong>end;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <img src="images/m35b4g3.gif" border="0" height="85" width="490" alt="Program Data Vector"> 
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

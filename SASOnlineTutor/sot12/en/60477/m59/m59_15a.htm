@@ -1,0 +1,70 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>How 
+      SAS Updates Data with the MODIFY Statement and KEY= Option</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->How 
+      SAS Updates Data with the MODIFY Statement and KEY= Option<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows how SAS locates observations by using an index, 
+        then updates values in the master data set (<strong>Cargo99</strong>) 
+        based on values in the transaction data set (<strong>Sasuser.Newcgnum</strong>).</p>
+      <ol>
+        <li>The following program is submitted to SAS:<br>
+          <pre><font color="#003399">data cargo99;
+   set sasuser.newcgnum (rename = 
+       (capcargo = newCapCargo 
+       cargowgt = newCargoWgt
+       cargorev = newCargoRev));
+   modify cargo99 key=flghtdte;
+   capcargo = newcapcargo;
+   cargowgt = newcargowgt;
+   cargorev = newcargorev;
+run;</font></pre>
+        </li>
+        <li>First, the SET statement reads an observation for the transaction 
+          data set (<strong>Sasuser.Newcgnum</strong>).<br>
+          <br>
+        </li>
+        <li>The KEY= option causes the MODIFY statement to use the values in <code>FlightID</code> 
+          and <code>Date</code> to access an observation in the master data set 
+          using the index <strong>FlghtDte</strong>. SAS reads the observation 
+          with matching index values into the master PDV.<br>
+          <br>
+        </li>
+        <li>The assignment statement updates <code>CapCargo</code>, <code>CargoWgt</code>, 
+          and <code>CargoRev</code>.<br>
+          <br>
+        </li>
+        <li>An implied REPLACE statement writes the updated observation back over 
+          the same observation in <strong>Cargo99</strong>. The process repeats 
+          until the end of file is reached in <strong>Sasuser.Newcgnum</strong>.</li>
+      </ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

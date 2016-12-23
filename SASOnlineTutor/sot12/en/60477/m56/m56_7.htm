@@ -1,0 +1,105 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Working 
+      with Lookup Values Outside of SAS Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2>User-Defined SAS Formats</h2>
+	    <p>You should be familiar with the syntax and use of the FORMAT procedure 
+          with the VALUE statement. You can associate a format with a variable 
+          permanently by using a FORMAT or ATTRIB statement in a DATA step or 
+          PROC step that creates a SAS data set. In a DATA step, you can use a 
+          PUT statement in an assignment statement in order to use the format 
+          only while the PUT function executes. In a DATA step or PROC step, you 
+          can use the PUT function in a WHERE statement in order to use the format 
+          only during execution of the PUT function.</p>
+        <p>One advantage of using formats to combine data is that you do not have 
+          to create a new SAS data set in order to perform the lookup. Formats 
+          can be used to collapse data into categories as well as to expand data, 
+          and they can change the appearance of a report without the creation 
+          of a new variable. You can create multiple formats and use all of them 
+          in the same DATA or PROC step. </p>
+        <p>The FORMAT procedure uses a binary search (a rapid search technique) 
+          through the lookup table. Another benefit of using this technique is 
+          that maintenance is centralized; if a lookup value changes, you only 
+          have to change it in one place (in the format), and every program that 
+          uses the format will use the new value.</p>
+		  
+        <p>On the other hand, the FORMAT procedure requires the entire format 
+          to be loaded into memory for the binary search, so this technique might 
+          use more memory than others if there are a large number of lookup values. 
+        <P><BR>
+		<h2>Example: Using the FORMAT Procedure to Combine Data</h2>
+		Once again, suppose the data set <strong>Mylib.Employees</strong> contains 
+        information about employees according to their employee identification 
+        numbers (IDnum), but does not contain employees' birthdates. You can use 
+        a format to combine employees' birthdates with the data that is stored 
+        in <strong>Mylib.Employees</strong>. 
+        <P>The following PROC FORMAT step uses a VALUE statement to hard-code 
+          the lookup values in the BIRTHDATE format. Then the DATA step uses the 
+          PUT function to associate the lookup values from the format with the 
+          values of <code>IDnum</code>, uses the INPUT function to associate the 
+          lookup value with the DATE9. informat, and assigns the formatted values 
+          to a new variable named <code>Birthdate</code>. <font color="#003399">
+        <pre>     proc format;
+        value birthdate 1001 = '01JAN1963'
+                        1002 = '08AUG1946'
+                        1003 = '23MAR1950'
+                        1004 = '17JUN1973';
+     run;
+     
+     data mylib.employees_new;
+        set mylib.employees;
+        Birthdate=input(put(IDnum,birthdate.),date9.);
+     run;</pre>
+        </font>
+		<table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For more information about user-defined SAS formats, 
+              see the lesson <!--lesson reference--><strong> <script>document.write(m31title);</script></strong>.
+	</td>
+      </tr>
+    </table>  </td>
+    </tr>
+  </table>
+ 
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

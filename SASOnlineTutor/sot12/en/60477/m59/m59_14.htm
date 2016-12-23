@@ -1,0 +1,95 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Observations Located by an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You have learned that you can use a BY statement to access values 
+          you want to update in a master data set by matching. When you have an 
+          indexed data set, you can use the index to directly access the values 
+          you want to update. To do this, you use</p>
+        <ul>
+          <li> a MODIFY statement with the KEY= option to name an indexed variable 
+            to locate the observations for updating</li>
+          <li>another data source (typically a SAS data set named on a SET statement 
+            or an external file read by an INPUT statement) to provide a like-named 
+            variable whose values are supplied to the index.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p>
+  
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, MODIFY statement with the KEY= option">
+    <tr> 
+      <td align="left"><strong>General form, MODIFY statement with the KEY= option:</strong> 
+        <blockquote> <font color="#003399"><nobr></nobr> <strong>MODIFY</strong> 
+          <em>SAS-data-set</em> <strong>KEY=</strong><em>index-name</em>; </font> 
+        </blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>SAS-data-set</em></font> is the master 
+            data set, or the data set that you want to update 
+          <li> <font color="#003399"><em>index-name</em></font> is the name of 
+            the simple or composite index that you are using to locate observations.
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Updating with an index is different from updating using a BY statement. 
+          When you use the MODIFY statement the KEY= option to name an index,</p>
+        <ul>
+          <li>you must <strong>explicitly specify the update</strong> that you 
+            want to occur. No automatic overlay of non-missing values in the transaction 
+            data set occurs as it does with the MODIFY/BY method.<br>
+            <br>
+          </li>
+          <li>each observation in the transaction data set <strong>must have a 
+            matching observation</strong> in the master data set. If you have 
+            multiple observations in the transaction data set for one master observation, 
+            only the first observation in the transaction data set is applied. 
+            The other observations generate runtime errors and terminate the DATA 
+            step (unless you use the UNIQUE option, which is discussed later in 
+            this lesson).</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p> 
+  <p> <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

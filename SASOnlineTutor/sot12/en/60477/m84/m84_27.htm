@@ -1,0 +1,254 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Handling 
+      Large Data Sets<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: <font face="Arial, Helvetica, sans-serif"><strong>Dividing and 
+        Sorting a Large Data Set 2</strong></font></h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Like the programs shown on the previous page, each of the following 
+        programs illustrates a method for dividing the large data set<strong> 
+        Retail.Order_fact</strong> into smaller data sets for sorting. However, 
+        in this example, the smaller data sets <strong>Work.One</strong>, <strong>Work.Two</strong>, 
+        and <strong>Work.Three</strong> are combined using the APPEND procedure 
+        rather than a DATA step in programs 2, 3, 4, and 5. <br>
+      <ol>
+        <li><a href="#1">Segmenting by Observation</a></li>
+        <li><a href="#2">Subsetting Using an IF Statement with the YEAR Function</a></li>
+        <li><a href="#3">Subsetting Using an IF Statement with a Date Constant</a></li>
+        <li><a href="#4">Subsetting Using a WHERE Statement with the YEAR Function</a></li>
+        <li><a href="#5">Subsetting Using a WHERE Statement with a Date Constant</a>.</li>
+      </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results might vary depending on the structure of your 
+        data, your operating environment, and the resources that are available at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for dividing and sorting a large data set. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 1">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        Segmenting by Observation</strong></p>
+      <blockquote> 
+        <p>This program segments the data set <strong>Orion.Order_fact</strong> 
+          into three smaller data sets by observation number. The three smaller 
+          data sets, <strong>Work.One</strong>, <strong>Work.Two</strong>,<strong> 
+          </strong>and <strong>Work.Three</strong>,<strong> </strong>are sorted 
+          by the value of <code>Order_Date</code>.<strong> </strong>PROC APPEND 
+          cannot be used to re-create a large data set that was segmented using 
+          FIRSTOBS= and OBS=. Therefore, the large data set is re-created by interleaving 
+          the three smaller, sorted data sets. </p>
+        <pre><font color="#003399">     proc sort data=retail.order_fact 
+               <strong>(firstobs = 1 obs = 1500000)</strong><br>          out=work.one;<br>        by order_date;<br>     run;
+
+     proc sort data=retail.order_fact 
+              <strong>(firstobs = 1500001 obs = 3000000)</strong>
+           out=work.two;
+        by order_date;
+      run;</font></pre>
+        <pre><font color="#003399">     proc sort data=retail.order_fact 
+               <strong>(firstobs = 3000001)</strong>
+          out=work.three;
+         by order_date;
+     run;</font></pre>
+        <pre><font color="#003399">     data work.orders;
+        <strong>set work.one work.two work.three;
+        by order_date;</strong>
+     run;</font> </pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 2">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Subsetting Using an IF Statement with the YEAR Function</strong></p>
+      <blockquote> 
+        <p>This program segments the data set <strong>Orion.Order_fact</strong> 
+          into three smaller data sets by using a subsetting IF statement and 
+          the YEAR function. The three smaller data sets, <strong>Work.One</strong>, 
+          <strong>Work.Two</strong>,<strong> </strong>and <strong>Work.Three</strong>,<strong> 
+          </strong>are then sorted by the value of <code>Order_Date</code>.<strong> 
+          </strong>The large data set is then re-created using the APPEND procedure.</p>
+      </blockquote>
+      <blockquote> 
+        <pre><font color="#003399">     data work.one work.two work.three;<br>        set retail.order_fact; 
+        year=year(order_date);<br>       <strong> if year in (1998,1999)<br>           then output work.one;<br>        else if year in (2000,2001)<br>           then output work.two;<br>        else output work.three;</strong><br>      run;
+
+    proc sort data=work.one;<br>       by order_date;<br>    run;
+       
+    proc sort data=work.two;<br>       by order_date; 
+    run;<p>    proc sort data=work.three;<br>       by order_date;
+    run;<br>       
+    <strong>proc append base=work.orders data=work.one;<br>    run;<br>    proc append base=work.orders data=work.two;<br>    run;<br>    proc append base=work.orders data=work.three;<br>    run;</strong></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 3">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="3" id="3"></a><img src="../navimages/opt_3.gif" alt="3." width="20" height="20" align="absmiddle"> 
+        Subsetting Using an IF Statement with a Date Constant</strong></p>
+      <blockquote> 
+        <p>This program segments the data set <strong>Orion.Order_fact</strong> 
+          into three smaller data sets by using a subsetting IF statement and 
+          a date constant. The three smaller data sets, <strong>Work.One</strong>, 
+          <strong>Work.Two</strong>,<strong> </strong>and <strong>Work.Three</strong>,<strong> 
+          </strong>are then sorted by the value of <code>Order_Date</code>.<strong> 
+          </strong>The large data set is then re-created using the APPEND procedure.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     </font><font color="#003399">data work.one work.two work.three;<br>        set retail.order_fact;<br>        <strong>if order_date &lt;= '31Dec1999'd then 
+           output work.one;<br>        else if '31dec1999'd &lt; order_date &lt; '01jan2002'd
+           then output work.two;<br>        else output work.three;</strong><br>     run;
+
+     proc sort data=work.one;<br>        by order_date;<br>     run;
+       
+    proc sort data=work.two;<br>       by order_date;<br>    run;
+       
+    proc sort data=work.three;<br>       by order_date;<br>    run;<br>
+    <strong>proc append base=work.orders data=work.one;<br>    run;<br>    proc append base=work.orders data=work.two;<br>    run;<br>    proc append base=work.orders data=work.three;<br>    run;</strong><br></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 4">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="4" id="4"></a><img src="../navimages/opt_4.gif" alt="4." width="20" height="20" align="absmiddle"> 
+        Subsetting Using a WHERE Statement with the YEAR Function</strong></p>
+      <blockquote> 
+        <p>This program segments the data set <strong>Orion.Order_fact</strong> 
+          into three smaller data sets by using a WHERE statement and the YEAR 
+          function. The three smaller data sets, <strong>Work.One</strong>, <strong>Work.Two</strong>,<strong> 
+          </strong>and <strong>Work.Three</strong>,<strong> </strong>are sorted 
+          by the value of <code>Order_Date</code>.<strong> </strong>The large 
+          data set is then re-created using the APPEND procedure.</p>
+      </blockquote>
+      <blockquote> 
+        <pre><font color="#003399">     proc sort data=retail.order_fact
+          out=work.one;
+        by order_date;
+        <strong>where year(order_date) in (1998, 1999);</strong>
+     run;</font> </pre>
+        <pre><font color="#003399">     proc sort data=retail.order_fact
+          out=work.two;
+        by order_date;
+        <strong>where year(order_date) in (2000, 2001);</strong>
+     run;</font></pre>
+        <pre><font color="#003399">    proc sort data=retail.order_fact
+         out=work.three;
+       by order_date;
+       <strong>where year(order_date) in (2002);</strong>
+    run;
+
+    <strong>proc append base=work.orders data=work.one;<br>    run;<br>    proc append base=work.orders data=work.two;<br>    run;<br>    proc append base=work.orders data=work.three;<br>    run;</strong></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 5">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="5" id="5"></a><img src="../navimages/opt_5.gif" alt="5." width="20" height="20" align="absmiddle"> 
+        Subsetting Using a WHERE Statement with a Date Constant</strong></p>
+      <blockquote> 
+        <p>This program segments the data set <strong>Orion.Order_fact</strong> 
+          into three smaller data sets by using a WHERE statement with a date 
+          constant. The three smaller data sets, <strong>Work.One</strong>, <strong>Work.Two</strong>,<strong> 
+          </strong>and <strong>Work.Three</strong>,<strong> </strong>are sorted 
+          by the value of <code>Order_Date</code>.<strong> </strong>The large 
+          data set is then re-created using the APPEND procedure.</p>
+      </blockquote>
+      <blockquote> 
+        <pre><font color="#003399">     </font><font color="#003399">proc sort data=retail.order_fact<br>          out=work.one;<br>        by order_date;<br>        <strong>where order_date le '31Dec1999'd;</strong><br>     run;</font></pre>
+        <pre><font color="#003399">     proc sort data=retail.order_fact
+          out=work.two;
+        by order_date;
+        <strong>where order_date between '01jan2000'd and
+                                 '31dec2001'd;</strong>
+     run;</font></pre>
+        <pre><font color="#003399">     proc sort data=retail.order_fact
+          out=wotk.three;
+        by order_date;
+        <strong>where order_date ge '01jan2002'd;</strong>
+     run;
+        
+     <strong>proc append base=work.orders data=work.one;<br>     run;<br>     proc append base=work.orders data=work.two;<br>     run;<br>     proc append base=work.orders data=work.three;<br>     run;</strong></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <ul>
+        <li>Use a DATA step rather than PROC APPEND to re-create a large data 
+          set from smaller subsets.</li>
+      </ul></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

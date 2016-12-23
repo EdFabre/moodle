@@ -1,0 +1,126 @@
+/*******************************************************************\           
+| Copyright (C) 2005 by SAS Institute Inc., Cary, NC, USA.          |           
+|                                                                   |           
+| SAS (R) is a registered trademark of SAS Institute Inc.           |           
+|                                                                   |           
+| This program sets up raw data practices for SAS online training.  |
+\*******************************************************************/           
+
+
+options nosource nonotes nocardimage validvarname=V7 replace;
+
+   /* assign filerefs */
+
+data _null_;
+
+   /* determine paths, delimiters, file options */
+
+   length fileno fileyes $18 fileset $ 1024;
+
+   oshost=trim(substr(symget('sysscp'),1,2));
+   filepath=trim(pathname("sasuser"));
+      if (oshost = "OS") and (length(symget('sysscp'))=2) then
+         do;
+            filepath=scan(filepath,1);
+            dlm=".";
+            fileno="disp=(new,catlg)";
+            fileyes="disp=(old,catlg)";
+         end;
+      else do;
+         host=trim(substr(symget('sysscp'),1,3));
+            if (host in ('WIN','OS2')) then
+               do;
+                  filepath=trim(pathname("sasuser"));
+                  dlm="\";
+                  fileno="";
+                  fileyes="";
+               end;
+           else if (host = "VMS") then
+               do;
+                  filepath="";
+                  dlm="";
+                  fileno="";
+                  fileyes="";
+               end;
+           else
+               do;
+                  filepath=trim(pathname("sasuser"));
+                  dlm="/";
+                  fileno="";
+                  fileyes="";
+               end;
+      end;
+
+   array filelst1{8} $ filesas1-filesas8 ('accnt','accnt01','accnt02',
+                                          'accnt03',
+                                          'accnt04','activity','fee',
+                                          'printfee');
+      do i=1 to dim(filelst1);
+         if (host = "CMS") then fileset=trim(filelst1(i)) || " sas *";
+         else fileset=trim(filepath) || dlm || trim(filelst1(i)) || ".sas";
+         isfile=fileexist(fileset);
+         if isfile=1 then fileopts=trim(fileyes);
+         else fileopts=trim(fileno);
+         rc=filename(filelst1(i),fileset,"",fileopts);
+      end;
+
+   array filelst2{21} $ filedt1-filedt21 ('aug99dat',
+         'bookdata','cardata', 'choldata','excdata1',
+         'excdata2','excdata3','invent1','invent2',
+         'jan98dat','orderdat','personel','powerdat',
+         'pubdata','saledata', 'satdata1','satdata2',
+         'survey1','tests','tests2','vandata');
+      do i=1 to dim(filelst2);
+         if (host="CMS") then fileset=trim(filelst2(i)) || " data *";
+         else fileset=trim(filepath) || dlm || trim(filelst2(i)) || ".dat";
+         isfile=fileexist(fileset);
+         if isfile=1 then fileopts=trim(fileyes);
+         else fileopts=trim(fileno);
+         rc=filename(filelst2(i),fileset,"",fileopts);
+      end;
+
+
+        /* create filerefs for regular raw data files*/
+
+   array filerefs{23} $ file1-file23 ('rawdata','month1',
+         'month2','month3', 'month4', 'month5', 'month6','month7',
+         'month8', 'month9','month10','month11','month12','sale2000',
+         'flighttm','route1', 'route2','route3','route4','route5',
+         'route8','route9','route10');
+      do i=1 to dim(filerefs);
+         fileset=trim(filepath) || dlm || trim(filerefs(i)) || ".dat";
+         isfile=fileexist(fileset);
+         if isfile=1 then fileopts=trim(fileyes);
+         else fileopts=trim(fileno);
+         rc=filename(filerefs(i),fileset,"",fileopts);
+      end;
+
+   call symput('filepath',trim(filepath));
+   call symput('dlm',trim(dlm));
+   call symput('fileyes',trim(fileyes));
+   call symput('fileno',trim(fileno));
+
+run;
+
+    /* create filerefs for raw data files with variable years */
+
+data _null_;
+   currentyear=year(today());
+      thisyear="y" || put(currentyear,4.);
+      thisfile="&filepath" || "&dlm" || thisyear || ".dat";
+      isfilethis=fileexist(thisfile);
+      if isfilethis=1 then fileoptsthis="&fileyes";
+      else fileoptsthis="&fileno";
+      rc=filename(thisyear,thisfile,"",fileoptsthis);
+        call symput('thisyear',thisyear);
+   previousyear=currentyear-1;
+      lastyear="y" || put(previousyear,4.);
+      lastfile="&filepath" || "&dlm" || lastyear || ".dat";
+      isfilelast=fileexist(lastfile);
+      if isfilelast=1 then fileoptslast="&fileyes";
+      else fileoptslast="&fileno";
+      rc=filename(lastyear,lastfile,"",fileoptslast);
+        call symput('lastyear',lastyear);
+run;
+
+options source notes;

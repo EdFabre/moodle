@@ -1,0 +1,124 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data by Using Correlated Subqueries<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Correlated subqueries <strong>cannot be evaluated independently</strong>, 
+          but depend on the values passed to them by the outer query for their 
+          results. Correlated subqueries are evaluated for <strong>each</strong> 
+          row in the outer query and, therefore, tend to require more processing 
+          time than noncorrelated subqueries. </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Usually, a PROC SQL join is a more efficient alternative 
+        to a correlated subquery. You should already be familiar with basic PROC 
+        SQL joins<strong></strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2><br>
+          Example</h2>
+        <p>Let's look at an example of a PROC SQL query that contains a correlated 
+          subquery. The following query displays the names of all navigators who 
+          are also managers. The correlated subquery is shown in bold. The WHERE 
+          clause in the subquery lists the column <code>Staffmaster.EmpID</code>, 
+          which is the column that the outer query must pass to the correlated 
+          subquery.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">proc sql;
+   select lastname, firstname
+      from sasuser.staffmaster
+      where 'NA'=
+         <strong>(select jobcategory
+            from sasuser.supervisors
+            where <font color="red">staffmaster.empid</font> = 
+                  supervisors.empid)</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">When a column appears in more than one table, the column 
+        name is preceded with the table name or alias to avoid ambiguity. In this 
+        example, <code>EmpID</code> appears in both tables, so the appropriate 
+        table name is specified in front of each reference to that column.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The output from this query is shown below. There are three navigators 
+          who are also managers.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FirstName</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FERNANDEZ</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">KATRINA</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NEWKIRK</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">WILLIAM</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">RIVERS</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">SIMON</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

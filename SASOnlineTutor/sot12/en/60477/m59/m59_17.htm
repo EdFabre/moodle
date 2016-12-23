@@ -1,0 +1,122 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" --> 
+      Modifying Observations Located by an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Handling Duplicate Values </h2>
+        <p>When you use an index to locate values to update, duplicate values 
+          of the indexed variable in the transaction data set may cause problems. 
+          Let's look at what happens with various scenarios when you use the following 
+          code to update the master data set <strong>M</strong> with values from 
+          the transaction data set <strong>T</strong>. The index on the <strong>M</strong> 
+          data set is built on the variable <code>A</code>:</p>
+        <pre><font color="#003399">     data m;
+        set t (rename=(b=newb));
+        modify m key=index;
+        b=newb;
+     run;</font></pre>
+        <p>If there are <strong>duplications in the master data set</strong>, 
+          only the first occurrence is updated.</p>
+        <p align="center"><img src="images/m59_17a.gif" alt="Graphic showing the update" width="255" height="121"></p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">If you want all duplicates in the master data set 
+              to be updated with the transaction value, use a DO loop to execute 
+              a SET statement with the KEY= option multiple times. </td>
+          </tr>
+        </table>
+        <p>If there are <strong>nonconsecutive duplications in the transaction 
+          data set</strong>, SAS updates the first observation in the master data 
+          set. The last duplicate transaction value is the result in the master 
+          data set after the update. </p>
+        <p align="center"><img src="images/m59_17b.gif" alt="Graphic showing the update" width="272" height="145"></p>
+        <p>If there are <strong>consecutive duplications in the transaction data 
+          set</strong>, some of which do not have a match in the master data set, 
+          then SAS performs a one-to-one update until it finds a non-match. At 
+          that time, the DATA step terminates with an error.</p>
+        <p align="center"><img src="images/m59_17c.gif" alt="Graphic showing the update and error" width="213" height="145"></p>
+        <a name="uniq"></a><p>Adding the <strong>UNIQUE</strong> option to the MODIFY statement allows 
+          you to avoid the error in the DATA step. The UNIQUE option causes the 
+          DATA step to return to the top of the index each time it looks for a 
+          match for the value from the transaction data set. The UNIQUE option 
+          can only be used with the KEY= option.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="1" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, MODIFY statement with the UNIQUE option">
+    <tr> 
+      <td align="left"><strong>General form, MODIFY statement with the UNIQUE 
+        option:</strong> <blockquote> <font color="#003399"><nobr><strong>MODIFY 
+          </strong><em>SAS-data-set </em><strong>KEY=</strong><em>index-name / 
+          </em><strong>UNIQUE;</strong></nobr></font> </blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>SAS-data-set </em></font> positions the 
+            input pointer on a specified column 
+          <li> <font color="#003399"><em>index-name</em></font> is the name of 
+            the variable that is being created. </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>You can specify the <strong>UNIQUE</strong> option to </p>
+        <ul>
+          <li>apply multiple transactions to one master observation </li>
+          <li>identify that each observation in the master data set contains a 
+            unique value of the index variable.</li>
+        </ul>
+        <p>When you use the UNIQUE option and there are consecutive duplications 
+          in the transaction data set, SAS updates the first observation in the 
+          master data set. This is similar to what happens when you have nonconsecutive 
+          duplications in the transaction data set. If the values in the transaction 
+          data set should be added to the value in the master data set, you can 
+          write a statement to accumulate the values from all the duplicates. 
+        </p>
+        <p align="center"><img src="images/m59_17d.gif" alt="Graphic showing the update with the UNIQUE option" width="255" height="142"></p>
+        
+      </td>
+    </tr>
+  </table>
+  <p></p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

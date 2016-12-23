@@ -207,7 +207,7 @@ function lti_get_types() {
 
     $type           = new stdClass();
     $type->modclass = MOD_CLASS_ACTIVITY;
-    $type->type     = '';
+    $type->type     = 'lti';
     $type->typestr  = get_string('generaltool', 'mod_lti');
     $type->help     = $help;
     $types[]        = $type;

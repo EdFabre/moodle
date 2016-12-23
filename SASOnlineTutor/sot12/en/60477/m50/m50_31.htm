@@ -1,0 +1,124 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Functions to Mask Special Characters<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Macro Quoting Functions</h2>
+        The SAS programming language uses matched pairs of either double or single 
+        quotation marks to distinguish character constants from names. The quotation 
+        marks are not stored as part of the token that they define. For example, 
+        in the following program, <code>var</code> is stored as a four-byte variable 
+        that has the value <em>text</em>. If <em>text</em> were not enclosed in 
+        quotation marks, it would be treated as a variable name. <code>var2</code> 
+        is stored as a seven-byte variable that has the value <em>example</em>. 
+        <PRE><font color="#003399">    data one;
+       var='text';
+       text='example';
+       var2=text;
+    run;
+</font></PRE>
+        Similarly, the title text in the following example is <code>Joan's Report</code>. 
+        Although the TITLE statement contains a matched pair of double quotation 
+        marks, the title itself does not include these outer quotation marks. 
+        However, the outer quotation marks cause the unmatched single quotation 
+        mark within the text to be interpreted as an apostrophe that is part of 
+        the title text. 
+        <PRE><font color="#003399">    proc print;
+       title &quot;Joan's Report&quot;;
+    run;
+</font></PRE><P><BR>
+<h2>Example</h2>
+        Earlier you learned that macro variable values are character strings, 
+        and you saw examples of macro variables whose values included special 
+        characters. Now, suppose you want to store one or more SAS statements 
+        in a macro variable. For example, suppose you want to create a macro variable 
+        named <code>prog</code> with <nobr><em>data new; x=1; run;</em></nobr> 
+        stored as its value. 
+        <PRE><font color="#003399">    options symbolgen;
+    %let prog=data new; x=1; run;
+    &amp;prog
+    proc print;
+    run;
+</font></PRE>
+        Here is part of the SAS log that results from the above program.</td>
+  </tr>
+</table><P><BR>
+<div align="center">
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+25  options symbolgen;
+26
+27  %let prog=data new;  x=1;  run;
+27  %let prog=data new;  x=1;  run;
+                         -
+                         180
+<strong>ERROR 180-322: Statement is not valid or it is used out of proper order.</strong>
+
+SYMBOLGEN:  Macro variable PROG resolves to data new
+28      &prog
+29      proc print;
+30      run;
+
+NOTE: The data set WORK.NEW has 1 observations and 0 variables.
+NOTE: The data set WORK.PROC has 1 observations and 0 variables.
+NOTE: The data set WORK.PRINT has 1 observations and 0 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.25 seconds
+      cpu time            0.07 seconds
+   
+</pre></td></tr>
+</table> </div>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td height="80"> 
+        <P> Notice that according to the SYMBOLGEN statement in the log, the 
+          macro variable <code>prog</code> has been assigned a value of <em>data 
+          new</em>. SAS interpreted the first semicolon as the end of the macro 
+          assignment statement. In this case, we want the semicolon to be part 
+          of the macro variable value, but SAS has no way of knowing that. In 
+          this situation, you need to mask text that you want to assign to a macro 
+          variable. That is, you need to hide the normal meaning of the semicolon 
+          from the macro processor. You can use <strong>macro quoting functions</strong> 
+          to do this. </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

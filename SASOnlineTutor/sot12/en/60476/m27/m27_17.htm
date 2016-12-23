@@ -1,0 +1,141 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      One Observation per Header Record<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>DO Group Actions for Header Records</strong> </p>
+      <p> To execute <strong>multiple</strong> SAS statements based on the value 
+        of a variable, you can use a simple DO group with an IF-THEN statement. 
+        When the condition <font color="#003399"><tt>type='H</tt></font><tt><font color="#003399">'</font></tt> 
+        is true, several statements need to be executed. 
+      <blockquote> 
+        <pre>     <font color="#003399">data perm.residnts;</font>
+<font color="#003399">        infile census;</font>
+<font color="#003399">        retain Address;</font>
+<font color="#003399">        input type $1. @;</font>
+<font color="#003399">        <strong>if type='H' then do;</strong></font></pre>
+      </blockquote>
+      <ul>
+        <li> First, you need to determine whether this is the first header record 
+          in the external file. You do not want the first header record to be 
+          written as an observation until the related detail records have been 
+          read and summarized.<br>
+          <br>
+          <strong><tt>_N_</tt></strong> is an automatic variable whose value is 
+          the number of times the DATA step has begun to execute. The expression 
+          <tt><font color="#003399">_n_<code> </code>&gt; 1</font></tt> defines 
+          a condition where the DATA step has executed more than once. Use this 
+          expression in conjunction with the previous IF-THEN statement to check 
+          for these two conditions: 
+          <p> 
+          <ol>
+            <li>The current record is a header record. 
+            <li>The DATA step has executed more than once. 
+          </ol>
+      </ul>
+      <blockquote> 
+        <pre>     <font color="#003399">data perm.residnts;</font>
+        <font color="#003399">infile census;</font>
+        <font color="#003399">retain Address;</font>
+        <font color="#003399">input type $1. @;</font>
+        <font color="#003399">if <strong>type='H'</strong> then do;</font>
+           <font color="#003399"><strong>if _n_ &gt; 1</strong></font> 
+</pre>
+      </blockquote>
+      <ul>
+        <li> When the conditions <tt><font color="#003399">type='H'</font></tt> 
+          and <tt><font color="#003399">_n_ &gt; 1</font></tt> are true, an OUTPUT 
+          statement is executed. Thus, each header record except for the first 
+          one causes an observation to be written to the data set. 
+      </ul>
+      <blockquote> 
+        <pre>     <font color="#003399">data perm.residnts; </font>
+        <font color="#003399">infile census;</font>
+        <font color="#003399">retain Address;</font>
+        <font color="#003399">input type $1. @;</font>
+        <font color="#003399"><strong>if type='H'</strong> then do;</font>
+        <font color="#003399"><strong>   if _n_ &gt; 1 then output;</strong></font></pre>
+      </blockquote>
+      <ul>
+        <li> <a name="total">
+          <!-- -->
+          </a>An assignment statement creates the summary variable <code>Total</code> 
+          and sets its value to <em>0</em>. 
+      </ul>
+      <blockquote> 
+        <pre>     <font color="#003399">data perm.residnts;</font>
+        <font color="#003399">infile census; </font>
+        <font color="#003399">retain Address; </font>
+        <font color="#003399">input type $1. @;</font>
+        <font color="#003399">if type='H' then do;</font>
+           <font color="#003399">if _n_ &gt; 1 then output;</font>
+           <font color="#003399"><strong>Total=0;</strong></font></pre>
+      </blockquote>
+      <ul>
+        <li> An INPUT statement reads the values for <code>Address</code>. 
+      </ul>
+      <blockquote> 
+        <pre>     <font color="#003399">data perm.residnts;</font>
+        <font color="#003399">infile census;</font>
+        <font color="#003399">retain Address;</font>
+        <font color="#003399">input type $1. @;</font>
+        <font color="#003399">if type='H' then do;</font>
+           <font color="#003399">if _n_ &gt; 1 then output;</font>
+           <font color="#003399">Total=0;</font>
+           <font color="#003399"><strong>input address $ 3-17;</strong></font></pre>
+      </blockquote>
+      <ul>
+        <li> An END statement closes the DO group. 
+      </ul>
+      <blockquote> 
+        <pre>     <font color="#003399">data perm.residnts;</font>
+        <font color="#003399">infile census;</font>
+        <font color="#003399">retain Address;</font>
+        <font color="#003399">input type $1. @;</font>
+        <font color="#003399">if type='H' then do;</font>
+           <font color="#003399">if _n_ &gt; 1 then output;</font>
+           <font color="#003399">Total=0;</font>
+           <font color="#003399">input address $ 3-17;</font>
+        <font color="#003399"><strong>end;</strong></font></pre>
+      </blockquote>
+      </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

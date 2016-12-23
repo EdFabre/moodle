@@ -1,0 +1,115 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Selecting 
+      Observations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>In the charts that you have created so far, you have used all of the 
+        observations in the data set. But you might want to create a chart that 
+        displays statistics for a <strong>subset</strong> of your data. </p>
+      <p> If you completed the lesson 
+        <!--lesson reference-->
+        on PROC PRINT or PROC TABULATE, you learned to use the <a href="JavaScript: openOther('../linklib/where.htm')" onMouseOver="window.status='View details about the WHERE statement.'; "
+            onMouseOut="window.status=''">WHERE statement</a> to select observations 
+        that meet certain criteria, as in the examples below. 
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">
+        <pre><font color="#003399">     proc print data=clinic.admit;</font>
+<font color="#003399">        <strong>where actlevel in ('HIGH','LOW');</strong></font>
+<font color="#003399">     run; </font>
+<font color="#003399">     proc tabulate data=clinic.stress2;</font>
+<font color="#003399">        var maxhr rechr resthr;</font>
+<font color="#003399">        table max*(maxhr rechr resthr);</font>
+<font color="#003399">        <strong>where rechr&gt;120;</strong></font>
+<font color="#003399">     run;    </font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The WHERE statement works the same with PROC GCHART as 
+        it does with other PROC steps. For example, the bar chart below summarizes 
+        only observations for which the value of <code>Age</code> is greater than 
+        50. To select these observations, you use this WHERE statement: 
+        <pre><font color="#003399">     proc gchart data=clinic.admit;</font>
+<font color="#003399">        hbar age / sumvar=weight type=mean;</font>
+<font color="#003399">        <strong>where age&gt;50;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> 
+<p align=Center> <img src="images/m7g1s1.gif" width="400" height="260" alt="Horizontal bar chart with WHERE statement.">
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">Compare the chart above to the one below, which was produced 
+        without the WHERE statement. Notice that the age midpoints, which are 
+        generated automatically, have changed.</td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width=85%>
+    <tr> 
+      <td align="left">
+        <pre><font color="#003399">     proc gchart data=clinic.admit;</font>
+<font color="#003399">        hbar age / sumvar=weight type=mean;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> 
+<p align=Center> <img src="images/m7g1s2.gif" width="400" height="260" alt="Horizontal bar chart without WHERE statement.">
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

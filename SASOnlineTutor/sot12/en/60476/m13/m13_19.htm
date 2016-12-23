@@ -1,0 +1,128 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      the DBMS Connection to Use<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p>To specify the DBMS connection that you want to use, specify the CONNECTION 
+          TO component. On many DBMSs, you can issue a CONNECTION TO component 
+          in a PROC SQL SELECT statement directly without first connecting to 
+          a DBMS. For more information, see the SAS/ACCESS documentation for your 
+          <!--doc reference-->
+          specific DBMS. </td>
+  </tr>
+</table>
+<P> <BR>
+<TABLE border="1" cellspacing="0" cellpadding="10" align="center" width="85%" bgcolor="#F7F7DE" title="General form, CONNECTION TO component ">
+  <TR> 
+    <TD><STRONG>General form, CONNECTION TO component:</STRONG> 
+      <BLOCKQUOTE> <NOBR><FONT color="#003399"><STRONG>CONNECTION TO</STRONG> 
+        <EM>dbms-name </EM>| <EM>alias </EM>(<EM>DBMS-query</EM>)</FONT></NOBR> 
+      </BLOCKQUOTE>
+      <P> where 
+      <UL>
+        <LI> <FONT COLOR="#003399"><EM>dbms-name </EM>| <EM>alias</EM></FONT> 
+          identifies the database management system or its alias 
+        <LI> <FONT COLOR="#003399">(<EM>DBMS-query</EM>)</FONT> specifies an SQL 
+          query in parentheses. 
+      </UL>
+    </TD>
+  </TR>
+</TABLE>
+<P> <BR>
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD>You specify the CONNECTION TO component in the FROM clause of a PROC SQL 
+      SELECT statement:</TD>
+  </TR>
+</TABLE>
+<P> 
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD> 
+      <BLOCKQUOTE> <FONT COLOR="#003399">PROC SQL; <BR>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT <EM>column-list 
+        </EM><BR>
+        <NOBR><STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM 
+        CONNECTION TO <EM>dbms-name </EM>(<EM>DBMS-query</EM>)</STRONG></NOBR><BR>
+        <EM>other optional PROC SQL clauses</EM><BR>
+        QUIT; </FONT> </BLOCKQUOTE>
+    </TD>
+  </TR>
+</TABLE>
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD>For example, the following CONNECTION TO component sends an Oracle SQL 
+      query (shown in <FONT COLOR="red"><STRONG>red</STRONG></FONT>) to the Oracle 
+      database for processing. The results from the Oracle SQL query serve as 
+      a virtual table for the PROC SQL FROM clause. In this example, <STRONG>Dblink</STRONG> 
+      is a connection alias.</TD>
+  </TR>
+</TABLE>
+<P> 
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD> 
+      <PRE>     <FONT color="#003399">proc sql;</FONT>
+        <FONT color="#003399">connect to oracle as dblink</FONT>
+                <FONT color="#003399">(user=cestmoi pw=trustme </FONT>
+        <FONT color="#003399">         path=orapath connection=global);</FONT>
+        <FONT color="#003399">select *</FONT>
+           <FONT color="#003399"><STRONG>from connection to dblink</STRONG></FONT>
+              <FONT COLOR="Red"><STRONG>(select id, lastname, firstname,</STRONG></FONT>
+<FONT COLOR="Red"><STRONG>                      hiredate, salary</STRONG></FONT>
+<FONT COLOR="Red"><STRONG>                  from employees <BR>                  where salary&gt;35000)</STRONG></FONT><FONT color="#003399">;</FONT>
+     <FONT COLOR="#003399">   disconnect from dblink;</FONT>
+     <FONT COLOR="#003399">quit;</FONT>
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<P> 
+<TABLE CELLPADDING="2" align="center" width="85%">
+  <TR VALIGN="Top"> 
+    <TD width="24"><IMG SRC="../navimages/note.gif" WIDTH="20" HEIGHT="20" ALT="Note:" BORDER="0"></TD>
+    <TD>You can use CONNECTION TO in any FROM clause, including those in nested 
+      queries.</TD>
+  </TR>
+</TABLE>
+<br>
+<br>
+<P> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

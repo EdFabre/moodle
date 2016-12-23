@@ -1,0 +1,59 @@
+<!--/* Copyright © 2003-2004 Rustici Software, LLC  All Rights Reserved. */-->
+<HTML>
+	<HEAD>
+		<title></title>
+		<script language="JavaScript1.2" src="../APIConstants.js"></script>
+		<script language="JavaScript1.2" src="../Configuration.js"></script>
+		<script language="JavaScript1.2" src="../UtilityFunctions.js"></script>
+		<script language="JavaScript1.2" src="../SCORMFunctions.js"></script>
+		<script language="JavaScript1.2" src="../NONEFunctions.js"></script>
+		<script language="JavaScript1.2" src="../LMSAPI.js"></script>
+		<script language="JavaScript1.2" src="../API.js"></script>
+		<script language="JavaScript1.2">
+		
+		function InferContentLocation(){
+			
+			var strDirName;
+			
+			var strFullPath = new String(window.document.location.href);
+			
+			var intLastSlashPos = strFullPath.lastIndexOf("/");
+			
+			strFullPath = strFullPath.substr(0, intLastSlashPos);
+			
+			intLastSlashPos = strFullPath.lastIndexOf("/");
+			
+			strDirName = strFullPath.substr(intLastSlashPos + 1);
+			
+			strDirName += "_1.htm";
+			
+			WriteToDebug("Launch page = " + strDirName);
+			
+			return strDirName;
+		}
+		
+		function LoadContent(){
+			
+			var strContentLocation = InferContentLocation();
+		
+			var strBookmark = GetBookmark();
+			
+			if (strBookmark.length > 0){
+				strContentLocation = strBookmark;
+			}
+		
+			window.content.document.location.href = strContentLocation;
+		}
+		</script>
+	
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+	<frameset rows="100%,0%,0%" onload="Start()" onbeforeunload="Unload()" onunload="Unload()">
+		<frame name="content" src="blank.htm">
+		<frame name="AICCComm" src="blank.htm">
+		<frame name="rusticisoftware_aicc_results" src="blank.htm">
+	</frameset>
+	<noframes>
+		Your browser must be able to view frames for this content to display.
+	</noframes>
+</HTML>

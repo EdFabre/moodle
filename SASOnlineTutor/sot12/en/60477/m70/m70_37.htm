@@ -1,0 +1,240 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      and Grouping Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Selecting Groups by Using the HAVING Clause</h2>
+        <p>You have seen how to use the GROUP BY clause to group data. For example, 
+          the following query calculates the average salary within each job-code 
+          group, and displays the average for each job code:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     proc sql;
+        select jobcode, 
+               avg(salary) as AvgSalary
+               format=dollar11.2
+           from sasuser.payrollmaster
+           <strong>group by jobcode</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>There are 16 job codes in the table, so the output displays 16 rows.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCode</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>AvgSalary</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BCK</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$36,111.89</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$32,255.18</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$39,181.50</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA3</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$46,107.57</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">ME1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$39,900.50</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">ME2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$49,807.64</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">ME3</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$59,374.86</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NA1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$58,845.00</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$73,336.00</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PT1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$95,071.13</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PT2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$122,253.40</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PT3</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$154,706.50</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">SCP</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$25,632.14</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">TA1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$38,809.89</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">TA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$47,004.90</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">TA3</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$55,551.42</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Now, suppose you want to select only a <strong>subset</strong> of 
+          groups for your query output. You can use a <strong>HAVING</strong> 
+          clause, following a GROUP BY clause, to select (or filter) the groups 
+          to be displayed. The way a HAVING clause affects groups is similar to 
+          the way that a WHERE clause affects individual rows. As in a WHERE clause, 
+          the HAVING clause contains an expression that is used to subset the 
+          data. Any valid SAS expression can be used. When you use a HAVING clause, 
+          PROC SQL displays only the groups that satisfy the HAVING expression. 
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">If you omit the GROUP BY clause in a query that contains 
+        a HAVING clause, then the HAVING clause and summary functions (if any 
+        are specified) treat the entire table as one group. </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>You can use summary functions in a HAVING clause but not in a WHERE 
+          clause, because a HAVING clause is used with groups, but a WHERE clause 
+          can only be used with individual rows.</p>
+        <p>Let's modify the query shown above so that it selects only the <code>JobCode</code> 
+          groups with an average salary of more than $56,000. The HAVING clause 
+          has been added at the end of the query:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        select jobcode, 
+               avg(salary) as AvgSalary
+               format=dollar11.2
+           from sasuser.payrollmaster
+           group by jobcode
+        <strong>   having avg(salary) &gt; 56000;</strong></font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top"><p>Alternatively, because the average salary is already 
+          calculated in the SELECT clause, the HAVING clause could specify the 
+          column alias <code>AvgSalary</code>:</p>
+        <pre><font color="#003399">     having <strong>AvgSalary</strong> &gt;56000</font></pre>
+        <p>Note that you do <strong>not</strong> have to specify the keyword CALCULATED 
+          in a HAVING clause; you would have to specify it in a WHERE clause.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>The query output is shown below. This output is smaller than the previous 
+        output, because only a subset of the job-code groups is displayed.</td>
+    </tr>
+  </table>
+  <p><br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCode</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>AvgSalary</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">ME3</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$59,374.86</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NA1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$58,845.00</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$73,336.00</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PT1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$95,071.13</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PT2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$122,253.40</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PT3</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">$154,706.50</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <br>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

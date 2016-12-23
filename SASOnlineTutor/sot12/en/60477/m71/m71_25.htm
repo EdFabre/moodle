@@ -1,0 +1,264 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      SQL Joins and DATA Step Match-Merges<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>When Only Some of the Values Match</h2>
+        <p> When <strong>only some</strong> of the values of the BY variable match, 
+          you can use a <strong>PROC SQL full outer join</strong> to produce the 
+          same result as a DATA step match-merge. Unlike the DATA step match-merge, 
+          however, a PROC SQL outer join does <strong>not</strong> <strong>overlay</strong> 
+          the two common columns by default. To overlay common columns, you must 
+          use the COALESCE function in the PROC SQL full outer join.<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The COALESCE function can also be used with inner join 
+        operators. </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>First, let's see what happens when you use a PROC SQL full outer join 
+        <strong>without</strong> the COALESCE function. Suppose you want to combine 
+        the tables <strong>Three</strong> and <strong>Four</strong>. These two 
+        tables have the column <code>X</code> in common, but most of the values 
+        of <code>X</code> do <strong>not</strong> match across tables. Both tables 
+        are already sorted by <code>X</code>. The following DATA step match-merge 
+        (followed by a PROC PRINT step) and the PROC SQL outer join combine these 
+        tables, but do <strong>not</strong> generate the same output. </td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td align="left" valign="top"> <div align="center"><strong>DATA Step Match-Merge 
+          </strong> </div>
+        <pre><font color="#003399">data merged;
+   merge three four;
+   by x;
+run;
+
+proc print data=merged noobs;
+   title 'Table Merged';
+run;</font></pre></td>
+      <td align="left" valign="top"><div align="center"><strong>PROC SQL Full 
+          Outer Join </strong> </div>
+        <pre><font color="#003399">proc sql;
+title 'Table Merged';
+   select three.x, a, b
+      from three
+      full join
+      four
+      on three.x = four.x
+      order by x;</font></pre></td>
+    </tr>
+  </table>
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td align="center" valign="top"> Three 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">a</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">b</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">d</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td align="center" valign="top"> Four 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">x</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">y</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">v</font> 
+              </td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <br>
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td align="center" valign="top">DATA Step Match-Merge <br>
+        Output</td>
+      <td align="center" valign="top">&nbsp;</td>
+      <td align="center" valign="top">PROC SQL Full Outer Join <br>
+        Output</td>
+    </tr>
+    <tr> 
+      <td align="center" valign="top"> <font color="#002288" size="4"  face="Arial, Helvetica, Helv"><b><i>Table 
+        Merged </i></b></font>
+<p> 
+        <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+          <thead>
+            <TR align="center" valign="top"> 
+              <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+              <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>A</b></font></TD>
+              <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><strong>B</strong></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">a</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp; 
+                </font></TD>
+            </TR>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x</font></TD>
+            </TR>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#FFFF9c"><font  face="Arial, Helvetica, Helv" size="2"><strong>3</strong></font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp; 
+                </font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">y</font></TD>
+            </TR>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">4</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">d</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp;</font></TD>
+            </TR>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#FFFF9c"><font  face="Arial, Helvetica, Helv" size="2"><strong>5</strong></font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp;</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">v</font></TD>
+            </TR>
+          </tbody>
+        </TABLE></td>
+      <td width="40" align="left" valign="top">&nbsp;</td>
+      <td align="center" valign="top"> <font color="#002288" size="4"  face="Arial, Helvetica, Helv"><b><i>Table 
+        Merged </i></b></font>
+<p> 
+        <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+          <thead>
+            <TR align="center" valign="top"> 
+              <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+              <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>A</b></font></TD>
+              <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><strong>B</strong></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#FFFF9c"><font  face="Arial, Helvetica, Helv" size="2">&nbsp; 
+                </font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp; 
+                </font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">y</font></TD>
+            </TR>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#FFFF9c"><font  face="Arial, Helvetica, Helv" size="2">&nbsp;</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp;</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">v</font></TD>
+            </TR>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">a</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp; 
+                </font></TD>
+            </TR>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x</font></TD>
+            </TR>
+            <TR align="center" valign="top"> 
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">4</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">d</font></TD>
+              <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp;</font></TD>
+            </TR>
+          </tbody>
+        </TABLE></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The DATA step match-merge automatically overlays the common column, 
+          <code>X</code>. The PROC SQL outer join selects the value of <code>X</code> 
+          from just one of the tables, table <strong>Three</strong>, so that no 
+          <code>X</code> values from Table <strong>Four</strong> are included 
+          in the PROC SQL output. However, the PROC SQL outer join cannot overlay 
+          the columns by default. The values that vary across the two merged tables 
+          are highlighted above.</p>
+        <p> Now let&#8217;s see how the COALESCE function is used in the PROC 
+          SQL outer join to overlay the common columns.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

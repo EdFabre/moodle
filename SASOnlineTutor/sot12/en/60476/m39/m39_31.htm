@@ -1,0 +1,124 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='Submit the following program:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data sasuser.regions; <br>';  
+solutionText+='   length Region $ 13;<br>';
+solutionText+='   infile cardata; <br>';
+solutionText+='   input Year 1-4 Country $ 6-11<br>';
+solutionText+='         Type $ 13-18 @20 Sales comma10.;<br>';
+solutionText+='   select(country);<br>';
+solutionText+='      when ("US","CANADA","MEXICO") region="North America";<br>';
+solutionText+='      when ("JAPAN") region="Asia";<br>';
+solutionText+='      otherwise region="UNKNOWN";<br>';
+solutionText+='   end;<br>';
+solutionText+='run;<br>';
+solutionText+='proc print data=sasuser.regions;<br>';
+solutionText+='run;<br></pre></font>';
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><STRONG>Use 
+                a SELECT group to assign values conditionally using the raw data 
+                file to which the fileref <A 
+            href="javascript: openOther('../linklib/cardata.htm')">Cardata</A> 
+                has been assigned.</STRONG><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+            <LI>Copy the program below and paste it into the code editing window. 
+              <PRE><font color="#003399">data sasuser.regions;   
+   length Region $ 13;
+   infile cardata;   
+   input Year 1-4 Country $ 6-11
+         Type $ 13-18 @20 Sales comma10.;
+run;
+proc print data=sasuser.regions;
+run;</font></PRE>
+            <LI>Add a SELECT group to assign values of <CODE>Region</CODE> based 
+              on values of <code>Country</code> as follows:<br>
+              <br>
+              <table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Generic Title">
+                <tr bgcolor="#F7F7DE"> 
+                  <td><strong>Value of <code>Country</code></strong></td>
+                  <td><strong>Value of <code>Region</code></strong></td>
+                </tr>
+                <tr> 
+                  <td><em>US</em></td>
+                  <td><em>North America</em></td>
+                </tr>
+                <tr> 
+                  <td><em>CANADA</em></td>
+                  <td><em>North America</em></td>
+                </tr>
+                <tr> 
+                  <td><em>MEXICO</em></td>
+                  <td><em>North America</em></td>
+                </tr>
+                <tr> 
+                  <td><em>JAPAN</em></td>
+                  <td><em>Asia</em></td>
+                </tr>
+                <tr> 
+                  <td>any other value<em></em></td>
+                  <td><em>Unknown</em></td>
+                </tr>
+              </table>
+              <br>
+              (For efficiency, you would not use a SELECT group to assign so few values, but for the purposes of this practice, please do so.)<br>
+              <br>
+            
+            <LI>Submit the program and view the output. Does the PROC PRINT report 
+              show the correct values for <code>Region</code>?<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

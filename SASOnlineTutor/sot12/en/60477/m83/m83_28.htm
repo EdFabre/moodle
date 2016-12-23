@@ -1,0 +1,82 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      and Writing Only Essential Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Now that you've seen techniques for efficiently subsetting observations 
+          that are read from SAS data sets, let's look at techniques for subsetting 
+          records that are read from external files.</p>
+        <p>Before viewing a comparative example that illustrates these techniques, 
+          it might be useful to review which resources are affected as SAS reads 
+          and processes data that is read from external files.</p>
+        <p><br><h2>Selecting Observations When Reading Data from External Files</h2>
+        <p>Positioning a subsetting IF statement in a DATA step so that it reads 
+          only the variables that are needed to select the subset&#8212;before 
+          reading all the data&#8212;can reduce the overhead required for processsing 
+          data.</p>
+        <p>The following graphic illustrates how data is read from an external 
+          file, loaded into the input buffer, and read into the program data vector.</p>
+        <p><br>
+        <center>
+            <img src="images/m83_28g1.gif" width="439" height="279" alt="How SAS reads data from an external file">
+</center>
+        <p><br>
+        <p>Remember that I/O operations are measured as data moves between disks 
+          and buffers&#8212;for both input and output data. All records are loaded 
+          into the input buffer before moving to the program data vector for processing, 
+          so I/O is not affected by the placement of a subsetting IF statement 
+          in the DATA step. </p>
+        <p>You can reduce the CPU resources that are required for processing data 
+          by limiting what is read into the program data vector. Position a subsetting 
+          IF statement after an INPUT statement that reads only the data that 
+          is required in order to check for specific conditions. Subsequent statements 
+          do not execute and do not process variable values for unwanted observations.</p>
+    <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Converting raw character fields to SAS character 
+              variables requires less CPU time than converting raw numeric fields 
+              to the real binary encoding of SAS numeric variables.</td>
+          </tr>
+        </table> 
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

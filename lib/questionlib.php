@@ -321,6 +321,9 @@ function question_delete_question($questionid) {
         return;
     }
 
+    // Check permissions.
+    question_require_capability_on($question, 'edit');
+
     $dm = new question_engine_data_mapper();
     $dm->delete_previews($questionid);
 
@@ -1045,8 +1048,8 @@ function question_category_select_menu($contexts, $top = false, $currentcat = 0,
     foreach ($categoriesarray as $group => $opts) {
         $options[] = array($group => $opts);
     }
-    echo html_writer::label(get_string('questioncategory', 'core_question'), 'id_movetocategory', false, array('class' => 'accesshide'));
-    echo html_writer::select($options, 'category', $selected, $choose, array('id' => 'id_movetocategory'));
+    echo html_writer::label($selected, 'menucategory', false, array('class' => 'accesshide'));
+    echo html_writer::select($options, 'category', $selected, $choose);
 }
 
 /**
@@ -1963,9 +1966,6 @@ function question_pluginfile($course, $context, $component, $filearea, $args, $f
 
     $module = $DB->get_field('question_usages', 'component',
             array('id' => $qubaid));
-    if (!$module) {
-        send_file_not_found();
-    }
 
     if ($module === 'core_question_preview') {
         require_once($CFG->dirroot . '/question/previewlib.php');

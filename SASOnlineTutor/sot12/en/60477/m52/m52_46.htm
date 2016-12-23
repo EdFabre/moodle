@@ -1,0 +1,209 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Processing 
+      Statements Conditionally<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+   <td>
+<h2>Conditional Processing of Parts of Statements</h2>
+        <P> The text that is processed as the result of conditional logic can 
+          be a small part of a SAS statement. This makes it possible to conditionally 
+          insert text into the middle of a statement. 
+        <P><BR><h2>Example</h2>
+        <P>Suppose you want to print a table of frequency counts from a SAS data 
+          set. You can generate either a one-way table or a two-way table, based 
+          on the value of a macro parameter. This example creates a one-way table 
+          if only the <code>cols</code> parameter is specified in the call. It 
+          creates a two-way table if the <code>rows</code> parameter is also specified. 
+        <font color="#003399"><PRE>    %macro counts (cols=_all_,rows=,dsn=&amp;syslast);
+       title &quot;Frequency Counts for %upcase(&amp;dsn) data set&quot;;
+       proc freq data=&amp;dsn;
+          tables
+          <strong>%if &amp;rows ne  %then &amp;rows *;</strong>
+          &amp;cols;
+       run;
+    %mend counts;
+</pre>
+        </font> Suppose you submit the following call, which specifies both <code>cols</code> 
+        and <code>rows</code>:<font color="#003399"> 
+        <PRE>    %counts(dsn=sasuser.all, cols=paid, rows=course_number)
+</pre></font>
+Part of the resulting output from this call is shown below. Notice that the macro has created a two-way table.
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Frequency Counts for SASUSER.ALL data set</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>The FREQ Procedure</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+ 
+<TABLE  rules=none frame=void title="SAS output">
+<TR>
+ <TD ALIGN=CENTER VALIGN=TOP><CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000">
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Frequency       <br>Percent         <br>Row Pct         <br>Col Pct         </b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+</TD>
+ <TD ALIGN=CENTER><CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000">
+<thead>
+<TR>
+ <TD COLSPAN=4 ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Table of Course_Number by Paid</b></font></TD>
+</TR>
+<TR>
+ <TD ROWSPAN=2 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Course_Number<br>(Course Number)</b></font></TD>
+ <TD COLSPAN=2 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Paid(Paid Status)</b></font></TD>
+ <TD ROWSPAN=2 ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Total</b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>N</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Y</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>            1</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">     6<br>   1.38<br>  26.09<br>   5.61</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">    17<br>   3.92<br>  73.91<br>   5.20</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">    23<br>   5.30<br>&nbsp;<br>&nbsp;</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>            2</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">     8<br>   1.84<br>  33.33<br>   7.48</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">    16<br>   3.69<br>  66.67<br>   4.89</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">    24<br>   5.53<br>&nbsp;<br>&nbsp;</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>            3</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">     6<br>   1.38<br>  30.00<br>   5.61</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">    14<br>   3.23<br>  70.00<br>   4.28</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">    20<br>   4.61<br>&nbsp;<br>&nbsp;</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>            4</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">     7<br>   1.61<br>  25.93<br>   6.54</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">    20<br>   4.61<br>  74.07<br>   6.12</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">    27<br>   6.22<br>&nbsp;<br>&nbsp;</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+<P><BR>
+          Now suppose you submit the following call, which specifies <code>cols</code> 
+          but does not specify <code>rows</code>:<font color="#003399"><PRE>    %counts(dsn=sasuser.all, cols=paid)
+</pre></font>
+The output that results from this call is shown below. Notice that this time the macro has created a one-way table.<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Frequency Counts for SASUSER.ALL data set</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>The FREQ Procedure</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD COLSPAN=5 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Paid Status</b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Paid</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Frequency</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> Percent</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Cumulative<br> Frequency</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Cumulative<br>  Percent</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>N</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">107</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">24.65</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">107</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">24.65</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Y</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">327</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">75.35</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">434</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">100.00</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

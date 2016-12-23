@@ -326,7 +326,6 @@ class core_bloglib_testcase extends advanced_testcase {
             \core\event\blog_association_created::create(array(
                 'contextid' => 1,
                 'objectid' => 3,
-                'relateduserid' => 2,
                 'other' => array('associateid' => 2 , 'blogid' => 3, 'subject' => 'blog subject')));
         } catch (coding_exception $e) {
             $this->assertContains('The \'associatetype\' value must be set in other and be a valid type.', $e->getMessage());
@@ -335,7 +334,6 @@ class core_bloglib_testcase extends advanced_testcase {
             \core\event\blog_association_created::create(array(
                 'contextid' => 1,
                 'objectid' => 3,
-                'relateduserid' => 2,
                 'other' => array('associateid' => 2 , 'blogid' => 3, 'associatetype' => 'random', 'subject' => 'blog subject')));
         } catch (coding_exception $e) {
             $this->assertContains('The \'associatetype\' value must be set in other and be a valid type.', $e->getMessage());
@@ -345,7 +343,6 @@ class core_bloglib_testcase extends advanced_testcase {
             \core\event\blog_association_created::create(array(
                 'contextid' => 1,
                 'objectid' => 3,
-                'relateduserid' => 2,
                 'other' => array('blogid' => 3, 'associatetype' => 'course', 'subject' => 'blog subject')));
         } catch (coding_exception $e) {
             $this->assertContains('The \'associateid\' value must be set in other.', $e->getMessage());
@@ -355,7 +352,6 @@ class core_bloglib_testcase extends advanced_testcase {
             \core\event\blog_association_created::create(array(
                 'contextid' => 1,
                 'objectid' => 3,
-                'relateduserid' => 2,
                 'other' => array('associateid' => 3, 'associatetype' => 'course', 'subject' => 'blog subject')));
         } catch (coding_exception $e) {
             $this->assertContains('The \'blogid\' value must be set in other.', $e->getMessage());
@@ -365,7 +361,6 @@ class core_bloglib_testcase extends advanced_testcase {
             \core\event\blog_association_created::create(array(
                 'contextid' => 1,
                 'objectid' => 3,
-                'relateduserid' => 2,
                 'other' => array('blogid' => 3, 'associateid' => 3, 'associatetype' => 'course')));
         } catch (coding_exception $e) {
             $this->assertContains('The \'subject\' value must be set in other.', $e->getMessage());

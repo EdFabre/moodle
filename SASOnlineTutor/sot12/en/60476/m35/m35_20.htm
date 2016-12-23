@@ -1,0 +1,146 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Expanding 
+      Your Use of Arrays<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Creating Temporary Array Elements</strong> </p>
+      <p> To create temporary array elements for DATA step processing without 
+        creating new variables, specify <strong>_TEMPORARY_ </strong>after the 
+        array name and dimension. 
+        <pre><font color="#003399">     data finance.report(drop=i);</font>
+<font color="#003399">        set finance.qsales;</font>
+<font color="#003399">        array sale{4} sales1-sales4;</font>
+       <font color="#003399"> array goal{4} <strong>_temporary_</strong> (9000 9300 9600 9900);</font>
+<font color="#003399">        array Achieved{4};</font>
+<font color="#003399">        do i=1 to 4;</font>
+<font color="#003399">           achieved{i}=100*sale{i}/goal{i};</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre>
+        Temporary array elements do not appear in the resulting data set.</td>
+  </tr>
+</table>
+<p align="center"> <br>
+  SAS Data Set Finance.Report 
+<center>
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>SalesRep</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sales1</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sales2</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sales3</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sales4</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Britt</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8400</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8800</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">9300</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        9800</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Fruchten</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">9500</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">9300</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">9800</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        8900</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Goodyear</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">9150</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">9200</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">9650</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">11000</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <p> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Achieved1</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Achieved2</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Achieved3</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Achieved4</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        93.333</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        94.624</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        96.875</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        98.990</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">105.556</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">100.000</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">102.083</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        89.899</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">101.667</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        98.925</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">100.521</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">111.111</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Temporary array elements are useful when the array is needed only to 
+        perform a calculation. You can improve performance time by using temporary 
+        array elements.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

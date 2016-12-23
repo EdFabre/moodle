@@ -1,0 +1,151 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Additional 
+      Features<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>For pie charts, you can specify the text color by using the<strong> CTEXT= 
+        </strong>option. You can control where labels appear by using the <strong>SLICE= 
+        </strong>option, and you can separate one or more pie slices from the 
+        rest of the pie (for emphasis) by using the <strong>EXPLODE= </strong>option. 
+      </p>
+      <p> The pie chart below shows the relationship between the average balance 
+        due amounts for each of three companies: <em>RURITAN</em>, <em>ACME</em> 
+        and <em>USA INC</em>. The chart emphasizes the <em>ACME</em> company by 
+        separating its slice from the rest of the pie. 
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p align=Center> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        pie company / sumvar=balancedue type=mean</font>
+<font color="#003399">            <strong>ctext=blue slice=arrow explode="ACME";</strong></font>
+<font color="#003399">        where Company in ("ACME", "RURITAN", "USA INC.");</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m7j2s1.gif" width="260" height="270" alt="PIE chart with CTEXT=, SLICE= and EXPLODE= options."> 
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">You can easily create three-dimensional charts by using 
+        the PIE3D, VBAR3D, and HBAR3D statements.</td>
+    </tr>
+  </table>
+</center>
+<p align=Center> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        <strong>pie3d</strong> company / sumvar=balancedue type=mean</font>
+<font color="#003399">            ctext=blue explode="ACME";</font><br>        <font color="#003399">where Company in ("ACME", "RURITAN", "USA INC.");</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m7j2s2.gif" width="260" height="270" alt="3D PIE chart."> 
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre><font color="#003399">     pattern1 color=lib;</font>
+<font color="#003399">     pattern2 color=lig;</font>
+<font color="#003399">     proc gchart data=clinic.admit;</font>
+<font color="#003399">        <strong>hbar3d</strong> age / sumvar=weight type=mean</font>
+<font color="#003399">               subgroup=sex patternid=subgroup mean;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m7j2s3.gif" width="400" height="305" alt="3D horizontal bar chart."> 
+  <br>
+  <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left">You can use the <strong>SAS/GRAPH control for ActiveX</strong> 
+      to embed interactive &quot;live&quot; plots and other graphs in Web pages 
+      and in OLE documents. When the graph is displayed, you can point and click 
+      to rotate, change, or further investigate the graph. 
+      <p></p>
+      <pre><font color="#003399">     <strong>ods html body='chart.htm';</strong><br>     goptions reset=global gunit=pct border cback=white<br>              colors=(blue red) ctext=black<br>              ftitle=swissb ftext=swiss htitle=6 htext=4<br>              <strong>device=activex</strong>; <br>     pattern1 color=lib;</font>
+<font color="#003399">     pattern2 color=lig;</font>
+<font color="#003399">     proc gchart data=clinic.admit;</font>
+<font color="#003399">        <strong>hbar3d</strong> age / sumvar=weight type=mean</font>
+<font color="#003399">               subgroup=sex patternid=subgroup mean;
+     run;<br>     quit;<br>     <strong>ods html close;</strong></font></pre>
+      </td>
+  </tr>
+</table>
+<br>
+<p> 
+<center>
+  <img src="images/m7_37sc.gif" width="480" height="360" alt="3D horizontal bar chart."><br>
+  <br>
+  <br>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">There are several other ways to enhance your bars and charts. 
+        To learn more about them, or for more information about using the SAS/GRAPH 
+        control for ActiveX, see the lesson 
+        <!--lesson reference-->
+        <strong><script>document.write(m8title);</script></strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

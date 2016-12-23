@@ -1,0 +1,140 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            a FILENAME statement to concatenate the raw data files <a href="JavaScript: openOther('../linklib/route1x.htm')">Route1.dat</a>, 
+            <a href="JavaScript: openOther2('../linklib/route2x.htm')">Route2.dat</a>, 
+            and <a href="JavaScript: openOther3('../linklib/route3x.htm')">Route3.dat</a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --> <!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+         <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol> <li>Create the SAS data set <strong>Work.NewRoutes</strong> by concatenating 
+            <strong>Route1.dat</strong>, <strong>Route2.dat</strong>, and <strong>Route3.dat.<br>
+            <br>
+            </strong> 
+            <p><table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">Remember that you need to point to the <strong><a href="JavaScript: openOther
+('../linklib/physloca.htm')
+">physical location</a></strong> of  the sample raw data files in your operating environment.</td>
+    </tr>
+  </table><br>
+              
+           
+          <li>Print the <strong>Work.NewRoutes</strong> data set and view the 
+            output.<br>
+			</ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol> <li>Create the SAS data set <strong>Work.NewRoutes</strong> by concatenating 
+            <strong>Route1.dat</strong>, <strong>Route2.dat</strong>, and <strong>Route3.dat.<br>
+            <br>
+            </strong> 
+            <p><table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">Remember that you need to point to the <strong><a href="JavaScript: openOther
+('../linklib/physloc.htm')
+">physical location</a></strong> of  the sample raw data files in your operating environment.</td>
+    </tr>
+  </table><br>
+              
+           
+          <li>Print the <strong>Work.NewRoutes</strong> data set and view the 
+            output.<br>
+			</ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+          <!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_eg3_v89_v91_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+<ol><li>Submit the following program. (If you are working in an operating environment other than Windows, 
+remember to replace <code><font color="#003399"><em>your-sasuser-location</em>\</font></code> 
+with the appropriate path or file name designation.)
+<font color="#003399">
+              <pre>
+filename routes ('<em>your-sasuser-location</em>\route1.dat'
+   '<em>your-sasuser-location</em>\route2.dat'
+   '<em>your-sasuser-location</em>\route3.dat');
+data work.newroutes;
+infile routes;
+input RouteID $7. Origin $3. Dest $3.
+      Distance 5. Fare1stclass 4. FareBusiness 4.
+      FareCoach 4. FareCargo 5.;
+run;</pre>
+              </font>
+<li>Submit the following PROC PRINT step:
+<font color="#003399">
+              <pre>
+proc print data=work.newroutes;
+run;</pre>
+              </font></ol>
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+  <!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

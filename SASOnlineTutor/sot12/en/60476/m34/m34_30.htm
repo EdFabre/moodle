@@ -1,0 +1,83 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Samples<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Because it performs iterative processing, a DO loop provides an easy 
+        way to draw sample observations from a data set. For example, suppose 
+        you would like to sample every tenth observation of the 5,000 observations 
+        in <strong>Factory.Widgets</strong>. Start with a simple DATA step: </p>
+      <pre>     <font color="#003399">data work.subset;</font>
+        <font color="#003399">set factory.widgets;</font>
+     <font color="#003399">run;</font></pre>
+      You can create the sample data set by enclosing the SET statement in a DO 
+      loop. Use the start, stop, and increment values to select every tenth observation 
+      of the 5,000. Add the POINT= option to the SET statement, setting the POINT= 
+      option equal to the index variable that is used in the DO loop. (You learned 
+      about the POINT= option if you completed the lesson 
+      <!--lesson reference-->
+      <strong><script>document.write(m14title);</script></strong>.) 
+      <pre>     <font color="#003399">data work.subset;</font>
+        <font color="#003399"><strong>do sample=10 to 5000 by 10;</strong></font>
+           <font color="#003399">set factory.widgets <strong>point=sample</strong>;</font>
+        <font color="#003399"><strong>end;</strong></font>
+     <font color="#003399">run;</font></pre>
+      Remember that, in order to prevent continuous DATA step looping, you need 
+      to add a STOP statement when using the POINT= option. Then, because the 
+      STOP statement prevents the output of observations at the end of the DATA 
+      step, you also need to add an OUTPUT statement. Place the statement inside 
+      the DO loop to output each observation selected. (If the OUTPUT statement 
+      were placed after the DO loop, only the last observation would be written.) 
+      <pre>     <font color="#003399">data work.subset;</font>
+        <font color="#003399">do sample=10 to 5000 by 10;</font>
+           <font color="#003399">set factory.widgets point=sample;</font>
+           <font color="#003399"><strong>output;</strong></font>
+        <font color="#003399">end;</font>
+        <font color="#003399"><strong>stop;</strong></font>
+     <font color="#003399">run;</font></pre>
+      When the program runs, the DATA step reads the observations in <strong>Factory.Widgets</strong> 
+      identified by the POINT= option. The values of the POINT= option are provided 
+      by the DO loop, which starts at 10 and goes to 5,000 in increments of 10. 
+      The data set <strong>Work.Subset</strong> contains 500 observations.</td>
+  </tr>
+</table>
+<br>
+<br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

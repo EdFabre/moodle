@@ -1,0 +1,211 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Instream Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Throughout this lesson, our program has contained an INFILE statement 
+        that identifies an <strong>external file</strong> to read. </p>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p> 
+          <pre><font color="#003399">    data sasuser.stress;</font>
+<font color="#003399">       <strong>infile tests;</strong></font>
+<font color="#003399">       input ID 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       if tolerance='D';</font><font color="#003399">
+</font><font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">    run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p>However, you can also read <strong>instream data lines</strong> that 
+          you enter directly in your SAS program, rather than data that is stored 
+          in an external file. Reading instream data is extremely helpful if you 
+          want to create data and test your programming statements on a few observations 
+          that you can specify according to your needs.</p>
+        <p>To read instream data, you use </p>
+        <ul>
+          <li> 
+            <!--DATALINES in V8 -->
+            a <strong>DATALINES statement</strong> as the last statement in the 
+            DATA step (except for the RUN statement) and immediately preceding 
+            the data lines</li>
+          <li>a <strong>null statement</strong> (a single semicolon) to indicate 
+            the end of the input data. </li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p> 
+          <pre><font color="#003399">    data sasuser.stress;</font>
+<font color="#003399">       input ID 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;
+       <font color="red"><strong>datalines;</strong></font>
+       .
+       .
+       .
+    <em>data lines go here</em></font>
+<font color="#003399">       .
+       .
+       .
+    <font color="red"><strong>;</strong></font></font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<p align="center"> 
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATALINES statement">
+    <tr> 
+      <td align="left"><strong>General form, DATALINES statement:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>DATALINES</strong><strong>;</strong></nobr></font> 
+        </blockquote>
+        <p> 
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img border="0" src="../navimages/note.gif" alt="NOTE:" width="20" height="20"></td>
+            <td>You can use only one DATALINES statement in a DATA step. Use separate 
+              DATA steps to enter multiple sets of data. </td>
+          </tr>
+        </table>
+        <p> 
+		<table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img border="0" src="../navimages/note.gif" alt="NOTE:" width="20" height="20"></td>
+            <td> You can also use <STRONG><FONT COLOR="#003399">CARDS;</FONT></STRONG>  as the last statement in a DATA step (except for the RUN statement) and 
+			immediately preceding the data lines. The CARDS statement is an alias for the DATALINES statement.</td>
+          </tr>
+        </table>
+		<p>
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img border="0" src="../navimages/note.gif" alt="NOTE:" width="20" height="20"></td>
+            <td> If your data contains semicolons, use the DATALINES4 statement 
+              plus a null statement that consists of four semicolons (;;;;).</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p><strong>Example</strong></p>
+        <p>To read the data for the treadmill stress tests as instream data, you 
+          can submit the following program:</p>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">    data sasuser.stress;</font>
+<font color="#003399">       input ID 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       if tolerance='D';</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+       <font color="red"><strong>datalines;</strong></font>
+     <font color="#003399"><strong>2458 Murray, W            72  185 128 12 38 D</strong></font>
+     <font color="#003399"><strong>2462 Almers, C            68  171 133 10  5 I</strong></font>
+     <font color="#003399"><strong>2501 Bonaventure, T       78  177 139 11 13 I</strong></font>
+     <font color="#003399"><strong>2523 Johnson, R           69  162 114  9 42 S</strong></font>
+     <font color="#003399"><strong>2539 LaMance, K           75  168 141 11 46 D</strong></font>
+     <font color="#003399"><strong>2544 Jones, M             79  187 136 12 26 N</strong></font>
+     <font color="#003399"><strong>2552 Reberson, P          69  158 139 15 41 D</strong></font>
+     <font color="#003399"><strong>2555 King, E              70  167 122 13 13 I</strong></font>
+     <font color="#003399"><strong>2563 Pitts, D             71  159 116 10 22 S</strong></font>
+     <font color="#003399"><strong>2568 Eberhardt, S         72  182 122 16 49 N</strong></font>
+     <font color="#003399"><strong>2571 Nunnelly, A          65  181 141 15  2 I</strong></font>
+     <font color="#003399"><strong>2572 Oberon, M            74  177 138 12 11 D</strong></font>
+     <font color="#003399"><strong>2574 Peterson, V          80  164 137 14  9 D</strong></font>
+     <font color="#003399"><strong>2575 Quigley, M           74  152 113 11 26 I</strong></font>
+     <font color="#003399"><strong>2578 Cameron, L           75  158 108 14 27 I</strong></font>
+     <font color="#003399"><strong>2579 Underwood, K         72  165 127 13 19 S</strong></font>
+     <font color="#003399"><strong>2584 Takahashi, Y         76  163 135 16  7 D</strong></font>
+     <font color="#003399"><strong>2586 Derber, B            68  176 119 17 35 N</strong></font>
+     <font color="#003399"><strong>2588 Ivan, H              70  182 126 15 41 N</strong></font>
+     <font color="#003399"><strong>2589 Wilcox, E            78  189 138 14 57 I</strong></font>
+     <font color="#003399"><strong>2595 Warren, C            77  170 136 12 10 S</strong></font>
+     <font color="red"><strong>;</strong></font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="2" width="85%">
+    <tr valign="Top"> 
+      <td width="41"><img border="0" src="../navimages/alert.gif" alt="NOTE:" width="37" height="32"></td>
+      <td> Notice that you do not need a RUN statement following the null statement 
+        (the semicolon after the data lines). The null statement functions as 
+        a step boundary when the DATALINES statement is used, so the DATA step 
+        is executed as soon as SAS encounters it. If you do place a RUN 
+        statement after the null statement, any statements between the null statement 
+        and the RUN statement are <strong>not</strong> executed as part of the 
+        DATA step.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

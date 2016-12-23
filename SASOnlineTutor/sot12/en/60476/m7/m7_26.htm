@@ -1,0 +1,136 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Enhancing 
+      Charts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Another aspect of charts that you can modify is the <strong>fill for pie slices</strong>. 
+          By default, pie charts start with a solid fill, cycling through the 
+          colors in the <a href="JavaScript: openOther('../linklib/colors.htm')">color 
+          list</a> once. If there are additional slices, the fill changes to the 
+          next pattern in the pattern list and cycles through the color list again. 
+        </p>
+      <p> To change the fill pattern to either all solid or all cross-hatch, you 
+        can use the <strong>FILL= </strong>option in the PIE or PIE3D statement. 
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, FILL= option">
+    <tr> 
+      <td align="left"><strong>General form, FILL= option:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>FILL=</strong>&lt;X|S&gt;</font></nobr> 
+        </blockquote>
+        <p> where 
+        <ul>
+          <li> <strong><nobr>X</nobr> </strong>changes the fill pattern&nbsp;for 
+            all slices to cross-hatch 
+          <li> <strong><nobr>S</nobr> </strong>changes the fill&nbsp;pattern for 
+            all slices to solid. 
+        </ul>
+        <p> 
+        <table cellspacing="0" cellpadding="2">
+          <tr valign="top"> 
+            <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+            <td>You cannot use the FILL= option with bar charts.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Example</strong> 
+        <p> This program shows the <strong>default</strong> color and fill pattern 
+          for pie charts. Note that both solid and cross-hatch patterns are used. 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        pie company / sumvar=balancedue type=mean;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m7h2s1.gif" alt="Pie chart with default colors and fill patterns."
+    width="355" height="325"> 
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The program below shows how the <strong>FILL=X</strong> 
+        option changes the slice patterns. Only one cross-hatch pattern &nbsp;is 
+        used, and it cycles through the color list. Note that one color (green) 
+        is used twice because there were not as many colors in the color list 
+        as there are slices in the chart. (Some colors were assigned to companies 
+        that have no balance due or to companies that are included in OTHER.) 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        pie company / sumvar=balancedue type=mean <strong>fill=x</strong>;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m7h2s2.gif" alt="Pie chart with FILL=X option." width="360"
+    height="350"> 
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">This program shows how the <strong>FILL=S</strong> option 
+        changes the slice patterns to solid fill. 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        pie company / sumvar=balancedue type=mean <strong>fill=s</strong>;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m7h2s3.gif" alt="Pie chart with FILL=S option." width="355"
+    height="325"><br>
+  <br>
+  <br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

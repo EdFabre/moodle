@@ -11,11 +11,11 @@ Feature: Organize students into groups
       | Course 1 | C1 | 0 | 1 |
     And the following "users" exist:
       | username | firstname | lastname | email |
-      | teacher1 | Teacher | 1 | teacher1@example.com |
-      | student0 | Student | 0 | student0@example.com |
-      | student1 | Student | 1 | student1@example.com |
-      | student2 | Student | 2 | student2@example.com |
-      | student3 | Student | 3 | student3@example.com |
+      | teacher1 | Teacher | 1 | teacher1@asd.com |
+      | student0 | Student | 0 | student0@asd.com |
+      | student1 | Student | 1 | student1@asd.com |
+      | student2 | Student | 2 | student2@asd.com |
+      | student3 | Student | 3 | student3@asd.com |
     And the following "course enrolments" exist:
       | user | course | role |
       | teacher1 | C1 | editingteacher |
@@ -35,10 +35,10 @@ Feature: Organize students into groups
     And I set the following fields to these values:
       | Group name | Group 2 |
     And I press "Save changes"
-    When I add "Student 0 (student0@example.com)" user to "Group 1" group members
-    And I add "Student 1 (student1@example.com)" user to "Group 1" group members
-    And I add "Student 2 (student2@example.com)" user to "Group 2" group members
-    And I add "Student 3 (student3@example.com)" user to "Group 2" group members
+    When I add "Student 0 (student0@asd.com)" user to "Group 1" group members
+    And I add "Student 1 (student1@asd.com)" user to "Group 1" group members
+    And I add "Student 2 (student2@asd.com)" user to "Group 2" group members
+    And I add "Student 3 (student3@asd.com)" user to "Group 2" group members
     Then I set the field "groups" to "Group 1 (2)"
     And the "members" select box should contain "Student 0"
     And the "members" select box should contain "Student 1"
@@ -64,7 +64,7 @@ Feature: Organize students into groups
       | Course 1 | C1 | 0 | 1 |
     And the following "users" exist:
       | username | firstname | lastname | email |
-      | teacher1 | Teacher | 1 | teacher1@example.com |
+      | teacher1 | Teacher | 1 | teacher1@asd.com |
     And the following "course enrolments" exist:
       | user | course | role |
       | teacher1 | C1 | editingteacher |
@@ -89,42 +89,3 @@ Feature: Organize students into groups
       | Grouping name | Not the greatest grouping, but it's ok! |
     And I press "Save changes"
     And I should see "Not the greatest grouping, but it's ok!"
-
-  Scenario: Create groups with enrolment key
-    Given the following "courses" exist:
-      | fullname | shortname | category | groupmode |
-      | Course 1 | C1 | 0 | 1 |
-      | Course 2 | C2 | 0 | 1 |
-    And I log in as "admin"
-    And I follow "Course 1"
-    And I expand "Users" node
-    And I follow "Groups"
-    When I press "Create group"
-    And I set the following fields to these values:
-      | Group name | Group A |
-      | Enrolment key | badpasswd |
-    And I press "Save changes"
-    And I should see "Passwords must have at least 1 digit(s)"
-    And I set the following fields to these values:
-      | Group name | Group A |
-      | Enrolment key | Abcdef-1 |
-    And I press "Save changes"
-    And I press "Create group"
-    And I set the following fields to these values:
-      | Group name | Group B |
-      | Enrolment key | Abcdef-1 |
-    And I press "Save changes"
-    Then I should see "This enrolment key is already used for another group."
-    And I set the following fields to these values:
-      | Enrolment key | Abcdef-2 |
-    And I press "Save changes"
-    And the "groups" select box should contain "Group B (0)"
-    And I am on homepage
-    And I follow "Course 2"
-    And I expand "Users" node
-    And I follow "Groups"
-    And I press "Create group"
-    And I set the following fields to these values:
-      | Group name | Group A |
-      | Enrolment key | Abcdef-1 |
-    And I should not see "This enrolment key is already used for another group."

@@ -875,7 +875,7 @@ function data_tags_check($dataid, $template) {
     // then we generate strings to replace
     $tagsok = true; // let's be optimistic
     foreach ($fields as $field){
-        $pattern="/\[\[" . preg_quote($field->name, '/') . "\]\]/i";
+        $pattern="/\[\[".$field->name."\]\]/i";
         if (preg_match_all($pattern, $template, $dummy)>1){
             $tagsok = false;
             echo $OUTPUT->notification('[['.$field->name.']] - '.get_string('multipletags','data'));
@@ -1214,10 +1214,9 @@ function data_grade_item_delete($data) {
  * @param string $search
  * @param int $page
  * @param bool $return
- * @param object $jumpurl a moodle_url by which to jump back to the record list (can be null)
  * @return mixed
  */
-function data_print_template($template, $records, $data, $search='', $page=0, $return=false, moodle_url $jumpurl=null) {
+function data_print_template($template, $records, $data, $search='', $page=0, $return=false) {
     global $CFG, $DB, $OUTPUT;
 
     $cm = get_coursemodule_from_instance('data', $data->id);
@@ -1244,11 +1243,6 @@ function data_print_template($template, $records, $data, $search='', $page=0, $r
     if (empty($records)) {
         return;
     }
-
-    if (!$jumpurl) {
-        $jumpurl = new moodle_url('/mod/data/view.php', array('d' => $data->id));
-    }
-    $jumpurl = new moodle_url($jumpurl, array('page' => $page, 'sesskey' => sesskey()));
 
     // Check whether this activity is read-only at present
     $readonly = data_in_readonly_period($data);
@@ -1326,7 +1320,8 @@ function data_print_template($template, $records, $data, $search='', $page=0, $r
 
         $patterns[]='##approve##';
         if (has_capability('mod/data:approve', $context) && ($data->approval) && (!$record->approved)) {
-            $approveurl = new moodle_url($jumpurl, array('approve' => $record->id));
+            $approveurl = new moodle_url('/mod/data/view.php',
+                    array('d' => $data->id, 'approve' => $record->id, 'sesskey' => sesskey()));
             $approveicon = new pix_icon('t/approve', get_string('approve', 'data'), '', array('class' => 'iconsmall'));
             $replacement[] = html_writer::tag('span', $OUTPUT->action_icon($approveurl, $approveicon),
                     array('class' => 'approve'));
@@ -1336,7 +1331,8 @@ function data_print_template($template, $records, $data, $search='', $page=0, $r
 
         $patterns[]='##disapprove##';
         if (has_capability('mod/data:approve', $context) && ($data->approval) && ($record->approved)) {
-            $disapproveurl = new moodle_url($jumpurl, array('disapprove' => $record->id));
+            $disapproveurl = new moodle_url('/mod/data/view.php',
+                    array('d' => $data->id, 'disapprove' => $record->id, 'sesskey' => sesskey()));
             $disapproveicon = new pix_icon('t/block', get_string('disapprove', 'data'), '', array('class' => 'iconsmall'));
             $replacement[] = html_writer::tag('span', $OUTPUT->action_icon($disapproveurl, $disapproveicon),
                     array('class' => 'disapprove'));
@@ -1531,58 +1527,6 @@ function data_rating_validate($params) {
     return true;
 }
 
-/**
- * Can the current user see ratings for a given itemid?
- *
- * @param array $params submitted data
- *            contextid => int contextid [required]
- *            component => The component for this module - should always be mod_data [required]
- *            ratingarea => object the context in which the rated items exists [required]
- *            itemid => int the ID of the object being rated [required]
- *            scaleid => int scale id [optional]
- * @return bool
- * @throws coding_exception
- * @throws rating_exception
- */
-function mod_data_rating_can_see_item_ratings($params) {
-    global $DB;
-
-    // Check the component is mod_data.
-    if (!isset($params['component']) || $params['component'] != 'mod_data') {
-        throw new rating_exception('invalidcomponent');
-    }
-
-    // Check the ratingarea is entry (the only rating area in data).
-    if (!isset($params['ratingarea']) || $params['ratingarea'] != 'entry') {
-        throw new rating_exception('invalidratingarea');
-    }
-
-    if (!isset($params['itemid'])) {
-        throw new rating_exception('invaliditemid');
-    }
-
-    $datasql = "SELECT d.id as dataid, d.course, r.groupid
-                  FROM {data_records} r
-                  JOIN {data} d ON r.dataid = d.id
-                 WHERE r.id = :itemid";
-    $dataparams = array('itemid' => $params['itemid']);
-    if (!$info = $DB->get_record_sql($datasql, $dataparams)) {
-        // Item doesn't exist
-        throw new rating_exception('invaliditemid');
-    }
-
-    // User can see ratings of all participants.
-    if ($info->groupid == 0) {
-        return true;
-    }
-
-    $course = $DB->get_record('course', array('id' => $info->course), '*', MUST_EXIST);
-    $cm = get_coursemodule_from_instance('data', $info->dataid, $course->id, false, MUST_EXIST);
-
-    // Make sure groups allow this user to see the item they're rating.
-    return groups_group_visible($info->groupid, $course, $cm);
-}
-
 
 /**
  * function that takes in the current data, number of items per page,
@@ -1741,9 +1685,9 @@ function data_print_preference_form($data, $perpage, $search, $sort='', $order='
     $fn = !empty($search_array[DATA_FIRSTNAME]->data) ? $search_array[DATA_FIRSTNAME]->data : '';
     $ln = !empty($search_array[DATA_LASTNAME]->data) ? $search_array[DATA_LASTNAME]->data : '';
     $patterns[]    = '/##firstname##/';
-    $replacement[] = '<label class="accesshide" for="u_fn">'.get_string('authorfirstname', 'data').'</label><input type="text" size="16" id="u_fn" name="u_fn" value="'.s($fn).'" />';
+    $replacement[] = '<label class="accesshide" for="u_fn">'.get_string('authorfirstname', 'data').'</label><input type="text" size="16" id="u_fn" name="u_fn" value="'.$fn.'" />';
     $patterns[]    = '/##lastname##/';
-    $replacement[] = '<label class="accesshide" for="u_ln">'.get_string('authorlastname', 'data').'</label><input type="text" size="16" id="u_ln" name="u_ln" value="'.s($ln).'" />';
+    $replacement[] = '<label class="accesshide" for="u_ln">'.get_string('authorlastname', 'data').'</label><input type="text" size="16" id="u_ln" name="u_ln" value="'.$ln.'" />';
 
     // actual replacement of the tags
     $newtext = preg_replace($patterns, $replacement, $data->asearchtemplate);
@@ -2650,9 +2594,6 @@ function data_reset_userdata($data) {
     $ratingdeloptions->component = 'mod_data';
     $ratingdeloptions->ratingarea = 'entry';
 
-    // Set the file storage - may need it to remove files later.
-    $fs = get_file_storage();
-
     // delete entries if requested
     if (!empty($data->reset_data)) {
         $DB->delete_records_select('comments', "itemid IN ($allrecordssql) AND commentarea='database_entry'", array($data->courseid));
@@ -2661,13 +2602,12 @@ function data_reset_userdata($data) {
 
         if ($datas = $DB->get_records_sql($alldatassql, array($data->courseid))) {
             foreach ($datas as $dataid=>$unused) {
+                fulldelete("$CFG->dataroot/$data->courseid/moddata/data/$dataid");
+
                 if (!$cm = get_coursemodule_from_instance('data', $dataid)) {
                     continue;
                 }
                 $datacontext = context_module::instance($cm->id);
-
-                // Delete any files that may exist.
-                $fs->delete_area_files($datacontext->id, 'mod_data', 'content');
 
                 $ratingdeloptions->contextid = $datacontext->id;
                 $rm->delete_ratings($ratingdeloptions);
@@ -2705,17 +2645,21 @@ function data_reset_userdata($data) {
                 $ratingdeloptions->itemid = $record->id;
                 $rm->delete_ratings($ratingdeloptions);
 
-                // Delete any files that may exist.
-                if ($contents = $DB->get_records('data_content', array('recordid' => $record->id), '', 'id')) {
-                    foreach ($contents as $content) {
-                        $fs->delete_area_files($datacontext->id, 'mod_data', 'content', $content->id);
+                $DB->delete_records('comments', array('itemid'=>$record->id, 'commentarea'=>'database_entry'));
+                $DB->delete_records('data_content', array('recordid'=>$record->id));
+                $DB->delete_records('data_records', array('id'=>$record->id));
+                // HACK: this is ugly - the recordid should be before the fieldid!
+                if (!array_key_exists($record->dataid, $fields)) {
+                    if ($fs = $DB->get_records('data_fields', array('dataid'=>$record->dataid))) {
+                        $fields[$record->dataid] = array_keys($fs);
+                    } else {
+                        $fields[$record->dataid] = array();
                     }
                 }
+                foreach($fields[$record->dataid] as $fieldid) {
+                    fulldelete("$CFG->dataroot/$data->courseid/moddata/data/$record->dataid/$fieldid/$record->id");
+                }
                 $notenrolled[$record->userid] = true;
-
-                $DB->delete_records('comments', array('itemid' => $record->id, 'commentarea' => 'database_entry'));
-                $DB->delete_records('data_content', array('recordid' => $record->id));
-                $DB->delete_records('data_records', array('id' => $record->id));
             }
         }
         $rs->close();
@@ -3791,7 +3735,7 @@ function data_user_can_delete_preset($context, $preset) {
  * @return bool True if the record deleted, false if not.
  */
 function data_delete_record($recordid, $data, $courseid, $cmid) {
-    global $DB, $CFG;
+    global $DB;
 
     if ($deleterecord = $DB->get_record('data_records', array('id' => $recordid))) {
         if ($deleterecord->dataid == $data->id) {
@@ -3815,12 +3759,6 @@ function data_delete_record($recordid, $data, $courseid, $cmid) {
                 ));
                 $event->add_record_snapshot('data_records', $deleterecord);
                 $event->trigger();
-
-                // Delete cached RSS feeds.
-                if (!empty($CFG->enablerssfeeds)) {
-                    require_once($CFG->dirroot.'/mod/data/rsslib.php');
-                    data_rss_delete_file($data);
-                }
 
                 return true;
             }

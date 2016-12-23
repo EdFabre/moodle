@@ -1,0 +1,127 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Sequential Processing of Multiple Records in the DATA Step</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Sequential 
+      Processing of Multiple Records in the DATA Step<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows the sequential processing of multiple records 
+        in the raw data file <strong>Memdata</strong>.</p>
+		
+      <div align="center">Raw Data File Memdata </div>
+      <table  border=1 align="center" cellpadding=0 cellspacing=0 bgcolor="#CCCCCC" frame=BOX rules=NONE title="Raw Data File">
+        <thead>
+          <tr> 
+            <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20&nbsp;</font></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">LEE&nbsp;ATHNOS&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1215&nbsp;RAINTREE&nbsp;CIRCLE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">PHOENIX&nbsp;&nbsp;AZ&nbsp;85044&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HEIDIE&nbsp;BAKER&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1751&nbsp;DIEHL&nbsp;ROAD&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">VIENNA&nbsp;&nbsp;VA&nbsp;22124&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MYRON&nbsp;BARKER&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">131&nbsp;DONERAIL&nbsp;DRIVE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">ATLANTA&nbsp; 
+              GA&nbsp;30363&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">JOYCE&nbsp;BENEFIT&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">85&nbsp;MAPLE&nbsp;AVENUE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MENLO&nbsp;PARK&nbsp; 
+              CA&nbsp;94025&nbsp;</font></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+<ol>
+        <li>The following program is submitted to SAS:<br>
+          <pre><font color="#003399">data perm.members; <br>   infile memdata;<br>   input Fname $ Lname $ /<br>         Address $ 1-20 /<br>         City &amp; $10. State $ Zip $;<br>run;</font></pre>
+        During compilation, the program data vector is created for the <strong>Perm.Member</strong> 
+          data set. When the DATA step executes, the values in the first record 
+          are read, and the / line pointer control moves the input pointer to 
+          the second record. <br>
+          <br>
+        </li>
+        <li>The values for <code>Address</code> are read, and the second / line 
+          pointer control advances the input pointer to the third record. <br>
+          <br>
+        </li>
+        <li>The values for <code>City</code>, <code>State</code>, and <code>Zip</code> 
+          are read, and the INPUT statement is completely executed. <br>
+          <br>
+        </li>
+        <li>The values in the program data vector are written to the data set 
+          as the first observation. <br>
+          <br>
+        </li>
+        <li>Control returns to the top of the DATA step, and the variable values 
+          are reinitialized to missing. <br>
+          <br>
+        </li>
+        <li>During the second iteration, values for <code>Fname</code> and <code>Lname</code> 
+          are read beginning in column 1 of the fourth record. <br>
+          <br>
+        </li>
+        <li>The values for <code>Address</code> are read and the / line pointer 
+          control advances the input pointer to the fifth record. <br>
+          <br>
+        </li>
+        <li>The values for <code>City</code>, <code>State</code>, and <code>Zip</code> 
+          are read, and the INPUT statement is completely executed. <br>
+          <br>
+        </li>
+        <li>The values in the program data vector are written to the data set 
+          as the second observation. </li>
+      </ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Your Own Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>Unresolved Macro Variable References</strong> </p>
+      <p> What happens if a macro variable reference cannot be resolved? For example, 
+        suppose you revised your program to include a macro variable but misspelled 
+        the macro variable name when you referenced it. What happens when you 
+        submit this program? 
+      <pre><font color="#003399">     %let year=1999;</font>
+   <font color="#003399">  title "Temporary Employees for &amp;year";</font>
+<font color="#003399">     data hrd.newtemp;</font>
+<font color="#003399">        set hrd.temp;</font>
+<font color="#003399">        if year(enddate)=<strong><font color="red">&amp;yera</font></strong>;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.newtemp;</font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> When SAS encounters a macro variable reference but cannot locate 
+        a macro variable by that name, the reference is left unresolved and a 
+        warning message like the following is written to the SAS log. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+  SAS Log 
+<center>
+  <table border="1" cellpadding="10" cellspacing="0" title="log output">
+    <tr bgcolor="#F7F7DE"> 
+      <td> 
+        <pre>2  %let year=1999;
+3  title "Temporary Employees for &amp;year";
+4  data hrd.newtemp;
+5     set hrd.temp;
+6     if year(enddate)=&amp;yera;
+                       <strong>-</strong>
+                       <strong>390</strong>
+<strong>WARNING: Apparent symbolic reference YERA not</strong>
+<strong>         resolved.</strong>
+NOTE: The SAS System stopped processing this step
+      because of errors.
+NOTE: The DATA statement used 0.78 seconds.
+
+6  proc print data=hrd.newtemp;
+7     title "Temporary Employees for &amp;year";
+8  run;
+
+<strong>ERROR 390-185: Expecting a relational or an</strong>
+<strong>      arithmetic operator.</strong>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>SAS continues scanning, but an unresolved macro variable reference 
+        often results in a syntax error. Syntax errors often occur because the 
+        ampersand that appears in an unresolved macro variable reference cannot 
+        be used in most SAS statements. 
+        <p> <br>
+          <strong>Troubleshooting</strong> 
+        <p> If you receive warning messages about unresolved macro variable references, 
+          verify that 
+        <ul>
+          <li> the macro variable references are spelled correctly 
+          <li> you do not reference a macro variable before defining it. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

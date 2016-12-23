@@ -1,0 +1,156 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Displaying 
+      Integrity Constraints for a Table<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <div id="v89_v91" class="eg_div">
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Sometimes you want to add data to a table but you are not sure what 
+          integrity constraints, if any, the table has. To display only the integrity 
+          constraints for a specified table, use a <strong>DESCRIBE TABLE CONSTRAINTS 
+          statement</strong>. (The DESCRIBE TABLE statement, which is discussed 
+          earlier in this lesson, lists both a CREATE TABLE statement and the table's integrity constraints in the SAS log.)</p>
+<table border="0" cellpadding="2" cellspacing="0"><tr> 
+<td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+<td valign="top">Some versions of SAS display information about integrity 
+constraints in output as well as in the SAS log.</td></tr></table>
+        </td>
+    </tr>
+  </table>
+  </div>
+    <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Sometimes you want to add data to a table but you are not sure what 
+            integrity constraints, if any, the table has. To display only the 
+            integrity constraints for a specified table, use a <strong>DESCRIBE 
+            TABLE CONSTRAINTS statement</strong>. (The DESCRIBE TABLE statement, 
+            which is discussed earlier in this lesson, lists both a CREATE TABLE 
+            statement in the SAS log and a listing of the table's integrity contraints 
+            in output.) </td>
+    </tr>
+  </table>
+  </div>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, DESCRIBE TABLE 
+          CONSTRAINTS statement">
+    <tr> 
+      <td align="left"><p><strong>General form, DESCRIBE TABLE CONSTRAINTS statement:</strong> 
+        </p>
+        <blockquote><font color="#003399"><strong>DESCRIBE TABLE CONSTRAINTS</strong> 
+          <em>table-name-1&lt;, ... table-name-n&gt;</em><nobr><strong>;</strong></nobr></font> 
+        </blockquote> 
+        <p> where <font color="#003399"><em>table-name</em></font> specifies the 
+          table to be described as one of the following:</p>
+        <ul>
+          <li>a one-level name</li>
+          <li>a two-level <strong>libref.table</strong> name</li>
+          <li> a physical pathname that is enclosed in single quotation marks. 
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+        <p> To display only the table constraints for the table <strong>Work.Discount4</strong> 
+          that was created earlier, you submit the following PROC SQL step:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        describe table constraints work.discount4;</font></pre></td>
+    </tr>
+  </table>
+  <p>
+    <div id="v89_v91" class="eg_div">
+<div align="center">SAS Log<br>
+<table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log"><tr> 
+<td> <pre>NOTE: SQL table WORK.DISCOUNT4 ( bufsize=4096 ) has the <br>
+following integrity constraint(s):<br>
+                                                   <br>
+-----Alphabetic List of Integrity Constraints-----<br>
+                                                   <br>
+      Integrity                            Where<br>
+  *   Constraint    Type      Variables    Clause<br>
+  -------------------------------------------------<br>
+  1   notnull_dest  Not Null  Destination<br>
+  2   ok_discount   Check                  Discount&lt;=0.5</pre>
+</td></tr></table></div>
+</div>
+<div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+<thead><TR><TD colspan="5" ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><div align="center"><font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+<b>-----Alphabetic List of Integrity Constraints-----</b></font></div></TD></TR> 
+<TR><TD VALIGN=BOTTOM bgcolor="#CCCCCC"><font color="#003399"><strong>#</strong></font></TD>
+<TD VALIGN=BOTTOM bgcolor="#CCCCCC"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#003399">
+Integrity Constraint </font></strong></TD>
+<TD VALIGN=BOTTOM bgcolor="#CCCCCC"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#003399">Type</font></strong></TD>
+<TD VALIGN=BOTTOM bgcolor="#CCCCCC"><font color="#003399"><strong>Variables</strong></font></TD>
+<TD VALIGN=BOTTOM bgcolor="#CCCCCC"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#003399">
+Where<br>Clause</font></strong></TD></TR></thead><tbody><TR> 
+<TD bgcolor="#EFEFEF"><strong><font color="#003399">1</font></strong></TD>
+<TD  bgcolor="#EFEFEF"><font color="#003399">notnull_dest</font></TD>
+<TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#003399">Not 
+Null </font></TD><TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#003399">Destination</font></TD>
+<TD bgcolor="#EFEFEF"><font color="#003399">&nbsp;</font></TD></TR><TR> 
+<TD bgcolor="#EFEFEF"><strong><font color="#003399">2</font></strong></TD>
+<TD bgcolor="#EFEFEF"><font color="#003399">ok_discount</font></TD>
+<TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#003399">Check</font></TD>
+<TD bgcolor="#EFEFEF"><font color="#003399">&nbsp;</font></TD>
+<TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#003399">Discount&lt;=0.5</font></TD></TR>
+</tbody></TABLE>
+
+</div>
+
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>As shown, <strong>Work.Discount4</strong> has two integrity constraints: 
+        <code>NotNull_Dest</code> and <code>OK_Discount</code>.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

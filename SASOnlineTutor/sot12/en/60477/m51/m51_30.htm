@@ -1,0 +1,131 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Macro Variables During PROC SQL Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>If you do not know how many macro variables will be created, you can issue 
+          a query to determine how many macro variables are needed and to create 
+          a macro variable to store that number. You can then run the query, using 
+          the macro variable as the suffix of the final macro variable in each 
+          series of macro variables. 
+        <P><BR>
+<h2>Example</h2>
+        <P> Suppose you want to create ranges of macro variables that contain 
+          the course code, location, and starting date of all courses that are 
+          scheduled in 2002. You can issue a query to determine how many courses 
+          are listed in the <strong><a href="JavaScript: openOther('../linklib/schedule.htm')">Sasuser.Schedule</a></strong> 
+          data set. You can use the INTO clause to assign the resulting number 
+          to a macro variable named <code>numrows</code>. Then you can combine 
+          a reference to <code>numrows</code> with the text "crsid" in order to 
+          create the final macro variable in each series of macro variables that 
+          you create in a later SELECT statement. 
+        <P><BR><table border="0" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">Remember that this form of the INTO clause does not trim leading or trailing blanks, but the <nobr>%LET</nobr> statement does. In the following program, the statement <code><nobr>%let</nobr> numrows=&amp;numrows;</code> is included in order to remove leading and/or trailing blanks in the value.</td>
+    </tr>
+  </table><P>
+        <pre><font color="#003399">    proc sql noprint;
+       select <strong>count(*) into :numrows</strong>
+          from sasuser.schedule
+          where year(begin_date)=2002;
+       %let numrows=&amp;numrows;
+       %put There are &amp;numrows courses in 2002;
+       select course_code, location,
+              begin_date format=mmddyy10.
+          into :crsid1-:crsid<strong>&amp;numrows,</strong>
+               :place1-:place<strong>&amp;numrows,</strong>
+               :date1-:date&amp;numrows
+          from sasuser.schedule
+          where year(begin_date)=2002
+          order by begin_date;
+       %put _user_;
+    quit;
+    </font></pre>
+ The SAS log shows that <code>numrows</code> is assigned a value of <em>4</em> 
+          in the first SELECT statement. The <nobr>%PUT</nobr> statement at the end of the 
+          program shows the names and values of all the macro variables that are 
+          created in the second SELECT statement.
+<P><BR>
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+20   proc sql noprint;
+21      select count(*)
+22         into :numrows
+23         from sasuser.schedule
+24         where year(begin_date)=2002;
+25      %let numrows=&amp;numrows;
+<strong>26      %put There are &amp;numrows courses in 2002;
+There are 4 courses in 2002</strong>
+27      select course_code, location,
+28             begin_date format=mmddyy10.
+29         into :crsid1-:crsid&amp;numrows,
+30              :place1-:place&amp;numrows,
+31              :date1-:date&amp;numrows
+32         from sasuser.schedule
+33         where year(begin_date)=2002
+34         order by begin_date;
+<strong>35      %put _user_;
+GLOBAL SQLOBS 4
+GLOBAL CRSID2 C004
+GLOBAL SQLOOPS 22
+GLOBAL CRSID3 C005
+GLOBAL DATE4 03/25/2002
+GLOBAL PLACE1 Dallas
+GLOBAL CRSID1 C003
+GLOBAL PLACE2 Boston
+GLOBAL PLACE3 Seattle
+GLOBAL DATE1 01/07/2002
+GLOBAL CRSID4 C006
+GLOBAL TOTFEE $354,380
+GLOBAL DATE2 01/21/2002
+GLOBAL DATE3 02/25/2002
+GLOBAL SQLRC 0
+GLOBAL NUMROWS 4
+GLOBAL PLACE4 Dallas</strong>
+</pre></td></tr>
+</table> </div>
+
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

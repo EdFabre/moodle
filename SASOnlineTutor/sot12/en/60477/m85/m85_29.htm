@@ -1,0 +1,190 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      Procedures That Produce Detail Reports<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: Using PROC PRINT and PROC SQL to Create Detail Reports</h2>
+        <p>Suppose you are working with the data set <strong>Company.Products</strong> 
+          and that you want to generate four types of detail reports:</p>
+        <ul>
+          <li>simple detail report</li>
+          <li>subset detail report</li>
+          <li>sorted detail report</li>
+          <li>sorted subset detail report.</li>
+        </ul>
+        <p>For the first three reports, the PROC PRINT program is likely to use 
+          fewer resources than the PROC SQL program. For the last report, the 
+          resource usage for the two programs is likely to be about the same.
+		  <p><br>
+        <h2>Report 1: Simple Detail Report</h2>
+        <p> The simple detail report lists the product ID, product name, and supplier 
+          name for all products. The PROC PRINT program and PROC SQL program for 
+          producing this report are shown below:
+<p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Simple detail report: PROC PRINT and PROC SQL programs">
+          <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">PROC PRINT</font></th>
+            <th><font size="-1">PROC SQL</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">proc print data=company.products;
+   var product_id product_name
+       supplier_name;
+run;</font></pre></td>
+            <td><pre><font color="#003399">proc sql;
+   select product_id product_name
+          supplier_name
+      from company.products;
+quit;</font></pre></td>
+          </tr>
+        </table>
+        <p><br>
+          In this situation, the PROC PRINT program is likely to use fewer CPU 
+          and memory resources than the PROC SQL program. The I/O resource usage 
+          should be approximately the same.
+        <p><br>
+        <h2>Report 2: Subset Detail Report</h2>
+        <p>The subset detail report lists the product ID, product name, and supplier 
+          name for all products that come from Sweden (SE). The PROC PRINT program 
+          and PROC SQL program for producing this report are shown below:
+<p><br> 
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Subset detail report: PROC PRINT and PROC SQL programs">
+          <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">PROC PRINT</font></th>
+            <th><font size="-1">PROC SQL</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">proc print data=company.products;
+   var product_id product_name
+       supplier_name;
+   where supplier_country='SE';
+run;</font></pre></td>
+            <td><pre><font color="#003399">proc sql;
+   select product_id product_name
+          supplier_name
+      from company.products
+      where supplier_country='SE';
+quit;</font></pre></td>
+          </tr>
+        </table>
+        <p><br>
+          Both steps use WHERE processing to subset the data. In this situation, 
+          the PROC PRINT program is likely to use fewer CPU and memory resources 
+          than the PROC SQL program. The I/O resource usage should be approximately 
+          the same. 
+        <p><br>
+        <h2> Report 3: Sorted Detail Report</h2>
+        <p>The sorted detail report lists the product ID, product name, and supplier 
+          name for all products, with observations sorted by the supplier country. 
+          The PROC PRINT program and PROC SQL program for producing this report 
+          are shown below: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Sorted detail report: PROC PRINT and PROC SQL programs">
+          <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">PROC PRINT</font></th>
+            <th><font size="-1">PROC SQL</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><p> 
+              <pre><font color="#003399">proc sort data=company.products
+     out=product;
+   by supplier_country;
+run;
+
+proc print data=product;
+   var product_id product_name
+       supplier_name;
+run;</font></pre></td>
+            <td><pre><font color="#003399">proc sql;
+   select product_id product_name
+          supplier_name
+      from company.products
+      order by supplier_country;
+quit;</font></pre></td>
+          </tr>
+        </table>
+		<p><br>
+          To sort the data, a PROC SORT step has been added to the PROC PRINT 
+          program, and an ORDER BY clause has been added to the PROC SQL program. 
+          In this situation, the PROC PRINT program is likely to use fewer CPU 
+          and memory resources than the PROC SQL program. The I/O resource usage 
+          should be approximately the same. 
+        <h2><br>
+          Report 4: Sorted Subset Detail Report</h2>
+        <p>The sorted subset detail report lists the product ID, product name, 
+          and supplier name for all products that come from Sweden (SE), with 
+          observations sorted by the supplier name. The PROC PRINT program and 
+          PROC SQL program for producing this report are shown below: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Sorted, subset detail report: PROC PRINT and PROC SQL programs">
+          <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">PROC PRINT</font></th>
+            <th><font size="-1">PROC SQL</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">proc sort data=company.products
+     (keep=Product_ID Product_Name<br>     Supplier_Name Supplier_Country )
+     out=product;
+     where supplier_country='SE';<br>   by supplier_name;
+run;
+
+proc print data=product;
+   var product_id product_name
+       supplier_name;
+run;</font></pre></td>
+            <td><pre><font color="#003399">proc sql;
+   select product_id product_name
+          supplier_name
+      from company.products
+      where supplier_country='SE'
+      order by supplier_name;
+quit;</font></pre></td>
+          </tr>
+        </table>
+        <p><br>
+          To sort the data, a PROC SORT step has been added to the PROC PRINT 
+          program. The PROC SORT step uses the KEEP= option to subset the observations, 
+          which improves efficiency. The PROC SQL step uses an ORDER BY clause 
+          for sorting and a WHERE clause for subsetting. In this situation, the 
+          CPU and memory usage for the PROC PRINT program and the PROC SQL program 
+          are about the same. </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

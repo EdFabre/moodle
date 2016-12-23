@@ -1,0 +1,100 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Converting 
+      Data with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>Restriction for WHERE Expressions</strong> </p>
+      <p> The WHERE statement <strong>does not</strong> perform automatic conversions 
+        in comparisons. The simple program below demonstrates what happens when 
+        a WHERE expression encounters the wrong data type. The variable <code>Number</code> 
+        contains a numeric value, and the variable <code>Character</code> contains 
+        a character value, but the two WHERE statements specify the wrong data 
+        type. 
+      <pre>     <font color="#003399">data work.convtest;</font>
+        <font color="#003399">Number=4;</font>
+        <font color="#003399">Character='4';</font>
+     <font color="#003399">run;</font>
+     <font color="#003399">proc print data=work.convtest;</font>
+        <font color="#003399">where character=4;</font>
+     <font color="#003399">run;</font>
+     <font color="#003399">proc print data=work.convtest;</font>
+        <font color="#003399">where number='4';</font>
+     <font color="#003399">run;</font></pre>
+      <p> This mismatch of character and numeric variables and values prevents 
+        the program from processing the WHERE statements. Automatic conversion 
+        is not performed. Instead, the program stops, and error messages are written 
+        to the SAS log. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+  SAS Log 
+<center>
+  <table width="450" border="1" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="SAS Log">
+    <tr> 
+      <td> <pre>1      data work.convtest;
+2         Number=4;
+3         Character='4';
+4      run;
+<strong>NOTE: The data set Work.ConvTest has 1 observations and 2
+      variables.</strong>
+
+5      proc print data=work.convtest;
+6         where character=4;
+7      run;
+<strong>ERROR: Where clause operator requires compatible variables.</strong>
+
+<strong>NOTE: The SAS System stopped processing this step because
+      of errors.</strong>
+
+8      proc print data=work.convtest;
+9         where number='4';
+10     run;
+<strong>ERROR: Where clause operator requires compatible variables.</strong>
+
+<strong>NOTE: The SAS System stopped processing this step because
+      of errors.</strong></pre></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<p>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

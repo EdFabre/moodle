@@ -1,0 +1,190 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Documenting 
+      and Maintaining Indexes <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <p>Information about indexes is stored in the descriptor portion of 
+          the data set. You can use either the <strong>CONTENTS procedure</strong> 
+          or the <strong>CONTENTS statement in PROC DATASETS</strong> to list 
+          information from the descriptor portion of a data set.</p>
+        <p>Output from the CONTENTS procedure or from the CONTENTS statement in 
+          PROC DATASETS contains the following information about the data set:</p>
+        <ul>
+          <li>general and summary information</li>
+          <li>engine/host dependent information</li>
+          <li>alphabetic list of variables and attributes</li>
+          <li>alphabetic list of integrity constraints</li>
+          <li><strong>alphabetic list of indexes and attributes</strong>.</li>
+        </ul>
+        </td>
+  </tr>
+</table>
+  <P>
+		
+<table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC CONTENTS">
+            <tr> 
+              
+    <td align="left"><strong>General form, PROC CONTENTS:</strong> 
+      <blockquote> <font color="#003399"><nobr><strong>PROC CONTENTS DATA=</strong><em>&lt;libref.&gt;SAS-data-set-name</em><strong>;</strong></nobr></font> 
+          <br>
+        <font color="#003399"><strong>RUN;</strong></font>
+      </blockquote>
+           where <font color="#003399"><em>SAS-data-set-name</em></font> specifies 
+          the data set for which the information will be listed.
+        
+</td>
+            </tr>
+          </table>
+<P><BR>
+<table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC DATASETS with the CONTENTS statement">
+            <tr> 
+              
+    <td align="left"><strong>General form, PROC DATASETS with the CONTENTS statement:</strong> 
+      <blockquote><dl>
+            <dt> <font color="#003399"><nobr><strong>PROC DATASETS</strong> &lt;<strong>LIBRARY=</strong><em>l</em><em>ibref</em>&gt;<strong> 
+              &lt;NOLIST&gt;;</strong></nobr></font> </dt>
+	        <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>CONTENTS DATA=</strong><em>&lt;libref.&gt;SAS-data-set-name</em><strong>;</strong></font></dt>
+	        <dt><font color="#003399"></font></dt>
+	        <dt><font color="#003399"><strong>QUIT;</strong></font></dt>
+                </dl></blockquote> 
+      where <ul>
+	  <li><font color="#003399"><em>SAS-data-set-name</em></font> specifies 
+        the data set for which the information will be listed
+		<li>the <font color="#003399"><strong>NOLIST</strong></font> option suppresses the printing of the directory of SAS files in the SAS log and as ODS output
+          
+		</ul>
+		<table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If you use the <font color="#003399"><strong>LIBRARY=</strong></font> 
+              option, you do not need to specify a <font color="#003399"><em>libref</em></font> 
+              in the <font color="#003399"><strong>DATA=</strong></font> option. 
+              Likewise, if you specify a <font color="#003399"><em>libref</em></font> 
+              in the <font color="#003399"><strong>DATA=</strong></font> option, 
+              you do not need to use the <font color="#003399"><strong>LIBRARY=</strong></font> 
+              option.</td>
+      </tr>
+    </table></td>
+            </tr>
+          </table>
+		
+		
+		 <P><BR>
+	<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><h2>Example</h2>
+	    <P>The following example prints information about the <strong>Sasuser.Sale2000</strong> 
+          data set. Notice that the library is specified in the LIBRARY= option 
+          of the PROC DATASETS statement.<font color="#003399">
+        <pre>     proc datasets library=sasuser nolist;
+        contents data=sale2000;
+     quit;</pre>
+        </font>The following example also prints information about the <strong>Sasuser.Sale2000</strong> 
+          data set. Notice that the library is specified in the CONTENTS statement.<font color="#003399">
+        <pre>     proc datasets nolist;
+        contents data=sasuser.sale2000;
+     quit;</pre>
+        </font>The following example also prints information about the <strong>Sasuser.Sale2000</strong> 
+        data set:<font color="#003399"> 
+        <pre>     proc contents data=sasuser.sale2000;
+     run;</pre>
+        </font>The PROC DATASETS and PROC CONTENTS output from these programs 
+        is identical. The last piece of information printed in each set of output 
+        is a list of the indexes that have been created for <strong>Sasuser.Sale2000</strong>, 
+        as shown below. </td>
+  </tr>
+</table>
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="Output">
+<thead>
+<TR>
+ <TD COLSPAN=5 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Alphabetic List of Indexes and Attributes</b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>#</b></font></TD>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Index</b></font></TD>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Unique<br>Option</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b># of<br>Unique<br>Values</b></font></TD>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variables</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Origin</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">52</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>2</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FlightDate</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">YES</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">26920</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FlightID Date</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+ <P><BR>
+		  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> You can also use either of these methods to list information about 
+        an <strong>entire SAS library</strong> rather than an individual data 
+        set. To list the contents of all files in a SAS data library with either 
+        PROC CONTENTS or with the CONTENTS statement in PROC DATASETS, you specify 
+        the <strong>keyword _ALL_</strong> in the DATA= option. 
+        <P><BR><h2>Example</h2>
+		The following example prints information about all of the files in the 
+        <strong>Work</strong> data library:<font color="#003399"> 
+        <pre>     proc contents data=work._all_;
+     run;</pre>
+        </font> The following example also prints information about all of the 
+        files in the <strong>Work</strong> data library:<font color="#003399"> 
+        <pre>     proc datasets library=work nolist;
+        contents data=_all_;
+     quit;</pre>
+        </font></td>
+    </tr></table>
+<P>
+
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,161 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_4.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 2;
+
+salute  = "<strong>Correct.</strong><p>";
+correct = "\n Because of the ODS HTML ANCHOR= statement just before it, the PROC TABULATE  " +
+          "\n step titled Grass Pollen by Week writes to the page that is currently open. The " +
+          "\n current page is Typetables.html, which was created by the last ODS HTML BODY= statement. "; 
+          
+choice1 =   "<strong>Incorrect.</strong><p>" +
+          "\n The primary chart has a link to Grass7b.html. But the file Grass7b.html " +
+          "\n has not been written by an ODS HTML statement. Look for the last HTML " +
+          "\n page that was created before the PROC TABULATE step titled Grass Pollen by Week. ";
+
+choice2 = salute + correct;
+
+choice3 =   "<strong>Incorrect.</strong><p>" +
+          "\n Sources.html contains the primary chart, but another HTML page is " +
+          "\n created before the PROC TABULATE step titled Grass Pollen by Week. " +
+          "\n Hint: Find the last ODS HTML BODY= statement. ";
+
+choice4 =   "<strong>Incorrect.</strong><p>" +
+          "\n Although the step titled Grass Pollen by Week will not have its own page, it" +
+          "\n will be written (along with an HREF anchor) to the last page that was created  " +
+          "\n by ODS HTML. Try to find the name of that page. ";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      the Secondary Charts and Tables<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+ <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>Based on the code shown below, where will the HTML table <strong>Grass 
+            Pollen by Week</strong> be written?</p>
+          <pre>     <font color="#003399">data work.disper7b;</font>
+     <font color="#003399">   set zone7b.pollen;</font>
+     <font color="#003399">   length BarDrill $ 40;</font>
+     <font color="#003399">   if pollentype='GRASS' then <br>           bardrill='HREF="grass7b.html"';</font>
+     <font color="#003399">   if pollentype='WEED' then <br>           bardrill='HREF="weed7b.html"';</font>
+     <font color="#003399">   if pollentype='TREE' then 
+           bardrill='HREF="tree7b.html"';</font>
+     <font color="#003399">run;</font>
+
+     <font color="#003399">ods listing close;</font>
+     <font color="#003399">ods html path='c:\data\pollen\html' 
+         body='sources.html';</font>
+     <font color="#003399">goptions device=gif xpixels=360 ypixels=240;</font>
+     <font color="#003399">title 'Pollen Counts by Type';</font>
+     <font color="#003399">proc gchart data=work.disper7b;</font>
+     <font color="#003399">   hbar month / sumvar=count group=pollentype</font>
+     <font color="#003399">        html=bardrill discrete;</font>
+     <font color="#003399">run;</font>
+
+     <font color="#003399">ods html body='typetables.html';</font>
+     <font color="#003399">title 'Pollen Sources by Month';</font>
+     <font color="#003399">proc tabulate data=work.disper7b;</font>
+     <font color="#003399">   class month pollentype;</font>
+     <font color="#003399">   var count;</font>
+     <font color="#003399">   table month*pollentype, sum*count;</font>
+     <font color="#003399">run;</font>
+
+     <font color="#003399">ods html anchor='grassbyweek';</font>
+     <font color="#003399">title 'Grass Pollen by Week';</font>
+     <font color="#003399">proc tabulate data=work.disper7b;</font>
+     <font color="#003399">   class week;</font>
+     <font color="#003399">   var count;</font>
+     <font color="#003399">   table week, sum*count;</font>
+     <font color="#003399">   where pollentype='GRASS';</font>
+     <font color="#003399">run;</font>
+
+     <font color="#003399">quit;</font>
+     <font color="#003399">ods html close;</font>
+     <font color="#003399">ods listing;</font>
+</pre>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" -->on page <strong>grass7b.html</strong>, 
+          by itself<!-- InstanceEndEditable --></td>
+        <td rowspan="4"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" -->on page <strong>typetables.html</strong>, 
+          beneath the table <strong>Pollen Sources by Month</strong><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" -->on page <strong>sources.html</strong>, 
+          beneath the chart <strong>Pollen Counts by Type</strong><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value4" onClick="openAnswer(choice4)">
+         </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice4" -->It will not be written.<!-- InstanceEndEditable --></td>
+      </tr>
+      <tr> 
+        <td colspan="3"> 
+         <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

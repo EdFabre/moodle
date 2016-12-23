@@ -272,8 +272,6 @@ case 'sign':
         echo '<form method="post">';
         echo '<input type="hidden" name="action" value="sign" />';
         echo '<input type="hidden" name="repo_id" value="'.s($repo_id).'" />';
-        // HACK to prevent browsers from automatically inserting the user's password into the wrong fields.
-        echo prevent_form_autofill_password();
         $repo->print_login();
         echo '</form>';
     }
@@ -295,7 +293,7 @@ case 'download':
     // note that in this case user may not have permission to access the source file directly
     // so no file_browser/file_info can be used below
     if ($repo->has_moodle_files()) {
-        $file = repository::get_moodle_file($reference);
+        $file = repository::get_moodle_file($fileurl);
         if ($file && $file->is_external_file()) {
             $sourcefield = $file->get_source(); // remember the original source
             $record->source = $repo::build_source_field($sourcefield);

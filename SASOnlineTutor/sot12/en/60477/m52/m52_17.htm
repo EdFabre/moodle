@@ -1,0 +1,122 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Parameters<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Macros That Include Positional Parameters</h2> 
+        <p>When you include positional parameters in a macro definition, a macro 
+          variable is automatically created for each parameter when you call the 
+          macro. To define macros that include <strong>positional parameters</strong>, 
+          you list the names of macro variables in the <nobr>%MACRO</nobr> statement 
+          of the macro definition. Positional parameters are so named because 
+          the order in which you specify them in a macro definition determines 
+          the order in which they are assigned values from the macro call. That 
+          is, when you call a macro that includes positional parameters, you specify 
+          the values of the macro variables that are defined in the parameters 
+          in the <strong>same order</strong> in which they are defined. 
+      </td></tr></table>      
+<p> <BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, a macro definition with positional 
+      parameters">
+  <tr> 
+    <td align="left"><strong>General form, macro definition that includes positional 
+      parameters:</strong> 
+      <blockquote> 
+        <dl>
+          <dt><font color="#003399"><strong>%MACRO</strong> <em>macro-name</em>(<em>parameter-1&lt;,...,parameter-n</em>&gt;);</font></dt>
+            <dd><font color="#003399"><em>text</em></font></dd>
+          <dt><font color="#003399"><strong>%MEND</strong> <<em>macro-name</em>>;</font></dt>
+        </dl>
+      </blockquote>
+	  where <font color="#003399"><em>parameter-1</em>&lt;<em>,...,parameter-n</em>&gt;</font> specifies one or more positional parameters, separated by commas. 
+	  You must supply each parameter with a name: you cannot use a text expression to generate it.
+	  
+      </td>
+  </tr>
+</table>
+<p><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> To <strong>call</strong> a macro that includes positional parameters, 
+        precede the name of the macro with a percent sign, and enclose the parameter 
+        values in parentheses. List the values in the<strong> </strong>same order 
+        in which the parameters are listed in the macro definition, and separate 
+        them with commas, as follows:<font color="#003399"> 
+        <pre>    %<em>macro-name</em>(<em>value-1&lt;,...,value-n&gt;</em>)</pre></font> 
+    The values listed in a macro call 
+      <ul>
+         <li>can be null values, text, macro variable references, or macro calls</li>
+          <li>are assigned to the parameter variables using a one-to-one correspondence.</li>
+      </ul>
+   
+<p><BR><strong>Example</strong>
+        <P> You can use positional parameters to create the macro variables <code>dsn</code> 
+          and <code>vars</code> in the<strong> Printdsn </strong>macro definition, 
+          as follows: <font color="#003399">
+        <pre>     %macro printdsn<strong>(dsn,vars)</strong>;
+        proc print data=&dsn;
+           var &vars;
+        title "Listing of %upcase(&dsn) data set";
+        run;
+     %mend;</pre>
+        </font> In this case, when you call the <strong>Printdsn</strong> macro 
+        you assign values to the macro variables that are created in the parameters. 
+        In the following example, the value <em>sasuser.courses</em> is assigned 
+        to the macro variable <code>dsn</code>, and the value <em>course_code 
+        course_title days</em> is assigned to the macro variable <code>vars</code>. 
+        Notice that the value for <code>dsn</code> is listed first and the value 
+        for <code>vars</code> is listed second, since this is the order in which 
+        they are listed in the macro definition. <font color="#003399"> 
+        <pre>     %printdsn(sasuser.courses,course_code course_title days)</pre></font>
+
+
+<table cellpadding="2">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+          <td>To substitute a null value for one or more positional parameters, use 
+  commas as placeholders for the omitted values, as follows: 
+  <font color="#003399"> 
+        <pre>     %printdsn(,course_code course_title days)</pre></font></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,106 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Additional 
+      Features<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>The DATA step provides a large number of other programming
+        features for manipulating data when you combine data sets. For example,
+        you can
+        <UL>
+          <LI> use IF-THEN/ELSE logic to control processing based on one or more
+            conditions
+          <LI> specify additional data set options
+          <LI> perform calculations
+          <LI> create new variables
+          <LI> process variables in arrays
+          <LI> use SAS functions
+          <LI> use special variables such as <CODE>FIRST.</CODE> and <CODE>LAST.</CODE>
+            to control processing.
+        </UL>
+        <P> You can also combine SAS data sets in other ways:
+        
+      <ul>
+        <li>You can perform <strong>one-to-one merging</strong>, which creates 
+          a data set that contains all of the variables and observations from 
+          each contributing data set. Observations are combined based on their 
+          relative position in each data set. <br>
+          <br>
+          One-to-one merging is the same as one-to-one reading, with two exceptions:<br>
+          <br>
+        </li>
+        <ul>
+          <li>You use the MERGE statement instead of multiple SET statements.</li>
+          <li>The DATA step reads all observations from all data sets. <br>
+            <br>
+          </li>
+        </ul>
+        <pre><font color="#003399">data work.onemerge;</font>
+   <font color="#003399">merge clinic.demog clinic.visit;</font>
+<font color="#003399">run;</font></pre>
+        <li>You can perform a <strong>conditional merge,</strong> using DO loops 
+          or other conditional statements: 
+          <pre><font color="#003399">data work.combine;
+   set sales.pounds;
+   do while(not(begin le date le last));
+      set sales.rate;
+   end;
+   Dollars=(sales*1000)*rate;
+run;</font></pre>
+          <TABLE border="0" cellpadding="0" cellspacing="0">
+            <TR> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+              <TD>You can learn about DO loops in the lesson <!--lesson reference--> <strong><script>document.write(m34title);</script></strong>.</TD>
+            </TR>
+          </TABLE>
+          <BR>
+        <li>You can read the <strong>same data set</strong> in more than one SET 
+          statement: 
+          <pre><font color="#003399">data work.combine(drop=totpay);
+   if _n_=1 then do until(last);
+      set sales.budget(keep=payroll) end=last;
+      end;
+   set sales.budget;
+   Percent=payroll/totpay;
+run;</font></pre>
+      </ul>
+      
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -45,6 +45,12 @@ class core_user_profilelib_testcase extends advanced_testcase {
         $this->resetAfterTest();
         $user = $this->getDataGenerator()->create_user();
 
+        // Check function with no custom fields.
+        $this->assertEquals(array(), profile_get_custom_fields());
+
+        // Check that profile_user_record returns same (no) fields.
+        $this->assertEquals(array(), array_keys((array)profile_user_record($user->id)));
+
         // Add a custom field of textarea type.
         $id1 = $DB->insert_record('user_info_field', array(
                 'shortname' => 'frogdesc', 'name' => 'Description of frog', 'categoryid' => 1,
@@ -52,18 +58,15 @@ class core_user_profilelib_testcase extends advanced_testcase {
 
         // Check the field is returned.
         $result = profile_get_custom_fields();
-        $this->assertArrayHasKey($id1, $result);
+        $this->assertEquals(array($id1), array_keys($result));
         $this->assertEquals('frogdesc', $result[$id1]->shortname);
 
         // Textarea types are not included in user data though, so if we
         // use the 'only in user data' parameter, there is still nothing.
-        $this->assertArrayNotHasKey($id1, profile_get_custom_fields(true));
+        $this->assertEquals(array(), profile_get_custom_fields(true));
 
         // Check that profile_user_record returns same (no) fields.
-        $this->assertObjectNotHasAttribute('frogdesc', profile_user_record($user->id));
-
-        // Check that profile_user_record returns all the fields when requested.
-        $this->assertObjectHasAttribute('frogdesc', profile_user_record($user->id, false));
+        $this->assertEquals(array(), array_keys((array)profile_user_record($user->id)));
 
         // Add another custom field, this time of normal text type.
         $id2 = $DB->insert_record('user_info_field', array(
@@ -72,17 +75,15 @@ class core_user_profilelib_testcase extends advanced_testcase {
 
         // Check both are returned using normal option.
         $result = profile_get_custom_fields();
-        $this->assertArrayHasKey($id2, $result);
+        $this->assertEquals(array($id1, $id2), array_keys($result));
         $this->assertEquals('frogname', $result[$id2]->shortname);
 
         // And check that only the one is returned the other way.
-        $this->assertArrayHasKey($id2, profile_get_custom_fields(true));
+        $result = profile_get_custom_fields(true);
+        $this->assertEquals(array($id2), array_keys($result));
 
         // Check profile_user_record returns same field.
-        $this->assertObjectHasAttribute('frogname', profile_user_record($user->id));
-
-        // Check that profile_user_record returns all the fields when requested.
-        $this->assertObjectHasAttribute('frogname', profile_user_record($user->id, false));
+        $this->assertEquals(array('frogname'), array_keys((array)profile_user_record($user->id)));
     }
 
     /**

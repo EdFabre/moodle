@@ -1,0 +1,124 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --> 
+<TITLE>Referencing an External File</TITLE>
+<!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->Referencing 
+      an External File<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" -->
+<p> 
+<center>
+  <table cellspacing="0" cellpadding="0" width="85%">
+    <tr> 
+      <td>To access an external file (such as a raw data file or a SAS program), 
+        you can 
+        <ol>
+          <li> submit a FILENAME statement to assign a <strong>fileref</strong> 
+            (file reference name or file shortcut) to the file 
+          <li> use the fileref in subsequent SAS statements and commands that 
+            reference the file. 
+        </ol>
+        <p> Filerefs perform the same function as librefs: temporarily pointing 
+          to a storage location for data. However, whereas librefs reference SAS 
+          data libraries, filerefs reference external files. FILENAME statements 
+          remain in effect until you change them, cancel them, or end your SAS 
+          session.
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="2" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, FILENAME statement">
+    <tr> 
+      <td align="left"><strong>General form, FILENAME statement:</strong> 
+        <blockquote> <font color="#003399"><strong>FILENAME </strong><em>fileref</em> 
+          <strong>'</strong><em>filename</em><strong>';</strong></font> </blockquote>
+        <p> where <font color="#003399"><em></em></font> 
+        <ul>
+          <li> <font color="#003399"><em>fileref</em></font> is a valid SAS name 
+            you associate with an external file. The fileref must be 1 to 8 characters 
+            in length, begin with a letter (A-Z) or an underscore (_), and continue 
+            with any combination of numbers, letters, or underscores. You can 
+            also use the dollar sign ($), pound sign (#), and at sign (@) in filerefs.<br>
+            <br>
+          <li> <font color="#003399"><em>filename</em></font> is the fully qualified 
+            name or location of the file. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+  <center>
+    <table cellspacing="0" cellpadding="0" width="85%">
+      <tr> 
+        <td>For example, this FILENAME statement temporarily associates the fileref 
+          <strong>Exercise</strong> with the external file <strong>C:\MyID\Therapy\Rawdata.dat</strong> 
+          in the Windows environment. 
+          <pre><font color="#003399">     filename exercise 'c:\myid\therapy\rawdata.dat';</font>
+</pre>
+          <p> You can check the filerefs in effect for your SAS session under 
+            File Shortcuts in the Explorer window. 
+          <p> <br>
+            <strong>Referencing Single Files and Aggregate Locations</strong> 
+          <p> You can use a FILENAME statement to associate a fileref with 
+          <ul>
+            <li> an <strong>individual external file</strong>. In subsequent SAS 
+              statements and commands, you specify the fileref only.<br>
+              <br>
+            <li> an <strong>aggregate storage location</strong>, such as a directory, 
+              that contains a number of external files. To reference an external 
+              file with a fileref pointing to an aggregate storage location, you 
+              specify the fileref followed by the individual filename in parentheses: 
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </center>
+  <p> 
+  <table BORDER cellpadding="5" cellspacing="0" width="500" bgcolor="#FFFFFF" title="Table showing file extensions">
+    <tr valign="Top" bgcolor="#F7F7DE"> 
+      <td nowrap><strong>If the file has . . .</strong></td>
+      <td><strong>You . . .</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr valign="Top"> 
+      <td>the extension <em>.sas</em></td>
+      <td>can omit the extension when referencing the file.</td>
+      <td nowrap><tt><font color="#003399">include tax(refund)</font> </tt> </td>
+    </tr>
+    <tr valign="Top"> 
+      <td>an extension other than <em>.sas</em></td>
+      <td>must include the extension and enclose the filename in quotes.</td>
+      <td nowrap><tt><font color="#003399">include tax('net.dat')</font> </tt> </td>
+    </tr>
+    <tr valign="Top"> 
+      <td>no extension</td>
+      <td>must enclose the filename in quotes.</td>
+      <td nowrap><tt><font color="#003399">include tax('income')</font> </tt> </td>
+    </tr>
+  </table>
+</center>
+<!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

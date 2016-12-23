@@ -1,0 +1,104 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Be sure you have copied the data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> library.<br><br>';
+solutionText+='<li>Submit the following PROC DATASETS step to initiate the audit trail: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc datasets nolist;<br>';
+solutionText+='   audit pilotemp;<br>';
+solutionText+='   initiate;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='<li>Submit the following DATA step to give pilots a 20% raise: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data pilotemp;<br>';
+solutionText+='   modify pilotemp;<br>';
+solutionText+='   salary=salary*1.2;<br>';
+solutionText+='run;</pre></font>';
+solutionText+='<li>Submit the following PROC PRINT step to view the audit file:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc print data=pilotemp(type=audit);<br>';
+solutionText+='run;</pre></font>';
+solutionText+='Notice that the audit file has two observations for each Employee ID ';
+solutionText+='number. The first one is the original observation, and the second ';
+solutionText+='one is the modified observation.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Initiate 
+            an audit trail on the SAS data set <a href="JavaScript: openOther('../linklib/pilotemp.htm')">Pilotemp</a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Because this data set is used in other practices and lessons, 
+        you must copy it to the <strong>Work</strong> library so that the original 
+        data in the <strong>Sasuser</strong> library is not modified.</td>
+    </tr>
+  </table>
+  <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Submit the following PROC COPY program to copy the <strong>Pilotemp</strong> 
+            data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> 
+            library: 
+            <pre><font color="#003399">proc copy in=sasuser out=work;
+   select pilotemp;
+run;</font></pre>
+          <li>Write and submit a PROC DATASETS step to initiate an audit trail 
+            for the <strong>Pilotemp</strong> data set. <br>
+            <br>
+          <li>Write and submit a DATA step that uses the MODIFY statement to give 
+            all the employees a 20% salary increase. Modify the variable <code>salary</code>. 
+            <br>
+            <br>
+          <li>Write and submit a PROC PRINT step to view the audit trail.
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

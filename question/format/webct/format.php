@@ -337,6 +337,7 @@ class qformat_webct extends qformat_default {
                 '[+-]?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)((e|E|\\*10\\*\\*)([+-]?[0-9]+|\\([+-]?[0-9]+\\)))?';
 
         $questions = array();
+        $errors = array();
         $warnings = array();
         $webctoptions = array();
 
@@ -452,7 +453,7 @@ class qformat_webct extends qformat_default {
                         $questionok = false;
                     }
                     if (count($question->answer) < 1) {  // A question must have at least 1 answer.
-                        $this->error(get_string('missinganswer', 'qformat_webct', $nquestionstartline), '', $question->name);
+                        $errors[] = get_string('missinganswer', 'qformat_webct', $nquestionstartline);
                         $questionok = false;
                     } else {
                         // Create empty feedback array.
@@ -496,8 +497,8 @@ class qformat_webct extends qformat_default {
                             case 'shortanswer':
                                 if ($maxfraction != 1) {
                                     $maxfraction = $maxfraction * 100;
-                                    $this->error(get_string('wronggrade', 'qformat_webct', $nlinecounter)
-                                            .' '.get_string('fractionsnomax', 'question', $maxfraction), '', $question->name);;
+                                    $errors[] = "'$question->name': ".get_string('wronggrade', 'qformat_webct', $nlinecounter)
+                                            .' '.get_string('fractionsnomax', 'question', $maxfraction);
                                     $questionok = false;
                                 }
                                 break;
@@ -508,24 +509,23 @@ class qformat_webct extends qformat_default {
                                 if ($question->single) {
                                     if ($maxfraction != 1) {
                                         $maxfraction = $maxfraction * 100;
-                                        $this->error(get_string('wronggrade', 'qformat_webct', $nlinecounter)
-                                                .' '.get_string('fractionsnomax', 'question', $maxfraction), '', $question->name);
+                                        $errors[] = "'$question->name': ".get_string('wronggrade', 'qformat_webct', $nlinecounter)
+                                                .' '.get_string('fractionsnomax', 'question', $maxfraction);
                                         $questionok = false;
                                     }
                                 } else {
                                     $totalfraction = round($totalfraction, 2);
                                     if ($totalfraction != 1) {
                                         $totalfraction = $totalfraction * 100;
-                                        $this->error(get_string('wronggrade', 'qformat_webct', $nlinecounter)
-                                                .' '.get_string('fractionsaddwrong', 'qtype_multichoice', $totalfraction),
-                                                '', $question->name);
+                                        $errors[] = "'$question->name': ".get_string('wronggrade', 'qformat_webct', $nlinecounter)
+                                                .' '.get_string('fractionsaddwrong', 'question', $totalfraction);
                                         $questionok = false;
                                     }
                                 }
                                 break;
 
                             case 'calculated':
-                                foreach ($question->answer as $answer) {
+                                foreach ($question->answers as $answer) {
                                     if ($formulaerror = qtype_calculated_find_formula_errors($answer)) {
                                         $warnings[] = "'$question->name': ". $formulaerror;
                                         $questionok = false;
@@ -535,6 +535,7 @@ class qformat_webct extends qformat_default {
                                     $dataset->itemcount = count($dataset->datasetitem);
                                 }
                                 $question->import_process = true;
+                                unset($question->answer); // Not used in calculated question.
                                 break;
                             case 'match':
                                 // MDL-10680:
@@ -605,9 +606,12 @@ class qformat_webct extends qformat_default {
                 // Calculated Question.
                 $question = $this->defaultquestion();
                 $question->qtype = 'calculated';
-                $question->answer = array(); // No problem as they go as :FORMULA: from webct.
+                $question->answers = array(); // No problem as they go as :FORMULA: from webct.
                 $question->units = array();
                 $question->dataset = array();
+
+                // To make us pass the end-of-question sanity checks.
+                $question->answer = array('dummy');
                 $question->fraction = array('1.0');
                 $question->feedback = array();
 
@@ -735,7 +739,7 @@ class qformat_webct extends qformat_default {
             if (preg_match('~^:FORMULA:(.*)~i', $line, $webctoptions)) {
                 // Answer for a calculated question.
                 ++$currentchoice;
-                $question->answer[$currentchoice] =
+                $question->answers[$currentchoice] =
                         qformat_webct_convert_formula($webctoptions[1]);
 
                 // Default settings.
@@ -849,6 +853,15 @@ class qformat_webct extends qformat_default {
                 $question->correctanswerformat[$currentchoice] = '2';
                 continue;
             }
+        }
+
+        if (count($errors) > 0) {
+            echo '<p>'.get_string('errorsdetected', 'qformat_webct', count($errors)).'</p><ul>';
+            foreach ($errors as $error) {
+                echo "<li>$error</li>";
+            }
+            echo '</ul>';
+            unset($questions);     // No questions imported.
         }
 
         if (count($warnings) > 0) {

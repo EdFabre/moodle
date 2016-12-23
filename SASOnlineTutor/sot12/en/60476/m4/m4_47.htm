@@ -1,0 +1,433 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Formatting 
+      Data Values<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Specifying SAS Formats</strong> </p>
+      <p> The table below describes some SAS formats that are commonly used in 
+        reports.
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+    <table cellpadding="3" cellspacing="0" border="1" bgcolor="#FFFFFF" width="85%" title="common SAS formats">
+      <tr valign="Top" bgcolor="#F7F7DE"> 
+        <th><font size="-1"><strong>Format</strong></font></th>
+        <th width="250"><font size="-1"><strong>Specifies values ...</strong></font></th>
+        <th width="100"><font size="-1"><strong>Example</strong></font></th>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong>COMMA<em>w.d</em></strong></td>
+        <td width="250">that contain commas and decimal places</td>
+        <td width="100"> <pre><font color="#003399">comma8.2</font>
+</pre> </td>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong>DOLLAR<em>w.d</em></strong></td>
+        <td>that contain dollar signs and commas</td>
+        <td> <pre><font color="#003399">dollar6.2</font>
+</pre> </td>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong>MMDDYY<em>w.</em></strong></td>
+        <td>as date values of the form 09/12/97 (MMDDYY8.) or 09/12/1997 (MMDDYY10.)</td>
+        <td> <pre><font color="#003399">mmddyy10.</font>
+</pre> </td>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong><em>w.</em></strong></td>
+        <td>rounded to the nearest integer in <em>w </em>spaces</td>
+        <td> <pre><font color="#003399">7.</font>
+</pre> </td>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong><em>w.d</em></strong></td>
+        <td>rounded to <em>d</em> decimal places in <em>w </em>spaces</td>
+        <td> <pre><font color="#003399">8.2</font>
+</pre> </td>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong><em>$w.</em></strong></td>
+        <td>as character values in <em>w </em>spaces</td>
+        <td> <pre><font color="#003399">$12.</font>
+</pre> </td>
+      </tr>
+      <tr valign="Top"> 
+        <td><strong>DATE<em>w.</em></strong></td>
+        <td>as date values of the form 16OCT99 (DATE7.) or 16OCT1999 (DATE9.)</td>
+        <td> <pre><font color="#003399">date9.</font>
+</pre> </td>
+      </tr>
+    </table>
+  <br>
+  <br>
+  <br>
+</center>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Field Widths</strong> 
+        <p> All SAS formats specify the total field width (<strong><em>w</em></strong>) 
+          that is used for displaying the values in the output. For example, suppose 
+          the longest value for the variable <code>Net</code> is a four-digit 
+          number, such as <em>5400</em>. To specify the COMMA<em>w.d</em> format 
+          for <code>Net</code>, you specify a field width of 5 or more. You must 
+          count the comma, because it occupies a position in the output. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellspacing="0" cellpadding="2" width="85%">
+    <tr valign="Top"> 
+      <td width="41"><img src="../navimages/alert.gif" alt="CAUTION:" width="37" height="32" border="0" hspace="10"></td>
+      <td>When you use a SAS format, be sure to specify a field width (<em>w</em>) 
+        that is wide enough for the largest possible value. Otherwise, values 
+        might not be displayed properly. </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="SAS format example">
+    <tr> 
+      <td> 
+        <center>
+          <table bgcolor="#FFFFFF">
+            <tr> 
+              <td colspan=5> 
+                <p align=Center> <font color="#003399"><strong>format net comma5.0;</strong></font>
+              </td>
+            </tr>
+            <tr> 
+              <td> 
+                <p align=Center> <font color="#003399">5</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">,</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">4</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">0</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">0</font>
+              </td>
+            </tr>
+            <tr> 
+              <td> 
+                <p align=Center> <sub><small>1</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>2</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>3</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>4</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>5</small></sub>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Decimal Places</strong> 
+        <p> For numeric variables you can also specify the number of decimal places 
+          (<strong><em>d</em></strong>), if any, to be displayed in the output. 
+          Numbers are rounded to the specified number of decimal places. In the 
+          example above, no decimal places are displayed. 
+        <p> Writing the whole number <em>2030</em> as 2,030.00 requires eight 
+          print positions, including two decimal places and the decimal point.
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="SAS format example">
+    <tr> 
+      <td> 
+        <center>
+          <table bgcolor="#FFFFFF">
+            <tr> 
+              <td colspan=8> 
+                <p align=Center> <font color="#003399"><strong>format qtr3tax 
+                  comma8.2;</strong></font>
+              </td>
+            </tr>
+            <tr> 
+              <td> 
+                <p align=Center> <font color="#003399">2</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">,</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">0</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">3</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">0</font>
+              </td>
+              <td> 
+                <p align=Center> .
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">0</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">0</font>
+              </td>
+            </tr>
+            <tr> 
+              <td> 
+                <p align=Center> <sub><small>1</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>2</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>3</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>4</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>5</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>6</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>7</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>8</small></sub>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">Formatting <em>15374</em> with a dollar sign, commas, and 
+        two decimal places requires ten print positions.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="SAS format example">
+    <tr> 
+      <td> 
+        <center>
+          <table bgcolor="#FFFFFF">
+            <tr> 
+              <td colspan=10> 
+                <p align=Center> <font color="#003399"><strong>format totsales 
+                  dollar10.2;</strong></font>
+              </td>
+            </tr>
+            <tr> 
+              <td> 
+                <p align=Center> <font color="#003399">$</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">1</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">5</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">,</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">3</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">7</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">4</font>
+              </td>
+              <td> 
+                <p align=Center> <font color="#003399">.</font>
+              </td>
+              <td><font color="#003399">0</font></td>
+              <td> 
+                <p align=Center> <font color="#003399">0</font>
+              </td>
+            </tr>
+            <tr> 
+              <td> 
+                <p align=Center> <sub><small>1</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>2</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>3</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>4</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>5</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>6</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>7</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>8</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>9</small></sub>
+              </td>
+              <td> 
+                <p align=Center> <sub><small>10</small></sub>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Examples</strong> 
+        <p> This table shows you how data values are displayed when different 
+          format, field width, and decimal place specifications are used. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+    <table cellpadding="2" cellspacing="0" border="1" width="450" bgcolor="#FFFFFF" title="SAS format examples">
+      <tr> 
+        <th bgcolor="#F7F7DE"><font size="-1">Stored Value</font></th>
+        <th bgcolor="#F7F7DE"><font size="-1">Format</font></th>
+        <th bgcolor="#F7F7DE"><font size="-1">Displayed Value</font></th>
+      </tr>
+      <tr> 
+        <td> <div align="right">38245.3975&nbsp;</div></td>
+        <td>&nbsp;&nbsp;COMMA12.2</td>
+        <td> <div align="right">38,245.40</div></td>
+      </tr>
+      <tr> 
+        <td> <div align="right">38245.3975&nbsp;</div></td>
+        <td>&nbsp;&nbsp;12.2</td>
+        <td> <div align="right">38245.40</div></td>
+      </tr>
+      <tr> 
+        <td> <div align="right">38245.3975&nbsp;</div></td>
+        <td>&nbsp;&nbsp;DOLLAR12.2</td>
+        <td> <div align="right">$38,245.40</div></td>
+      </tr>
+      <tr> 
+        <td> <div align="right">38245.3975&nbsp;</div></td>
+        <td>&nbsp;&nbsp;DOLLAR9.2</td>
+        <td> <div align="right">$38245.40</div></td>
+      </tr>
+      <tr> 
+        <td> <div align="right">38245.3975&nbsp;</div></td>
+        <td>&nbsp;&nbsp;DOLLAR8.2</td>
+        <td> <div align="right">38245.40</div></td>
+      </tr>
+      <tr> 
+        <td> <div align="right">0&nbsp;</div></td>
+        <td>&nbsp;&nbsp;MMDDYY8.</td>
+        <td> <div align="right">01/01/60</div></td>
+      </tr>
+      <tr> 
+        <td> <div align="right">0&nbsp;</div></td>
+        <td>&nbsp;&nbsp;MMDDYY10.</td>
+        <td> <div align="right">01/01/1960</div></td>
+      </tr>
+      <tr> 
+        <td> <div align="right">0&nbsp;</div></td>
+        <td>&nbsp;&nbsp;DATE7.</td>
+        <td> <div align="right">01JAN60</div></td>
+      </tr>
+      <tr> 
+        <td> <div align="right">0&nbsp;</div></td>
+        <td>&nbsp;&nbsp;DATE9.</td>
+        <td> <div align="right">01JAN1960</div></td>
+      </tr>
+    </table>
+  <p><br>
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">If a format is too small, the following message is written 
+          to the SAS log: &quot;NOTE: At least one W.D format was too small for 
+          the number to be printed. The decimal may be shifted by the 'BEST' format.&quot;</td>
+      </tr>
+    </table>
+    <p><br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -29,7 +29,7 @@ require_once("lib.php");
 
 $contextid  = required_param('contextid', PARAM_INT);
 $component  = required_param('component', PARAM_COMPONENT);
-$ratingarea = required_param('ratingarea', PARAM_AREA);
+$ratingarea = optional_param('ratingarea', null, PARAM_AREA);
 $itemid     = required_param('itemid', PARAM_INT);
 $scaleid    = required_param('scaleid', PARAM_INT);
 $sort       = optional_param('sort', '', PARAM_ALPHA);
@@ -38,12 +38,10 @@ $popup      = optional_param('popup', 0, PARAM_INT); //==1 if in a popup window?
 list($context, $course, $cm) = get_context_info_array($contextid);
 require_login($course, false, $cm);
 
-$url = new moodle_url('/rating/index.php', array('contextid' => $contextid,
-                                                 'component' => $component,
-                                                 'ratingarea' => $ratingarea,
-                                                 'itemid' => $itemid,
-                                                 'scaleid' => $scaleid));
-
+$url = new moodle_url('/rating/index.php', array('contextid'=>$contextid,'component'=>$component,'itemid'=>$itemid,'scaleid'=>$scaleid));
+if (!empty($ratingarea)) {
+    $url->param('ratingarea', $ratingarea);
+}
 if (!empty($sort)) {
     $url->param('sort', $sort);
 }
@@ -57,17 +55,12 @@ if ($popup) {
     $PAGE->set_pagelayout('popup');
 }
 
-$params = array('contextid' => $contextid,
-                'component' => $component,
-                'ratingarea' => $ratingarea,
-                'itemid' => $itemid,
-                'scaleid' => $scaleid);
-if (!has_capability('moodle/rating:view', $context) ||
-        !component_callback($component, 'rating_can_see_item_ratings', array($params), true)) {
+if (!has_capability('moodle/rating:view',$context)) {
     print_error('noviewrate', 'rating');
 }
-
-$canviewallratings = has_capability('moodle/rating:viewall', $context);
+if (!has_capability('moodle/rating:viewall',$context) and $USER->id != $item->userid) {
+    print_error('noviewanyrate', 'rating');
+}
 
 switch ($sort) {
     case 'firstname': $sqlsort = "u.firstname ASC"; break;
@@ -119,10 +112,6 @@ if (!$ratings) {
     $maxrating = max(array_keys($scalemenu));
 
     foreach ($ratings as $rating) {
-        if (!$canviewallratings and $USER->id != $rating->userid) {
-            continue;
-        }
-
         //Undo the aliasing of the user id column from user_picture::fields()
         //we could clone the rating object or preserve the rating id if we needed it again
         //but we don't

@@ -1,0 +1,119 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(1); 
+   answer[1] = '"&&city&crsloc";'
+   
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='You precede the macro variable name <code>city</code> with two ampersands.  ';
+   right2='Then you add a reference to the macro variable <code>crsloc</code> immediately after the first reference ';
+   right3='in order to build a new token.';
+   
+   wrong1='Remember to precede the reference to the macro variable <code>city</code> with two ampersands to delay resolution. ';
+   wrong2='Combine this reference with a reference to the macro variable <code>crsloc</code>. Do not leave any  ';
+   wrong3='blanks between the references. Remember to enclose the entire reference in double quotation marks.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="no";
+   var checkSemicolon="yes";
+   var useParens="no";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing 
+      Macro Variables Indirectly<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Assuming 
+          that you have created macro variables as depicted in the global symbol 
+          table below, complete the following PROC PRINT step so that it will 
+          print all classes that are taught in a particular city. Construct your 
+          statement in such a way that you would need to change only the value 
+          of <code>crsloc</code> in order for the PROC PRINT step to print classes 
+          that are taught in a different city. 
+          <P>
+<table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr><td><code>CITY1</code></td><td><em>Dallas</em></td></tr>
+<tr><td><code>CITY2</code></td><td><em>Boston</em></td></tr>
+<tr><td><code>CITY3</code></td><td><em>Seattle</em>
+</td></tr>
+</table><!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" --> <table width="85%" align="center"><font color="#003399"><pre>
+%let crsloc=2;
+proc print data=sasuser.schedule;
+  where location=<INPUT TYPE="text" size="50" NAME="anstext">
+run;
+</pre></font></table>
+            
+            <!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -62,7 +62,6 @@ Y.extend(EVENT, Y.Base, {
         }
     },
     startShow : function() {
-        this.cancelHide();
         if (this.get(SHOWTIMEOUT) !== null) {
             this.cancelShow();
         }
@@ -83,7 +82,6 @@ Y.extend(EVENT, Y.Base, {
         this.fire('showevent');
     },
     startHide : function() {
-        this.cancelShow();
         if (this.get(HIDETIMEOUT) !== null) {
             this.cancelHide();
         }

@@ -1,0 +1,111 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Developing 
+      and Debugging Macros<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><h2>The MLOGIC Option</h2>
+        <p>Another system option that might be useful when you debug your programs 
+          is the MLOGIC option. The MLOGIC option prints messages that indicate 
+          macro actions that were taken during macro execution. 
+        <P><BR>
+</td></tr></table>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, MLOGIC|NOMLOGIC option">
+    <tr> 
+      <td align="left"><STRONG>General form, MLOGIC | NOMLOGIC option:</STRONG>
+	  <BLOCKQUOTE>
+	    <FONT COLOR="#003399"><strong>OPTIONS MLOGIC</strong> | <strong>NOMLOGIC</strong>;</FONT>
+	  </BLOCKQUOTE>
+	  where
+	  <ul>
+	  <li>	<font color="#003399"><strong>NOMLOGIC</strong></font> is the default setting, and specifies that messages about macro actions are not printed to the SAS log during macro execution
+	      <li><font color="#003399"><strong>MLOGIC</strong></font> specifies that 
+            messages about macro actions are printed to the log during macro execution. 
+        </ul>	 
+      </td>
+    </tr>
+  </table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> When the MLOGIC system option is in effect, the information that is 
+        displayed in SAS log messages includes 
+      <UL>
+<LI>the beginning of macro execution</LI>
+<LI>the results of arithmetic and logical macro operations</LI>
+<LI>the end of macro execution.</LI>
+</UL><P><BR>
+<h2>Example</h2>
+      <P> Suppose you want to repeat the previous example with only the MLOGIC 
+        system option in effect. This sample code creates a data set named <strong>Sales</strong>, 
+        sets the MLOGIC system option, then calls the <strong>Prtlast</strong> 
+        macro. <font color="#003399">
+        <pre>    data sales; 
+      price_code=1;
+    run;
+    options nomprint mlogic;
+    %prtlast;</pre>
+      </font> When this code is submitted, the messages that are written to the 
+      SAS log show the beginning and the end of macro processing. 
+      <P><BR>
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+107  %prtlast
+<strong>MLOGIC(PRTLAST): Beginning execution.</strong>
+
+NOTE: There were 1 observations read from the dataset WORK.SALES.
+NOTE: PROCEDURE PRINT used:
+      real time           0.02 seconds
+      cpu time            0.02 seconds
+
+<strong>MLOGIC(PRTLAST): Ending execution.</strong>
+</pre></td></tr>
+</table> </div>
+
+<P><BR>
+The MLOGIC option, along with the MPRINT option and the SYMBOLGEN option, is typically turned
+<UL>
+<LI><strong>on</strong> for development and debugging purposes</LI>
+<LI><strong>off</strong> when the application is in production mode.</LI>
+</UL>
+
+    </td>
+  </tr>
+</table><P>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

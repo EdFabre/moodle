@@ -1,0 +1,136 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Deciding 
+      Whether to Create an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>An index can reduce the time required to locate a set of rows, especially 
+          for a large data file. However, there are costs associated with creating, 
+          storing, and maintaining the index. When deciding whether to create 
+          an index, you must weigh any benefits in performance improvement against 
+          the costs of increased resource usage. </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">This lesson discusses the benefits and costs that are associated 
+        with using indexes specifically with PROC SQL. To learn about the costs 
+        and benefits of using indexes with other SAS procedures, see the 
+        <!--doc reference-->
+        SAS documentation.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2> PROC SQL Queries That Can Be Optimized by an Index</h2>
+        <p> To use indexes effectively with PROC SQL, it is important to know 
+          the classes of queries that can be processed more efficiently by using 
+          an index. The classes of queries that can be optimized are specified 
+          below.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Query Elements for Which Indexes Improve Performance">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th align="left"><font size="-1">Query performance is optimized when the 
+        key column occurs in&nbsp;...</font></th>
+      <th><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><p>a <strong>WHERE clause expression</strong> that contains </p>
+        <ul>
+          <li>a <strong>comparison operator</strong></li>
+          <li> the <strong>TRIM</strong> or <strong>SUBSTR function</strong></li>
+          <li>the <strong>CONTAINS operator</strong></li>
+          <li> the <strong>LIKE operator</strong>.</li>
+        </ul></td>
+      <td> <pre><font color="#003399">proc sql;
+   select empid, jobcode, salary
+      from sasuser.payrollmaster
+      <strong>where jobcode='FA3'</strong>
+      order by empid;</font></pre> <p><strong>Key 
+          Column(s):</strong> <code>JobCode</code></p></td>
+    </tr>
+    <tr valign="top"> 
+      <td><p>an <strong>IN subquery</strong></p></td>
+      <td> <pre><font color="#003399">proc sql;
+   select empid, lastname, firstname, 
+          city, state
+      from sasuser.staffmaster
+      where empid <strong>in</strong>
+         <strong>(select empid
+            from sasuser.payrollmaster
+            where salary&gt;40000)</strong>;</font></pre> 
+        <p><strong>Key Column(s):</strong> <code>EmpID</code></p></td>
+    </tr>
+    <tr valign="top"> 
+      <td>a <strong>correlated subquery</strong>, in which the column being compared 
+        with the correlated reference is indexed</td>
+      <td> <pre><font color="#003399">proc sql;
+   select lastname, firstname
+      from sasuser.staffmaster
+      where 'NA'=
+         <strong>(select jobcategory
+            from sasuser.supervisors
+            where staffmaster.empid = 
+                  supervisors.empid)</strong>;</font></pre> <p><strong>Key 
+          Column(s):</strong> <code>Supervisors.EmpID</code></p></td>
+    </tr>
+    <tr valign="top"> 
+      <td><p>a <strong>join</strong> in which </p>
+        <ul>
+          <li>the join expression contains the <strong>equals (=) operator</strong> 
+            (an <strong>equijoin</strong>) </li>
+          <li> all the columns in the join expression are indexed in one of the 
+            tables being joined.</li>
+        </ul></td>
+      <td><pre><font color="#003399">proc sql;
+   <strong>select *
+      from sasuser.payrollmaster as p,
+           sasuser.staffmaster as s
+      where p.empid =
+            s.empid
+      order by jobcode;</strong></font></pre> <p><strong>Key 
+          Column(s):</strong> <code>Payrollmaster.EmpID</code> or <code>Staffmaster.EmpID</code></p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

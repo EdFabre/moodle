@@ -1,0 +1,137 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      Groups of Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>So far you've seen PROC SQL steps that create detail reports. But 
+          you might also want to summarize data in groups. To group data for summarizing, 
+          you can use the <b>GROUP BY</b> clause. The GROUP BY clause is used 
+          in queries that include one or more <b>summary functions</b>. Summary 
+          functions produce a statistical summary for each group that is defined 
+          in the GROUP BY clause.</p>
+        <p>Let's look at the GROUP BY clause and summary functions more closely. 
+        </p></td>
+    </tr>
+  </table>
+  <center>
+    <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p><br>
+            <b>Example</b></p>
+          <p>Suppose you want to determine the total number of miles traveled 
+            by frequent-flyer program members in each of three membership classes 
+            (Gold, Silver, and Bronze). Frequent-flyer program information is 
+            stored in the table <strong>Sasuser.Frequentflyers</strong>. To summarize 
+            your data, you can submit the following PROC SQL step:</td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <pre><font color="#003399">     proc sql;
+        select membertype,
+               <strong><font color="red">sum</font>(milestraveled)</strong> as TotalMiles
+           from sasuser.frequentflyers
+           <strong>group by membertype</strong>;</font></pre></td>
+      </tr>
+    </table>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">In this case, the SUM function totals the values of the 
+          <code>MilesTraveled</code> column to create the <code>TotalMiles</code> 
+          column. The GROUP BY clause groups the data by the values of <code>MemberType</code>. 
+          <p>As in the ORDER BY clause, in the GROUP BY clause you specify the 
+            keywords GROUP BY, followed by one or more column names separated 
+            by commas. 
+          <p>The results show total miles by membership class (<code>MemberType</code>). 
+        </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <center>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> </font>
+    <CENTER>
+      <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+        <thead>
+          <TR> 
+            <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>MemberType</b></font></TD>
+            <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>TotalMiles</b></font></TD>
+          </TR>
+        </thead>
+        <tbody>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRONZE</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">3229225</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">GOLD</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2903569</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SILVER</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">4345169</font></TD>
+          </TR>
+        </tbody>
+      </TABLE>
+    </CENTER>
+  </center>
+  <p><br>
+  <table border="0" cellpadding="2" cellspacing="0" width="85%" align="center">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">If you specify a GROUP BY clause in a query that does <strong>not</strong> 
+        contain a summary function, your clause is changed to an ORDER BY clause, 
+        and a message to that effect is written to the SAS log.</td>
+    </tr>
+  </table>
+  <br>
+  <table border="0" cellpadding="2" cellspacing="0" width="85%" align="center">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You can learn about SAS functions in the lesson  
+        <!--lesson reference--><strong><script>document.write(m30title);</script></strong>.</td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

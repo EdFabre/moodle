@@ -1,0 +1,148 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Manipulating 
+      Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> In the previous practice, you created a data set that was identical 
+        to <strong>Sasuser.Stress2</strong>. But you usually don't want an exact 
+        duplicate of the existing data set. When you read a data set, you can 
+        use any of the programming features of the DATA step to manipulate your 
+        data. 
+        <p> For example, you can use any of the statements and data set options 
+        that you learned in previous lessons. 
+    </td>
+  </tr>
+</table>
+<p><br>
+<center>
+  <table cellspacing="0" cellpadding="7" width="92%" bgcolor="FFFFFF" border="1" title="SAS Statements">
+    <tr> 
+      <td bgcolor="#F7F7DE" nowrap><strong>To do this...</strong></td>
+      <td bgcolor="#F7F7DE" nowrap><strong>Use this type of statement...</strong></td>
+    </tr>
+    <tr> 
+      <td nowrap>Subset data</td>
+      <td nowrap> <tt><font color="#003399"> </font><font color="#003399"><tt>&nbsp; 
+        <strong>&nbsp;</strong><font color="#003399"></font></tt></font><font color="#003399">if 
+        resthr<70 then delete; <br>
+        <tt>&nbsp; <strong>&nbsp;</strong></tt>if tolerance='D';</font></tt> </td>
+    </tr>
+    <tr> 
+      <td nowrap>Drop unwanted variables</td>
+      <td nowrap> <tt><font color="#003399"> </font><font color="#003399"><tt>&nbsp; 
+        <strong>&nbsp;</strong><font color="#003399"></font></tt></font><font color="#003399">drop 
+        timemin timesec;</font> </tt> </td>
+    </tr>
+    <tr> 
+      <td nowrap><nobr>Create or modify a variable</nobr></td>
+      <td nowrap> <tt><font color="#003399"> </font><font color="#003399"><tt>&nbsp; 
+        <strong>&nbsp;</strong><font color="#003399"></font></tt></font><font color="#003399">TotalTime=(timemin*60)+timesec;</font> 
+        </tt> </td>
+    </tr>
+    <tr> 
+      <td nowrap>Initialize a sum variable<br>
+        Sum accumulated values</td>
+      <td nowrap> 
+        <p><tt><font color="#003399">&nbsp; &nbsp;retain SumSec 5400;<br>
+          &nbsp; &nbsp;sumsec+totaltime;</font></tt> 
+      </td>
+    </tr>
+    <tr> 
+      <td nowrap>Specify a variable's length</td>
+      <td nowrap><tt><font color="#003399">&nbsp; &nbsp;length TestLength $ 6;</font></tt></td>
+    </tr>
+    <tr> 
+      <td nowrap>Execute statements<br>
+        conditionally</td>
+      <td nowrap><tt><font color="#003399">&nbsp; &nbsp;if totaltime&gt;800 then 
+        TestLength='Long';<br>
+        <nobr>&nbsp; &nbsp;else if 750<=totaltime<=800 <br>
+        </nobr>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <nobr>then TestLength='Normal';</nobr><br>
+          &nbsp; &nbsp;else if totaltime&lt;750 <br>
+        &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <nobr></nobr>then TestLength='Short';</font></tt> 
+      </td>
+    </tr>
+    <tr> 
+      <td nowrap> 
+        <p>Label a variable<br>
+          Format a variable</p>
+      </td>
+      <td nowrap><tt><font color="#003399">&nbsp; &nbsp;label sumsec='Cumulative 
+        Total Seconds';<br>
+        &nbsp; &nbsp;format sumsec comma6.;</font></tt></td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p><strong>Example</strong></p>
+        <p>The following DATA step reads the data set <strong>Research.CLTrials</strong>, 
+          selects observations and variables, and creates new variables. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre><font color="#003399">     data lab23.drug1h(drop=placebo uric);</font>
+<font color="#003399">        set research.cltrials(drop=triglyc);</font>
+<font color="#003399">        if sex='M' then delete;</font>
+<font color="#003399">        if placebo='YES';</font>
+<font color="#003399">        TestDate='22MAY1999'd;</font>
+<font color="#003399">        retain Days 30;</font>
+<font color="#003399">        days+1;</font>
+<font color="#003399">        length Retest $ 5;</font>
+<font color="#003399">        if cholesterol&gt;190 then retest='YES';</font>
+        <font color="#003399">else if 150<=cholesterol<=190 then retest='CHECK';</font>
+<font color="#003399">        else if cholesterol&lt;150 then retest='NO';</font>
+        <font color="#003399">label retest='Perform Cholesterol Test 2?';</font>
+        <font color="#003399">format enddate mmddyy10.;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

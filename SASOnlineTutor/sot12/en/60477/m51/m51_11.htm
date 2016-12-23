@@ -1,0 +1,186 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Macro Variable During DATA Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Using CALL SYMPUT with DATA Step Expressions</h2>
+        <P> If you had run the last example using <strong>listing output</strong> 
+          rather than HTML output, you would have seen extra blanks in the title 
+          between the course title and the course number, as well as in the footnote. 
+      </td></tr></table><P><BR>
+  <div align="center"> SAS Listing Output 
+    <table width="450" border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" title="SAS List Output">
+<tr><td><pre>
+Fee Status for Local Area Networks       (#3)                  
+
+                                   
+Student_Name                Student_Company                  Paid
+
+Bills, Ms. Paulette         Reston Railway                    Y
+Chevarley, Ms. Arlene       Motor Communications              N
+Clough, Ms. Patti           Reston Railway                    N
+Crace, Mr. Ron              Von Crump Seafood                 Y
+Davis, Mr. Bruce            Semi;Conductor                    Y
+Elsins, Ms. Marisa F.       SSS Inc.                          N
+Gandy, Dr. David            Paralegal Assoc.                  Y
+Gash, Ms. Hedy              QA Information Systems Center     Y
+Haubold, Ms. Ann            Reston Railway                    Y
+Hudock, Ms. Cathy           So. Cal. Medical Center           Y
+Kimble, Mr. John            Alforone Chemical                 N
+Kochen, Mr. Dennis          Reston Railway                    Y
+Larocque, Mr. Bret          Physicians IPA                    Y
+Licht, Mr. Bryan            SII                               Y
+McKnight, Ms. Maureen E.    Federated Bank                    Y
+Scannell, Ms. Robin         Amberly Corp.                     N
+Seitz, Mr. Adam             Lomax Services                    Y
+Smith, Ms. Jan              Reston Railway                    N
+Sulzbach, Mr. Bill          Sailbest Ships                    Y
+Williams, Mr. Gene          Snowing Petroleum                 Y
+
+     Note:           14 Paid out of           20 Students
+</pre></td></tr></table></div><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>You do not see these blanks if you are using HTML output, but they are still stored in the 
+value of your macro variable.
+        <P> Remember that when a DATA step variable is used as the second argument 
+          in a SYMPUT routine, any leading or trailing blanks that are part of 
+          the DATA step variable's value are stored in the macro variable. Because 
+          the value of a macro variable is <strong>always</strong> a text string, 
+          numeric variables are automatically converted using the BEST12. format, 
+          and blanks are stored as part of the macro variable's value. In order 
+          to avoid including extra blanks, you need to use a DATA step function 
+          to remove them. 
+        <P> In these situations you can use DATA step functions before the SYMPUT 
+          routine executes, in order to 
+        <UL>
+          <LI>left-align character strings that have been created by numeric-to-character 
+            conversions</LI>
+          <LI>remove extraneous leading and trailing blanks.</LI>
+</UL>
+        <P> Often you will want to combine several DATA step functions in order 
+          to create a DATA step expression as the second argument of the SYMPUT 
+          routine. 
+        <pre><font color="#003399">    <strong>CALL SYMPUT</strong>('<em>macro-variable</em>',<em>expression</em>);
+</font></pre><P><BR>
+<table border="0" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif"  alt="Note:" width="20" height="20"></td>
+            <td valign="top">A DATA step expression can be any combination of DATA step 
+              functions, DATA step variables, constants, and logical or arithmetic 
+              operators that resolves to a character or numeric constant.</td>
+    </tr>
+  </table><P><BR>
+When you use a DATA step expression as the second argument, its current value is evaluated  
+according to the following rules:
+<UL>
+          <LI>Numeric expressions are <strong>a</strong>utomatically converted to character 
+            constants, using the BEST12. format.</LI>
+          <LI>The resulting value can be up to 32767 characters long.</LI>
+          <LI>Any leading or trailing blanks that are part of the expression are 
+            stored in the macro variable.</LI>
+</UL>
+
+<P><BR>
+<h2>Example</h2>
+        <P> In order to remove the extra blanks from the title and footnote of 
+          the previous example, you can use DATA step functions. To remove leading 
+          blanks from the macro variables <code>numstu</code> and <code>numpaid</code>, 
+          you can use the LEFT function to left-justify values and the TRIM function 
+          to remove any trailing blanks. To remove trailing blanks from <code>crsname</code>, 
+          you only need to use the TRIM function, because <code>crsname</code> 
+          was created from a character variable. 
+        <pre><font color="#003399">    %let crsnum=3;
+    data revenue;
+       set sasuser.all end=final;
+       where course_number=&amp;crsnum;
+       total+1;
+       if paid='Y' then paidup+1;
+       if final then do;
+          <strong>call symput('numpaid',trim(left(paidup)));
+          call symput('numstu',trim(left(total)));
+          call symput('crsname',trim(course_title));</strong>
+       end;
+    run;
+    
+    proc print data=revenue noobs;
+       var student_name student_company paid;
+       title &quot;Fee Status for &amp;crsname (#&amp;crsnum)&quot;;
+       footnote &quot;Note: &amp;numpaid Paid out of &amp;numstu Students&quot;;
+    run;
+</font></pre>
+<P>
+<BR>
+        <div align="center"> SAS Listing Output 
+          <table width="450" border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" title="SAS List Output">
+<tr><td><pre>
+              Fee Status for Local Area Networks (#3)
+
+
+NAME                        COMPANY                          PAID
+
+Bills, Ms. Paulette         Reston Railway                    Y
+Chevarley, Ms. Arlene       Motor Communications              N
+Clough, Ms. Patti           Reston Railway                    N
+Crace, Mr. Ron              Von Crump Seafood                 Y
+Davis, Mr. Bruce            Semi;Conductor                    Y
+Elsins, Ms. Marisa F.       SSS Inc.                          N
+Gandy, Dr. David            Paralegal Assoc.                  Y
+Gash, Ms. Hedy              QA Information Systems Center     Y
+Haubold, Ms. Ann            Reston Railway                    Y
+Hudock, Ms. Cathy           So. Cal. Medical Center           Y
+Kimble, Mr. John            Alforone Chemical                 N
+Kochen, Mr. Dennis          Reston Railway                    Y
+Larocque, Mr. Bret          Physicians IPA                    Y
+Licht, Mr. Bryan            SII                               Y
+McKnight, Ms. Maureen E.    Federated Bank                    Y
+Scannell, Ms. Robin         Amberly Corp.                     N
+Seitz, Mr. Adam             Lomax Services                    Y
+Smith, Ms. Jan              Reston Railway                    N
+Sulzbach, Mr. Bill          Sailbest Ships                    Y
+Williams, Mr. Gene          Snowing Petroleum                 Y
+
+                 Note: 14 Paid out of 20 Students
+</pre></td></tr></table></div>
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

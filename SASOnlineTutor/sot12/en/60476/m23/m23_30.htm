@@ -1,0 +1,231 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Free-Format Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Using the DSD Option</strong></p>
+      <p>What happens if you need to create a comma-delimited file that requires 
+        the use of a format that writes out values using commas?</p>
+    </td>
+  </tr>
+</table>
+<center>
+  <p> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">If you used the following program, the resulting raw 
+          data file would contain five fields rather than four.</td>
+      </tr>
+    </table>
+    <br>
+  </center>
+</center>
+<p>
+  <center>
+    <center>
+    </center>
+  </center>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre><font color="#003399">data _null_; 
+   set perm.finance; 
+   file 'c:\data\findat2' <strong>dlm=','</strong>; 
+   put ssn name <strong>salary : comma6.</strong> date : date9.; 
+run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <p>SAS Data Set Finance 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>SSN</b></font></td>
+      <td align=LEFT><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></td>
+      <td align=CENTER><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Salary</b></font></td>
+      <td align=CENTER><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Date</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Verdana, Arial, Helvetica" size="2" color="#000000">074-53-9892</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Vincent</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">35000</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">05/22/97</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Verdana, Arial, Helvetica" size="2" color="#000000">776-84-5391</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Phillipon</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">29750</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">12/15/96</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Verdana, Arial, Helvetica" size="2" color="#000000">929-75-0218</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Gunter</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27500</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">04/30/97</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Verdana, Arial, Helvetica" size="2" color="#000000">446-93-2122</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Harbinger</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">33900</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">07/08/96</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Verdana, Arial, Helvetica" size="2" color="#000000">228-88-9649</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Benito</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">28000</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">03/04/96</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Verdana, Arial, Helvetica" size="2" color="#000000">029-46-9261</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Rudelich</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">35000</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">02/15/95</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Verdana, Arial, Helvetica" size="2" color="#000000">442-21-8075</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Sirignano</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        5000</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11/22/95</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <p>Raw Data File Findat2 
+  <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---+----30---+----40</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">074-53-9892,Vincent,35,000,22MAY1997</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">776-84-5391,Phillipon,29,750,15DEC1996</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">929-75-0218,Gunter,27,500,30APR1997</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">446-93-2122,Harbinger,33,900,08JUL1996</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">228-88-9649,Benito,28,000,04MAR1996</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">029-46-9261,Rudelich,35,000,15FEB1995</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">442-21-8075,Sirignano,5,000,22NOV1995</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font><br>
+  <br>
+  <center>
+    <center>
+      <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td align="left">You can use the DSD option in the FILE statement to 
+            specify that data values containing commas should be enclosed in quotation 
+            marks. Remember that the DSD option uses a comma as a delimiter, so 
+            a DLM= option isn't necessary here.</td>
+        </tr>
+      </table>
+      <br>
+    </center>
+  </center>
+  <p> 
+    <center>
+      <center>
+      </center>
+    </center>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> 
+          <pre><font color="#003399">data _null_; 
+   set perm.finance; 
+   file 'c:\data\findat2' <strong>dsd</strong>; 
+   put ssn name salary : comma. date : date9.; 
+run;</font></pre>
+        </td>
+      </tr>
+    </table>
+    <p>Raw Data File Findat2 
+    <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+    <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <thead> 
+      <tr> 
+        <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---+----30---+----40</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+      </tr>
+      </thead> <tbody> 
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">074-53-9892,Vincent,&quot;35,000&quot;,22MAY1997</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">776-84-5391,Phillipon,&quot;29,750&quot;,15DEC1996</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">929-75-0218,Gunter,&quot;27,500&quot;,30APR1997</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">446-93-2122,Harbinger,&quot;33,900&quot;,08JUL1996</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">228-88-9649,Benito,&quot;28,000&quot;,04MAR1996</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">029-46-9261,Rudelich,&quot;35,000&quot;,15FEB1995</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">442-21-8075,Sirignano,&quot;5,000&quot;,22NOV1995</font></td>
+      </tr>
+      </tbody> 
+    </table>
+    </font></font><br>
+    <br>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

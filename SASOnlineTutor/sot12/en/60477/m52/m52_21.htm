@@ -1,0 +1,117 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_3.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 2;
+
+salute  = "<strong>Correct.</strong><p>";
+
+correct = "Since the macro definition includes keyword parameters, you specify default values  " +
+          "for the parameters in the macro call by omitting the parameters from the call. " +
+          "";
+
+choice1 = "<strong>Incorrect.</strong><p>"+
+          "You supply commas as placeholders for positional parameters if you want to supply null values for those parameters. " +
+          "However, the parameters in this macro definition are keyword parameters." +
+          "";
+
+choice2 = salute + correct;
+
+choice3 = "<strong>Incorrect.</strong><p>"+
+          "By submitting a call that includes keyword parameter names and no values,  " +
+          "you assign null values to the parameters. The default values for the parameters in this  " +
+          "example are not all null values.";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Parameters<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center> <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Which of the following correctly calls the macro <strong>Attend</strong> and sets the macro variables that are used 
+within it to their default values?<P><table width="85%" align="center"><font color="#003399"><pre>
+%macro attend(opts=,start=01jan2001,stop=31dec2001);
+   %let start=%upcase(&amp;start);
+   %let stop=%upcase(&amp;stop);
+   proc freq data=sasuser.all;
+      where begin_date between &quot;&amp;start&quot;d and &quot;&amp;stop&quot;d;
+      table location / &amp;opts;
+      title1 &quot;Enrollment from &amp;start to &amp;stop&quot;;
+   run;
+%mend;</pre></font></table>
+          
+<!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" --><font color="#003399"><code>%attend(,,)</code></font><!-- InstanceEndEditable --></td>
+        <td rowspan="3"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" --><font color="#003399"><code>%attend( )</code></font><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" --><font color="#003399"><code>%attend(opts=,start=,stop=)</code></font><!-- InstanceEndEditable --></td>
+      </tr>
+      
+      <tr> 
+        <td colspan="3"> 
+          <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

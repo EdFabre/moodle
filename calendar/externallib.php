@@ -173,21 +173,13 @@ class core_calendar_external extends external_api {
 
         // Let us findout courses that we can return events from.
         if (!$hassystemcap) {
-            $courses = enrol_get_my_courses('id');
+            $courses = enrol_get_my_courses();
             $courses = array_keys($courses);
             foreach ($params['events']['courseids'] as $id) {
-               try {
-                    $context = context_course::instance($id);
-                    self::validate_context($context);
+                if (in_array($id, $courses)) {
                     $funcparam['courses'][] = $id;
-                } catch (Exception $e) {
-                    $warnings[] = array(
-                        'item' => 'course',
-                        'itemid' => $id,
-                        'warningcode' => 'nopermissions',
-                        'message' => 'No access rights in course context '.$e->getMessage().$e->getTraceAsString()
-                    );
-                    continue;
+                } else {
+                    $warnings[] = array('item' => $id, 'warningcode' => 'nopermissions', 'message' => 'you do not have permissions to access this course');
                 }
             }
         } else {
@@ -223,21 +215,21 @@ class core_calendar_external extends external_api {
             $funcparam['courses'][] = $SITE->id;
         }
 
-        // Event list does not check visibility and permissions, we'll check that later.
         $eventlist = calendar_get_events($params['options']['timestart'], $params['options']['timeend'], $funcparam['users'], $funcparam['groups'],
                 $funcparam['courses'], true, $params['options']['ignorehidden']);
-
         // WS expects arrays.
         $events = array();
-
-        // We need to get events asked for eventids.
-        if ($eventsbyid = calendar_get_events_by_id($params['events']['eventids'])) {
-            $eventlist += $eventsbyid;
+        foreach ($eventlist as $id => $event) {
+            $events[$id] = (array) $event;
         }
 
-        foreach ($eventlist as $eventid => $eventobj) {
+        // We need to get events asked for eventids.
+        $eventsbyid = calendar_get_events_by_id($params['events']['eventids']);
+        foreach ($eventsbyid as $eventid => $eventobj) {
             $event = (array) $eventobj;
-
+            if (isset($events[$eventid])) {
+                   continue;
+            }
             if ($hassystemcap) {
                 // User can see everything, no further check is needed.
                 $events[$eventid] = $event;

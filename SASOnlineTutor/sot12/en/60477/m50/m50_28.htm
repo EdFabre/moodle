@@ -1,0 +1,149 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Displaying 
+      Macro Variable Values in the SAS Log<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The %PUT Statement</h2>
+
+Another way of verifying the values of macro variables is to write your own messages to the SAS log. 
+The <nobr>%PUT</nobr> statement writes text to the SAS log.
+</td></tr></table>
+<P><BR>
+ <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, basic %PUT statement">
+    <tr> 
+      <td align="left"><strong>General form, basic %PUT statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>%PUT </strong><em>text</em>; 
+          </font></nobr> </blockquote>
+        <p> where <font color="#003399"><em>text</em></font> is any text string.<br>
+       
+      </td>
+    </tr>
+  </table>
+
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+The %PUT statement
+<UL>
+<LI>writes only to the SAS log</LI>
+<LI>always writes to a new log line, starting in column one</LI>
+<LI>writes a blank line if text is not specified</LI>
+<LI>does not require quotation marks around text</LI>
+<LI>resolves macro triggers in text before text is written</LI>
+<LI>removes leading and trailing blanks from text unless a macro quoting function is used</LI>
+          <LI>wraps lines when the length of text is greater than the current 
+            line size setting</LI>
+<LI>can be used either inside or outside a macro definition.</LI>
+</UL><P><BR>
+
+<h2>Example</h2>
+Suppose you want to verify the value of the macro variable <code>city</code>. Since the <nobr>%PUT</nobr> statement 
+resolves macro references in text before writing text to the SAS log, you can use it to show the stored 
+value of <code>city</code>.<P>
+<font color="#003399"><pre>    %put The value of the macro variable CITY is: &city;</pre></font>
+    </td>
+  </tr>
+</table><P>
+  <div align="center"> SAS Log 
+    <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+120 %put The value of the macro variable CITY is: &city;
+The value of the macro variable CITY is: Dallas</pre></td></tr>
+</table> </div><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+You can also simply submit the statement
+<code><font color="#003399">%put &city;</font></code>
+without any additional text. This statement will write the resolved value of the macro variable 
+<code>city</code> to the SAS log; however, it will not write any additional text to the log.
+You might find that it is a good idea to add explanatory text to your <nobr>%PUT</nobr> statements in order to 
+maintain clarity in the SAS log.
+
+The <nobr>%PUT</nobr> statement has several optional arguments that you can add.</td>
+  </tr>
+</table>
+<P><BR><div align="center">
+<table border="1" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF" title="%PUT statment optional arguments">
+<tr bgcolor="#F7F7DE"><th><font size="-1">Argument</font></th>
+        <th><font size="-1">Result in SAS Log</font></th>
+      </tr>
+<tr>
+        <td>_ALL_</td>
+        <td>Lists the values of all macro variables</tr>
+<tr>
+        <td>_AUTOMATIC_</td>
+        <td>Lists the values of all automatic macro variables</td></tr>
+<tr>
+        <td>_USER_</td>
+        <td>Lists the values of all user-defined macro variables</td></tr>
+</table></div><P><BR>
+<div align="center">
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+121 %let year=2002;
+122 %let city=New York;
+123 %let region=South;
+124 %put _all_;
+GLOBAL YEAR 2002
+GLOBAL REGION South
+GLOBAL CITY New York
+AUTOMATIC AFDSID 0
+AUTOMATIC AFDSNAME
+AUTOMATIC AFLIB
+AUTOMATIC AFSTR1
+AUTOMATIC AFSTR2
+AUTOMATIC FSPBDV
+AUTOMATIC SYSBUFFR
+AUTOMATIC SYSCC 0
+AUTOMATIC SYSCHARWIDTH 1
+AUTOMATIC SYSCMD
+AUTOMATIC SYSDATE 29MAY02
+</pre></td></tr>
+</table> </div><P><BR>
+
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><P>Notice that when you use optional arguments such as _ALL_, each macro 
+          variable name is also written to the SAS log, along with a label of 
+          either AUTOMATIC or GLOBAL. </td></tr></table><BR><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

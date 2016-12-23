@@ -143,8 +143,7 @@ class auth_plugin_shibboleth extends auth_plugin_base {
         $configarray = (array) $this->config;
 
         $moodleattributes = array();
-        $userfields = array_merge($this->userfields, $this->get_custom_user_profile_fields());
-        foreach ($userfields as $field) {
+        foreach ($this->userfields as $field) {
             if (isset($configarray["field_map_$field"])) {
                 $moodleattributes[$field] = $configarray["field_map_$field"];
             }

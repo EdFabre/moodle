@@ -11,8 +11,8 @@ Feature: We can enter in grades and view reports from the gradebook
       | Course 1 | C1 | topics |
     And the following "users" exist:
       | username | firstname | lastname | email |
-      | teacher1 | Teacher | 1 | teacher1@example.com |
-      | student1 | Student | 1 | student1@example.com |
+      | teacher1 | Teacher | 1 | teacher1@asd.com |
+      | student1 | Student | 1 | student1@asd.com |
     And the following "course enrolments" exist:
       | user | course | role |
       | teacher1 | C1 | editingteacher |
@@ -21,27 +21,16 @@ Feature: We can enter in grades and view reports from the gradebook
     And I follow "Course 1"
     And I turn editing mode on
     And I add a "Assignment" to section "1" and I fill the form with:
-      | Assignment name | Test assignment name 1 |
-      | Description | Submit your online text |
-      | assignsubmission_onlinetext_enabled | 1 |
-    And I add a "Assignment" to section "1" and I fill the form with:
-      | Assignment name | Test assignment name 2 |
+      | Assignment name | Test assignment name |
       | Description | Submit your online text |
       | assignsubmission_onlinetext_enabled | 1 |
     And I log out
     And I log in as "student1"
     And I follow "Course 1"
-    And I follow "Test assignment name 1"
+    And I follow "Test assignment name"
     When I press "Add submission"
     And I set the following fields to these values:
-      | Online text | This is a submission for assignment 1 |
-    And I press "Save changes"
-    Then I should see "Submitted for grading"
-    And I follow "Course 1"
-    And I follow "Test assignment name 2"
-    When I press "Add submission"
-    And I set the following fields to these values:
-      | Online text | This is a submission for assignment 2 |
+      | Online text | This is a submission |
     And I press "Save changes"
     Then I should see "Submitted for grading"
     And I log out
@@ -49,8 +38,7 @@ Feature: We can enter in grades and view reports from the gradebook
     And I follow "Course 1"
     And I follow "Grades"
     And I turn editing mode on
-    And I give the grade "80.00" to the user "Student 1" for the grade item "Test assignment name 1"
-    And I give the grade "90.00" to the user "Student 1" for the grade item "Test assignment name 2"
+    And I give the grade "80.00" to the user "Student 1" for the grade item "Test assignment name"
     And I press "Update"
 
   @javascript
@@ -64,17 +52,9 @@ Feature: We can enter in grades and view reports from the gradebook
     And I log in as "student1"
     And I follow "Course 1"
     And I follow "Grades"
-    Then the following should exist in the "user-grade" table:
-      | Grade item | Grade | Range | Percentage |
-      | Test assignment name 1 | 80.00 | 0–100 | 80.00 % |
-      | Test assignment name 2 | 90.00 | 0–100 | 90.00 % |
-      | Course total | 85.00 | 0–100 | 85.00 % |
-    And the following should not exist in the "user-grade" table:
-      | Grade item | Grade | Range | Percentage |
-      | Course total | 90.00 | 0–110 | 90.00 % |
+    And I should see "80.00" in the "Test assignment name" "table_row"
     And I set the field "Grade report" to "Overview report"
-    And "C1" row "Grade" column of "overview-grade" table should contain "85.00"
-    And "C1" row "Grade" column of "overview-grade" table should not contain "90.00"
+    And I should see "80.00" in the "overview-grade" "table"
 
   @javascript
   Scenario: We can add a weighting to a grade item and it is displayed properly in the user report
@@ -92,13 +72,5 @@ Feature: We can enter in grades and view reports from the gradebook
     And I log in as "student1"
     And I follow "Course 1"
     And I follow "Grades"
-    Then the following should exist in the "user-grade" table:
-      | Grade item | Weight | Grade | Range | Percentage |
-      | Test assignment name 1 | 0.72 | 80.00 | 0–100 | 80.00 % |
-      | Test assignment name 2 | 1.00 | 90.00 | 0–100 | 90.00 % |
-      | Course total | - | 85.81 | 0–100 | 85.81 % |
-    And the following should not exist in the "user-grade" table:
-      | Grade item | Weight | Percentage |
-      | Test assignment name 1 | 0.72% | 0.72% |
-      | Test assignment name 2 | 1.00% | 1.00% |
-      | Course total | 1.00% | 1.00% |
+    Then I should see "0.72" in the "Test assignment name" "table_row"
+    And I should not see "0.72%" in the "Test assignment name" "table_row"

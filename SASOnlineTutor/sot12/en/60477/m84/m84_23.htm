@@ -1,0 +1,113 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Calculating 
+      and Allocating Sort Resources<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using the SORTSIZE= Option</h2>
+        The SORTSIZE= system option or procedure option specifies how much memory 
+        is available to the SORT procedure. Specifying the SORTSIZE= option in 
+        the PROC SORT statement temporarily overrides the SAS system option SORTSIZE=.</td>
+    </tr>
+  </table>
+  <p><br> 
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, SORTSIZE= option">
+    <tr> 
+      <td align="left"><strong>General form, SORTSIZE= option:</strong> 
+        <blockquote> <font color="#003399"><strong>SORTSIZE=</strong><em>memory-specification</em></font><font color="#003399"><strong>;</strong></font> 
+        </blockquote>
+        where <font color="#003399"><em>memory-specification</em></font> specifies 
+        the maximum amount of memory that is available to PROC SORT. Valid values 
+        for <em><font color="#003399">memory-specification</font></em> are as 
+        follows: 
+        <ul>
+          <li><font color="#003399">MAX</font> specifies that all available memory 
+            can be used 
+          <li><font color="#003399"><em>n</em></font><em> </em>specifies the amount 
+            of memory in bytes, where <em>n</em> is a real number 
+          <li><font color="#003399"><em>n</em>K</font> specifies the amount of 
+            memory in kilobytes, where <em>n</em> is a real number 
+          <li><font color="#003399"><em>n</em>M</font> specifies the amount of 
+            memory in megabytes, where <em>n</em> is a real number 
+          <li><font color="#003399"><em>n</em>G</font> specifies the amount of 
+            memory in gigabytes, where <em>n</em> is a real number. 
+        </ul>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The default value of the SORTSIZE= option depends 
+              on your operating environment. See the SAS documentation for your 
+              operating environment for more information.<!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --></td>
+          </tr>
+        </table> 
+        
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <p> Generally, the value of SORTSIZE= should be less than the physical 
+          memory that is available to your process.</p>
+        <p>If the required workspace is less than or equal to the value specified 
+          in the SORTSIZE= system option or procedure option, then the entire 
+          sort can take place in memory, which reduces processing time.</p>
+        <p>If the actual required workspace is greater than the value specified 
+          in the SORTSIZE= system option or procedure option, then processing 
+          time is increased because the SORT procedure must </p>
+        <ol>
+          <li>create temporary utility files in the <strong>Work</strong> directory 
+            or mainframe temporary area</li>
+          <li>request memory up to the value specified by SORTSIZE=</li>
+          <li>write a portion of the sorted data to a utility file.</li>
+        </ol>
+        <p>This process is repeated until all of the data is sorted. The SORT 
+          procedure then interleaves the data in the utility files to create the 
+          final data set.</p>
+        <p>PROC SORT attempts to adapt to the constraint that is imposed by the 
+          SORTSIZE= option. Because PROC SORT uses memory as much as possible, 
+        </p>
+        <ul>
+          <li>a small SORTSIZE= value can increase CPU and I/O resource utilization</li>
+          <li>a large SORTSIZE= value can decrease CPU and I/O resource utilization.<br>
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

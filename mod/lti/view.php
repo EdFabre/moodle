@@ -64,9 +64,8 @@ if ($l) {  // Two ways to specify the module
 
 $course = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 
-if (!empty($lti->typeid)) {
-    $toolconfig = lti_get_type_config($lti->typeid);
-} else if ($tool = lti_get_tool_by_url_match($lti->toolurl)) {
+$tool = lti_get_tool_by_url_match($lti->toolurl);
+if ($tool) {
     $toolconfig = lti_get_type_config($tool->id);
 } else {
     $toolconfig = array();
@@ -119,7 +118,7 @@ if ($lti->showtitlelaunch) {
 }
 
 if ($lti->showdescriptionlaunch && $lti->intro) {
-    echo $OUTPUT->box(format_module_intro('lti', $lti, $cm->id), 'generalbox description', 'intro');
+    echo $OUTPUT->box($lti->intro, 'generalbox description', 'intro');
 }
 
 if ( $launchcontainer == LTI_LAUNCH_CONTAINER_WINDOW ) {
@@ -129,10 +128,10 @@ if ( $launchcontainer == LTI_LAUNCH_CONTAINER_WINDOW ) {
     echo "</script>\n";
     echo "<p>".get_string("basiclti_in_new_window", "lti")."</p>\n";
 } else {
-    // Request the launch content with an iframe tag.
-    echo '<iframe id="contentframe" height="600px" width="100%" src="launch.php?id='.$cm->id.'"></iframe>';
+    // Request the launch content with an object tag
+    echo '<object id="contentframe" height="600px" width="100%" type="text/html" data="launch.php?id='.$cm->id.'"></object>';
 
-    // Output script to make the iframe be as large as possible.
+    //Output script to make the object tag be as large as possible
     $resize = '
         <script type="text/javascript">
         //<![CDATA[

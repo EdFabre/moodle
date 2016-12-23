@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') || die();
  * @property-read array $other {
  *      Extra information about event.
  *
- *      - string newstate: state of submission.
+ *      - string newstatus: status of submission.
  * }
  *
  * @package    mod_assign

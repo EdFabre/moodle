@@ -1,0 +1,129 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(3); 
+   answer[1] = "insert into schedule_east (cnum,ccode,loc,instructor,begindt)"
+   answer[2] = "insert into schedule_east(cnum,ccode,loc,instructor,begindt)"
+   answer[3] = "insert into work.schedule_east(cnum,ccode,loc,instructor,begindt)"
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='Because the columns are in a different order in the two tables, your INSERT';
+   right2='statement must include a list of column names. The first line of the INSERT statement contains ';
+   right3='the keywords INSERT INTO, the new table name, and the column list. The column list is enclosed in parentheses. There is no semicolon at the end of this line. ';
+   
+   wrong1='Make  sure that you have included the three main elements in the first line ';
+   wrong2='of the INSERT statement: the keywords, the name of the table into which the rows ';
+   wrong3='will be inserted, and the list of column names in parentheses. The column names should be separated by commas.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="yes";
+   var checkSemicolon="no";
+   var useParens="yes";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Inserting 
+      Rows of Data into a Table<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>You have just created the empty table <strong>Work.Schedule_East</strong>, 
+            and have used the DESCRIBE TABLE statement to display the table structure 
+            in the SAS log.<br>
+            <br>
+          <div align="center">SAS Log<br>
+            <table border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="SAS Log">
+              <tr> 
+                <td> <pre>NOTE: SQL table WORK.SCHEDULE_EAST was created like:
+		
+create table <strong>WORK.SCHEDULE_EAST</strong>( bufsize=8192 )
+  (
+   CNum num label='Course Number',
+   CCode char(4) label='Course Code',
+   Loc char(10) label='Location',
+   BeginDt num format=DATE9. label='Begin Date',
+   Instructor char(20)
+  );</pre></td>
+              </tr>
+            </table>
+          </div>
+          <p> Write a statement to insert rows of data from the existing table 
+            <strong>Schedule_All</strong> into <strong>Work.Schedule_East</strong>.<strong> 
+            </strong>There is only one difference in structure between the two 
+            tables: in <strong>Schedule_All</strong>, the order of the columns 
+            <code>BeginDt</code> and <code>Instructor</code> is reversed. <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" -->
+          <pre><font color="#003399">proc sql;
+   <INPUT TYPE="text" size="50" NAME="anstext"> 
+      select *
+         from schedule_all
+         where loc='Boston';</font></pre><!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,197 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(4); 
+   answer[1] = "select grades.id, gpa, major"
+   answer[2] = "select grades.id,gpa,major"
+   answer[3] = "select majors.id,gpa,major"
+   answer[4] = "select grades.*,major"
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='This SELECT clause uses a qualified column name to select only ';
+   right2='one of the two ID columns. You can specify the ID column in ';
+   right3='any of these ways:<br><blockquote><font color="#333399"><code>grades.id</code><br><code>majors.id</code><br><code>grades.*</code></font> (this specifies <strong>both</strong> columns from the table <strong>Grades</strong>)</blockquote>';
+   
+   wrong1='Your SELECT clause must use a qualified column name to select only one of the two ';
+   wrong2='ID columns. You can select the ID column from either table. ';
+   wrong3='It is technically correct to qualify <strong>all</strong> column names, but your query will be considered incorrect if you qualify any columns that have unique names. Check to see if there are other errors.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="no";
+   var checkSemicolon="no";
+   var useParens="no";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Inner Joins<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>You are creating a PROC SQL query to display data for a group of 
+            college students. Your query will use an inner join to combine the 
+            tables <strong>Grades</strong> and <strong>Majors</strong>. The output, 
+            shown below, should display only the rows in which the values of the 
+            ID columns match across tables. Columns should be displayed in the 
+            original order (first table before second table), but any duplicate 
+            column(s) should <strong>not</strong> be displayed. 
+			<p><br>
+          <table border="0" align="center" cellspacing="10">
+            <tr> 
+              <td width="98" align="center" valign="top"> Grades 
+                <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+                  <thead>
+                    <tr align="center" valign="top"> 
+                      <td width="40" align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+                      <td width="40" align="right" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>GPA</b></font></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr valign="top" bgcolor="#FFFFFF"> 
+                      <td align=left><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2136</font></td>
+                      <td align=right><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3.8</font></td>
+                    </tr>
+                    <tr valign="top" bgcolor="#FFFFFF"> 
+                      <td align=left><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2290</font></td>
+                      <td align=right><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2.5</font></td>
+                    </tr>
+                    <tr valign="top" bgcolor="#FFFFFF"> 
+                      <td align=left><font color="#000000" size="2" face="Verdana, Arial, Helvetica">5619</font></td>
+                      <td align=right><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3.7</font></td>
+                    </tr>
+                    <tr valign="top" bgcolor="#FFFFFF"> 
+                      <td align=left><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8834</font></td>
+                      <td align=right><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4.0</font></td>
+                    </tr>
+                  </tbody>
+                </table></td>
+              <td width="98" align="center" valign="top"> Majors 
+                <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+                  <thead>
+                    <tr align="center" valign="top"> 
+                      <td width="40" align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+                      <td width="40" align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Major</b></font></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr valign="top" bgcolor="#FFFFFF"> 
+                      <td align=left><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2136</font></td>
+                      <td align=left><font face="Verdana, Arial, Helvetica" size="2" color="#000000">PSY</font></td>
+                    </tr>
+                    <tr valign="top" bgcolor="#FFFFFF"> 
+                      <td align=left><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3555</font></td>
+                      <td align=left><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BIO</font></td>
+                    </tr>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">5619</font></td>
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BUS</font></td>
+                    </tr>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6001</font></td>
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">THE</font> 
+                      </td>
+                    </tr>
+                  </tbody>
+                </table></td>
+              <td width="98" align="center" valign="middle"> <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+                  <thead>
+                    <TR align="center" valign="top"> 
+                      <TD ALIGN=left VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>ID</b></font></TD>
+                      <TD ALIGN=right VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>GPA</b></font></TD>
+                      <TD ALIGN=left VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><strong>Major</strong></font></TD>
+                    </TR>
+                  </thead>
+                  <tbody>
+                    <TR align="center" valign="top"> 
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2136</font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">3.8</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PSY</font></TD>
+                    </TR>
+                    <TR align="center" valign="top"> 
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">5619</font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">3.7</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">BUS</font></TD>
+                    </TR>
+                  </tbody>
+                </TABLE></td>
+            </tr>
+          </table>
+          <p>
+          <br>
+          Write a SELECT statement to complete the query.<br>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" -->
+		  <pre> <font color="#003399">proc sql;
+   <INPUT TYPE="text" size="50" NAME="anstext">
+      from grades, majors
+	  where grades.id = majors.id; </font></pre>
+          <!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

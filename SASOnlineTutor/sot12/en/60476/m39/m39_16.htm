@@ -1,0 +1,157 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      Lengths for Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You can use a <strong>LENGTH statement</strong> to specify a length (the 
+        number of bytes) for <code>TestLength</code> before the first value is 
+        referenced elsewhere in the DATA step.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, LENGTH statement">
+    <tr> 
+      <td><strong>General form, LENGTH statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>LENGTH</strong><em> variable(s) 
+          &lt;</em>$<em>&gt; length</em></font><strong>;</strong></nobr> </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>variable(s)</em></font> names the variable(s) 
+            to be assigned a length 
+          <li><font color="#003399">$</font> is specified if the variable is a 
+            character variable 
+          <li><font color="#003399"><em>length</em></font> is an integer that 
+            specifies the length of the variable. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Examples:</strong> 
+        <pre><font color="#003399">     <strong>length</strong> <code>Type</code> <strong>$ 8</strong>;</font>
+<font color="#003399">     <strong>length</strong> Address1 Address2 Address3 <strong>$ 200</strong>;</font>
+<font color="#003399">     <strong>length</strong> FirstName <strong>$ 12</strong> LastName <strong>$ 16</strong>;</font></pre>
+        Within your program, you include a LENGTH statement to assign a length 
+        to accommodate the longest value of the variable <code>TestLength</code>. 
+        The longest value is <em>Normal</em>, which has six characters. Because 
+        <code>TestLength</code> is a character variable, you must follow the variable 
+        name with a dollar sign ($). 
+          <pre><font color="#003399">    data clinic.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       retain SumSec 5400;</font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">       <strong>length TestLength $ 6;</strong></font>
+<font color="#003399">       if totaltime&gt;800 then testlength='Long';</font>
+       <font color="#003399">else if 750<=totaltime<=800 then testlength='Normal';</font>
+       <font color="#003399">else if totaltime&lt;750 then TestLength='Short';</font>
+<font color="#003399">    run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="Top"> 
+      <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+      <td>Make sure the LENGTH statement appears before any other reference to 
+        the variable in the DATA step. If the variable has been created by another 
+        statement, then a later use of the LENGTH statement will not change its 
+        size.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Now that you have added the LENGTH statement to your program, the values 
+        of <code>TestLength</code> are no longer truncated.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+  Variable TestLength<br>
+  (Partial Listing) 
+<center>
+    <table border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC"  title="Variable TestLength">
+      <thead>
+        <tr> 
+          <td align=CENTER bgcolor="#FFFFE0"><font color="#000000" size="-1"  face="Verdana, Arial, Helvetica, sans-serif"><b>TestLength</b></font></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF" nowrap> <div align="left"><font color="#FF0000" size="-1" face="Verdana, Arial, Helvetica, sans-serif">Normal</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF" nowrap> <div align="left"><font color="#FF0000" size="-1" face="Verdana, Arial, Helvetica, sans-serif">Short</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF" nowrap> <div align="left"><font color="#FF0000" size="-1" face="Verdana, Arial, Helvetica, sans-serif">Short</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font color="#FF0000" size="-1" face="Verdana, Arial, Helvetica, sans-serif">Short</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font color="#FF0000" size="-1" face="Verdana, Arial, Helvetica, sans-serif">Normal</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font color="#FF0000" size="-1" face="Verdana, Arial, Helvetica, sans-serif">Short</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">Long</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font size="-1" face="Verdana, Arial, Helvetica, sans-serif">...</font></div></td>
+        </tr>
+      </tbody>
+    </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

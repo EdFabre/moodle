@@ -86,14 +86,12 @@ class restore_qtype_randomsamatch_plugin extends restore_qtype_plugin {
             if (!isset($data->shownumcorrect)) {
                 $data->shownumcorrect = 0;
             }
+            // Adjust some columns.
             $data->questionid = $newquestionid;
-
-            // It is possible for old backup files to contain unique key violations.
-            // We need to check to avoid that.
-            if (!$DB->record_exists('qtype_randomsamatch_options', array('questionid' => $data->questionid))) {
-                $newitemid = $DB->insert_record('qtype_randomsamatch_options', $data);
-                $this->set_mapping('qtype_randomsamatch_options', $oldid, $newitemid);
-            }
+            // Insert record.
+            $newitemid = $DB->insert_record('qtype_randomsamatch_options', $data);
+            // Create mapping.
+            $this->set_mapping('qtype_randomsamatch_options', $oldid, $newitemid);
         }
     }
 

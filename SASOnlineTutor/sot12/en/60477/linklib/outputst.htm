@@ -1,0 +1,81 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --> 
+<TITLE>The OUTPUT Statement</TITLE>
+<!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->The 
+      OUTPUT Statement<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">By default, every DATA step contains an implicit OUTPUT 
+        statement at the end of the step. Placing an explicit OUTPUT statement 
+        in a DATA step overrides the automatic output, and SAS adds an observation 
+        to a data set only when the explicit OUTPUT statement is executed.</td>
+    </tr>
+  </table>
+  <br>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="2" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, OUTPUT statement">
+    <tr> 
+      <td align="left"><strong>General form, OUTPUT statement:</strong> 
+        <blockquote> <font color="#003399"><strong>OUTPUT </strong><em>SAS-data-set</em><strong>;</strong></font> 
+          or <font color="#003399"><strong>OUTPUT;</strong></font> </blockquote>
+        <p> where<strong> </strong><font color="#003399"><em>SAS-data-set</em></font> 
+          names the data set to which the observation is written. All data set 
+          names specified in the OUTPUT statement <strong>must</strong> also appear 
+          in the DATA statement. 
+        <p> Using an OUTPUT statement without a following data set name causes 
+          the current observation to be written to all data sets named in the 
+          DATA statement.
+      </td>
+    </tr>
+  </table>
+  <br>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre><font color="#003399">     <strong>data sasuser.sales97;</strong></font>
+<font color="#003399">        infile data97;</font>
+<font color="#003399">        input ID 4. @;</font>
+<font color="#003399">        do quarter=1 to 4;</font>
+<font color="#003399">           input Sales : comma. @; </font>
+<font color="#003399">           <strong>output;</strong> </font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font>               
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

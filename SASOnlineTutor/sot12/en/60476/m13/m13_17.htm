@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Establishing a DBMS Connection<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p>To connect to the DBMS, use the CONNECT statement. The connection stays 
+          in effect until you submit a DISCONNECT statement or terminate the SQL 
+          procedure. 
+</td>
+  </tr>
+</table>
+<P><BR>
+<TABLE border="1" cellspacing="0" cellpadding="10" align="center" width="85%" bgcolor="#F7F7DE" title="General form, CONNECT statement">
+    <TR>
+      <TD><STRONG>General form, CONNECT statement:</STRONG>
+	<BLOCKQUOTE>
+	  <NOBR><FONT color="#003399"><STRONG>CONNECT TO</STRONG> <EM>dbms-name</EM>
+	  &lt;<STRONG>AS</STRONG> <EM>alias</EM>&gt;</FONT></NOBR>
+	  <NOBR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT
+	      color="#003399">&lt;<strong>(</strong>&lt;<EM>connect-statement-arguments</EM>&gt;</FONT></NOBR>
+	  <NOBR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT
+	      color="#003399">&lt;<EM>database-connection-arguments</EM>&gt;<strong>)</strong>&gt;<strong>;</strong></FONT></NOBR>
+	</BLOCKQUOTE>
+	<P>
+	where
+	<UL>
+	  <LI>
+	    <FONT COLOR="#003399"><EM>dbms-name</EM></FONT> identifies the database management
+	    system.<BR>
+	    <BR>
+	    <LI> <FONT COLOR="#003399"><EM>alias</EM></FONT> names an optional, 1- 
+          to 8-character alias for the connection.<BR>
+	    <BR>
+	    <LI> <NOBR><FONT color="#003399"><EM>connect-statement-arguments</EM></FONT></NOBR> 
+          specifies arguments that indicate whether you can make multiple connections, 
+          shared or unique connections, and so on, to the database. These arguments 
+          are optional. <BR>
+	    <BR>
+	  <LI>
+	    <NOBR><FONT color="#003399"><EM>database-connection-arguments</EM></FONT></NOBR>
+	    specifies the DBMS-specific arguments that are needed by PROC SQL to connect
+	    to the DBMS. These arguments are optional for most databases.
+	</UL>
+	<P>
+	<TABLE CELLPADDING="2">
+	  <TR VALIGN="Top">
+	      <TD width="24"><IMG SRC="../navimages/note.gif" WIDTH="20" HEIGHT="20" ALT="Note:" BORDER="0"></TD>
+	    <TD>If you specify arguments, you must enclose them in parentheses.</TD>
+	  </TR>
+	</TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BR>
+  <TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+    <TR>
+      <TD><STRONG>Example</STRONG>
+	<P> The CONNECT statement below connects to a SYBASE server and assigns the 
+        alias <STRONG>Sybcon1</STRONG> to it. SYBASE is a case-sensitive database, 
+        so the names of the database objects are in uppercase, as they were specified 
+        when the objects were created. The CONNECTION=GLOBAL argument specifies 
+        that multiple CONNECT statements that use identical values for all options 
+        can share the same connection to the DBMS. Notice that the arguments are 
+        enclosed in parentheses. 
+      <PRE>
+<FONT COLOR="#003399">     proc sql;</FONT>
+<FONT COLOR="#003399">        <STRONG>connect to sybase as sybcon1</STRONG></FONT>
+<STRONG><FONT COLOR="#003399">           </FONT></STRONG><FONT COLOR="Red"><STRONG>(</STRONG></FONT><FONT COLOR="#003399">server=SERVER1 database=PERSONNEL</FONT>
+<FONT COLOR="#003399">              user=testuser password=testpass</FONT>
+<FONT COLOR="#003399">              connection=global</FONT><FONT COLOR="Red"><STRONG>)</STRONG></FONT><STRONG><FONT COLOR="#003399">;</FONT></STRONG>
+        <FONT color="#003399">...</FONT>
+<FONT COLOR="#003399">     quit;</FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

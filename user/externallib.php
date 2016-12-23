@@ -186,7 +186,7 @@ class core_user_external extends external_api {
             // End of user info validation.
 
             // Create the user data now!
-            $user['id'] = user_create_user($user, true, false);
+            $user['id'] = user_create_user($user);
 
             // Custom fields.
             if (!empty($user['customfields'])) {
@@ -197,9 +197,6 @@ class core_user_external extends external_api {
                 }
                 profile_save_data((object) $user);
             }
-
-            // Trigger event.
-            \core\event\user_created::create_from_userid($user['id'])->trigger();
 
             // Preferences.
             if (!empty($user['preferences'])) {
@@ -389,7 +386,7 @@ class core_user_external extends external_api {
      * @since Moodle 2.2
      */
     public static function update_users($users) {
-        global $CFG, $DB, $USER;
+        global $CFG, $DB;
         require_once($CFG->dirroot."/user/lib.php");
         require_once($CFG->dirroot."/user/profile/lib.php"); // Required for customfields related function.
 
@@ -403,19 +400,7 @@ class core_user_external extends external_api {
         $transaction = $DB->start_delegated_transaction();
 
         foreach ($params['users'] as $user) {
-            // First check the user exists.
-            if (!$existinguser = core_user::get_user($user['id'])) {
-                continue;
-            }
-            // Check if we are trying to update an admin.
-            if ($existinguser->id != $USER->id and is_siteadmin($existinguser) and !is_siteadmin($USER)) {
-                continue;
-            }
-            // Other checks (deleted, remote or guest users).
-            if ($existinguser->deleted or is_mnet_remote_user($existinguser) or isguestuser($existinguser->id)) {
-                continue;
-            }
-            user_update_user($user, true, false);
+            user_update_user($user);
             // Update user custom fields.
             if (!empty($user['customfields'])) {
 
@@ -426,9 +411,6 @@ class core_user_external extends external_api {
                 }
                 profile_save_data((object) $user);
             }
-
-            // Trigger event.
-            \core\event\user_updated::create_from_userid($user['id'])->trigger();
 
             // Preferences.
             if (!empty($user['preferences'])) {
@@ -1131,34 +1113,30 @@ class core_user_external extends external_api {
             return $warnings;
         }
 
-        // Notice that we can have multiple devices because previously it was allowed to have repeated ones.
-        // Since we don't have a clear way to decide which one is the more appropiate, we update all.
-        if ($userdevices = $DB->get_records('user_devices', array('uuid' => $params['uuid'],
-                'appid' => $params['appid'], 'userid' => $USER->id))) {
+        // The same key can't exists for the same platform.
+        if ($DB->get_record('user_devices', array('pushid' => $params['pushid'], 'platform' => $params['platform']))) {
+            $warnings['warning'][] = array(
+                'item' => $params['pushid'],
+                'warningcode' => 'existingkeyforplatform',
+                'message' => 'This key is already stored for other device using the same platform'
+            );
+            return $warnings;
+        }
 
-            foreach ($userdevices as $userdevice) {
-                $userdevice->version    = $params['version'];   // Maybe the user upgraded the device.
-                $userdevice->pushid     = $params['pushid'];
-                $userdevice->timemodified  = time();
-                $DB->update_record('user_devices', $userdevice);
-            }
+        $userdevice = new stdclass;
+        $userdevice->userid     = $USER->id;
+        $userdevice->appid      = $params['appid'];
+        $userdevice->name       = $params['name'];
+        $userdevice->model      = $params['model'];
+        $userdevice->platform   = $params['platform'];
+        $userdevice->version    = $params['version'];
+        $userdevice->pushid     = $params['pushid'];
+        $userdevice->uuid       = $params['uuid'];
+        $userdevice->timecreated  = time();
+        $userdevice->timemodified = $userdevice->timecreated;
 
-        } else {
-            $userdevice = new stdclass;
-            $userdevice->userid     = $USER->id;
-            $userdevice->appid      = $params['appid'];
-            $userdevice->name       = $params['name'];
-            $userdevice->model      = $params['model'];
-            $userdevice->platform   = $params['platform'];
-            $userdevice->version    = $params['version'];
-            $userdevice->pushid     = $params['pushid'];
-            $userdevice->uuid       = $params['uuid'];
-            $userdevice->timecreated  = time();
-            $userdevice->timemodified = $userdevice->timecreated;
-
-            if (!$DB->insert_record('user_devices', $userdevice)) {
-                throw new moodle_exception("There was a problem saving in the database the device with key: " . $params['pushid']);
-            }
+        if (!$DB->insert_record('user_devices', $userdevice)) {
+            throw new moodle_exception("There was a problem saving in the database the device with key: " . $params['pushid']);
         }
 
         return $warnings;

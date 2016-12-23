@@ -41,29 +41,21 @@ M.mod_imscp.init = function(Y) {
             imscp_current_node.highlight();
 
             var content = new Y.YUI2.util.Element('imscp_content');
-            var obj;
-            if (node.href) {
-                try {
-                    // First try IE way - it can not set name attribute later
-                    // and also it has some restrictions on DOM access from object tag.
-                    obj = document.createElement('<iframe id="imscp_object" src="' + node.href + '">');
-                } catch (e) {
-                    obj = document.createElement('object');
-                    obj.setAttribute('id', 'imscp_object');
-                    obj.setAttribute('type', 'text/html');
-                    obj.setAttribute('data', node.href);
-                }
+            try {
+                // first try IE way - it can not set name attribute later
+                // and also it has some restrictions on DOM access from object tag
+                var obj = document.createElement('<iframe id="imscp_object" src="'+node.href+'">');
+            } catch (e) {
+                var obj = document.createElement('object');
+                obj.setAttribute('id', 'imscp_object');
+                obj.setAttribute('type', 'text/html');
+                obj.setAttribute('data', node.href);
             }
             var old = Y.YUI2.util.Dom.get('imscp_object');
             if (old) {
                 content.replaceChild(obj, old);
             } else {
-                old = Y.YUI2.util.Dom.get('imscp_child_list');
-                if (old) {
-                    content.replaceChild(obj, old);
-                } else {
-                    content.appendChild(obj);
-                }
+                content.appendChild(obj);
             }
             imscp_resize_frame();
 
@@ -144,17 +136,6 @@ M.mod_imscp.init = function(Y) {
                     obj.style.width = (content.offsetWidth - 6)+'px';
                     obj.style.height = (content.offsetHeight - 10)+'px';
                 }
-            }
-        };
-
-        var imscp_firstlinked = function(node) {
-            // Return first item with an href
-            if (node.href) {
-                return node;
-            } else if (node.children) {
-                return imscp_firstlinked(node.children[0]);
-            } else {
-                return null;
             }
         };
 
@@ -290,7 +271,7 @@ M.mod_imscp.init = function(Y) {
         });
 
         // finally activate the first item
-        imscp_activate_item(imscp_firstlinked(tree.getRoot().children[0]));
+        imscp_activate_item(tree.getRoot().children[0]);
 
         // resizing
         imscp_resize_layout(false);

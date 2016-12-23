@@ -1,0 +1,166 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      an Index to Combine Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Suppose you want to combine data from two data sets, and one of 
+          the data sets is much larger than the other. Also, suppose you want 
+          to use only those observations from the larger data set that match an 
+          observation from the smaller data set according to the value of one 
+          or more common variables.</p>
+        <p>You should already know how to <a href="JavaScript: openOther('../linklib/index.htm')">create 
+          an index</a> on a SAS data set. You have learned that PROC SQL can take 
+          advantage of an index to improve performance on a join. You can also 
+          take advantage of an index in a DATA step to combine data from matching 
+          observations in multiple data sets if the index is built on variables 
+          that are common to all input data sets.</p>
+        <p>For example, suppose you want to combine data from the matching observations 
+          in <strong>Sasuser.Dnunder</strong> and <strong>Sasuser.Sale2000</strong>. 
+          Only a portion of the flights that are in <strong>Sasuser.Sale2000</strong> 
+          (which has 156 observations) are also in <strong>Sasuser.Dnunder</strong> 
+          (which has only 57 observations). Suppose you want to use only data 
+          from <strong>Sasuser.Sale2000</strong> about flights that are in both 
+          data sets.</p>
+        <p>Assume that <strong>Sasuser.Sale2000</strong> has a composite index 
+          named <strong>Flightdate</strong> associated with it. The values for 
+          <strong>Flightdate</strong> are unique and are based on the values of 
+          the variables <code>FlightID </code>and <code>Date</code>. You can use 
+          <strong>Flightdate</strong> to combine data from only the observations 
+          in both data sets that have matching values for <code>FlightID</code> 
+          and <code>Date</code>.</p>
+        </td></tr></table><P><BR>
+		<table align="center"><tr>
+		<td>
+      <table  border="1" cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF" title="Sasuser.Sale2000 Variables">
+          <!--DWLayoutTable-->
+          <thead>
+            <tr> 
+              
+              <td height="24" align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sasuser.Sale2000<br>
+          Variables </b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              
+        <td height="24" align=LEFT bgcolor="#FFFFFF"><p><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><strong><font color="red">FlightID</font></strong><br>
+                  RouteID<br>
+                  Origin<br>
+                  Dest<br>
+                  Cap1st<br>
+                  CapBusiness<br>
+                  CapEcon<br>
+                  CapTotal<br>
+                  CapCargo<br>
+                  <strong><font color="red">Date</font></strong><br>
+                  Psgr1st<br>
+                  PsgrBusiness<br>
+                  PsgrEcon<br>
+                  Rev1st<br>
+                  RevBusiness<br>
+                  RevEcon<br>
+                  SaleMon<br>
+                  CargoWgt<br>
+                  RevCargo </font></p>
+                </td>
+            </tr>
+                      </tbody>
+        </table></td><td>&nbsp;&nbsp;</td>
+		<td valign="top">
+		<table  border="1" cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF" title="Sasuser.Dnunder Variables">
+          <!--DWLayoutTable-->
+          <thead>
+            <tr> 
+              
+              <td height="24" align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sasuser.Dnunder<br>
+          Variables </b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              
+        <td height="24" align=LEFT bgcolor="#FFFFFF"><p><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><strong><font color="red">Date</font></strong><br>
+                  Expenses<br>
+                  <strong><font color="red">FlightID</font></strong><br>
+                  RouteID </font></p>
+                </td>
+            </tr>
+                      </tbody>
+        </table>
+		</td>
+		<td valign="top"><br>
+        &nbsp;&nbsp;<img src="../navimages/arrowrt.gif" alt=" " width="20" height="20">&nbsp;&nbsp;</td>
+		<td valign="top">
+		<table  border="1" cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF" title="Sasuser.Newone Variables">
+          <!--DWLayoutTable-->
+          <thead>
+            <tr> 
+              
+              <td height="24" align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sasuser.NewOne<br>
+          Variables </b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              
+        <td height="24" align=LEFT bgcolor="#FFFFFF"><p><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">FlightID<br>
+                  RouteID<br>
+                  Date<br>
+                  Expenses<br>
+                  Rev1st<br>
+                  RevBusiness<br>
+                  RevEcon<br>
+                 
+                  RevCargo<br>
+                  Profit </font></p>
+                </td>
+            </tr>
+                      </tbody>
+        </table></td></tr></table>
+		<P><BR>
+		<table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> The next few pages show how to use the <strong>Flightdate</strong> 
+        index to combine matching observations from the <strong>Sasuser.Sale2000</strong> 
+        data set and the <strong>Sasuser.Dnunder</strong> data set. </td>
+    </tr></table><P><BR>	
+ 
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

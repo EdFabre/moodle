@@ -1,0 +1,174 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Updating 
+      Values in Existing Table Rows<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using the CASE Expression in the SELECT Statement</h2>
+        <p>You can use the CASE expression in three different PROC SQL statements: 
+          UPDATE, INSERT, and SELECT. In the SELECT statement, you can use the 
+          CASE expression within a new column definition to specify different 
+          values for different subsets of rows. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2> Example</h2>
+        <p>Suppose you want to generate an output report that displays employee 
+          names, job codes, and job levels. Your PROC SQL query selects <code>LastName</code> 
+          and <code>FirstName</code> from <strong>Sasuser.Staffmaster</strong>, 
+          and <code>JobCode</code> from <strong>Sasuser.Payrollmaster</strong>. 
+          The SELECT statement must define <code>JobLevel</code> as a new column, 
+          because it does not exist as a separate column in either table. </p>
+        <p>You want to assign the values of <code>JobLevel</code>, based on the 
+          number at the end of each jobcode. (The number at the end of each <code>JobCode</code> 
+          value is expected to be <em>1</em>, <em>2</em>, or <em>3</em>.) To create 
+          <code>JobLevel</code>, you can use the case operand form of the CASE 
+          expression to specify the three possible conditions (plus an ELSE condition, 
+          just in case).</p>
+        <p>The PROC SQL query is shown below:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql outobs=10;
+        select lastname, firstname, jobcode, 
+               <strong>case</strong> substr(jobcode,3,1)
+                  <strong>when</strong> '1'
+                       <strong>then</strong> 'junior'
+                  <strong>when</strong> '2'
+                       <strong>then</strong> 'intermediate'
+                  <strong>when</strong> '3'
+                       <strong>then</strong> 'senior'
+                  <strong>else</strong> 'none'
+               <strong>end</strong> as JobLevel
+           from sasuser.payrollmaster,
+                sasuser.staffmaster
+           where staffmaster.empid=
+                 payrollmaster.empid;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+      <thead>
+        <TR> 
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FirstName</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCode</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobLevel</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ADAMS</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">GERALD</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">TA2</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">intermediate</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ALEXANDER</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SUSAN</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ME2</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">intermediate</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">APPLE</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">TROY</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ME1</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">junior</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ARTHUR</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BARBARA</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FA3</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">senior</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AVERY</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JERRY</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">TA3</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">senior</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BAREFOOT</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JOSEPH</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ME3</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">senior</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BAUCOM</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WALTER</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SCP</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">none</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BLAIR</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JUSTIN</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PT2</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">intermediate</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BLALOCK</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RALPH</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">TA2</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">intermediate</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BOSTIC</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">MARIE</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">TA3</font></TD>
+          <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">senior</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    </font>
+  </CENTER>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The SELECT clause uses the CASE expression to assign a value of 
+          <em>junior</em>, <em>intermediate</em>, <em>senior</em> or <em>none</em> 
+          to each row in the new <code>JobLevel</code> column.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,102 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Removing 
+      Integrity Constraints<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>To remove an integrity constraint from a data set, use the DATASETS 
+          procedure with the IC DELETE statement.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATASETS procedure with the IC DELETE statement">
+    <tr> 
+      <td align="left"><strong>General form, DATASETS procedure with the IC DELETE 
+        statement:</strong> <blockquote> <font color="#003399"><nobr><strong>PROC 
+          DATASETS LIB=</strong><em>libref </em>&lt;<strong>NOLIST</strong>&gt;<strong>;</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>MODIFY</strong> <em>SAS-data-set</em><strong>;</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>IC DELETE </strong><em>constraint-name</em><strong>;</strong><br>
+          <strong>QUIT;</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          </nobr></font> </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>libref</em></font> is the name of the 
+            library in which the data set is stored. If you do not specify the 
+            LIB= option, the procedure uses the <strong>Work</strong> library.</li>
+          <li><font color="#003399"><strong>NOLIST</strong></font> suppresses the directory listing</li>
+          <li><font color="#003399"><em>SAS-data-set </em></font>is the name of 
+            the data set that has the integrity constraint </li>
+          <li><font color="#003399"><em>constraint-name </em></font> is the name 
+            of the integrity constraint that you want to delete.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>The code below removes the integrity constraints on the <strong>Capinfo</strong> 
+          data set:</p>
+        <pre><font color="#003399">     proc datasets;
+        modify capinfo;
+        ic delete pkidinfo;
+        ic delete class1;
+     quit;
+</font></pre>
+        A message is written to the SAS log when the integrity constraint is deleted.</td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <p> SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre><font color="#000000">53      modify capinfo;
+54      ic delete pkidinfo;
+<strong>NOTE: Integrity constraint PKIDInfo deleted.</strong>
+55      ic delete class1;
+<strong>NOTE: All integrity constraints defined on WORK.CAPINFO.DATA 
+      have been deleted.</strong>
+56   run;</font></pre></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

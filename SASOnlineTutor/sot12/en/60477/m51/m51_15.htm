@@ -1,0 +1,113 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Multiple Macro Variables During DATA Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Creating Multiple Macro Variables with CALL SYMPUT</h2>
+        <P> Sometimes you might want to create <strong>multiple</strong> macro 
+          variables within <strong>one</strong> DATA step. For example, suppose 
+          you want to write a program that will list all of the scheduled dates 
+          for a particular course, using a macro variable to record the title 
+          of the course. 
+        <pre><font color="#003399">    <strong>%let crsid=C005;</strong>
+    data _null_;
+       set sasuser.courses;
+       where course_code=&quot;<strong>&amp;crsid</strong>&quot;;
+       <strong>call symput('title',trim(course_title));</strong>
+    run;
+    
+    proc print data=sasuser.schedule noobs label;
+       where course_code=&quot;<strong>&amp;crsid</strong>&quot;;
+       var location begin_date teacher;
+       title1 &quot;Schedule for <strong>&amp;title</strong>&quot;;
+       options nodate nonumber;
+    run;
+</font></pre>
+        In this example, the value of the data set variable <code>Course_title</code> 
+        for the course whose <code>Course_code</code> is <em>C005</em> is assigned 
+        as a value for the macro variable <code>title</code>. 
+        <P> In order to create a listing for a different course, you would need 
+          to change the <nobr>%LET</nobr> statement and resubmit the DATA step 
+          to assign a new value to <code>title</code>. Then you would need to 
+          resubmit the PROC PRINT step. Although you would need to resubmit both 
+          the DATA step and the PROC PRINT step, these two steps would be identical 
+          to the steps that you submitted for the first report. This is an extremely 
+          inefficient program. 
+        <P>
+<pre><font color="#003399">    <strong>%let crsid=<font color="red">C004</font>;</strong>
+    data _null_;
+       set sasuser.courses;
+       where course_code=&quot;<strong>&amp;crsid</strong>&quot;;
+       <strong>call symput('title',trim(course_title));</strong>
+    run;
+
+    proc print data=sasuser.schedule noobs label;
+       where course_code=&quot;<strong>&amp;crsid</strong>&quot;;
+       var location begin_date teacher;
+       title1 &quot;Schedule for <strong>&amp;title</strong>&quot;;
+       options nodate nonumber;
+    run;
+</font></pre>
+        Instead of executing separate DATA steps to update the same macro variable, 
+        you can create related macro variables in one DATA step. To create multiple 
+        macro variables, you use the SYMPUT routine with DATA step expressions 
+        for <strong>both </strong>arguments. </td>
+    </tr></table><P><BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, SYMPUT routine with DATA step expressions">
+    <tr> 
+      <td align="left"><STRONG>General form, SYMPUT routine with DATA step expressions:</STRONG>
+	  <BLOCKQUOTE>
+	    <FONT COLOR="#003399"><strong>CALL SYMPUT</strong>(<em>expression1</em>,<em>expression2</em>)
+		</FONT>
+	  </BLOCKQUOTE>
+	  <P>
+	  where
+       <UL>
+	    <LI>
+	      <FONT COLOR="#003399"><em>expression1</em></FONT> evaluates to a character value that is a valid macro variable name. 
+	This value should change each time you want to create another macro variable.<BR>
+		<LI><FONT COLOR="#003399"><em>expression2</em></font> is the value that you want to assign to a specific macro variable.
+	  
+	  </UL>
+      </td>
+    </tr>
+  </table>
+<P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

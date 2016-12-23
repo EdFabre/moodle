@@ -1,0 +1,105 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Formats from SAS Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><strong></strong> <p>You have seen that you can create a format by specifying 
+          values and labels in a PROC FORMAT step. You can also create a format 
+          from a SAS data set that contains value information (called a control 
+          data set). To do this, you use the <strong>CNTLIN= option</strong> to 
+          read the data and create the format.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, CNTLIN= option in PROC FORMAT">
+    <tr> 
+      <td align="left"><strong>General form, CNTLIN= option in PROC FORMAT:</strong> 
+        <blockquote> 
+          <p><font color="#003399"><nobr><strong>PROC FORMAT LIBRARY=</strong><em>libref.catalog</em><strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            CNTLIN=</strong><em>SAS-data-set; </em></nobr></font></p>
+        </blockquote>
+        <p><nobr>where</nobr><font color="#003399"><nobr> </nobr></font></p>
+        <ul>
+          <li><font color="#003399"><em>libref.catalog </em></font>is the name 
+            of the catalog in which you want to store the format
+<li><font color="#003399"><em>SAS-data-set</em></font> is the name of 
+            the SAS data set that you want to use to create the format.</ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>Suppose you have a SAS data set named <strong>Routes</strong> that 
+          has the variables required to create a format. You specify the data 
+          set in the CNTLIN= option as follows:</p>
+        <pre>    <font color="#003399"> proc format lib=library.formats cntlin=sasuser.routes;
+     run;</font></pre>
+        As you can see, the code for creating a format from a SAS data set is 
+        simple. However, the control data set must contain certain variables before 
+        it can be used to create a format, and most data sets must be restructured 
+        before they can be used. 
+        <h2><br>
+          Rules for Control Data Sets</h2>
+        <p>When you create a format using programming statements, you specify 
+          the name of the format, the range or value, and the label for each range 
+          or value as in the VALUE statement below:</p>
+        <pre><font color="#003399">     value rainfall 0='none';</font></pre>
+        <p>The control data set you use to create a format must contain variables 
+          that supply this same information. That is, the data set specified in 
+          the CNTLIN= option </p>
+        <ul>
+          <li>must contain the variables <code>FmtName</code>, <code>Start</code>, 
+            and <code>Label</code>, which contain the format name, value or beginning 
+            value in the range, and label.</li>
+          <br><br>
+          <li>must contain the variable <code>End</code> if a range is specified. 
+            If there is no <code>End</code> variable, SAS assumes that the ending 
+            value of the format range is equal to the value of <code>Start.</code></li><br><br>
+          <li>must contain the variable <code>Type</code> for character formats, 
+            unless the value for <code>FmtName</code> begins with a $.</li><br><br>
+          <li>must be sorted by <code>FmtName</code> if multiple formats are specified.</li>
+        </ul>
+        <p>Now let's see how you create a correctly structured data set.</p></td>
+    </tr>
+  </table>
+  <p><br><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

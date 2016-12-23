@@ -159,14 +159,6 @@ class concept_cache {
 
         $courseid = (int)$courseid;
 
-        // Get info on any glossaries in this course.
-        $modinfo = get_fast_modinfo($courseid);
-        $cminfos = $modinfo->get_instances_of('glossary');
-        if (!$cminfos) {
-            // No glossaries in this course, so don't do any work.
-            return array(array(), array());
-        }
-
         $cache = \cache::make('mod_glossary', 'concepts');
         $data = $cache->get($courseid);
         if (is_array($data)) {
@@ -209,6 +201,8 @@ class concept_cache {
         $concepts = $allconcepts;
 
         // Verify access control to glossary instances.
+        $modinfo = get_fast_modinfo($courseid);
+        $cminfos = $modinfo->get_instances_of('glossary');
         foreach ($concepts as $modid => $unused) {
             if (!isset($cminfos[$modid])) {
                 // This should not happen.

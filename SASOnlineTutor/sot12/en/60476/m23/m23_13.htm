@@ -1,0 +1,255 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Missing Values<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<center>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Reading Missing Values at the End of a Record</strong> </p>
+      <p> Suppose that the third person represented in the raw data file below 
+        did not answer the questions about how many department store credit cards 
+        she has and about how often she uses them. 
+    </td>
+  </tr>
+</table>
+<p>
+<table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+  <tr> 
+    <td align=CENTER bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+----20</nobr></font></td>
+  </tr>
+  <tbody> 
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">MALE&nbsp;27&nbsp;1&nbsp;8&nbsp;0&nbsp;0&nbsp;&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">FEMALE&nbsp;&nbsp;3&nbsp;14&nbsp;5&nbsp;10&nbsp;&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">FEMALE&nbsp;34&nbsp;2&nbsp;10&nbsp;<span style="background-color: #CCCC99">&nbsp;</span>&nbsp;<span style="background-color: #CCCC99">&nbsp;</span>&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">MALE&nbsp;35&nbsp;2&nbsp;12&nbsp;4&nbsp;8&nbsp;&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">FEMALE&nbsp;36&nbsp;4&nbsp;16&nbsp;3&nbsp;7&nbsp;&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">MALE&nbsp;21&nbsp;1&nbsp;5&nbsp;0&nbsp;0&nbsp;&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">MALE&nbsp;25&nbsp;2&nbsp;9&nbsp;2&nbsp;1&nbsp;&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">FEMALE&nbsp;21&nbsp;1&nbsp;4&nbsp;2&nbsp;6&nbsp;&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">MALE&nbsp;38&nbsp;3&nbsp;11&nbsp;4&nbsp;3&nbsp;&nbsp;</font></td>
+  </tr>
+  <tr> 
+    <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">FEMALE&nbsp;30&nbsp;3&nbsp;5&nbsp;1&nbsp;0&nbsp;&nbsp;</font></td>
+  </tr>
+  </tbody> 
+</table>
+<br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left">Because the missing values occur at the <strong>end </strong>of 
+      the record, you can use the MISSOVER option in the INFILE statement to read 
+      the missing values at the end of the record. The MISSOVER option prevents 
+      SAS from going to another record if, when using list input, it does not 
+      find values in the current line for all the INPUT statement variables. At 
+      the <strong>end</strong> of the current record, values that are expected 
+      but not found are set to missing. 
+      <p> For the raw data file shown above, the MISSOVER option prevents the 
+        fields in the fourth record from being read as values for <code>Deptcard</code> 
+        and <code>FreqDept</code> in the third observation. Note that <code>Deptcard</code> 
+        and <code>FreqDept</code> are set to missing. 
+    </td>
+  </tr>
+</table>
+<p> 
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <pre><font color="#003399">     data perm.survey;</font>
+<font color="#003399">        infile credit <strong>missover</strong>;</font>
+<font color="#003399">        input Gender $ Age Bankcard FreqBank </font>
+<font color="#003399">              Deptcard FreqDept;</font>
+     <font color="#003399">run;</font>
+<font color="#003399">     proc print data=perm.survey;</font>
+<font color="#003399">     run; </font>
+</pre>
+    </td>
+  </tr>
+</table>
+<p> 
+  <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+	bordercolor="#000000" align="center" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="3" color="#0033AA"><b>Gender</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="3" color="#0033AA"><b>Age</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="3" color="#0033AA"><b>Bankcard</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="3" color="#0033AA"><b>FreqBank</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="3" color="#0033AA"><b>Deptcard</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="3" color="#0033AA"><b>FreqDept</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        1</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">MALE</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">27</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000"> 1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">8</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">0</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">0</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        2</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">FEMALE</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">29</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000"> 3</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">14</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">5</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">10</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        3</font></b></td>
+      <td align=LEFT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">FEMALE</font></td>
+      <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">34</font></td>
+      <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">2</font></td>
+      <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">10</font></td>
+      <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"> 
+        <p align=right> . </td>
+      <td align=LEFT bgcolor="#FFFF9C" bordercolor="#000000"> 
+        <p align=right> . </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        4</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">MALE </font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">35</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">12</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">4</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">8</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        5</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">FEMALE </font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">36</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000"> 4</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">16</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">3</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">7</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        6</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">MALE</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">21</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000"> 1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">5</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		    size="2" color="#000000">0</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">0</font> 
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+  <p> <br>
+  <table border="0" cellpadding="2" cellspacing="0" width="85%" align="center">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">The MISSOVER option works only for missing values that 
+        occur at the <strong>end</strong> of the record.</td>
+    </tr>
+  </table>
+  <p>&nbsp; 
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,277 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Summarized Data Set Using PROC MEANS<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p> You might want to create an output SAS data set that contains just the 
+        summarized variable. You can do this by using the OUTPUT statement in 
+        PROC MEANS.
+    </td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, OUTPUT statement">
+    <tr> 
+      <td><strong>General form, OUTPUT statement:</strong> 
+        <blockquote><nobr><font color="#003399"><strong>OUTPUT</strong> <strong>OUT=</strong><em>SAS-data-set 
+          statistic</em>=<em>variable(s)</em><strong>;</strong></font></nobr> 
+        </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><strong>OUT=</strong></font> specifies the name of the output 
+            data set 
+          <li><font color="#003399"><em>statistic</em>=</font> specifies the summary 
+            statistic written out 
+          <li><font color="#003399"><em>variable(s)</em></font> specifies the 
+            names of the variables to create. These variables represent the statistics 
+            for the analysis variables that are listed in the VAR statement. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center">&nbsp; 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>When you use the OUTPUT statement, the summary statistics N, MEAN, STD, 
+        MIN, and MAX are produced for <strong>all</strong> of the numeric variables 
+        or for all of the variables that are listed in a VAR statement <strong>by 
+        default</strong>. To specify which statistics to produce, use the STATISTIC= 
+        option.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Specifying the STATISTIC= option</strong> 
+        <p> You can specify which statistics to produce in the output data set. 
+          To do so, you must specify the statistic and then list all of the variables. 
+          The variables must be listed in the <strong>same order</strong> as in 
+          the VAR statement. You can specify more than one statistic in the OUTPUT 
+          statement. 
+        <p> The following program creates a typical PROC MEANS report and also 
+          creates a summarized output data set. 
+        <pre><font color="#003399">     proc means data=clinic.diabetes;
+        var age height weight;
+        class sex;
+        output out=work.sum_gender
+           mean=AvgAge AvgHeight AvgWeight
+           min=MinAge MinHeight MinWeight;
+     run; </font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><font color=#002288 face="Arial, Helvetica, Helv" size=3><font color=#002288 face="Arial, Helvetica, Helv" size=3> 
+  </font></font></p>
+<center>
+  <table bgcolor=#fffff0 border=1 bordercolor=#000000 cellpadding=2 cellspacing=1
+frame=box rules=groups title="PROC MEANS Output">
+    <thead> 
+    <tr> 
+      <td align=left bgcolor="#CCCCCC"  valign=bottom><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Sex</b></font></td>
+      <td align=right bgcolor="#CCCCCC"  valign=bottom><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>N 
+        Obs</b></font></td>
+      <td align=left bgcolor="#CCCCCC"  valign=bottom><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Variable</b></font></td>
+      <td align=right bgcolor="#CCCCCC"  valign=bottom><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>N</b></font></td>
+      <td align=right bgcolor="#CCCCCC"  valign=bottom><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Mean</b></font></td>
+      <td align=right bgcolor="#CCCCCC"  valign=bottom><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Std 
+        Dev</b></font></td>
+      <td align=right bgcolor="#CCCCCC"  valign=bottom><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Minimum</b></font></td>
+      <td align=right bgcolor="#CCCCCC" valign=bottom><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Maximum</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=left bgcolor=#EFEFEF valign="top"><font color="#002288" face="Arial, Helvetica, Helv" size="3">F</font></td>
+      <td align=right bgcolor=#EFEFEF valign="top"><font color="#002288" face="Arial, Helvetica, Helv" size="3">11</font></td>
+      <td align=left bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">Age<br>
+        Height<br>
+        Weight</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">11<br>
+        11<br>
+        11</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">48.9090909<br>
+        63.9090909<br>
+        150.4545455</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">13.3075508<br>
+        2.1191765<br>
+        18.4464828</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">16.0000000<br>
+        61.0000000<br>
+        102.0000000</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">63.0000000<br>
+        68.0000000<br>
+        168.0000000</font></td>
+    </tr>
+    <tr> 
+      <td align=left bgcolor=#EFEFEF valign="top" ><font color="#002288" face="Arial, Helvetica, Helv" size="3">M</font></td>
+      <td align=right bgcolor=#EFEFEF valign="top" ><font color="#002288" face="Arial, Helvetica, Helv" size="3">9</font></td>
+      <td align=left bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">Age<br>
+        Height<br>
+        Weight</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">9<br>
+        9<br>
+        9</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">44.0000000<br>
+        70.6666667<br>
+        204.2222222</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">12.3895117<br>
+        2.6457513<br>
+        30.2893454</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">15.0000000<br>
+        66.0000000<br>
+        140.0000000</font></td>
+      <td align=right bgcolor=#EFEFEF><font color="#002288" face="Arial, Helvetica, Helv" size="3">54.0000000<br>
+        75.0000000<br>
+        240.0000000</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <font color=#002288 face="Arial, Helvetica, Helv" size=3><font color=#002288 face="Arial, Helvetica, Helv" size=3> 
+  </font></font> 
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <p>To see the contents of the output data set, submit the following PROC 
+          PRINT step.</p>
+        <pre><font color="#003399">     proc print data=work.sum_gender;
+     </font><font color="#003399">run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><font color=#002288 face="Arial, Helvetica, Helv" size=3> </font></p>
+<center>
+  <table border=1 bordercolor=#000000 cellpadding=2 cellspacing=1
+frame=box rules=groups bgcolor=#fffff0 title="PROC MEANS Output">
+    <thead> 
+    <tr> 
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Obs</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Sex</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>_TYPE_</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>_FREQ_</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>AvgAge</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>AvgHeight</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>AvgWeight</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>MinAge</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>MinHeight</b></font></td>
+      <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>MinWeight</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>1</b></font></td>
+      <td align=left bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">&nbsp;</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">0</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">20</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">46.7000</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">66.9500</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">174.650</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">15</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">61</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">102</font></td>
+    </tr>
+    <tr> 
+      <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>2</b></font></td>
+      <td align=left bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">F</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">1</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">11</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">48.9091</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">63.9091</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">150.455</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">16</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">61</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">102</font></td>
+    </tr>
+    <tr> 
+      <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>3</b></font></td>
+      <td align=left bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">M</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">1</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">9</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">44.0000</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">70.6667</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">204.222</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">15</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">66</font></td>
+      <td align=right bgcolor=#efefef><font color="#002288" face="Arial, Helvetica, Helv" size="3">140</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" border="0" width="20" height="20"
+	    hspace="10" alt="Hot tip:"></td>
+      <td> 
+        <p>You can use the NOPRINT option in the PROC MEANS statement to prevent 
+          the default report from being created. For example, the following program 
+          creates only the output data set:</p>
+        <pre><font color="#003399">proc means data=clinic.diabetes <strong>noprint</strong>;
+   var age height weight;
+   class sex;
+   output out=work.sum_gender
+      mean=AvgAge AvgHeight AvgWeight;
+run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" border="0" width="20" height="20"
+	    hspace="10" alt="Hot tip:"></td>
+        <td> <p>In addition to the variables that you specify, the procedure adds 
+            the _TYPE_ and _FREQ_ variables to the output data set. When no statistic 
+            keywords are specified, PROC MEANS also adds the variable _STAT_. 
+            For more information about these variables, see the 
+            <!--doc reference-->
+            SAS documentation for the MEANS procedure.</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -96,11 +96,7 @@ class renderer_base {
      * @return string
      */
     public function render(renderable $widget) {
-        $classname = get_class($widget);
-        // Strip namespaces.
-        $classname = preg_replace('/^.*\\\/', '', $classname);
-
-        $rendermethod = 'render_'.$classname;
+        $rendermethod = 'render_'.get_class($widget);
         if (method_exists($this, $rendermethod)) {
             return $this->$rendermethod($widget);
         }
@@ -220,11 +216,7 @@ class plugin_renderer_base extends renderer_base {
      * @return string
      */
     public function render(renderable $widget) {
-        $classname = get_class($widget);
-        // Strip namespaces.
-        $classname = preg_replace('/^.*\\\/', '', $classname);
-
-        $rendermethod = 'render_'.$classname;
+        $rendermethod = 'render_'.get_class($widget);
         if (method_exists($this, $rendermethod)) {
             return $this->$rendermethod($widget);
         }
@@ -682,8 +674,8 @@ class core_renderer extends renderer_base {
                         $a->attempts = $count;
                         $loggedinas .= get_string('failedloginattempts', '', $a);
                         if (file_exists("$CFG->dirroot/report/log/index.php") and has_capability('report/log:view', context_system::instance())) {
-                            $loggedinas .= ' ('.html_writer::link(new moodle_url('/report/log/index.php', array('chooselog' => 1,
-                                    'id' => 0 , 'modid' => 'site_errors')), get_string('logs')).')';
+                            $loggedinas .= html_writer::link(new moodle_url('/report/log/index.php', array('chooselog' => 1,
+                                    'id' => 0 , 'modid' => 'site_errors')), '(' . get_string('logs') . ')');
                         }
                         $loggedinas .= '</div>';
                     }
@@ -1929,7 +1921,7 @@ class core_renderer extends renderer_base {
     public function doc_link($path, $text = '', $forcepopup = false) {
         global $CFG;
 
-        $icon = $this->pix_icon('docs', '', 'moodle', array('class'=>'iconhelp icon-pre', 'role'=>'presentation'));
+        $icon = $this->pix_icon('docs', $text, 'moodle', array('class'=>'iconhelp icon-pre'));
 
         $url = new moodle_url(get_docs_url($path));
 
@@ -2965,7 +2957,7 @@ EOD;
     }
 
     /**
-     * Accessibility: Left arrow-like character is
+     * Accessibility: Right arrow-like character is
      * used in the breadcrumb trail, course navigation menu
      * (previous/next activity), calendar, and search forum block.
      * If the theme does not set characters, appropriate defaults
@@ -3119,7 +3111,7 @@ EOD;
         $linkurl = new moodle_url('/theme/switchdevice.php', array('url' => $this->page->url, 'device' => $devicetype, 'sesskey' => sesskey()));
 
         $content  = html_writer::start_tag('div', array('id' => 'theme_switch_link'));
-        $content .= html_writer::link($linkurl, $linktext, array('rel' => 'nofollow'));
+        $content .= html_writer::link($linkurl, $linktext);
         $content .= html_writer::end_tag('div');
 
         return $content;

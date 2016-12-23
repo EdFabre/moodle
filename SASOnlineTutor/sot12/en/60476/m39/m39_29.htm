@@ -1,0 +1,130 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Assigning 
+      Values Conditionally Using SELECT Groups<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>As you saw in the general form for SELECT groups, you can optionally 
+          specify a <em>select-expression</em> in the SELECT statement. The way 
+          SAS evaluates a <em>when-expression</em> depends on whether you specify 
+          a <em>select-expression</em>.</p>
+        <p><br>
+          <strong>Specifying SELECT Statements with Expressions</strong></p>
+        If you <strong>do</strong> specify a <em>select-expression</em> in the 
+        SELECT statement, SAS compares the value of the <em>select-expression</em> 
+        with the value of each <em>when-expression</em>. That is, SAS evaluates 
+        the <em>select-expression</em> and <em>when-expression, </em>compares 
+        the two for equality, and returns a value of true or false.</p> <ul>
+          <li>If the comparison is <strong>true</strong>, SAS executes the <em>statement</em> 
+            in the WHEN statement.<br>
+            <br>
+          <li></li>
+          If the comparison is <strong>false</strong>, SAS proceeds either to 
+          the next <em>when-expression</em> in the current WHEN statement, or 
+          to the next WHEN statement if no more expressions are present. If no 
+          WHEN statements remain, execution proceeds to the OTHERWISE statement, 
+          if one is present. </p> </li> 
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">If the result of all SELECT-WHEN comparisons is false 
+              and no OTHERWISE statement is present, SAS issues an <strong>error 
+              message</strong> and <strong>stops executing</strong> the DATA step.</td>
+          </tr>
+        </table>
+        <p>In the following SELECT group, SAS determines the value of <code>toy</code> 
+          and compares it to values in each WHEN statement in turn. If a WHEN 
+          statement is true compared to the <code>toy</code> value, SAS assigns 
+          the related price and continues processing the rest of the DATA step. 
+          If none of the comparisons is true, SAS executes the OTHERWISE statement 
+          and writes a debugging message to the SAS log.</p>
+        <pre>    <font color="#003399"> select (toy);
+        when (&quot;Bear&quot;) price=35.00;
+        when (&quot;Violin&quot;) price=139.00;
+        when (&quot;Top&quot;,&quot;Whistle&quot;,&quot;Duck&quot;) price=7.99;
+        otherwise put &quot;Check unknown toy: &quot; toy=;
+     end;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p><strong>Specifying SELECT Statements without Expressions</strong></p>
+        <p>If you <strong>don't</strong> specify a <em>select-expression</em>, 
+          SAS evaluates each <em>when-expression</em> to produce a result of true 
+          or false. </p>
+        <ul>
+          <li>If the result is <strong>true</strong>, SAS executes the <em>statement</em> 
+            in the WHEN statement.<br>
+            <br>
+          </li>
+          <li>If the result is <strong>false</strong>, SAS proceeds either to 
+            the next <em>when-expression</em> in the current WHEN statement, or 
+            to the next WHEN statement if no more expressions are present, or 
+            to the OTHERWISE statement if one is present. (That is, SAS performs 
+            the action that is indicated in the first true WHEN statement.) </li>
+        </ul>
+        <p>If more than one WHEN statement has a true <em>when-expression</em>, 
+          <strong>only the first</strong> WHEN statement is used; once a <em>when-expression</em> 
+          is true, no other <em>when-expressions</em> are evaluated.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">If the result of all <em>when-expressions</em> is 
+              false and no OTHERWISE statement is present, SAS issues an <strong>error 
+              message</strong>. </td>
+          </tr>
+        </table>
+        <p>In the example below, the SELECT statement does not specify a <em>select-expression</em>. 
+          The WHEN statements are evaluated in order, and only one is used. For 
+          example, if the value of <code>toy</code> is <em>Bear</em> and the value 
+          of <code>month</code> is <em>FEB</em>, only the second WHEN statement 
+          is used, even though the condition in the third WHEN statement is also 
+          met. In this case, the variable <code>price</code> is assigned the value 
+          <em>25.00</em>.</p>
+        <pre>    <font color="#003399"> select;
+        when (toy=&quot;Bear&quot; and month in ('OCT', 'NOV', 'DEC')) price=45.00;
+        when (toy=&quot;Bear&quot; and month in ('JAN', 'FEB')) price=25.00;
+        when (toy=&quot;Bear&quot;) price=35.00;
+        otherwise;
+     end;</font></pre></td>
+    </tr>
+  </table>
+  <p>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

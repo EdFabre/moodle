@@ -34,7 +34,7 @@ class theme extends base {
     public function is_uninstall_allowed() {
         global $CFG;
 
-        if ($this->name === 'base' or $this->name === 'bootstrapbase') {
+        if ($this->name === 'standard' or $this->name === 'base' or $this->name === 'bootstrapbase') {
             // All of these are protected for now.
             return false;
         }
@@ -63,25 +63,9 @@ class theme extends base {
         $DB->set_field('user', 'theme', '', array('theme'=>$this->name));
         $DB->set_field('mnet_host', 'theme', '', array('theme'=>$this->name));
 
-        if (get_config('core', 'thememobile') === $this->name) {
-            unset_config('thememobile');
-        }
-        if (get_config('core', 'themetablet') === $this->name) {
-            unset_config('themetablet');
-        }
-        if (get_config('core', 'themelegacy') === $this->name) {
-            unset_config('themelegacy');
-        }
-
-        $themelist = get_config('core', 'themelist');
-        if (!empty($themelist)) {
-            $themes = explode(',', $themelist);
-            $key = array_search($this->name, $themes);
-            if ($key !== false) {
-                unset($themes[$key]);
-                set_config('themelist', implode(',', $themes));
-            }
-        }
+        unset_config('thememobile');
+        unset_config('themetablet');
+        unset_config('themelegacy');
 
         parent::uninstall_cleanup();
     }

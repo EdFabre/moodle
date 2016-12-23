@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Identifying Available Indexes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: Identifying One Available Index</h2>
+        <p>Suppose you submit a program that contains the following WHERE statement, 
+          and suppose that the data set has one index, as shown below: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE statement and available index">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th align="center"><font size="-1">WHERE Statement</font></th>
+            <th align="center"><font size="-1">Available Index</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">where <strong>delivery_date='02jul2000'd</strong>;</font></pre> </td>
+            <td><p> simple index defined on <code>Delivery_Date</code> </p></td>
+          </tr>
+        </table>
+        <p><br>
+          This WHERE expression has one condition, and the variable in that condition 
+          (<code>Delivery_Date</code>) is the key variable in the simple index. 
+          If all other requirements for optimization are met in later steps, then 
+          SAS can use this index to optimize the WHERE expression. </p>
+        <p>Likewise, if the only available index is a composite index in which 
+          <code>Delivery_Date</code> is the first key variable, then SAS can use 
+          the index if all other requirements for optimization are met. 
+        <p>Even if a WHERE statement has multiple conditions, SAS can use either 
+          a simple index or a composite index to optimize just one of the conditions. 
+          For example, suppose your program contains a WHERE statement that has 
+          two conditions, and suppose that the data set has one index, as shown 
+          below: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE statement and available index">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th align="center"><font size="-1">WHERE Statement</font></th>
+            <th align="center"><font size="-1">Available Index</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">where <strong>order_date='01jan2000'd</strong> and 
+      <strong>delivery_date='02jul2000'd'</strong>;</font></pre> 
+            </td>
+            <td><p> simple index defined on <code>Delivery_Date</code> </p></td>
+          </tr>
+        </table>
+        <p><br>
+          Assuming that all other requirements for optimization are met, SAS can 
+          use this index to optimize the second condition in this WHERE expression. 
+        <p><br>
+        <h2><a name="multiple"></a>Example: Identifying Multiple Available Indexes</h2>
+        <p>Suppose your program contains a WHERE statement with two conditions, 
+          and suppose that each condition references a key variable in a different 
+          index, as shown below: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE statement and available index">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th align="center"><font size="-1">WHERE Statement</font></th>
+            <th align="center"><font size="-1">Available Indexes</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">where <strong>order_date='01jan2000'd</strong> and 
+      <strong>delivery_date='02jul2000'd'</strong>;</font></pre></td>
+            <td>
+<ul>
+                <li> simple index defined on <code>Order_Date</code></li>
+                <li> simple index defined on <code>Delivery_Date</code>.</li>
+              </ul></td>
+          </tr>
+        </table>
+        <p><br>
+          Although two indexes are available, SAS can use only one index to optimize 
+          a WHERE statement. In a later step of the process, SAS will try to select 
+          the index that satisfies the most conditions and that selects the smallest 
+          subset of observations.</p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

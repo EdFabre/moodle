@@ -39,10 +39,15 @@ Feature: edit_availability
     When I edit the section "1"
     Then "Restrict access" "fieldset" should not exist
 
-    And the following config values are set as admin:
-      | enableavailability | 1 |
+    When I log out
+    And I log in as "admin"
+    And I set the following administration settings values:
+      | Enable conditional access | 1 |
 
+    When I log out
+    And I log in as "teacher1"
     And I follow "Course 1"
+    And I turn editing mode on
     And I add a "Page" to section "1"
     Then "Restrict access" "fieldset" should exist
 
@@ -53,8 +58,10 @@ Feature: edit_availability
   @javascript
   Scenario: Edit availability using settings in activity form
     # Set up.
-    Given the following config values are set as admin:
-      | enableavailability | 1 |
+    Given I log in as "admin"
+    And I set the following administration settings values:
+      | Enable conditional access | 1 |
+    And I log out
     And I log in as "teacher1"
     And I follow "Course 1"
 
@@ -146,8 +153,10 @@ Feature: edit_availability
   @javascript
   Scenario: Edit availability using settings in section form
     # Set up.
-    Given the following config values are set as admin:
-      | enableavailability | 1 |
+    Given I log in as "admin"
+    And I set the following administration settings values:
+      | Enable conditional access | 1 |
+    And I log out
     And I log in as "teacher1"
     And I follow "Course 1"
     And I turn editing mode on
@@ -163,4 +172,3 @@ Feature: edit_availability
     And I should not see "None" in the "Restrict access" "fieldset"
     And "Restriction type" "select" should be visible
     And I should see "Date" in the "Restrict access" "fieldset"
-

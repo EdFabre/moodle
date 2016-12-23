@@ -1,0 +1,134 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Updating 
+      Values in Existing Table Rows<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Updating Rows by Using Different Expressions (continued)</h2>
+        <p>To update different subsets of rows in a table in different ways, you 
+          can incorporate conditional processing by using the <strong>CASE expression</strong> 
+          in the SET clause of an UPDATE statement. The CASE expression selects 
+          result values that satisfy specified conditions.</p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, CASE expression">
+    <tr> 
+      <td align="left"><strong>General form, CASE expression:</strong> <blockquote> 
+          <p><font color="#003399"><nobr><strong>CASE</strong> &lt;<em>case-operand</em>&gt; 
+            </nobr><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#003399"><nobr><strong>WHEN</strong> 
+            <em>when-condition</em> <strong>THEN</strong> <em>result-expression</em> 
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;...<strong>WHEN</strong> 
+            <em>when-condition</em> <strong>THEN</strong> <em>result-expression</em>&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;<strong>ELSE</strong> <em>result-expression</em>&gt; 
+            <br>
+            <strong>END</strong> </nobr></font></p>
+        </blockquote>
+        <p>where</p>
+        <ul>
+          <li><strong><font color="#003399">CASE</font></strong> performs conditional 
+            processing</li>
+          <li><font color="#003399"><em>case-operand</em></font> is an optional 
+            expression that resolves to a table column whose values are compared 
+            to all the <font color="#003399"><em>when-conditions</em></font></li>
+          <li><font color="#003399"><strong>WHEN</strong> </font>specifies<em></em> 
+            a <font color="#003399"><em> when-condition</em></font>, a shortened 
+            expression that assumes <font color="#003399"><em>case-operand</em></font> 
+            as one of its operands, and that resolves to true or false</li>
+          <li><font color="#003399"><strong>THEN</strong> </font>specifies a<em></em><font color="#003399"><em> 
+            result-expression</em></font>, an expression that resolves to a value</li>
+          <li><strong><font color="#003399">ELSE</font></strong> specifies a <font color="#003399"><em>result-expression</em></font>, 
+            which provides an alternate action if none of the <font color="#003399"><em>when-conditions</em></font> 
+            is executed</li>
+          <li><strong><font color="#003399">END</font></strong> indicates the 
+            end of the CASE expression.</li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">Although the ELSE clause is optional, its use is 
+              strongly recommended. If you omit the ELSE clause, each row that 
+              is <strong>not</strong> described in one of the WHEN clauses receives 
+              a <strong>missing value</strong> for the column that you are updating.</td>
+          </tr>
+        </table>
+        <br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You can also use the CASE expression in the INSERT 
+              and SELECT statements.</td>
+          </tr>
+        </table>
+   </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>In the following UPDATE statement, the CASE expression contains three 
+          WHEN-THEN clauses that specify three different subsets of rows 
+          in the table <strong>Work.Insure_New</strong>: </p>
+        <ul>
+          <li>homeowners that are insured by Acme</li>
+          <li>homeowners that are insured by Reliable</li>
+          <li>homeowners that are insured by Homelife. </li>
+        </ul>
+        <pre><font color="#003399">        update work.insure_new
+<strong>           </strong>set pctinsured=pctinsured*
+              <strong>case</strong> 
+              <strong><font color="red">   when</font></strong> company='ACME' 
+                      <strong><font color="red">then</font></strong> 1.10
+                 <strong><font color="red">when</font></strong> company='RELIABLE' 
+                      <strong><font color="red">then</font></strong> 1.15<strong><font color="red">
+                 when</font></strong> company='HOMELIFE' 
+                      <strong><font color="red">then</font></strong> 1.25 
+                 <strong>else</strong> 1 
+              end;</font></pre>
+        <p>PROC SQL updates each specified subset of rows differently, according 
+          to the corresponding WHEN-THEN (or ELSE) clause.</p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

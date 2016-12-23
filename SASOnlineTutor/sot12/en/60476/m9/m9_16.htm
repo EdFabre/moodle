@@ -1,0 +1,153 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      the Secondary Charts and Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td><strong></strong> 
+        <p>Now that the primary chart is finished and its links are in place, it's 
+        time to create the <strong>secondary charts</strong> that show the details 
+        for each sales year.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<p align="center"> <img src="images/m9f1g1.gif" width=139 height=240 alt="primary chart" border="0"><img
+      src="images/m9f1g1b.gif" width=95 height=240 alt="secondary charts" border="0"> 
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Remember that the bars in your primary chart are linked to pages by 
+        the values that were defined for <code>PriDrill</code>.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     if year=1995 then pridrill='HREF="<strong>sales95.html</strong>"';</font>
+<font color="#003399">     if year=1996 then pridrill='HREF="<strong>sales96.html</strong>"';</font>
+<font color="#003399">     if year=1997 then pridrill='HREF="<strong>sales97.html</strong>"';</font>
+<font color="#003399">     if year=1998 then pridrill='HREF="<strong>sales98.html</strong>"';</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Now you need to create <strong>sales95.html</strong>, <strong>sales96.html</strong>, 
+        and so on. Continue as before, using ODS HTML statements to write the 
+        HTML pages and using PROC GCHART steps to create the GIF charts. Since 
+        each chart must show sales for only one year, use a <a href="JavaScript: openOther('../linklib/where.htm')" onMouseOver="window.status='Display information on the WHERE statement.';  "
+	    onMouseOut="window.status=''">WHERE statement</a> within each PROC GCHART 
+        step to limit its data to a specific year.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     ods html body='<strong>sales95.html</strong>';</font>
+<font color="#003399">     title 'Sales for 1995 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual <br>             subgroup=product discrete;</font>
+<font color="#003399">        <strong>where year=1995;</strong></font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html body='<strong>sales96.html</strong>';</font>
+<font color="#003399">     title 'Sales for 1996 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete;</font>
+<font color="#003399">        <strong>where year=1996;</strong></font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html body='<strong>sales97.html</strong>';</font>
+<font color="#003399">     title 'Sales for 1997 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete;</font>
+<font color="#003399">        <strong>where year=1997;</strong></font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html body='<strong>sales98.html</strong>';</font>
+<font color="#003399">     title 'Sales for 1998 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete;</font>
+<font color="#003399">        <strong>where year=1998;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Note that each graph gets a new TITLE statement. The resulting set of 
+        pages display the graphs that are shown at half-size below.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="20" border="0" width="106%">
+    <tr> 
+      <td width="25%">&nbsp;</td>
+      <td width="25%"><strong>sales95.html</strong><br>
+        <img src="images/m9f1s1.gif" border="1" width="240" height="180" alt="Secondary Bar Chart"></td>
+      <td width="25%"><strong>sales96.html</strong><br>
+        <img src="images/m9f1s2.gif" border="1" width="240" height="180" alt="Secondary Bar Chart"></td>
+      <td width="25%">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td width="25%">&nbsp;</td>
+      <td width="25%"><strong>sales97.html</strong><br>
+        <img src="images/m9f1s3.gif" border="1" width="240" height="180" alt="Secondary Bar Chart"></td>
+      <td width="25%"><strong>sales98.html</strong><br>
+        <img src="images/m9f1s4.gif" border="1" width="240" height="180" alt="Secondary Bar Chart"></td>
+      <td width="25%">&nbsp;</td>
+    </tr>
+  </table>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

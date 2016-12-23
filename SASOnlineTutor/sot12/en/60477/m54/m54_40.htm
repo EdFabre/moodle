@@ -1,0 +1,460 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" -->
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+          <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">sample programs</A> 
+          <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>.
+      <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+      <p><strong>Creating a Systematic Sample from a Known Number of Observations</strong><br>
+          Sometimes you might want to create a representative sample of a large 
+          data set. One type of representative sample, called a <a href="m54_2.htm" onClick="suggestBack()">systematic 
+          sample</a>, contains observations that are chosen from the original 
+          data set at regular intervals. You can use the <a href="m54_2.htm" onClick="suggestBack()">POINT= 
+          option</a> in the SET statement to make SAS read a specific observation 
+          into the sample. Since SAS uses direct-access read mode with the POINT= 
+          option, you must use a <a href="m54_4.htm" onClick="suggestBack()">STOP 
+          statement</a> to prevent the DATA step from looping continuously.</p>
+        <p><strong>Creating a Systematic Sample from an Unknown Number of Observations</strong><br>
+          You might want to create a systematic sample from a data set that contains 
+          an unknown number of observations. In order to be sure that your sample 
+          observations are chosen from regular intervals across the entire original 
+          data set, you need to know how many observations are in the data set. 
+          You can use the <a href="m54_6.htm" onClick="suggestBack()">NOBS= option</a> in the SET statement to determine how many 
+          observations are in the input data set. You can use the NOBS= option 
+          in conjunction with the POINT= option to direct SAS to read specific 
+          observations that will form a systematic sample.</p>
+        <p><strong>Creating a Random Sample with Replacement</strong><br>
+          Another type of representative sample that you might want to create 
+          is a <a href="m54_10.htm" onClick="suggestBack()">random sample</a>, in 
+          which observations are chosen randomly from the original data set. You 
+          can use the <a href="m54_10.htm" onClick="suggestBack()">RANUNI function</a> in 
+		  conjunction with the <a href="m54_13.htm" onClick="suggestBack()">CEIL function</a> to 
+          generate a random integer. With a random integer, you can direct SAS 
+          to read a specific (but random) observation into the sample. When you 
+          create a random sample with replacement, each observation in the original 
+          data set has an equal chance of being chosen for inclusion in the sample 
+          each time SAS chooses an observation. That is, in a random sample with 
+          replacement, one observation may be chosen from the original data set 
+          and included in the sample multiple times.</p>
+        <p><strong>Creating a Random Sample without Replacement</strong><br>
+          You can also create a <a href="m54_17.htm" onClick="suggestBack()">random sample without replacement</a>. This means 
+          that once an observation has been included in the sample it is no longer 
+          eligible to be chosen again. You can use a DO WHILE loop to prevent 
+          replacement in your random samples.</p>
+        <p><strong>Using Indexes</strong><br>
+          An <a href="m54_19.htm" onClick="suggestBack()">index</a> is a SAS file 
+          that is associated with a data set and that contains information about 
+          the location and the values of key variables in the data set. Indexes 
+          enable SAS to directly access specific observations rather than having 
+          to read all observations sequentially. An index can be <a href="m54_19.htm#types" onClick="suggestBack()">simple 
+          or composite</a>. </p>
+        <p><strong>Creating Indexes in the DATA Step</strong><br>
+          You can create an index at the same time that you create a data set 
+          by using the <a href="m54_20.htm" onClick="suggestBack()">INDEX= option</a> 
+          in the DATA statement. Both simple and composite indexes can be <a href="m54_20.htm" onClick="suggestBack()">unique</a>, 
+          if there are no duplicate values for any key variable in the data set. 
+          You can create multiple indexes on one data set. You can use the <a href="m54_22.htm" onClick="suggestBack()">MSGLEVEL= 
+          system option</a> to write informational messages to the SAS log that 
+          pertain to indexes. Indexes can improve the efficiency of SAS, but there 
+          are certain instances where indexes will not improve efficiency and 
+          therefore will <a href="m54_22.htm" onClick="suggestBack()">not be used</a>.</p>
+        <p><strong>Managing Indexes with PROC DATASETS and PROC SQL</strong><br>
+          You can use the <a href="m54_24.htm" onClick="suggestBack()">INDEX CREATE 
+          statement</a> or the <a href="m54_24.htm" onClick="suggestBack()">INDEX 
+          DELETE statement</a> in PROC DATASETS to create an index on or delete 
+          an index from an existing data set. Using PROC DATASETS to manage indexes 
+          uses less system resources than it would to rebuild the data set and 
+          update indexes in the DATA step. If you want to delete an index and 
+          create an index in the same PROC DATASETS step, you should delete the 
+          old index before you create the new index so that SAS can reuse space 
+          from the deleted index. You can also use <a href="m54_27.htm" onClick="suggestBack()">PROC 
+          SQL</a> to create an index on or delete an index from an existing data 
+          set.</p>
+        <p><strong>Documenting and Maintaining Indexes</strong><br>
+          All indexes that are created for a particular data set are stored in 
+          one file in the same SAS data library as the data set. You can use <a href="m54_31.htm" onClick="suggestBack()">PROC 
+          CONTENTS</a> to print a list of all indexes that exist for a data set, 
+          along with other information about the data set. The <a href="m54_31.htm" onClick="suggestBack()">CONTENTS 
+          statement</a> of the PROC DATASETS step can generate the same list of 
+          indexes and other information about a data set. </p>
+        <p>Many of the <a href="m54_33.htm" onClick="suggestBack()">maintenance 
+          tasks</a> that you perform on your data sets will affect the index file 
+          that is associated with the data set. When you copy a data set with 
+          the <a href="m54_34.htm" onClick="suggestBack()">COPY statement</a> 
+          in PROC DATASETS, the index file is reconstructed for you. When you 
+          <a href="m54_36.htm" onClick="suggestBack()">rename a data set</a> or <a href="m54_37.htm" onClick="suggestBack()">rename a variable</a> with PROC DATASETS, the index 
+          file is automatically updated to reflect this change.</p>
+        
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD><h2><STRONG><A NAME="Syntax">Syntax</A></STRONG> </h2>
+        <P> <EM>To go to the page where a statement or option was presented, select 
+          a link.</EM> </TD>
+    </TR>
+  </TABLE>
+  <br>
+
+  <P> 
+  <TABLE CELLPADDING="2" align="center">
+    <TR> 
+      <TD><FONT color="#003399">
+        <dl>
+          <dt><strong>DATA</strong> <EM>SAS-data-set-name</EM><strong>;</strong></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<NOBR><em>point-variable=</em><A HREF="m54_15.htm" onClick="suggestBack()"
+	      onMouseOver="window.status='Display details on the CEIL function.'; "
+	      onMouseOut="window.status=''"><STRONG>CEIL(</strong></A><A HREF="m54_10.htm" onClick="suggestBack()"
+	      onMouseOver="window.status='Display details on the RANUNI function.'; "
+	      onMouseOut="window.status=''"><strong>RANUNI</STRONG><em>(seed)</em></A><A HREF="m54_15.htm" onClick="suggestBack()"
+	      onMouseOver="window.status='Display details on the CEIL function.'; "
+	      onMouseOut="window.status=''"> 
+            <strong>*</strong><em>nobs-variable</em><strong>)</strong></A>;</NOBR></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<NOBR><STRONG>SET</STRONG> <EM>SAS-data-set-name</EM> <A HREF="m54_2.htm" onClick="suggestBack()"
+	      onMouseOver="window.status='Display details on the POINT= option.'; "
+	      onMouseOut="window.status=''"><STRONG>POINT=</STRONG><EM>point-variable</EM></A> 
+            <A HREF="m54_6.htm" onClick="suggestBack()"
+	      onMouseOver="window.status='Display details on the NOBS= option.'; "
+	      onMouseOut="window.status=''"><STRONG> NOBS=</STRONG><em>nobs-variable</em><strong>;</strong></A></NOBR></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<NOBR><A HREF="m54_4.htm" onClick="suggestBack()"
+	      onMouseOver="window.status='Display details on the STOP statement.'; "
+	      onMouseOut="window.status=''"><STRONG>STOP;</STRONG> </A></NOBR></dt>
+          <dt><font color="#003399"><strong>RUN;</strong></font></dt>
+        </dl>
+        </FONT></TD>
+    </TR>
+    <TR> 
+      <TD><FONT color="Teal"><A HREF="m54_22.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the MSGLEVEL= option.'; "
+	      onMouseOut="window.status=''"><STRONG>OPTIONS MSGLEVEL=</STRONG> N | 
+        I<STRONG>;</STRONG></A></FONT></TD>
+    </TR>
+    <TR> 
+      <TD><FONT color="Teal">
+        <dl>
+          <dt><A HREF="m54_20.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the INDEX= option.'; "
+	      onMouseOut="window.status=''"><strong>DATA</strong> <em>SAS-data-file-name </em><strong>(INDEX=</strong></A></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_20.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the INDEX= option.'; "
+	      onMouseOut="window.status=''"><em>(index-specification-1&lt;</em><strong>/UNIQUE</strong><em>&gt;&lt;...index-specification-n&lt;</em><strong>/UNIQUE</strong><em>&gt;&gt;))</em><strong>;</strong></A></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT color="#003399"><strong>SET</strong> <EM>SAS-data-set-name</EM> <strong>;</strong></FONT></dt>
+          <dt><font color="#003399"><strong>RUN;</strong></font></dt>
+        </dl>
+        </FONT></TD>
+    </TR>
+    <TR> 
+      <TD><FONT color="#003399">
+        <dl>
+          <dt><A HREF="m54_24.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure.';" onMouseOut="window.status=''"> 
+            <strong>PROC DATASETS LIBRARY</strong>=<em>libref</em><strong> &lt;NOLIST&gt;;</strong></a></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_24.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure.';" onMouseOut="window.status=''"><strong>MODIFY</strong> <em>SAS-data-set-name</em><strong>;</strong></a></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_24.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure.';" onMouseOut="window.status=''"><strong>INDEX DELETE</strong> <em>index-name</em> <strong>;</strong></a></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_24.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure.';" onMouseOut="window.status=''"><strong>INDEX CREATE</strong> <em>index-specification</em><strong>;</strong></a></dt>
+          <dt><strong>QUIT;</strong></dt>
+        </dl>
+       </FONT></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">
+        <dl>
+          <dt><A HREF="m54_27.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the SQL procedure.';" onMouseOut="window.status=''"><strong>PROC SQL</strong><strong>;</strong></a></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_27.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the SQL procedure.';" onMouseOut="window.status=''"><strong>CREATE</strong> <strong>&lt;UNIQUE&gt;</strong> <strong>INDEX</strong> 
+            <em>index-name</em></a> </dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_27.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the SQL procedure.';" onMouseOut="window.status=''"><strong>ON</strong> 
+            <em>table-name(column-name-1&lt;...,column-name-n&gt;)</em><strong>;</strong></a></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_27.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the SQL procedure.';" onMouseOut="window.status=''"><strong>DROP INDEX</strong> <em>index-name</em> <strong>FROM</strong> 
+            <em>table-name</em> <strong>;</strong></a></dt>
+          <dt><font color="#003399"><strong>QUIT;</strong></font></dt>
+        </dl>
+       </font> </TD>
+    </TR>
+	 <TR> 
+      <TD><font color="#003399">
+        <dl>
+          <dt><A HREF="m54_31.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the CONTENTS procedure.';" onMouseOut="window.status=''"><strong>PROC CONTENTS DATA=</strong><em>&lt;libref.&gt;SAS-data-set-name</em><strong>;</strong></a></dt>
+         
+          <dt><font color="#003399"><strong>RUN;</strong></font></dt>
+        </dl>
+       </font> </TD>
+    </TR>
+	<TR> 
+      <TD><font color="#003399">
+        <dl>
+          <dt><A HREF="m54_31.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the CONTENTS statement.';" onMouseOut="window.status=''"><strong>PROC 
+            DATASETS</strong> &lt;<strong>LIBRARY</strong>=<em>libref</em>&gt; 
+            <strong>&lt;NOLIST&gt;;</strong></a></dt>
+         <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_31.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the CONTENTS statement.';" onMouseOut="window.status=''"><strong>CONTENTS DATA=</strong><em>&lt;libref.&gt;SAS-data-set-name</em><strong>;</strong></a></dt>
+          
+		  <dt><font color="#003399"><strong>QUIT;</strong></font></dt>
+        </dl>
+       </font> </TD>
+    </TR>
+	<TR> 
+      <TD><font color="#003399">
+        <dl>
+          <dt><A HREF="m54_34.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the COPY statement.';" onMouseOut="window.status=''"><strong>PROC 
+            DATASETS LIBRARY=</strong><em>old-libref</em> <strong>&lt;NOLIST&gt;;</strong></a></dt>
+         <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_34.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the COPY statement.';" onMouseOut="window.status=''"><strong>COPY OUT=</strong><em>new-libref</em><strong>;</strong></a></dt>
+         <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_34.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the COPY statement.';" onMouseOut="window.status=''"><strong>SELECT</strong> <em>SAS-data-set-name</em><strong>;</strong></a></dt>
+          <dt><font color="#003399"></font></dt>
+		<dt><font color="#003399"><strong>QUIT;</strong></font></dt>
+        </dl>
+       </font> </TD>
+    </TR>
+	<TR> 
+      <TD><font color="#003399">
+        <dl>
+          <dt><A HREF="m54_34.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the COPY procedure.';" onMouseOut="window.status=''"><strong>PROC COPY OUT=</strong><em>new-libref</em> <strong>IN=</strong><em>old-libref</em> <strong>&lt;MOVE&gt;;</strong></a></dt>
+         <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_34.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the COPY procedure.';" onMouseOut="window.status=''"><strong>SELECT</strong> <em>SAS-data-set-name(s)</em><strong>;</strong></a></dt>
+         <dt><font color="#003399"><strong>RUN;</strong></font></dt>
+		  <dt><font color="#003399"><strong>QUIT;</strong></font></dt>
+        </dl>
+       </font> </TD>
+    </TR>
+	<TR> 
+      <TD><font color="#003399">
+        <dl>
+          <dt><A HREF="m54_36.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the CHANGE statement.';" onMouseOut="window.status=''"><strong>PROC 
+            DATASETS LIBRARY=</strong><em>libref</em> <strong>&lt;NOLIST&gt;;</strong></a></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_36.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the CHANGE statement.';" onMouseOut="window.status=''"><strong>CHANGE 
+            </strong><em>old-data-set-name = new-data-set-name</em><strong>;</strong></a></dt>
+        
+		<dt><font color="#003399"><strong>QUIT;</strong></font></dt>
+        </dl>
+       </font> </TD>
+    </TR>
+		<TR> 
+      <TD><font color="#003399">
+        <dl>
+          <dt><A HREF="m54_37.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the RENAME statement.';" onMouseOut="window.status=''"><strong>PROC 
+            DATASETS LIBRARY=</strong><em>libref</em> <strong>&lt;NOLIST&gt;;</strong></a></dt>
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_37.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the RENAME statement.';" onMouseOut="window.status=''"><strong>MODIFY 
+            </strong> <em>SAS-data-set-name</em><strong>;</strong></a></dt>
+			<dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_37.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the RENAME statement.';" onMouseOut="window.status=''"><strong>RENAME 
+            </strong> <em>old-var-name-1 = new-var-name-1 </em><strong>;</strong></a></dt>
+			<dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m54_37.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DATASETS procedure with the RENAME statement.';" onMouseOut="window.status=''"><em>&lt;...old-var-name-n = new-var-name-n&gt; </em><strong>;</strong></a></dt>
+			
+		<dt><font color="#003399"><strong>QUIT;</strong></font></dt>
+        </dl>
+       </font> </TD>
+    </TR>
+  </TABLE>
+  <P> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"> <HR> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Sample">Sample Program</A></STRONG>s 
+        </h2>
+		<P><blockquote><strong>Creating a Systematic Sample from a Known Number of Observations</strong></blockquote>
+<font color="#003399"> 
+        <pre>     data sasuser.subset;
+        do pickit=1 to 142 by 15;
+           set sasuser.revenue point=pickit;
+           output;
+        end;
+        stop;
+     run;</pre>
+      </font>
+        <P> <blockquote><strong>Creating a Systematic Sample from an Unknown Number of Observations</strong> </blockquote>
+        <font color="#003399">
+        <pre>     data sasuser.subset;
+        do pickit=1 to totobs by 10;
+           set sasuser.revenue point=pickit 
+               nobs=totobs;
+           output;
+        end;
+        stop;
+     run;</pre>
+        </font>
+		<P><blockquote><strong>Creating a Random Sample with Replacement</strong></blockquote>
+<font color="#003399"> 
+        <pre>     data work.rsubset (drop=i sampsize);
+        sampsize=10;
+        do i=1 to sampsize;
+           pickit=ceil(ranuni(0)*totobs);
+           set sasuser.revenue point=pickit 
+               nobs=totobs;
+           output;
+        end;
+        stop;
+     run;
+     
+     proc print data=work.rsubset label;
+        title 'A Random Sample with Replacement';
+     run;</pre>
+        </font>
+		<P><blockquote><strong>Creating a Random Sample without Replacement</strong></blockquote>
+<font color="#003399"> 
+        <pre>     data work.rsubset(drop=obsleft sampsize);
+        sampsize=10;
+        obsleft=totobs;
+        do while(sampsize>0);
+           pickit+1;
+           if ranuni(0)&lt;sampsize/obsleft then do;
+              set sasuser.revenue point=pickit 
+                  nobs=totobs;
+              output;
+              sampsize=sampsize-1;
+           end;
+        obsleft=obsleft-1;
+        end;
+        stop;
+     run;
+
+     proc print data=work.rsubset heading=h label;
+     title 'A Random Sample without Replacement';
+     run;</pre>
+      </font>
+	  <P><blockquote><strong>Creating an Index in the DATA Step</strong></blockquote>
+<font color="#003399">
+        <pre>    <strong> </strong>options msglevel=i;
+     data sasuser.sale2000(index=(origin FlightDate=
+                           (flightid date)/unique));
+        infile 'sale2000.dat';
+        input FlightID $7. RouteID $7. Origin $3.
+              Dest $3. Cap1st 8. CapBusiness 8.
+              CapEcon 8. CapTotal 8. CapCargo 8.
+              Date date9. Psgr1st 8./
+              PsgrBusiness 8. PsgrEcon 8.
+              Rev1st dollar15.2
+              RevBusiness dollar15.2
+              RevEcon dollar15.2 SaleMon $7.
+              CargoWgt 8./ RevCargo dollar15.2;
+     run;</pre>
+      </font>
+	  <P><blockquote><strong>Managing Indexes with PROC DATASETS</strong></blockquote>
+ <font color="#003399"> 
+        <pre>     proc datasets library=sasuser nolist;
+        modify sale2000;
+        index delete origin;
+        index create flightid;
+        index create Tofrom=(origin dest);
+     quit;</pre>
+        </font>
+    
+        <P><blockquote><strong>Managing Indexes with PROC SQL</strong></blockquote></p>
+      <font color="#003399">
+        <pre>     proc sql;
+        create index Tofrom on 
+               sasuser.sale2000(origin, dest);
+        drop index origin from sasuser.sale2000;
+     quit;</pre>
+        </font>
+	 <P><HR> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Points">Points to Remember</A></STRONG> 
+        </h2>
+        <UL>
+          <LI> If you use direct-access read mode to create a representative sample 
+            of a data set, you need to use a STOP statement to prevent the DATA 
+            step from looping continuously.<BR>
+            <BR>
+          <LI> An index can enable SAS to more efficiently access specific observations 
+            of a data set, but indexes use system resources and should only be 
+            created on variables that are commonly used in a WHERE condition or 
+            on variables that are used to combine SAS data sets.<BR>
+            <BR>
+          <LI>An index is associated with a data set but is stored as a separate 
+            file. You can use PROC DATASETS, the CONTENTS statement, or the SAS 
+            Explorer to view a list of the indexes that exist for a data set. 
+            It is especially useful for you to view this information after you 
+            have performed maintenance tasks on your data set in order to be sure 
+            that the index file has been maintained. 
+        </UL>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+<!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

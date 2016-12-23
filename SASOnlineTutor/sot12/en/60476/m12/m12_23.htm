@@ -1,0 +1,272 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Submitting 
+      the DATA Step Program<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Listing the Data Set</strong> </p>
+        <p> The messages in the log seem to indicate that the DATA step program 
+          correctly accessed the raw data file. But it is a good idea to look 
+          at the ten observations in the new data set before reading the entire 
+          raw data file. You can submit a PROC PRINT step to view the data. </td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellpadding="2" cellspacing="0"  bgcolor="#FFFFFF" title="SAS statements" width="85%">
+    <thead>
+      <tr bgcolor="#F7F7DE"> 
+        <td width="157" align=LEFT><strong>To do this... &nbsp; </strong></td>
+        <td width="158" align=LEFT valign="top"><strong>Use this SAS statement...</strong></td>
+        <td width="278" align=LEFT valign="top" nowrap><strong>Example</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <td>Reference a SAS library</td>
+        <td valign="top">LIBNAME statement</td>
+        <td valign="top" nowrap><font color="#003399"><code>libname <em>libref</em> 
+          '<em>SAS-data-library</em>';<nobr></nobr></code></font></td>
+      </tr>
+      <tr> 
+        <td>Reference an external file</td>
+        <td valign="top">FILENAME statement 
+        <td valign="top" nowrap><font color="#003399"><code><nobr>filename tests 
+          'c:\users\tmill.dat';</nobr></code></font></td>
+      </tr>
+      <tr> 
+        <td>Name a SAS data set</td>
+        <td valign="top">DATA statement</td>
+        <td valign="top" nowrap><font color="#003399"><code>data clinic.stress;</code></font></td>
+      </tr>
+      <tr> 
+        <td>Identify an external file</td>
+        <td valign="top"><font color="Black">INFILE statement &nbsp;</font></td>
+        <td valign="top" nowrap><font color="#003399"><code>infile tests obs=10;</code></font></td>
+      </tr>
+      <tr> 
+        <td>Describe data</td>
+        <td valign="top">INPUT statement</td>
+        <td valign="top" nowrap><font color="#003399"><code><nobr>input ID 1-4 
+          Name $ 6-25 ...; </nobr></code></font></td>
+      </tr>
+      <tr> 
+        <td>Execute the DATA step</td>
+        <td valign="top">RUN statement</td>
+        <td valign="top" nowrap><font color="#003399"><code>run;</code></font></td>
+      </tr>
+      <tr> 
+        <td>List the data</td>
+        <td valign="top"><strong>PROC PRINT statement</strong></td>
+        <td valign="top" nowrap><font color="#003399"><code>proc print data=clinic.stress;</code></font></td>
+      </tr>
+      <tr> 
+        <td>Execute the final program step</td>
+        <td valign="top"><strong>RUN statement</strong></td>
+        <td valign="top" nowrap><font color="#003399"><code>run;</code></font></td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="center">
+  <p align="center"> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">The following PROC PRINT step lists the <strong>Sasuser.Stress</strong> 
+          data set. 
+          <pre><font color="#003399">     proc print data=<code>sasuser</code>.stress;</font>
+<font color="#003399">     run;</font></pre>
+          The PROC PRINT output indicates that the variables in the <strong>Sasuser.Stress</strong> 
+          data set were read correctly for the first ten records.</td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"><br>
+  <center>
+    <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT output">
+      <thead>
+        <tr> 
+          <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Obs</b></font></td>
+          <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>ID</b></font></td>
+          <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Name</b></font></td>
+          <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>RestHR</b></font></td>
+          <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>MaxHR</b></font></td>
+          <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>RecHR</b></font></td>
+          <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TimeMin</b></font></td>
+          <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>TimeSec</b></font></td>
+          <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Tolerance</b></font></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            1</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2458</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">Murray, 
+            W</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">72</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">185</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">128</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">12</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">38</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">D</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            2</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2462</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">Almers, 
+            C</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">68</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">171</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">133</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">10</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333"> 
+            5</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">I</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            3</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2501</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">Bonaventure, 
+            T</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">78</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">177</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">139</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">11</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">13</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">I</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            4</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2523</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">Johnson, 
+            R</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">69</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">162</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">114</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333"> 
+            9</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">42</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">S</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            5</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2539</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">LaMance, 
+            K</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">75</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">168</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">141</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">11</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">46</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">D</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            6</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2544</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">Jones, 
+            M</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">79</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">187</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">136</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">12</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">26</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">N</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            7</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2552</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">Reberson, 
+            P</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">69</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">158</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">139</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">15</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">41</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">D</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            8</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2555</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">King, 
+            E</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">70</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">167</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">122</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">13</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">13</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">I</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+            9</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2563</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">Pitts, 
+            D</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">71</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">159</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">116</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">10</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">22</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">S</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>10</b></font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">2568</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">Eberhardt, 
+            S</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">72</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">182</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">122</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">16</font></td>
+          <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">49</font></td>
+          <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#333333">N</font></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

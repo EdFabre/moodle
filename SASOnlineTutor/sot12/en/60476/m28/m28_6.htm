@@ -1,0 +1,172 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Variable-Length Fields<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>Reading Variable-Length Values</strong> </p>
+      <p> The next step is to read the values of <code>Name</code> and <code>PhoneExt</code>. 
+        Because the data is not in fixed fields and is not separated by delimiters, 
+        column input and list input cannot be used. The $<em>w</em>. informat 
+        is <strong>not </strong>effective because the <em>w</em> value specifies 
+        only one field length. So, you need a special informat that reads fields 
+        that have varying lengths. 
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p>
+  <center>
+  </center>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The $VARYING<em>w</em>. informat is a special SAS informat 
+        that enables you to read a character value whose length differs from record 
+        to record.</td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table BORDER cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, INPUT statement with the $VARYINGw. informat">
+    <tr> 
+        <td align="left"><strong>General form, INPUT statement with the </strong><strong>$VARYING<em>w</em></strong><font color="#003399"><strong>.</strong></font> 
+          <strong>informat:</strong> 
+          <blockquote> <nobr> <strong>INPUT </strong><font color="#003399"><em>variable</em><strong><em> 
+          </em>$VARYING<em>w</em>. </strong><em>length-variable</em><strong>;</strong></font> 
+          </nobr> </blockquote>
+        <blockquote> where </blockquote>
+        <ul>
+          <li> <font color="#003399"><em>variable </em></font>is a character variable 
+          <li><font color="#003399"><em>w</em>.<strong> </strong></font>specifies 
+            the maximum length of the variable 
+            <li> <font color="#003399"><em>length-variable</em></font> specifies 
+              a numeric variable that contains the actual length of the <i><font color="#003399">variable</font></i> 
+              in the current record. 
+          </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  Raw Data File Phonedat <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000">
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#F7F7DE" title="Raw Data File">
+    <thead> 
+    <tr> 
+      <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1802<b><font color="#003399">JOHNSON</font></b>2123</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1803<b><font color="#003399">BARKER</font></b>2142</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1804<b><font color="#003399">EDMUNDSON</font></b>2325</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1805<b><font color="#003399">RIVERS</font></b>2543</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1806<b><font color="#003399">MASON</font></b>2646</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1807<b><font color="#003399">JACKSON</font></b>2049</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1808<b><font color="#003399">LEVY</font></b>2856</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1809<b><font color="#003399">THOMAS</font></b>2222</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font>
+<p> <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">It's important to understand how the syntax of the $VARYING<em>w</em>. 
+        informat is different from that of other character informats. The syntax 
+        is composed of three parts: the informat name, the maximum length (w.), 
+        and the length variable.</td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>INPUT</strong> 
+        <em>variable</em> <strong>$VARYING<em>w</em>.</strong> <em>length-variable</em>; 
+        </font></td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The second INPUT statement uses the $VARYING<em>w</em>. 
+        informat to read the values for <code>Name</code>, starting in column 
+        5 and continuing for the number of columns that are specified by <code>namelen</code>. 
+        Then the values for <code>PhoneExt</code> are read.</td>
+    </tr>
+  </table>
+  <p> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">
+          <pre><font color="#003399">     data perm.phones; </font>
+<font color="#003399">        infile phonedat length=reclen;</font>
+        <font color="#003399">input ID 4. @;</font>
+        <font color="#003399">namelen=reclen-8;</font>
+        <font color="#003399"><strong>input Name $varying10. namelen </strong></font>
+<font color="#003399"><strong>              PhoneExt;</strong></font>
+</pre>
+        </td>
+      </tr>
+    </table>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

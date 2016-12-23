@@ -31,10 +31,9 @@ $categoryid = optional_param('category', 0, PARAM_INT); // Course category - can
 $returnto = optional_param('returnto', 0, PARAM_ALPHANUM); // Generic navigation return page switch.
 
 $PAGE->set_pagelayout('admin');
-if ($id) {
-    $pageparams = array('id' => $id);
-} else {
-    $pageparams = array('category' => $categoryid);
+$pageparams = array('id'=>$id);
+if (empty($id)) {
+    $pageparams = array('category'=>$categoryid);
 }
 $PAGE->set_url('/course/edit.php', $pageparams);
 
@@ -167,37 +166,22 @@ $stradministration = get_string("administration");
 $strcategories = get_string("categories");
 
 if (!empty($course->id)) {
-    // Navigation note: The user is editing a course, the course will exist within the navigation and settings.
-    // The navigation will automatically find the Edit settings page under course navigation.
-    $pagedesc = $streditcoursesettings;
+    $PAGE->navbar->add($streditcoursesettings);
     $title = $streditcoursesettings;
     $fullname = $course->fullname;
 } else {
-    // The user is adding a course, this page isn't presented in the site navigation/admin.
-    // Adding a new course is part of course category management territory.
-    // We'd prefer to use the management interface URL without args.
-    $managementurl = new moodle_url('/course/management.php');
-    // These are the caps required in order to see the management interface.
-    $managementcaps = array('moodle/category:manage', 'moodle/course:create');
-    if ($categoryid && !has_any_capability($managementcaps, context_system::instance())) {
-        // If the user doesn't have either manage caps then they can only manage within the given category.
-        $managementurl->param('categoryid', $categoryid);
-    }
-    // Because the course category management interfaces are buried in the admin tree and that is loaded by ajax
-    // we need to manually tell the navigation we need it loaded. The second arg does this.
-    navigation_node::override_active_url($managementurl, true);
-
-    $pagedesc = $straddnewcourse;
+    $PAGE->navbar->add($stradministration, new moodle_url('/admin/index.php'));
+    $PAGE->navbar->add($strcategories, new moodle_url('/course/index.php'));
+    $PAGE->navbar->add($straddnewcourse);
     $title = "$site->shortname: $straddnewcourse";
     $fullname = $site->fullname;
-    $PAGE->navbar->add($pagedesc);
 }
 
 $PAGE->set_title($title);
 $PAGE->set_heading($fullname);
 
 echo $OUTPUT->header();
-echo $OUTPUT->heading($pagedesc);
+echo $OUTPUT->heading($streditcoursesettings);
 
 $editform->display();
 

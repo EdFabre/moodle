@@ -1,0 +1,239 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing 
+      Macro Variables Indirectly<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Indirect referencing is especially useful when you are working with a series 
+          of related macro variables. If you completed the lesson 
+          <!--lesson reference-->
+          <strong><script>document.write(m50title);</script></strong>, you learned how to combine multiple macro variable references 
+          in order to build new tokens. You can combine indirect macro variable 
+          references with other macro variable references as well. That is, you 
+          can use <strong>two ampersands</strong> in a reference when the <strong>value</strong> 
+          of one macro variable matches <strong>part of the name</strong> of a 
+          second macro variable. 
+        <P><BR><h2>Example</h2>
+        <P> You can create a series of macro variables, <code>teach1</code> to 
+          <code>teach<em>n</em></code>, each containing the name of the instructor 
+          who is assigned to a specific course. </td></tr></table><P>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<font color="#003399"><pre>    options symbolgen;
+    data _null_;
+       set sasuser.schedule;
+       call symput('teach'||left(course_number),
+                   trim(teacher));
+    run;
+</pre></font></td></tr></table>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P><table border="0" cellpadding="2" cellspacing="0" width="100%">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">The concatenation operator <font color="#003399"><code>||</code></font>
+	combines text. In the example above, the literal string <code>teach</code> is concatenated to the text that results from 
+	left-aligning the resolved value of the variable <code>Course_number</code>.</td>
+        </tr>
+      </table>
+<P><BR>
+<div align="center">
+<table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr><td><code>TEACH1</code></td><td><em>Hallis, Dr. George</em></td></tr>
+<tr><td><code>TEACH2</code></td><td><em>Wickam, Dr. Alice</em></td></tr>
+<tr><td><code>TEACH3</code></td><td><em>Forest, Mr. Peter</em>
+</td></tr>
+</table></div>
+<P><BR>
+          Then, you can reference one of these variables when a course number 
+          is designated. If you designate a course number in a <nobr>%LET</nobr> statement, 
+          you can use multiple ampersands in order to create a reference to the 
+          <code>teach<em>n</em></code> macro variable that corresponds to the 
+          current course number. 
+        <P>
+<pre><font color="#003399">    <strong>%let crs=3;</strong>
+    proc print data=sasuser.register noobs;
+       where course_number=&amp;crs;
+       var student_name paid;
+       title1 &quot;Roster for Course &amp;crs&quot;;
+       title2 &quot;Taught by <strong>&amp;&amp;teach&amp;crs</strong>&quot;;
+    run;
+</font></pre>
+<P>The SAS log shows the steps that lead to the resolution of the reference <code>&amp;&amp;teach&amp;crs</code>.<P><BR>
+</td></tr></table>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+
+65  %let crs=3;
+66  proc print data=sasuser.register noobs;
+67     where course_number=&amp;crs;
+SYMBOLGEN:  Macro variable CRS resolves to 3
+68     var student_name paid;
+SYMBOLGEN:  Macro variable CRS resolves to 3
+69     title1 &quot;Roster for Course &amp;crs&quot;;
+<strong>SYMBOLGEN:  &amp;&amp; resolves to &amp;.
+SYMBOLGEN:  Macro variable CRS resolves to 3
+SYMBOLGEN:  Macro variable TEACH3 resolves to 
+            Forest, Mr. Peter</strong>
+70     title2 &quot;Taught by &amp;&amp;teach&amp;crs&quot;;
+71  run;
+</pre></td></tr>
+</table> </div></td></tr></table><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+          This is the output from the example.
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Roster for Course 3</i></b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Taught by Forest, Mr. Peter</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Student_Name</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Paid</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Bills, Ms. Paulette</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Chevarley, Ms. Arlene</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">N</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Clough, Ms. Patti</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">N</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Crace, Mr. Ron</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Davis, Mr. Bruce</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Elsins, Ms. Marisa F.</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">N</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Gandy, Dr. David</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Gash, Ms. Hedy</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Haubold, Ms. Ann</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Hudock, Ms. Cathy</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Kimble, Mr. John</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">N</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Kochen, Mr. Dennis</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Larocque, Mr. Bret</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Licht, Mr. Bryan</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">McKnight, Ms. Maureen E.</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Scannell, Ms. Robin</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">N</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Seitz, Mr. Adam</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Smith, Ms. Jan</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">N</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Sulzbach, Mr. Bill</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Williams, Mr. Gene</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Y</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+<P>
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

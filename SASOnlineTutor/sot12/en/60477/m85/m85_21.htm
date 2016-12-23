@@ -1,0 +1,157 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing Probable Resource Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Factors That Affect I/O</h2>
+        <p>Several factors affect the number of I/O operations that are required 
+          for WHERE processing, including the following:</p>
+        <ul>
+          <li>subset size relative to data set size</li>
+          <li>number of pages in the data file</li>
+          <li>order of the data</li>
+          <li>cost to uncompress a compressed file for a sequential read.</li>
+        </ul>
+        <p>These factors are discussed in more detail below. 
+        <p><br>
+        <h2>Subset Size Relative to Data Set Size</h2>
+        <p>As explained earlier in this lesson, SAS is more likely to use an index 
+          to access a small subset of observations. The process of retrieving 
+          data with an index is inherently more complicated than sequentially 
+          processing the data. This is why using an index requires more I/O operations 
+          and CPU time when a large subset is read. 
+        <p>For small subsets, however, the benefit of reading only a few observations 
+          outweighs the cost of the complex processing. The smaller the subset, 
+          the larger the performance gains. Remember that SAS will use an index 
+          if the subset is less than 3% of the data set, and SAS will probably 
+          use an index if the subset is between 3% and 33% of the data set. 
+        <p><br>
+        
+        <h2> <a name="pagecount"></a>Number of Pages in the Data File</h2>
+        <p>For a small data file, sequential processing is often just as efficient 
+          as index processing. If the data file's page count is less than three 
+          pages, then sequential access is faster even if the subset is less than 
+          3% of the entire data set.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The amount of data that can be transferred to one 
+              buffer in a single I/O operation is referred to as page size. To 
+              see how many pages are in a data file, use either the CONTENTS procedure 
+              or the CONTENTS statement in the DATASETS procedure. For more information 
+              about reporting the page size for a data file, see the lesson 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m81title);</script></strong>.</td>
+          </tr>
+        </table> 
+<p><br>
+        <h2><a name="sorting"></a>Order of the Data</h2>
+        <p>The order of the data (sort order) affects the number of I/O operations 
+          as described below:
+		  <p><br>
+        <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Effect of sort order on number of I/O operations">
+          <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1"><no>Order of the Data</no></font></th>
+            <th><font size="-1">Effect on I/O Operations</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td>observations are<strong> randomly</strong> distributed throughout 
+              the data file</td>
+            <td>The observations are located on a larger number of data file pages. 
+              An I/O operation is required each time that SAS loads a page. Therefore, 
+              the <strong>more random</strong> the data in the data file, the 
+              <strong>more I/O operations</strong> are needed to use the index. 
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td>observations are<strong> sorted</strong> on the indexed variable(s)</td>
+            <td>The data is ordered more like the index (in ascending value order), 
+              and the observations will be located on fewer data file pages. Therefore, 
+              the <strong>less random</strong> the data in the data file, the 
+              <strong>fewer</strong> I/O operations are needed to use the index.</td>
+          </tr>
+        </table>
+<p><br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">In general, sorting the data set by the key variable 
+              before indexing will result in greater efficiency. The more ordered 
+              the data file is with respect to the key variable, the more efficient 
+              the use of the index. If the data file has more than one index, 
+              then sorting the data by the most frequently used key variable is 
+              most efficient. Sorting the data set results in more efficient WHERE 
+              processing even when SAS does not use an index. To learn more about 
+              sorting and efficiency, see the lesson 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m84title);</script></strong>. </td>
+          </tr>
+        </table> 
+        <p><br>
+        <h2>Cost to Uncompress a Compressed File for a Sequential Read</h2>
+        <p>When SAS reads a compressed data file, SAS automatically uncompresses 
+          the observations as they are read into the program data vector. This 
+          requires additional CPU resources, but fewer I/O operations are required 
+          because there are fewer data set pages. When performing a <strong>sequential</strong> 
+          read of a compressed data file, SAS must uncompress <strong>all</strong> 
+          observations in the file. However, when using <strong>direct</strong> 
+          access, SAS must uncompress only the <strong>qualified</strong> observations. 
+          Therefore, the resource cost of uncompressing observations is greater 
+          for a sequential read than for direct access. </p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Compressing a file is a process that reduces the 
+              number of bytes that are required for representing each observation. 
+              By default, a SAS data file is not compressed. For more information 
+              about compressing files, see the lesson 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m82title);</script></strong>.</td>
+          </tr>
+        </table> 
+        
+      </td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

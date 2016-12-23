@@ -1,0 +1,127 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Overlaying 
+      Plots<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>So far, you have created one plot at a time in your PROC GPLOT steps. 
+        You can also produce multiple plots on a single set of axes by specifying 
+        <strong>multiple plot requests </strong>and the <strong>OVERLAY option</strong> 
+        in the PLOT statement.</p>
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, simple PLOT statement for overlaid plots">
+    <tr> 
+      <td align="left"><strong>General form, simple PLOT statement for overlaid 
+        plots:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>PLOT</strong> <em>vertical-variable-1*horizontal-variable</em></nobr><br>
+          <nobr>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<em>vertical-variable-2*horizontal-variable</em> 
+          <strong>/</strong><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>OVERLAY;</strong></nobr></font> 
+        </blockquote>
+        <p> where 
+        <ul>
+          <li> <font color="#003399"><em>vertical-variable-1</em></font> is the 
+            first variable to be plotted on the vertical axis 
+          <li> <font color="#003399"><em>vertical-variable-2</em></font> is the 
+            second variable to be plotted on the vertical axis 
+          <li> <font color="#003399"><em>horizontal-variable</em></font> is the 
+            variable to be plotted on the horizontal axis 
+          <li> <strong>OVERLAY</strong> causes the two plots to be overlaid on 
+            one set of axes. 
+        </ul>
+        <p> 
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:"
+		  border="0"></td>
+            <td>When you specify the OVERLAY option, the horizontal variable&nbsp;must 
+              be the same for both plots. Otherwise, an error will result.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The PLOT statement below plots the number of patients in 
+        exercise therapy by month as well as the number of treadmill tests by 
+        month. The OVERLAY option overlays the plots on the same set of axes.</td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre>     <font color="#003399">proc gplot data=clinic.totals2000; </font>
+<strong>          </strong><font color="#003399">plot <strong>therapy*month</strong> <strong>treadmill*month</strong> / <strong>overlay</strong>;</font>
+     <font color="#003399">run; </font>     <font color="Red"><strong>|&lt;--pair1--&gt;| |&lt;---pair2---&gt;|</strong></font>
+        
+</pre>
+        <p> The PROC GPLOT step creates the overlaid plots shown below. Note that 
+          the vertical axis is labeled with the name of the first Y variable. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <br>
+  <img src="images/m6f1s1.gif" width="400" height="305" alt="Overlaid plots."> 
+<p> 
+<center>
+  <table cellpadding="2" width="85%" align="Center">
+    <tr valign="Top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+      <td>If the OVERLAY option were not specified, each plot request would generate 
+        a separate graph.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,78 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Execution of a DATA Step Match-Merge</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Execution 
+      of a DATA Step Match-Merge<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <ol>
+        <li>This animation shows the execution of the DATA step below. This DATA 
+          step creates a new data set by performing a basic match-merge on two 
+          input data sets. <font color="#003399"> 
+          <pre>data work.data3;
+   merge data1 data2;
+   by x;
+run;</pre>
+          </font> 
+        <li>During the compilation phase, SAS reads the descriptor portions of 
+          the input data sets and creates the PDV. Also, SAS determines the BY 
+          groups in each input data set for the variables listed in the BY statement.<br>
+          <br>
+        <li>Execution begins. SAS looks at the first BY group in each input data 
+          set to determine if the BY values match. If so, SAS reads the first 
+          observation of that BY group from the first input data set and records 
+          the values in the PDV.<br>
+          <br>
+        <li>Since the BY values match, SAS reads the first observation of the 
+          same BY group from the second input data set and records the remaining 
+          values in the PDV.<br>
+          <br>
+        <li>SAS writes the merged data to the output data set.<br>
+          <br>
+        <li>SAS continues to merge observations in the same manner until it has 
+          written all observations from the first BY group to the new data set. 
+          In this example, there are two observations in the new data set that 
+          result from the first BY group (<code>X</code> = <em>11</em>).<br>
+          <br>
+        <li>If the BY values do not match, SAS reads the input data set with the 
+          lowest BY value. The PDV and the output data set will contain missing 
+          values for variables that are unique to the other data set.<br>
+          <br>
+        <li>If an input data set does not contain any observations in a particular 
+          BY group, the PDV and the output data set will contain missing values 
+          for the variables that are unique to that input data set.<br>
+          <br>
+        <li>SAS continues to match-merge observations until all observations from 
+          both input data sets have been read and written to the new data set. 
+          In this example, <strong>Work.Data3</strong> contains three variables 
+          and four observations. </ol>
+       
+      </td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

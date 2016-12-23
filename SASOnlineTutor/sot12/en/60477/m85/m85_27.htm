@@ -1,0 +1,164 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Deciding 
+      Whether to Create an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td height="17"> <h2>Using the Options IDXWHERE= and IDXNAME= to Control 
+          Index Usage</h2>
+        <p>In most situations, it is best to let SAS determine whether or not 
+          to use an index for WHERE processing. However, sometimes you might want 
+          to control whether or not SAS uses an existing index. For example, if 
+          you know that your query will select a large subset and that indexed 
+          access will therefore not be efficient, you can tell SAS to ignore any 
+          index and to satisfy the conditions of the WHERE expression with a sequential 
+          search of the data set. Or, if your query will select a small subset 
+          and there are multiple available indexes, you can make sure that SAS 
+          uses a particular index to process your WHERE statement. Finally, you 
+          might want to force SAS to use (or not use) an index when you are benchmarking.</p>
+        <p>You should be familiar with the data set options <strong>IDXWHERE=</strong> 
+          and <strong>IDXNAME=</strong>, which you can use to control index usage: 
+        </p>
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Options IDXWHERE= and IDXNAME=">
+          <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+            <th width="24%"><font size="-1">Option</font></th>
+            <th width="76%"><font size="-1">Action</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><strong>IDXWHERE=</strong></td>
+            <td><p>specifies whether or not SAS should use an index to process 
+                the WHERE expression, no matter which access method SAS estimates 
+                is faster.</p>
+              <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+                  <td valign="top">You cannot use IDXWHERE= to override the use 
+                    of an index for processing a BY statement.</td>
+                </tr>
+              </table></td>
+          </tr>
+          <tr valign="top"> 
+            <td height="25"><strong>IDXNAME=</strong></td>
+            <td>causes SAS to use a specific index.</td>
+          </tr>
+        </table>
+        <p><br>
+        <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">You can use <strong>either</strong> IDXWHERE= or 
+              IDXNAME=, but not both at the same time, to control index usage.</td>
+          </tr>
+        </table>
+<br>
+        <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For more information about the IDXWHERE= and IDXNAME= 
+              data set options, see the lesson 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m74title);</script>.</strong></td>
+          </tr>
+        </table> 
+        <p><br>
+        <h2><a name="msglevel"></a>Specifying MSGLEVEL=I to Determine Whether 
+          SAS Is Using an Index </h2>
+        <p>To determine whether SAS is using an index to process a WHERE expression, 
+          you can specify <em>I</em> as the value of the MSGLEVEL= system option. 
+          Using MSGLEVEL=I causes SAS to display information about index usage 
+          in the SAS log.</p>
+
+        <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">To make the most efficient use of resources, use 
+              MSGLEVEL=I only for debugging and for verifying index usage.</td>
+          </tr>
+        </table>
+        <br>
+        <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For more information about the MSGLEVEL= system option, 
+              see the lesson 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m54title);</script>
+              </strong> or the lesson 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m74title);</script>.</strong></td>
+          </tr>
+        </table>
+        <p><br>
+        <h2>Example: Using IDXWHERE=NO to Prevent Index Usage</h2>
+        <p>Suppose you write the following query, which lists all employees who 
+          work in the Sales department of a company: 
+        <pre>     <font color="#003399">proc print data=company.organization;
+        where department='Sales';
+     run;</font></pre>
+        <p>Now suppose an index is defined on the variable <code>Department</code> 
+          in the data set <strong>Company.Organization</strong>. You know that 
+          <code>Department</code> has the value <em>Sales</em> in 65% of the observations, 
+          so it is <strong>not</strong> efficient for SAS to use an index for 
+          WHERE processing. To ensure that SAS does not use an index, specify 
+          IDXWHERE=NO after the data set name. At the beginning of the program, 
+          you can also add an OPTIONS statement that specifies MSGLEVEL=I to display 
+          a message about index usage in the SAS log. The revised program is shown 
+          below: 
+        <pre>     <font color="#003399"><strong>options msglevel=i;</strong>
+     proc print data=company.organization <strong>(idxwhere=no)</strong>;
+        where department='Sales';
+     run;</font></pre>
+        When you run this program, the SAS log indicates that the index was <strong>not</strong> 
+        used for processing: 
+        <p><br>
+        <div align="center">SAS Log<br>
+          <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+            <tr> 
+              <td> <pre>INFO: Data set option (IDXWHERE=NO) forced a <br>sequential pass of the data rather than use of <br>an index for where-clause processing.</pre></td>
+            </tr>
+          </table>
+        </div>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

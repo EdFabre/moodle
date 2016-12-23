@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      the Secondary Charts and Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Ordering the PROC Steps</strong> </p>
+      <p> Notice the difference between the <strong>BODY= </strong>and <strong>ANCHOR=</strong> 
+        options in the ODS HTML statement: 
+      <ul>
+        <li> <font color="#003399"><strong>BODY=</strong><em>filename.html</em></font> 
+          specifies an HTML <strong>page</strong> 
+        <li> <font color="#003399"><strong>ANCHOR=</strong><em>anchor-name</em></font> 
+          specifies an <strong>anchor</strong> in a page. 
+      </ul>
+      <p> So the order of your PROC steps is important. Make sure the GCHART step 
+        that sets links to the anchors <strong>precedes</strong> the four PROC 
+        TABULATE steps that specify each anchor. Each GCHART step creates a new 
+        page, which ensures that the tables will appear on the page that contains 
+        the related chart. 
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     ods html body='sales95.html';</font>
+<font color="#003399">     title 'Sales for 1995 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete</font>
+<font color="#003399">             <strong>html=secdrill</strong>;</font>
+<font color="#003399">        where year=1995;</font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html <strong>anchor='salesq1'</strong>;</font>
+<font color="#003399">     title '1st Quarter 1995 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1995 and quarter=1;</font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html <strong>anchor='salesq2'</strong>;</font>
+<font color="#003399">     title '2nd Quarter 1995 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1995 and quarter=2;</font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html <strong>anchor='salesq3'</strong>;</font>
+<font color="#003399">     title '3rd Quarter 1995 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1995 and quarter=3;</font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods html <strong>anchor='salesq4'</strong>;</font>
+<font color="#003399">     title '4th Quarter 1995 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1995 and quarter=4;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

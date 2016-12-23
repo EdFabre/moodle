@@ -1,0 +1,169 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Character Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Replacing Text Using SUBSTR</strong></p>
+      <p>There is a second use for the SUBSTR function. This function can also 
+        be used to <STRONG>replace the contents of a character variable</STRONG>. 
+        For example, suppose the local phone exchange 622 was replaced by the 
+        exchange 433. You need to update the character variable <CODE>Phone</CODE> 
+        in <STRONG>Hrd.Temp</STRONG> to reflect this change.</p></td>
+  </tr>
+</table>
+<P align="center"> <BR>
+  SAS Data Set Hrd.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>State</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Zip</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>StartDate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>EndDate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>PayRate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Days</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Hours</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>622</STRONG>4549</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14567</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14621</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">88</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>622</STRONG>3251</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14524</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14565</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">25</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">200</font></TD>
+</TR><TR valign="top">
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CHAPEL HILL</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27514</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">9974749</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14570</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14608</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">40</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">26</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">208</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">RALEIGH</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27612</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6970450</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14516</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14527</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">15</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">80</font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>You can use the SUBSTR function to complete this modification. The syntax 
+        of the SUBSTR function, when used to replace a variable's values, is identical 
+        to the syntax for extracting a substring. 
+        <BLOCKQUOTE> <FONT color="#003399"><STRONG>SUBSTR(</STRONG><EM>argument</EM>,<EM>position</EM>,<EM>n</EM><strong>)</strong></FONT> 
+        </BLOCKQUOTE>
+        <P> However, in this case, 
+        <UL>
+          <LI> the first argument specifies the character variable whose values 
+            are to be modified.<BR>
+            <BR>
+          <LI> the second argument specifies the position at which the replacement 
+            is to begin.<BR>
+            <BR>
+          <LI> the third argument specifies the number of characters to replace. 
+            If <EM><STRONG>n</STRONG></EM> is omitted, all remaining characters 
+            are replaced. 
+        </UL>
+        <P> <BR>
+          <STRONG>Positioning the SUBSTR Function</STRONG> 
+        <P> SAS uses the SUBSTR function to extract a substring or to 
+          modify a variable's values, depending on the position of the function 
+          in the assignment statement. 
+        <P> When the function is on the <STRONG>right side</STRONG> of an assignment 
+          statement, the function returns the requested string. 
+        <PRE>
+     <FONT color="#003399">MiddleInitial=substr(middlename,1,1);</FONT>
+</PRE>
+        <P> But if you place the SUBSTR function on the <STRONG>left side</STRONG> 
+          of an assignment statement, the function is used to modify variable 
+          values. 
+        <PRE>
+     <FONT color="#003399">substr(region,1,3)='NNW';</FONT>
+</PRE>
+        <P> When the SUBSTR function modifies variable values, the right side 
+          of the assignment statement must specify the <STRONG>value</STRONG> 
+          to place into the variable. For example, to replace the fourth and fifth 
+          characters of a variable named <CODE>Test</CODE> with the value <EM>92</EM>, 
+          you write the following assignment statement: 
+        <PRE>
+     <FONT color="#003399">substr(test,4,2)='92';</FONT>
+</PRE>
+        <P> 
+        <PRE>
+     Test     <IMG src="../navimages/cleardot.gif" border=0 height="1" width="14" alt=" ">      Test
+
+     <STRONG>S73<FONT color="red">81</FONT>K2</STRONG>    <IMG src="../navimages/arrow.gif" border="0" height="10" width="14" alt="then">    <STRONG>S73<FONT color="red">92</FONT>K2</STRONG>
+     <STRONG>S73<FONT color="red">81</FONT>K7</STRONG>    <IMG src="../navimages/arrow.gif" border="0" height="10" width="14" alt="then">    <STRONG>S73<FONT color="red">92</FONT>K7</STRONG>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

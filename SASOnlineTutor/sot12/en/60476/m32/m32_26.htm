@@ -1,0 +1,89 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Your Own Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>Combining Macro Variable References with Prefixes</strong> </p>
+      <p> Now let's look at a more complex example of substituting text in programs. 
+        The following program is identical to the one you just worked on, except 
+        the name of the new data set has changed from <strong>Hrd.Newtemp</strong> 
+        to <strong>Hrd.Temp1999</strong>. 
+      <pre><font color="#003399">     title "Temporary Employees for <strong>1999</strong>";</font>
+<font color="#003399">     data hrd.temp<strong>1999</strong>;</font>
+<font color="#003399">        set hrd.temp;</font>
+<font color="#003399">        if year(enddate)=<strong>1999</strong>;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.temp<strong>1999</strong>;</font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> Notice that the text you need to change each year again involves the 
+        value of the YEAR function. When creating a macro variable with which 
+        to substitute the YEAR value, you can also update the data set name, the 
+        subsetting IF statement, and the title text. 
+        <p> To begin, you use the %LET statement to create a macro variable <code>yr</code> 
+          that contains the value <em>1999</em>. 
+        <pre><font color="#003399">     %let yr=1999;</font>
+</pre>
+      <p> Then you reference this new macro variable in your program. Notice that 
+        the macro variable reference is combined with the prefix <em>temp</em> 
+        to create the data set name. The reference is placed immediately following 
+        the prefix. 
+      <pre><font color="#003399">     <strong>%let yr=1999;</strong></font>
+   <font color="#003399">  title "Temporary Employees for <strong>&amp;yr</strong>";</font>
+<font color="#003399">     data hrd.temp<strong>&amp;yr</strong>;</font>
+<font color="#003399">        set hrd.temp;</font>
+<font color="#003399">        if year(enddate)=<strong>&amp;yr</strong>;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.temp<strong>&amp;yr</strong>;</font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> When you combine macro variable references with prefixes, SAS forms 
+        the words for you. For example, you write the DATA statement in your program 
+        as follows: 
+      <pre><font color="#003399">     data hrd.<strong>temp&amp;yr</strong>;</font>
+</pre>
+      <p> When the macro variable reference is resolved, the value of the macro 
+        variable <code>yr</code> replaces the reference. So, SAS processes this 
+        statement: 
+      <pre><font color="#003399">     data hrd.<strong>temp1999</strong>;</font></pre>
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

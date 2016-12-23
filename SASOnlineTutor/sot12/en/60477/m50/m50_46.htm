@@ -1,0 +1,83 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Functions to Manipulate Character Strings<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td>
+<h2>The %QSCAN Function</h2>
+If the argument contains a special character, a mnemonic operator, or a macro 
+        trigger, you will need to use the <nobr>%QSCAN</nobr> function. <nobr>%QSCAN</nobr> 
+        has the same syntax as the <nobr>%SCAN</nobr> function, and it works the 
+        same as <nobr>%SCAN</nobr> except that it also masks mnemonic operators 
+        and special characters (including macro triggers). 
+        <P><BR>
+<h2>Example</h2>
+
+These statements show the results produced by <nobr>%SCAN</nobr> and <nobr>%QSCAN</nobr>: 
+<font color="#003399">
+        <pre>    %let a=one;
+    %let b=two;
+    %let c=%nrstr(&a*&b);
+
+    %put C: &c;
+    %put With SCAN: %scan(&c,1,*);
+    %put With QSCAN: %qscan(&c,1,*);
+</pre>
+        </font> Executing these statements produces the following messages in 
+        the SAS log. 
+        <P><BR>
+ <div align="center">
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+47   %let a=one;
+48   %let b=two;
+49   %let c=%nrstr(&a*&b);
+50
+51   %put C: &c;
+C: &amp;a*&amp;b
+52   %put With SCAN: %scan(&c,1,*);
+<strong>With SCAN: one</strong>
+53   %put With QSCAN: %qscan(&c,1,*);
+<strong>With QSCAN: &a </strong></pre></td></tr>
+</table> </div>
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

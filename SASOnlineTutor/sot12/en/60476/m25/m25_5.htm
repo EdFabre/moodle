@@ -1,0 +1,187 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Multiple Records Sequentially<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Sequential Processing of Multiple Records in the DATA Step</strong> 
+      </p>
+      <p> Now that you've learned the basics of using the / line pointer control, 
+        let's take a closer look at the sequential processing of multiple records 
+        in the DATA step. 
+       <p> <em>Select buttons below to view a series of graphics depicting the 
+          sequential processing of multiple records in the DATA step.</em> <em>You 
+          can also see a <a href="JavaScript: openOther('m25_5a.htm')">text-only 
+          version</a> of the information.</em> 
+        </td>
+  </tr>
+</table>
+<br>
+<br>
+<table border="2" cellpadding="2" cellspacing="0" align="center">
+  <tr> 
+    <td> 
+      <script language="JavaScript">
+	  <!-- Specify the number of animation graphics -->
+	  var totalanim=9; 
+  	  <!-- Specify the width and height of the images -->
+	  var imageWidth=499;
+	  var imageHeight=330;
+	  <!-- Don't edit the rest of the script or the form -->
+	  if (document.images) document.write('<img width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" name="animation" alt="Animation frame"></a>');else
+	  document.write('<iframe name="animation" width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" scrolling=no frameborder="0"></iframe>');</script>
+    </td>
+  </tr>
+  <tr valign="Top"> 
+    <td> 
+      <table cellspacing="0" cellpadding="0">
+        <tr valign="Top"> 
+          <td align="center"> 
+            <form name="frameplay" onSubmit="return false">
+              <input type="button" name="back" value="Back" onClick="scroll('back',totalanim);return false">
+              <input type="text" name="page" value="Start" size="7">
+              <input type="button" name="next" value="Next" onClick="scroll('next',totalanim);return false">
+            </form>
+            <script>document.frameplay.page.value=" 1 of "+totalanim;</script>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>After the data set is complete, PROC PRINT output for <strong>Perm.Members</strong> 
+        shows that a single observation contains the complete information for 
+        each member. 
+          <pre><font color="#003399">     proc print data=perm.members;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="1" cellpadding="2" cellspacing="1" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Fname</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Lname</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Address</b></font></td>
+      <td bgcolor="#CCCCCC"> 
+        <p align=Center> <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>City</b></font> 
+      </td>
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>State</b></font></td>
+      <td bgcolor="#CCCCCC"> 
+        <p align=Center> <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Zip</b></font> 
+      </td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">1</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">LEE</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">ATHNOS</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000"><nobr>1215 
+          RAINTREE CIRCLE</nobr></font> 
+      </td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">PHOENIX</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">AZ</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">85044</font></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">2</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">HEIDIE</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">BAKER</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000">1751 
+          DIEHL ROAD</font> 
+      </td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">VIENNA</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">VA</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">22124</font></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">3</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">MYRON</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">BARKER</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000">131 
+          DONERAIL DRIVE</font> 
+      </td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">ATLANTA</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">GA</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">30363</font></td>
+    </tr>
+    <tr> 
+      <td align="center" bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">4</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">JOYCE</font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">BENEFIT</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000">85 
+          MAPLE AVENUE</font> 
+      </td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"><nobr>MENLO 
+        PARK</nobr></font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">CA</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">94025</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

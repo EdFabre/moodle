@@ -1,0 +1,105 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Displaying 
+      the Definition for a PROC SQL View<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> You can use a DESCRIBE VIEW statement to display a definition of a 
+        view in the SAS log. </td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DESCRIBE VIEW statement">
+    <tr> 
+      <td align="left"><strong>General form, DESCRIBE VIEW statement:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>DESCRIBE VIEW </strong><em>proc-sql-view-1&lt;,...</em></nobr><em>proc-sql-view-n</em>&gt;<nobr><strong>;</strong></nobr></font> 
+        </blockquote> 
+        <p>where <font color="#003399"><em>proc-sql-view </em></font>specifies 
+          a PROC SQL view and can be one of the following:
+        <ul>
+          <li>a one-level name</li>
+          <li>a two-level libref.view name</li>
+          <li>a physical pathname that is enclosed in single quotation marks. 
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">If you use a PROC SQL view in the DESCRIBE VIEW statement 
+        that is based on or derived from another view, then you might want to 
+        use the FEEDBACK option in the PROC SQL statement. This option displays 
+        in the SAS log how the underlying view is defined and expands any expressions 
+        that are used in this view definition. </td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+        <p> The following PROC SQL step writes the view definition for <strong>Sasuser.Faview</strong> 
+          to the SAS log:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        <strong>describe view sasuser.faview</strong>;</font></pre></td>
+    </tr>
+  </table>
+<br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: SQL view SASUSER.FAVIEW is defined as:
+      select lastname, firstname, gender,
+             INT((TODAY()-dateofbirth)/365.25) as Age,
+      SUBSTR(jobcode, 3, 1) as Level, salary
+      from SASUSER.PAYROLLMASTER, SASUSER.STAFFMASTER
+      where jobcode contains 'FA' and 
+            (staffmaster.empid=payrollmaster.empid);</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

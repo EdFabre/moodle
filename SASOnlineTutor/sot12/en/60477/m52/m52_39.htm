@@ -1,0 +1,173 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" --> 
+      Processing Statements Conditionally<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Simple <nobr>%DO</nobr> and <nobr>%END</nobr> statements often appear in conjunction 
+          with <nobr>%IF-%THEN</nobr>/<nobr>%ELSE</nobr> statements in order to 
+          designate a section of the macro to be processed depending on whether 
+          the <nobr>%IF</nobr> condition is true or false. Use <nobr>%DO</nobr> 
+          and <nobr>%END</nobr> statements following <nobr>%THEN</nobr> or <nobr>%ELSE</nobr> 
+          in order to conditionally place text that contains multiple statements 
+          onto the input stack. Each <nobr>%DO</nobr> statement must be paired 
+          with an <nobr>%END</nobr> statement. </td></tr></table>
+<P><BR>
+  
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, %DO-%END with %IF-%THEN and %ELSE statements">
+    <tr> 
+      <td align="left"><STRONG>General form, %DO-%END with %IF-%THEN and %ELSE statements:</STRONG>
+	  <BLOCKQUOTE>
+	    <dl><dt><FONT COLOR="#003399"><strong>%IF</strong> <em>expression</em> <strong>%THEN %DO</strong>;</font></dt>
+		    <dd><FONT COLOR="#003399"><em>text and/or macro language statements</em> 
+              </font></dd>
+		<dt><FONT COLOR="#003399"><strong>%END;</strong></font></dt>
+		    <dt><FONT COLOR="#003399"><strong>%ELSE %DO;</strong></font></dt>
+		    <dd><FONT COLOR="#003399"> <em>text and/or macro language statements</em></font></dd>
+	<dt><FONT COLOR="#003399"><strong>%END</strong>;</font></dt></dl>
+	  </BLOCKQUOTE>
+	  where <font color="#003399"><em>text and/or macro language statements</em></font> is either constant text, a text expression, and/or a macro statement.
+	      </td>
+    </tr>
+  </table>
+<P><BR>
+<table border="0" cellpadding="2" width="85%" align="center" cellspacing="0">
+    <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif"  alt="Note:" width="20" height="20"></td>
+      <td valign="top">The statements <nobr>%IF</nobr>-<nobr>%THEN</nobr>, <nobr>%ELSE</nobr>, <nobr>%DO</nobr>, and %END are macro 
+        language statements that can be used only inside a macro program. </td>
+    </tr>
+  </table>
+
+
+
+<p><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><strong>Example</strong> 
+<p>You can control text that is copied to the input stack with the <nobr>%IF</nobr>-<nobr>%THEN</nobr> while 
+          controlling DATA step logic with IF-THEN. In this example, the value 
+          of the macro variable <code>status</code> determines which variables 
+          will be included in the new data set. The value of the data set variable 
+          <code>Location</code> determines the value of the new data set variable 
+          <code>Totalfee</code>. 
+        <pre><font color="#003399">    %macro choice(status);
+       data fees;
+          set sasuser.all;
+          <strong>%if</strong> &amp;status=PAID <strong>%then %do;</strong>
+             where paid='Y';
+             keep student_name course_code begin_date totalfee;
+          <strong>%end;</strong>
+          <strong>%else %do;</strong>
+             where paid='N';
+             keep student_name course_code
+                  begin_date totalfee latechg;
+             latechg=fee*.10;
+          <strong>%end;</strong>
+          /* add local surcharge */
+         <strong> if</strong> location='Boston' <strong>then</strong> totalfee=fee*1.06;
+          <strong>else if</strong> location='Seattle'  <strong>then</strong> totalfee=fee*1.025;
+          <strong>else if</strong> location='Dallas'  <strong>then</strong> totalfee=fee*1.05;
+       run;
+    %mend choice;</font></pre>
+
+
+          If the MPRINT and MLOGIC system options are both set, the SAS log will 
+          display messages showing the text that is sent to the compiler. For 
+          example, suppose you submit the following macro call:<font color="#003399">
+      <pre>    options mprint mlogic;
+    %choice(PAID)
+</pre>
+      </font>
+
+The following messages will be written to the log. Notice that the MLOGIC option shows the evaluation of the 
+expression in the <nobr>%IF</nobr> statement, but it does not show the evaluation of the expression in the IF statement.<P><BR>
+<div align="center"> SAS Log 
+  <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+    <tr>
+      <td>
+        <pre>
+160  %choice(PAID)
+MLOGIC(CHOICE): Beginning execution.
+<strong>MLOGIC(CHOICE): Parameter STATUS has value PAID</strong>
+MPRINT(CHOICE): data fees;
+MPRINT(CHOICE): set sasuser.all;
+<strong>MLOGIC(CHOICE): %IF condition &amp;status=PAID is TRUE</strong>
+MPRINT(CHOICE): where paid='Y';
+MPRINT(CHOICE): keep student_name course_code begin_date totalfee;
+MPRINT(CHOICE): if location='Boston' then totalfee=fee*1.06;
+MPRINT(CHOICE): else if location='Seattle' then totalfee=fee*1.025;
+MPRINT(CHOICE): else if location='Dallas' then totalfee=fee*1.05;
+MPRINT(CHOICE): run;
+</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+<p><br>
+          Suppose you submit the following macro call:
+<pre><font color="#003399">    options mprint mlogic;
+    %choice(OWED)
+</font></pre>
+The following messages will be sent to the SAS log. Notice that the text that is written to the input stack is different this time.<P><BR>
+<div align="center"> SAS Log 
+  <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+    <tr>
+              <td> <pre>
+161  %choice(OWED)
+MLOGIC(CHOICE): Beginning execution.
+<strong>MLOGIC(CHOICE): Parameter STATUS has value OWED</strong>
+MPRINT(CHOICE): data fees;
+MPRINT(CHOICE): set sasuser.all;
+MLOGIC(CHOICE): %IF condition &amp;status=PAID is FALSE
+<strong>MPRINT(CHOICE): where paid='N';
+MPRINT(CHOICE): keep student_name course_code begin_date totalfee 
+                latechg;
+MPRINT(CHOICE): latechg=fee*.10;</strong>
+MPRINT(CHOICE): if location='Boston' then totalfee=fee*1.06;
+MPRINT(CHOICE): else if location='Seattle' then totalfee=fee*1.025;
+MPRINT(CHOICE): else if location='Dallas' then totalfee=fee*1.05;
+MPRINT(CHOICE): run;
+</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+  </td></tr></table><P><br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

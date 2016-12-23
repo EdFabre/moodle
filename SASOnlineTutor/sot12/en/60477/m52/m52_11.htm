@@ -1,0 +1,121 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Developing 
+      and Debugging Macros<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P> <h2>Monitoring Execution with System Options</h2>
+        <P> In the last example, you saw that when you call a macro, the text 
+          that is sent to the compiler does not appear in the SAS log. But sometimes 
+          you might want to see this text. There are SAS system options that can 
+          display information about the execution of a macro in the SAS log. This 
+          can be especially helpful for debugging purposes. 
+        <P><BR>
+        <h2>The MPRINT Option</h2>
+        <P>When the MPRINT option is specified, the text that is sent to the SAS compiler 
+        as a result of macro execution is printed in the SAS log. 
+      <P><BR>
+</td></tr></table>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, MPRINT|NOMPRINT option">
+    <tr> 
+      <td align="left"><STRONG>General form, MPRINT | NOMPRINT option:</STRONG>
+	  <BLOCKQUOTE>
+	    <FONT COLOR="#003399"><strong>OPTIONS MPRINT</strong> | <strong>NOMPRINT</strong>;<BR></FONT>
+	  </BLOCKQUOTE>
+	    <p>where <ul>
+          <li><font color="#003399"><strong>NOMPRINT</strong></font> is the default 
+            setting, and specifies that the text that is sent to the compiler 
+            when a macro executes is not printed in the SAS log 
+          <li><font color="#003399"><strong>MPRINT</strong></font> specifies that the text that is sent to the compiler when a macro executes is printed in the SAS log. 
+		</ul></td>
+    </tr>
+  </table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+  You might want to specify the MPRINT system option if 
+<UL>
+<li>you have a SAS syntax error or execution error
+<li>you want to see the generated SAS code.
+</UL><P><BR>
+<strong>Example</strong>
+      <P> Suppose you want to call the <strong>Prtlast</strong> macro and to use the 
+        MPRINT system option to show the SAS code that results from the macro 
+        execution. 
+      <P>Catalog Entry
+<TABLE title="Catalog Entry" bgcolor="#f7f7de"><TR>
+<TD><PRE>
+%macro prtlast;
+   proc print data=&amp;syslast(obs=5);
+      title &quot;Listing of &amp;syslast data set&quot;;
+   run;
+%mend;</PRE></TD>
+</TR></TABLE><P><BR>
+          The following sample code creates a data set named <strong>Sales</strong>, 
+          specifies the MPRINT option, then references the <strong>Prtlast</strong> 
+          macro:<font color="#003399"><pre>    data sales;
+      price_code=1;
+    run;
+    options mprint;
+    %prtlast</pre></font>
+The messages that are written to the SAS log show the text that is sent to the compiler. Notice that the macro variable 
+reference (<code>&amp;SYSLAST</code>) is resolved to the value <em>Work.Sales</em> in the MPRINT messages that are written to the SAS log.<P><BR>
+
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+101  %prtlast
+<strong>MPRINT(PRTLAST): proc print data=WORK.SALES (obs=5);
+MPRINT(PRTLAST): title &quot;Listing of WORK.SALES&quot;;
+MPRINT(PRTLAST): run;</strong>
+
+NOTE: There were 1 observations read from the dataset WORK.SALES.
+NOTE: PROCEDURE PRINT used:
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+</pre></td></tr>
+</table> </div>
+
+
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

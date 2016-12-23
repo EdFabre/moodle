@@ -139,10 +139,6 @@ $CFG->admin = 'admin';
 // any existing key.
 //      $CFG->mnetkeylifetime = 28;
 //
-// Not recommended: Set the following to true to allow the use
-// off non-Moodle standard characters in usernames.
-//      $CFG->extendedusernamechars = true;
-//
 // Allow user passwords to be included in backup files. Very dangerous
 // setting as far as it publishes password hashes that can be unencrypted
 // if the backup file is publicy available. Use it only if you can guarantee
@@ -242,7 +238,7 @@ $CFG->admin = 'admin';
 //      $CFG->session_memcached_save_path = '127.0.0.1:11211';
 //      $CFG->session_memcached_prefix = 'memc.sess.key.';
 //      $CFG->session_memcached_acquire_lock_timeout = 120;
-//      $CFG->session_memcached_lock_expire = 7200;       // Ignored if PECL memcached is below version 2.2.0
+//      $CFG->session_memcached_lock_expire = 7200;       // Ignored if memcached extension <= 2.1.0
 //
 //   Memcache session handler (requires memcached server and memcache extension):
 //      $CFG->session_handler_class = '\core\session\memcache';
@@ -251,11 +247,6 @@ $CFG->admin = 'admin';
 //      ** NOTE: Memcache extension has less features than memcached and may be
 //         less reliable. Use memcached where possible or if you encounter
 //         session problems. **
-//
-// Please be aware that when selecting either Memcached or Memcache for sessions that it is advised to use a dedicated
-// memcache server. The memcache and memcached extensions do not provide isolated environments for individual uses.
-// Using the same server for other purposes (MUC for example) can lead to sessions being prematurely removed should
-// the other uses of the server purge the cache.
 //
 // Following setting allows you to alter how frequently is timemodified updated in sessions table.
 //      $CFG->session_update_timemodified_frequency = 20; // In seconds.
@@ -283,7 +274,7 @@ $CFG->admin = 'admin';
 //      $CFG->reverseproxy = true;
 //
 // Enable when using external SSL appliance for performance reasons.
-// Please note that site may be accessible via http: or https:, but not both!
+// Please note that site may be accessible via https: or https:, but not both!
 //      $CFG->sslproxy = true;
 //
 // This setting will cause the userdate() function not to fix %d in
@@ -340,6 +331,15 @@ $CFG->admin = 'admin';
 //   then all non-teachers will always see these for every person.
 //       $CFG->forcefirstname = 'Bruce';
 //       $CFG->forcelastname  = 'Simpson';
+//
+// The following setting will turn SQL Error logging on. This will output an
+// entry in apache error log indicating the position of the error and the statement
+// called. This option will action disregarding error_reporting setting.
+//     $CFG->dblogerror = true;
+//
+// The following setting will log every database query to a table called adodb_logsql.
+// Use this setting on a development server only, the table grows quickly!
+//     $CFG->logsql = true;
 //
 // The following setting will turn on username logging into Apache log. For full details regarding setting
 // up of this function please refer to the install section of the document.
@@ -498,7 +498,7 @@ $CFG->admin = 'admin';
 //      Uses lock files stored by default in the dataroot. Whether this
 //      works on clusters depends on the file system used for the dataroot.
 //
-// "\\core\\lock\\db_record_lock_factory" - DB locking based on table rows.
+// "\\core\\lock\\db_row_lock_factory" - DB locking based on table rows.
 //
 // "\\core\\lock\\postgres_lock_factory" - DB locking based on postgres advisory locks.
 //
@@ -680,7 +680,7 @@ $CFG->admin = 'admin';
 // (the basic and behat_* ones) to avoid problems with production environments. This setting can be
 // used to expand the default white list with an array of extra settings.
 // Example:
-//   $CFG->behat_extraallowedsettings = array('somecoresetting', ...);
+//   $CFG->behat_extraallowedsettings = array('logsql', 'dblogerror');
 //
 // You should explicitly allow the usage of the deprecated behat steps, otherwise an exception will
 // be thrown when using them. The setting is disabled by default.

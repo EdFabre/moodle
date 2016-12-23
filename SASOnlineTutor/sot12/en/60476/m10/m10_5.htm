@@ -1,0 +1,144 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Writing 
+      a PROC SQL Step<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Before creating a query, you must first&nbsp;reference the library in which 
+          your table is stored. Then you write a PROC SQL step to query your table.</p>
+    </td>
+  </tr>
+</table>
+<p> <br>
+<center>
+    <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, basic PROC SQL step to perform a query">
+      <tr> 
+        <td align="left"><strong>General form, basic PROC SQL step to perform 
+          a query:</strong> <blockquote> <font color="#003399"><strong>PROC SQL;<br>
+            &nbsp; &nbsp; &nbsp;SELECT</strong> <em>column-1</em>&lt;, <em>.&nbsp;. 
+            .</em> <em>column-n&gt;</em><br>
+            <nobr>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>FROM</strong> <em>table-1</em> 
+            | <em>view-1</em>&lt;, <em>...</em> <em>table-n</em> | <em>view-n</em>&gt;</nobr><br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;<strong>WHERE</strong> <em>expression</em>&gt;<br>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;<strong>GROUP BY </strong> <em>column-1&lt;, 
+            ... column-n</em>&gt;&gt; <br>
+            <nobr>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;<strong>ORDER BY</strong> 
+            <em>column-1</em>&lt;, &nbsp;<em>... column-n</em>&gt;&gt;<strong>;</strong></nobr></font> 
+          </blockquote>
+          <p> where 
+          <ul>
+            <li> <strong><font color="#003399">PROC SQL</font></strong> invokes 
+              the SQL procedure 
+            <li> <strong><font color="#003399">SELECT</font></strong> specifies 
+              the column(s) to be selected 
+            <li> <strong><font color="#003399">FROM</font></strong> specifies 
+              the table(s) to be queried 
+            <li> <strong><font color="#003399">WHERE </font></strong>subsets the&nbsp;data 
+              based on a condition
+            <li><strong><font color="#003399">GROUP BY</font> </strong>classifies 
+              the data into groups based on the specified column(s) 
+            <li> <strong><font color="#003399">ORDER BY</font></strong><font color="#003399"> 
+              </font>sorts the rows that the query returns by the value(s) of 
+              the specified <nobr>column(s).</nobr> 
+          </ul>
+          <table width="85%" border="0" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+              <td valign="top">Unlike other SAS procedures, the order of clauses 
+                within a SELECT statement in PROC SQL is important. Clauses must 
+                appear in the order shown above.</td>
+            </tr>
+          </table>
+          <br>
+          <table cellspacing="0" cellpadding="2">
+            <tr valign="Top"> 
+              <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+              <td>A query can also include a HAVING clause, which is introduced 
+                at the end of this lesson. To learn more about the HAVING clause, 
+                see the lesson 
+                <!--lesson reference-->
+                <strong> 
+                <script>document.write(m70title);</script></strong>.</td>
+            </tr>
+          </table> </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+        <td align="left"><strong><br>
+          The SELECT Statement</strong> 
+          <p> The SELECT <strong>statement</strong>, which follows the PROC SQL 
+            statement, retrieves and displays data. It is composed of <strong>clauses</strong>, 
+            each of which begins with a keyword and is followed by one or more 
+            components. The SELECT statement in the following sample code contains 
+            four clauses: the required clauses SELECT and FROM, and the optional 
+            clauses WHERE and ORDER BY. The end of the statement is indicated 
+            by a semicolon. 
+        </td>
+    </tr>
+  </table>
+  <p>&nbsp; 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+          <td> <pre>     <font color="#003399">proc sql;</font>
+      <font color="Red">|-</font><font color="#003399"><strong>select</strong> empid,jobcode,salary,</font>
+      <font color="Red">|</font>        <font color="#003399">salary*.06 as bonus</font>
+      <font color="Red">|----</font><font color="#003399"><strong>from</strong> sasuser.payrollmaster</font>
+      <font color="Red">|----</font><font color="#003399"><strong>where</strong> salary&lt;32000</font>
+      <font color="Red">|----</font><font color="#003399"><strong>order by</strong> jobcode</font><strong><font color="Red">;</font></strong></pre> 
+          </td>
+      </tr>
+    </table>
+      <br>
+      <table border="0" cellpadding="2" cellspacing="0" width="85%" align="center">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">A PROC SQL step that contains one or more SELECT statements 
+            is referred to as a PROC SQL query. The SELECT statement is only one 
+            of several statements that can be used with PROC SQL.</td>
+        </tr>
+      </table>
+      <br>
+      <br>
+    </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

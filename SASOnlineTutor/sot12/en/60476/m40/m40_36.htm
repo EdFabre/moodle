@@ -1,0 +1,195 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Defining 
+      Variable Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Using Computed Variables</strong></p>
+      <p>The last type of variable usage is reserved for <strong>computed</strong> 
+        variables, which are numeric or character variables that you define for 
+        the report. They are not in the input data set, and PROC REPORT doesn't 
+        add them to the input data set. You can't change the usage of a computed 
+        variable.</p>
+      <p>In the nonwindowing environment, you add a computed variable as follows:</p>
+      <ol>
+        <li>Include the computed variable in the COLUMN statement. </li>
+        <li>Define the variable's usage as COMPUTED in the DEFINE statement. </li>
+        <li>Compute the value of the variable in a compute block that is associated 
+          with the variable. </li>
+      </ol>
+    </td>
+  </tr>
+</table>
+<center>
+  <table width="85%" border="0" cellspacing="0" cellpadding="2">
+    <tr valign="top"> 
+      <td width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:"></td>
+      <td><strong>The position of a computed variable is important.</strong> PROC 
+        REPORT assigns values to the columns in a row of a report from left to 
+        right. Consequently, you can't base the calculation of a computed variable 
+        on any variable that appears to its right in the report. </td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>Let's see how you create a new variable for your report.</p>
+        <p><br>
+          <strong>Example</strong></p>
+          <p>Suppose you want to determine the number of empty seats for each 
+            flight. To do so, you can compute the variable <code>EmptySeats</code> 
+            by subtracting the number of passengers deplaning (<code>Deplaned</code>) 
+            from the plane's total seats (<code>Capacity</code>), assuming that 
+            the plane is full. </p>
+        <p>In the following program, you </p>
+        <ul>
+          <li>specify <code>EmptySeats</code> in the COLUMN statement to the right 
+            of the variables that are used in its calculation.<br>
+            <br>
+          </li>
+          <li>define <code>EmptySeats</code> as a computed variable in a DEFINE 
+            statement.<br>
+            <br>
+          </li>
+          <li>begin a compute block by specifying <code>EmptySeats</code> in a 
+            COMPUTE statement.<br>
+            <br>
+          </li>
+          <li> use DATA step statements in the compute block to calculate <code>EmptySeats</code>' 
+            value. Notice that when you refer to an analysis variable, you use 
+            a <strong>compound name</strong> that identifies both the original 
+            variable and the statistic that PROC REPORT now calculates from it. 
+            The compound name has the form <font color="#003399"><em>variable-name.statistic</em></font>.<br>
+            <br>
+          </li>
+          <li>close the compute block with an ENDCOMP statement.</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">proc report data=flights.europe nowd;
+        where dest in ('LON','PAR'); 
+        column flight capacity deplaned <strong>emptyseats</strong>;
+        define flight / width=6;
+        <strong>define emptyseats / computed 'Empty Seats';</strong>
+<font color="red"><strong>        compute emptyseats;
+           emptyseats=capacity.sum-deplaned.sum;
+        endcomp;</strong></font>
+     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>The program creates the following output.</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> </font> <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  </font> <br>
+  Partial PROC REPORT Output<br>
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="Partial PROC REPORT output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Capacity</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Deplaned</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Empty 
+        Seats</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        250</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        222</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        28</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">271</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        250</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        163</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        87</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">271</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        250</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        227</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        23</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        250</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        222</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        28</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        250</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        158</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        92</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

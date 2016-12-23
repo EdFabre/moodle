@@ -114,11 +114,7 @@ class auth_plugin_base {
         'department',
         'phone1',
         'phone2',
-        'address',
-        'firstnamephonetic',
-        'lastnamephonetic',
-        'middlename',
-        'alternatename'
+        'address'
     );
 
     /**

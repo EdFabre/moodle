@@ -1,0 +1,119 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Controlling 
+      Data in the Audit Trail<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>User Variables</h2>
+        <p>User variables allow the person editing the file to enter information 
+          about changes they are making to the data. Although the data values 
+          are stored in the audit file, you can update them in the data set like 
+          any other variable. </p>
+        <p>User variables are created by using the USER_VAR statement in the audit 
+          trail specification.</p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, USER_VAR statement">
+    <tr> 
+      <td align="left"><strong>General form, USER_VAR statement:</strong> <blockquote> 
+          <font color="#003399"><nobr><strong>USER_VAR</strong> <em>variable-name</em> 
+          &lt;$&gt;&lt;<em>length</em>&gt;&lt;<strong>LABEL='</strong><em>variable-label</em><strong>'</strong>&gt;<strong>;</strong><br>
+          </nobr></font> </blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>variable-name</em></font> is the name 
+            of the user variable you are creating 
+          <li><font color="#003399">$</font> indicates the variable is a character 
+            variable 
+          <li> <font color="#003399"><em>length</em></font> specifies the length 
+            of the variable (the default is 8) 
+          <li> <font color="#003399"><em>variable-label </em></font> specifies 
+            a label for the variable enclosed in quotation marks. 
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You can create more than one user variable in a single 
+              USER_VAR statement.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>User variables are unique in SAS in that they are stored in one file 
+          (the audit file) and opened for update in another file (the data set). 
+          When the data set is opened for update, the user variables display, 
+          and you can edit them as though they are part of the data set. </p>
+        <h2><br>
+          Example</h2>
+        <p>Suppose you must monitor the updates for the data set <strong>Capinfo</strong>. 
+          The following code initiates an audit trail for the data set <strong>Capinfo</strong> 
+          and creates two user variables, <code>who</code> and <code>why</code>, 
+          to store who made changes to the data set and why the changes were made.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If you choose to run this example, you must copy 
+              the data set <strong>Capinfo </strong>from the <strong>Sasuser</strong> library to 
+              the <strong>Work</strong> library.</td>
+          </tr>
+        </table>
+        <pre>    <font color="#003399"> proc datasets nolist;
+        audit capinfo;
+        initiate;
+        user_var who $20 label = 'Who made the change'
+                 why $20 label = 'Why the change was made';
+     quit;</font>
+</pre>
+        <p>Once these user variables are set up, they are retrieved from the audit 
+          trail and displayed when the data set is opened for update. You can 
+          enter data values for the user variables as you would for any data variable. 
+          The data values are saved to the audit trail as each observation is 
+          saved. The user variables are not available when the data is opened 
+          for browsing or printing. To rename a user variable or modify its attributes, 
+          you modify the data set, not the audit file. </p></td>
+    </tr>
+  </table>
+  <p> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

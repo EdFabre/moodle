@@ -1,0 +1,281 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Character Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><STRONG>TRIM Function</STRONG> </p>
+      <P> The <STRONG>TRIM</STRONG> function enables you to remove trailing blanks 
+        from character values. To learn about the TRIM function, let's modify 
+        the data set <STRONG>Hrd.Temp</STRONG>. 
+      <P> The data set <STRONG>Hrd.Temp</STRONG> contains four address variables: 
+        <CODE>Address</CODE>, <CODE>City</CODE>, <CODE>State</CODE>, and <CODE>Zip</CODE>.</td>
+  </tr>
+</table>
+<P align="center"> <BR>
+  SAS Data Set Hrd.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+<thead>
+<TR valign="top">
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Agency</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Address</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>State</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Zip</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>StartDate</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>EndDate</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>PayRate</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Days</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Hours</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F274</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CICHOCK, ELIZABETH MARIE</font></TD>
+<TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>65 ELM DR</STRONG></font></TD>
+<TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>CARY</STRONG></font></TD>
+<TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>NC</STRONG></font></TD>
+<TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>27513</STRONG></font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6224549</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14567</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14621</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">88</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F101</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BENINCASA, HANNAH LEE</font></TD>
+<TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>11 SUN DR</STRONG></font></TD>
+<TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>CARY</STRONG></font></TD>
+<TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>NC</STRONG></font></TD>
+<TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>27513</STRONG></font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6223251</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14524</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14565</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">25</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">200</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>You need to create one address variable that contains the values of 
+        the three variables <CODE>Address</CODE>, <CODE>City</CODE>, and <CODE>Zip</CODE>. 
+        (Because all temporary employees are hired locally, the value of <CODE>State</CODE> 
+        does not need to be included in the new variable.)</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+  SAS Data Set Hrd.NewTemp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+<thead>
+<TR valign="top">
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Agency</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>NewAddress</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>StartDate</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>EndDate</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>PayRate</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Days</b></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Hours</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F274</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CICHOCK, ELIZABETH MARIE</font></TD>
+<TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>65 ELM DR, CARY, 27513</STRONG></font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6224549</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14567</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14621</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">88</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F101</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BENINCASA, HANNAH LEE</font></TD>
+<TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>11 SUN DR, CARY, 27513</STRONG></font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6223251</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14524</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14565</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">25</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">200</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>Writing a DATA step to create this new variable is easy. You include 
+        an assignment statement that contains the concatenation operator (||), 
+        as shown below. 
+        <PRE>
+     <FONT color="#003399">data hrd.newtemp(drop=address city state zip);</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399">NewAddress=address||', '||city||', '||zip;</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE>
+        <P> The <strong>concatenation operator</strong> (<strong>||</strong>) enables you to concatenate character 
+          values. In this assignment statement, the character values of <CODE>Address</CODE>, 
+          <CODE>City</CODE>, and <CODE>Zip</CODE> are concatenated with two character 
+          constants that consist of a comma and a blank. The commas and blanks 
+          are needed to separate the street, city, and ZIP code values. The length 
+          of <CODE>NewAddress</CODE> is the sum of the length of each variable 
+          and constant that is used to create the new variable. Notice that this 
+          DATA step drops the original address variables from the new data set. 
+        <P> When the DATA step is executed, you notice that the values of <CODE>NewAddress</CODE> 
+          do not appear as expected. The values of the new variable contain embedded 
+          blanks. </TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+  SAS Data Set Hrd.NewTemp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+<thead>
+<TR valign="top">
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>NewAddress</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>65 ELM DRIVE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, CARY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, 27513</TT></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>11 SUN DRIVE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, CARY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, 27513</TT></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>712 HARDWICK STREET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, CHAPEL HILL&nbsp;&nbsp;&nbsp;&nbsp;, 27514</TT></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>5372 WHITEBUD ROAD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, RALEIGH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, 27612</TT></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>These blanks appear in the values of <CODE>NewAddress</CODE> because 
+        the values of the original address variables contained trailing blanks. 
+        Whenever the value of a character variable does not match the length of 
+        the variable, SAS pads the value with trailing blanks.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+<thead>
+<TR valign="top">
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Address</b><FONT size="1"><BR>length=32</FONT></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City</b><FONT size="1"><BR>length=15</FONT></font></TD>
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Zip</b><FONT size="1"><BR>length=5</FONT></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>65 ELM DRIVE<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT></TT></TD>
+<TD bgcolor="#FFFFFF"><TT>RALEIGH<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT></TT></TD>
+<TD bgcolor="#FFFFFF"><TT>27612</TT></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>11 SUN DRIVE<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT></TT></TD>
+<TD bgcolor="#FFFFFF"><TT>DURHAM<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT></TT></TD>
+<TD bgcolor="#FFFFFF"><TT>27612</TT></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>712 HARTWICK STREET<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT></TT></TD>
+<TD bgcolor="#FFFFFF"><TT>CHAPEL HILL<FONT color="#999999">&middot;&middot;&middot;&middot;</FONT></TT></TD>
+<TD bgcolor="#FFFFFF"><TT>27514</TT></TD>
+</TR>
+</tbody>
+</TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>So, when the original address values are concatenated to create <CODE>NewAddress</CODE>, 
+        the trailing blanks in the original values are included in the values 
+        of the new variable. The variable <code>Zip</code> is the only one that 
+        does not contain trailing blanks.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+<thead>
+<TR valign="top">
+<TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>NewAddress</b><FONT size="1"><BR>
+            length=56</FONT></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>65 ELM DRIVE<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT>,&nbsp;RALEIGH<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT>,&nbsp;27612</TT></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>11 SUN DRIVE<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT>,&nbsp;DURHAM<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT>,&nbsp;27612</TT></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><TT>712 HARTWICK STREET<FONT color="#999999">&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;&middot;</FONT>,&nbsp;CHAPEL HILL<FONT color="#999999">&middot;&middot;&middot;&middot;</FONT>,&nbsp;27514</TT></TD>
+</TR>
+</tbody>
+</TABLE>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

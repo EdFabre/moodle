@@ -1,0 +1,204 @@
+<html><!-- InstanceBegin template="/Templates/opt_summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong>
+      <script>document.write(summaryTitle)</script>
+      </strong></font>
+	  
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left">
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+  <br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td><!-- InstanceBeginEditable name="TextSummary" --> 
+      <p><strong>Using an Index for Efficient WHERE Processing</strong><br>
+        When processing a WHERE expression, SAS determines whether it is more 
+        efficient to access observations in a data set <a href="m85_3.htm" onClick="suggestBack()">sequentially</a>, 
+        by searching through all observations, or <a href="m85_4.htm" onClick="suggestBack()">directly</a>, 
+        by using an index to access specific observations. Using an index to process 
+        a WHERE expression might improve performance and is referred to as <a href="m85_2.htm" onClick="suggestBack()">optimizing</a> 
+        the WHERE expression. By deciding whether to create an index, you play 
+        a role in determining which access method SAS can use. </p>
+      <p>In order to decide whether to use an index, you must evaluate the <a href="m85_6.htm" onClick="suggestBack()">benefits 
+        and costs</a> of using an index. </p>
+      <p>SAS <a href="m85_7.htm" onClick="suggestBack()">performs a series of 
+        steps</a> to determine whether to process a WHERE expression by using 
+        an index or by reading all the observations in the data file sequentially.</p>
+      <hr size="1" noshade>
+      <p><strong>Identifying Available Indexes<br>
+        </strong>First, SAS determines whether there are any <a href="m85_8.htm" onClick="suggestBack()">existing 
+        indexes</a> that might be used to process the WHERE expression. Specifically, 
+        SAS checks the variable in each condition in the WHERE expression to determine 
+        whether the variable is a key variable in either a simple index or a composite 
+        index. No matter how many indexes are available, SAS can use only one 
+        index to process a WHERE expression. So, if <a href="m85_9.htm#multiple" onClick="suggestBack()">multiple 
+        indexes</a> are available, SAS must choose between them. </p>
+      <p>It is most common for SAS to use an index to process just one condition 
+        in a WHERE expression. However, in a process called <a href="m85_10.htm" onClick="suggestBack()">compound 
+        optimization</a>, SAS can use a composite index to optimize multiple conditions 
+        on multiple variables, which are joined with a logical operator such as 
+        AND. </p>
+      <hr size="1" noshade>
+      <p><strong>Identifying Conditions That Can Be Optimized</strong> <br>
+        Second, SAS looks for <a href="m85_12.htm" onClick="suggestBack()">operators 
+        and functions that can be optimized</a> in the WHERE conditions that contain 
+        key variables. There are also certain <a href="m85_13.htm" onClick="suggestBack()">operators 
+        and functions that cannot be optimized</a>. For <a href="m85_15.htm" onClick="suggestBack()">compound 
+        optimization</a>, WHERE conditions must meet slightly different criteria 
+        in order to be candidates for optimization.</p>
+      <hr size="1" noshade>
+      <p><strong>Estimating the Number of Observations<br>
+        </strong>Third, SAS estimates how many observations will be qualified 
+        by the index. When multiple indexes exist, SAS selects the one that appears 
+        to produce the fewest qualified observations (the smallest subset). Whether 
+        or not SAS uses an index depends on the <a href="m85_17.htm" onClick="suggestBack()">percentage 
+        of observations that are qualified</a> (the size of the subset relative 
+        to the size of the data set). It is more efficient to use indexed access 
+        for a small subset and sequential access for a large subset. If SAS estimates 
+        that the number of qualified observations is less than 3% of the data 
+        file, SAS automatically uses the index and does not go on to compare probable 
+        resource usage. </p>
+      <p> To help SAS estimate how many observations would be selected by a WHERE 
+        expression, each index stores 21 statistics called cumulative percentiles, 
+        or <a href="m85_18.htm" onClick="suggestBack()">centiles</a>. Centiles 
+        provide information about the distribution of values for the indexed variable. 
+      </p>
+      <p></p>
+      <hr size="1" noshade>
+      <p><strong>Comparing Probable Resource Usage</strong> <br>
+        Fourth, SAS decides whether it is faster (cheaper) to satisfy the WHERE 
+        expression by using the index or by reading all of the observations sequentially. 
+        To make the decision, SAS <a href="m85_20.htm" onClick="suggestBack()">predicts 
+        how many I/O operations</a> will be required in order to satisfy the WHERE 
+        expression for each of the access methods, and then compares the two resource 
+        costs. </p>
+      <p>Several <a href="m85_21.htm" onClick="suggestBack()">factors</a> affect 
+        the number of I/O operations that are required for WHERE processing, including 
+        the following:</p>
+      <ul>
+        <li>subset size relative to data set size</li>
+        <li>number of pages in the data file</li>
+        <li>order of the data</li>
+        <li>cost to uncompress a compressed file for a sequential read.</li>
+      </ul>
+      <p><a href="m85_22.htm" onClick="suggestBack()">Data type and length</a> 
+        are two other factors that affect index efficiency.</p>
+      <hr size="1" noshade>
+      <p><strong>Deciding Whether to Create an Index </strong><br>
+        When you use a WHERE expression to select a subset, you can use specific 
+        <a href="m85_24.htm" onClick="suggestBack()">guidelines</a> to decide 
+        whether it is efficient to create an index. Depending on factors such 
+        as the <a href="m85_25.htm" onClick="suggestBack()">size of the subset 
+        relative to the size of the data set</a>, you might or might not choose 
+        to create an index. </p>
+      <p>In most situations, it is best to let SAS determine whether or not to 
+        use an index for WHERE processing. However, sometimes you might want to 
+        control whether or not SAS uses an existing index. You can use either 
+        of the data set options <a href="m85_27.htm" onClick="suggestBack()">IDXWHERE= 
+        or IDXNAME=</a>, but not both at the same time, to control index usage. 
+        You can specify <a href="m85_27.htm#msglevel" onClick="suggestBack()">MSGLEVEL=I</a> 
+        to tell SAS to display information about index usage in the SAS log.</p>
+      <hr size="1" noshade>
+      <p><strong>Comparing Procedures That Produce Detail Reports </strong><br>
+        When you want to use a query to produce a detail report, you can choose 
+        between <a href="m85_28.htm" onClick="suggestBack()">the PRINT procedure 
+        and the SQL procedure</a>. To perform a particular task, a single-purpose 
+        tool like PROC PRINT generally uses fewer computer resources than a multi-purpose 
+        tool like PROC SQL. However, PROC SQL often requires fewer and shorter 
+        statements to achieve the results that you want. </p>
+      <p>For <a href="m85_29.htm" onClick="suggestBack()">detail reports</a>, 
+        a PROC PRINT step often, but not always, uses fewer resources than a PROC 
+        SQL step:</p>
+      <ul>
+        <li>PROC PRINT is usually more efficient than PROC SQL for generating 
+          a simple detail report, a subset detail report, and a sorted detail 
+          report.<br>
+          <br>
+        </li>
+        <li>PRINT PRINT and PROC SQL will likely have similar resource usage for 
+          generating a sorted subset detail report.</li>
+      </ul>
+      <hr size="1" noshade>
+      <p><strong>Comparing Tools for Summarizing Data </strong> <br>
+        SAS provides a variety of <a href="m85_31.htm" onClick="suggestBack()">tools 
+        for summarizing data</a>, including the MEANS procedure (or SUMMARY procedure), 
+        the TABULATE procedure, the REPORT procedure, the SQL procedure, and the 
+        DATA step. </p>
+      <p>If you are summarizing data for one class variable, the tools in each 
+        of the following groups are similar in resource usage: </p>
+      <ul>
+        <li>PROC MEANS (or PROC SUMMARY), PROC REPORT, and PROC TABULATE</li>
+        <li>PROC SQL and the DATA step.</li>
+      </ul>
+      <p>However, the relative <a href="m85_31.htm#compare" onClick="suggestBack()">efficiency</a> 
+        of the two groups of tools varies according to the shape of the data. 
+      <p>You can use PROC MEANS in a variety of ways to <a href="m85_34.htm" onClick="suggestBack()">produce 
+        summary statistics for combinations of class variables</a>. Each combination 
+        of class variables is called a <a href="m85_36.htm" onClick="suggestBack()">type</a>. 
+      </p>
+      <p>To summarize data for <strong>all</strong> combinations of class variables, 
+        you can use a <a href="m85_35.htm" onClick="suggestBack()">basic PROC 
+        MEANS step</a> (or PROC SUMMARY step). To produce summary statistics for 
+        <strong>specific</strong> combinations of class variables, you can use 
+        PROC MEANS in the following ways :</p>
+      <ul>
+        <li> the <a href="m85_37.htm" onClick="suggestBack()">TYPES statement</a> 
+          in a PROC MEANS step</li>
+        <li> the <a href="m85_38.htm" onClick="suggestBack()">NWAY option</a> 
+          in multiple PROC MEANS steps</li>
+        <li> the <a href="m85_39.htm" onClick="suggestBack()">WHERE= option</a> 
+          in a PROC MEANS step.</li>
+      </ul>
+      <p>These three techniques vary in <a href="m85_34.htm#compare" onClick="suggestBack()">efficiency</a>; 
+        the TYPES statement in PROC MEANS is the most efficient. </p>
+      <p>You can also use the <a href="m85_42.htm" onClick="suggestBack()">WAYS 
+        statement</a> in PROC MEANS to produce summary statistics for specific 
+        combinations of class variables.</p>
+      <p>Review the related comparative examples:</p>
+      <ul>
+        <li><a href="m85_32.htm" onClick="suggestBack()">Displaying Summary Statistics 
+          for One Class Variable</a></li>
+        <li><a href="m85_40.htm" onClick="suggestBack()">Displaying Summary Statistics 
+          for Combinations of Class Variables</a>.</li>
+      </ul>
+      <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<P> <br>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

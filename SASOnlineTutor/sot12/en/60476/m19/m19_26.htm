@@ -1,0 +1,181 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Informats<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>DATA Step Processing of Informats</strong> </p>
+      <p> Let's place our INPUT statement in a DATA step and submit it for processing. 
+        Remember that after the DATA step is submitted, it is compiled and then 
+        executed. 
+    </td>
+  </tr>
+</table>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">data perm.empinfo;</font>
+        <font color="#003399">infile empdata;</font>
+        <font color="#003399"><strong>input @9 FirstName $5. @1 LastName $7. +7 JobTitle 3.</strong></font>
+        <font color="#003399"><strong>      @19 Salary comma9.;</strong></font>
+     <font color="#003399">run;</font>     
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">During the compile phase, the character variables in the 
+        program data vector are defined with the exact length specified by the 
+        informat. But notice that the lengths that are defined for <code>JobTitle</code> 
+        and <code>Salary</code> in the program data vector are different from 
+        the lengths that are specified by their informats.</td>
+    </tr>
+  </table>
+  <p> 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td><tt> <font color="Blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        </font><font color="Red">123</font> <font color="Blue">123456789</font> 
+        </tt></td>
+    </tr>
+    <tr> 
+      <td><font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <tr> 
+            <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---<font color="red"><strong>V</strong></font>-<font color="red"><strong>V</strong></font>-<strong><font color="blue">V</font></strong>20---+-<font color="blue"><strong>V</strong></font>-</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+          </tr>
+          <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">EVANS&nbsp;&nbsp;&nbsp;DONNY&nbsp;<span style="background-color: #CCCC99">112</span>&nbsp;<span style="background-color: #CCCC99">29,996.63</span>&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HELMS&nbsp;&nbsp;&nbsp;LISA&nbsp;&nbsp;<span style="background-color: #CCCC99">105</span>&nbsp;<span style="background-color: #CCCC99">18,567.23</span>&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HIGGINS&nbsp;JOHN&nbsp;&nbsp;<span style="background-color: #CCCC99">111</span>&nbsp;<span style="background-color: #CCCC99">25,309.00</span>&nbsp;</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></font> </td>
+    </tr>
+  </table>
+  <p> <br>
+    <img src="images/m19f6g1.gif" width="366" height="90" alt="Program Data Vector"> 
+</center>
+<p>
+  <center>
+  </center>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>Remember, by default, SAS stores numeric values (no matter 
+        how many digits the value contains) as floating-point numbers in 8 bytes 
+        of storage. The length of a stored numeric variable is not affected by 
+        an informat's width nor by other column specifications in an INPUT statement. 
+        <p> However, it is still necessary to specify the actual width of a raw 
+          data field in an INPUT statement. Otherwise, if you specify a default 
+          field width of 8 for all numeric values, you'll get inappropriate variable 
+          values when the program executes. 
+          <p> In the following example, the values for <code>JobTitle</code> would 
+            contain embedded blanks, thus creating invalid numeric values. </td>
+    </tr>
+  </table>
+  <p> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td> 
+          <pre>     <font color="#003399">data perm.empinfo;</font>
+        <font color="#003399">infile empdata;</font>     
+        <font color="#003399">input @9 FirstName $5. @1 LastName $7.</font>
+              <font color="#003399">+7 <strong>JobTitle 8.</strong> @19 Salary <strong>comma8.</strong>;</font>
+     <font color="#003399">run;</font>  
+</pre>
+        </td>
+      </tr>
+    </table>
+    <table border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><tt> <font color="Red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12345678</font> 
+          <br>
+           <font color="Blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12345678</font> </tt></td>
+      </tr>
+      <tr> 
+        <td><font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+          <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+            <tr> 
+              <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---<font color="red"><strong>V</strong></font>---<strong><font color="blue">V</font></strong>20<font color="red"><strong>V</strong></font>--+<font color="blue"><strong>V</strong></font>--</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+            </tr>
+            <tbody> 
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">EVANS&nbsp;&nbsp;&nbsp;DONNY&nbsp;<span style="background-color: #CCCC99">112&nbsp;29,9</span>96.63&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HELMS&nbsp;&nbsp;&nbsp;LISA&nbsp;&nbsp;<span style="background-color: #CCCC99">105&nbsp;18,5</span>67.23&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HIGGINS&nbsp;JOHN&nbsp;&nbsp;<span style="background-color: #CCCC99">111&nbsp;25,3</span>09.00&nbsp;</font></td>
+            </tr>
+            </tbody> 
+          </table>
+          </font></font> </td>
+      </tr>
+    </table>
+      <p> <br>
+        <img src="images/m19f6g2.gif" width="366" height="90" alt="Program Data Vector">
+      <table width="85%" border="0" cellpadding="2" cellspacing="0">
+        <p><br>
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">Remember that the <em>w</em> value of the informat 
+            represents the width of the field in the raw data file. The values 
+            for <code>JobTitle</code> only have a width of 3 in the raw data file. 
+            However, because they are numeric values, SAS stores them with a default 
+            length of 8. </td>
+        </tr>
+      </table>
+      <p><br>
+        <br>
+    </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

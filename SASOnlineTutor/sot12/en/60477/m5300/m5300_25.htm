@@ -1,0 +1,158 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create and access a stored compiled macro.</strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+<div id="eg1_eg2_eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+          <li>Copy the following program and paste it into the code editing window:<font color="#003399"> 
+            <pre>%macro printit(dataset);
+   proc print data=&dataset(obs=5);
+      title "Listing of &dataset data set";
+   run;
+%mend;
+</pre>
+            </font> Modify this macro definition in order to save it permanently 
+            in the <strong>Sasuser.Sasmacr</strong> catalog. Submit the program.<br>
+            <br>
+          <li>Write a PROC CATALOG step to list the contents of the <strong>Sasuser.Sasmacr</strong> 
+            catalog. Submit the program and examine the output to verify that 
+            the <strong>Printit</strong> macro has been saved to the catalog.<br>
+            <br>
+            
+          <li>Suppose you were to exit your SAS session <strong>(do not exit SAS 
+            at this time)</strong> and begin a new session. In the new SAS session, 
+            how would you call the <strong>Printit</strong> macro to print the 
+            <strong>Sasuser.Courses</strong> data set?
+			
+			 </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="le1_le2" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+        <td> <ol>
+            <li>Copy the following program and paste it into the code editing 
+              window:<font color="#003399"> 
+              <pre>%macro printit(dataset);
+   proc print data=&dataset(obs=5);
+      title "Listing of &dataset data set";
+   run;
+%mend;
+</pre>
+              </font> Modify this macro definition in order to save it permanently 
+              in the <strong>Sasuser.Sasmacr</strong> catalog. Submit the program.<br>
+              <br>
+            <li>Write a PROC CATALOG step to list the contents of the <strong>Sasuser.Sasmacr</strong> 
+              catalog. Submit the program and examine the output to verify that 
+              the <strong>Printit</strong> macro has been saved to the catalog.<br>
+              <br>
+              <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="24"><img src="../navimages/alert.gif" width="37"
+height="32" alt="Caution:"></td>
+                  <td valign="top">You will not be able to submit this code using 
+                    the SAS Learning Edition, but you can practice writing this 
+                    PROC CATALOG step and then compare your code to the solution 
+                    code. </td>
+                </tr>
+              </table>
+              <br>
+              <br>
+            <li>Suppose you were to exit your SAS session <strong>(do not exit 
+              SAS at this time)</strong> and begin a new session. In the new SAS 
+              session, how would you call the <strong>Printit</strong> macro to 
+              print the <strong>Sasuser.Courses</strong> data set? </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+ <!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_eg3_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+<ol><li>Submit the following program:  
+ <font color="#003399">
+              <pre>options mstored sasmstore=sasuser;
+ %macro printit(dataset)/store;
+    proc print data=&dataset(obs=5); 
+       title "Listing of the &dataset data set";
+    run;
+ %mend;</pre>
+              </font>
+ <li>Submit the following step:
+ <font color="#003399">
+              <pre>proc catalog catalog=sasuser.sasmacr;
+    contents;
+ quit;</pre>
+              </font>
+ The output should indicate that the <strong>Printit</strong> macro is now stored in the <strong>Sasuser.Sasmacr</strong> catalog.<br><br>
+ <li>To execute the <strong>Printit</strong> macro in a new SAS session, you would submit the following code:
+ <font color="#003399">
+              <pre>options mstored sasmstore=sasuser;
+ %printit(sasuser.courses)</pre>
+              </font></ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+
+
+<!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

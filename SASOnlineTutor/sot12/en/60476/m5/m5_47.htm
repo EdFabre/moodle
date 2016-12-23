@@ -1,0 +1,111 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(2); 
+   answer[1] = "table tolerance,maxhr rechr,mean;"
+   answer[2] = "table tolerance,rechr maxhr,mean;"
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='You specify Tolerance in the page expression, MaxHR and RecHR in \n';
+   right2='the row expression, and finally MEAN in the column expression.';
+   right3='';
+   
+   wrong1='Remember to specify pages, then rows, then columns \n';
+   wrong2='when writing your TABLE statement. Use commas to \n';
+   wrong3='separate the dimension expressions.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="yes";
+   var checkSemicolon="yes";
+   var useParens="no";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      One- and Three-Dimensional Tables<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->The following PROC TABULATE 
+          step creates a one-dimensional table and a two-dimensional table. Add 
+          a TABLE statement to create a three-dimensional table that displays 
+          separate pages for tolerance levels (<code>Tolerance</code>), rows for 
+          maximum heart rate (<code>MaxHR</code>) and recovery heart rate (<code>RecHR</code>), 
+          and a column for the statistic MEAN.<!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" --><PRE>
+<FONT color="#003399">proc tabulate data=clinic.stress format=8.;</FONT>
+<FONT color="#003399">   class tolerance;</FONT>
+<FONT color="#003399">   var resthr maxhr rechr timemin timesec;</FONT>
+<FONT color="#003399">   table mean*(resthr maxhr rechr);</FONT>
+<FONT color="#003399">   table tolerance,timemin timesec;</FONT>
+   <INPUT TYPE="text" size="50" NAME="anstext">
+<FONT color="#003399">run;</FONT>
+</PRE><!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

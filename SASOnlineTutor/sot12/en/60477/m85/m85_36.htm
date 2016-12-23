@@ -1,0 +1,199 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      Tools for Summarizing Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Understanding Types</h2>
+        <p>Each combination of class variables that is used to calculate and group 
+          statistics for PROC MEANS is called a <strong>type</strong>. 
+        <p>For example, the following basic PROC MEANS step specifies the three 
+          class variables <code>a</code>, <code>b</code>, and <code>c</code>: 
+        <pre><font color="#003399">     proc means data=lib.dataset mean;
+        class <strong>a b c</strong>;
+        var salary;
+        output out=summary1 
+               mean=average;
+     run;</font></pre> <p>This PROC 
+          MEANS step generates seven possible types (combinations of the three 
+          variables): 
+        <p>&nbsp; 
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Description of types for three class variables">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Variables Combined</font></th>
+            <th><font size="-1">Dimension</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><code>c</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td><code>b</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td><code>b</code> * <code>c</code></td>
+            <td>2-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td><code>a</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td><code>a</code> * <code>c</code></td>
+            <td>2-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td><code>a</code> * <code>b</code></td>
+            <td>2-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td><code>a</code> * <code>b</code> * <code>c</code></td>
+            <td>3-way</td>
+          </tr>
+        </table>
+        <p><br>
+        <p>SAS uses the <strong><code>_TYPE_</code></strong><strong> variable</strong> 
+          to specify the combination of class variables that PROC MEANS uses to 
+          calculate the statistics for each observation in the output data set. 
+          The <code>_TYPE_</code> variable has a unique value for each combination. 
+          SAS always combines the class variables in a particular sequence, based 
+          on the order in which they are listed in the CLASS statement, in order 
+          to assign the <code>_TYPE_</code> values. For example, for each of the 
+          seven types (seven possible combinations of three class variables) shown 
+          above, SAS assigns a value to <code>_TYPE_</code> as follows: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="_TYPE_ values for three class variables">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1"><code>_TYPE_</code> Value</font></th>
+            <th><font size="-1">Description of Combination</font></th>
+            <th><font size="-1">Variables Combined</font></th>
+            <th><font size="-1">Dimension</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">1</td>
+            <td><strong>rightmost</strong> <strong>variable</strong> only</td>
+            <td><code>c</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">2</td>
+            <td><strong>middle variable</strong> only</td>
+            <td><code>b</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">3</td>
+            <td><p><strong>rightmost variable</strong> and <strong>middle variable</strong></p></td>
+            <td><code>b</code> * <code>c</code></td>
+            <td>2-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">4</td>
+            <td><strong>leftmost variable</strong></td>
+            <td><code>a</code></td>
+            <td>1-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">5</td>
+            <td><strong>leftmost variable</strong> and <strong>rightmost variable</strong></td>
+            <td><code>a</code> * <code>c</code></td>
+            <td>2-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">6</td>
+            <td><strong>leftmost variable</strong> and <strong>middle variable</strong></td>
+            <td><code>a</code> * <code>b</code></td>
+            <td>2-way</td>
+          </tr>
+          <tr valign="top"> 
+            <td align="center">7</td>
+            <td><strong>rightmost variable</strong> and <strong>middle variable</strong> 
+              and <strong>leftmost variable</strong></td>
+            <td><code>a</code> * <code>b</code> * <code>c</code></td>
+            <td>3-way</td>
+          </tr>
+        </table>
+        <p><br>As the number of class variables increases, so does the number of types. 
+          However, the <strong>highest</strong> <code>_TYPE_</code> value (<em>7</em>, 
+          in this example) always indicates the combination of <strong>all</strong> 
+          class variables. 
+        <p>SAS includes the <code>_TYPE_</code> variable in the output data set 
+          that is generated by PROC MEANS. In the output from the basic PROC MEANS 
+          step that was shown on the previous page, you can see that the observations 
+          are listed in order of increasing values of the <code>_TYPE_</code> 
+          variable: 
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <CENTER>
+      <a href="JavaScript: openOther('m85_36a.htm')"><img src="images/m85_36a.gif" alt="Partial PROC MEANS output data set" width="450" height="176" border="0"></a> 
+    <br>
+      <em><font color="#003399">Click to view the full output data set.</font></em> 
+    </CENTER>
+<p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>Note that the first observation in the output data set has a <code>_TYPE_</code> 
+          value of <em>0</em>, which indicates that the statistics are generated 
+          for the <strong>entire data set</strong>. 
+        <p> 
+        <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">SAS calculates the <code>_TYPE_</code> variable even 
+              if no output data set is requested.</td>
+          </tr>
+        </table>
+        <p>By default, the output <strong>data set</strong> that is generated 
+          by PROC MEANS contains a separate observation for each unique combination 
+          of values of the class variables for each type. Each unique combination 
+          of values within a type is called a <strong>level</strong> of that type. 
+          In the output data set linked above, for example, there are 17 levels 
+          for type 2 (17 observations that have a <code>_TYPE_</code> value of 
+          <em>2</em>). </p>
+        <p> The output <strong>report</strong> that is generated by the basic 
+          PROC MEANS step contains only the observations that represent a combination 
+          of <strong>all</strong> of the class variables (the observations for 
+          which <code>_TYPE</code>_=<em>7</em>). The <code>_TYPE_</code> variable 
+          is not displayed in the report.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

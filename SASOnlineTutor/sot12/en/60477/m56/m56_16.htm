@@ -1,0 +1,205 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      PROC SQL to Join Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2>The SQL Procedure</h2>
+	    <p>Another method that you can use to join data sets that do not have 
+          a common variable is the SQL procedure. You should already be familiar 
+          with using <a href="JavaScript: openOther('../linklib/sqljoin.htm')">PROC 
+          SQL</a> to create a table from the results of an inner join.</p>
+        <p>In a PROC SQL step, you can choose from each input data set only the 
+          specific variables that you want to include in the new data set, and 
+          you can return multiple values. The input data sets do not need to contain 
+          a common BY variable, nor do they need to be sorted or indexed. However, 
+          if the lookup table does have an index, the SQL procedure can take advantage 
+          of the index to provide faster retrieval of lookup values. </p>
+        <p>You can join up to 32 tables with the SQL procedure, and you can use 
+          this technique to combine data horizontally from sources that have any 
+          type of relationship (one-to-one, one-to-many, many-to-many, or non-matching). 
+          Exact matches are returned by default from an inner join.</p></td>
+    </tr>
+  </table>
+  <p> 
+  <table align="center" width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        
+      <td valign="top">Although numerous kinds of joins are possible with PROC 
+        SQL, only <strong>inner joins</strong> are discussed in this lesson. Therefore, 
+        in the remainder of this lesson, &quot;a PROC SQL join&quot; refers to 
+        an inner join on multiple tables, with the results stored in a new table. 
+        You can learn more about PROC SQL joins in the lesson 
+        <!--lesson reference-->
+        <strong> 
+        <script>document.write(m71title);</script></strong>. </td>
+      </tr>
+    </table><P>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> One drawback to using the SQL procedure to perform table lookups is 
+        that you cannot use DATA step syntax with PROC SQL, so complex business 
+        logic is difficult to incorporate into the join. However, by using PROC 
+        SQL you can often do in one step what it takes multiple PROC SORT and 
+        DATA steps to accomplish. 
+        <p><br><h2>Example: Working with Multiple Lookup Tables</h2>
+	  The following example joins <strong>Sasuser.Revenue</strong>, <strong>Sasuser.Expenses</strong>, 
+        and <strong>Sasuser.Acities</strong> into a new data set named <strong>Work.Sqljoin</strong>:<font color="#003399"> 
+        <pre>     proc sql;
+        <strong>create table</strong> sqljoin as
+           <strong>select</strong> revenue.flightid, revenue.date format=date9.,
+                  revenue.origin, revenue.dest, 
+                  sum(revenue.rev1st,
+                      revenue.revbusiness,
+                      revenue.revecon)
+                  -expenses.expenses as Profit,
+                  acities.city,
+                  acities.name
+        <strong>      from</strong> sasuser.expenses, sasuser.revenue, 
+                   sasuser.acities
+              <strong>where</strong> expenses.flightid=revenue.flightid
+                    and expenses.date=revenue.date
+                    and acities.code=revenue.dest
+           <strong>   order by</strong> revenue.dest,
+                       revenue.flightid,
+                       revenue.date;
+     quit;
+		
+     proc print data=work.sqljoin(obs=5);
+        title 'Result of Joining Three Data Sets';
+     run;</pre>
+        </font> 
+        <p>The PROC PRINT step produces the first five observations of the <strong>Work.Sqljoin</strong> 
+          data set that is created in the PROC SQL step above, as shown here: 
+        <p><br><CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100%>
+<TR>
+ <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Result of Joining Three Data Sets</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+		<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+<thead>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FlightID</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Date</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Origin</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Dest</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Profit</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>City</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Name</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>  1</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA03300</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">06DEC1999</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANC</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 34010</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage, AK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage International Airport</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>  2</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA03300</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">18DEC1999</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANC</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 73471</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage, AK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage International Airport</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>  3</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA03300</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">30DEC1999</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANC</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 77755</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage, AK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage International Airport</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>  4</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA03301</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">13DEC1999</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANC</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">110402</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage, AK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage International Airport</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>  5</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA03301</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25DEC1999</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANC</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">111151</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage, AK</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage International Airport</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+        </td>
+    </tr>
+  </table>
+  <p><br><table  width="85%" align="center" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        
+      <td valign="top">Notice that the <strong>Work.Sqljoin</strong> data set 
+        is identical to the <strong>Sasuser.Alldata</strong> data set that was 
+        previously created in the DATA step merge.</td>
+      </tr>
+    </table>
+<P><BR>
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

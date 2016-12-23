@@ -1,0 +1,104 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Combining 
+      Summary and Detail Data</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Combining 
+      Summary and Detail Data<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <ol>
+        <li>This animation shows the execution of the DATA step below. This DATA 
+          step reads the same data set, <strong>Sasuser.Monthsum</strong>, twice: 
+          first, to create a summary statistic; second, to merge the summary statistic 
+          back into the detail data to create a new data set, <strong>Sasuser.Percent2</strong>.<font color="#003399"> 
+          <pre>data sasuser.percent2(crop=totalrev);
+   if _N_=1 then do until (LastObs);
+      set sasuser.monthsum(keep=revcargo) end=lastobs;
+      TotalRev+revcargo;
+   end;
+   set sasuser.monthsum(keep=salemon revcargo);
+   PctRev=revcargo/totalrev;
+run;</pre>
+          </font> 
+        <li> During the compilation phase, SAS reads the descriptor portion of 
+          the input data set and creates the PDV. <code>_N_</code>, <code>LastObs</code>, 
+          and <code>TotalRev</code> are temporary variables that are included 
+          in the PDV although they will not be included in the output data set.<br>
+          <br>
+        <li> Execution begins. The temporary variables are initialized with values. 
+          The IF statement resolves to true on the first iteration of the DATA 
+          step, so the DO UNTIL loop begins to execute. Remember, in a DO UNTIL 
+          loop, the condition is evaluated at the bottom of the loop.<br>
+          <br>
+        <li> SAS reads the first observation from <strong>Sasuser.Monthsum</strong> 
+          and writes the value for <code>RevCargo</code> to the PDV.<br>
+          <br>
+        <li> The value of <code>TotalRev</code> is increased by the value of <code>RevCargo</code> 
+          and recorded in the PDV.<br>
+          <br>
+        <li> At the bottom of the DO loop, SAS evaluates the UNTIL expression. 
+          It resolves to false since the value of <code>LastObs</code> is <em>0</em>, 
+          so the loop continues to execute.<br>
+          <br>
+        <li> SAS reads the second observation from <strong>Sasuser.Monthsum</strong>, 
+          overwriting the value for <code>RevCargo</code> in the PDV and adding 
+          this value to the accumulator variable <code>TotalRev</code>. <br>
+          <br>
+        <li> The DO UNTIL loop continues to execute until SAS reads the last observation 
+          from <strong>Sasuser.Monthsum</strong> and the value of <code>LastObs</code> 
+          is set to <em>1</em>. At this point, the value for <code>TotalRev</code> 
+          in the PDV is the sum of all values for <code>RevCargo</code> in <strong>Sasuser.Monthsum</strong>. 
+          The loop is satisfied.<br>
+          <br>
+        <li> The second SET statement reads data from the same data set as the 
+          first SET statement did. However, this time values for both <code>SaleMon</code> 
+          and <code>RevCargo</code> are recorded in the PDV. There is already 
+          a value for <code>TotalRev</code> in the PDV. <br>
+          <br>
+        <li> A value for <code>PctRev</code> is calculated for the observation 
+          and recorded in the PDV. Then, SAS writes the values in the PDV to the 
+          output data set <strong>Sasuser.Percent2</strong>, except for the temporary 
+          variables and the variable <code>TotalRev</code>.<br>
+          <br>
+        <li>On the second iteration of the DATA step, the value of <code>_N_</code> 
+          increases to <em>2</em>, so the IF expression is false. The second SET statement 
+          executes and values from the second observation of <strong>Sasuser.Monthsum</strong> 
+          are read into the PDV.<br>
+          <br>
+        <li> The value for the accumulator variable <code>TotalRev</code> is retained 
+          from the last iteration and is used to calculate a new value for <code>PctRev</code>, 
+          which is recorded in the PDV. SAS writes the values in the PDV to the 
+          output data set and the DATA step iterates.<br>
+          <br>
+        <li> The DATA step iterates until SAS has read the last observation from 
+          <strong>Sasuser.Monthsum</strong> and has written the new observation 
+          to the output data set <strong>Sasuser.Percent2</strong>. <br>
+      </ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

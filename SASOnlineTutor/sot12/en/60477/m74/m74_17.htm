@@ -1,0 +1,164 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Managing 
+      Index Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using IDXNAME= to Direct SAS to Use a Specified Index</h2>
+        <p>The IDXNAME= option directs SAS to use an index that you specify, even 
+          if SAS would have selected <strong>not</strong> to use an index or to 
+          use a different index.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, IDXNAME= option">
+    <tr> 
+      <td align="left"><strong>General form, IDXNAME= option:</strong> <blockquote> 
+          <font color="#003399"><nobr><strong>IDXNAME=</strong><em>index-name</em>; </nobr></font> 
+        </blockquote>
+        <p>where <font color="#003399"><em>index-name</em></font> specifies the 
+          name of the index that should be used for processing.</p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>SAS uses the specified index if the following conditions are true: 
+        <ul>
+          <li> The specified index must exist. <br>
+            <br>
+          </li>
+          <li>The specified index must be suitable by having at least its first 
+            or only column match a condition in the WHERE expression. </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p>
+  <div align="center"> 
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <h2>Example</h2>
+          <p>In an earlier example, a composite index named <strong>daily</strong> 
+            was defined on the columns <code>FlightNumber</code> and <code>Date</code> 
+            in the temporary table <strong>Marchflights</strong>. Suppose you 
+            create a second index, a simple index, on the column <code>Date</code> 
+            (the secondary key in the composite index) by using the following 
+            PROC SQL step:</p></td>
+      </tr>
+    </table>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <pre><font color="#003399">     proc sql;
+        create index Date<br>           on work.marchflights(Date);</font></pre></td>
+      </tr>
+    </table>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p>Next, you submit the following query: </td>
+      </tr>
+    </table>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <pre><font color="#003399">     proc sql;
+        select *
+           from marchflights
+           where <strong>date</strong>='01MAR2000'd;</font></pre></td>
+      </tr>
+    </table>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p>The WHERE clause in this query references the key column <code>Date</code>. 
+            By default, SAS decides whether to use an index and, if an index is 
+            used, which index to use. The SAS log indicates that, with both a 
+            simple and a composite index defined on <code>Date</code>, PROC SQL 
+            used the simple index <strong>Date</strong> to process the query. 
+        </td>
+      </tr>
+    </table>
+    <p><br>
+    <div align="center">SAS Log<br>
+      <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+        <tr> 
+          <td> <pre>INFO: Index Date selected for WHERE clause optimization.</pre></td>
+        </tr>
+      </table>
+    </div>
+    <p><br>
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">This example assumes that the option MSGLEVEL=I, which 
+          was specified in the previous example, is still in effect.</td>
+      </tr>
+    </table>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p>You decide that you want to force PROC SQL to use the index <strong>daily</strong> 
+            instead of <code>Date</code>, so you add IDXNAME= to your query:</td>
+      </tr>
+    </table>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <pre><font color="#003399">     proc sql;
+        select *
+           from marchflights <strong>(idxname=daily)</strong>
+           where flightnumber='182';</font></pre></td>
+      </tr>
+    </table>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p>After this query is submitted, a message in the SAS log indicates 
+            that PROC SQL used the index <strong>daily</strong>:</td>
+      </tr>
+    </table>
+    <p><br>
+    <div align="center">SAS Log<br>
+      <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+        <tr> 
+          <td> <pre>INFO: Index daily selected for WHERE clause optimization.</pre></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  * @property-read array $other {
  *      Extra information about event.
  *
- *      - string sessionid: (optional) session id.
+ *      - string: sessionid session id.
  * }
  *
  * @package    core
@@ -91,4 +91,5 @@ class webservice_service_created extends base {
         $this->data['edulevel'] = self::LEVEL_OTHER;
         $this->data['objecttable'] = 'external_services';
     }
+
 }

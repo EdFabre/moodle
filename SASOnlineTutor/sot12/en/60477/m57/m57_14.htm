@@ -1,0 +1,104 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit the following program: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data work.wndchll2(keep = flight temp wspeed chill);<br>';
+solutionText+='   array wc{8,9} _temporary_; <br>';
+solutionText+='   if _n_ = 1 then do i = 1 to 8; <br>';
+solutionText+='      set sasuser.wchill;<br>';
+solutionText+='      array tmp{9} TmpNeg10 -- Temp30;<br>';
+solutionText+='      do j = 1 to 9;<br>';
+solutionText+='         wc{i,j}= tmp{j};<br>';
+solutionText+='      end;<br>';
+solutionText+='   end;<br>';
+solutionText+='   set sasuser.flights2;<br>';
+solutionText+='   row = round(wSpeed,5)/5;<br>';
+solutionText+='   column = (round(temp,5)/5)+3;<br>';
+solutionText+='   Chill = wc{row,column}; <br>';
+solutionText+='run;<br></pre></font>';
+
+solutionText+='<li>Submit the following PROC PRINT step:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc print data = work.wndchll2;<br>';
+solutionText+='run;</pre></font></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            <a href="JavaScript: openOther('../linklib/flight2x.htm')">Sasuser.Flights2</a> 
+            and <a href="JavaScript: openOther2('../linklib/wchill.htm')">Sasuser.Wchill</a> 
+            to create a new SAS data set.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+  <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li><strong>Sasuser.Flights2</strong> contains temperature and wind 
+            speed information. <strong>Sasuser.Wchill</strong> contains data values 
+            in a coordinate chart structure that helps to calculate wind chill 
+            values. Wind chill is based upon temperature and wind speed. The columns 
+            represent temperatures and the rows represent wind speeds.<br>
+            <br>
+            Create a new SAS data set, titled <strong>Work.Wndchll2</strong>. 
+            It should contain the same variables as <strong>Sasuser.F</strong><strong>lights2</strong> 
+            plus the wind chill for each flight.<br>
+            <br>
+            <table border="0" cellpadding="2" cellspacing="0">
+              <tr> 
+                <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More information"></td>
+                <td valign="top">If necessary, use the <a href="m57_3.htm#assign" onClick="suggestBack()" >example</a> 
+                  from earlier in this lesson as a guide to calculate the row 
+                  and column values.</td>
+              </tr>
+            </table>
+            <br>
+          <li>Print the <strong>Work.Wndchll2</strong> data set and view the output.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

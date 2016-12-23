@@ -7,7 +7,6 @@
     $id         = required_param('id', PARAM_INT);                 // Course Module ID
     $action     = optional_param('action', '', PARAM_ALPHA);
     $attemptids = optional_param_array('attemptid', array(), PARAM_INT); // array of attempt ids for delete action
-    $notify     = optional_param('notify', '', PARAM_ALPHA);
 
     $url = new moodle_url('/mod/choice/view.php', array('id'=>$id));
     if ($action !== '') {
@@ -34,10 +33,7 @@
 
     $context = context_module::instance($cm->id);
 
-    list($choiceavailable, $warnings) = choice_get_availability_status($choice);
-
-    if ($action == 'delchoice' and confirm_sesskey() and is_enrolled($context, NULL, 'mod/choice:choose') and $choice->allowupdate
-            and $choiceavailable) {
+    if ($action == 'delchoice' and confirm_sesskey() and is_enrolled($context, NULL, 'mod/choice:choose') and $choice->allowupdate) {
         if ($answer = $DB->get_record('choice_answers', array('choiceid' => $choice->id, 'userid' => $USER->id))) {
             $DB->delete_records('choice_answers', array('id' => $answer->id));
 
@@ -47,7 +43,6 @@
                 $completion->update_state($cm, COMPLETION_INCOMPLETE);
             }
         }
-        redirect("view.php?id=$cm->id");
     }
 
     $PAGE->set_title($choice->name);
@@ -66,36 +61,21 @@
                 redirect("view.php?id=$cm->id");
             }
         }
-
-        if (!$choiceavailable) {
-            $reason = current(array_keys($warnings));
-            throw new moodle_exception($reason, 'choice', '', $warnings[$reason]);
-        }
-
-        // Redirection after all POSTs breaks block editing, we need to be more specific!
         $answer = optional_param('answer', '', PARAM_INT);
-        if ($answer) {
+
+        if (empty($answer)) {
+            redirect("view.php?id=$cm->id", get_string('mustchooseone', 'choice'));
+        } else {
             choice_user_submit_response($answer, $choice, $USER->id, $course, $cm);
-            redirect(new moodle_url('/mod/choice/view.php',
-                array('id' => $cm->id, 'notify' => 'choicesaved', 'sesskey' => sesskey())));
-        } else if (empty($answer) and $action === 'makechoice') {
-            // We cannot use the 'makechoice' alone because there might be some legacy renderers without it,
-            // outdated renderers will not get the 'mustchoose' message - bad luck.
-            redirect(new moodle_url('/mod/choice/view.php',
-                array('id' => $cm->id, 'notify' => 'mustchooseone', 'sesskey' => sesskey())));
         }
+        echo $OUTPUT->header();
+        echo $OUTPUT->heading($choice->name, 2, null);
+        echo $OUTPUT->notification(get_string('choicesaved', 'choice'),'notifysuccess');
+    } else {
+        echo $OUTPUT->header();
+        echo $OUTPUT->heading($choice->name, 2, null);
     }
 
-    echo $OUTPUT->header();
-    echo $OUTPUT->heading(format_string($choice->name), 2, null);
-
-    if ($notify and confirm_sesskey()) {
-        if ($notify === 'choicesaved') {
-            echo $OUTPUT->notification(get_string('choicesaved', 'choice'), 'notifysuccess');
-        } else if ($notify === 'mustchooseone') {
-            echo $OUTPUT->notification(get_string('mustchooseone', 'choice'), 'notifyproblem');
-        }
-    }
 
 /// Display the choice and possibly results
     $eventdata = array();
@@ -169,7 +149,7 @@
         } else if (!is_enrolled($context)) {
             // Only people enrolled can make a choice
             $SESSION->wantsurl = qualified_me();
-            $SESSION->enrolcancel = clean_param($_SERVER['HTTP_REFERER'], PARAM_LOCALURL);
+            $SESSION->enrolcancel = (!empty($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
 
             $coursecontext = context_course::instance($course->id);
             $courseshortname = format_string($course->shortname, true, array('context' => $coursecontext));

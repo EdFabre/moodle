@@ -1,0 +1,102 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Combining 
+      Data with the DATA Step Match-Merge<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>In order to use the MERGE statement in the DATA step to combine 
+          data sets, all input data sets must have a common variable. Although 
+          the three data sets <strong>Sasuser.Acities</strong>, <strong>Sasuser.Revenue</strong>, 
+          and <strong>Sasuser.Expenses</strong> do not have a common BY variable, 
+          there are several variables that are common to <strong>two of the three</strong> 
+          data sets. As shown below, <code>Date</code> and <code>FlightID</code> 
+          are both common to <strong>Revenue</strong> and <strong>Expenses</strong>. 
+          The variable <code>Code</code> in the <strong>Acities</strong> data 
+          set and the variable <code>Dest</code> in the <strong>Revenue</strong> 
+          data set are also common variables.</p></td>
+    </tr>
+  </table>
+  <P> <img src="images/m56_11a.gif" width="350" height="165" alt="common variables">
+  <P> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>Notice that <code>Code</code> in <strong>Acities</strong> and <code>Dest</code> 
+          in <strong>Revenue</strong> are listed as corresponding to one another 
+          even though they have different names. When you are looking for common 
+          variables between data sets, the variable names are not important since 
+          they can be changed with the RENAME= option in the MERGE statement. 
+          Instead, you should look for variables that record the same information 
+          and that have the same type in each input data set. Common variables 
+          do not need to have the same length, although you should remember that 
+          the length of the variable in the first-listed data set will determine 
+          the length of the variable in the output data set. 
+        <P><BR>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Any variables that have the same name in multiple 
+              data sets in the MERGE statement must also have the same type. If 
+              any variables in different input data sets have identical names 
+              but do not have identical types, ERROR and WARNING messages are 
+              written to the SAS log, and the match-merge fails.</td>
+          </tr>
+        </table>
+        <p><BR>
+          In this case, both <code>Code</code> in <strong>Acities</strong> and 
+          <code>Dest</code> in <strong>Revenue</strong> record the three-letter 
+          abbreviation of an airport. 
+        <P> 
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">You can use <a href="JavaScript: openOther('../linklib/contents.htm')">PROC 
+              CONTENTS</a> to view information about variables such as type, length, 
+              and description.</td>
+          </tr>
+        </table>
+        <P> Since there are variables that are common to two different pairs of 
+          the three data sets shown above, you can combine these data sets into 
+          one data set by using the MERGE statement in two subsequent DATA steps. 
+          That is, you can perform one match-merge on two of the data sets to 
+          create one new data set that combines information from the two. Then 
+          you can perform another match-merge on the new data set and the remaining 
+          original data set. Let's take a closer look.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

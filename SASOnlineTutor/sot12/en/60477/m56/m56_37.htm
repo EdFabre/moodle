@@ -1,0 +1,108 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      an Index to Combine Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td>
+<h2>The KEY= Option</h2>
+	    <p>You have seen how to use multiple SET statements in a DATA step in 
+          order to combine summary data and detail data in a new data set. You 
+          can also use multiple SET statements to combine data from multiple data 
+          sets if you want to combine only data from observations that have matching 
+          values for particular variables. </p>
+        <p>You specify the KEY= option in the SET statement to use an index to 
+          retrieve observations from the input data set that have key values equal 
+          to the key variable value that is currently in the program data vector 
+          (PDV). </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="SET statement with KEY= option">
+            <tr> 
+              
+      <td align="left"><strong>General form, SET statement with KEY= option:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>SET</strong> <em>SAS-data-set-name 
+          </em><strong>KEY=</strong> <em>index-name</em><strong>;</strong></nobr></font> 
+        </blockquote>
+        where <em><font color="#003399">index-name</font></em> is the name of 
+        an index that is associated with the <em><font color="#003399">SAS-data-set-name</font></em> 
+        data set. </td>
+            </tr>
+          </table><P><br>
+
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <p>To use the SET statement with the KEY= option to perform a lookup 
+          operation, your lookup values must be stored in a SAS data set that 
+          has an index. This technique is appropriate only when you are working 
+          with one-to-one matches, and you can use it with a lookup table of any 
+          size. It is possible to return multiple values with this technique, 
+          and you can use other DATA step syntax with it as well.</p>
+        <p>When SAS encounters the SET statement that includes the KEY= option, 
+          there must already be a value in the PDV for the value or values of 
+          the key variable(s) on which the KEY= index is built. SAS can then use 
+          the index to retrieve an observation that has a value for the key variable 
+          that matches the key value from the PDV. </p>
+
+        <p>For example, if the <strong>Sasuser.Sale2000</strong> data set has 
+          an index named <strong>Flightdate</strong> associated with it,<strong> 
+          </strong>the following SET statement uses the <strong>Flightdate</strong> 
+          index to locate observations in <strong>Sale2000</strong> that have 
+          specific values for <code>FlightID</code> and <code>Date</code>:</p>
+        <pre><font color="#003399">     set sasuser.sale2000 key=flightdate;</font></pre>
+   
+        <p>When the SET statement in the example above begins to execute, there 
+          must already be a value for <code>FlightID</code> and a value for <code>Date</code> 
+          in the PDV. SAS then uses the <strong>Flightdate</strong> index to retrieve 
+          an observation from <strong>Sasuser.Sale2000</strong> that has values 
+          for <code>FlightID</code> and <code>Date</code> that match the values 
+          for <code>FlightID</code> and <code>Date</code> that are already in 
+          the PDV.</p>
+		  
+        <p>In order to assign a key value in the PDV before the SET statement 
+          with the KEY= option executes, you precede that SET statement with another 
+          SET statement in the DATA step. Let's look more closely at this example 
+          in context. </p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

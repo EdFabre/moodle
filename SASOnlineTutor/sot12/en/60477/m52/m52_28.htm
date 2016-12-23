@@ -1,0 +1,102 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Symbol Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The %GLOBAL Statement</h2> 
+
+        <P> The %GLOBAL statement 
+        <ul>
+          <li>creates one or more macro variables in the global symbol table and 
+            assigns null values to them</li>
+          <li>can be used either inside<strong> or </strong>outside a macro definition</li>
+          <li>has no effect on variables that are already in the global symbol table.</li>
+</ul>
+</td></tr></table><BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, %GLOBAL statement">
+  <tr> 
+    <td align="left"><strong>General form, %GLOBAL statement:</strong> 
+      <blockquote> <font color="#003399"><strong>%GLOBAL</strong> <em>macro-variable-1 
+        &lt;...macro-variable-n</em>&gt;;</font> </blockquote>
+      <p> where 
+      <ul>
+        <li> <font color="#003399"><em>macro-variable</em></font> is either the name of
+          a macro variable or a text expression that generates a macro variable 
+          name.        
+      </ul>
+    </td>
+  </tr>
+</table><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><h2>Example</h2>
+        <p>To create a global macro variable inside a macro definition, you can 
+          use the the <nobr>%GLOBAL</nobr> statement. The <nobr>%GLOBAL</nobr> 
+          statement in the following example creates two global macro variables, 
+          <code>dsn</code> and <code>vars</code>. The <nobr>%LET</nobr> statements assign values 
+          to the new global macro variables, as follows:<font color="#003399">
+        <pre>     %macro printdsn;
+        <strong>%global dsn vars;</strong>
+        <strong>%let dsn=sasuser.courses;
+        %let vars=course_title course_code days;</strong>
+        proc print data=&dsn;
+           var &vars;
+        title "Listing of &dsn data set";
+        run;
+     %mend;
+     
+     %printdsn</pre>
+        </font>
+  <BR>
+  <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You use the <strong>%SYMDEL statement</strong> to 
+              delete a macro variable from the global symbol table during a SAS 
+              session. To remove the macro variable <code>dsn</code> from the 
+              global symbol table, you submit the following statement: <font color="#003399"> 
+              <pre>     %symdel dsn;</pre>
+              </font></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

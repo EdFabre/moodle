@@ -55,7 +55,6 @@ if (!$cm = get_coursemodule_from_instance("forum", $forum->id, $course->id)) {
 $user = $USER;
 
 require_login($course, false, $cm);
-require_sesskey();
 
 if ($returnpage == 'index.php') {
     $returnto = forum_go_back_to($returnpage.'?id='.$course->id);

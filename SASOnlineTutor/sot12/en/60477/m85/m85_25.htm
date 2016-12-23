@@ -1,0 +1,170 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Deciding 
+      Whether to Create an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td height="17"><p>Let's look at three sample queries to see how you can 
+          apply the guidelines that are listed on the previous page. These queries 
+          illustrate the effect of one factor&#8212;the size of the subset relative 
+          to the size of the data set&#8212;on the choice of an access method. 
+          For each query, you will learn: 
+        <ul>
+          <li> which access method SAS is likely to select</li>
+          <li>whether you could improve performance by creating an index. </li>
+          </ul>
+        <p><br>
+        <h2>Example: Selecting Subsets of Various Sizes from Data Sets of Various 
+          Sizes </h2>
+        <p>Suppose you are working with the following two data sets, each of which 
+          contains information about a company's orders: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Information about two data sets">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Data Set Name</font></th>
+            <th><font size="-1"> Pages</font></th>
+            <th><font size="-1"> Observations</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><strong>Company.Orders_large</strong></td>
+            <td> <div align="right">285,500 </div></td>
+            <td><div align="right">19,033,380</div></td>
+          </tr>
+          <tr valign="top"> 
+            <td><strong>Company.Orders_small</strong></td>
+            <td> <div align="right">2</div></td>
+            <td><div align="right">140</div></td>
+          </tr>
+        </table>
+        <p><br>
+        <p> You want to create queries to generate three subset detail reports, 
+          one for each of the following types of subsets:</p>
+        <ul>
+          <li><strong>small </strong>subset from a <strong>large</strong> data 
+            set</li>
+          <li><strong>large</strong> subset from a <strong>large</strong> data 
+            set</li>
+          <li><strong>small</strong> subset from a <strong>small</strong> data 
+            set.</li>
+        </ul>
+        <p>In all three queries, the WHERE expression specifies the variable <code>Order_Date</code>. 
+          You know that this variable will be used frequently in queries for the 
+          company, and that it is a discriminating variable. According to the 
+          guidelines on the previous page, these are both criteria for creating 
+          an index on the variable. However, there is currently no index defined 
+          on this variable in either data set. 
+        <p><br>
+        <h2>Query 1: Small Subset from a Large Data Set</h2>
+        <p>The first report that you want to generate shows all orders in <strong>Company.Orders_large</strong> 
+          that were made on January 10, 1998. Your query is shown below, along 
+          with the subset size that you have estimated: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="First query and index usage">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Query</font></th>
+            <th><font size="-1">Subset Size</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td> <pre><font color="#003399">   data _null_;
+      set company.orders_large;
+      where order_date='10JAN1998'd;
+   run;</font></pre></td>
+            <td><p><strong>2232</strong> observations (out of 19,033,380) = <strong><br>
+                &lt; .02%</strong> of the data set</p></td>
+          </tr>
+        </table>
+        <p><br>
+          Because the subset is less than 3% of the entire data set, using an 
+          index on <code>Order_Date</code> should be more efficient than using 
+          sequential access. SAS will use an index for WHERE processing, if an 
+          index is available. To improve performance, you should create an index 
+          on <code>Order_Date</code> before running this program. 
+        <p><br>
+        <h2>Query 2: Large Subset from a Large Data Set</h2>
+        <p>The second report shows all orders in <strong>Company.Orders_large</strong> 
+          that were made before January 1, 1998. Your query and the estimated 
+          subset size are shown below: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Second query and index usage">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Query</font></th>
+            <th><font size="-1">Subset Size</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td> <pre><font color="#003399">   data _null_;
+      set company.orders_large;
+      where order_date&lt;'01JAN2000'd;
+   run;</font></pre></td>
+            <td><strong>12,752,365</strong> observations (out of 19,033,380) = 
+              <br>
+              approximately <strong>67%</strong> of the data set</td>
+          </tr>
+        </table>
+        <p><br>
+          Because the subset is more than 33% of the entire data set, using the 
+          index is probably <strong>less</strong> efficient than using sequential 
+          access. SAS will probably not use the index for WHERE processing. 
+        <p><br>
+        <h2>Query 3: Small Subset from a Small Data Set</h2>
+        <p>The third report shows all orders in the smaller data set <strong>Company.Orders_small</strong> 
+          that were made on June 30, 1998. Your query and the estimated subset 
+          size are shown below: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Third query and index usage">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Query</font></th>
+            <th><font size="-1">Subset Size</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td> <pre><font color="#003399">   data _null_;
+      set company.orders_small;
+      where order_date='30JUN1998'd;
+   run;</font></pre></td>
+            <td><p><strong>2</strong> observations (out of 140) =<br>
+                <strong>&lt; 2 %</strong> of the data set</p></td>
+          </tr>
+        </table>
+        <p><br>
+          Because the subset is less than 3% of the entire data set, SAS will 
+          use the index for WHERE processing. However, the data file's page count 
+          is less than three pages, so it is more efficient to use sequential 
+          access. In this situation, it is best not to create an index. </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,239 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reducing 
+      Data Storage Space for Numeric Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using PROC COMPARE</h2>
+        <P> You can use PROC COMPARE to gauge the precision of the values that 
+          are stored in a shortened numeric variable by comparing the original 
+          variable with the shortened variable. The COMPARE procedure compares 
+          the contents of two SAS data sets, selected variables in different data 
+          sets, or variables within the same data set.</td>
+    </tr>
+  </table>
+  <P><BR>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC COMPARE step to compare two data sets">
+            
+  <tr> 
+      <td align="left"><strong>General form, PROC COMPARE step to compare two 
+        data sets:</strong> 
+        <blockquote> <font color="#003399"><strong>PROC COMPARE BASE=</strong><em>SAS-data-set-one</em><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>COMPARE=</strong><em>SAS-data-set-two</em><strong>;</strong> <br>
+		  <strong>RUN;</strong></font></blockquote>
+      where <font color="#003399"><em>SAS-data-set-one</em></font> and <font color="#003399"><em>SAS-data-set-two 
+        </em></font> specify the two SAS data sets that you want to compare. </td>
+            </tr>
+          </table>
+  <p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>PROC COMPARE is a good technique to use for gauging the loss of precision 
+          in shortened numeric variables because it shows you whether there are 
+          differences in the stored numeric values even if these differences do 
+          not show up once the numeric variables have been formatted. PROC COMPARE 
+          looks at the two data sets and compares their
+        <ul>
+		  <li>data set attributes
+		  <li>variables 
+		  <li>variable attributes for matching variables
+		   <li>observations
+		   <li>values in matching variables.</ul>
+                
+        <p>Output from the COMPARE procedure includes
+<ul>
+          <li>a data set summary 
+          <li>a variables summary 
+          <li>a listing of common variables that have different attributes 
+          <li>an observation summary 
+          <li>a values comparison summary 
+          <li>a listing of variables that have unequal values 
+          <li>a detailed list of value comparison results for variables. 
+        </ul>
+		<P><br>
+		<h2>Example</h2>
+		The data set <strong>Company.Discount</strong> contains data about sale 
+        dates and discounts for certain retail products. There are 35 observations 
+        in <strong>Company.Discount</strong>, which is described below. 
+        <P><BR>	<table border="1" align="center" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Data Set Description">
+  <tr> 
+            <td> <table  border=0 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF">
+                <thead>
+                  <tr valign="top"> 
+                    <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Variable</b></font></td>
+                    <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Type</b></font></td>
+                    <td align=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Length</b></font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Description</b></font></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr valign="top"> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Product_ID</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                    <td align=center bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">product 
+                      ID number</font></td>
+                  </tr>
+                  <tr valign="top"> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Start_Date</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                    <td align=center bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">start 
+                      date of sale</font></td>
+                  </tr>
+                  <tr valign="top"> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">End_Date</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                    <td align=center bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">end 
+                      date of sale</font></td>
+                  </tr>
+                  <tr valign="top"> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Unit_Sales_Price</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                    <td align=center bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">discounted 
+                      sales price per unit</font></td>
+                  </tr>
+                  <tr valign="top"> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Discount</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></td>
+                    <td align=center bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">discount 
+                      as percent of normal sales price</font></td>
+                  </tr>
+                </tbody>
+              </table></td>
+          </tr>
+        </table> 
+       <P><BR>
+          Suppose you shorten the length of the numeric variable <code>Discount</code>. 
+          The DATA step below creates a new data set named <strong>Company.Discount_Short</strong>, 
+          whose only difference from <strong>Company.Discount</strong> is that 
+          the length of the variable <code>Discount</code> is 4 instead of 8. 
+        <font color="#003399"><pre>     data company.discount_short;
+        length Discount 4;
+        set Company.Discount;
+     run</pre>
+        </font> You can use PROC COMPARE to evaluate whether shortening the length 
+        of <code>Discount</code> affects the precision of its values by comparing 
+        <strong>Company.Discount</strong> to <strong>Company.Discount_Short</strong>. 
+        <font color="#003399"> 
+        <pre>     proc compare base=company.discount
+                  compare=company.discount_short;
+     run;</pre>
+        </font> <p>If you were to print these two data sets (<strong>Company.Discount</strong> 
+          and <strong>Company.Discount_Short</strong>), the values might appear 
+          to be identical. However, there are differences in the values as they 
+          are stored that are not apparent in the formatted output. </p>
+        <p>In the partial output below, you can see that shortening the length 
+          of <code>Discount</code> results in a loss of precision in its values; 
+          the values for <code>Discount</code> in <strong>Company.Discount_Short</strong> 
+          differ by a maximum of <em>1.9073E-07</em>. The value comparison results 
+          show that although the values for <code>Discount</code> in the first 
+          five observations appear as <em>70%</em> in both data sets, the precise 
+          (unformatted) values differ by <em>-1.907E-7</em>.</p>
+        <P><br>
+        <CENTER>
+          Partial PROC COMPARE Output 
+       
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#EFEFEF" bordercolor="#000000" title="PROC COMPARE Output">
+            <TR> 
+              <TD rules=GROUPS frame=BOX ALIGN=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><PRE><font  face="SAS Monospace, Courier" size="2" color="#000000">     
+                     Variables Summary
+                                              
+     Number of Variables in Common: 5.         
+     Number of Variables with Differing Attributes: 1.
+                      
+  
+     Listing of Common Variables with Differing Attributes
+                          
+     Variable  Dataset                Type  <strong>Length</strong>  Format 
+                                  
+     Discount  COMPANY.DISCOUNT        Num       <strong>8</strong>  PERCENT. 
+       	       COMPANY.DISCOUNT_SHORT  Num       <strong>4</strong>  PERCENT.</font></PRE> 
+              </TD>
+            </TR>
+          </TABLE>
+        </CENTER>
+        <p>
+        <CENTER>
+          <TABLE title="PROC COMPARE Output" cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#EFEFEF" bordercolor="#000000">
+            <TR> 
+              <TD rules=GROUPS frame=BOX ALIGN=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><PRE>
+<font  face="SAS Monospace, Courier" size="2" color="#000000">  
+                     Values Comparison Summary           
+                                                    
+    Number of Variables Compared with All Observations Equal: 4.    
+    Number of Variables Compared with Some Observations Unequal: 1. 
+    Total Number of Values which Compare Unequal: 35.             
+    <strong>Maximum Difference: 1.9073E-07.                    </strong>  </font></PRE> 
+              </TD>
+            </TR>
+          </TABLE></CENTER>
+		  <P>
+		  <CENTER>
+<font  face="SAS Monospace, Courier" size="2" color="#000000"> 
+<TABLE title="PROC COMPARE Output" cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#EFEFEF" bordercolor="#000000">
+<TR>
+ <TD rules=GROUPS frame=BOX ALIGN=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><PRE><font  face="SAS Monospace, Courier" size="2" color="#000000">   
+            Value Comparison Results for Variables         
+                                                              
+  __________________________________________________________   
+             ||  Discount as Percent of Normal Retail Sal      
+             ||  .. es Price                                   
+             ||       Base    Compare                         
+         Obs ||   Discount   Discount      <strong>Diff.</strong>     % Diff     
+   ________  ||  _________  _________  <strong>_________</strong>  _________    
+             ||                                                 
+          1  ||       70%        70%   <strong>-1.907E-7</strong>  -0.000027     
+          2  ||       70%        70%   <strong>-1.907E-7</strong>  -0.000027      
+          3  ||       70%        70%   <strong>-1.907E-7</strong>  -0.000027     
+          4  ||       70%        70%   <strong>-1.907E-7</strong>  -0.000027      
+          5  ||       70%        70%   <strong>-1.907E-7</strong>  -0.000027      </font></PRE>
+</TD>
+</TR>
+</TABLE></font>
+        </CENTER>
+       </td>
+		</tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

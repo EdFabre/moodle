@@ -1,0 +1,124 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_3.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 2;
+
+salute  = "<strong>Correct.</strong><p>";
+correct = "\n A period is needed in order to separate a macro variable reference" +
+          "\n from a suffix. Also, macro variable references that are enclosed" +
+          "\n in quotation marks must be enclosed in double quotation marks in order to be resolved."; 
+          
+choice1 =   "<strong>Incorrect.</strong><p>" +
+          "\n This DATA step correctly joins the macro variable reference" +
+          "\n with the suffix PROD. However, the reference in the subsetting" +
+          "\n IF statement will not resolve.";
+
+choice2 = salute + correct;
+
+choice3 =   "<strong>Incorrect.</strong><p>" +
+          "\n Neither macro variable reference in this DATA step will resolve." +
+          "\n Check the quotation marks in the subsetting IF statement and the method" +
+          "\n that was used to join the macro variable reference with the suffix PROD.";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Your Own Macro Variables<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center> <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Which DATA step below 
+          correctly references the macro variable <code>site</code>? The value 
+          of <code>site</code> is used to create the data set name <strong>Westprod</strong> 
+          as well as to select observations for which the value of <code>region</code> 
+          is <em>west</em>.<!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" -->
+          <pre><font color="#003399">%let site=west;</font>
+<font color="#003399">data &amp;site.prod;</font>
+<font color="#003399">   set reg.productn;</font>
+<font color="#003399">   if region='&amp;site';</font>
+<font color="#003399">run;</font></pre><!-- InstanceEndEditable --></td>
+        <td rowspan="3"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" -->
+          <pre><font color="#003399">%let site=west;</font>
+<font color="#003399">data &amp;site.prod;</font>
+<font color="#003399">   set reg.productn;</font>
+<font color="#003399">   if region="&amp;site";</font>
+<font color="#003399">run;</font></pre><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" -->
+          <pre><font color="#003399">%let site=west;</font>
+<font color="#003399">data &amp;siteprod;</font>
+<font color="#003399">   set reg.productn;</font>
+<font color="#003399">   if region='&amp;site';</font>
+<font color="#003399">run;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      
+      <tr> 
+        <td colspan="3"> 
+          <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

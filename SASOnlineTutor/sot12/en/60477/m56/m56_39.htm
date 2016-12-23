@@ -1,0 +1,87 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      an Index to Combine Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Remember that when SAS encounters the SET statement that includes 
+          the KEY= option, there must already be a value in the PDV for the value 
+          or values of the key variable(s) on which the KEY= index is built. Otherwise, 
+          the step will generate errors in the output data set.</p>
+   <h2>Example</h2>
+        <p>The following step is identical to the last example except that the 
+          order of the SET statements has been reversed:</p>
+        <font color="#003399"></pre> 
+        <pre>     data work.profit2;
+        set sasuser.sale2000(keep=routeid flightid date 
+            rev1st revbusiness revecon revcargo)
+            key=flightdate;
+        set sasuser.dnunder;
+        Profit=sum(rev1st, revbusiness, revecon, revcargo, 
+               -expenses);
+     run;</pre>
+        </font> <p>On the first iteration of this DATA step, there are no values 
+          for the key values in the PDV when SAS encounters the SET statement 
+          with the KEY= option. Therefore, SAS does not know what to look up in 
+          the index, and no observation is read from the <strong>Sasuser.Sale2000</strong> 
+          data set. SAS proceeds to the second SET statement, reads an observation 
+          from the <strong>Sasuser.Dnunder</strong> data set, and writes the values 
+          to the PDV and to the <strong>Work.Profit2</strong> data set. </p>
+        <p>Since no data was read from the <strong>Sasuser.Sale2000</strong> data 
+          set, there are missing values in the first observation of the output 
+          data set. Also, if you examine the values for <code>Rev1st</code>, <code>RevBusiness</code>, 
+          <code>RevEcon</code> and <code>RevCargo</code> in <a href="javaScript: openOther('m56_39a.htm')"><strong>Work.Profit2</strong></a> 
+          and compare them with the values for these variables in <a href="javaScript: openOther2('m56_38b.htm')"><strong>Work.Profit</strong></a>, 
+          you will notice that there are differences between these two data sets. 
+        </p>
+        <p>Remember that the values in the PDV are not reinitialized after each 
+          iteration of the DATA step. On the second iteration of the DATA step, 
+          SAS uses the values from the first observation of <strong>Sasuser.Dnunder</strong> 
+          to match an observation from <strong>Sasuser.Sale2000</strong>. But 
+          before these values are written to the <strong>Work.Profit2</strong> 
+          data set, a new observation is read from <strong>Sasuser.Dnunder</strong> 
+          and written to the PDV. Therefore, none of the observations in <strong>Work.Profit2</strong> 
+          actually contains correctly matched data from the two input data sets.</p>
+</td>
+    </tr>
+  </table>
+ 
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

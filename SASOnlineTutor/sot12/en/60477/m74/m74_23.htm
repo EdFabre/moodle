@@ -1,0 +1,324 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" -->
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+          <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">sample programs</A> 
+          <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>.
+      <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Understanding Indexes</strong> <br>
+          An <a href="m74_1.htm" onClick="suggestBack()">index</a> is an auxiliary 
+          file that is defined on one or more of a table's columns, which are 
+          called key columns. The index stores the unique column values and a 
+          system of directions that enable access to rows in that table by index 
+          value. When an index is used to process a PROC SQL query, PROC SQL <a href="m74_2.htm" onClick="suggestBack()">accesses 
+          rows</a> directly (without having to read all the prior rows) instead 
+          of sequentially.</p>
+        <p>You can create two <a href="m74_3.htm" onClick="suggestBack()">types 
+          of indexes</a>:</p>
+        <ul>
+          <li>simple index (an index on one column)</li>
+          <li>composite index (an index on two or more columns).</li>
+        </ul>
+        <p>You can define either type of index as a <a href="m74_3.htm" onClick="suggestBack()">unique 
+          index</a>, which requires that values for the key column(s) be unique 
+          for each row.</p>
+        <p><strong>Deciding Whether to Create an Index </strong> <br>
+          When deciding whether to create an index, you must weigh any <a href="m74_5.htm" onClick="suggestBack()">benefits</a> 
+          in performance improvement against the <a href="m74_5.htm#costs" onClick="suggestBack()">costs</a> 
+          of increased resource usage. Certain <a href="m74_4.htm" onClick="suggestBack()">classes 
+          of PROC SQL queries</a> can be optimized by using an index. To optimize 
+          the performance of your PROC SQL queries, you can follow some basic 
+          <a href="m74_7.htm" onClick="suggestBack()">guidelines</a> for creating 
+          indexes. </p>
+        <p><strong>Creating an Index </strong> <br>
+          To create an index on one or more columns of a table, use the <a href="m74_8.htm" onClick="suggestBack()">CREATE 
+          INDEX statement</a>. To specify a unique index, you add the keyword 
+          UNIQUE.</p>
+        <p><strong>Displaying Index Specifications </strong> <br>
+          To display a CREATE INDEX statement in the SAS log for each index that 
+          is defined for one or more specified tables, use the <a href="m74_11.htm" onClick="suggestBack()">DESCRIBE 
+          TABLE statement</a>.</p>
+        <p><strong>Managing Index Usage </strong> <br>
+          To manage indexes effectively, it is important to know <a href="m74_13.htm" onClick="suggestBack()">how 
+          SAS decides</a> whether to use an index and which index to use. </p>
+        <p>To find out whether an index is being used, specify the SAS option 
+          <a href="m74_14.htm" onClick="suggestBack()">MSGLEVEL=I</a> in an OPTIONS 
+          statement before the PROC SQL statement. This option enables SAS to 
+          write informational messages about index usage (and other additional 
+          information) to the SAS log. The default setting MSGLEVEL=N displays 
+          notes, warnings, and error messages only.</p>
+        <p>To force SAS to use the best available index, to use a specific index, 
+          or not to use an index at all, include either the SAS data set option 
+          <a href="m74_16.htm" onClick="suggestBack()">IDXWHERE=</a> or <a href="m74_17.htm" onClick="suggestBack()">IDXNAME=</a> 
+          in your PROC SQL query.</p>
+        <p><strong>Dropping Indexes </strong> <br>
+          To drop (delete) one or more indexes, use the <a href="m74_20.htm" onClick="suggestBack()">DROP 
+          INDEX statement</a>.<br>
+        </p>
+        </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <tr> 
+      <td><h2><strong><a name="Syntax">Syntax</a></strong> </h2>
+        <p> <em>To go to the page where a statement or option was presented, select 
+          a link.</em> </td>
+    </tr>
+  </table>
+  <br>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD><TABLE align="center" CELLPADDING="2">
+          <TR> 
+            <TD><font color="#003399"><A HREF="m74_14.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the MSGLEVEL= option.';" onMouseOut="window.status=''"><strong>OPTIONS 
+              MSGLEVEL=</strong>N | I<strong>;</strong></a></font> </TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;</TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399"><strong>PROC SQL;</strong></font> </TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;</TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m74_8.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the CREATE INDEX statement.';" onMouseOut="window.status=''"><nobr><strong>CREATE 
+              &lt;UNIQUE&gt; INDEX</strong></nobr> <nobr><em>index-name</em></nobr></a></font></TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><A HREF="m74_8.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the CREATE INDEX statement.';" onMouseOut="window.status=''"><nobr><strong>ON</strong> 
+              <nobr><em>table-name</em></nobr> <nobr>(<em>column-name-1</em></nobr>&lt;,<nobr>&nbsp;...<em>column-name-n</em>&gt;</nobr><nobr>);</nobr></a></font></TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;</TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m74_11.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DESCRIBE TABLE statement.';" onMouseOut="window.status=''"><strong>DESCRIBE 
+              TABLE</strong> <em>table-name-1</em><nobr><em>&lt;, ... table-name-n&gt;</em><strong>;</strong></nobr></a></font> 
+            </TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;</TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>SELECT</strong> <em>column-1&lt;, 
+              . . . column-n</em>&gt;</font></TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FROM</strong> 
+              <em>table-1</em> <A HREF="m74_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the IDXWHERE= option.';" onMouseOut="window.status=''"><nobr>(<strong>IDXWHERE=</strong>Y 
+              | N)</nobr></A></font></TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>WHERE</strong> 
+              <em>expression</em>&gt;;</font></TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;</TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>SELECT</strong> <em>column-1&lt;, 
+              . . . column-n</em>&gt;</font></TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FROM</strong> 
+              <em>table-1</em> <A HREF="m74_17.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the IDXNAME= option.';" onMouseOut="window.status=''"><nobr>(<strong>IDXNAME=</strong><em>index-name</em>)</nobr></A></font></TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>WHERE</strong> 
+              <em>expression</em>&gt;;</font></TD>
+          </TR>
+          <TR> 
+            <TD>&nbsp;</TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m74_20.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DROP INDEX statement.';" onMouseOut="window.status=''"><strong>DROP 
+              INDEX</strong> <nobr><em>table-name-1</em></nobr><nobr>&lt;, ... 
+              <em>table-name-n</em>&gt;<strong>;</strong></nobr></a></font> </TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m74_20.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DROP INDEX statement.';" onMouseOut="window.status=''"><strong>FROM</strong> 
+              <em>table-name</em><strong>;</strong></a> </font> </TD>
+          </TR>
+          <TR>
+            <TD>&nbsp;</TD>
+          </TR>
+          <TR> 
+            <TD><font color="#003399"><strong>QUIT;</strong></font></TD>
+          </TR>
+        </TABLE></TD>
+    </TR>
+  </TABLE>
+  <P> 
+  <P> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"> <HR> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Sample">Sample Programs</A></STRONG> 
+        </h2>
+        <blockquote> 
+          <p><strong>Creating a Simple, Unique Index and a Composite Index</strong></p>
+        </blockquote>
+        <pre><font color="#003399">     proc sql;
+        create unique index EmpID
+           on work.payrollmaster(empid);
+        create index daily
+           on work.marchflights(flightnumber,date);
+     quit;</font></pre> <blockquote> 
+          <p><strong>Displaying Index Specifications</strong></p>
+        </blockquote>
+        <pre><font color="#003399">     proc sql;
+        describe table marchflights;
+     quit;</font></pre> <blockquote> 
+          <p><strong>Determining Whether SAS is Using an Index</strong></p>
+        </blockquote>
+        <pre><font color="#003399">     options msglevel=i;
+     proc sql;
+        select *
+           from marchflights
+           where flightnumber='182';
+     quit;</font></pre> <blockquote> 
+          <p><strong>Directing SAS to Ignore All Indexes</strong></p>
+        </blockquote>
+        <pre><font color="#003399">     proc sql;
+        select *
+           from marchflights (idxwhere=no)
+           where flightnumber='182';
+     quit;</font></pre> <blockquote> 
+          <p><strong>Directing SAS to Use a Specified Index </strong> </p>
+        </blockquote>
+        <pre><font color="#003399">     proc sql;
+        select *
+           from marchflights (idxname=daily)
+           where flightnumber='182';
+     quit;</font></pre> <blockquote>
+          <p><strong>Dropping an Index</strong></p>
+        </blockquote>
+        <pre><font color="#003399">     proc sql;
+        drop index daily
+           from work.marchflights;
+     quit;</font></pre> <p> 
+        <HR> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Points">Points to Remember</A></STRONG> 
+        </h2>
+        <UL>
+          <LI> An index cannot be created on a view.<BR>
+            <BR>
+          <LI> Keep the number of indexes to a minimum to reduce disk storage 
+            and update costs.<br>
+            <br>
+          <li>Do not create an index for small tables; sequential access is faster 
+            on small tables.<br>
+            <br>
+          </li>
+          <li>Do not create an index based on columns that have a very small number 
+            of distinct values (low cardinality), for example, a <code>Gender</code> 
+            column that contains only the two values <em>Male</em> and <em>Female</em>.<br>
+            <br>
+          </li>
+          <li>Use indexes for queries that retrieve a relatively small subset 
+            of rows&#8212;that is, less than 15%.<br>
+            <br>
+          </li>
+          <li>Do not create more than one index that is based on the same column 
+            as the primary key.</li>
+        </UL>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+<!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,129 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Combining 
+      Macro Variable References with Text<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Delimiters in Macro Variable Names</h2>
+Sometimes you might want to place a macro variable name immediately 
+          before text other than a special character. For example, you might want 
+          to modify the previous program so that it is easy to switch between 
+          using the CHART and PLOT procedures of base SAS software and the GCHART 
+          and GPLOT procedures of SAS/GRAPH software. 
+        <PRE><font color="#003399">    /* GRAPHICS should be null or G */
+    <B>%let graphics=g</B>;
+    %let year=02;
+    %let month=jan;
+    %let var=sale;
+    proc <B>&amp;graphicschart</B> data=sasuser.y&amp;year&amp;month;
+       hbar week / sumvar=&amp;var;
+    run;
+    proc <B>&amp;graphicsplot</B> data=sasuser.y&amp;year&amp;month;
+       plot &amp;var*day;
+    run;
+</font></PRE>
+        The messages written to the SAS log reveal problems with this program. 
+        <P>
+    </td>
+  </tr>
+</table>
+<P>
+<div align="center">
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+13     %let graphics=g;
+14     %let year=02;
+15     %let month=jan;
+16     %let var=sale;
+17     proc &graphicschart data=sasuser.y&year&month;<strong>
+            -
+            10
+WARNING: Apparent symbolic reference GRAPHICSCHART not resolved.
+
+ERROR 10-205: Expecting the name of the procedure to be executed.</strong>
+</pre></td></tr>
+</table> </div>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> SAS interprets the macro variable's name to be <code>graphicschart</code> 
+        instead of <code>graphics</code> because there is no <strong>delimiter</strong> 
+        between the macro variable reference and the trailing text. 
+        <p>The word scanner recognizes the end of a macro variable name when it encounters a special character that cannot be part of the name token. 
+In other words, the special character acts as a delimiter. For example, a <strong>period</strong> (<strong>.</strong>) is a special character that is treated as part of the macro variable reference and that does not appear when the macro variable is resolved.
+        <P> To correct the problem in the previous example, you need to add a 
+          period after the reference to the macro variable <code>graphics</code>. 
+        <PRE><font color="#003399">    %let graphics=g;
+    %let year=02;
+    %let month=jan;
+    %let var=sale;
+    proc <B>&amp;graphics.</B>chart data=sasuser.y&amp;year&amp;month;
+       hbar week / sumvar=&amp;var;
+    run;
+    proc <B>&amp;graphics.</B>plot data=sasuser.y&amp;year&amp;month;
+       plot &amp;var*day;
+    run;
+</font></PRE>
+When these SAS statements are executed
+<UL>
+<LI>the word scanner treats <code>&amp;graphics.</code> as the reference</LI>
+          <LI>the value of the macro variable <code>graphics</code> is returned to the input 
+            stack</LI>
+<LI>the word scanner processes <code>gchart</code> as one token.</LI>
+</UL>
+<p><BR><center>
+Code After Substitution
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Code After Substitution">
+<tr bgcolor="#F7F7DE"><td>
+<PRE><font color="#003399">
+proc <B>gchart</B> data=sasuser.y02jan;
+   hbar week / sumvar=sale;
+run;
+proc <B>gplot</B> data=sasuser.y02jan;
+   plot sale*day;
+run;
+</font></PRE></td></tr>
+</table></center>
+
+    </td>
+  </tr>
+</table>
+<P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

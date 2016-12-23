@@ -1,0 +1,119 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using an Index for Efficient WHERE Processing<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Accessing Data Directly</h2>
+        <p>When using an index for WHERE processing, SAS goes straight to each 
+          observation that contains the value without having to read every observation 
+          in the data set. 
+        <p><br>
+        
+        <h2>Example</h2>
+        <p>Suppose you have defined an index on the variable <code>Date_ID</code> 
+          in the <strong>Company.Dates</strong> data set <strong></strong>that 
+          was shown in the previous example. This time, when you submit the following 
+          DATA step, SAS <strong>uses the index</strong> to process the WHERE 
+          statement:</p>
+        <pre>     <font color="#003399">data company.d02jul2000;
+        set company.dates;
+        <strong>where date_id='02JUL2000'd;</strong>
+     run;</font></pre> 
+        <p>The process of retrieving data via an index (direct access) is more 
+          complicated than sequentially processing data, so direct access requires 
+          more CPU time per observation retrieved than sequential access. However, 
+          for a small subset, using an index can decrease the number of pages 
+          that SAS has to load into input buffers, which reduces the number of 
+          I/O operations. </p>
+        </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <em>Select buttons below to see how SAS processes the program shown 
+        above by using an index. You can also see a <a href="JavaScript: openOther('m85_4a.htm')">text-only 
+        version</a> of the information.</em> <p><br>
+      </td>
+    </tr>
+  </table>
+  <table border="2" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+      <td> <script language="JavaScript">
+	  <!-- Specify the number of animation graphics -->
+	  var totalanim=7; 
+  	  <!-- Specify the width and height of the images -->
+	  var imageWidth=457;
+	  var imageHeight=481;
+	  <!-- Don't edit the rest of the script or the form -->
+	  if (document.images) document.write('<img width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" name="animation" alt="Animation frame"></a>');else
+	  document.write('<iframe name="animation" width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" scrolling=no frameborder="0"></iframe>');</script> 
+      </td>
+    </tr>
+    <tr valign="Top"> 
+      <td> <table cellspacing="0" cellpadding="0">
+          <tr valign="Top"> 
+            <td align="center"> <form name="frameplay" onSubmit="return false">
+                <input type="button" name="back" value="Back" onClick="scroll('back',totalanim);return false">
+                <input type="text" name="page" value="Start" size="7">
+                <input type="button" name="next" value="Next" onClick="scroll('next',totalanim);return false">
+              </form>
+              <script>document.frameplay.page.value=" 1 of "+totalanim;</script> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">When the values in the data set are sorted in the order 
+        in which they occur in the index, the qualified observations are adjacent 
+        to each other. In this situation, SAS loads fewer pages into the input 
+        buffer than if the data is randomly distributed throughout the data set. 
+        Therefore, fewer I/O operations are required when the data set is sorted. 
+        However, there is a greater chance that SAS will need to load the same 
+        page of data multiple times, and that more I/O operations will be required, 
+        when the data values are distributed randomly and more than one value 
+        needs to be selected to satisfy the WHERE statement (using an operator 
+        other than the equals operator). </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

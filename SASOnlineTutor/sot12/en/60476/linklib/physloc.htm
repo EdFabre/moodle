@@ -1,0 +1,85 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Determining the Location of Your Sample Raw Data Files</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Determining 
+      the Location of Your Sample Raw Data Files<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>There are two ways that you can determine the location of your sample 
+        raw data files. You can 
+      <ul>
+        <li><a href="#program">submit a program</a> 
+        <li><a href="#interface">use the SAS Explorer window</a>. 
+      </ul>
+	  <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">If you are using z/OS (OS/390), do not use either of 
+            the methods above. In the z/OS operating environment, your sample 
+            raw data files are stored as <em><strong>userid</strong></em><strong>.<em>filename</em>.dat</strong>. 
+            For example, if your user ID is <strong>myname</strong>, the file 
+            <strong>route1.dat</strong> is stored as <strong>myname.route1.dat</strong>. 
+          </td>
+        </tr>
+      </table>
+      <P><BR>
+      <h2><a name="program" id="program"><strong>Submit a Program to Find Your 
+        Raw Data Files</strong></a></h2>
+	   <P>
+      Copy the program shown below and paste it into a code editing window:
+	  <font color="#003399">
+      <pre>     options nosource;
+     data _null_;
+        rawdatalocation=trim(pathname("sasuser"));
+        put / "Your raw data files are located here:     " 
+              rawdatalocation; 
+     run;
+     options source;</pre>
+      </font> Submit the program. The location of your raw data files appears 
+      in the SAS log. 
+      <P><BR>
+	  <h2><a name="interface"><strong>Use 
+      the SAS Explorer Window</strong></a> </h2>
+      <ol>
+        <li>Locate Sasuser in the SAS Explorer window.<br>
+          <br>
+        </li>
+        <li>Right-click the Sasuser icon and select <strong>Properties</strong>.<br>
+          <br>
+          <img src="images/psloc_s1.gif" width="302" height="371" alt="Screenshot of the SAS Explorer window after right-clicking on Sasuser"><br>
+          <br>
+        </li>
+        <li>The physical location appears next to the directory icon in the tree 
+          view. <br>
+          <br>
+          <img src="images/psloc_s2.gif" width="352" height="395" alt="Screenshot of the Sasuser Properties window"></li>
+      </ol>
+      </td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

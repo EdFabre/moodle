@@ -1,0 +1,214 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      and Modifying Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>Initializing Sum Variables</strong> </p>
+      <p> In a previous example, the sum variable <code>SumSec</code> was initialized 
+        to 0 by default before the first observation was read. But what if you 
+        want to initialize <code>SumSec</code> to a different number, such as 
+        the total seconds from previous treadmill stress tests?</p>
+      <p> You can use the <strong>RETAIN statement</strong> to assign an initial 
+        value other than the default value of 0 to a variable whose value is assigned 
+        by a sum statement. 
+      <p>The RETAIN statement 
+      <ul>
+        <li>assigns an initial value to a retained variable</li>
+        <li>prevents variables from being initialized each time the DATA step 
+          executes. 
+      </ul>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, simple RETAIN statement for initializing sum variables">
+    <tr> 
+      <td><strong>General form, simple RETAIN statement for initializing sum variables:</strong> 
+        <blockquote> <font color="#003399"><strong>RETAIN</strong><em> variable 
+            &lt;initial-value&gt;;</em></font> </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>variable</em></font> is a variable whose 
+            values you want to retain 
+          <li><font color="#003399"><em>initial-value</em></font> specifies an 
+            initial value (numeric or character) for the preceding variable. 
+        </ul>
+        <p> 
+        <table border="0" cellspacing="0" cellpadding="2">
+          <tr valign="top"> 
+            <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+            <td>The RETAIN statement 
+              <ul>
+                  <li>is a compile-time only statement that creates variables 
+                    if they do not already exist.
+                  <li>initializes the retained variable to missing before the 
+                    first execution of the DATA step if you do not supply an initial 
+                    value. 
+                  <li>has no effect on variables that are read with SET, MERGE, 
+                  or UPDATE statements. (The SET and MERGE statements are discussed 
+                  in later lessons.) 
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Example</strong> 
+        <p> Suppose you want to add 5400 seconds (the accumulated total seconds 
+          from a previous treadmill stress test) to the variable <code>SumSec</code> 
+          in the <strong>Clinic.Stress</strong> data set when you create the data 
+          set. To initialize <code>SumSec</code> with the value <em>5400</em>, 
+          you use the RETAIN statement shown below. 
+          <pre><font color="#003399">    data clinic.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       <strong>retain SumSec 5400;</strong></font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">    run;</font></pre>
+        Now the value of <code>SumSec</code> begins at <em>5400</em> and increases 
+        by the value of <code>TotalTime</code> with each observation. </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="2" align="center" bgcolor="#FFFFFF" title="Total Number of Elapsed Seconds">
+    <tr bgcolor="#F7F7DE"> 
+      <td align="right">&nbsp;<b><tt>SumSec</tt></b>&nbsp;</td>
+      <td align="center"> 
+        <center>
+          &nbsp;<b><tt>=</tt></b>&nbsp; 
+        </center>
+      </td>
+      <td>&nbsp;<b><tt>TotalTime</tt></b>&nbsp;</td>
+      <td align="center">&nbsp;<b><tt>+</tt></b>&nbsp;</td>
+      <td>&nbsp;<b><tt>previous&nbsp;total</tt></b>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">5400&nbsp;</td>
+      <td> 
+        <center>
+          &nbsp; 
+        </center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">6158&nbsp;</td>
+      <td> 
+        <center>
+          <tt>=</tt> 
+        </center>
+      </td>
+      <td> 
+        <p align="right">758&nbsp;</p>
+      </td>
+      <td align="center"><tt>+</tt> </td>
+      <td> 
+        <div align="right">0&nbsp;</div>
+      </td>
+    </tr>
+    <tr> 
+      <td align="right">6763&nbsp;</td>
+      <td align="center"> 
+        <center>
+          <tt>=</tt> 
+        </center>
+      </td>
+      <td> 
+        <div align="right">605&nbsp;</div>
+      </td>
+      <td align="center"> <tt>+</tt> </td>
+      <td align="right">6158&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">7436&nbsp;</td>
+      <td align="center"> 
+        <center>
+          <tt>=</tt> 
+        </center>
+      </td>
+      <td> 
+        <div align="right">673&nbsp;</div>
+      </td>
+      <td align="center"> <tt>+</tt> </td>
+      <td align="right">6763&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">8018&nbsp;</td>
+      <td align="center"> 
+        <center>
+          <tt>=</tt> 
+        </center>
+      </td>
+      <td> 
+        <div align="right">582&nbsp;</div>
+      </td>
+      <td align="center"> <tt>+</tt> </td>
+      <td align="right">7436&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">8724&nbsp;</td>
+      <td align="center"> 
+        <center>
+          <tt>=</tt> 
+        </center>
+      </td>
+      <td align="right">706&nbsp;</td>
+      <td align="center"> <tt>+</tt> </td>
+      <td align="right">8018&nbsp;</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

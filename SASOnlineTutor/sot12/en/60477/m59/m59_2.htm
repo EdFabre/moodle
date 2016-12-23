@@ -1,0 +1,90 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the MODIFY Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> When you submit a DATA step to create a SAS data set that is also named 
+        in a <strong>MERGE</strong>, <strong>UPDATE</strong>, or <strong>SET</strong> 
+        statement, SAS creates a second copy of the input data set. Once execution 
+        is complete, SAS deletes the original copy of the data set. As a result, 
+        the original data set is replaced by the new data set. The new data set 
+        can contain a different set of variables than the original data set and 
+        the attributes of the variables in the new data set can be different from 
+        those of the original data set. 
+        <p align="center"><img src="images/m59_2a.gif" alt="Diagram showing how data set is replaced with the SET statement" width="243" height="240"></p>
+        <p>In contrast, when you submit a DATA step to create a SAS data set that 
+          is also named in the <strong>MODIFY statement</strong>, SAS does not 
+          create a second copy of the data but instead updates the data set in 
+          place. Any variables can be added to the program data vector (PDV), 
+          but they are not written to the data set. Therefore, the set of variables 
+          in the data set does <strong>not</strong> change when the data is modified. 
+        </p>
+        <p align="center"><img src="images/m59_2b.gif" alt="Diagram showing how data is modified in place with the MODIFY statement" width="243" height="240"></p>
+        <p>When you use the MODIFY statement, there is an implied REPLACE statement 
+          at the bottom of the DATA step instead of an OUTPUT statement. Using 
+          the MODIFY statement, you can update</p>
+        <ul>
+          <li> every observation in a data set</li>
+          <li> observations using a transaction data set and a BY statement</li>
+          <li> observations located using an index.</li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top"><p>If the system terminates abnormally while a DATA 
+                step that is using the MODIFY statement is processing, you can 
+                lose data and possibly damage your master data set. You can recover 
+                from the failure by</p>
+              <ul>
+                <li> restoring the master file from a backup and restarting the 
+                  step, or</li>
+                <li> keeping an audit trail file and using it to determine which 
+                  master observations have been updated.</li>
+              </ul>
+              <p>You will learn about audit trails later in this lesson.</p></td>
+          </tr>
+        </table> 
+        
+        <p>First let's take a look at using the MODIFY statement to modify all 
+          the observations in the data set.</p></td>
+    </tr>
+  </table>
+  <p>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

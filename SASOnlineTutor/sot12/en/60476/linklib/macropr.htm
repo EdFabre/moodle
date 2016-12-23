@@ -1,0 +1,76 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --><TITLE>Macro Processing</TITLE><!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->Macro 
+      Processing<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" -->
+<TABLE CELLPADDING="2" ALIGN="Center" width="85%">
+  <TR> 
+    <TD COLSPAN=2> 
+      <ol>
+	  <li>The input stack contains the following program:
+	  <font color="#003399"><pre>     %let amt=1.1;
+     data new;
+        set perm.mast;
+        bonus=wage*&amp;amt;
+     run;</pre></font>
+        <li>The word scanner reads the first two tokens of the %LET statement, 
+          and it passes that trigger to the macro processor.<br>
+          <br>
+        </li>
+        <li>The macro processor requests additional tokens until it receives a 
+          semicolon.<br>
+          <br>
+        </li>
+        <li>The macro processor creates a macro variable named <code>amt</code> 
+          in the global symbol table and assigns a value of <em>1.1</em> to it.<br>
+          <br>
+        </li>
+        <li>The macro processor gives control back to the word scanner. The word 
+          scanner passes the next few statements to the compiler until it reaches 
+          the next macro trigger.<br>
+          <br>
+        </li>
+        <li>The word scanner passes <code>&amt</code> to the macro processor.<br>
+          <br>
+        </li>
+        <li>The macro processor looks up <code>amt</code> in the global symbol 
+          table and sends the value of <code>amt</code> (<em>1.1</em>) back to 
+          the input stack.<br>
+          <br>
+        </li>
+        <li>Word scanning continues, but since the reference has been resolved 
+          to its value, the word scanner passes the token to the compiler.<br>
+          <br>
+        </li>
+        <li>When SAS detects the RUN statement, which is a step boundary, the 
+          step executes. </li>
+      </ol>
+    </TD>
+  </TR>
+</TABLE>
+<!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

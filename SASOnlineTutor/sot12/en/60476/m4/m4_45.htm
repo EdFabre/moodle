@@ -1,0 +1,195 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Formatting 
+      Data Values<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Temporarily Assigning Formats to Variables</strong> </p>
+      <p> In your SAS reports, formats control how the data values are displayed. 
+        To make data values more understandable when they are displayed in your 
+        procedure output, you can use the <strong>FORMAT statement</strong>, which 
+        associates formats with variables. 
+      <p> Formats affect only how the data values appear in output, <strong>not</strong> 
+        the actual data values as they are stored in the SAS data set. 
+    </td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, FORMAT statement">
+    <tr> 
+      <td align="left"><strong>General form, FORMAT statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>FORMAT </strong><em>variable(s)</em> 
+          <em>format-name</em><strong>;</strong></font></nobr> </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>variable(s)</em></font> is the name of 
+            one or more variables whose values are to be written according to 
+            a particular pattern 
+          <li><font color="#003399"><em>format-name</em></font> specifies a SAS 
+            format or a user-defined format that is used to write out the values. 
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr valign="Top"> 
+            <td width="24"><img border="0" src="../navimages/note.gif" alt="Note:" width="20" height="20"></td>
+            <td>The FORMAT statement applies only to the PROC step in which it 
+              appears.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>You can use a separate FORMAT statement for each variable, or you can 
+        format several variables (using either the same format or different formats) 
+        in a single FORMAT statement.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+    <table bgcolor="#FFFFFF" cellpadding="5" border="1" width="85%" cellspacing="0" title="FORMAT statement examples">
+      <tr valign="Top"> 
+        <td width="225" nowrap bgcolor="#F7F7DE"><strong>This FORMAT statement 
+          ...</strong></td>
+        <td nowrap bgcolor="#F7F7DE"><strong>Associates ...</strong></td>
+        <td nowrap bgcolor="#F7F7DE"><strong>To display values as ...</strong></td>
+      </tr>
+      <tr valign="Top"> 
+        <td width="225"> <pre><font color="#003399">format date mmddyy8.;</font>
+</pre></td>
+        <td>the format <strong>MMDDYY8. </strong>with the&nbsp;variable <code>Date</code></td>
+        <td><strong>06/05/03</strong></td>
+      </tr>
+      <tr valign="Top"> 
+        <td> <pre><font color="#003399">format net comma5.0 </font>
+<font color="#003399">       gross comma8.2;</font>
+<font color="#003399"><strong>             </strong></font>
+</pre></td>
+        <td>the format <strong>COMMA5.0</strong> with the variable <code>Net</code> 
+          and the format <strong>COMMA8.2</strong> with the variable <code>Gross</code></td>
+        <td><p><strong>1,234</strong> </p>
+          <p><strong>5,678.90</strong><br>
+          </p></td>
+      </tr>
+      <tr valign="Top"> 
+        <td> <pre><font color="#003399">format net gross dollar9.2; </font></pre></td>
+        <td>the format <strong>DOLLAR9.2 </strong>with both variables, <code>Net</code> 
+          and <code>Gross</code></td>
+        <td><p><strong>$1,234.00 </strong></p>
+          <p><strong>$5,678.90</strong><br>
+          </p></td>
+      </tr>
+    </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>For example, the FORMAT statement below writes values of the variable 
+        <code>Fee</code> using dollar signs, commas, and no decimal places: 
+        <pre><font color="#003399">     proc print data=clinic.admit;</font>
+<font color="#003399">        var actlevel fee;</font>
+<font color="#003399">        where actlevel='HIGH';</font>
+<font color="#003399">        <strong>format fee dollar4.;</strong></font>
+<font color="#003399">     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>ActLevel</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Fee</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+        1</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">HIGH</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        $85</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+        2</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">HIGH</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">$125</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b> 
+        6</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">HIGH</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">$125</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>11</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">HIGH</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">$150</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>14</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">HIGH</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">$125</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>18</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">HIGH</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        $85</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>20</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">HIGH</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">$150</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

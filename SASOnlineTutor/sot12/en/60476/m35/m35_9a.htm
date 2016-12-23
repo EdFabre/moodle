@@ -1,0 +1,77 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Array Processing </TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Array 
+      Processing <!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows the processing of a one-dimensional array.</p>
+      <ol>
+        <li>The following program is submitted to SAS: 
+          <pre><font color="#003399">data hrd.convert;<br>   set hrd.fitclass;<br>   array wt{6} weight1-weight6;<br>   do i=1 to 6;<br>      wt{i}=wt{i}*2.2046;<br>   end;<br>run;</font></pre>
+          <p></p>
+        </li>
+        <li>During compilation, the program data vector is created for the <strong>Hrd.Convert</strong> 
+          data set. <br>
+          <br>
+        </li>
+        <li>The DATA step is scanned for syntax errors. If there are any syntax 
+          errors in the ARRAY statement, they are detected at this time. <br>
+          <br>
+        </li>
+        <li>The index values of the array elements are assigned. The array name 
+          and array references exist only for the duration of the DATA step and 
+          are not included in the program data vector. <br>
+          <br>
+        </li>
+        <li>During the first iteration of the DATA step, the first observation 
+          in <strong>Hrd.Fitclass</strong> is read into the program data vector. 
+          <br>
+          <br>
+        </li>
+        <li>Because the ARRAY statement is a compile-time only statement, it is 
+          ignored during execution. The DO loop is executed next. <br>
+          <br>
+        </li>
+        <li>During the first iteration of the DO loop, the index variable <code>i</code> 
+          is set to <em>1</em>. As a result, the array reference <code>wt</code>{<em>i</em>} 
+          becomes <code>wt</code>{<em><code>1</code></em>}. Because <code>wt</code>{<code><em>1</em></code>} 
+          refers to the first array element, <code>Weight1</code>, the value of 
+          <code>Weight1</code> is converted from kilograms to pounds. <br>
+          <br>
+        </li>
+        <li>As the DATA step continues its DO loop iterations, the index variable 
+          <code>i</code> is changed from <em>1</em> to <em>2</em>, <em>3</em>, 
+          <em>4</em>, <em>5</em>, and <em>6</em>, causing <code>Weight1</code> 
+          through <code>Weight6</code> to receive new values in the program data 
+          vector. </li>
+      </ol>
+      <p>&nbsp;</p></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,145 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      How Data Sets Are Read<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td><strong></strong> 
+        <p>In a previous lesson, you learned about the compilation and execution 
+        phases of the DATA step as they pertain to reading raw data. DATA step 
+        processing for reading existing SAS data sets is very similar. The main 
+        difference is that while reading an existing data set with the SET statement, 
+        SAS retains the values of the variables from one observation 
+        to the next. </p>
+      <p> Let's briefly look at the compilation and execution phases of DATA steps 
+        that use a SET statement. In this example, the DATA step reads the data 
+        set <strong>Finance.Loans</strong>, creates the variable <code>Interest</code>, 
+        and creates the new data set <strong>Finance.DueJan</strong>. 
+      <pre><font color="#003399">     data finance.duejan;</font>
+<font color="#003399">        <strong>set finance.loans;</strong></font>
+<font color="#003399">        Interest=amount*(rate/12);</font>
+<font color="#003399">     run;</font></pre>
+    </td>
+  </tr>
+</table>
+<center>
+  SAS Data Set Finance.Loans <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Account</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Amount</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rate</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Months</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Payment</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">101-1092</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        22000</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.100</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        60</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">467.43</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">101-1731</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">114000</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.095</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">360</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">958.57</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">101-1289</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        10000</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.105</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        36</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">325.02</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">101-3144</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        3500</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">0.105</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        12</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">308.52</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Compilation Phase</strong> 
+        <ol>
+          <li>The program data vector is created and contains the automatic variables 
+            <code>_N_</code> and <code>_ERROR_</code>. <br>
+            <br>
+            <img src="images/m14g1g1.gif" width="451" height="70" alt="Program Data Vector"><br>
+            <br>
+          <li>SAS also scans each statement in the DATA step, looking for syntax 
+            errors. <br>
+            <br>
+          <li>When the SET statement is compiled, a slot is added to the program 
+            data vector for each variable in the input data set. The input data 
+            set supplies the variable names, as well as attributes such as type 
+            and length. <br>
+            <br>
+            <img src="images/m14g1g2.gif" width="393" height="76" alt="Program Data Vector"><br>
+            <br>
+          <li>Any variables that are created in the DATA step are also added to 
+            the program data vector. The attributes of each of these variables 
+            are determined by the expression in the statement. <br>
+            <br>
+            <img src="images/m14g1g3.gif" width="450" height="75" alt="Program Data Vector"><br>
+            <br>
+          <li>At the bottom of the DATA step, the compilation phase is complete, 
+            and the descriptor portion of the new SAS data set is created. There 
+            are no observations because the DATA step has not yet executed. 
+        </ol>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

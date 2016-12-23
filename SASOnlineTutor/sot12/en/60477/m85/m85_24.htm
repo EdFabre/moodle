@@ -1,0 +1,103 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Deciding 
+      Whether to Create an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td height="17"><p>In previous topics, you learned how SAS determines whether 
+          sequential access or direct access is likely to be most efficient for 
+          WHERE processing. You also learned about a variety of factors that you 
+          can assess to determine which access method is most efficient. Once 
+          you have made your determination, you can use the following guidelines 
+          to decide whether it is efficient to create an index. 
+		  <p><br>
+        <h2>Guidelines for Deciding Whether to Create an Index</h2>
+        <ul>
+          <li>Minimize the number of indexes to reduce disk storage and update 
+            costs. Create indexes only on variables that are often used in queries 
+            or (when data cannot be sorted) in BY-group processing.<br>
+            <br>
+          </li>
+          <li>Create an index when you intend to retrieve a small subset of observations 
+            from a large data file.<br>
+            <br>
+          </li>
+          <li>Do not create an index if the data file's page count is less than 
+            three pages. It is faster to access the data sequentially.<br>
+            <br>
+          </li>
+          <li>Create indexes on variables that are discriminating. Discriminating 
+            variables have many different values that precisely identify observations. 
+            A WHERE expression that subsets based on a discriminating variable 
+            results in a smaller subset than a WHERE expression that references 
+            a non-discriminating variable (a variable that has only a few values).<br>
+            <br>
+          </li>
+          <li>To reduce the number of I/O operations that are performed when you 
+            create an index, first sort the data by the key variable. Then, to 
+            improve performance, maintain the data file in sorted order by the 
+            key variable.<br>
+            <br>
+            <table border="0" cellpadding="2" cellspacing="0">
+              <tr> 
+                <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                <td valign="top">If you choose not to use an index and the data 
+                  set is large, it is still more efficient to sort the data set 
+                  on the <nobr>variable(s)</nobr> that are specified in the WHERE 
+                  statement.</td>
+              </tr>
+            </table>
+            <br>
+          </li>
+          <li>Consider how often your applications use an index. An index must 
+            be used often in order to compensate for the resources that are used 
+            in creating and maintaining it.<br>
+            <br>
+          </li>
+          <li>Consider the cost of an index for a data file that is frequently 
+            changed. <br>
+            <br>
+          </li>
+          <li>When you create an index to process a WHERE expression, do not try 
+            to create one index that is used to satisfy all queries.</li>
+        </ul>
+        </td>
+    </tr>
+  </table>
+<br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

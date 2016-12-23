@@ -1,0 +1,110 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Manage 
+            formats using PROC CATALOG.</strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --> 
+  
+  <div id="le1_le2" class="eg_div">
+<table width="85%" border="0" cellpadding="2" cellspacing="0"><tr> 
+<td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:"></td>
+<td valign="top">If you are using the SAS Learning Edition, you will not 
+be able to submit a PROC CATALOG step because the CATALOG procedure is not included in the software. You can practice writing the code in this 
+practice and compare your code to the solution code. </td></tr></table>
+</div>
+  <!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+          <div id="le1_le2_eg1_eg2_eg3_v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol><li>Write and submit a PROC FORMAT step that documents the formats in 
+            the <strong>Work.Formats</strong> catalog. <br>
+            <br>
+          <li>View the output. You should see the CARGO. and NEWDATE. formats 
+            that you created in the previous practice.<br>
+            <br>
+          <li>Write and submit a PROC CATALOG step that copies only these two 
+            formats into the <strong>Sasuser.Formats</strong> catalog.<br>
+            <br>
+          <li>Check the log to be sure the formats were copied correctly.
+		  </ol>
+      
+       </td>
+  </tr>
+</table>
+</div><!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_eg3_v89_v91_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+        <td> 
+          <ol><li>Write the following PROC FORMAT step: 
+<font color="#003399">
+              <pre>
+proc format lib=work fmtlib;
+run;</pre>
+              </font>
+<li>View the output.  You should see the formats you created in the last practice.<br><br>
+<li>Submit the following PROC CATALOG step:
+<font color="#003399">
+              <pre>
+proc catalog catalog=work.formats;
+   copy out=sasuser.formats;
+   select newdate.format cargo.format;
+run;
+quit;</pre>
+              </font>
+<li>Check the log to see if the formats were copied to the <strong>Sasuser.Formats</strong> catalog.</ol>
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+  <!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

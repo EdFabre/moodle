@@ -1,0 +1,222 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Compilation 
+      Phase<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Data Set Variables</strong></p>
+      <p>As the INPUT statement is compiled, a slot is added to the program data 
+        vector for each variable in the new data set. Generally, variable attributes 
+        such as length and type are determined the first time a variable is encountered.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     data perm.update;</font>
+<font color="#003399">        infile invent;</font>
+<font color="#003399">        input <strong>Item</strong> $ 1-13 <strong>IDnum</strong> $ 15-19</font>
+<font color="#003399">              <strong>InStock</strong> 21-22 <strong>BackOrd</strong> 24-25;</font>
+<font color="#003399">        Total=instock+backord;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+</center>
+<p align="center"> <img src="images/m22c3g1.gif" width="420" height="70" alt="Variables added to PDV"> 
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Any variables that are created with an assignment statement in the DATA 
+        step are also added to the program data vector. For example, the assignment 
+        statement below creates the variable <code>Total</code>. As the statement 
+        is compiled, the variable is added to the program data vector. The attributes 
+        of the variable are determined by the expression in the statement. Because 
+        the expression produces a numeric value, <code>Total</code> is defined 
+        as a numeric variable and is assigned the default length of 8. 
+        <pre><font color="#003399">     data perm.update;</font>
+<font color="#003399">        infile invent;</font>
+<font color="#003399">        input Item $ 1-13 IDnum $ 15-19</font>
+<font color="#003399">              InStock 21-22 BackOrd 24-25;</font>
+<font color="#003399">        <strong>Total=instock+backord;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <img src="images/m22c3g2.gif" width="420" height="70" alt="Variables added to PDV"> 
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <p><strong>Descriptor Portion of the SAS Data Set</strong></p>
+        <p>At the bottom of the DATA step (in this example, when the RUN statement 
+          is encountered), the compilation phase is complete, and the descriptor 
+          portion of the new SAS data set is created. The descriptor portion of 
+          the data set includes </p>
+        <ul>
+          <li> the name of the data set 
+          <li> the number of observations and variables 
+          <li> the names and attributes of the variables. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> Data Set Descriptor 
+<center>
+  <table border="1" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Data Set Descriptor">
+    <tr> 
+      <td> 
+        <pre>
+                                      
+
+Data Set Name: PERM.UPDATE                         Observations:         0
+Member Type:   DATA                                Variables:            5
+Engine:        V9                                  Indexes:              0
+Created:       14:38 Thursday, June 20, 2002       Observation Length:   48
+Last Modified: 14:38 Thursday, June 20, 2002       Deleted Observations: 0
+Protection:                                        Compressed:           NO
+Data Set Type:                                     Sorted:               NO
+Label:
+
+                  -----Engine/Host Dependent Information-----
+
+Data Set Page Size:         4096
+Number of Data Set Pages:   1
+First Data Page:            1
+Max Obs per Page:           84
+Obs in First Data Page:     0
+Number of Data Set Repairs: 0
+File Name:                  C:\WINNT\My SAS Files\V8\update.sas7bdat
+Release Created:            9.0000M0
+Host Created:               WIN_NT
+
+
+              -----Alphabetic List of Variables and Attributes-----
+</pre>
+<center>
+          <table width="300" border="0" cellspacing="0" cellpadding="0" title="Alphabetic List of Variables and Attributes">
+            <tr> 
+              <td><font face="Courier New, Courier, mono">#</font></td>
+              <td><font face="Courier New, Courier, mono">Variable</font></td>
+              <td><font face="Courier New, Courier, mono">Type</font></td>
+              <td><font face="Courier New, Courier, mono">Len</font></td>
+              <td><font face="Courier New, Courier, mono">Pos</font></td>
+            </tr>
+            <tr> 
+              <td colspan="5"><font face="Courier New, Courier, mono">-------------------------------------</font></td>
+            </tr>
+            <tr> 
+              <td><font face="Courier New, Courier, mono">4</font></td>
+              <td><font face="Courier New, Courier, mono">BackOrd</font></td>
+              <td><font face="Courier New, Courier, mono">Num</font></td>
+              <td><font face="Courier New, Courier, mono">8</font></td>
+              <td><font face="Courier New, Courier, mono">8</font></td>
+            </tr>
+            <tr> 
+              <td><font face="Courier New, Courier, mono">2</font></td>
+              <td><font face="Courier New, Courier, mono">IDnum</font></td>
+              <td><font face="Courier New, Courier, mono">Char</font></td>
+              <td><font face="Courier New, Courier, mono">5</font></td>
+              <td><font face="Courier New, Courier, mono">37</font></td>
+            </tr>
+            <tr> 
+              <td><font face="Courier New, Courier, mono">3</font></td>
+              <td><font face="Courier New, Courier, mono">InStock</font></td>
+              <td><font face="Courier New, Courier, mono">Num</font></td>
+              <td><font face="Courier New, Courier, mono">8</font></td>
+              <td><font face="Courier New, Courier, mono">0</font></td>
+            </tr>
+            <tr> 
+              <td><font face="Courier New, Courier, mono">1</font></td>
+              <td><font face="Courier New, Courier, mono">Item</font></td>
+              <td><font face="Courier New, Courier, mono">Char</font></td>
+              <td><font face="Courier New, Courier, mono">13</font></td>
+              <td><font face="Courier New, Courier, mono">24</font></td>
+            </tr>
+            <tr> 
+              <td><font face="Courier New, Courier, mono">5</font></td>
+              <td><font face="Courier New, Courier, mono">Total</font></td>
+              <td><font face="Courier New, Courier, mono">Num</font></td>
+              <td><font face="Courier New, Courier, mono">8</font></td>
+              <td><font face="Courier New, Courier, mono">16</font></td>
+            </tr>
+          </table>
+		</center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>At this point, the data set contains the five variables that are defined 
+        in the input data set and in the assignment statement. Remember, <code>_N_</code> 
+        and <code>_ERROR_</code> are not written to the data set. There are no 
+        observations because the DATA step has not yet executed. During execution, 
+        each raw data record is processed and is then written to the data set 
+        as an observation.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:"></td>
+        <td>For additional information about assigning attributes to variables, 
+          see the 
+          <!--doc reference-->
+          SAS documentation.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

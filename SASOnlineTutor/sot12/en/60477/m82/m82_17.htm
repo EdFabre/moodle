@@ -1,0 +1,311 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Compressing 
+      Data Files<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Creating and Reading Compressed Data Files</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Suppose you want to create two SAS data sets from data that is stored 
+        in two raw data files. The raw data file that is referenced by the fileref<strong> 
+        flat1</strong> contains numeric data about customer orders for a retail 
+        company; you want to create a SAS data set named <strong>Retail.Orders</strong> 
+        from this raw data file. The raw data file that is referenced by the fileref 
+        <strong>flat2</strong> contains character data about customers for a retail 
+        company; you want to create a SAS data set named <strong>Retail.Customers</strong> 
+        from this raw data file. 
+      <p>In both cases, you can use the DATA step to create either an uncompressed 
+        data file or a compressed data file. Furthermore, you can use either binary 
+        or character compression in either case. That is, you can use the following 
+        techniques: 
+      <ol>
+        <li><a href="#1">Numeric Data, No Compression</a></li>
+        <li><a href="#2">Numeric Data, <em>BINARY</em> Compression</a></li>
+        <li><a href="#3">Numeric Data, <em>CHAR</em> Compression</a></li>
+        <li><a href="#4">Character Data, No Compression</a></li>
+        <li><a href="#5">Character Data, <em>BINARY</em> Compression</a></li>
+        <li><a href="#6">Character Data, <em>CHAR</em> Compression</a>.</li>
+      </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results might vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for creating compressed data files. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        Numeric Data, No Compression</strong></p>
+      <blockquote> 
+        <p>The following program creates the SAS data set <strong>Retail.Orders</strong>, 
+          which contains numeric data and is uncompressed. The second DATA step reads the uncompressed data file.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     data retail.orders<strong>(compress=no)</strong>;
+        infile flat1;
+        input  Customer_ID          12.
+               Employee_ID          12.
+               Street_ID            12.
+               Order_Date           date9.
+               Delivery_Date        date9.
+               Order_ID             12. 
+               Order_Type           comma16.
+               Product_ID           12.     
+               Quantity             4.     
+               Total_Retail_Price   dollar13.2
+               CostPrice_Per_Unit   dollar13.2
+               Discount             5.2           ;
+     run;
+	 
+     data _null_;
+         set retail.orders;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Numeric Data, <em>BINARY</em> Compression</strong></p>
+      <blockquote> 
+        <p>The following program creates the SAS data set<strong> Retail.Orders_binary</strong>, 
+          which contains numeric data and uses <em>BINARY</em> compression. The 
+          second DATA step reads the compressed data file.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     data retail.orders_binary<strong>(compress=binary)</strong>;
+        infile flat1;
+        input  Customer_ID          12.
+               Employee_ID          12.
+               Street_ID            12.
+               Order_Date           date9.
+               Delivery_Date        date9.
+               Order_ID             12. 
+               Order_Type           comma16.
+               Product_ID           12.     
+               Quantity             4.     
+               Total_Retail_Price   dollar13.2
+               CostPrice_Per_Unit   dollar13.2
+               Discount             5.2           ;
+     run;
+	 
+     data _null_;
+        set retail.orders_binary;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="3" id="3"></a><img src="../navimages/opt_3.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Numeric Data, <em>CHAR</em> Compression</strong></p>
+      <blockquote> 
+        <p>The following program creates the SAS data set <strong>Retail.Orders_char</strong>, 
+          which contains numeric data and uses <em>CHAR</em> compression. The 
+          second DATA step reads the compressed data file.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     data retail.orders_char<strong>(compress=char)</strong>;
+        infile flat1;
+        input  Customer_ID          12.
+               Employee_ID          12.
+               Street_ID            12.
+               Order_Date           date9.
+               Delivery_Date        date9.
+               Order_ID             12. 
+               Order_Type           comma16.
+               Product_ID           12.     
+               Quantity             4.     
+               Total_Retail_Price   dollar13.2
+               CostPrice_Per_Unit   dollar13.2
+               Discount             5.2           ; 
+     run;
+	 
+     data _null_;
+        set retail.orders_char;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="4" id="4"></a><img src="../navimages/opt_4.gif" alt="4." width="20" height="20" align="absmiddle"> 
+        Character Data, No Compression</strong></p>
+      <blockquote> 
+        <p>The following program creates the SAS data set <strong>Retail.Customers</strong>, 
+          which contains character data and is uncompressed. The second DATA step 
+          reads the uncompressed data file.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     data retail.customers<strong>(compress=no)</strong>;
+        infile flat2;
+        input  Customer_Country     $40.
+               Customer_Gender      $1.
+               Customer_Name        $40.
+               Customer_FirstName   $20.  
+               Customer_LastName    $30.
+               Customer_Age_Group   $12.
+               Customer_Type        $40.
+               Customer_Group       $40.    
+               Customer_Address     $45.   
+               Street_Number        $8.           ;
+     run;
+	 
+     data _null_;
+        set retail.cutomers;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="5" id="5"></a><img src="../navimages/opt_5.gif" alt="5." width="20" height="20" align="absmiddle"> 
+        Character Data, <em>BINARY</em> Compression</strong></p>
+      <blockquote> 
+        <p>The following program creates the SAS data set <strong>Retail.Customers_binary</strong>, 
+          which contains character data and uses <em>BINARY</em> compression. 
+          The second DATA step reads the compressed data file.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     data retail.customers_binary<strong>(compress=binary)</strong>;
+        infile flat2;
+        input  Customer_Country     $40.
+               Customer_Gender      $1.
+               Customer_Name        $40.
+               Customer_FirstName   $20.
+               Customer_LastName    $30.
+               Customer_Age_Group   $12.
+               Customer_Type        $40.
+               Customer_Group       $40.    
+               Customer_Address     $45.   
+               Street_Number        $8.           ;
+     run;
+	 
+     data _null_;
+        set retail.customers_binary;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="6" id="6"></a><img src="../navimages/opt_6.gif" alt="6." width="20" height="20" align="absmiddle"> 
+        Character Data, <em>CHAR</em> Compression</strong></p>
+      <blockquote> 
+        <p>The following program creates the SAS data set <strong>Retail.Customers_char</strong>, 
+          which contains character data and uses <em>CHAR</em> compression. The 
+          second DATA step reads the compressed data file.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     data retail.customers_char<strong>(compress=char)</strong>;
+        infile flat2;
+        input  Customer_Country     $40.
+               Customer_Gender      $1.
+               Customer_Name        $40.
+               Customer_FirstName   $20.
+               Customer_LastName    $30.
+               Customer_Age_Group   $12.
+               Customer_Type        $40.
+               Customer_Group       $40.    
+               Customer_Address     $45.   
+               Street_Number        $8.           ;
+     run;
+	 
+     data _null_;
+        set retail.customers_char;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <ul>
+        <li>Save data storage space by compressing data, but remember that compressed 
+          data causes an increase in CPU usage because the data must be uncompressed 
+          for processing. Compressing data always uses more CPU resources than 
+          not compressing data. <br>
+          <br>
+        </li>
+        <li>Use binary compression only if the observation length is several hundred 
+          bytes or more.</li>
+      </ul></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

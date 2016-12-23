@@ -1,0 +1,267 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Variable-Length Fields<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p>Notice that the <em>w</em> value that is specified in the informat is 
+        the maximum length of <code>Name</code> and not the actual number of columns 
+        that are read.</p>
+    </td>
+  </tr>
+</table>
+<center>
+  <p> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">
+          <pre><font color="#003399">     data perm.phones; </font>
+<font color="#003399">        infile phonedat length=reclen;</font>
+        <font color="#003399">input ID 4. @;</font>
+        <font color="#003399">namelen=reclen-8;</font>
+        <font color="#003399">input Name<strong> $varying10. </strong>namelen<strong> </strong></font>
+<font color="#003399"><strong>              </strong>PhoneExt;</font>
+</pre>
+        </td>
+      </tr>
+    </table>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">When the DATA step executes for the first time, the record 
+          length is 15, so the value of <code>namelen</code> is 15 - 8, or 7. 
+          Because the value of <code>namelen</code> is <em>7</em>, only 7 columns 
+          are read, even though the <em>w</em> value is <em>10</em>.</td>
+      </tr>
+    </table>
+  </center>
+  <p> 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td><font face="Courier New, Courier, mono" size="2"> <font color="#FF0000">&nbsp; 
+        &nbsp; &nbsp;|&nbsp;&nbsp;7&nbsp;&nbsp;|</font></font></td>
+    </tr>
+    <tr> 
+      <td>
+        <center>
+          <center>
+            <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+            <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#F7F7DE" title="Raw Data File">
+              <thead> 
+              <tr> 
+                <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---<b><font color="#FF0000">V</font></b>----20</font></td>
+              </tr>
+              </thead> <tbody> 
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1802<b><font color="#003399">JOHNSON</font></b>2123</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1803BARKER2142</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1804EDMUNDSON2325</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1805RIVERS2543</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1806MASON2646</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1807JACKSON2049</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1808LEVY2856</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1809THOMAS2222</font></td>
+              </tr>
+              </tbody> 
+            </table>
+            </font></font> 
+          </center>
+        </center>
+      </td>
+    </tr>
+  </table>
+  <p> <img src="images/m28b5g1.gif" width="335" height="78" alt="Program Data Vector"> 
+</center>
+<p>
+  <center>
+  </center>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">But suppose there is a later record in which the value 
+        of <code>namelen</code> exceeds the <em>w</em> value that is specified 
+        in the $VARYING<em>w</em>. informat. For example, in the following record 
+        the value of <code>namelen</code> is <em>11</em>. However, the maximum 
+        length of the variable <code>Name</code> is <em>10</em>, so only 10 columns 
+        are read, and the last character is truncated. 
+        <p> The missing character, <em>H</em>, is then read as part of <code>PhoneExt</code>, 
+          which is a numeric variable. Therefore, the value of of <code>PhoneExt</code> 
+          is invalid and is set to missing in the Program Data Vector. 
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td><font face="Courier New, Courier, mono" size="2"> <font color="#FF0000">&nbsp; 
+        &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;|</font></font></td>
+    </tr>
+    <tr> 
+      <td> 
+        <center>
+          <center>
+            <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+            <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#F7F7DE" title="Raw Data File">
+              <thead> 
+              <tr> 
+                <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---<b><font color="#FF0000">V</font></b>----20</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1811<b><font color="#003399">VANDENBERGH</font></b>2110</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1812YEAGER2145</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1813SMITH2025</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1814HINES2243</font></td>
+              </tr>
+              </thead> <tbody> </tbody> 
+            </table>
+            </font></font> 
+          </center>
+        </center>
+      </td>
+    </tr>
+  </table>
+  <p> <img src="images/m28b5g2.gif" width="335" height="78" alt="Program Data Vector"> 
+</center>
+<p>
+  <center>
+  </center>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">As you can see, it's important to specify a <em>w</em> 
+        value that is large enough to accommodate the longest value.</td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">
+        <pre><font color="#003399">     data perm.phones; </font>
+<font color="#003399">        infile phonedat length=reclen;</font>
+        <font color="#003399">input ID 4. @;</font>
+        <font color="#003399">namelen=reclen-8;</font>
+        <font color="#003399">input Name<strong> $varying12. </strong>namelen<strong> </strong></font>
+<font color="#003399"><strong>              </strong>PhoneExt;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <center>
+    <center>
+      <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+      <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#F7F7DE" title="Raw Data File">
+        <thead> 
+        <tr> 
+          <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+        </tr>
+        </thead> <tbody> 
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1802JOHNSON2123</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1803BARKER2142</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1804EDMUNDSON2325</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1805RIVERS2543</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1806MASON2646</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1807JACKSON2049</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1808LEVY2856</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1809THOMAS2222</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1810WARREN2003</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1811<b><font color="#003399">VANDENBERGH</font></b>2110</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1812YEAGER2145</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1813SMITH2025</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1814HINES2243</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1815TAYLOR2746</font></td>
+        </tr>
+        </tbody> 
+      </table>
+      <br>
+      <br>
+      </font></font> 
+    </center>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

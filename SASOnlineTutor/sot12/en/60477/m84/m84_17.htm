@@ -1,0 +1,91 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Sorts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example: Using the SORTEDBY= Data Set Option</h2>
+        <p>Suppose you want to create a sorted SAS data set from an external file 
+          that contains invoice information. The external file is already sorted 
+          by invoice number. </p>
+        <p>You can use the SORTEDBY= data set option to sort the data by the value 
+          of <code>Invoice</code>.</p>
+        <pre><font color="#003399">     <strong>data company.transactions (sortedby=invoice);</strong>
+        infile extdata;
+        input Invoice 1-4 Item $6-20 Amount comma 6.;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>When the <strong>Company.Transactions</strong> data set is created, 
+          the sort information is stored with it. PROC SORT checks the sort information 
+          before it sorts a data set so that data is not re-sorted unnecessarily. 
+          If you attempt to re-sort the data, the log indicates that the data 
+          set is already sorted and that no additional sorting occurred.</p>
+        <pre><font color="#003399">     proc sort data=company.transactions;
+        by invoice;
+</font><font color="#003399">     run;</font></pre> 
+      </td>
+    </tr>
+  </table>
+  <p> SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>667  proc sort data=work.transactions;
+668  by invoice;
+669  run;
+
+<span style="background:#CCCC99">NOTE: Input data set is already sorted, no sorting done.</span>
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.03 seconds<br></pre> </td>
+    </tr>
+  </table></div>
+  <p><font color="#FF0000"></font> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You can specify SORTEDBY=_NULL_ to remove the Sorted flag. 
+        The Sorted flag is also removed if you change or add any values of the 
+        variables by which the data set is sorted.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

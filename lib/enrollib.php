@@ -1406,9 +1406,6 @@ abstract class enrol_plugin {
         $DB->update_record('user_enrolments', $ue);
         context_course::instance($instance->courseid)->mark_dirty(); // reset enrol caches
 
-        // Invalidate core_access cache for get_suspended_userids.
-        cache_helper::invalidate_by_definition('core', 'suspended_userids', array(), array($instance->courseid));
-
         // Trigger event.
         $event = \core\event\user_enrolment_updated::create(
                 array(
@@ -2251,16 +2248,6 @@ abstract class enrol_plugin {
         }
 
         force_current_language($oldforcelang);
-    }
-
-    /**
-     * Backup execution step hook to annotate custom fields.
-     *
-     * @param backup_enrolments_execution_step $step
-     * @param stdClass $enrol
-     */
-    public function backup_annotate_custom_fields(backup_enrolments_execution_step $step, stdClass $enrol) {
-        // Override as necessary to annotate custom fields in the enrol table.
     }
 
     /**

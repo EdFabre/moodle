@@ -1,0 +1,84 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Creating 
+      a Systematic Sample from an Unknown Number of Observations</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Creating 
+      a Systematic Sample from an Unknown Number of Observations<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <ol>
+        <li>This animation shows the execution of the DATA step below. This DATA 
+          step creates a systematic sample of the input data set <strong>Sasuser.Revenue</strong>. 
+          The output data set <strong>Sasuser.Subset</strong> will contain every 
+          tenth observation from the input data set. <font color="#003399"> 
+          <pre>data sasuser.subset;
+   do pickit=1 to totobs by 10;
+      set sasuser.revenue point=pickit nobs=totobs;
+      output;
+   end;
+   stop;
+run;</pre>
+          </font> 
+        <li>During the compilation phase, SAS reads the descriptor portion of 
+          the input data set and creates the PDV. The variables <code>totobs</code> 
+          and <code>pickit</code> are also created in the PDV. SAS obtains the 
+          total number of observations from the descriptor portion of the input 
+          data set and assigns this value to the variable <code>totobs</code>.<br>
+          <br>
+        <li> Execution begins. All of the remaining variables are initialized. 
+          The DO loop begins and <code>pickit</code> is assigned an initial value 
+          of <em>1</em>.<br>
+          <br>
+        <li> SAS reads the first observation from <strong>Sasuser.Revenue</strong> 
+          in direct-access mode and records the values in the PDV.<br>
+          <br>
+        <li>SAS writes the values from the PDV to the sample as the first observation 
+          in the <strong>Sasuser.Subset</strong> data set, except for the temporary 
+          variables <code>pickit</code> and <code>totobs</code>.<br>
+          <br>
+        <li> The value of <code>pickit</code> is increased by 10 and the DO loop 
+          iterates. The values for all other variables are retained in the PDV.<br>
+          <br>
+        <li> The DO loop continues to execute. SAS reads the eleventh observation 
+          from <strong>Sasuser.Revenue</strong> and records the values in the 
+          PDV, overwriting the retained values. Then, these values are written 
+          to the <strong>Sasuser.Subset</strong> data set.<br>
+          <br>
+        <li> The DO loop continues to iterate until <code>pickit</code> has a 
+          value of <em>151</em> (which is greater than the value of <code>totobs</code>, 
+          <em>142</em>). At that point, the DO loops ends and the STOP statement 
+          executes, causing the DATA step to stop executing.<br>
+          <br>
+        <li> When the DATA step finishes executing, the <strong>Sasuser.Subset</strong> 
+          data set contains a systematic sample of every tenth observation from 
+          <strong>Sasuser.Revenue</strong>.<br>
+          <br>
+      </ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

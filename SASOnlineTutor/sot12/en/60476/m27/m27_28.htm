@@ -1,0 +1,388 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" --> 
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+          <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">sample programs</A> 
+          <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>. 
+        <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Hierarchical Raw Data Files</strong><br>
+        Raw data files can be hierarchical in structure, consisting of a header 
+        record and one or more detail records. You can build a SAS data set from 
+        a hierarchical file by creating one observation 
+        <ul>
+          <li> per detail record and storing each header record as part of the 
+            observation 
+          <li> per header record and combining the information from detail records 
+            into summary variables. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Creating One Observation per Detail Record</strong><br>
+        In order to <a href="m27_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on creating one observation for each detail record.'; "
+	    onMouseOut="window.status=''">create one observation per detail record</a>, 
+        it is necessary to distinguish between header and detail records. Having 
+        a field that identifies the type of the record makes this task easier. 
+        <p> As you write the DATA step, use a <a href="m27_3.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the RETAIN statement.'; "
+	    onMouseOut="window.status=''">RETAIN statement</a> to keep the header 
+          record as a part of each observation until the next header record is 
+          encountered. 
+        <p> Next, you need to read the field in each record that identifies the 
+          record's type. Remember to use the <a href="m27_3.htm#input" onClick="suggestBack()" onMouseOver="window.status='Display details on the @ line-hold specifier.';" onMouseOut="window.status=''">@ 
+          line-hold specifier</a> to hold the current value of each record type 
+          so that the other values in the record can be read. 
+        <p> Use an <a href="m27_6.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the IF-THEN statement.';" onMouseOut="window.status=''">IF-THEN 
+          statement</a> to check for the condition that the record is a header 
+          record. If the record is a header record, you need to execute an INPUT 
+          statement to read the variable values for that record. 
+        <p> You can use a <a href="m27_8.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on subsetting IF statements.';" onMouseOut="window.status=''">subsetting 
+          IF statement</a> to check for the condition that the record is a detail 
+          record. If the record is a detail record, use another INPUT statement 
+          to read the variable values in that&nbsp;record. 
+        <p> You can use the <a href="m27_8.htm#drop" onClick="suggestBack()" onMouseOver="window.status='Display details on the DROP= option.';" onMouseOut="window.status=''">DROP= 
+          option</a> to prevent the variable that identifies each record's type 
+          from being included in the data set. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Creating One Observation per Header Record</strong> <br>
+        <a href="m27_15.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on creating one observation for each header record.'; "
+	    onMouseOut="window.status=''">Creating one observation per header record</a> 
+        condenses a large amount of information into a concise data set. As you 
+        <a href="m27_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on writing the DATA step.'; "
+	    onMouseOut="window.status=''">write the DATA step</a>, you need to think 
+        about performing several tasks. 
+        <p> As with creating one observation per detail record, use a <a href="m27_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the RETAIN statement.'; "
+	    onMouseOut="window.status=''">RETAIN statement</a> to keep the header 
+          record as a part of each observation until the next header record is 
+          encountered. Then read the field in each record that identifies the 
+          record's type. Remember to use the @ line-hold specifier to hold the 
+          current record so that the other values in the record can be read. 
+        <p> When the record is a header record, <strong>multiple </strong>statements 
+          need to be executed. You can do this by adding a <a href="m27_17.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on simple DO groups.'; "
+	    onMouseOut="window.status=''">simple DO group</a> to an IF-THEN statement. 
+          Within the DO group, &nbsp;you need to 
+        <ol>
+          <li> determine whether this is the <strong>first</strong> header record 
+            in the external file by using the automatic variable <tt>_N_ </tt> 
+          <li> use an OUTPUT statement to write each header record except for 
+            the first one to the data set 
+          <li> use an assignment statement to create a summary variable, and set 
+            its value to <em>0</em> 
+          <li> add an INPUT statement to read the variable values in the header 
+            record 
+          <li> close the loop with an END statement. 
+        </ol>
+        <p> When the record is&nbsp;a detail record, you need to define an alternative 
+          set of actions. You can do this by adding an <a href="m27_19.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the ELSE statement.'; "
+	    onMouseOut="window.status=''">ELSE statement</a> to an IF-THEN statement. 
+          As each detail record is read, you can increment the value of the summary 
+          variable by using a sum statement. 
+        <p> After the last detail record is read, there are no more header records 
+          to cause the last observation to be written to the data set. You can 
+          determine when the current record is the last record in an external 
+          file by specifying the <a href="m27_21.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on determining the END= option.'; "
+	    onMouseOut="window.status=''">END= option</a> in the INFILE statement. 
+        <p> Again, you can use the <a href="m27_8.htm#drop" onClick="suggestBack()" onMouseOver="window.status='Display details on the DROP= option.';" onMouseOut="window.status=''">DROP= 
+          option</a> to prevent the variable that identifies each record's type 
+          from being included in the data set. 
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD><STRONG><A NAME="Syntax">Syntax</A></STRONG> 
+        <P> <EM>To go to the page where a statement or option was presented, select 
+          a link.</EM> 
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+<P align="center"> 
+<p> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>
+
+        <blockquote> <strong>Syntax to Create One Observation for Each Detail 
+          Record</strong> </blockquote>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="2">
+    <tr> 
+      <td><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> &nbsp;<strong>'</strong><em>SAS-data-library</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>FILENAME</strong> fileref <em><strong>'</strong>filename<strong>'</strong></em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>DATA=</strong><em>SAS-data-set</em></font> 
+        &nbsp;<a href="m27_8.htm#drop" onClick="suggestBack()" onMouseOver="window.status='Display details on the DROP= option.'; "
+	    onMouseOut="window.status=''"><strong>(DROP=</strong> <em>variable</em><strong>);</strong></a></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp; &nbsp; <strong>&nbsp; </strong></font><strong><font color="#003399">INFILE</font></strong><font color="#003399"> 
+        <em>file-specification</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp; </strong>&nbsp; </font><a href="m27_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the RETAIN statement.'; "
+	    onMouseOut="window.status=''"><strong>RETAIN</strong> <em>variable</em><strong>;</strong></a></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp; &nbsp;</strong> </font><font color="#003399"><strong>INPUT</strong> 
+        <em>variable</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp;&nbsp; </strong>&nbsp;</font><nobr><a href="m27_6.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the IF-THEN statement.'; "
+	    onMouseOut="window.status=''"><strong>IF</strong> <em>variable</em><strong>='</strong><em>condition</em><strong>'</strong><strong> 
+        THEN </strong><em>SAS statement</em><strong>;</strong></a></nobr></td>
+    </tr>
+    <tr> 
+      <td>&nbsp; &nbsp; &nbsp; <font color="#003399"><strong>IF</strong> <em>variable</em><strong>='</strong><em>condition</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp; &nbsp; &nbsp;<font color="#003399"><em>SAS-statement</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN; </strong></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <blockquote> <strong>Syntax to Create One Observation for Each Header 
+          Record</strong> </blockquote>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="2">
+    <tr> 
+      <td><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> &nbsp;<strong>'</strong><em>SAS-data-library</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>FILENAME </strong>fileref <em>'filename'</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>DATA=</strong><em>SAS-data-set</em></font> 
+        &nbsp;<a href="m27_8.htm#drop" onClick="suggestBack()" onMouseOver="window.status='Display details on the DROP= option.'; "
+	    onMouseOut="window.status=''"><strong>(DROP=</strong> <em>variable</em><strong>);</strong></a></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp; &nbsp; &nbsp; </font><font color="#003399"><strong>INFILE</strong> 
+        <em>file-specification</em> </font><a href="m27_21.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on determining the END= option.'; "
+	    onMouseOut="window.status=''"><strong>END=</strong><em>variable</em><strong>;</strong></a></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp; </strong>&nbsp; </font><a href="m27_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the RETAIN statement.'; "
+	    onMouseOut="window.status=''"><strong>RETAIN</strong> <em>variable</em><strong>;</strong></a></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp; &nbsp;</strong> </font><font color="#003399"><strong>INPUT 
+        </strong><em>variable</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp;&nbsp; </strong>&nbsp;</font><a href="m27_6.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the IF-THEN statement.'; "
+	    onMouseOut="window.status=''"><strong>IF</strong> <em>variable</em><strong>='</strong><em>condition</em><strong>'</strong> 
+        <strong>THEN</strong></a> <a href="m27_17.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on simple DO groups.'; "
+	    onMouseOut="window.status=''"><strong>DO;</strong></a></td>
+    </tr>
+    <tr> 
+      <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="m27_17.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DO group actions.'; "
+	    onMouseOut="window.status=''"><strong>IF</strong></a> &nbsp;<font color="#003399">_N_ 
+        <strong>&gt;</strong> 1</font> <a href="m27_17.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DO group actions.'; "
+	    onMouseOut="window.status=''"><strong>THEN</strong> <strong>OUTPUT;</strong></a></td>
+    </tr>
+    <tr> 
+      <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<font color="#003399"> <em>&nbsp;</em></font><a href="m27_17.htm#total" onClick="suggestBack()" onMouseOver="window.status='Display details on the SUM statement.'; "
+	    onMouseOut="window.status=''"><em>summary-variable</em><strong>=</strong>0;</a></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>INPUT</strong> 
+        <em>variable</em>;</font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp; &nbsp; &nbsp;&nbsp;<strong>END;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp;&nbsp; &nbsp; &nbsp;</font><nobr><a href="m27_19.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the ELSE statement.'; "
+	    onMouseOut="window.status=''">ELSE <strong>IF</strong> <em>variable</em><strong>='</strong><em>condition</em><strong>'</strong> 
+        <strong>THEN</strong></a><font color="#003399"> <em><br>
+        </em></font></nobr><font color="#003399">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; 
+        &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; </font><nobr><font color="#003399"><em>summary-variable</em>+<em>expression</em><strong>;</strong></font></nobr></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp; &nbsp; &nbsp; </font><a href="m27_21.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on determining the end of a raw data file.'; "
+	    onMouseOut="window.status=''"><strong>IF</strong> <em>variable</em> <strong>THEN 
+        OUTPUT;</strong></a></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN; </strong></font></td>
+    </tr>
+  </table>
+</center>
+<P align="center"> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"> 
+        <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+<!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left">
+        <p><STRONG><A NAME="Sample">Sample Programs</A></STRONG> </p>
+        <blockquote> <strong>Program to Create One Observation for Each Detail 
+          Record</strong> </blockquote>
+        <pre><font color="#003399">     libname perm 'c:\records\census2k';</font>
+<font color="#003399">     filename census 'c:\records\census2k\survey.dat';</font>
+     <font color="#003399">data perm.people(drop=type);</font>
+<font color="#003399">        infile census;</font>
+<font color="#003399">        retain Address;</font>
+<font color="#003399">        input type $1. @;</font>
+<font color="#003399">        if type='H' then input @3 address $15.;</font>
+<font color="#003399">        if type='P';</font>
+<font color="#003399">        input @3 Name $10. @13 Age 3. @16 Gender $1.;</font>
+     <font color="#003399">run;</font>
+</pre>
+        <blockquote> <strong>Program to Create One Observation for Each Header 
+          Record</strong> </blockquote>
+        <pre>     <font color="#003399">libname perm 'c:\records\census2k';</font>
+<font color="#003399">     filename census 'c:\records\census2k\survey.dat';</font>
+<font color="#003399">     data perm.residnts (drop=type);</font>
+<font color="#003399">        infile census end=last;</font>
+<font color="#003399">        retain Address;</font>
+<font color="#003399">        input type $1. @;</font>
+<font color="#003399">        if type='H' then do;</font>
+<font color="#003399">           if _n_ &gt; 1 then output; </font>
+<font color="#003399">           Total=0;</font>
+<font color="#003399">           input address $ 3-17;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">        else if type='P' then total+1;</font>
+<font color="#003399">        if last then output;</font>
+<font color="#003399">     run;</font></pre>
+        <P> 
+        <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Points">Points to Remember</A></STRONG> 
+        <UL>
+          <LI>As with automatic variables, the END= variable is not written to 
+            the data set. <br>
+            <br>
+          <LI> Values are automatically retained when using a sum statement. Therefore, 
+            it may be necessary to set the value of the counter variable back 
+            to <em>0</em> when a new header is encountered.
+</UL>
+      </TD>
+    </TR>
+  </TABLE>
+  <!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

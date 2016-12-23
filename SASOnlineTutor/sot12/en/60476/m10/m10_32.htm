@@ -1,0 +1,146 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Output Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>To create a new table from the results of a query, use a <strong>CREATE TABLE 
+          statement</strong> that includes the keyword <strong>AS</strong> and 
+          the clauses that are used in a PROC SQL query: <strong>SELECT</strong>, 
+          <strong>FROM</strong>, and any optional clauses, such as ORDER BY. The 
+          CREATE TABLE statement stores your query results in a table instead 
+          of displaying the results as a report.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, basic PROC SQL step for creating a table from a query result">
+    <tr> 
+        <td align="left"><strong>General form, basic PROC SQL step for creating 
+          a table from a query result:</strong> 
+          <blockquote> <font color="#003399"><strong>PROC SQL;<br>
+            &nbsp; &nbsp; &nbsp;CREATE TABLE </strong> <em>table-name</em> <strong>AS</strong> 
+            <em><br>
+            </em><strong>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;SELECT</strong> 
+            <em>column-1</em>&lt;, <em>.&nbsp;. .</em> <em>column-n&gt;</em><br>
+            <nobr>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>FROM</strong> 
+            <em>table-1</em> | <em>view-1</em>&lt;, <em>. . .</em> <em>table-n</em> 
+            | <em>view-n</em>&gt;</nobr><br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;<strong>WHERE</strong> 
+            <em>expression</em>&gt;<br>
+            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;<strong>GROUP BY </strong> <em>column-1&lt;, 
+            ... column-n</em>&gt;&gt; <br>
+            <nobr>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;<strong>ORDER 
+            BY</strong> <em>column-1</em>&lt;, &nbsp;<em>. . . column-n</em>&gt;&gt;<strong>;</strong></nobr></font> 
+          </blockquote>
+          <p> where <font color="#003399"><em>table-name</em></font> specifies 
+            the name of the table to be created. <br>
+          </p>
+          <table cellspacing="0" cellpadding="2">
+            <tr valign="Top"> 
+              <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+              <td>A query can also include a HAVING clause, which is introduced 
+                at the end of this lesson. To learn more about the HAVING clause, 
+                see the lesson 
+                <!--lesson reference-->
+                <strong><script>document.write(m70title);</script></strong>.</td>
+            </tr>
+          </table>
+          
+        </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+</p>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p> <b>Example</b></p>
+          <p>Suppose that after determining the total miles traveled for each 
+            frequent-flyer membership class in the <b>Sasuser.Frequentflyers</b> 
+            table, you want to store this information in the temporary table <strong>Work.Miles</strong>. 
+            To do so, you can submit the following PROC SQL step: </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+        <td> <pre><font color="#003399">     proc sql;
+        <strong>create table work.miles as</strong>
+           select membertype,
+                  sum(milestraveled) as TotalMiles
+              from sasuser.frequentflyers
+              group by membertype;</font>
+      </pre></td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+        <td>Because the CREATE TABLE statement is used, this query does not create 
+          a report. The SAS log verifies that the table was created and indicates 
+          how many rows and columns the table contains.</td>
+    </tr>
+  </table>
+      <p> <br>
+    <div align="center">SAS Log<br>
+      <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+        <tr> 
+          <td> <pre>NOTE: Table WORK.MILES created, with 3 rows and 2 columns.</pre> </td>
+        </tr>
+      </table>
+    </div>
+    <p> <br>
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+        <td valign="top">In this example, you are instructed to save the data 
+          to a temporary table that will be deleted at the end of the SAS session. 
+          To save the table permanently in the <strong>Sasuser</strong> library, 
+          use the libref <strong>Sasuser</strong> instead of the libref <strong>Work</strong> 
+          in the CREATE TABLE clause. </td>
+      </tr>
+    </table>
+    <p><br>
+  </center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

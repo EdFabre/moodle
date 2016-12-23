@@ -1,0 +1,72 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing 
+      DBMS Objects in SAS Programs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p>After you associate a libref with a DBMS, you can reference database 
+          objects such as tables and views by using the syntax 
+        <P ALIGN=Center> <EM><STRONG>libref.object-name</STRONG></EM> 
+      <P> This is the same as the familiar syntax for two-level SAS names: 
+      <P ALIGN=Center> <STRONG><EM>libref.filename</EM> </STRONG> 
+      <P> For example, the SAS/ACCESS LIBNAME statement below associates the libref 
+        <STRONG>Oraclib</STRONG> with an Oracle database. Then the PROC SQL step 
+        references the Oracle table STAFF as <STRONG>Oraclib.Staff</STRONG>. 
+      <PRE><FONT color="#003399">     libname <STRONG>oraclib</STRONG> oracle</FONT>
+<FONT color="#003399">             user=kilroy password=washere</FONT>
+        <FONT color="#003399">     path=oracpath preserve_col_names=yes;</FONT>
+     <FONT color="#003399">proc sql;</FONT>
+<FONT color="#003399">        create table oraclib.emps as</FONT>
+           <FONT color="#003399">(select IDnum, LName, FName</FONT>
+        <FONT color="#003399">       from <STRONG>oraclib.staff</STRONG></FONT>
+        <FONT color="#003399">       where City="STAMFORD");</FONT>
+     <FONT color="#003399">quit;</FONT>
+</PRE>
+      <P> 
+      <P> Because DBMS objects are treated as SAS data sets, your SAS programs 
+        can process DBMS data with SAS DATA steps and procedures. The result is 
+        transparent data integration, as shown in the examples on the following 
+        pages.
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<P> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

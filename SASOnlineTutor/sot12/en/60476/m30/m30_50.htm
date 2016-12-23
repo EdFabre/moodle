@@ -1,0 +1,127 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Manipulating 
+      SAS Date Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Example: The INTCK Function</strong></p>
+      <p>A common use of the INTCK function is to identify periodic events such 
+        as due dates and anniversaries. </p>
+      <P> The following program identifies mechanics whose 20th year of employment 
+        occurs in the current month. It uses the INTCK function to compare the 
+        value of the variable <CODE>Hired</CODE> to the date on which the program 
+        is run. </td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <PRE>     <FONT color="#003399">data work.anniv20;</FONT>
+        <FONT color="#003399">set flights.mechanics
+            (keep=id lastname firstname hired);</FONT>
+        <FONT color="#003399">Years=intck('year',hired,today());</FONT>
+        <FONT color="#003399">if years=20 and month(hired)=month(today());</FONT>
+     <FONT color="#003399">proc print data=work.anniv20;</FONT>
+        <FONT color="#003399">title '20-Year Anniversaries This Month';</FONT>
+     <FONT color="#003399">run;</FONT></PRE></td>
+  </tr>
+</table>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <P> The following output is created when the program is run in December 
+        of 1999.</td>
+  </tr>
+</table>
+<p></p>
+<center>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+  <table  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+    <tr> 
+      <td align=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>20-Year 
+        Anniversaries This Month</i></b></font></td>
+    </tr>
+  </table>
+  </font> 
+</center>
+<p> 
+<center>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  <table border=1 cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC PRINT Output">
+    <thead>
+      <tr> 
+        <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Obs</b></font></td>
+        <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>ID</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>LastName</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>FirstName</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Hired</b></font></td>
+        <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Years</b></font></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1</b></font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1403</font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BOWDEN</font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">EARL</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">24DEC79</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>2</b></font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1121</font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">HERNANDEZ</font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">MICHAEL</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">10DEC79</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>3</b></font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1412</font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">MURPHEY</font></td>
+        <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JOHN</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">08DEC79</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20</font></td>
+      </tr>
+    </tbody>
+  </table>
+  </font> 
+</center>
+<br>
+<br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

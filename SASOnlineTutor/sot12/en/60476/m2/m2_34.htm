@@ -1,0 +1,168 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Resolving 
+      Common Problems<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Unbalanced Quotation Marks</strong> </p>
+        <p> Some syntax errors, such as the missing quotation mark after <em>HIGH</em><strong> 
+          </strong>in the program below, cause SAS to misinterpret the statements 
+          in your program. 
+        <pre>     <font color="#003399">data clinic.admitfee;</font>
+        <font color="#003399">set clinic.admit;</font>
+        <font color="#003399"><strong>where actlevel='HIGH;</strong></font>
+     <font color="#003399">run;</font>
+     <font color="#003399">proc print data=clinic.admitfee;</font>
+       <font color="#003399"> var id name actlevel fee;</font>
+     <font color="#003399">run;</font></pre> 
+        <p>When the program is submitted, SAS is unable to resolve the DATA step, 
+          and a "DATA STEP running" message appears at the top of the active window.</p></td>
+    </tr>
+  </table>
+  <br>
+  <div align="center"><img src="images/m2l4s1.gif" width="352" height="250" alt="Program Editor Window"> 
+  </div>
+  <p align="center"> 
+  <div align="center"> 
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td>When unbalanced quotation marks appear in a program that contains 
+          TITLE or FOOTNOTE statements, there is sometimes a warning in the SAS 
+          log which indicates that 
+          <ul>
+            <li>a quoted string has become too long 
+            <li>a statement that contains quotation marks (such as a TITLE or 
+              FOOTNOTE statement) is ambiguous due to invalid options or unquoted 
+              text. </ul></td>
+      </tr>
+    </table>
+    <img src="images/m2l4s2.gif" width="500" height="186" alt="SAS Log"> </div>
+  <p align="center"> 
+  <div align="center"> 
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr valign="top"> 
+        <td> <p>When you have unbalanced quotation marks, SAS is often unable 
+            to detect the end of the statement in which it occurs. Simply adding 
+            a quotation mark and resubmitting your program usually does <strong>not</strong> 
+            solve the problem. SAS still considers the quotation marks to be unbalanced. 
+          </p>
+          <p>Therefore, you need to resolve the unbalanced quotation mark by canceling 
+            the submitted statements (in the Windows and UNIX operating environments) 
+            or by submitting a line of SAS code (in the z/OS operating environment) 
+            before you recall, correct, and resubmit the program. </p></td>
+      </tr>
+    </table>
+    <br>
+  </div>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">If you do not resolve this problem when it occurs, it is 
+        likely that any subsequent programs that you submit in the current SAS 
+        session will generate errors.</td>
+    </tr>
+  </table>
+  <p align="center">&nbsp;
+  <div align="center"> 
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td><strong>Resolving the Error in the Windows Operating Environment</strong> 
+          <p> To resolve the error in the Windows operating environment: 
+          <ol>
+            <li>Press the Ctrl and Break keys or click the the Break Icon <img src="images/m2l4s4.gif" width="15" height="15" alt="Breack icon"> 
+              on the toolbar.<br>
+              <br>
+            <li>Select <strong>1. Cancel Submitted Statements</strong>, then click 
+              <strong>OK</strong>. <br>
+              <br>
+              <img src="images/m2l4s3.gif" width="248" height="201" alt="Tasking Manager"><br>
+              <br>
+            <li>Select <strong>Y to cancel submitted statements</strong>, then 
+              click <strong>OK</strong>. <br>
+              <br>
+              <img src="images/m2l4s5.gif" width="254" height="162" alt="Break dialog box"><br>
+              <br>
+            <li>Correct the error and resubmit the program. </ol></td>
+      </tr>
+    </table>
+    <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td><strong>Resolving the Error in the UNIX Operating Environment</strong> 
+          <p> To resolve the error in the UNIX operating environment: 
+          <ol>
+            <li>Open the Session Management window and click <strong>Interrupt</strong>. 
+              <br>
+              <br>
+              <img src="images/m2l4s6.gif" width="320" height="128" alt="Session Management dialog box"><br>
+              <br>
+            <li>Select <strong>1. Cancel Submitted Statements</strong>, then click 
+              <strong>Y</strong>. <br>
+              <br>
+              <img src="images/m2l4s7.gif" width="267" height="160" alt="Tasking Manager"><br>
+              <br>
+            <li>Correct the error and resubmit the program. </ol></td>
+      </tr>
+    </table>
+    <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td><strong>Resolving the Error in the z/OS Operating Environment</strong> 
+          <p> To resolve the error in the z/OS operating environment: 
+          <ol>
+            <li>Submit an asterisk followed by a quotation mark, a semicolon, 
+              and a RUN statement.<br>
+              <br>
+              <pre><font color="#003399">*'; run;</font></pre>
+            <li>Delete the line that contains the asterisk followed by the quotation 
+              mark, the semicolon, and the RUN statement. 
+            <li>Insert the missing quotation mark in the appropriate place. 
+            <li>Submit the corrected program. </ol></td>
+      </tr>
+    </table>
+    <table border="0" cellpadding="2" cellspacing="0" width="85%" align="center">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+        <td valign="top">You can also use the above method in the Windows and 
+          UNIX operating environments.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </div>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

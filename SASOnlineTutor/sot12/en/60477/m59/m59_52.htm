@@ -1,0 +1,91 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Processing 
+      Generation Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Once you have a generation group that contains more than one generation 
+          data set, you may want to select a particular data set to process. To 
+          select a particular generation, you use the <strong>GENNUM=</strong> 
+          data set option. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, GENNUM= data set option">
+    <tr> 
+      <td align="left"><strong>General form, GENNUM= data set option:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>GENNUM=</strong><em>n</em></nobr></font> 
+          <p>where <font color="#003399"><em>n</em></font> specifies a particular 
+            historical version of a data set:</p>
+          <ul>
+            <li><em><font color="#003399">n</font></em>&gt;<em>0</em> is an absolute 
+              reference to a historical version by its generation number</li>
+            <li> <em><font color="#003399">n</font></em>&lt;<em>0</em> is a relative 
+              reference to a historical version</li>
+            <li><em><font color="#003399">n</font></em>=<em>0</em> is the current 
+              version.</li>
+          </ul>
+        </blockquote></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p><strong>Examples</strong></p>
+        <p>To print the current version of the data, you do not need to use the 
+          GENNUM= option. Simply use</p>
+        <pre>    <font color="#003399"> proc print data=year;
+     run;</font></pre> 
+        <p>To print the youngest historical version, you can either specify the 
+          relative or absolute reference on the GENNUM= option, as shown:</p>
+        <pre>    <font color="#003399"> proc print data=year(gennum=4);  /*absolute reference*/
+     run;</font></pre>
+        <p>or </p>
+        <pre>   <font color="#003399">  proc print data=year(gennum=-1);  /*relative reference*/
+     run;</font></pre> 
+        <p>You can also view information on a specific generation using the GENNUM= 
+          option with PROC CONTENTS, as shown:</p>
+        <pre>   <font color="#003399">  proc contents data=year(gennum=-1);  /*relative reference*/
+     run;</font></pre>
+        Now that you have seen a few examples of using the GENNUM= option, lets take a look at how generation numbers change.</td>
+    </tr>
+  </table>
+  
+  <p><br> <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

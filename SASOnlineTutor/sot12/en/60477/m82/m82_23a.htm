@@ -1,0 +1,66 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Refencing a Data View Multiple Times in One Program</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Referencing 
+      a Data View Multiple Times in One Program<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+    
+     <ol>
+	    <li>This animation shows the execution of the program below. This program 
+          references the SAS data view<strong> Company.Newdata</strong> three 
+          times in successive PROC steps. <font color="#003399"> 
+          <pre>     proc print data=company.newdata;
+     run;
+
+     proc freq data=company.newdata;
+     run;
+	
+     proc means data=company.newdata;
+     run;</pre>
+          </font> 
+		  <br><br>
+		  <li>When the PROC PRINT step executes, the compiler resolves the intermediate code and generates executable code for <strong>Newdata</strong>.<br><br>
+		  <li>The generated code is executed as the PROC PRINT step requests observations.<br><br>
+		  <li>When the PROC FREQ step executes, the compiler executes the intermediate code and generates executable code for <strong>Newdata</strong>.<br><br>
+		  
+        <li>The generated code is executed as the PROC FREQ step requests observations.<br>
+          <br>
+		  
+        <li>When the PROC MEANS step executes, the compiler executes the intermediate 
+          code for a third time and generates executable code for <strong>Newdata</strong>.<br>
+          <br>
+		  
+        <li>The generated code is executed as the PROC MEANS step requests observations. 
+      </ol>
+       
+      </td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

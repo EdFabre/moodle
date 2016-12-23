@@ -1,0 +1,161 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Sorts<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Using BY-Group Processing with an Index to Avoid a Sort</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p> Suppose you want to use an existing data set, <strong>Retail.Order_fact</strong>, 
+        to create a new SAS data set that is ordered by the variable <code>Order_Date</code>. 
+        You could accomplish this task using 
+      <ol>
+        <li><a href="#1">BY-Group Processing with an Index, Data in Random Order</a></li>
+        <li><a href="#3">Presorted Data in a DATA Step</a></li>
+        <li><a href="#4">PROC SORT Followed by a DATA Step</a>.</li>
+      </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results might vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for BY-group processing with an index or sort. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 1">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        BY-Group Processing with an Index, Data in Random Order</strong></p>
+      <blockquote> 
+        <p>In this example, the SAS data set <strong>Retail.Order_fact</strong> 
+          is indexed on the variable <code>Order_Date</code>. The data in <strong>Retail.Order_fact</strong> 
+          is in random order. </p>
+      </blockquote>
+      <blockquote> 
+        <pre><font color="#003399">     data _null_;
+        set retail.order_fact;
+        by order_date;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 2">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="3" id="3"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Presorted Data in a DATA Step</strong></p>
+      <blockquote> 
+        <p>In this example, the SAS data set <strong>Retail.Order_fact</strong> 
+          is sorted on the variable <code>Order_Date</code> before it is read 
+          using the DATA step.</p>
+      </blockquote>
+      <blockquote> 
+        <pre><font color="#003399">     data _null_;
+        set retail.order_fact;
+        by order_date;
+     run</font>;</pre>
+      </blockquote>
+        </td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF" title="Program 3">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="4" id="4"></a><img src="../navimages/opt_3.gif" alt="3." width="20" height="20" align="absmiddle"> 
+        PROC SORT Followed by a DATA STEP</strong></p>
+      <blockquote> 
+          
+        <p>In this example, the SAS data set <strong>Retail.Order_fact</strong> 
+          is sorted using the SORT procedure. The data is then read using the 
+          DATA step.</p>
+        </blockquote>
+        
+      <blockquote> 
+        <pre><font color="#003399">     </font><font color="#003399">proc sort data=retail.order_fact;<br>        by order_date;<br>     run;
+<br>     data _null_;
+        set retail.order_fact;
+        by order_date;
+     run</font>;</pre>
+      </blockquote>
+        </td>
+  </tr>
+</table>
+<p><br>
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <ul>
+        <li>To conserve resources, use sort order rather than an index for BY-group 
+          processing.<br>
+          <br>
+        </li>
+        <li>Although using an index for BY-group processing is less efficient 
+          than using sort order, it might be the best choice if resource limitations 
+          make sorting a file difficult.</li>
+      </ul></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

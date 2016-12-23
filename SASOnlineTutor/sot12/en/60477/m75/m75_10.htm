@@ -1,0 +1,119 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Managing 
+      PROC SQL Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using an Embedded LIBNAME Statement</h2>
+        <p>As an alternative to omitting the libref in the FROM clause, you can 
+          embed a LIBNAME statement in a USING clause to store a SAS libref in 
+          a view. Embedding a LIBNAME statement is a more flexible approach because 
+        </p>
+        <ul>
+          <li>it can be used regardless of whether the view and the underlying 
+            tables reside in the same library</li>
+          <li>it avoids the confusion that might arise if a libref is omitted 
+            from a table name in the FROM clause.</li>
+        </ul>
+        <p>An embedded LIBNAME statement can only be used with a PROC SQL view. 
+          A libref created with an embedded LIBNAME statement will not conflict 
+          with an identically named libref in the SAS session.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, USING clause">
+    <tr> 
+      <td align="left"><strong>General form, USING clause:</strong> <p><font color="#003399"><nobr><strong> 
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USING </strong><em>libname-clause-1 
+          </em>&lt;,</nobr>...<nobr><em> libname-clause-n</em>&gt;<strong>;</strong></nobr></font></p>
+        <p>where <font color="#003399"><em>libname-clause </em><strong></strong></font>is 
+          one of the following: 
+        <ul>
+          <li> a valid LIBNAME statement</li>
+          <li>a valid SAS/ACCESS LIBNAME statement</li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">The USING clause must be the last clause in the CREATE 
+        VIEW statement.</td>
+    </tr>
+  </table>
+        <p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For information on the LIBNAME statement, see the 
+              lesson <!-- #BeginLibraryItem "/Library/lesson reference.lbi" --><!--lesson reference--><strong><script>document.write(m16title);</script></strong><!-- #EndLibraryItem -->. 
+              For information on the SAS/ACCESS LIBNAME statement, see the lesson 
+              <!-- #BeginLibraryItem "/Library/lesson reference.lbi" --><!--lesson reference--><strong><script>document.write(m13title);</script></strong><!-- #EndLibraryItem -->. 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>In the following example, while the view <strong>Sasuser.Payrollv</strong> 
+          is executing in the PROC PRINT step, the libref <strong>Airline</strong>, 
+          which is specified in the USING clause, becomes active. This overrides 
+          the earlier assignment of the libref in the LIBNAME statement for the 
+          duration of the view's execution. After the view executes, the original 
+          libref assignment is re-established and the embedded assignment is cleared.</p>
+        </td>
+    </tr>
+  </table>
+<br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>
+<pre>     <font color="#003399">libname airline '<em>SAS-library one</em>';
+     proc sql;
+        create view sasuser.payrollv as
+           select*
+              from airline.payrollmaster
+          <strong>    using libname airline '<em>SAS-library two</em>'</strong>;
+     quit;
+     proc print data=sasuser.payrollv;
+     run;</font></pre></td>
+    </tr>
+  </table>
+<br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

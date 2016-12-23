@@ -1,0 +1,189 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Free-Format Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Reading Values That Contain Delimiters Within a Quoted String 
+        </strong></p>
+      <p>You can also use the DSD option in an INFILE statement to read values 
+        that contain delimiters within a quoted string. As shown in the following 
+        PROC PRINT output, the INPUT statement treats the commas within the values 
+        for <code>Salary</code> as valid characters and removes the quotation 
+        marks from the character strings before the value is stored. </p>
+    </td>
+  </tr>
+</table>
+<center>
+  <center>
+    <center>
+      <br>
+      <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td align="left"> 
+            <pre><font color="#003399">     data work.finance2;
+        infile findat2 <strong>dsd</strong>;
+        length SSN $ 11 Name $ 9;
+        input ssn name Salary : comma. Date date9.;
+    run;
+    proc print data=work.finance2;
+       format date date9.;
+    run;</font></pre>
+          </td>
+        </tr>
+      </table>
+      <p> 
+      <center>
+        <center>
+        </center>
+        <center>
+          <center>
+            <p>Raw Data File Findat2 
+            <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+            <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+              <thead> 
+              <tr> 
+                <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---+----30---+----40</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+              </tr>
+              </thead> <tbody> 
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">074-53-9892,Vincent,&quot;35,000&quot;,22MAY1997</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">776-84-5391,Phillipon,&quot;29,750&quot;,15DEC1996</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">929-75-0218,Gunter,&quot;27,500&quot;,30APR1997</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">446-93-2122,Harbinger,&quot;33,900&quot;,08JUL1996</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">228-88-9649,Benito,&quot;28,000&quot;,04MAR1996</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">029-46-9261,Rudelich,&quot;35,000&quot;,15FEB1995</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF" nowrap><font  face="Courier New, Courier" size="2" color="#000000">442-21-8075,Sirignano,&quot;5,000&quot;,22NOV1995</font></td>
+              </tr>
+              </tbody> 
+            </table>
+            </font></font><br>
+          </center>
+        </center>
+      </center>
+    </center>
+  </center>
+  <p> 
+    <center>
+      <center>
+      </center>
+    </center>
+  <center>
+    <br>
+    <table bgcolor=#FFFFF0 border=1 bordercolor=#000000 cellpadding=2 cellspacing=1 
+frame=box rules=groups title="PROC PRINT Output">
+      <thead> 
+      <tr bgcolor="#CCCCCC"> 
+        <td align=middle bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Obs</b></font></td>
+        <td align=middle><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>SSN</b></font></td>
+        <td align=left><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Name</b></font></td>
+        <td align=middle><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Salary</b></font></td>
+        <td align=right><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>Date</b></font></td>
+      </tr>
+	  </thead> <tbody> 
+      <tr> 
+        <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>1</b></font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">074-53-9892</font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">Vincent</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">35000</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">22MAY1997</font></td>
+      </tr>   
+      <tr> 
+        <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>2</b></font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">776-84-5391</font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">Phillipon</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">29750</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">15DEC1996</font></td>
+      </tr>
+      <tr> 
+        <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>3</b></font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">929-75-0218</font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">Gunter</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">27500</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">30APR1997</font></td>
+      </tr>
+      <tr> 
+        <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>4</b></font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">446-93-2122</font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">Harbinger</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">33900</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">08JUL1996</font></td>
+      </tr>
+      <tr> 
+        <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>5</b></font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">228-88-9649</font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">Benito</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">28000</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">04MAR1996</font></td>
+      </tr>
+      <tr> 
+        <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>6</b></font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">029-46-9261</font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">Rudelich</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">35000</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">15FEB1995</font></td>
+      </tr>
+      <tr> 
+        <td align=right bgcolor="#CCCCCC"><font color="#002288" face="Arial, Helvetica, Helv" size="3"><b>7</b></font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">442-21-8075</font></td>
+        <td align=left bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">Sirignano</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">5000</font></td>
+        <td align=right bgcolor=#EFEFEF><font color="#000000" face="Arial, Helvetica, Helv" size="3">22NOV1995</font></td>
+      </tr>
+      </tbody> 
+    </table>
+  </center>
+</center>
+<center>
+  <p align="center"> <br>
+    <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

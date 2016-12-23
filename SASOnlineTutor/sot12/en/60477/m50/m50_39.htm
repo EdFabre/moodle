@@ -1,0 +1,88 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Functions to Manipulate Character Strings<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The %QUPCASE Function</h2>
+If the argument contains a special character, a mnemonic operator, or a macro 
+        trigger, you will need to use the <nobr>%QUPCASE</nobr> function. <nobr>%QUPCASE</nobr> 
+        has the same syntax as the <nobr>%UPCASE</nobr> function, and it works 
+        the same as <nobr>%UPCASE</nobr> except that it also masks mnemonic operators 
+        and special characters (including macro triggers). 
+        <P><BR>
+<h2>Example</h2>
+
+These statements show the results produced by <nobr>%UPCASE</nobr> and <nobr>%QUPCASE</nobr>: 
+<font color="#003399">
+        <pre>    %let a=begin;
+    %let b=%nrstr(&a);
+
+    %put UPCASE produces: %upcase(&b);
+    %put QUPCASE produces: %qupcase(&b);
+</pre>
+        </font> In the first <nobr>%PUT</nobr> statement, the macro reference <code>&amp;b</code> 
+        resolves to <code>&amp;a</code>, which is converted to <em>&amp;A</em> 
+        because of the <nobr>%UPCASE</nobr> function. Since the resolved value contains a macro 
+        trigger, it is treated as a macro variable reference and <code>&amp;A</code> 
+        resolves to the value <em>begin</em>. The second <nobr>%PUT</nobr> statement uses the 
+        <nobr>%QUPCASE</nobr> function, which masks the ampersand in the resolved value of 
+        the macro variable <code>b</code> so that this value is not treated as 
+        another macro variable reference. Executing these statements produces 
+        the following messages in the SAS log. 
+        <P><BR>
+ <div align="center">
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+6    %let a=begin;
+7    %let b=%nrstr(&a);
+8
+9    %put UPCASE produces: %upcase(&b);
+<strong>UPCASE produces: begin</strong>
+10   %put QUPCASE produces: %qupcase(&b);
+<strong>QUPCASE produces: &A</strong>
+</pre></td></tr>
+</table> </div>
+
+</td>
+        </tr>
+      </table><P><BR>
+    
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

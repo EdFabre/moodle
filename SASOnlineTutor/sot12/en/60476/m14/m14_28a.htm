@@ -1,0 +1,80 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>DATA 
+      Step Processing for the SET Statement</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->DATA 
+      Step Processing for the SET Statement<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows the last two iterations of a DATA step.</p>
+      <ol>
+        <li>The following program is submitted to SAS: 
+          <pre><font color="#003399">data finance.duejan;
+   set finance.loans;
+   Interest=amount*(rate/12);
+run;</font></pre>
+        </li>
+        <li>On the third iteration of the DATA step, the SET statement reads the 
+          third observation from the input data set and writes the values to the 
+          program data vector. <br>
+          <br>
+        </li>
+        <li>Then, the assignment statement executes to compute the value for <code>Interest</code>. 
+          <br>
+          <br>
+        </li>
+        <li>At the end of the third iteration of the DATA step, the values in 
+          the program data vector are written to the new data set as the first 
+          observation. <br>
+          <br>
+        </li>
+        <li>The value of <code>_N_</code> is set to <em>4</em>, and control returns 
+          to the top of the DATA step. The value of <code>_ERROR_</code> is reset 
+          to <em>0, </em>and the value of <code>Interest</code> is reset to missing. 
+          The values of the variables that were read from the SAS data set with 
+          the SET statement are retained. <br>
+          <br>
+        </li>
+        <li>As the SET statement executes, the values from the fourth observation 
+          are written to the program data vector. <br>
+          <br>
+        </li>
+        <li>The assignment statement executes again to compute the value for <code>Interest</code> 
+          for the fourth observation. <br>
+          <br>
+        </li>
+        <li>At the bottom of the DATA step, the values in the program data vector 
+          are written to the data set as the fourth observation. <br>
+          <br>
+          <br>
+        </li>
+      </ol>
+      <p>&nbsp; </p></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

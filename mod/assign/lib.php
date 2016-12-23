@@ -390,14 +390,9 @@ function assign_print_overview($courses, &$htmlarray) {
         $context = context_module::instance($assignment->coursemodule);
         if (has_capability('mod/assign:grade', $context)) {
             if (!isset($unmarkedsubmissions)) {
-                $submissionmaxattempt = 'SELECT mxs.userid, MAX(mxs.attemptnumber) AS maxattempt, mxs.assignment
-                                         FROM {assign_submission} mxs
-                                         WHERE mxs.assignment ' . $sqlassignmentids . '
-                                         GROUP BY mxs.userid, mxs.assignment';
-
                 // Build up and array of unmarked submissions indexed by assignment id/ userid
                 // for use where the user has grading rights on assignment.
-                $dbparams = array_merge($assignmentidparams, array(ASSIGN_SUBMISSION_STATUS_SUBMITTED), $assignmentidparams);
+                $dbparams = array_merge(array(ASSIGN_SUBMISSION_STATUS_SUBMITTED), $assignmentidparams);
                 $rs = $DB->get_recordset_sql('SELECT
                                                   s.assignment as assignment,
                                                   s.userid as userid,
@@ -405,20 +400,14 @@ function assign_print_overview($courses, &$htmlarray) {
                                                   s.status as status,
                                                   g.timemodified as timegraded
                                               FROM {assign_submission} s
-                                              LEFT JOIN ( ' . $submissionmaxattempt . ' ) smx ON
-                                                           smx.userid = s.userid AND
-                                                           smx.assignment = s.id
                                               LEFT JOIN {assign_grades} g ON
                                                   s.userid = g.userid AND
-                                                  s.assignment = g.assignment AND
-                                                  g.attemptnumber = smx.maxattempt
+                                                  s.assignment = g.assignment
                                               WHERE
                                                   ( g.timemodified is NULL OR
-                                                  s.timemodified > g.timemodified OR
-                                                  g.grade IS NULL ) AND
+                                                  s.timemodified > g.timemodified ) AND
                                                   s.timemodified IS NOT NULL AND
                                                   s.status = ? AND
-                                                  s.attemptnumber = smx.maxattempt AND
                                                   s.assignment ' . $sqlassignmentids, $dbparams);
 
                 $unmarkedsubmissions = array();
@@ -449,16 +438,8 @@ function assign_print_overview($courses, &$htmlarray) {
         }
         if (has_capability('mod/assign:submit', $context)) {
             if (!isset($mysubmissions)) {
-
-                // This is nasty because we only want the last attempt.
-                $submissionmaxattempt = 'SELECT mxs.userid, MAX(mxs.attemptnumber) AS maxattempt, mxs.assignment
-                                         FROM {assign_submission} mxs
-                                         WHERE mxs.assignment ' . $sqlassignmentids . '
-                                         AND mxs.userid = ?
-                                         GROUP BY mxs.userid, mxs.assignment';
-
                 // Get all user submissions, indexed by assignment id.
-                $dbparams = array_merge($assignmentidparams, array($USER->id, $USER->id, $USER->id), $assignmentidparams);
+                $dbparams = array_merge(array($USER->id, $USER->id), $assignmentidparams);
                 $mysubmissions = $DB->get_records_sql('SELECT
                                                            a.id AS assignment,
                                                            a.nosubmissions AS nosubmissions,
@@ -467,14 +448,10 @@ function assign_print_overview($courses, &$htmlarray) {
                                                            g.grade AS grade,
                                                            s.status AS status
                                                        FROM {assign} a
-                                                       LEFT JOIN ( ' . $submissionmaxattempt . ' ) smx ON
-                                                           smx.assignment = a.id
                                                        LEFT JOIN {assign_grades} g ON
                                                            g.assignment = a.id AND
-                                                           g.userid = ? AND
-                                                           g.attemptnumber = smx.maxattempt
+                                                           g.userid = ?
                                                        LEFT JOIN {assign_submission} s ON
-                                                           s.attemptnumber = smx.maxattempt AND
                                                            s.assignment = a.id AND
                                                            s.userid = ?
                                                        WHERE a.id ' . $sqlassignmentids, $dbparams);
@@ -482,32 +459,19 @@ function assign_print_overview($courses, &$htmlarray) {
 
             $str .= '<div class="details">';
             $str .= get_string('mysubmission', 'assign');
-            $submission = false;
-            if (isset($mysubmissions[$assignment->id])) {
-                $submission = $mysubmissions[$assignment->id];
-            }
-            if (!$submission || !$submission->status || $submission->status == 'draft') {
-                $str .= $strnotsubmittedyet;
-            } else if ($submission->nosubmissions) {
+            $submission = $mysubmissions[$assignment->id];
+            if ($submission->nosubmissions) {
                 $str .= get_string('offline', 'assign');
+            } else if (!$submission->status || $submission->status == 'draft') {
+                $str .= $strnotsubmittedyet;
             } else {
                 $str .= get_string('submissionstatus_' . $submission->status, 'assign');
             }
-
-            if ($assignment->markingworkflow) {
-                $workflowstate = $DB->get_field('assign_user_flags', 'workflowstate', array('assignment' =>
-                    $assignment->id, 'userid' => $USER->id));
-                if ($workflowstate) {
-                    $gradingstatus = 'markingworkflowstate' . $workflowstate;
-                } else {
-                    $gradingstatus = 'markingworkflowstate' . ASSIGN_MARKING_WORKFLOW_STATE_NOTMARKED;
-                }
-            } else if (!empty($submission->grade) && $submission->grade !== null && $submission->grade >= 0) {
-                $gradingstatus = ASSIGN_GRADING_STATUS_GRADED;
+            if (!$submission->grade || $submission->grade < 0) {
+                $str .= ', ' . get_string('notgraded', 'assign');
             } else {
-                $gradingstatus = ASSIGN_GRADING_STATUS_NOT_GRADED;
+                $str .= ', ' . get_string('graded', 'assign');
             }
-            $str .= ', ' . get_string($gradingstatus, 'assign');
             $str .= '</div>';
         }
         $str .= '</div>';
@@ -530,7 +494,6 @@ function assign_print_overview($courses, &$htmlarray) {
  */
 function assign_print_recent_activity($course, $viewfullnames, $timestart) {
     global $CFG, $USER, $DB, $OUTPUT;
-    require_once($CFG->dirroot . '/mod/assign/locallib.php');
 
     // Do not use log table if possible, it may be huge.
 
@@ -614,14 +577,7 @@ function assign_print_recent_activity($course, $viewfullnames, $timestart) {
 
     foreach ($show as $submission) {
         $cm = $modinfo->get_cm($submission->cmid);
-        $context = context_module::instance($submission->cmid);
-        $assign = new assign($context, $cm, $cm->course);
         $link = $CFG->wwwroot.'/mod/assign/view.php?id='.$cm->id;
-        // Obscure first and last name if blind marking enabled.
-        if ($assign->is_blind_marking()) {
-            $submission->firstname = get_string('participant', 'mod_assign');
-            $submission->lastname = $assign->get_uniqueid_for_user($submission->userid);
-        }
         print_recent_activity_note($submission->timemodified,
                                    $submission,
                                    $cm->name,
@@ -925,8 +881,6 @@ function assign_cron() {
             $class::cron();
         }
     }
-
-    return true;
 }
 
 /**

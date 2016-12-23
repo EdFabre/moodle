@@ -1,0 +1,424 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" --> 
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+          <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">sample programs</A> 
+          <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>. 
+        <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>File Formats</strong><br>
+        One raw data record can contain enough information to produce several 
+        observations. Data is stored in this manner in order to reduce the size 
+        of the entire file. The data can be organized into </p>
+      <ul>
+        <li> <a href="m26_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on reading repeating blocks of data.'; "
+		onMouseOut="window.status=''">repeating blocks of data</a> 
+        <li> <a href="m26_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on reading an id field followed by the same number of repeating fields.'; "
+		onMouseOut="window.status=''">an ID field followed by the same number 
+          of repeating fields</a> 
+        <li> <a href="m26_22.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on reading an id field followed by a varying number of repeating fields.'; "
+		onMouseOut="window.status=''">an ID field followed by a varying number 
+          of repeating fields.</a> 
+      </ul>
+      <strong>Reading Repeating Blocks of Data</strong><br>
+      To create multiple observations from a record that contains repeating blocks 
+      of data, the DATA step needs to hold the current record until each block 
+      of data has been read and written to the data set as an observation. The 
+      DATA step should include statements that 
+      <ol>
+        <li> read the first block of values and <a href="m26_3.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on holding the current record.'; "
+		onMouseOut="window.status=''">hold the current record</a> with the <a href="m26_4.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the @@ line-hold specifier.'; "
+		onMouseOut="window.status=''">double trailing at sign (@@)</a> line-hold 
+          specifier 
+        <li> optionally add a FORMAT statement to display date or time values 
+          with a specified format 
+        <li> write the first block of values as an observation 
+        <li> execute the DATA step until all repeating blocks have been read. 
+      </ol>
+      <p> <strong>Reading the Same Number of Repeating Fields<br>
+        </strong>To create multiple observations from a record that contains an 
+        ID field and the same number of repeating fields, you must execute the 
+        DATA step once for each record, repetitively reading and writing values 
+        in one iteration. The DATA step should include statements that 
+      <ol>
+        <li> read the ID field and <a href="m26_3.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on holding the current record.'; "
+		onMouseOut="window.status=''">hold the current record</a> with the <a href="m26_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the @ line-hold specifier'; "
+		onMouseOut="window.status=''">single trailing at sign (@)</a> line-hold 
+          specifier 
+        <li>execute SAS statements using an <a href="m26_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on iterative DO loops.'; "
+		onMouseOut="window.status=''">iterative DO loop</a>. The iterative DO 
+          loop repetitively processes statements that 
+          <ul>
+            <li> read the next value of the repeating field and hold the record 
+              with the @ line-hold specifier 
+            <li> explicitly write an observation to the data set by using an <a href="m26_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the OUTPUT statement.'; "
+		    onMouseOut="window.status=''">OUTPUT statement</a>. 
+          </ul>
+        <li> complete the iterative DO loop with an END statement. 
+      </ol>
+      <p> <strong>Reading a Varying Number of Repeating Fields</strong><br>
+        To create multiple observations from a record that contains an ID field 
+        and a varying number of repeating fields, you must execute the DATA step 
+        once for each record, repetitively reading and writing values in one iteration 
+        while the value of the repeating field exists. The DATA step should include 
+        statements that 
+      <ol>
+        <li> prevent SAS from reading the next record if missing values were encountered 
+          in the current record by using the <a href="m26_23.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the MISSOVER option.'; "
+		onMouseOut="window.status=''">MISSOVER option</a> 
+        <li> read the ID field and the first repeating field, and then <a href="m26_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on holding the current record.'; "
+		onMouseOut="window.status=''">hold the record</a> with the single trailing 
+          at sign (@) line-hold specifier 
+        <li> optionally <a href="m26_26.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on creating a counter variable.'; "
+		onMouseOut="window.status=''">create a counter variable</a> 
+        <li> <a href="m26_24.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on executing SAS statements while a condition is true.'; "
+		onMouseOut="window.status=''">execute SAS statements while a condition 
+          is true</a>, using a DO WHILE loop. A DO WHILE loop repetitively processes 
+          statements that 
+          <ul>
+            <li> optionally increment the value of the counter variable by using 
+              a <a href="m26_26.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the SUM statement.'; "
+		    onMouseOut="window.status=''">sum statement</a> 
+            <li> explicitly add an observation to the data set by using an <a href="m26_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the OUTPUT statement.'; "
+		    onMouseOut="window.status=''">OUTPUT statement</a> 
+            <li> <a href="m26_27.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on reading the next value.'; "
+		    onMouseOut="window.status=''">read the next value</a> of the repeating 
+              field and hold the record with the single trailing at sign (@) line-hold 
+              specifier. 
+          </ul>
+        <li> complete the DO WHILE loop with an END statement. 
+      </ol>
+</td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD><STRONG><A NAME="Syntax">Syntax</A></STRONG> 
+        <P> <EM>To go to the page where a statement or option was presented, select 
+          a link.</EM> 
+      </TD>
+    </TR>
+  </TABLE>
+  <center>
+    <br>
+  </center>
+</center>
+<P align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><blockquote>
+            <p><strong>Repeating Blocks of Data</strong></p>
+          </blockquote></td>
+    </tr>
+  </table>
+  <br>
+</center>
+<p> 
+  <table cellpadding="2">
+    <tr> 
+      <td><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> &nbsp;<strong>'</strong><em>SAS-data-library</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>FILENAME</strong> <em>fileref </em> &nbsp;<strong>'</strong><em>filename</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp; &nbsp; &nbsp; <strong>INFILE</strong> <em>file-specification</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp; </strong>&nbsp; <a href="m26_4.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the @@ line-hold specifier.'; "
+	    onMouseOut="window.status=''"><strong>INPUT</strong> <em>variables <strong>@@</strong></em><strong>;</strong></a></font></td>
+    </tr>
+    <tr> 
+      <td><nobr><font color="#003399"><strong>&nbsp; &nbsp; &nbsp;</strong> <a href="m26_6.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the FORMAT statement.'; "
+	    onMouseOut="window.status=''"><strong>FORMAT</strong> <em>date/time-variable 
+        format</em><strong>;</strong></a></font></nobr></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN; </strong></font></td>
+    </tr>
+  </table>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><blockquote>
+            <p><strong>An ID Field Followed by the Same Number of Repeating Fields</strong></p>
+          </blockquote></td>
+    </tr>
+  </table>
+  <br>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="2">
+    <tr> 
+      <td><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> &nbsp;<strong>'</strong><em>SAS-data-library</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>FILENAME</strong> <em>fileref </em> &nbsp;<strong>'</strong><em>filename</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp; &nbsp; &nbsp; <strong>INFILE </strong><em>file-specification</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp; </strong>&nbsp; <a href="m26_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the @ line-hold specifier.'; "
+	    onMouseOut="window.status=''"><strong>INPUT </strong><em>id-variable <strong>@</strong></em><strong>;</strong></a></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp; &nbsp;</strong> <a href="m26_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on executing SAS statements using a DO loop.'; "
+	    onMouseOut="window.status=''"><strong>DO</strong> <em>index-variable specification</em><strong>;</strong></a></font></td>
+    </tr>
+    <tr> 
+      <td><nobr><font color="#003399"><strong>&nbsp; &nbsp;&nbsp; </strong>&nbsp; 
+        &nbsp; &nbsp; &nbsp;<strong>&nbsp;<a href="m26_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the @ line-hold specifier.'; "
+	    onMouseOut="window.status=''">INPUT</a></strong><a href="m26_13.htm" onClick="suggestBack()"
+	    onMouseOver="window.status='Display details on the @ line-hold specifier.'; "
+	    onMouseOut="window.status=''"> <em>repeating-variable </em><strong>@;</strong></a></font></nobr></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp;&nbsp; </strong>&nbsp; &nbsp; 
+        &nbsp; &nbsp;&nbsp;<a href="m26_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the OUTPUT statement.'; "
+	    onMouseOut="window.status=''"><strong>OUTPUT;</strong></a></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp; &nbsp; &nbsp; <font color="#003399"><a href="m26_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on iterative DO loops.'; "
+	    onMouseOut="window.status=''"><strong>END;</strong></a></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN; </strong></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><blockquote>
+            <p><strong>An ID Field Followed by a Varying Number of Repeating Fields</strong></p>
+          </blockquote></td>
+    </tr>
+  </table>
+  <br>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="2">
+    <tr> 
+      <td><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> &nbsp;<strong>'</strong><em>SAS-data-library</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>FILENAME</strong> <em>fileref </em><strong>'</strong><em>filename</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp; &nbsp; &nbsp; <a href="m26_23.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the MISSOVER option.'; "
+	    onMouseOut="window.status=''" ><strong>INFILE</strong> <em>file-specification 
+        </em> <strong>MISSOVER;</strong></a></font></td>
+    </tr>
+    <tr> 
+      <td><nobr><font color="#003399"><strong>&nbsp; &nbsp; </strong>&nbsp; <a href="m26_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the @ line-hold specifier.'; "
+	    onMouseOut="window.status=''"><strong>INPUT</strong> <em>id-variable &nbsp;repeating-variable 
+        <strong>@</strong></em><strong>;</strong></a></font></nobr></td>
+    </tr>
+    <tr> 
+        <td>&nbsp; &nbsp; &nbsp;&nbsp;<font color="#003399"><a href="m26_26.htm" onClick="suggestBack()"
+	    onMouseOver="window.status='Display details on creating a counter variable.'; "
+	    onMouseOut="window.status=''"><em>counter-variable</em><strong>=</strong>0;</a></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp; &nbsp;</strong> <a href="m26_24.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on executing SAS statements while a condition is true.'; "
+	    onMouseOut="window.status=''"><strong>DO WHILE</strong> <strong>(</strong><em>expression<strong>)</strong></em><strong>;</strong></a></font></td>
+    </tr>
+    <tr> 
+        <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <font color="#003399"><a href="m26_26.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on creating a counter variable.'; "
+	    onMouseOut="window.status=''"><em>counter-variable</em><strong>+</strong>1;</a></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp;&nbsp; </strong>&nbsp; &nbsp; 
+        &nbsp; &nbsp;<a href="m26_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the OUTPUT statement.'; "
+	    onMouseOut="window.status=''"><strong>OUTPUT;</strong></a>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>&nbsp; &nbsp;&nbsp; </strong>&nbsp; &nbsp; 
+        &nbsp; &nbsp;<a href="m26_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the @ line-hold specifier.'; "
+	    onMouseOut="window.status=''"><strong>INPUT</strong> <em>repeating-variable 
+        </em><strong>@;</strong></a></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp; &nbsp; &nbsp; <font color="#003399">&nbsp;<a href="m26_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the END statement for DO WHILE loops.'; "
+	    onMouseOut="window.status=''"><strong>END;</strong></a></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN;</strong></font></td>
+    </tr>
+  </table>
+</center>
+<P align="center"> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"> 
+        <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+<!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Sample">Sample Programs</A></STRONG> <blockquote> 
+          <p><strong>Repeating Blocks of Data</strong> </p>
+        </blockquote>
+        <pre><font color="#003399">     libname perm 'c:\records\weather';</font>
+<font color="#003399">     filename tempdata 'c:\records\weather\tempdata';</font>
+<font color="#003399">     data perm.april90;</font>
+<font color="#003399">        infile tempdata;          </font>
+<font color="#003399">        input Date : date. HighTemp @@;</font><strong><font color="#003399"> </font></strong><font color="#003399">        </font>
+<font color="#003399">        format date date9.;        </font>
+<font color="#003399">     run;</font></pre>
+        <blockquote> 
+          <p><strong>An ID Field Followed by the Same Number of Repeating Fields</strong> 
+          </p>
+        </blockquote>
+        <pre><font color="#003399">     libname perm 'c:\records\sales';</font>
+<font color="#003399">     filename data97 'c:\records\sales\1997.dat';</font>
+<font color="#003399">     data perm.sales97;</font>
+<font color="#003399">        infile data97;</font>
+<font color="#003399">        input ID $ @;</font>
+<font color="#003399">     <strong> </strong>  do Quarter=1 to 4;</font>
+<font color="#003399">           input Sales : comma. @;</font>
+<font color="#003399">           output;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font>
+</pre>
+        <blockquote>
+          <p><strong>An ID Field Followed by a Varying Number of Repeating Fields</strong> 
+          </p>
+        </blockquote>
+        <pre><font color="#003399">     libname perm 'c:\records\sales';</font>
+<font color="#003399">     filename data97 'c:\records\sales\1997.dat';</font>
+<font color="#003399">     data perm.sales97;</font>
+<font color="#003399">        infile data97 missover;</font>
+<font color="#003399">        input ID $ Sales : comma. @;</font>
+<font color="#003399">        Quarter=0;</font>
+<font color="#003399">        do while (sales ne .); </font>
+<font color="#003399">           quarter+1;</font>
+<font color="#003399">           output;</font>
+<font color="#003399">           input sales : comma. @;</font>
+<font color="#003399">        end;</font>
+     <font color="#003399">run;</font></pre>
+        <P> 
+        <HR> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Points">Points to Remember</A></STRONG>
+        <ul>
+          <li>The double trailing at sign (@@) holds a record across multiple 
+            iterations of the DATA step until the end of the record is reached. 
+            <br>
+            <br>
+          <li>The single trailing at sign (@) releases a record when control returns 
+            to the top of the DATA step. <br>
+            <br>
+          <li>Use an END statement to complete DO loops and DO WHILE loops.
+        </ul>
+        </TD>
+    </TR>
+  </TABLE>
+  <!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,83 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Basic 
+      Concepts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>In the SAS programs that you write, you might find that you need to reference 
+          the same variable, data set, or text string multiple times. 
+        <pre><font color="#003399">    title "Total Sales for <strong>2002</strong>";
+    data perm.sales<strong>2002</strong>;
+       set perm.sales;
+       if year(enddate)=<strong>2002</strong>;
+    run;
+    proc print data=perm.sales<strong>2002</strong>;
+    run;
+</font></pre>
+        Then, you might need to change the references in your program in order 
+        to reference a different variable, data set, or text string. Especially 
+        if your programs are lengthy, scanning for specific references and updating 
+        them manually can take a lot of time, and it is easy to overlook a reference 
+        that needs to be updated. 
+        <pre><font color="#003399">    title "Total Sales for <strong>2001</strong>";
+    data perm.sales<strong>2001</strong>;
+       set perm.sales;
+       if year(enddate)=<font color="red"><strong>2002</strong></font>;
+    run;
+    proc print data=perm.sales<strong>2001</strong>;
+    run;
+</font></pre>
+        If you use a <strong>macro variable</strong> in your program, these updates 
+        are quick and easy because you only need to make the change in one place. 
+        <pre><font color="#003399">    %let year=<strong>2002</strong>;
+    title "Total Sales for <strong>&year</strong>";
+    data perm.sales<strong>&year</strong>;
+       set perm.sales;
+       if year(enddate)=<strong>&year</strong>;
+    run;
+    proc print data=perm.sales<strong>&year</strong>;
+    run;
+</font></pre>
+The value of the macro variable is inserted into your program, so you can make one change 
+and have the change appear throughout the program. Let's take a closer look at how macro variables work.
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

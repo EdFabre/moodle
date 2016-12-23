@@ -237,8 +237,6 @@ class lesson_page_type_truefalse extends lesson_page {
         $formattextdefoptions = new stdClass(); //I'll use it widely in this page
         $formattextdefoptions->para = false;
         $formattextdefoptions->noclean = true;
-        $formattextdefoptions->context = $answerpage->context;
-
         foreach ($answers as $answer) {
             if ($this->properties->qoption) {
                 if ($useranswer == null) {
@@ -357,9 +355,6 @@ class lesson_display_answer_form_truefalse extends moodleform {
             $attempt = new stdClass();
             $attempt->answerid = null;
         }
-
-        // Disable shortforms.
-        $mform->setDisableShortforms();
 
         $mform->addElement('header', 'pageheader');
 

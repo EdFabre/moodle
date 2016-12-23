@@ -1,0 +1,167 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='The following program shows a solution that uses the FREQ procedure to generate output. Many variations are possible.';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data work.activity;<br>';
+solutionText+='   set sasuser.admit;<br>';
+solutionText+='   length DrillDown $ 40;<br>';
+solutionText+='   if sex=\'F\' then drilldown=\'HREF=\"actfem.html\"\';<br>';
+solutionText+='   if sex=\'M\' then drilldown=\'HREF=\"actmale.html\"\';<br>';
+solutionText+='run;<p><br>';
+solutionText+='ods listing close;<br>';
+solutionText+='ods html path=<strong>\'c:\\data\\html\'</strong>(url=none) <br>';
+solutionText+='    body=<strong>\'active.html\'</strong>;<br>';
+solutionText+='goptions device=gif xpixels=440 ypixels=330;<br>';
+solutionText+='title \'Participant Activity Levels\';<br>';
+solutionText+='proc gchart data=work.activity;<br>';
+solutionText+='   hbar sex / subgroup=actlevel  raxis=axis1<br>';
+solutionText+='              nostats html=<strong>drilldown</strong>;<br>';
+solutionText+='run;<p><br>';
+solutionText+='ods html <strong>body=\'actfem.html\'</strong>;<br>';
+solutionText+='title \'Age and Activity Levels for Females\';<br>';
+solutionText+='proc <strong>freq data=work.activity;<br>';
+solutionText+='   tables actlevel*age / list nopercent</strong>;<br>';
+solutionText+='   where sex=\'F\';<br>';
+solutionText+='run;<p><br>';
+solutionText+='ods html <strong>body=\'actmale.html\'</strong>;<br>';
+solutionText+='title \'Age and Activity Levels for Males\';<br>';
+solutionText+='proc <strong>freq data=work.activity;<br>';
+solutionText+='   tables actlevel*age / list nopercent</strong>;<br>';
+solutionText+='   where sex=\'M\';<br>';
+solutionText+='run;<p><br>';
+solutionText+='quit;<br>';
+solutionText+='ods html close;<br>';
+solutionText+='ods listing;<br></pre></font>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Using 
+      the <a href="JavaScript: openOther('../linklib/admit.htm')" onMouseOver="window.status='Display a data set description and sample data.';"
+	    onMouseOut="window.status=''">Sasuser.Admit</a> data set, create a drill-down 
+      chart and linked output.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy the program below and paste it into the code editing window.<br>
+          <PRE><FONT color="#003399">data work.activity;</FONT>
+<FONT color="#003399">   set sasuser.admit;</FONT>
+   <FONT color="#003399">length DrillDown $ 40;</FONT>
+   <FONT color="#003399">if sex='F' then </FONT>
+<FONT color="#003399">      drilldown='HREF="actfem.html"';</FONT>
+   <FONT color="#003399">if sex='M' then </FONT>
+<FONT color="#003399">      drilldown='HREF="actmale.html"';</FONT>
+<FONT color="#003399">run;</FONT>
+
+<FONT color="#003399">ods listing close;</FONT>
+<FONT color="#003399">ods html path='</FONT><FONT color="red"><STRONG>?</STRONG></FONT><FONT color="#003399">' body='</FONT><FONT color="red"><STRONG>?</STRONG></FONT><FONT color="#003399">';</FONT>
+<FONT color="#003399">goptions device=gif xpixels=440 </FONT>
+<FONT color="#003399">         ypixels=330;</FONT>
+<FONT color="#003399">title 'Participant Activity Levels';</FONT>
+<FONT color="#003399">proc gchart data=work.activity;</FONT>
+<FONT color="#003399">   hbar sex / subgroup=actlevel </FONT>
+<FONT color="#003399">        raxis=axis1</FONT> <FONT color="#003399">nostats html=</FONT><FONT COLOR="Red"><STRONG>?</STRONG></FONT><FONT color="#003399">;</FONT>
+   <FONT color="#003399">axis1 minor=none </FONT>
+<FONT color="#003399">         label=('Participants');</FONT>
+<FONT color="#003399">run;</FONT>
+
+<FONT color="#003399">ods html</FONT> <FONT color="red"><STRONG>?</STRONG></FONT><FONT color="#003399">;</FONT>
+<FONT color="#003399">title 'Age and Activity Levels for Females';</FONT>
+<FONT color="#003399">proc </FONT> <FONT color="red"><STRONG>?</STRONG></FONT><FONT color="#003399">;</FONT>
+<FONT color="#003399">   where sex='F';</FONT>
+<FONT color="#003399">run;</FONT>
+
+<FONT color="#003399">ods html</FONT> <FONT color="red"><STRONG>?</STRONG></FONT><FONT color="#003399">;</FONT>
+<FONT color="#003399">title 'Age and Activity Levels for Males';</FONT>
+<FONT color="#003399">proc</FONT> <FONT color="red"><STRONG>?</STRONG></FONT><FONT color="#003399">;</FONT>
+<FONT color="#003399">   where sex='M';</FONT>
+<FONT color="#003399">run;</FONT>
+
+<FONT color="#003399">quit;</FONT>
+<FONT color="#003399">ods html close;</FONT>
+<FONT color="#003399">ods listing;</FONT></PRE>
+            If you are using SAS in the z/OS operating environment, you can view 
+            a <a href="JavaScript: openOther('../linklib/samppgm.htm')">sample 
+            program</a> for platform-specific reminders.<br>
+          <br>
+        <li>Replace the question marks (<font color="Red"><strong>?</strong></font>) 
+          with code to 
+          <P> 
+          <UL type="circle">
+            <LI> provide a valid path for GIF files and HTML output. For this 
+              option, add a suboption to specify that no path information is used 
+              in the URLs for linked files.<BR>
+              <BR>
+            <LI> name the primary HTML page <STRONG>active.html</STRONG>. <BR>
+              <BR>
+            <LI> link chart elements to HREF values in the variable <CODE>Drilldown</CODE>.<BR>
+              <BR>
+            <LI> specify two HTML pages for output, one where <CODE>Sex=</CODE><EM>F</EM> 
+              (<STRONG>actfem.html</STRONG>) and one where <CODE>Sex=</CODE><EM>M</EM> 
+              (<STRONG>actmale.html</STRONG>). <BR>
+              <BR>
+            <LI> specify the URLs <STRONG>actfem.html</STRONG> and <STRONG>actmale.html</STRONG> 
+              for these files.<BR>
+              <BR>
+            <LI> complete two PROC steps to generate output that is subset or 
+              categorized by values of <CODE>Sex</CODE> (one where <CODE>Sex=</CODE><EM>F</EM> 
+              and one where <CODE>Sex=</CODE><EM>M</EM>). Use a SAS procedure 
+              that you are familiar with, such MEANS, FREQ, TABULATE, UNIVARIATE, 
+              REPORT, or PRINT.<BR>
+              <BR>
+          </UL>
+        <LI> Submit the program and view <STRONG>active.html</STRONG> in your 
+          browser. <BR>
+          <BR>
+        <LI> Click the bars of the chart to link to output where <CODE>Sex=</CODE><EM>F</EM> 
+          or <CODE>Sex=</CODE><EM>M</EM>.
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

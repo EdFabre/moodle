@@ -1,0 +1,74 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>END= Data Set Option</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->END= 
+      Data Set Option<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>You can specify the <strong>END= option</strong> in the SET statement 
+        to create a temporary variable that contains an <strong>end-of-file indicator</strong>. 
+        This variable is initialized to <em>0</em> before the first iteration of the DATA 
+        step and is set to <em>1</em> when the SET statement reads the last observation 
+        in the data set. Keep in mind that the variable that is created by the 
+        END= option is a temporary variable. It is not stored in the new data 
+        set.</p>
+</td>
+  </tr>
+  </table>
+  <P><BR><TABLE align="center" BORDER="1" CELLSPACING="0" CELLPADDING="10" width="85%" BGCOLOR="#FFFFE0" title="General form, SET statement with the END= option">
+	<TR>
+	  
+    <TD align="left"><STRONG>General form, SET statement with the END= option:</STRONG> 
+      <BLOCKQUOTE> <FONT COLOR="#003399"><strong>SET</strong> <em>data-set-name</em> <strong>END=</strong><em>variable</em><strong>;</strong></FONT> </BLOCKQUOTE>
+	    <P>
+	    where <FONT COLOR="#003399"><EM>variable</EM></FONT> names the variable to 
+      be created. 
+ </TD>
+	</TR>
+      </TABLE>
+	  <P><BR>
+	  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+	<h2>Example</h2>
+	In the following program, the END= option creates a variable named <code>LastObs</code>. 
+      <code>LastObs</code> is initialized to <em>0</em>. When SAS reads the last 
+      observation in <strong>Sasuser.Monthsum</strong>, it sets the value of <code>LastObs</code> 
+      to <em>1</em>. Once <code>LastObs</code> has a value of <em>1</em>, the 
+      DO UNTIL condition is met and the loop ends. <font color="#003399"> 
+      <pre>     data sasuser.monthsum;
+        if _n_=1 then <strong>do until(lastobs)</strong>;
+           set sasuser.monthsum(keep=cargorev) <strong>end=lastobs</strong>;
+           totalrev+revcargo;
+        end;
+        set sasuser.monthsum (keep=salemon revcargo);
+        PctRev=revcargo/totalrev;
+     run;</pre>
+      </font></td>
+  </tr></table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

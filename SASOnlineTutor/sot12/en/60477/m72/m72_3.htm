@@ -1,0 +1,142 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Set Operations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p> <strong>Using Multiple Set Operators</strong></p>
+        <p>A single SELECT statement can contain more than one set operation. 
+          Each additional set operation includes a set operator and a group of 
+          query clauses, as shown in the following example:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     proc sql;
+        <strong>select</strong> *
+           from table1
+        <strong><font color="red">set-operator</font></strong>
+        <strong>select</strong> *
+           from table2
+        <strong><font color="red">set-operator</font></strong>
+        <strong>select</strong> *
+           from table3;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p> This SELECT statement uses two set operators to link together three 
+          queries. </p>
+        <p>Regardless of the number of set operations in a SELECT statement, the 
+          statement contains only one semicolon, which is placed after the last 
+          group of query clauses.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>The following PROC SQL step contains two set operators (both are OUTER 
+          UNION) that combine three queries:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql; 
+        <strong>select</strong> *
+           from sasuser.mechanicslevel1
+        <strong><font color="#FF0000">outer union</font></strong>
+        <strong>select</strong> *
+           from sasuser.mechanicslevel2
+        <strong><font color="#FF0000">outer union</font></strong>
+        <strong>select</strong> *
+           from sasuser.mechanicslevel3;</font></pre></td>
+    </tr>
+  </table>
+  <p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2> Processing Multiple Set Operations</h2>
+        <p>When PROC SQL evaluates a SELECT statement that contains multiple set 
+          operations, an additional processing step (step 3 below) is required: 
+        </p>
+        <ol>
+          <li> Each query is evaluated to produce an intermediate (internal) result 
+            table. <br>
+            <br>
+          </li>
+          <li>Each intermediate result table then becomes an operand linked with 
+            a set operator to form an expression, for example, <code>Table1 <strong>UNION</strong> 
+            Table2</code>. <br>
+            <br>
+          </li>
+          <li><strong>If the set operation contains more than two queries</strong>, 
+            then the result from the first two queries (enclosed in parentheses 
+            in the following examples) becomes an operand for the next set operator 
+            and operand. For example: <br>
+            <br>
+            <ul>
+              <li>with two set operators: <code>(Table1 <strong>UNION</strong> 
+                Table2) <strong>EXCEPT</strong> Table3<br>
+                <br>
+                </code></li>
+              <li>with three set operators: <code>((Table1 <strong>UNION</strong> 
+                Table2) <strong>EXCEPT</strong> Table3) <strong>INTERSECT</strong> 
+                Table4</code><br>
+                <br>
+              </li>
+            </ul>
+          </li>
+          <li>PROC SQL evaluates the entire expression to produce a single output 
+            result set. </li>
+        </ol></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p> When processing set operators, PROC SQL follows a default 
+          order of precedence, unless this order is overridden by parentheses 
+          in the expression(s). By default, INTERSECT is evaluated first. OUTER 
+          UNION, UNION, and EXCEPT all have the same level of precedence. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

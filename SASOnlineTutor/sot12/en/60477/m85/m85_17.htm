@@ -1,0 +1,75 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Estimating the Number of Observations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>It is more efficient to use indexed access for a small subset and 
+          to use sequential access for a large subset. Therefore, after identifying 
+          any available indexes and evaluating the conditions in the WHERE expression, 
+          SAS estimates the number of observations that will be qualified by the 
+          index. Whether or not SAS uses an index depends on the percentage of 
+          observations that are qualified (the size of the subset relative to 
+          the size of the data set), as shown below: 
+        <p align="center"><Br><img src="images/m85_17a.gif" alt="Diagram showing the relationship between subset size and index usage. See details below image." width="217" height="199">
+		<p><br>
+        <ul>
+          <li>If the subset is <strong>less than 3%</strong> of the data set, 
+            direct access is almost certainly more efficient than sequential access, 
+            and SAS <strong>will</strong> use an index. In this situation, SAS 
+            does <strong>not</strong> go on to compare probable resource usage. 
+            <br>
+            <br>
+          </li>
+          <li>If the subset is <strong>between 3% and 33%</strong> of the data 
+            set, direct access is likely to be more efficient than sequential 
+            access, and SAS will <strong>probably</strong> use an index.<br>
+            <br>
+          </li>
+          <li>If the subset is <strong>greater than 33%</strong> of the data set, 
+            it is less likely that direct access is more efficient than sequential 
+            access, and SAS <strong>might or might not</strong> use an index.</li>
+        </ul>
+        <p>When multiple indexes exist, SAS selects the one that appears to produce 
+          the <strong>fewest</strong> qualified observations (the <strong>smallest 
+          subset</strong>). SAS does this even when each index returns a subset 
+          that is less than 3% of the data set.
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,158 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" --> 
+      Processing Statements Iteratively<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Many macro applications require iterative processing. With the iterative <nobr>%DO</nobr> 
+          statement you can repeatedly 
+        <UL>
+<LI>execute macro programming code</LI>
+<LI>generate SAS code.</LI>
+</UL><P><BR>
+<table border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" align="center" title="General form, iterative %DO statement with %END statement">
+    <tr> 
+      
+    <td align="left"><STRONG>General form, iterative %DO statement with %END statement:</STRONG> 
+      <BLOCKQUOTE>
+	    <dl><FONT COLOR="#003399"><STRONG>%DO </STRONG> <em>index-variable</em>=<em>start</em> 
+          <strong>%TO</strong> <em>stop</em> &lt;<strong>%BY</strong> <em>increment</em>&gt;;</font> <FONT COLOR="#003399"> 
+          <dd><em>text</em></dd>
+          <dt><strong>%END;</strong></dt>
+          </FONT></dl>
+	  </BLOCKQUOTE>
+	  <P>
+	  where
+       
+      <UL>
+        <LI> <FONT COLOR="#003399"><em>index-variable</em></FONT> is either the name of a macro 
+          variable or a text expression that generates a macro variable name. 
+        <LI><em><font color="#003399">start</font></em> and <em><font color="#003399">stop</font></em> 
+          specify either integers or macro expressions that generate integers to control 
+          how many times the portion of the macro between the iterative <nobr>%DO</nobr> 
+          and <nobr>%END</nobr> statements is processed. 
+        <LI><font color="#003399"><em>increment</em></font> specifies either an integer 
+          (other than 0) or a macro expression that generates an integer to be 
+          added to the value of the index variable in each iteration of the loop. 
+          By default, <font color="#003399"><em>increment</em></font> is 1. 
+        <LI><font color="#003399"><em>text</em></font> can be 
+          <ul>
+            <li>constant text, possibly including SAS data set names, SAS variable 
+              names, or SAS statements</li>
+            <li>macro variables, macro functions, or macro program statements</li>
+            <li>any combination of the above.</li>
+          </ul>
+      </UL>
+      </td>
+    </tr>
+  </table>
+
+
+<P><BR>
+          <nobr>%DO</nobr> and <nobr>%END</nobr> statements are valid <strong>only 
+          inside</strong> a macro definition. The <font color="#003399"><em>index-variable</em></font> 
+          is created in the local symbol table if it does not appear in any existing 
+          symbol table. 
+        <P>The iterative <nobr>%DO</nobr> statement evaluates the value of the 
+          index variable at the <strong>beginning</strong> of each loop. The loop 
+          stops processing when the index variable has a value that is one increment 
+          beyond the range of the <em><font color="#003399">start</font></em> 
+          and <em><font color="#003399">stop</font></em> values. 
+        <p><br><h2>Example</h2>  
+        <P> You can use a macro loop to create and display a series of macro variables. 
+<P>This example creates a series of macro variables named <code>teach1-teach<em>n</em></code>, 
+          one for each observation in the <strong>Sasuser.Schedule</strong> data 
+          set, and assigns teacher names to them as values. Then the <strong>Putloop</strong> 
+          macro uses a <nobr>%DO</nobr> statement and a <nobr>%END</nobr> statement 
+          to create a loop that writes these macro variables and their values 
+          to the SAS log, as follows:<font color="#003399"><PRE>    data _null_;
+       set sasuser.schedule end=no_more;
+       call symput('teach'||left(_n_),(trim(teacher)));
+       if no_more then call symput('count',_n_);
+    run;
+
+    %macro putloop;
+       %local i;
+       <strong>%do i=1 %to &amp;count;
+          %put TEACH&amp;i is &amp;&amp;teach&amp;i;
+       %end;</strong>
+    %mend putloop;
+
+    %putloop
+</pre></font>
+<P><table border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+          <td valign="top" width="41"><img src="../navimages/alert.gif"  alt="Caution:" width="37" height="32"></td>
+      <td valign="top">It is a good idea to specifically declare the index variable of a macro loop as a local variable to avoid 
+	the possibility of accidentally changing the value
+	of a macro variable that has the same name in other symbol tables.</td>
+    </tr>
+  </table>
+      <P> When the <strong>Putloop</strong> macro is executed, no code is sent to the 
+        compiler, because the <nobr>%PUT</nobr> statements are executed by the macro processor. 
+        The following messages are written to the SAS log. 
+      <P><BR>
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+TEACH1 is Hallis, Dr. George
+TEACH2 is Wickam, Dr. Alice
+TEACH3 is Forest, Mr. Peter
+TEACH4 is Tally, Ms. Julia
+TEACH5 is Hallis, Dr. George
+TEACH6 is Berthan, Ms. Judy
+TEACH7 is Hallis, Dr. George
+TEACH8 is Wickam, Dr. Alice
+TEACH9 is Forest, Mr. Peter
+TEACH10 is Tally, Ms. Julia
+TEACH11 is Tally, Ms. Julia
+TEACH12 is Berthan, Ms. Judy
+TEACH13 is Hallis, Dr. George
+TEACH14 is Wickam, Dr. Alice
+TEACH15 is Forest, Mr. Peter
+TEACH16 is Tally, Ms. Julia
+TEACH17 is Hallis, Dr. George
+TEACH18 is Berthan, Ms. Judy
+</pre></td></tr>
+</table> </div>
+
+        <P><BR></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,373 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->One-to-One 
+      Reading<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>Example</strong></p>
+      <p> Suppose you have basic patient data (ID, sex, and age) in the data set 
+        <strong>Clinic.Patients</strong> and want to combine it with other patient 
+        data (height and weight) for patients under age 60. The height and weight 
+        data is stored in the data set <strong>Clinic.Measure</strong>. Both data 
+        sets are sorted by the variable <CODE>ID</CODE>. 
+      <p> Notice that <strong>Clinic.Patients</strong> contains 7 observations 
+        in which the patient age is less than 60, and <strong>Clinic.Measure</strong> 
+        contains 6 observations.
+    </td>
+  </tr>
+</table>
+<center>
+  <br>
+  <br>
+  <table width="75%" border="0">
+    <tr valign="top"> 
+      <td> 
+        <p align="center">SAS Data Set Clinic.Patients 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set" align="center">
+          <thead> 
+          <tr> 
+            <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></td>
+            <td align=LEFT bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+            <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sex</b></font></td>
+            <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Age</b></font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">1</font> 
+                </strong> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">1129</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">48</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">2</font> 
+                </strong> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">1387</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">57</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">3</font> 
+                </strong> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">2304</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">16</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">4</font> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica, sans-serif">2486</font></td>
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">63</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">5</font> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica, sans-serif">4759</font></td>
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">60</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">6</font> 
+                </strong> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">5438</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">42</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">7</font> 
+                </strong> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">6488</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">59</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">8</font> 
+                </strong> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">9012</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">39</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <strong><font face="Verdana, Arial, Helvetica, sans-serif"> 9 
+                </font> </strong> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">9125</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">56</font></strong></td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+      <td>&nbsp;&nbsp;&nbsp;</td>
+      <td> 
+        <p align="center">SAS Data Set Clinic.Measure 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set" align="center">
+          <thead> 
+          <tr> 
+            <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></td>
+            <td align=LEFT bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+            <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Height</b></font></td>
+            <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight</b></font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <font face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="2" color="#000000">1</font> 
+                </strong> </font> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">1129</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">61</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">137</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <font face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="2" color="#000000">2</font> 
+                </strong> </font> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">1387</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">64</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">142</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <font face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="2" color="#000000">3</font> 
+                </strong> </font> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">2304</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">61</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">102</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <font face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="2" color="#000000">4</font> 
+                </strong> </font> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">5438</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">62</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">168</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <font face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="2" color="#000000">5</font> 
+                </strong> </font> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">6488</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">64</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">154</font></strong></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"> 
+              <center>
+                <font face="Verdana, Arial, Helvetica, sans-serif"><strong><font size="2" color="#000000">6</font> 
+                </strong> </font> 
+              </center>
+            </td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">9012</font></strong></td>
+            <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">63</font></strong></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">157</font></strong></td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p>To subset observations from the first data set and combine them with 
+          observations from the second data set, you can submit the following 
+          program: </p>
+        <pre><font color="#003399">     data clinic.one2one;
+        set clinic.patients;
+        if age&lt;60;
+        set clinic.measure;
+     run;</font></pre>
+        The resulting data set, <strong>Clinic.One2one</strong>, contains 6 observations 
+        (the number of observations read from the smallest data set, here <strong>Clinic.Measure</strong>). 
+        The last observation in <strong>Clinic.Patients</strong> is not read.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<p align="center">SAS Data Set Clinic.One2one 
+<center>
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set" align="center">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></td>
+      <td align=LEFT bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sex</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Age</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Height</b></font></td>
+      <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Weight</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <center>
+          <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">1</font> 
+          </strong> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">1129</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">48</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">61</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">137</font></strong></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <center>
+          <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">2</font> 
+          </strong> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">1387</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">57</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">64</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">142</font></strong></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <center>
+          <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">3</font> 
+          </strong> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">2304</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">16</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">61</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">102</font></strong></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <center>
+          <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">4</font> 
+          </strong> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">5438</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">42</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">62</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">168</font></strong></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <center>
+          <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">5</font> 
+          </strong> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">6488</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">59</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">64</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">154</font></strong></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <center>
+          <strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">6</font> 
+          </strong> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">9012</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">F</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">39</font></strong></td>
+      <td align=LEFT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">63</font></strong></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><strong><font face="Verdana, Arial, Helvetica, sans-serif">157</font></strong></td>
+    </tr>
+    </tbody> 
+  </table>
+  </center>
+<center>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

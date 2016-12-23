@@ -1,0 +1,109 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      and Grouping Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>SELECT Clause Columns and Summary Function Processing</h2>
+        <p>A SELECT clause that contains a summary function can also list additional 
+          columns that are not specified in the summary function. The presence 
+          of these additional columns in the SELECT clause list causes PROC SQL 
+          to display the output differently.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="SELECT Clause Columns and Summary Function Processing">
+    <tr align="left" valign="top" bgcolor="#F7F7DE"> 
+      <th><font size="-1">If a SELECT clause&nbsp;...</font></th>
+      <th><font size="-1">Then PROC SQL&nbsp;...</font></th>
+      <th><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td>contains summary function(s) and <strong>no</strong> <strong>columns</strong> 
+        outside of summary functions</td>
+      <td><p>calculates a single value by using the summary function for the entire 
+          table or, if groups are specified in the GROUP BY clause, for each group</p>
+        <p><strong>combines or &quot;rolls up&quot; the information into a single 
+          row of output for the entire table or, if groups are specified, for 
+          each group</strong></p></td>
+      <td><pre><font color="#003399">proc sql;
+   select <strong>avg(salary)</strong>
+          as AvgSalary
+      from sasuser.payrollmaster;</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td>contains summary function(s) and <strong>additional columns</strong> 
+        outside of summary functions</td>
+      <td><p>calculates a single value for the entire table or, if groups are 
+          specified, for each group, and</p>
+        <p><strong>displays all rows of output with the single or grouped value(s) 
+          repeated</strong></p></td>
+      <td><pre><font color="#003399">proc sql;
+   select jobcode, 
+          gender,
+          <strong>avg(salary)</strong>
+          as AvgSalary
+      from sasuser.payrollmaster
+      <strong>group by jobcode,gender;</strong></font></pre></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p><a name="where"></a><strong>WHERE clause columns </strong>also 
+          affect summary function processing. If there is a WHERE clause that 
+          references only columns that are specified in the SELECT clause, PROC 
+          SQL combines information into a single row of output. However, this 
+          condition is not covered in this lesson. For more information, see the 
+          <!--doc reference-->
+          SAS documentation for the SQL procedure.</p>
+        </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>In the next few pages, you will look more closely at the query examples 
+          shown above to see how the first three factors impact summary function 
+          processing.</p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

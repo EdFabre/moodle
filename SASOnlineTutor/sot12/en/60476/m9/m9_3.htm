@@ -1,0 +1,87 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      the Initial Chart<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Your first step is to create the initial chart that you use as the primary 
+        chart in your linked series of graphs.</p>
+      <p>If you completed the lesson 
+        <!--lesson reference-->
+        <strong><script>document.write(m7title);</script></strong>, you learned how to use SAS/GRAPH 
+        software to produce charts. Let's assume that you have used the <strong>Finance.Prdsale2</strong> 
+        data set to produce a bar chart of sales for each product type and year:</p>
+    </td>
+  </tr>
+</table>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399"></font>
+<font color="#003399">          data work.saletrnd;</font>
+<font color="#003399">             set finance.prdsal2;</font>
+<font color="#003399">             format actual dollar10.0;</font>
+<font color="#003399">          run;</font>
+<font color="#003399">          goptions hsize=5in vsize=4in;</font>
+<font color="#003399">          title 'Total Sales by Year';</font>
+<font color="#003399">          proc gchart data=work.saletrnd;</font>
+<font color="#003399">             vbar year / subgroup=prodtype discrete</font>
+<font color="#003399">                  sumvar=actual;</font>
+<font color="#003399">          run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <img src="images/m9b1s1.gif" alt="Initial bar chart" width="398" height="388"> 
+<p align="center"> <br>
+<center>
+  <table border="0" cellspacing="0" cellpadding="0" width="85%">
+    <tr> 
+      <td valign="top" width="100%">Now that you've decided on the graph you want 
+        to use, you're ready to add code to produce a drill-down graph. The next 
+        step is to add a <strong>variable to hold HTML link locations</strong>. 
+        <p> Let's see how you create the variable.
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

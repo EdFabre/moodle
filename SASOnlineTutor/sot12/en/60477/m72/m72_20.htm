@@ -1,0 +1,219 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the UNION Set Operator<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The set operator UNION does both of the following:</p>
+        <ul>
+          <li> selects <strong>unique rows</strong> from<strong></strong> both 
+            tables together</li>
+          <li> overlays columns. </li>
+        </ul></td>
+    </tr>
+  </table>
+  <br>
+  <table border="0" align="center">
+    <tr> 
+      <td valign="top">Table 1</td>
+      <td align="center"> <p><img src="images/m72_2g3.gif" alt="Diagram of 2 vertical intersecting circles with all portions highlighted" width="61" height="92"></p></td>
+      <td valign="bottom">Table 2</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>Let&#8217;s see how UNION works when used alone and with the keywords 
+          ALL and CORR.</p>
+        <h2> <br>
+          Using the UNION Operator Alone</h2>
+        <p> To display all rows from the tables <strong>One</strong> and <strong>Two</strong> 
+          that are <strong>unique</strong> in the combined set of rows from both 
+          tables, use a PROC SQL set operation that includes the UNION operator:<br>
+        </p></td>
+    </tr>
+  </table>
+  <p> 
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td valign="top"> <pre><font color="#003399">proc sql;
+   select *
+      from one
+   <strong>union</strong>
+   select *
+      from two;
+</font></pre></td>
+      <td align="center" valign="top"> One 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">1</font></strong></td>
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">a</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#FFFFFF"> 
+              <td align=center><font size="2" face="Arial, Helvetica, sans-serif">1</font></td>
+              <td align=center><font size="2" face="Arial, Helvetica, sans-serif">a</font></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><strong>1</strong></font></td>
+              <td align=center bgcolor="#cccc99"><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><strong>b</strong></font></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">2</font></strong></td>
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">c</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">3</font></strong></td>
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">v</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">4</font></strong></td>
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">e</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">6</font></strong></td>
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">g</font></strong></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td align="center" valign="top"> Two 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><strong>1</strong></font></td>
+              <td align=center><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><strong>x</strong></font></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">2</font></strong></td>
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2" color="#000000">y</font></strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2">3</font></strong></td>
+              <td align=center><strong><font face="Arial, Helvetica, sans-serif" size="2">z</font> 
+                </strong></td>
+            </tr>
+            <tr valign="top" bgcolor="#FFFFFF"> 
+              <td align=center><font size="2" face="Arial, Helvetica, sans-serif">3</font></td>
+              <td align=center><font size="2" face="Arial, Helvetica, sans-serif">v</font></td>
+            </tr>
+            <tr valign="top" bgcolor="#cccc99"> 
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">5</font></strong></td>
+              <td align=center><strong><font size="2" face="Arial, Helvetica, sans-serif">w</font></strong></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <br>
+  <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+    <thead>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>A</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, sans-serif" size="2">a</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">1</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">b</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">1</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">x</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">c</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">y</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">3</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">v</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">3</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">z</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">4</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">e</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">5</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">w</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">6</font></TD>
+        <TD bgcolor="#EFEFEF"><font size="2" face="Arial, Helvetica, sans-serif">g</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>With the UNION operator, PROC SQL first concatenates and sorts the 
+          rows from the two tables, then eliminates any duplicate rows. In this 
+          example, two rows are eliminated: the second row in table <strong>One</strong> 
+          is a duplicate of the first row, and the fourth row in table <strong>Two</strong> 
+          matches the fifth row in table <strong>One</strong>. All remaining rows, 
+          the unique rows, are included in the output. The columns are overlaid 
+          by position.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

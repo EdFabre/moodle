@@ -1,0 +1,95 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Example: Viewing Resource Statistics for z/OS</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Example: 
+      Viewing Resource Statistics for z/OS<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>Suppose you submitted a PROC SORT step to sort the data set <strong>Work.A</strong>. 
+        The system options FULLSTATS, STIMER, MEMRPT, and STATS are all in effect, 
+        so the SAS log displays all available resource usage statistics:</p>
+      <p><br>
+      <div align="center">SAS Log<br>
+        <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+          <tr> 
+            <td> <pre>NOTE: The data set WORK.A has 987792 observations 
+and 19 variables.<br>NOTE: The PROCEDURE SORT used the following resources:<br>       CPU     time -         00:00:05.55<br>       Elapsed time -         00:00:48.77<br>       RSM Hiperspace  time - 00:00:00.76<br>       EXCP count   - 7116<br>       Task  memory - 200482K (197499K data, 2983K program)<br>       Total memory - 209007K (200096K data, 8911K program)<br></pre> </td>
+          </tr>
+        </table>
+      </div>
+	  <p><br>
+        The SAS log displays a variety of resource usage statistics, including 
+        the following:
+<p><br>
+      <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Resource usage statistics displayed in SAS log">
+        <tr valign="top" bgcolor="#F7F7DE"> 
+          <th width="23%"><font size="-1">Statistic</font></th>
+          <th width="77%"><font size="-1">Description</font></th>
+        </tr>
+        <tr valign="top"> 
+          <td>CPU time</td>
+          <td><p>the actual time spent on the task by the CPU. This number should 
+              be constant (within .02 seconds) across repetitions of the same 
+              job. </p></td>
+        </tr>
+        <tr valign="top"> 
+          <td>elapsed time</td>
+          <td><p>the clock time (real time) required for completing the task</p>
+            
+          </td>
+        </tr>
+        <tr valign="top"> 
+          <td>RSM Hiperspace</td>
+          <td>the amount of CPU time that a SAS task uses to store data in a library 
+            that resides in a z/OS hiperspace. The value for RSM Hiperspace time 
+            is zero unless a hiperspace library is being accessed, and unless 
+            the HIPERSPACE system option has been issued.</td>
+        </tr>
+        <tr valign="top"> 
+          <td>EXCP count</td>
+          <td><p>the number of I/O operations required for transferring external 
+              data to and from memory. EXCP denotes EXecute Channel Program.</p></td>
+        </tr>
+        <tr valign="top"> 
+          <td>task memory</td>
+          <td><p>the actual memory, in kilobytes, required for a task, with breakdowns 
+              for data storage and program storage. This number is stable for 
+              a particular task. </p></td>
+        </tr>
+        <tr valign="top"> 
+          <td>total memory</td>
+          <td>the memory, in kilobytes, required for all tasks. This session total 
+            is useful for deciding the minimum region size that the job requires 
+            in order to execute successfully.</td>
+        </tr>
+      </table>
+	  <br>
+    </td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

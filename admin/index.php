@@ -555,54 +555,44 @@ if (isset($SESSION->pluginuninstallreturn)) {
 // Print default admin page with notifications.
 $errorsdisplayed = defined('WARN_DISPLAY_ERRORS_ENABLED');
 
-// We make the assumption that at least one schedule task should run once per day.
-$lastcron = $DB->get_field_sql('SELECT MAX(lastruntime) FROM {task_scheduled}');
+$lastcron = $DB->get_field_sql('SELECT MAX(lastcron) FROM {modules}');
 $cronoverdue = ($lastcron < time() - 3600 * 24);
 $dbproblems = $DB->diagnose();
 $maintenancemode = !empty($CFG->maintenance_enabled);
 
-// Available updates for Moodle core.
+// Available updates for Moodle core
 $updateschecker = \core\update\checker::instance();
 $availableupdates = array();
-$availableupdatesfetch = null;
+$availableupdates['core'] = $updateschecker->get_update_info('core',
+    array('minmaturity' => $CFG->updateminmaturity, 'notifybuilds' => $CFG->updatenotifybuilds));
 
-if (empty($CFG->disableupdatenotifications)) {
-    // Only compute the update information when it is going to be displayed to the user.
-    $availableupdates['core'] = $updateschecker->get_update_info('core',
-        array('minmaturity' => $CFG->updateminmaturity, 'notifybuilds' => $CFG->updatenotifybuilds));
-
-    // Available updates for contributed plugins
-    $pluginman = core_plugin_manager::instance();
-    foreach ($pluginman->get_plugins() as $plugintype => $plugintypeinstances) {
-        foreach ($plugintypeinstances as $pluginname => $plugininfo) {
-            if (!empty($plugininfo->availableupdates)) {
-                foreach ($plugininfo->availableupdates as $pluginavailableupdate) {
-                    if ($pluginavailableupdate->version > $plugininfo->versiondisk) {
-                        if (!isset($availableupdates[$plugintype.'_'.$pluginname])) {
-                            $availableupdates[$plugintype.'_'.$pluginname] = array();
-                        }
-                        $availableupdates[$plugintype.'_'.$pluginname][] = $pluginavailableupdate;
+// Available updates for contributed plugins
+$pluginman = core_plugin_manager::instance();
+foreach ($pluginman->get_plugins() as $plugintype => $plugintypeinstances) {
+    foreach ($plugintypeinstances as $pluginname => $plugininfo) {
+        if (!empty($plugininfo->availableupdates)) {
+            foreach ($plugininfo->availableupdates as $pluginavailableupdate) {
+                if ($pluginavailableupdate->version > $plugininfo->versiondisk) {
+                    if (!isset($availableupdates[$plugintype.'_'.$pluginname])) {
+                        $availableupdates[$plugintype.'_'.$pluginname] = array();
                     }
+                    $availableupdates[$plugintype.'_'.$pluginname][] = $pluginavailableupdate;
                 }
             }
         }
     }
-
-    // The timestamp of the most recent check for available updates
-    $availableupdatesfetch = $updateschecker->get_last_timefetched();
 }
+
+// The timestamp of the most recent check for available updates
+$availableupdatesfetch = $updateschecker->get_last_timefetched();
 
 $buggyiconvnomb = (!function_exists('mb_convert_encoding') and @iconv('UTF-8', 'UTF-8//IGNORE', '100'.chr(130).'€') !== '100€');
 //check if the site is registered on Moodle.org
 $registered = $DB->count_records('registration_hubs', array('huburl' => HUB_MOODLEORGHUBURL, 'confirmed' => 1));
-// Check if there are any cache warnings.
-$cachewarnings = cache_helper::warnings();
 
 admin_externalpage_setup('adminnotifications');
 
-/* @var core_admin_renderer $output */
 $output = $PAGE->get_renderer('core', 'admin');
-
-echo $output->admin_notifications_page($maturity, $insecuredataroot, $errorsdisplayed, $cronoverdue, $dbproblems,
-                                       $maintenancemode, $availableupdates, $availableupdatesfetch, $buggyiconvnomb,
-                                       $registered, $cachewarnings);
+echo $output->admin_notifications_page($maturity, $insecuredataroot, $errorsdisplayed,
+        $cronoverdue, $dbproblems, $maintenancemode, $availableupdates, $availableupdatesfetch, $buggyiconvnomb,
+        $registered);

@@ -1,0 +1,120 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      Lengths for Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Previously, you added IF-THEN and ELSE statements to a DATA step in order 
+        to create the variable <code>TestLength</code>. Values for <code>TestLength</code> 
+        were assigned conditionally, based on the value for <code>TotalTime</code>. 
+      </p>
+        <pre><font color="#003399">    data clinic.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       retain SumSec 5400;</font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">       if totaltime&gt;800 then TestLength='Long';</font>
+       <font color="#003399">else if 750<=totaltime<=800 then TestLength='Normal';</font>
+       <font color="#003399">else if totaltime&lt;750 then TestLength='Short';</font>
+    <font color="#003399">run;</font></pre>
+      But look what happens when you submit this program. 
+        <p> During compilation, when creating a new character variable in an assignment 
+          statement, SAS allocates as many bytes of storage space as there are 
+          characters in the <strong>first value</strong> that it encounters for 
+          that variable. In this case, the first value for <code>TestLength</code> 
+          occurs in the IF-THEN statement, which specifies a four-character value 
+          (<em>Long</em>). So <code>TestLength</code> is assigned a length of 
+          4, and any longer values (<em>Normal</em> and <em>Short</em>) are truncated. 
+      </td>
+  </tr>
+</table>
+<p align="center"><br>
+  Variable TestLength<br>
+  (Partial Listing) 
+<center>
+    <table border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC"  title="Variable TestLength">
+      <thead>
+        <tr> 
+          <td align=CENTER bgcolor="#FFFFE0"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>TestLength</b></font></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF" nowrap> <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FF0000">Norm</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF" nowrap> <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FF0000">Shor</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF" nowrap> <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FF0000">Shor</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#FF0000">Shor</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font color="#FF0000" size="2" face="Verdana, Arial, Helvetica, sans-serif">Norm</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font color="#FF0000" size="2" face="Verdana, Arial, Helvetica, sans-serif">Shor</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Long</font></div></td>
+        </tr>
+        <tr> 
+          <td align="right" bgcolor="#FFFFFF"> <div align="left"><font size="2" face="Verdana, Arial, Helvetica, sans-serif">...</font></div></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">The example above assigns a character constant as the 
+          value of the new variable. You can also see <a href="JavaScript: openOther('../linklib/varleng.htm')">other 
+          examples</a> of the default type and length that SAS assigns when the 
+          type and length of a variable are not explicitly set.</td>
+      </tr>
+    </table>
+    <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

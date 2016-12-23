@@ -1,0 +1,97 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Combining 
+      Macro Variable References with Text<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td><strong></strong> 
+        <p>You can reference macro variables anywhere in your program. Some applications might require placing a 
+macro variable reference adjacent to leading text (<code><font color="#003399"><strong>text</strong><em>&amp;variable</em></font></code>) or 
+trailing text (<code><font color="#003399"><em>&amp;variable</em><strong>text</strong></font></code>)
+or referencing adjacent macro variables (<code><font color="#003399"><em>&amp;variable<strong>&amp;variable</strong></em></font></code>)
+in order to build a new token. When you combine macro variable references and text, it is important to keep in 
+mind how SAS interprets tokens.
+<P>
+Remember that a token ends when the word scanner detects either the beginning of a new token or a blank after a token.
+        <P> You can place text <strong>immediately before</strong> a macro variable 
+          reference to build a new token. For example, suppose that data sets 
+          are stored in a SAS library, using the naming convention <code><strong>Y</strong><em>yymon</em></code>, 
+          where <code><em>yy</em></code> is a two-digit year such as <code>02</code> 
+          or <code>01</code>, and <code><em>mon</em></code> is a three-letter 
+          month such as <code>JUN</code> or <code>AUG</code>. Data set names could 
+          include examples such as <strong>Y01DEC</strong> and <strong>Y02MAR</strong>. 
+          You can write a program that uses a macro variable to build the month 
+          portion of the SAS data set name. 
+        <PRE><font color="#003399">    <B>%let month=jan;</B>
+    proc chart data=sasuser.y02<B>&amp;month</B>;
+       hbar week / sumvar=sale;
+    run;
+    proc plot data=sasuser.y02<B>&amp;month</B>;
+       plot sale*day;
+    run;
+</font></PRE>
+<center>
+Code After Substitution
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Code After Substitution">
+<tr bgcolor="#F7F7DE"><td>
+<PRE><font color="#003399">
+proc chart data=sasuser.y02<B>jan</B>;
+    hbar week / sumvar=sale;
+run;
+proc plot data=sasuser.y02<B>jan</B>;
+    plot sale*day;
+run;
+</font></PRE></td></tr>
+</table>
+          <p><br>
+          </p>
+        </center>
+		 <div id="le2_eg2_eg3_v89_v91" class="eg_div"></div>
+		 <div id="le1_eg1" class="eg_div">
+<table cellpadding="2" align="Center" width="100%"><tr valign="top">
+<td width="41"><img src="../navimages/alert.gif" width="37" height="32" 
+alt="Caution:" border="0"></td>
+<td>If you are using the SAS Learning Edition, you will not be able to submit this code because it uses PROC 
+CHART and the CHART procedure is not included in the software.  This example is used on the next several pages 
+and in the lesson summary.</td></tr></table> 
+</div>
+</td></tr></table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

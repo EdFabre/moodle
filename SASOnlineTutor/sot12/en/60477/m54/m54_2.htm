@@ -1,0 +1,111 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Systematic Sample from a Known Number of Observations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>One type of representative sample that you might want to create is a <strong>systematic 
+          sample</strong>. A systematic sample contains observations that are 
+          chosen from the original data set at <strong>regular intervals</strong>. 
+          For example, a systematic sample could contain every hundredth observation 
+          of a very large data set.</p>
+		  
+        <p>To create a systematic sample from a data set that has a known number 
+          of observations, you use the POINT= option in the SET statement.</p>
+	  <P><BR>
+	  
+     
+      </td>
+  </tr>
+</table>
+<table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, SET statement with POINT= option">
+            <tr> 
+              
+          <td align="left"><strong>General form, SET statement with POINT= option: </strong> 
+            <blockquote> <font color="#003399"><nobr><strong>SET</strong> <em>data-set-name</em> 
+              <strong>POINT= </strong><em>point-variable</em><strong>;</strong></nobr></font> 
+            </blockquote> where <font color="#003399"><em>point-variable</em></font>
+                <ul>
+                  
+        <li>names a temporary numeric variable whose value is the observation 
+          number of the observation to be read 
+        <li>must be given a value before the execution of the SET statement
+                  <li>must be a variable and not a constant value. </ul></td>
+            </tr>
+          </table><P><BR>
+		  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> <p>The value of the variable that is named by the POINT= option should 
+          be an integer that is greater than zero and less than or equal to the 
+          number of observations in the SAS data set. SAS uses the value to point 
+          to a specific observation in the SET statement. You must assign this 
+          value within the program so that the POINT= variable has a value when 
+          the SET statement begins execution. Also, in order for SAS to read different 
+          observations into the sample, the value of the POINT= variable must 
+          change during execution of the DATA step. 
+        <P><BR>
+     <h2>Example</h2>
+        <p>You can place the SET statement with the POINT= option inside a DO 
+          loop that will assign a different value to the POINT= variable on each 
+          iteration. In the following code sample, the DO loop assigns a value 
+          to the variable <code>pickit</code>, which is used by the POINT= option 
+          to select every tenth observation from <strong>Sasuser.Sale2000</strong>. 
+          Notice that the following example is not a complete step.</p>
+      <font color="#003399">
+        <pre>     do pickit=1 to 142 by 10;
+        set sasuser.sale2000 point=pickit;
+        output;
+     end;</pre>
+        </font>
+
+    </td></tr></table>
+<table border="0" cellpadding="2" cellspacing="0" align="center" width="85%">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        
+      <td valign="top">In general, samples are most useful when you are working 
+        with very large data sets. However, the sample data 
+        sets that are included in this lesson are relatively small. The basics 
+        of creating samples and indexes are the same no matter the size of the 
+        data set, and you can apply the techniques in this lesson to larger data 
+        sets. </td>
+      </tr>
+    </table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,103 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Write the following DATA step:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data sasuser.flighttimes<br>';
+solutionText+='     (index=(date Fltdte=(flight date)/unique));<br>';
+solutionText+='   infile flighttm dlm=",";<br>';
+solutionText+='   input flight $ depart date;<br>';
+solutionText+='   format Date date9.;<br>';
+solutionText+='run;</pre></font>';
+solutionText+='<li>Add the following OPTIONS statement to the beginning of the program: ';
+solutionText+='<font color="#003399"><pre>options msglevel=i;</pre></font>';
+solutionText+='<li>Submit the program and examine the messages that are written to the SAS log. ';
+solutionText+='You should see that the <strong>Sasuser.Flighttimes</strong> data set was created, and that ';
+solutionText+='the <strong>Date</strong> index and the <strong>Fltdte</strong> index were created as well.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+            an index on the <a href="JavaScript: openOther('../linklib/flttimes.htm')">Sasuser.Flighttimes</a> 
+            data set in a DATA step.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><table cellpadding="2" align="Center" width="85%">
+  <tr valign="top"> 
+    <td width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:"
+            border="0"></td>
+      <td>Be sure to complete this practice. You'll use the indexes that you create 
+        here in later practices. 
+        <script>checkForRawDataLesson("overview")</script></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Use the DATA step and the INDEX= option to create the <strong>Sasuser.Flighttimes</strong> 
+            data set and two indexes: <br>
+            <br>
+            <ul>
+              <li>a simple index based on the <code>Date</code> variable 
+              <li>a unique composite index named <strong>Fltdte</strong>, based 
+                on the <code>Flight</code> and <code>Date</code> variables. 
+            </ul>
+            <BR>
+            Use the following INFILE, INPUT, and FORMAT statements in your DATA 
+            step: <font color="#003399"> 
+            <pre>infile flighttm dlm=",";
+input flight $ depart date;
+format Date date9.;</pre>
+            </font> 
+          <li>Add a statement to the program to set the MSGLEVEL= system option 
+            so that messages about the index will be written to the SAS log.<br>
+            <br>
+		  <li>Submit the program and examine any messages that are written to 
+            the SAS log.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

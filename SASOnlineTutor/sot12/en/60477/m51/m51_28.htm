@@ -1,0 +1,157 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Macro Variables During PROC SQL Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Creating Variables with the INTO Clause</h2>
+        <P>Earlier you learned how to create a series of related macro variables 
+          during execution of the DATA step by using the SYMPUT routine. Sometimes 
+          you might want to create a series of related macro variables during 
+          execution of a PROC SQL step. You can use the INTO clause to create 
+          one new macro variable for each row in the result of the SELECT statement. 
+      </td></tr></table>
+<P><BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, SELECT statement with INTO clause for a range of macro variables">
+    <tr> 
+      <td align="left"><STRONG>General form, SELECT statement with the INTO clause 
+        for a range of macro variables:</STRONG> 
+        <BLOCKQUOTE><FONT COLOR="#003399">
+	    <dl><dt><font color="#003399"><strong>PROC SQL NOPRINT;</strong></font></dt>
+		<dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SELECT</strong> <em>column1</em> <nobr><strong>INTO</strong> 
+		<strong>:</strong><em>macro-variable-<strong>1</strong></em> - <strong>:</strong><em>macro-variable-<strong>n</strong></em></nobr></dt>
+		<dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <strong>FROM</strong> <em>table-1 | view-1</em></dt>
+		<dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>WHERE</strong> <em>expression</em>&gt;</dt>
+		    <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>&lt;other clauses&gt;</em>
+            <strong>;</strong></dt>
+			<dt><font color="#003399"><strong>QUIT;</strong></font></dt></dl>
+</FONT>
+	  </BLOCKQUOTE>where 
+        <ul>
+          <li><font color="#003399"><em>column-1</em></font> specifies the column 
+            of the SQL table specified by <font color="#003399"><em>table-1 | 
+            view-1</em></font> 
+          <li><font color="#003399"><em>:macro-variable-1 -, :macro-variable-n,...</em></font> 
+            names the macro variables to create 
+          <li><font color="#003399"><em>expression</em></font> produces a value 
+            that is used to subset the data
+          <li><font color="#003399"><em>other clauses</em></font> are other valid 
+            clauses that group, subset or order the data. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Example</h2>
+        <P> You can create a series of macro variables that contain the course 
+          code, location, and starting date of the first three courses that are 
+          scheduled in 2002. In this example, the macro variables <code>crsid1</code>-<code>crsid3</code> 
+          are assigned values of the data set variable <code>Course_code</code> 
+          from each of the first three rows of the PROC SQL result: 
+        <pre><font color="#003399">    proc sql;
+       select course_code, location, begin_date format=mmddyy10.
+       <strong>into :crsid1-:crsid3,
+            :place1-:place3,
+            :date1-:date3</strong>
+          from sasuser.schedule
+          where year(begin_date)=2002
+          order by begin_date;
+    quit;
+</font></pre>
+<P>This is the result of the PROC SQL step.
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="PROC SQL output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Course Code</b></font></TD>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Location</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Begin</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">C003</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Dallas</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01/07/2002</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">C004</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01/21/2002</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">C005</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Seattle</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">02/25/2002</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">C006</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Dallas</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">03/25/2002</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+
+<P><BR>
+          This is a representation of the symbol table after this PROC SQL step 
+          has run.
+<P><BR>
+<table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr><td><code>CRSID1</code></td><td><em>C003 </em></td></tr>
+<tr><td><code>CRSID2</code></td><td><em>C004 </em></td></tr>
+<tr><td><code>CRSID3</code></td><td><em>C005 </em></td></tr>
+<tr><td><code>PLACE1</code></td><td><em>Dallas</em></td></tr>
+<tr><td><code>PLACE2</code></td><td><em>Boston</em></td></tr>
+<tr><td><code>PLACE3</code></td><td><em>Seattle</em></td></tr>
+<tr><td><code>DATE1</code></td><td><em>01/07/2002</em></td></tr>
+<tr><td><code>DATE2</code></td><td><em>01/21/2002</em></td></tr>
+<tr><td><code>DATE3</code></td><td><em>02/25/2002</em>
+</td></tr>
+</table>
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

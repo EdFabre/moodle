@@ -1,0 +1,122 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing 
+      a DBMS<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p>To access DBMS data, you can use the <STRONG>SAS/ACCESS LIBNAME statement</STRONG> 
+        with the appropriate SAS/ACCESS <A HREF="JavaScript: openOther('m13_2a.htm')">engine</A> 
+        and options. After assigning a libref to a DBMS, you can reference DBMS 
+        tables and views as if they were SAS data sets, using standard two-level 
+        SAS names. 
+      <P> You can store the SAS/ACCESS LIBNAME statement with any SAS program 
+        to reference the SAS library automatically when you submit the program. 
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+</table>
+<TABLE border="1" cellspacing="0" cellpadding="10" width="85%" align="center" bgcolor="#F7F7DE" title="General form, SAS/ACCESS LIBNAME statement">
+  <TR> 
+    <TD><STRONG>General form, SAS/ACCESS LIBNAME statement:</STRONG> 
+      <BLOCKQUOTE> 
+        <DL> 
+          <DT> <NOBR><FONT color="#003399"><STRONG>LIBNAME</STRONG> <EM>libref 
+            SAS/ACCESS-engine-name</EM></FONT></NOBR> 
+          <DD> <NOBR><FONT color="#003399"><EM>&lt;SAS/ACCESS-engine-connection-options&gt;</EM></FONT></NOBR> 
+          <DD> <NOBR><FONT color="#003399"><EM>&lt;SAS/ACCESS-LIBNAME-options&gt;</EM><strong>;</strong></FONT></NOBR> 
+        </DL>
+      </BLOCKQUOTE>
+      <P> where 
+      <UL>
+        <LI> <FONT COLOR="#003399"><EM>SAS/ACCESS-engine-name</EM></FONT> is the 
+          engine name for your DBMS, such as Oracle<EM> </EM>or SYBASE 
+        <LI> <FONT COLOR="#003399"><EM>SAS/ACCESS-engine-connection-options</EM></FONT> 
+          are connection options that are specific to the database, such as USER= 
+          and PASSWORD= 
+        <LI> <FONT COLOR="#003399"><EM>SAS/ACCESS-LIBNAME-options</EM></FONT> 
+          are processing options that are specific to the database, such as PATH= 
+          and DBINDEX=. 
+      </UL>
+    </TD>
+  </TR>
+</TABLE>
+<P> <BR>
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD>For example, the SAS/ACCESS LIBNAME statement below associates the libref 
+      <STRONG>Dblib </STRONG>with an Oracle database management system. If the 
+      Oracle DBMS contains a table named <STRONG>Employees</STRONG>, you can reference 
+      <STRONG>Dblib.Employees</STRONG> as if it were a SAS data set. 
+      <PRE>
+     <FONT color="#003399">libname dblib oracle</FONT>
+             <FONT color="#003399">user=tester1 password=testpw</FONT>
+        <FONT color="#003399">     path=ora7db dbindex=y;</FONT>
+</PRE>
+    </TD>
+  </TR>
+</TABLE>
+<TABLE cellpadding="2" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD valign="top" width="24"> 
+      <div align="left"><IMG src="../navimages/note.gif" border="0" width="20"
+	    height="20" hspace="10" alt="Note:"></div>
+    </TD>
+    <TD>Since you can define any number of librefs in SAS programs, you can process 
+      data from multiple DBMS sources from within the same SAS program.</TD>
+  </TR>
+</TABLE>
+<P> <BR>
+<TABLE cellpadding="0" cellspacing="0" border="0"  align="center"width="85%">
+  <TR> 
+    <TD><a name="clear"><STRONG>Clearing Librefs</STRONG></a> 
+      <P> To dissassociate a libref from a DBMS, specify a SAS/ACCESS LIBNAME 
+        statement in which the libref is followed by the <STRONG>CLEAR</STRONG> 
+        option: 
+      <PRE>
+     <FONT color="#003399">libname dblib clear;</FONT>
+</PRE>
+      <P> The SAS/ACCESS engine disconnects from the DBMS and frees any resources 
+        that are associated with the connection. 
+    </TD>
+  </TR>
+</TABLE>
+<br>
+<br>
+<P> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

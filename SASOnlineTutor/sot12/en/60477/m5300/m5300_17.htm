@@ -1,0 +1,106 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Stored Compiled Macros<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Creating a Stored Compiled Macro</strong></p>
+     <P>To create a permanently stored compiled macro, you must
+	 <ol>
+	      <li>assign a libref to the SAS library in which the compiled macro will 
+            be stored</li>
+          <br><br>
+	      <li>set the system options MSTORED and SASMSTORE=<em>libref</em></li>
+          <br><br>
+	      <li>use the STORE option in the %MACRO statement when you submit the macro 
+            definition.</li>
+        </ol>
+	 </td></tr></table><P>
+	 <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, macro definition with STORE option">
+  <tr> 
+      <td align="left"><strong>General form, macro definition with STORE option:</strong> 
+        <blockquote> 
+          <dl>
+            <dt><font color="#003399"><strong>%MACRO</strong> <em>macro-name</em> 
+              &lt;<em>(parameter-list)</em>&gt; /<strong>STORE</strong></font></dt>
+            <dd><font color="#003399">&lt;<strong>DES=</strong><em>'description'</em>&gt;</font><strong>;</strong></dd>
+            <dd><font color="#003399"><em>text</em></font></dd>
+            <dt><font color="#003399"><strong>%MEND</strong> &lt;<em>macro-name</em>&gt;<strong>;</strong></font></dt>
+          </dl>
+      </blockquote>
+	  where
+	    <ul>
+          <li> <font color="#003399"><em>description</em></font> is an optional 
+            156-character description that appears in the catalog directory. 
+          <li><font color="#003399"><em>macro-name</em></font> names the macro 
+          <li><font color="#003399"><em>parameter-list</em></font> names one or 
+            more local macro variables whose values you specify when you invoke 
+            the macro
+<li><font color="#003399"><em>text</em></font> can be
+          <UL>
+            <LI>constant text, possibly including SAS data set names, SAS variable 
+              names, or SAS statements</LI>
+            <LI>macro variables, macro functions, or macro program statements</LI>
+            <LI>any combination of the above.</LI>
+          </UL>
+        </ul></td>
+  </tr>
+</table>
+<p><br><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>There are several restrictions on stored compiled macros.
+<ul>
+<li><strong>Sasmacr</strong> is the <strong>only catalog</strong> in which compiled macros can be 
+stored. You can create a catalog named <strong>Sasmacr</strong> in any SAS library. 
+You should not rename this catalog or its entries.<br><br>
+          <li>You <strong>cannot</strong> copy stored compiled macros across operating systems. 
+            You must copy the source program and re-create the stored compiled 
+            macro.<br>
+            <br>
+          <li>The source <strong>cannot</strong> be re-created from the compiled macro. 
+            You should retain the original source program. For convenience, you 
+            can store the source program in an autocall library. Alternatively, 
+            you can store the source program as a source entry in the same catalog 
+            as the compiled macro. 
+        </ul>
+      </td>
+  </tr>
+</table>
+<P>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

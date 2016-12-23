@@ -1,0 +1,93 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Working 
+      with Lookup Values Outside of SAS Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td height="498"> 
+        <h2>SAS Arrays</h2>
+	  You should be familiar with the syntax and use of the ARRAY statement. With 
+        the ARRAY statement, you can either hard-code your lookup values into 
+        the program, or you can read them into the array from a data set. Elements 
+        of a SAS array are referenced positionally. That is, you use a numeric 
+        value as a pointer to the array element, so you must be able to identify 
+        elements of the array either by position or according to another numeric 
+        value. You can use multiple values or numeric mathematical expressions 
+        to determine the array element to be returned. Exact matches are not required 
+        with this technique. 
+        <P>The memory requirements for loading the entire array can be a drawback 
+          to using the ARRAY statement to perform a table lookup. Also, this technique 
+          is capable of returning only a single value from the lookup operation. 
+          Finally, the dimensions of the array must be supplied at compile time 
+          either by hard-coding or through the use of macro variables. 
+        <P><BR><h2>Example: Using the ARRAY Statement to Combine Data</h2>
+		  Let's take another look at our example of combining the data from <strong>Mylib.Employees</strong> 
+        with a list of lookup values. Remember that <strong>Mylib.Employees</strong> 
+        contains data about employees, which includes their identification numbers 
+        (<code>IDnum</code>) but does not include their birthdates. You can use 
+        the ARRAY statement to hard-code the birthdates into a temporary array 
+        named <code>birthdates</code>, and then use the array to combine the birthdates 
+        with the data in <strong>Mylib.Employees</strong>. 
+        <P>In the following DATA step, the values that are specified as subscripts 
+          for the array correspond to values of the variable <code>IDnum</code> 
+          in the base table, <strong>Mylib.Employees</strong>. The assignment 
+          statement for the new variable <code>Birthdate</code> retrieves a value 
+          from the <code>birthdates</code> array according to the current value 
+          of <code>IDnum</code>. <font color="#003399">
+        <pre>     data mylib.employees_new;
+        array birthdates{1001:1004} _temporary_ ('01JAN1963'd
+              '08AUG1946'd '23MAR1950'd '17JUN1973'd);
+        set mylib.employees;
+        Birthdate=birthdates(IDnum);
+     run;</pre>
+        </font>
+	 <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For more information about using SAS arrays, see 
+              the lesson <!--lesson reference--><strong><script>document.write(m35title);</script></strong>.
+	</td>
+      </tr>
+    </table></td>
+    </tr>
+  </table>
+ 
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

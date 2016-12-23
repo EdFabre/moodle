@@ -1,0 +1,92 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Functions to Mask Special Characters<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P>The <nobr>%STR</nobr> function can also be used to quote tokens that typically 
+          occur in pairs: 
+        <PRE><strong>     ' "  ) (
+</strong></PRE>
+
+<P><BR>
+<h2>Example</h2>
+Suppose you want to assign text that contains an apostrophe ( <strong>'</strong> ) to a macro variable. Without any quoting, this will lead to errors.
+<PRE><font color="#003399">    options symbolgen;
+    %let text=Joan's Report;
+    proc print data=sasuser.courses;
+       where days &gt; 3;
+    title &quot;&amp;text&quot;;
+    run;</font></PRE>
+    </td>
+  </tr>
+</table><P>
+<div align="center">
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+75  %let text=Joan's Report;
+                 ---------
+                 32
+
+<strong>WARNING 32-169: The quoted string currently being processed has 
+                become more than 262 characters long. You may 
+                have unbalanced quotation marks.</strong></pre></td></tr>
+</table> </div><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td><p>The word scanner interprets the apostrophe as the beginning of a 
+          literal that is defined by a pair of single quotation marks. You can 
+          use the <nobr>%STR</nobr> function to avoid this error. On the last page you saw 
+          several methods of using the <nobr>%STR</nobr> function to mask the normal meaning 
+          of a semicolon. However, none of the methods shown will correctly mask 
+          the apostrophe in our current example.</p>
+        <p>When you quote tokens that typically appear in pairs, such as quotation 
+          marks or parentheses, you must take one additional step. To perform 
+          this quoting, you precede the token that you want to quote with a <strong>percent 
+          sign</strong> (<strong>%</strong>) within the <nobr>%STR</nobr> function argument. 
+        </p>
+        <PRE><font color="#003399">    %let text=%str(Joan%'s Report);
+    %let text=Joan%str(%')s Report;
+</font></PRE>
+        The value of <code>text</code> is <em>Joan's Report</em> in both cases. 
+      </td>
+    </tr></table>
+<P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

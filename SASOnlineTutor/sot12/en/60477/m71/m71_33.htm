@@ -1,0 +1,112 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Joining 
+      Multiple Tables and Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>So far, this lesson has presented PROC SQL queries that combine 
+          only two tables horizontally. However, there might be situations in 
+          which you have to create complex queries to combine more than two tables. 
+          Let&#8217;s look at an example of a complex query that combines four 
+          different tables.</p>
+        <h2> <br>
+          Example: Complex Query That Combines Four Tables</h2>
+        <p> Suppose you want to list the names of supervisors for the crew on 
+          the flight to Copenhagen on March 4, 2000. To solve this problem, you 
+          will need to use the following four tables.<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Data Needed for Query">
+    <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+      <th bgcolor="#F7F7DE"><font size="-1">Table</font></th>
+      <th><font size="-1">Relevant Columns</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong><a href="JavaScript: openOther('../linklib/fltsched.htm')">Sasuser.Flightschedule</a></strong> 
+        identifies the crew who flew to Copenhagen on March 4, 2000</td>
+      <td><code>EmpID, Date, Destination</code></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong><a href="JavaScript: openOther2('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a></strong> 
+        identifies the names and states of residence for the employees</td>
+      <td nowrap><code>EmpID, FirstName, LastName, State</code></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong><a href="JavaScript: openOther3('../linklib/payrmstr.htm')">Sasuser.Payrollmaster</a></strong> 
+        identifies the job categories for the employees</td>
+      <td><code>EmpID, JobCode</code></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong><a href="JavaScript: openOther4('../linklib/suprvisr.htm')">Sasuser.Supervisors</a></strong> 
+        identifies the employees who are supervisors</td>
+      <td><code>EmpID, State, JobCategory</code></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Supervisors live in the same state as the employees they 
+        supervise. There is one supervisor for each state and job category.</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>This problem can be handled in a number of different ways. Let&#8217;s 
+          examine and compare three different techniques:</p>
+        <ul>
+          <li> <strong>Technique 1:</strong> using PROC SQL subqueries, joins, 
+            and in-line views<br>
+            <br>
+          </li>
+          <li> <strong>Technique 2:</strong> using a multi-way join that combines 
+            four different tables and a reflexive join (joining a table with itself)<br>
+            <br>
+          </li>
+          <li> <strong>Technique 3:</strong> using traditional SAS programming 
+            (a series of PROC SORT and DATA steps, followed by a PROC PRINT step).</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

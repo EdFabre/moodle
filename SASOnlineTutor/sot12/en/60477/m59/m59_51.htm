@@ -1,0 +1,120 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Be sure you have copied the data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> library.<br><br>';
+solutionText+='<li>Write the following PROC DATASETS step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc datasets nolist;<br>';
+solutionText+='   modify jobhstry (genmax=3);<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='<li>Submit the following DATA steps:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data jobhstry;<br>';
+solutionText+='   set jobhstry sasuser.y200061;<br>';
+solutionText+='run;<br>';
+solutionText+='data jobhstry;<br>';
+solutionText+='   set jobhstry sasuser.y200062;<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='<li>Submit the following PROC DATASETS step:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc datasets;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='In the PROC DATASETS output, there should be three <strong>Jobhstry</strong> data sets listed.</ol>';
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+            generation data sets for the <a href="JavaScript: openOther('../linklib/jobhstry.htm')">Jobhstry</a> 
+            data set.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><table width="85%" border="0" cellpadding="2" cellspacing="0">
+  <tr> 
+    <td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+    <td valign="top">You must complete this practice to do the next practice in 
+      this lesson.</td>
+  </tr>
+</table><p></p>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Because this data set is used in other practices and lessons, 
+        you must copy it to the <strong>Work</strong> library so that the original 
+        data in the <strong>Sasuser</strong> library is not modified.</td>
+    </tr>
+  </table>
+  <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Submit the following PROC COPY program to copy the <strong>Jobhstry</strong> 
+            data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> 
+            library: 
+            <pre><font color="#003399">proc copy in=sasuser out=work;
+   select jobhstry;
+run;</font></pre>
+          <li>Write and submit a PROC DATASETS step to modify the SAS data set 
+            <strong>Work.Jobhstry</strong> to save a maximum of three generations.<br>
+            <br>
+          <li>Submit the following two DATA steps to concatenate the data sets 
+            <strong>Sasuser.Y200061</strong> and <strong>Sasuser.Y200062</strong> 
+            to <strong>Jobhstry</strong>. This creates two new generations of 
+            the data.<br>
+            <br>
+            <pre><font color="#003399">data jobhstry;   
+   set jobhstry sasuser.y200061;
+run;
+data jobhstry;   
+   set jobhstry sasuser.y200062; 
+run;</font>
+</pre>
+          <li>Use PROC DATASETS to list the contents of the <strong>Work</strong> 
+            library.
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

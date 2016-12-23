@@ -1,0 +1,165 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</script>
+
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Using 
+      the <a href="JavaScript: openOther('../linklib/admit.htm')" onMouseOver="window.status='Display a data set description and sample data.';"
+	    onMouseOut="window.status=''">Sasuser.Admit</a> data set, apply styles 
+      to heading cells.</strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><div id="le1_eg1" class="eg_div">
+<table cellpadding=2 cellspacing=0 border=0 width="85%"><tr valign="Top"> 
+<td width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:" border="0"></td>
+<td align="left">Have you <a href="JavaScript: openOther('../linklib/eg_ods.htm')">set options</a> in Enterprise 
+Guide so you can submit your own ODS statements? You must do this before 
+you can do any of the practices in this lesson.</td></tr></table></div>
+<div id="le2_eg2" class="eg_div">
+<table cellpadding=2 cellspacing=0 border=0 width="85%"><tr valign="Top"> 
+<td width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:" border="0"></td>
+<td align="left">Have you <a href="JavaScript: openOther('../linklib/eg2_ods.htm')">set options</a> in Enterprise 
+Guide so you can submit your own ODS statements? You must do this before 
+you can do any of the practices in this lesson.</td></tr></table></div><!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+<div id="le1_le2_eg1_eg2_eg3_v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+          <LI>Copy the following program and paste it into the code editing window. 
+            <PRE><FONT COLOR="#003399">ods listing close;</FONT>
+<FONT COLOR="#003399">ods html path='<FONT color="red"><STRONG>?</STRONG></FONT>' body='<FONT color="red"><STRONG>?</STRONG></FONT>';</FONT>
+<FONT COLOR="#003399">proc tabulate data=sasuser.admit </FONT>
+<FONT COLOR="#003399">     format=4.1;</FONT>
+<FONT COLOR="#003399">   var age;</FONT>
+<FONT COLOR="#003399">   class sex actlevel;</FONT>
+<FONT COLOR="#003399">   table sex*actlevel*age,mean;</FONT>
+<FONT COLOR="#003399">run;</FONT>
+<FONT COLOR="#003399">ods html close;</FONT>
+<FONT COLOR="#003399">ods listing;</FONT></PRE>
+          <LI> Replace the question marks (<FONT COLOR="Red"><STRONG>?</STRONG></FONT>) 
+            with PATH= and BODY= values that conform to your operating system's 
+            file structure. Remember that you can use the URL= suboption in PATH=, 
+            BODY=, or both.<BR>
+            <BR>
+          <LI> Submit the program and view the HTML table in your browser.<BR>
+            <BR>
+          <LI> Add the STYLE= option to the program's CLASS statement to change 
+            the background color of the <CODE>Sex</CODE> and <CODE>ActLevel</CODE> 
+            headings to <strong>white</strong>. Remember to add a slash (/) before 
+            the option. 
+            <P> 
+          <LI> Insert a KEYWORD statement to change the background color of the 
+            MEAN statistic to <strong>white</strong>. Remember to add a slash 
+            before the STYLE= option. 
+            <P> 
+          <LI> Add the BOX= option to the TABLE statement to change the background 
+            color of the upper-left cell to <strong>ltgray</strong> (you could 
+            also use <em>CCCCCC</em>). Remember to add a slash before the BOX= 
+            option and to enclose the entire STYLE= option in braces. 
+            <P> 
+          <LI> Submit the program and view the results in your browser.
+		       </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+  <!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_eg3_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+The following program is an example. 
+Many variations are possible.
+<font color="#003399">
+          <pre>
+ods listing close;
+ods html path='c:\data' body='active.html';
+proc tabulate data=sasuser.admit format=4.1;
+   var age;
+   class sex actlevel / style={background=white};
+   table sex*actlevel*age,mean /
+         box={style={background=ltgray}};
+   keyword mean / style={background=white};
+run;
+ods html close;
+ods listing;</pre>
+          </font>
+<br>Using Windows Explorer, locate the HTML file you created and open it in your browser.
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="v89_v91_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+The following program is an example. 
+Many variations are possible.
+<font color="#003399">
+          <pre>
+ods listing close;
+ods html path='c:\data' body='active.html';
+proc tabulate data=sasuser.admit format=4.1;
+   var age;
+   class sex actlevel / style={background=white};
+   table sex*actlevel*age,mean /
+         box={style={background=ltgray}};
+   keyword mean / style={background=white};
+run;
+ods html close;
+ods listing;</pre>
+          </font>
+
+       </td>
+  </tr>
+</table>
+</div>
+<!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

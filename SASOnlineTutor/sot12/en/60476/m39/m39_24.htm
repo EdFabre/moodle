@@ -1,0 +1,125 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_3.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 2;
+
+salute  = "<strong>Correct.</strong><p>";
+correct = "\n In the first program, the DROP= option removes the variable" +
+          "\n Salary only from the permanent data set. In the second program," + 
+          "\n the DROP statement removes Salary from both data sets.";
+
+choice1 =   "<strong>Incorrect.</strong><p>"+
+          "\n Remember that the DROP statement affects all output data sets" +
+          "\n named in the DATA statement, whereas the DROP= option affects" +
+          "\n only the data set that immediately precedes it.";
+
+choice2 = salute + correct;
+
+choice3 =   "<strong>Incorrect.</strong><p>"+
+          "\n The permanent data sets created by the two programs are identical." +
+          "\n Remember that the DROP statement affects all output data sets" +
+          "\n named in the DATA statement, whereas the DROP= option affects" +
+          "\n only the data set that immediately precedes it.";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center> <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Do these two SAS programs 
+          produce the same results? 
+          <pre><font color="#003399">data work.employee archive.employee(drop=salary);</font>
+   <font color="#003399">infile records;</font>
+   <font color="#003399">input ID $ 1-4 EmpDept $ 6-15 Salary 17-22;</font>
+   <font color="#003399">if empdept in ("Finance","Legal");</font>
+<font color="#003399">run;</font>
+</pre>
+          <p> 
+          <pre><font color="#003399">data work.employee archive.employee;</font>
+   <font color="#003399">infile records;</font>
+   <font color="#003399">input ID $ 1-4 EmpDept $ 6-15 Salary 17-22;</font>
+   <font color="#003399">if empdept in ("Finance","Legal");</font>
+   <font color="#003399">drop salary;</font>
+<font color="#003399">run;</font></pre>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" -->Yes, both programs produce 
+          identical output data sets.<!-- InstanceEndEditable --></td>
+        <td rowspan="3"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" -->No, the first program 
+          produces a temporary SAS data set that contains more variables than 
+          the temporary data set that the second program produces.<!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" -->No, the second program 
+          produces a permanent SAS data set that contains more variables than 
+          the permanent data set that the first program produces.<!-- InstanceEndEditable --></td>
+      </tr>
+      
+      <tr> 
+        <td colspan="3"> 
+          <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

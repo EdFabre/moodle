@@ -1,0 +1,132 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      an Index<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>To create an index on one or more columns of a table, use the CREATE 
+          INDEX statement.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, CREATE INDEX statement">
+    <tr> 
+      <td align="left"><p><strong>General form, CREATE INDEX statement:</strong> 
+        </p>
+        <blockquote><font color="#003399"><strong>CREATE &lt;UNIQUE&gt; INDEX</strong> 
+          <em>index-name</em><br>
+          <nobr>&nbsp; &nbsp; &nbsp;<strong>&nbsp;ON</strong> <nobr><em>table-name</em></nobr> 
+          <nobr>(<em>column-name-1</em></nobr>&lt;<strong>,</strong><nobr>&nbsp;<strong>...</strong><em>column-name-n</em>&gt;</nobr><nobr>);</nobr></font> 
+        </blockquote>
+        <p>where </p>
+        <ul>
+          <li><strong><font color="#003399">UNIQUE</font></strong> is a keyword 
+            that specifies that all values of the column(s) specified in the statement 
+            must be unique.<br>
+            <br>
+          </li>
+          <li><font color="#003399"><em>index-name</em></font> specifies the name 
+            of the index to be created. If you are creating an index on one column 
+            only, then <font color="#003399"><em>index-name</em></font> must be 
+            the same as <font color="#003399"><em>column-name-1</em></font>. If 
+            you are creating an index on more than one column, then <font color="#003399"><em>index-name</em></font> 
+            cannot be the same as the name of any existing column or index in 
+            the table.<br>
+            <br>
+          </li>
+          <li><font color="#003399"><em>table-name</em></font> specifies the name 
+            of the table on which the index will be created.<br>
+            <br>
+          </li>
+          <li><em><font color="#003399">column-name</font></em> specifies a column 
+            to be indexed. Columns can be specified in any order; however, column 
+            order is important for data retrieval. The first-named column is the 
+            primary key, the second-named column is the secondary key, and so 
+            on. </li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">When creating a composite index, specify the columns 
+              in the same order as you would specify them in an ORDER BY clause.</td>
+          </tr>
+        </table>
+        <br> <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">You can achieve improved index performance if you 
+              create the index on a pre-sorted table.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>SAS maintains indexes for all changes to the table, whether the 
+          changes originate from PROC SQL or some other source, as long as the 
+          entire table is not re-created. If you alter a column's definition or 
+          update its values, then SAS will update the indexes also. However, if 
+          a key column in a table is dropped (deleted), then the index on that 
+          column is also dropped.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p><strong>Creating Multiple Indexes</strong></p>
+        <p>You cannot create multiple simple indexes that are based on the same 
+          column or multiple composite indexes that are based on the same set 
+          of columns. Although it is possible to create both a simple and a composite 
+          index on the same column, it is usually not advantageous to do this. 
+          If a simple index is defined on a column and that column is also the 
+          primary key in a composite index, PROC SQL will use the composite index 
+          in processing a query that references that column.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You can create multiple indexes on the same table, but you must 
+          use a separate CREATE INDEX statement for each index that you want to 
+          create.</p></td>
+    </tr>
+  </table>
+  <p>&nbsp;
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,182 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Querying 
+      Multiple Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Ordering Rows</strong> </p>
+        <p> As in PROC SQL steps that query just one table, the ORDER BY clause 
+          specifies which column(s) should be used to sort rows in the output. 
+          In the following query, the rows will be sorted by <code>LastName</code>:
+      </td>
+  </tr>
+</table>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+        <td align="left"> <pre><font color="#003399">     proc sql;
+        select salcomps.empid,lastname,
+               newsals.salary,newsalary
+           from sasuser.salcomps,sasuser.newsals
+           where salcomps.empid=newsals.empid
+           <strong>order by lastname;</strong></font></pre></td>
+    </tr>
+  </table>
+  <center>
+      <p>
+      <CENTER>
+        <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+        <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+          <thead>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>EmpID</b></font></TD>
+              <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Employee 
+                Salary</b></font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>NewSalary</b></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00042</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANDERSON</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$32,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$38,023.96</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00006</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANDERSON</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$31,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$33,753.70</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00008</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BADINE</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$85,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$93,811.78</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00021</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BAKER 
+                JR.</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$43,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$43,386.40</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00002</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BOWER</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$27,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$31,153.98</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00027</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BOWMAN</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$31,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$35,579.22</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00030</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BREWER</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$38,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$41,055.05</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00025</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BROCKLEBANK</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$23,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$25,673.57</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00015</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BROWN</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$41,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$45,394.20</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00041</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRUTON</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$45,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$53,399.58</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00049</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CHASE 
+                JR.</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$29,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$32,892.87</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00024</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">COCKERHAM</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$21,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$21,213.88</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00032</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">COUCH</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$24,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$28,775.81</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00018</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CROSS</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$33,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$35,947.80</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00013</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DBAIBO</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$22,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$23,243.79</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">E00009</font></TD>
+              <TD ALIGN=LEFT bgcolor="#ffff9c"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DEMENT</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$34,000</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$35,501.12</font></TD>
+            </TR>
+          </tbody>
+        </TABLE>
+        </font> 
+      </CENTER>
+    </center>
+</center>
+<p><br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

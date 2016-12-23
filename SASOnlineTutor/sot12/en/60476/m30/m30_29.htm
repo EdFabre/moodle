@@ -1,0 +1,129 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Manipulating 
+      SAS Date Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Example: Finding the Year and Month</strong></p>
+      <p>Let's use the YEAR and MONTH functions to complete a simple task. </p>
+      <P> Suppose you need to create a subset of the data set <STRONG>Hrd.Temp</STRONG> 
+        that contains information about all temporary employees who were hired 
+        in November, 1999. <STRONG>Hrd.Temp</STRONG> contains the beginning and 
+        ending dates for staff employment, but there are no month or year variables 
+        in the data set.</td>
+  </tr>
+</table>
+<P align="center"><BR>
+  SAS Data Set Hrd.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>State</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Zip</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>StartDate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>EndDate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>PayRate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Days</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Hours</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6224549</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14567</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14621</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">88</font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6223251</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14524</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14565</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">25</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">200</font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CHAPEL HILL</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27514</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">9974749</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14570</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14608</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">40</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">26</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">208</font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">RALEIGH</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27612</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6970450</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14516</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14527</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">15</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">80</font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"><BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>To determine the year in which employees were hired, you can apply the 
+        YEAR function to the variable that contains the employee start date, <CODE>StartDate</CODE>. 
+        You write the YEAR function as 
+        <PRE>     <FONT color="#003399">year(startdate)</FONT></PRE>
+        Likewise, to determine the month in which employees were hired, you apply 
+        the MONTH function to <CODE>StartDate</CODE>. 
+        <PRE>     <FONT color="#003399">month(startdate)</FONT></PRE></TD>
+    </TR>
+  </TABLE>
+  <br>
+ 
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

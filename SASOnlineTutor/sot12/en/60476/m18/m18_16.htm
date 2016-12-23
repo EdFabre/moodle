@@ -1,0 +1,161 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      HTML Output with a Table of Contents<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>So far in this lesson, you've used the BODY= specification to create 
+          a simple HTML file containing your procedure output. Suppose you want 
+          to create an HTML file that has a table of contents with links to the 
+          output of each specific procedure. You can do this by specifying additional 
+          files in the ODS HTML statement. </p>
+        </td>
+    </tr>
+  </table>
+  <p align="center"> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, ODS HTML statement to create a linked 
+        table of contents">
+    <tr> 
+      <td align="left"><strong>General form, ODS HTML statement to create a linked 
+        table of contents:</strong> <blockquote> 
+          <p><font color="#003399"><nobr><strong>ODS HTML <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BODY=</strong><em>body-file-specification</em></nobr><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>CONTENTS=</strong><nobr><em>contents-file-specification</em></nobr><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FRAME=</strong><nobr><em>frame-file-specification</em></nobr></font><font color="#003399"><nobr><strong>;<br>
+            ODS HTML CLOSE;</strong></nobr></font></p>
+        </blockquote> <p><font color="#003399"><nobr></nobr></font>where </p>
+        <ul>
+          <li><font color="#003399"><em>body-file-specification</em></font> is 
+            the name of an HTML file that contains the procedure output.</li>
+          <li><font color="#003399"><em>contents-file-specification</em></font> 
+            is the name of an HTML file that contains a table of contents with 
+            links to the procedure output.</li>
+          <li><font color="#003399"><em>frame-file-specification</em></font> is 
+            the name of an HTML file that integrates the table of contents and 
+            the body file. If you specify FRAME=, you must also specify CONTENTS=.</li>
+        </ul>
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+            <td>To direct the HTML output to a specific storage location, specify 
+              the complete pathname of the HTML file in the <em><font color="#003399">file-specification</font>.</em></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p align="center"><br>
+  <p> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><strong>Example</strong> <p> In the program below, 
+          <ul>
+            <li> the BODY= specification creates <strong>data.html</strong> in 
+              the <strong>c:\records</strong> directory. The body file contains 
+              the results of the two procedures.<br>
+              <br>
+            <li> the CONTENTS= specification creates <strong>toc.html</strong> 
+              in the <strong>c:\records</strong> directory. The table of contents 
+              file has links to each procedure output in the body file.<br>
+              <br>
+            <li> the FRAME= specification creates <strong>frame.html </strong>in 
+              the <strong><strong>c:\records</strong> </strong>directory. The 
+              frame file integrates the table of contents&nbsp;and the body file. 
+          </ul></td>
+      </tr>
+    </table>
+    <p>
+      <img src="images/m18d1g1.gif" width="365" height="247" alt="Frame with TOC and Body File"
+	border="0"> </p>
+    <p> 
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <pre><font color="#003399">      ods listing close;</font>
+<font color="#003399">      ods html <strong>body='c:\records\data.html'</strong></font>
+         <font color="#003399">      <strong>contents='c:\records\toc.html'</strong></font>
+<font color="#003399">               <strong>frame='c:\records\frame.html';</strong></font>
+      <font color="#003399">proc print data=clinic.admit label;</font>
+         <font color="#003399">var id sex age height weight actlevel;</font>
+<font color="#003399">         label actlevel='Activity Level';</font>
+<font color="#003399">      run;</font>
+<font color="#003399">      proc print data=clinic.stress2;</font>
+         <font color="#003399">var id resthr maxhr rechr;</font>
+<font color="#003399">      run;</font>
+<font color="#003399"><strong>      </strong>ods html close;</font>
+<font color="#003399">      ods listing;</font>
+</pre> 
+        </td>
+      </tr>
+    </table>
+  </center>
+
+  <center>
+  <div id="v89_v91" class="eg_div">
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">
+		<strong>Viewing Frame Files</strong> <p> The Results window does not display links to frame files, and in the Windows environment 
+only the body file will automatically appear in the internal browser or your preferred Web browser. 
+            <p>To view the frame file that integrates the body file <strong>and</strong> the 
+              table of contents, select <strong>File<img src="../navimages/arrow.gif" width="14" height="10" alt="then">Open</strong> 
+              from within the internal browser or your preferred Web browser. 
+              Then open the frame file that you specified using FRAME=. In the 
+              example above, this file is <strong>frame.html</strong>, which is 
+              stored in the <strong>Records</strong> directory in the Windows 
+              environment. </td>
+      </tr>
+    </table>
+	</div>
+	
+	  <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">
+	The frame file, <strong>frame.html</strong>, is shown below.
+	</td>
+      </tr>
+    </table>
+    </div>
+	<p><br> <img src="images/m18d1s1.gif" width="541" height="337" alt="HTML Frame File"><p>
+      <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

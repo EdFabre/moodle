@@ -48,7 +48,6 @@ $THEME->sheets = array(
     'message',
     'question',
     'user',
-    'tabs',
     'filemanager'
 );
 

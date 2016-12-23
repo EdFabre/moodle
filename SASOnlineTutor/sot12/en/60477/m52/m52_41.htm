@@ -1,0 +1,90 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" --> 
+      Processing Statements Conditionally<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P>Earlier you learned the process that occurs when a macro program is compiled. 
+          Now that you have seen more-complex macro programs, let's look at this 
+          process again. 
+        <P> Remember that during macro compilation, macro statements are checked 
+          for syntax errors. If a macro definition contains macro statement syntax 
+          errors, error messages are written to the SAS log, and a non-executable 
+          (dummy) macro is created. 
+        <P><BR><h2>Example</h2>
+        <P> Suppose you attempt to compile a macro that contains a syntax error. 
+          For example, the following program is missing a percent sign in the 
+          <nobr>%IF</nobr>-<nobr>%THEN</nobr> statement:<font color="#003399"><PRE>     %macro printit;
+        <strong>%if &amp;syslast ne _NULL_ <font color="red">then</font> %do;</strong>
+           proc print data=_last_(obs=5);
+           title &quot;Last Created Data Set Is &amp;syslast&quot;;
+           run;
+        %end;
+     %mend;
+</pre>
+        </font> When you submit this macro definition, the macro processor checks 
+        the <nobr>%IF</nobr>-<nobr>%THEN</nobr> statement and the <nobr>%DO</nobr> 
+        and <nobr>%END</nobr> statements for syntax errors. Since there is a syntax 
+        error in the <nobr>%IF</nobr>-<nobr>%THEN</nobr> statement, the following 
+        error messages are written to the SAS log. 
+        <P><BR>
+<div align="center">
+ SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+10   %macro printit;
+11      %if &amp;syslast ne _NULL_ then %do;
+<strong>ERROR: Macro keyword DO appears as text. A semicolon or other
+       delimiter may be missing.
+ERROR: Expected %THEN statement not found. A dummy macro will be
+       compiled.</strong>
+12         proc print data=_last_(obs=5);
+13         title &quot;Last Created Data Set Is &amp;syslast&quot;;
+14         run;
+15      %end;
+<strong>ERROR: There is no matching %DO statement for the %END. This
+       statement will be ignored.</strong>
+16   %mend;
+</pre></td></tr>
+</table> </div>
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

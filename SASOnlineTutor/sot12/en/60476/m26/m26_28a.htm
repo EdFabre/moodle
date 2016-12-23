@@ -1,0 +1,101 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Processing a DATA Step That Has a Varying Number of Repeating Fields </TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Processing 
+      a DATA Step That Has a Varying Number of Repeating Fields<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows how the DATA step that reads the raw data file 
+        <strong>Data97</strong> <strong> </strong> is processed.</p>
+      <p align="center">Raw Data File Data97
+      <div align="center">
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <tr> 
+            <td align=LEFT bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---+----30---+----40</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1824 
+              1,323.34 2,472.85</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1943 
+              1,908.34</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2046 
+              1,423.52 1,673.46 3,276.65</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2063 
+              2,345.34 2,452.45 3,523.52 2,983.01</font></td>
+          </tr>
+        </table>
+      </div>
+      <ol>
+        <li> The following program is submitted to SAS: 
+          <pre><font color="#003399">data perm.sales97;<br>   infile data97 missover;<br>   input ID $ Sales : comma. @;<br>   Quarter=0; <br>   do while (sales ne .);<br>      quarter+1;<br>      output;<br>      input sales : comma. @;<br>   end;<br>run;</font></pre>
+          During the first iteration of the DATA step, values for <code>ID</code> 
+          and <code>Sales</code> are read. <code>Quarter</code> is initialized 
+          to <em>0</em>.<br>
+          <br>
+        </li>
+        <li>The DO WHILE statement checks to see if <code>Sales</code> has a value 
+          at the top of the loop, which it does, so the other statements in the 
+          DO loop execute. The value of <code>Quarter</code> is incremented by <em>1</em> and the current observation is written to the data set.<br>
+          <br>
+        </li>
+        <li>The INPUT statement reads the next value for <code>Sales</code>, the 
+          end of the loop is reached, and control returns to the DO WHILE statement. 
+          <br>
+          <br>
+        </li>
+        <li>The condition is checked at the top of the loop and <code>Sales</code> 
+          still has a value, so the loop executes again. <br>
+          <br>
+        </li>
+        <li><code>Quarter</code> is incremented to <em>2</em>, and the values 
+          in the program data vector are written as the second observation. <br>
+          <br>
+        </li>
+        <li>The MISSOVER option prevents the input pointer from moving to the 
+          next record in search of another value for <code>Sales</code>. At this 
+          point, <code>Sales</code> has no value. <br><br>
+        </li>
+        <li>Because the condition is now false, the statements in the loop are 
+          not executed. <br>
+          <br>
+        </li>
+        <li>Instead, control returns to the top of the DATA step, the values in 
+          the program data vector are reset to missing, and the input pointer 
+          moves to column 1 of the next record. The DATA step continues executing 
+          until all the values for <code>Sales</code> are read. </li>
+      </ol>
+      <p>&nbsp;</p></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

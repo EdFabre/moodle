@@ -1029,20 +1029,10 @@ function clean_param($param, $type) {
             // Allow http absolute, root relative and relative URLs within wwwroot.
             $param = clean_param($param, PARAM_URL);
             if (!empty($param)) {
-
-                // Simulate the HTTPS version of the site.
-                $httpswwwroot = str_replace('http://', 'https://', $CFG->wwwroot);
-
-                if ($param === $CFG->wwwroot) {
-                    // Exact match;
-                } else if (!empty($CFG->loginhttps) && $param === $httpswwwroot) {
-                    // Exact match;
-                } else if (preg_match(':^/:', $param)) {
+                if (preg_match(':^/:', $param)) {
                     // Root-relative, ok!
-                } else if (preg_match('/^' . preg_quote($CFG->wwwroot . '/', '/') . '/i', $param)) {
+                } else if (preg_match('/^'.preg_quote($CFG->wwwroot, '/').'/i', $param)) {
                     // Absolute, and matches our wwwroot.
-                } else if (!empty($CFG->loginhttps) && preg_match('/^' . preg_quote($httpswwwroot . '/', '/') . '/i', $param)) {
-                    // Absolute, and matches our httpswwwroot.
                 } else {
                     // Relative - let's make sure there are no tricks.
                     if (validateUrlSyntax('/' . $param, 's-u-P-a-p-f+q?r?')) {
@@ -1109,7 +1099,7 @@ function clean_param($param, $type) {
             // Remove some nasties.
             $param = preg_replace('~[[:cntrl:]]|[<>`]~u', '', $param);
             // Convert many whitespace chars into one.
-            $param = preg_replace('/\s+/u', ' ', $param);
+            $param = preg_replace('/\s+/', ' ', $param);
             $param = core_text::substr(trim($param), 0, TAG_MAX_LENGTH);
             return $param;
 
@@ -1178,11 +1168,10 @@ function clean_param($param, $type) {
 
         case PARAM_USERNAME:
             $param = fix_utf8($param);
-            $param = trim($param);
+            $param = str_replace(" " , "", $param);
             // Convert uppercase to lowercase MDL-16919.
             $param = core_text::strtolower($param);
             if (empty($CFG->extendedusernamechars)) {
-                $param = str_replace(" " , "", $param);
                 // Regular expression, eliminate all chars EXCEPT:
                 // alphanum, dash (-), underscore (_), at sign (@) and period (.) characters.
                 $param = preg_replace('/[^-\.@_a-z0-9]/', '', $param);
@@ -1340,8 +1329,6 @@ function html_is_blank($string) {
  *
  * A NULL value will delete the entry.
  *
- * NOTE: this function is called from lib/db/upgrade.php
- *
  * @param string $name the key to set
  * @param string $value the value to set (without magic quotes)
  * @param string $plugin (optional) the plugin scope, default null
@@ -1411,8 +1398,6 @@ function set_config($name, $value, $plugin=null) {
  *
  * If called with 2 parameters it will return a string single
  * value or false if the value is not found.
- *
- * NOTE: this function is called from lib/db/upgrade.php
  *
  * @static string|false $siteidentifier The site identifier is not cached. We use this static cache so
  *     that we need only fetch it once per request.
@@ -1499,8 +1484,6 @@ function get_config($plugin, $name = null) {
 
 /**
  * Removes a key from global configuration.
- *
- * NOTE: this function is called from lib/db/upgrade.php
  *
  * @param string $name the key to set
  * @param string $plugin (optional) the plugin scope
@@ -2860,6 +2843,10 @@ function require_login($courseorid = null, $autologinguest = true, $cm = null, $
                 $modinfo = get_fast_modinfo($course);
                 $cm = $modinfo->get_cm($cm->id);
             }
+            $PAGE->set_cm($cm, $course); // Set's up global $COURSE.
+            $PAGE->set_pagelayout('incourse');
+        } else {
+            $PAGE->set_course($course); // Set's up global $COURSE.
         }
     } else {
         // Do not touch global $COURSE via $PAGE->set_course(),
@@ -2963,13 +2950,6 @@ function require_login($courseorid = null, $autologinguest = true, $cm = null, $
 
     // Do not bother admins with any formalities.
     if (is_siteadmin()) {
-        // Set the global $COURSE.
-        if ($cm) {
-            $PAGE->set_cm($cm, $course);
-            $PAGE->set_pagelayout('incourse');
-        } else if (!empty($courseorid)) {
-            $PAGE->set_course($course);
-        }
         // Set accesstime or the user will appear offline which messes up messaging.
         user_accesstime_log($course->id);
         return;
@@ -3027,7 +3007,6 @@ function require_login($courseorid = null, $autologinguest = true, $cm = null, $
                 if ($preventredirect) {
                     throw new require_login_exception('Course is hidden');
                 }
-                $PAGE->set_context(null);
                 // We need to override the navigation URL as the course won't have been added to the navigation and thus
                 // the navigation will mess up when trying to find it.
                 navigation_node::override_active_url(new moodle_url('/'));
@@ -3048,7 +3027,6 @@ function require_login($courseorid = null, $autologinguest = true, $cm = null, $
                 if ($preventredirect) {
                     throw new require_login_exception('Invalid course login-as access');
                 }
-                $PAGE->set_context(null);
                 echo $OUTPUT->header();
                 notice(get_string('studentnotallowed', '', fullname($USER, true)), $CFG->wwwroot .'/');
             }
@@ -3148,15 +3126,6 @@ function require_login($courseorid = null, $autologinguest = true, $cm = null, $
             }
             redirect($CFG->wwwroot .'/enrol/index.php?id='. $course->id);
         }
-    }
-
-    // Set the global $COURSE.
-    // TODO MDL-49434: setting current course/cm should be after the check $cm->uservisible .
-    if ($cm) {
-        $PAGE->set_cm($cm, $course);
-        $PAGE->set_pagelayout('incourse');
-    } else if (!empty($courseorid)) {
-        $PAGE->set_course($course);
     }
 
     // Check visibility of activity to current user; includes visible flag, groupmembersonly, conditional availability, etc.
@@ -3658,7 +3627,7 @@ function fullname($user, $override=false) {
     // This regular expression replacement is to fix problems such as 'James () Kirk' Where 'Tiberius' (middlename) has not been
     // filled in by a user.
     // The special characters are Japanese brackets that are common enough to make allowances for them (not covered by :punct:).
-    $patterns[] = '/[[:punct:]「」]*EMPTY[[:punct:]「」]*/u';
+    $patterns[] = '/[[:punct:]「�?]*EMPTY[[:punct:]「�?]*/u';
     // This regular expression is to remove any double spaces in the display name.
     $patterns[] = '/\s{2,}/u';
     foreach ($patterns as $pattern) {
@@ -4060,7 +4029,7 @@ function create_user_record($username, $password, $auth = 'manual') {
     $newuser->timemodified = $newuser->timecreated;
     $newuser->mnethostid = $CFG->mnet_localhost_id;
 
-    $newuser->id = user_create_user($newuser, false, false);
+    $newuser->id = user_create_user($newuser, false);
 
     // Save user profile data.
     profile_save_data($newuser);
@@ -4071,9 +4040,6 @@ function create_user_record($username, $password, $auth = 'manual') {
     }
     // Set the password.
     update_internal_user_password($user, $password);
-
-    // Trigger event.
-    \core\event\user_created::create_from_userid($newuser->id)->trigger();
 
     return $user;
 }
@@ -4145,13 +4111,10 @@ function update_user_record_by_id($id) {
         if ($newuser) {
             $newuser['id'] = $oldinfo->id;
             $newuser['timemodified'] = time();
-            user_update_user((object) $newuser, false, false);
+            user_update_user((object) $newuser, false);
 
             // Save user profile data.
             profile_save_data((object) $newuser);
-
-            // Trigger event.
-            \core\event\user_updated::create_from_userid($newuser['id'])->trigger();
         }
     }
 
@@ -4310,8 +4273,7 @@ function delete_user(stdClass $user) {
     $updateuser->picture      = 0;
     $updateuser->timemodified = time();
 
-    // Don't trigger update event, as user is being deleted.
-    user_update_user($updateuser, false, false);
+    user_update_user($updateuser, false);
 
     // Now do a final accesslib cleanup - removes all role assignments in user context and context itself.
     context_helper::delete_instance(CONTEXT_USER, $user->id);
@@ -4745,58 +4707,39 @@ function hash_internal_user_password($password, $fasthash = false) {
  *
  * Updating the password will modify the $user object and the database
  * record to use the current hashing algorithm.
- * It will remove Web Services user tokens too.
  *
  * @param stdClass $user User object (password property may be updated).
  * @param string $password Plain text password.
- * @param bool $fasthash If true, use a low cost factor when generating the hash
- *                       This is much faster to generate but makes the hash
- *                       less secure. It is used when lots of hashes need to
- *                       be generated quickly.
  * @return bool Always returns true.
  */
-function update_internal_user_password($user, $password, $fasthash = false) {
+function update_internal_user_password($user, $password) {
     global $CFG, $DB;
     require_once($CFG->libdir.'/password_compat/lib/password.php');
 
     // Figure out what the hashed password should be.
-    if (!isset($user->auth)) {
-        $user->auth = $DB->get_field('user', 'auth', array('id' => $user->id));
-    }
     $authplugin = get_auth_plugin($user->auth);
     if ($authplugin->prevent_local_passwords()) {
         $hashedpassword = AUTH_PASSWORD_NOT_CACHED;
     } else {
-        $hashedpassword = hash_internal_user_password($password, $fasthash);
+        $hashedpassword = hash_internal_user_password($password);
     }
 
-    $algorithmchanged = false;
-
-    if ($hashedpassword === AUTH_PASSWORD_NOT_CACHED) {
-        // Password is not cached, update it if not set to AUTH_PASSWORD_NOT_CACHED.
-        $passwordchanged = ($user->password !== $hashedpassword);
-
-    } else if (isset($user->password)) {
-        // If verification fails then it means the password has changed.
-        $passwordchanged = !password_verify($password, $user->password);
-        $algorithmchanged = password_needs_rehash($user->password, PASSWORD_DEFAULT);
-    } else {
-        // While creating new user, password in unset in $user object, to avoid
-        // saving it with user_create()
-        $passwordchanged = true;
-    }
+    // If verification fails then it means the password has changed.
+    $passwordchanged = !password_verify($password, $user->password);
+    $algorithmchanged = password_needs_rehash($user->password, PASSWORD_DEFAULT);
 
     if ($passwordchanged || $algorithmchanged) {
         $DB->set_field('user', 'password',  $hashedpassword, array('id' => $user->id));
         $user->password = $hashedpassword;
 
         // Trigger event.
-        $user = $DB->get_record('user', array('id' => $user->id));
-        \core\event\user_password_updated::create_from_user($user)->trigger();
-
-        // Remove WS user tokens.
-        require_once($CFG->dirroot.'/webservice/lib.php');
-        webservice::delete_user_ws_tokens($user->id);
+        $event = \core\event\user_updated::create(array(
+            'objectid' => $user->id,
+            'relateduserid' => $user->id,
+            'context' => context_user::instance($user->id)
+        ));
+        $event->add_record_snapshot('user', $user);
+        $event->trigger();
     }
 
     return true;
@@ -5223,6 +5166,7 @@ function remove_course_contents($courseid, $showfeedback = true, array $options 
     // This array stores the tables that need to be cleared, as
     // table_name => column_name that contains the course id.
     $tablestoclear = array(
+        'log' => 'course',               // Course logs (NOTE: this might be changed in the future).
         'backup_courses' => 'courseid',  // Scheduled backup stuff.
         'user_lastaccess' => 'courseid', // User access info.
     );
@@ -5369,6 +5313,11 @@ function reset_course_userdata($data) {
         $DB->execute($updatesql, array($data->timeshift, $data->courseid));
 
         $status[] = array('component' => $componentstr, 'item' => get_string('datechanged'), 'error' => false);
+    }
+
+    if (!empty($data->reset_logs)) {
+        $DB->delete_records('log', array('course' => $data->courseid));
+        $status[] = array('component' => $componentstr, 'item' => get_string('deletelogs'), 'error' => false);
     }
 
     if (!empty($data->reset_events)) {
@@ -5742,7 +5691,7 @@ function get_mailer($action='get') {
  * @param string $subject plain text subject line of the email
  * @param string $messagetext plain text version of the message
  * @param string $messagehtml complete html version of the message (optional)
- * @param string $attachment a file on the filesystem, either relative to $CFG->dataroot or a full path to a file in $CFG->tempdir
+ * @param string $attachment a file on the filesystem, relative to $CFG->dataroot
  * @param string $attachname the name of the file (extension indicates MIME)
  * @param bool $usetrueaddress determines whether $from email address should
  *          be sent out. Will be overruled by user profile setting for maildisplay
@@ -5869,6 +5818,10 @@ function email_to_user($user, $from, $subject, $messagetext, $messagehtml = '', 
         }
     }
 
+    $mail->From = 'postmaster@jpsmonline.umd.edu'; // Josh put this in so we can override the default 
+    //setting of sending from any other address than a gmail address without the email bouncing due
+    //to DMARC regulations.
+    
     if (!empty($replyto)) {
         $tempreplyto[] = array($replyto, $replytoname);
     }
@@ -5914,21 +5867,7 @@ function email_to_user($user, $from, $subject, $messagetext, $messagehtml = '', 
         } else {
             require_once($CFG->libdir.'/filelib.php');
             $mimetype = mimeinfo('type', $attachname);
-
-            $attachmentpath = $attachment;
-
-            // Before doing the comparison, make sure that the paths are correct (Windows uses slashes in the other direction).
-            $attachpath = str_replace('\\', '/', $attachmentpath);
-            // Make sure both variables are normalised before comparing.
-            $temppath = str_replace('\\', '/', $CFG->tempdir);
-
-            // If the attachment is a full path to a file in the tempdir, use it as is,
-            // otherwise assume it is a relative path from the dataroot (for backwards compatibility reasons).
-            if (strpos($attachpath, $temppath) !== 0) {
-                $attachmentpath = $CFG->dataroot . '/' . $attachmentpath;
-            }
-
-            $mail->addAttachment($attachmentpath, $attachname, 'base64', $mimetype);
+            $mail->addAttachment($CFG->dataroot .'/'. $attachment, $attachname, 'base64', $mimetype);
         }
     }
 
@@ -6040,7 +5979,18 @@ function setnew_password_and_mail($user, $fasthash = false) {
 
     $newpassword = generate_password();
 
-    update_internal_user_password($user, $newpassword, $fasthash);
+    $hashedpassword = hash_internal_user_password($newpassword, $fasthash);
+    $DB->set_field('user', 'password', $hashedpassword, array('id' => $user->id));
+    $user->password = $hashedpassword;
+
+    // Trigger event.
+    $event = \core\event\user_updated::create(array(
+        'objectid' => $user->id,
+        'relateduserid' => $user->id,
+        'context' => context_user::instance($user->id)
+    ));
+    $event->add_record_snapshot('user', $user);
+    $event->trigger();
 
     $a = new stdClass();
     $a->firstname   = fullname($user, true);
@@ -7792,16 +7742,14 @@ function count_letters($string) {
  * @param int $length The length of the string to be created.
  * @return string
  */
-function random_string($length=15) {
-    $randombytes = random_bytes_emulate($length);
+function random_string ($length=15) {
     $pool  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $pool .= 'abcdefghijklmnopqrstuvwxyz';
     $pool .= '0123456789';
     $poollen = strlen($pool);
     $string = '';
     for ($i = 0; $i < $length; $i++) {
-        $rand = ord($randombytes[$i]);
-        $string .= substr($pool, ($rand%($poollen)), 1);
+        $string .= substr($pool, (mt_rand()%($poollen)), 1);
     }
     return $string;
 }
@@ -7822,54 +7770,11 @@ function complex_random_string($length=null) {
     if ($length===null) {
         $length = floor(rand(24, 32));
     }
-    $randombytes = random_bytes_emulate($length);
     $string = '';
     for ($i = 0; $i < $length; $i++) {
-        $rand = ord($randombytes[$i]);
-        $string .= $pool[($rand%$poollen)];
+        $string .= $pool[(mt_rand()%$poollen)];
     }
     return $string;
-}
-
-/**
- * Try to generates cryptographically secure pseudo-random bytes.
- *
- * Note this is achieved by fallbacking between:
- *  - PHP 7 random_bytes().
- *  - OpenSSL openssl_random_pseudo_bytes().
- *  - In house random generator getting its entropy from various, hard to guess, pseudo-random sources.
- *
- * @param int $length requested length in bytes
- * @return string binary data
- */
-function random_bytes_emulate($length) {
-    global $CFG;
-    if ($length <= 0) {
-        debugging('Invalid random bytes length', DEBUG_DEVELOPER);
-        return '';
-    }
-    if (function_exists('random_bytes')) {
-        // Use PHP 7 goodness.
-        $hash = @random_bytes($length);
-        if ($hash !== false) {
-            return $hash;
-        }
-    }
-    if (function_exists('openssl_random_pseudo_bytes')) {
-        // For PHP 5.3 and later with openssl extension.
-        $hash = openssl_random_pseudo_bytes($length);
-        if ($hash !== false) {
-            return $hash;
-        }
-    }
-
-    // Bad luck, there is no reliable random generator, let's just hash some unique stuff that is hard to guess.
-    $hash = sha1(serialize($CFG) . serialize($_SERVER) . microtime(true) . uniqid('', true), true);
-    // NOTE: the last param in sha1() is true, this means we are getting 20 bytes, not 40 chars as usual.
-    if ($length <= 20) {
-        return substr($hash, 0, $length);
-    }
-    return $hash . random_bytes_emulate($length - 20);
 }
 
 /**
@@ -8693,23 +8598,7 @@ function getremoteaddr($default='0.0.0.0') {
     }
     if (!($variablestoskip & GETREMOTEADDR_SKIP_HTTP_X_FORWARDED_FOR)) {
         if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $forwardedaddresses = explode(",", $_SERVER['HTTP_X_FORWARDED_FOR']);
-            $address = $forwardedaddresses[0];
-
-            if (substr_count($address, ":") > 1) {
-                // Remove port and brackets from IPv6.
-                if (preg_match("/\[(.*)\]:/", $address, $matches)) {
-                    $address = $matches[1];
-                }
-            } else {
-                // Remove port from IPv4.
-                if (substr_count($address, ":") == 1) {
-                    $parts = explode(":", $address);
-                    $address = $parts[0];
-                }
-            }
-
-            $address = cleanremoteaddr($address);
+            $address = cleanremoteaddr($_SERVER['HTTP_X_FORWARDED_FOR']);
             return $address ? $address : $default;
         }
     }
@@ -8863,18 +8752,17 @@ function message_popup_window() {
 
     // A quick query to check whether the user has new messages.
     $messagecount = $DB->count_records('message', array('useridto' => $USER->id));
-    if ($messagecount < 1) {
+    if ($messagecount<1) {
         return;
     }
 
-    // There are unread messages so now do a more complex but slower query.
-    $messagesql = "SELECT m.id, c.blocked
+    // Got unread messages so now do another query that joins with the user table.
+    $namefields = get_all_user_name_fields(true, 'u');
+    $messagesql = "SELECT m.id, m.smallmessage, m.fullmessageformat, m.notification, $namefields
                      FROM {message} m
                      JOIN {message_working} mw ON m.id=mw.unreadmessageid
                      JOIN {message_processors} p ON mw.processorid=p.id
                      JOIN {user} u ON m.useridfrom=u.id
-                     LEFT JOIN {message_contacts} c ON c.contactid = m.useridfrom
-                                                   AND c.userid = m.useridto
                     WHERE m.useridto = :userid
                       AND p.name='popup'";
 
@@ -8885,22 +8773,48 @@ function message_popup_window() {
         $messagesql .= 'AND m.timecreated > :lastpopuptime';
     }
 
-    $waitingmessages = $DB->get_records_sql($messagesql, array('userid' => $USER->id, 'lastpopuptime' => $USER->message_lastpopup));
+    $messageusers = $DB->get_records_sql($messagesql, array('userid' => $USER->id, 'lastpopuptime' => $USER->message_lastpopup));
 
-    $validmessages = 0;
-    foreach ($waitingmessages as $messageinfo) {
-        if ($messageinfo->blocked) {
-            // Message is from a user who has since been blocked so just mark it read.
-            // Get the full message to mark as read.
-            $messageobject = $DB->get_record('message', array('id' => $messageinfo->id));
-            message_mark_message_read($messageobject, time());
+    // If we have new messages to notify the user about.
+    if (!empty($messageusers)) {
+
+        $strmessages = '';
+        if (count($messageusers)>1) {
+            $strmessages = get_string('unreadnewmessages', 'message', count($messageusers));
         } else {
-            $validmessages++;
-        }
-    }
+            $messageusers = reset($messageusers);
 
-    if ($validmessages > 0) {
-        $strmessages = get_string('unreadnewmessages', 'message', $validmessages);
+            // Show who the message is from if its not a notification.
+            if (!$messageusers->notification) {
+                $strmessages = get_string('unreadnewmessage', 'message', fullname($messageusers) );
+            }
+
+            // Try to display the small version of the message.
+            $smallmessage = null;
+            if (!empty($messageusers->smallmessage)) {
+                // Display the first 200 chars of the message in the popup.
+                $smallmessage = null;
+                if (core_text::strlen($messageusers->smallmessage) > 200) {
+                    $smallmessage = core_text::substr($messageusers->smallmessage, 0, 200).'...';
+                } else {
+                    $smallmessage = $messageusers->smallmessage;
+                }
+
+                // Prevent html symbols being displayed.
+                if ($messageusers->fullmessageformat == FORMAT_HTML) {
+                    $smallmessage = html_to_text($smallmessage);
+                } else {
+                    $smallmessage = s($smallmessage);
+                }
+            } else if ($messageusers->notification) {
+                // Its a notification with no smallmessage so just say they have a notification.
+                $smallmessage = get_string('unreadnewnotification', 'message');
+            }
+            if (!empty($smallmessage)) {
+                $strmessages .= '<div id="usermessage">'.s($smallmessage).'</div>';
+            }
+        }
+
         $strgomessage = get_string('gotomessages', 'message');
         $strstaymessage = get_string('ignore', 'admin');
 

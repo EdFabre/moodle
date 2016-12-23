@@ -1,0 +1,244 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reducing 
+      Data Storage Space for Character Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> One way to reduce the amount of data storage space that you need is 
+        to reduce the length of character data, thereby eliminating wasted space. 
+        Before discussing how to reduce the length of a character variable, let's 
+        look at how SAS assigns lengths to character variables. 
+        <P><BR><h2>How SAS Assigns Lengths to Character Variables</h2>
+        <p>SAS character variables store data as 1 character per byte. A SAS character 
+          variable can be from 1 to 32,767 bytes in length. </p>
+        <p>The first reference to a variable in the DATA step defines it in the 
+          program data vector and in the descriptor portion of the data set. Unless 
+          otherwise defined, the first value that is specified for a SAS character 
+          variable determines the variable's length. For example, if the length 
+          of a character variable called <code>Name</code> has not been defined 
+          and if the first value that is specified for it is <em>Smith</em>, the 
+          length of <code>Name</code> is set to 5. Then, if the next value specified 
+          for <code>Name</code> is <em>Johnson</em>, the value is stored as <em>Johns</em> 
+          in the data set. Similarly, if the first value specified for <code>Town</code> 
+          is <em>Williamsburg</em>, the length of <code>Town</code> is set to 
+          12. If the next value for <code>Town</code> is specified as <em>Cary</em>, 
+          the length is still 12, and the value is padded with blanks to fill 
+          the extra space. </p>
+        <p>Keep in mind that the first reference to a variable might not be an 
+          assignment statement. If SAS cannot determine a length for a character 
+          variable when the variable is created in the program data vector, SAS 
+          assigns a default length of 8 bytes to the variable. </p>
+        <P><BR>
+        <h2>Reducing the Length of Character Data with the LENGTH Statement</h2>
+        <p> You can use a LENGTH statement to reduce the length of character variables. 
+          It is useful to reduce the length of a character variable with a LENGTH 
+          statement when you have a large data set that contains many character 
+          variables. 
+        <P><BR>
+         <table border="1" cellspacing="0" cellpadding="10" width="100%" bgcolor="#F7F7DE" title="General form, LENGTH statement for character variables">
+            
+  <tr> 
+            <td align="left"><strong>General form, LENGTH statement for character 
+              variables:</strong> 
+              <blockquote> <font color="#003399"><strong>LENGTH </strong><em>variable(s) 
+                </em> <strong>$</strong> <em>length</em><strong>;</strong></font> </blockquote>
+      where 
+              <ul>
+                <li><font color="#003399"><em>variable(s)</em></font> specifies 
+                  the name of one or more SAS variables, separated by spaces.<br>
+                  <br>
+                <li><font color="#003399"><em>length</em></font> is an integer 
+                  from 1 to 32,767 that specifies the length of the variable(s). 
+              </ul>
+		    </td>
+            </tr>
+          </table>
+		 
+        <P><BR>
+        
+        <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Make sure the LENGTH statement appears before any other 
+              reference to the variable in the DATA step. If the variable has 
+              been created by another statement, then a later use of the LENGTH 
+              statement will not change its size. </td>
+      </tr>
+    </table>
+        
+        <P><BR>
+        <h2>Other Techniques</h2>
+        <p>There are other techniques that you can use to reduce the length of 
+          your character data&#8212;especially if your data set has repeated values. 
+        </p>
+        <p>For example, suppose you have a data set that records employee names 
+          along with the employees' departments. Instead of recording the complete department 
+          name in the data set, you could assign a code to each department and 
+          record the code in your data set instead. You could record the complete 
+          department name along with the corresponding code in a separate data 
+          set, where you would have to record each full-length value only once. 
+          Then you could use a table lookup operation to convert the code to 
+          the department name for reporting purposes. This is called normalizing 
+          the data.</p>
+        <p>The tables below represent two data sets. <strong>Employees</strong> 
+          records the employee names and department codes for all employees. <strong>DeptCodes</strong> 
+          records the department name and department code, and is shown in its 
+          entirety. If the <strong>Employees</strong> data set contains several 
+          hundred observations, then using department codes instead of the complete 
+          department names can save a substantial amount of data storage space.</p>
+		<p><BR>
+		<table align="center" ><tr><td><center><strong>Employees</strong> (partial listing)</center></td><td></td><td><center><strong>DeptCodes</strong></center></td></tr>
+		<td>
+		<table border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr> 
+              <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+                LastName</b></font></td>
+              <td align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FirstName</b></font></td>
+                    <td  align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+                      Dept</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Mills</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">Dorothy 
+                  E. </font></div></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">FOP</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Bower</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="#000000">Eileen 
+                  A. </font></div></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">FIT</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">Reading</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Tony 
+                  R.</font></div></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">HRS</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Judd</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Carol 
+                  A.</font></div></td>
+                    <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">HRS</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Wonsild</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Hanna</font></div></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">AOP</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Anderson</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Christopher</font></div></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">SMK</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Massengill</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica, sans-serif">Annette 
+                  W.</font></div></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">FOP</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Badine</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica, sans-serif">David</font></div></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">COP</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+            <td valign="top"> <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+                <thead>
+                  <tr> 
+                    <td  align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+                      Dept</b></font></td>
+                    <td  align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Department</b></font></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">FOP</font></td>
+                    <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Airport 
+                        Operations </font></div></td>
+                  </tr>
+                  <tr> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">FIT</font></td>
+                    <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">Corporate 
+                        Operations </font></div></td>
+                  </tr>
+                  <tr> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">HRS</font></td>
+                    <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Finance 
+                        &amp; IT</font></div></td>
+                  </tr>
+                  <tr> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">AOP</font></td>
+                    <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Flight 
+                        Operations </font></div></td>
+                  </tr>
+                  <tr> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">SMK</font></td>
+                    <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Human 
+                        Resources </font></div></td>
+                  </tr>
+                  <tr> 
+                    <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">COP</font></td>
+                    <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Sales 
+                        &amp; Marketing</font></div></td>
+                  </tr>
+                </tbody>
+              </table></td>
+          </tr></table>
+        <P><BR>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You can learn about table lookup operations in the 
+              lesson  <!--lesson reference--><strong><script>document.write(m56title);</script></strong>.</td>
+      </tr>
+    </table>
+	    
+      </td>
+    </tr>
+  </table>
+  
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

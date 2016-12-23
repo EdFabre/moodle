@@ -1,0 +1,91 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='Submit the following program: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data sasuser.billing2 (drop=type amount);<br>';
+solutionText+='   infile jan98dat end=last;<br>';
+solutionText+='   retain ID Name;<br>';
+solutionText+='   input type $1. @;<br>';
+solutionText+='   if type=\'P\' then do;<br>';
+solutionText+='      if _n_ > 1 then output;<br>';
+solutionText+='      TotalCost=0;<br>';
+solutionText+='      input @3 id @8 name $15.;<br>';
+solutionText+='   end;<br>';
+solutionText+='   else if type=\'C\' then do;<br>';
+solutionText+='      input @12 Amount comma6.;<br>';
+solutionText+='      totalcost+amount;<br>';
+solutionText+='   end;<br>';
+solutionText+='   if last then output;<br>';
+solutionText+='run;<br>';
+solutionText+='proc print data=sasuser.billing2;<br>';
+solutionText+='run;<br></pre></font>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Read 
+      a hierarchical file and create one observation per header record, using 
+      the raw data file </strong><strong>to which the fileref <a href="JavaScript: openOther('../linklib/jan98dat.htm')" onMouseOver="window.status='Display a data set description and sample data.';  "
+	    onMouseOut="window.status=''">Jan98dat</a> has been assigned.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <LI>Create <STRONG>Sasuser.Billing2</STRONG> from the file that is referenced 
+            by the fileref <STRONG>Jan98dat</STRONG>. Header records are indicated 
+            by a <em>P</em> in the <code>Type</code> field. Detail records are 
+            indicated by a <em>C</em> in the <code>Type</code> field.<br>
+            <br>
+            <STRONG>Sasuser.Billing2</STRONG> should contain only three variables: 
+            <CODE>Name</CODE>, <CODE>ID</CODE>, and <CODE>TotalCost</CODE>. (Hint: 
+            Use <CODE>TotalCost</CODE> as the sum of all values for <CODE>Amount</CODE>.) 
+            <P> 
+          <LI> Use the PRINT procedure to display the data set. <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,247 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_4.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 2;
+
+salute  = "<strong>Correct.</strong><p>";
+
+correct = "This PROC SQL query calculates the summary function for  " +
+          "each <code>Destination</code>, as specified in the GROUP BY clause. " +
+          "One row of output is displayed for each group.";
+
+choice1 = "<strong>Incorrect.</strong><p>"+
+          "The PROC SQL query contains a GROUP BY clause, so it will " +
+          "display more than than one row of output. Check the other possible " +
+          "answers.";
+
+choice2 = salute + correct;
+
+choice3 = "<strong>Incorrect.</strong><p>"+
+          "In the output that you selected, the summary function was calculated once " +
+          "for the entire table and displayed multiple times. The PROC SQL query will " +
+          "calculate the function separately for each group. Check the other possible answers.";
+
+choice4 = "<strong>Incorrect.</strong><p>"+
+          "The PROC SQL query is valid: it contains no errors. " +
+          "Check the other answers and try again. " +
+          " ";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      and Grouping Data<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+ <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>The following SELECT statement queries the table <a href="JavaScript: openOther('../linklib/fltdelay.htm')"><strong>Sasuser.Flightdelays</strong></a> 
+            and uses a summary function. Which output will the query generate?<br>
+          </p>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" --> 
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+            <thead>
+              <TR> 
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Destination</b></font></TD>
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Max 
+                  Delay</b></font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CDG</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">39</font></TD>
+              </TR>
+            </thead>
+            <tbody>
+            </tbody>
+          </TABLE>
+          <br>
+          <!-- InstanceEndEditable --></td>
+        <td rowspan="4"><!-- InstanceBeginEditable name="figure" -->
+          <pre><font color="#003399">proc sql outobs=10;
+   select destination,
+          max(delay) label='Max Delay'
+      from sasuser.flightdelays
+      group by destination;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" --> 
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+            <thead>
+<TR>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Destination</b></font></TD>
+                <TD ALIGN=right VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Max 
+                  Delay</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CDG</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">39</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CPH</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">26</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DFW</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRA</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">34</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LAX</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">27</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">30</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ORD</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">19</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">15</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">YYZ</font></TD>
+                <TD ALIGN=right bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14</font></TD>
+</TR>
+</tbody>
+</TABLE>
+          <br>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" --> 
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+            <thead>
+              <TR> 
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Destination</b></font></TD>
+                <TD ALIGN=right VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Max 
+                  Delay</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">YYZ</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">LAX</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">ORD</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">LHR</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">LAX</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">CPH</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">WAS</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">ORD</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DFW</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FRA</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">39</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+          <br>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value4" onClick="openAnswer(choice4)">
+         </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice4" -->No output 
+          will be generated; the query contains a syntax error.<br>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr> 
+        <td colspan="3"> 
+         <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

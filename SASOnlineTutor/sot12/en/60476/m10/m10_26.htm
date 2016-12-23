@@ -1,0 +1,111 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(4); 
+   answer[1] = "where admit.id=insure.id;"
+   answer[2] = "where insure.id=admit.id;"
+   answer[3] = "where insure.id eq admit.id;"
+   answer[4] = "where admit.id eq insure.id;"
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='This WHERE clause specifies matching columns for the multiple\n';
+   right2="join.  Note that ID doesn't appear in the SELECT clause.\n";
+   right3='';
+   
+   wrong1='Use a WHERE clause naming columns prefixed with table names\n';
+   wrong2='as part of an expression for selecting rows.  Make sure you\n';
+   wrong3='specify the equal operator.  Check for misspellings.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="yes";
+   var checkSemicolon="yes";
+   var useParens="no";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Querying 
+      Multiple Tables<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Here is the 
+          PROC SQL step that joins the tables <strong>Clinic.Admit</strong> and 
+          <strong>Clinic.Insure</strong>. Remember that these two tables both 
+          contain a column named <code>ID</code>. As the last clause in the SELECT 
+          statement, write a clause to select only rows that have matching values 
+          for the column <code>ID</code>. (End the clause with a semicolon.)<!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" --><PRE>
+<FONT color="#003399">proc sql;</FONT>
+<FONT color="#003399">   select admit.name,fee,total,balancedue,</FONT>
+<FONT color="#003399">          total-balancedue as AmountPaid</FONT>
+<FONT color="#003399">      from clinic.admit,clinic.insure</FONT>
+      <INPUT TYPE="text" size="50" NAME="anstext">
+</PRE><!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

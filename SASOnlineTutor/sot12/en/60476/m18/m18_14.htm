@@ -1,0 +1,537 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Simple HTML Output<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+   <div id="v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Creating HTML Output from Multiple Procedures</strong> </p>
+      <p> You can also use the ODS HTML statement to direct the results from multiple 
+        procedures to the same HTML file. 
+        <p> The program below generates HTML output for the PRINT and TABULATE 
+          procedures.<strong> </strong>The results for both procedures are saved 
+          to the file <strong>C:\Records\data.html</strong> in the Windows environment. A link for each output object (one for each procedure) 
+appears in the Results window.
+      </td>
+  </tr>
+</table>
+</div>
+
+<div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Creating HTML Output from Multiple Procedures</strong> </p>
+      <p> You can also use the ODS HTML statement to direct the results from multiple 
+        procedures to the same HTML file. 
+          <p> The program below generates HTML output for the PRINT and TABULATE 
+            procedures.<strong> </strong>The results for both procedures are saved 
+            to the file <strong>C:\Records\data.html</strong>. </td>
+  </tr>
+</table>
+</div>
+
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">
+        <pre><font color="#003399">      ods listing close;
+      <strong>ods html body='c:\records\data.html';</strong></font>
+      <font color="#003399"><strong>proc print data=clinic.admit label;</strong></font>
+         <font color="#003399">var id sex age height weight actlevel;</font>
+<font color="#003399">         label actlevel='Activity Level';</font>
+<font color="#003399">      run;</font>
+<font color="#003399">      <strong>proc tabulate data=clinic.stress2;</strong></font>
+         <font color="#003399">var resthr maxhr rechr;</font>
+         <font color="#003399">table min mean, resthr maxhr rechr;</font>
+<font color="#003399">      run;</font>
+<font color="#003399">      ods html close;</font>
+      <font color="#003399">ods listing;</font></pre></td>
+    </tr>
+  </table>
+    <p>
+    
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The following is a representation of the HTML file containing 
+        the results from the program above. Notice that the results from each 
+        procedure are appended.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <center>
+    <table border="1" cellspacing="0" cellpadding="0" width="85%">
+      <tr> 
+        <td>
+          <p> 
+          <table cellspacing=1 rules=NONE frame=VOID border=0 width=100% cellpadding=1
+	    bgcolor="#FFFFF0">
+            <tr> 
+              <td align=CENTER bgcolor="#FFFFF0"><font face="Arial, Helvetica, Helv" size="4"
+		      color="#002288"><b><i>The SAS System</i></b></font></td>
+            </tr>
+          </table>
+          <p> 
+          <center>
+            <font face="Arial, Helvetica, Helv" size="2" color="#002288"></font> 
+            <table cellspacing=1 rules=GROUPS frame=BOX border=1 cellpadding=2 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT output">
+              <thead> 
+              <tr> 
+                <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+			  color="#0033AA"><b>Obs</b></font></td>
+                <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+			  color="#0033AA"><b>ID</b></font></td>
+                <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+			  color="#0033AA"><b>Sex</b></font></td>
+                <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+			  color="#0033AA"><b>Age</b></font></td>
+                <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+			  color="#0033AA"><b>Height</b></font></td>
+                <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+			  color="#0033AA"><b>Weight</b></font></td>
+                <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+			  color="#0033AA"><b>Activity<br>
+                  Level</b></font></td>
+              </tr>
+              </thead> <tbody> 
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  1</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2458</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">27</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">72</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">168</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">HIGH</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  2</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2462</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">34</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">66</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">152</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">HIGH</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  3</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2501</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">31</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">61</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">123</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">LOW </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  4</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2523</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">43</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">63</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">137</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">MOD </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  5</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2539</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">51</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">71</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">158</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">LOW </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  6</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2544</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">29</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">76</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">193</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">HIGH</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  7</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2552</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">32</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">67</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">151</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">MOD </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  8</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2555</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">35</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">70</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">173</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">MOD </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+                  9</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2563</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">34</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">73</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">154</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">LOW </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">10</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2568</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">49</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">64</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">172</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">LOW </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">11</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2571</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">44</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">66</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">140</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">HIGH</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">12</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2572</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">28</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">62</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">118</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">LOW </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">13</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2574</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">30</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">69</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">147</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">MOD </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">14</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2575</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">40</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">69</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">163</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">HIGH</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">15</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2578</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">47</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">72</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">173</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">MOD </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">16</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2579</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">60</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">71</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">191</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">LOW </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">17</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2584</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">43</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">65</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">123</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">MOD </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">18</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2586</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">25</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">75</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">188</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">HIGH</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">19</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2588</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">22</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">63</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">139</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">LOW </font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">20</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2589</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">F</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">41</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">67</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">141</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">HIGH</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">21</font></b></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">2595</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">M</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">54</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">71</font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">183</font></td>
+                <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+			  color="#000000">MOD </font></td>
+              </tr>
+              </tbody> 
+            </table>
+            <p> 
+          </center>
+          <p> <a name="IDX1"></a> 
+          <hr size="1">
+          <p> 
+          <center>
+            <table cellspacing=1 rules=NONE frame=VOID border=0 width=100% cellpadding=1
+	      bgcolor="#FFFFF0">
+              <tr> 
+                <td align=CENTER bgcolor="#FFFFF0"><font face="Arial, Helvetica, Helv" size="4"
+			color="#002288"><b><i>The SAS System</i></b></font></td>
+              </tr>
+            </table>
+          </center>
+          <p>
+            <center>
+            </center>
+          <center>
+            <table rules=none frame=void>
+              <tr> 
+                <td>
+                  <center>
+                    <font face="Arial, Helvetica, Helv" size="2" color="#002288"></font> 
+                    <table cellspacing=1 rules=GROUPS frame=BOX border=1 cellpadding=2 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC TABULATE output">
+                      <thead> 
+                      <tr> 
+                        <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+				  color="#0033AA"><b>&nbsp;</b></font></td>
+                        <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+				  color="#0033AA"><b>RestHR</b></font></td>
+                        <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+				  color="#0033AA"><b>MaxHR</b></font></td>
+                        <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+				  color="#0033AA"><b>RecHR</b></font></td>
+                      </tr>
+                      </thead> <tbody> 
+                      <tr> 
+                        <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+				  size="3" color="#0033AA"><b>Min</b></font></td>
+                        <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+				  size="2" color="#000000"> 65.00</font></td>
+                        <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+				  size="2" color="#000000"> 152.00</font></td>
+                        <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+				  size="2" color="#000000"> 108.00</font></td>
+                      </tr>
+                      <tr> 
+                        <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+				  size="3" color="#0033AA"><b>Mean</b></font></td>
+                        <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+				  size="2" color="#000000"> 72.95</font></td>
+                        <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+				  size="2" color="#000000"> 171.10</font></td>
+                        <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+				  size="2" color="#000000"> 128.95</font></td>
+                      </tr>
+                      </tbody> <tfoot> </tfoot> 
+                    </table>
+                    <p> 
+                  </center>
+                </td>
+              </tr>
+            </table>
+            <p> 
+          </center>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

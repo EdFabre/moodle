@@ -1,0 +1,162 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Performing a Basic Match-Merge</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Performing 
+      a Basic Match-Merge<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> In <strong>DATA step match-merging</strong>, the variables in the BY 
+      statement must be common to all data sets. Likewise, any variables that 
+      have identical names in all input data sets must also have identical types 
+      in all input data sets, or ERROR and WARNING messages are written to the 
+      SAS log and the match-merge fails. The data sets that are listed in the 
+      MERGE statement must be sorted by or indexed on the values of the variables 
+      that are listed in the BY statement. 
+      <P>After all input data sets are sorted or indexed by the value of a BY 
+        variable, you can merge the data sets using a DATA step that contains 
+        a <strong>MERGE statement</strong> and a <strong>BY statement</strong>. 
+    </td>
+  </tr>
+  </table>
+  <P><BR>
+  <table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, Basic DATA step for match-merging">
+            <tr> 
+              
+    <td align="left"><strong>General form, basic DATA step for match-merging:</strong> 
+      <blockquote> <font color="#003399"><dl>
+          <dt><strong>DATA</strong> <em>output-SAS-data-set</em><strong>;</strong></dt>
+	  <dd><strong>MERGE</strong> <em>SAS-data-set-1 SAS-data-set-2</em><strong>;</strong></dd>
+	  <dd><strong>BY</strong> <em>variable(s)</em><strong>;</strong></dd>
+	  <dt><strong>RUN;</strong></dt>
+	  </dl></font> 
+      </blockquote>
+	  where 
+      <ul>
+        <li><font color="#003399"><em>output-SAS-data-set</em></font> names the 
+          data set to be created
+        <li><font color="#003399"><em>SAS-data-set-1</em></font> and <font color="#003399"><em>SAS-data-set-2</em></font> 
+          are input data sets 
+        <li><font color="#003399"><em>variable(s)</em></font> in the BY statement 
+          specifies the variable(s) whose values are used to match observations.</ul>
+		  <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">You can specify any number of input data sets in the 
+            MERGE statement.</td>
+      </tr>
+    </table></td>
+            </tr>
+          </table><P><BR>
+		  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>The number of observations in the output data set is the sum of the largest 
+        number of observations in each BY group in all data sets.<P><BR>
+	<h2>Example</h2> 
+	Suppose you want to combine the demographic information contained in the <strong>Sasuser.Demog</strong> 
+      data set with the specific patient information contained the <strong>Sasuser.Visit</strong> 
+      data set. These data sets both contain the variable <code>ID</code>, as 
+      shown below. 
+      <P><BR>
+	<table align="center" border="0" cellspacing="0" cellpadding="5"  title="Data Set Description">
+    <!--DWLayoutTable-->
+    <tr> 
+          <td valign="top"> <table  border="1" cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF" title="Sasuser.Demog Variables">
+              <!--DWLayoutTable-->
+              <tr> 
+                <td height="24" align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica"  color="#000000"><b>Sasuser.Demog<br>
+                  Variables </b></font></td>
+              </tr>
+              <tbody>
+                <tr> 
+                  <td height="24" align=LEFT bgcolor="#FFFFFF"><p><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ID</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><br>
+                      Age <br>
+                      Sex <br>
+                      Date </font></p></td>
+                </tr>
+              </tbody>
+            </table></td>
+          <td>&nbsp;&nbsp;&nbsp;</td>
+     <td valign="top">
+	 <table  border="1" cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF" title="Sasuser.Visit Variables">
+          <!--DWLayoutTable-->
+          <thead>
+            <tr> 
+                  <td height="24" align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sasuser.Visit<br>
+                Variables </b></font></td>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+                  <td height="24" align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ID</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><br>
+                    Visit <br>
+                    SysBP <br>
+                    DiasBP <br>
+                    Weight </font></td>
+            </tr>
+           </tbody>
+        </table></td>
+    </tr>
+  </table>
+      <P><BR>The following DATA step merges the <strong>Sasuser.Demog</strong> and 
+        <strong>Sasuser.Visit</strong> data sets according to the values of the 
+        variable <code>ID</code>, in order to create a new data set named <strong>Sasuser.Combined</strong>:<font color="#003399">
+      <pre>     data sasuser.combined;
+        merge sasuser.demog sasuser.visit;
+        by id;
+     run;</pre>
+      </font>
+	  The <strong>Sasuser.Combined</strong> data set contains all of the variables from both input data sets, as shown below.
+	  <P><BR>
+	  <table align="center" border="1" cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF" title="Sasuser.Combined Variables">
+          <!--DWLayoutTable-->
+          <thead>
+            <tr> 
+                  
+            <td height="24" align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sasuser.Combined<br>
+                Variables </b></font></td>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+                  <td height="24" align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">ID</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><br>
+                    Visit <br>
+					Age <br>
+					Sex <br>
+					Date <br>
+                    SysBP <br>
+                    DiasBP <br>
+                    Weight </font></td>
+            </tr>
+           </tbody>
+        </table>
+	  </td>
+  </tr></table><P>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

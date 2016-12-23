@@ -1,0 +1,153 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data by Using Correlated Subqueries<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using the EXISTS and NOT EXISTS Conditional Operators</h2>
+        <p>In the WHERE clause or in the HAVING clause of an outer query, you 
+          can use the EXISTS or NOT EXISTS conditional operator to test for the 
+          existence or non-existence of a set of values returned by a subquery. 
+        </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="EXISTS and NOT EXISTS operators">
+    <tr align="left" bgcolor="#F7F7DE"> 
+      <th width="117"><font size="-1">Condition</font></th>
+      <th width="273"><font size="-1">Is true if&nbsp;...</font></th>
+    </tr>
+    <tr> 
+      <td width="117"><strong>EXISTS</strong></td>
+      <td width="273">the subquery returns <strong>at least one row</strong></td>
+    </tr>
+    <tr> 
+      <td width="117"><strong>NOT EXISTS</strong></td>
+      <td width="273">the subquery returns <strong>no data</strong></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The operators EXISTS and NOT EXISTS can be used with both 
+        correlated and noncorrelated subqueries.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p><strong>Example: Correlated Subquery with NOT EXISTS</strong></p>
+        <p>Let's look at a sample PROC SQL query that includes the NOT EXISTS 
+          conditional operator. Suppose you are working with the following tables:</p>
+        <ul>
+          <li><strong>Sasuser.Flightattendants</strong> contains the names and 
+            employee ID numbers of all flight attendants.<br>
+            <br>
+          </li>
+          <li><strong>Sasuser.Flightschedule</strong> contains one row for each 
+            crew member assigned to a flight for each date.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>As shown in the diagram below, the intersection of these two tables 
+          contains data for all flight attendants who have been scheduled to work. 
+        </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <img src="images/m70_54g1.gif" alt="Venn diagram showing intersection area for flight attendants scheduled to work" width="245" height="162"><p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Now suppose you want to list by name the flight attendants who have 
+          <strong>not</strong> been scheduled; that is, you want to identify the 
+          data in the area highlighted below.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <img src="images/m70_54g2.gif" alt="Venn diagram showing intersection area for flight attendants not scheduled to work" width="245" height="162"><p>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The following PROC SQL query accomplishes this task by using a correlated 
+          subquery and the NOT EXISTS operator:</p>
+        </td>
+    </tr>
+  </table>
+  <br>
+    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        select lastname, firstname
+           from sasuser.flightattendants
+           where <strong>not exists</strong>
+              (select *
+                 from sasuser.flightschedule
+		         where flightattendants.empid=
+		               flightschedule.empid);</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> The output is shown below.</td>
+    </tr>
+  </table>
+  <p><br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FirstName</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PATTERSON</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">RENEE</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">VEGA</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FRANKLIN</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

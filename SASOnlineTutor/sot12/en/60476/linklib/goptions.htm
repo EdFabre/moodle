@@ -1,0 +1,648 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --> 
+<TITLE>Setting Graphics Options</TITLE>
+<!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->Setting 
+      Graphics Options<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" -->
+<p> 
+<center>
+  <table cellspacing="0" cellpadding="0" width="85%">
+    <tr> 
+      <td>To specify values for graphics options, you can submit a <strong>GOPTIONS 
+        statement</strong>. Graphics options control characteristics of the graph, 
+        such as size, colors, type fonts, fill patterns, and symbols. In addition, 
+        they affect the settings of device parameters, which are defined in the 
+        device entry. Device parameters control such characteristics as the appearance 
+        of the display, the type of output produced, and the destination of the 
+        output. 
+        <p> The GOPTIONS statement allows you to change these settings temporarily, 
+          either for a single graph or for the duration of your SAS session. You 
+          can use the GOPTIONS statement to 
+        <ul>
+          <li> override default values for graphics options that control either 
+            graphics attributes or device parameters for a single graph or for 
+            an entire SAS session 
+          <li> reset individual graphics options or all graphics options to their 
+            default values 
+          <li> cancel definitions for AXIS, FOOTNOTE, PATTERN, SYMBOL, and TITLE 
+            statements. 
+        </ul>
+        <p> Graphics options remain in effect until you change them, reset them 
+          using the RESET= option, or end your SAS session.
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="2" cellspacing="0" cellpadding="10" width="85%" bgcolor="#FFFFE0" title="General form, GOPTIONS statement">
+    <tr> 
+      <td align="left"><strong>General form, GOPTIONS statement:</strong> 
+        <blockquote> <font color="#003399"><strong>GOPTIONS</strong> &lt;<em>options-list</em>&gt;<strong>;</strong></font> 
+        </blockquote>
+        <p> where <font color="#003399"><em>options-list </em></font>can be one or 
+          more graphics options.<br>
+          <br>
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+            <td>With the exception of RESET=, graphics options can be listed in 
+              any order in a GOPTIONS statement. RESET= should be the first option 
+              in the GOPTIONS statement.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellspacing="0" cellpadding="0" width="85%">
+    <tr> 
+      <td>For example, this GOPTIONS statement sets the values for background 
+        color, text height, and text font: 
+        <pre><font color="#003399">    goptions cback=blue htext=6 pct ftext=zapf;;</font>
+</pre>
+        <p> This GOPTIONS statement resets all graphic options to their default 
+          values: 
+        <pre><font color="#003399">     goptions reset=goptions;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding="4" cellspacing="2" align="Center" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <hr>
+        <strong><a name="Graphic"><br>
+        Graphic Options</a></strong> 
+        <p> Graphic options can be one or more options from any or all of the 
+          following categories: 
+        <ul>
+          <li> <a href="#reset">reset option</a> 
+          <li> <a href="#display">options that affect the appearance of the display 
+            area and the graphics output </a> 
+          <li> <a href="#color">options that affect color</a> 
+          <li> <a href="#font">options that control font selection or text appearance 
+            </a> 
+          <li> <a href="#defaults">options that set defaults for procedures and 
+            global statements </a> 
+          <li> <a href="#animation">image animation options </a> 
+          <li> <a href="#program">options that affect how your SAS/GRAPH program 
+            runs </a> 
+          <li> <a href="#device">options that control how output is sent to devices 
+            or files</a> 
+          <li> <a href="#hardware">options that specify hardware capabilities 
+            of the device </a> 
+          <li> <a href="#printer">options that control printer hardware features 
+            </a> 
+          <li> <a href="#system">options that interact with the operating environment 
+            </a> 
+          <li> <a href="#mainframe">options for mainframe systems </a> 
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="reset"><strong>Reset option </strong></a> 
+        <hr>
+      </td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750304">RESET=ALL | GLOBAL | <em>statement-name </em>| (<em>statement-name(s)</em>) 
+        </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="display"><strong> Options that affect the appearance of the display 
+        area and the graphics output </strong></a> 
+        <hr>
+      </td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750306">ASPECT=<em>scaling-factor</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750307">AUTOSIZE=ON | OFF | DEFAULT </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750308">BORDER | NOBORDER </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750309">CELL | NOCELL </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750310">GSIZE=<em>lines</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750311">HORIGIN=<em>horizontal-offset</em> &lt;IN | CM&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750312">HPOS=<em>columns</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750313">HSIZE=<em>horizontal-size</em> &lt;IN | CM&gt; </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750314">ROTATE=LANDSCAPE | PORTRAIT </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750315">ROTATE | NOROTATE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750316">SWAP | NOSWAP </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750317">TARGETDEVICE=<em>target-device-entry</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750318">VORIGIN=<em>vertical-offset</em> &lt;IN | CM&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750319">VPOS=<em>rows</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750320">VSIZE=<em>vertical-size</em> &lt;IN | CM&gt; </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750321">XMAX=<em>width</em> &lt;IN | CM&gt; </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750322">XPIXELS=<em>width-in-pixels</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750323">YMAX=<em>height</em> &lt;IN | CM&gt; </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750324">YPIXELS=<em>height-in-pixels</em> </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="color"><strong> Options that affect color </strong></a> 
+        <hr>
+      </td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750326">CBACK=<em>background-color</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750327">CBY=<em>BY-line-color</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750328">COLORS=&lt;(<em>colors-list</em> | NONE)&gt; </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750329">CPATTERN=<em>pattern-color</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750330">CSYMBOL=<em>symbol-color</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750331">CTEXT=<em>text-color</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750332">CTITLE=<em>title-color</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750333">PENMOUNTS=<em>active-pen-mounts</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750334">PENSORT | NOPENSORT </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="font"><strong> Options that control font selection or text appearance 
+        <hr>
+        </strong></a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750336">CHARTYPE=<em>hardware-font-chartype</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750337">FASTTEXT | NOFASTTEXT </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750338">FBY=<em>BY-line-font</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750339">FCACHE=<em>number-fonts-open</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750340">FONTRES=NORMAL | PRESENTATION </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750341">FTEXT=<em>text-font</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750342">FTITLE=<em>title-font</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750343">FTRACK=LOOSE | NONE | NORMAL | TIGHT | TOUCH | V5 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750344">HBY=<em>BY-line-height</em> &lt;<em>units</em>&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750345">HTEXT=<em>text-height</em> &lt;<em>units</em>&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750346">HTITLE=<em>title-height</em> &lt;<em>units</em>&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750347">RENDER=APPEND | DISK | MEMORY | NONE | READ </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750348">RENDERLIB=<em>libref</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750349">SIMFONT=<em>software-font</em> </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="defaults"><strong> Options that set defaults for procedures and 
+        global statements </strong></a> 
+        <hr>
+      </td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750351">GUNIT=<em>units</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750352">INTERPOL=<em>interpolation-method</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750353">OFFSHADOW=(<em>x</em> &lt;<em>units</em>&gt;, <em>y</em> 
+        &lt;<em>units</em>&gt; | (<em>x</em>,<em>y</em>) &lt;<em>units</em>&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750354">V6COMP | NOV6COMP </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="animation"><strong> Image animation options </strong></a> 
+        <hr>
+      </td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750356">DELAY=<em>delay-time</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750357">DISPOSAL=NONE | BACKGROUND | PREVIOUS | UNSPECIFIED 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750358">INTERLACED | NONINTERLACED </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750359">ITERATION=<em>iteration-count</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750360">TRANSPARENCY | NOTRANSPARENCY </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="program"><strong> Options that affect how your SAS/GRAPH program 
+        runs </strong></a> 
+        <hr>
+      </td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750362">DISPLAY | NODISPLAY </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750363">ERASE | NOERASE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750364">GWAIT=<em>seconds</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750365">GRAPHRC | NOGRAPHRC </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750366">PCLIP | NOPCLIP </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750367">POLYGONCLIP | NOPOLYGONCLIP </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="device"><strong> Options that control how output is sent to devices 
+        or files 
+        <hr>
+        </strong></a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750369">ADMGDF | NOADMGDF </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750370">DEVADDR=<em>device-address</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750371">DEVICE=<em>device-entry</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750372">DEVMAP=<em>device-map-name</em> | NONE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750373">EXTENSION='<em>file-type</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750374">FILECLOSE=DRIVERTERM | GRAPHEND </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750375">FILEONLY | NOFILEONLY </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750376">GACCESS=<em>output-format</em> | '<em>output-format</em> 
+        &gt; <em>destination</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750377">GEND='<em>string</em>' &lt;...'<em>string-n</em>'&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750378">GEPILOG='<em>string</em>' &lt;...'<em>string-n</em>'&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750379">GOUTMODE=APPEND | REPLACE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750380">GPROLOG='<em>string</em>' &lt;...'<em>string-n</em>'&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750381">GPROTOCOL=<em>module-name</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750382">GSFLEN=<em>record-length</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750383">GSFMODE=APPEND | PORT | REPLACE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750384">GSFNAME=<em>fileref</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750385">GSFPROMPT | NOGSFPROMPT </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750386">GSTART='<em>string</em>' &lt;...'<em>string-n</em>'&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750387">HANDSHAKE=HARDWARE | NONE | SOFTWARE | XONXOFF </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750388">KEYMAP=<em>map-name</em> | NONE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750389">POSTGEPILOG='<em>string</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750390">POSTGPROLOG='<em>string</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750391">PREGEPILOG='<em>string</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750392">PREGPROLOG='<em>string</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750393">PROMPTCHARS='<em>prompt-chars-hex-string</em>'X </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="hardware"><strong> Options that specify hardware capabilities 
+        of the device 
+        <hr>
+        </strong></a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750395">CHARACTERS | NOCHARACTERS </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750396">CIRCLEARC | NOCIRCLEARC </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750397">DASH | NODASH </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750398">DASHSCALE=<em>scaling-factor</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750399">FILL | NOFILL </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750400">FILLINC=0...9999 </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750401">LFACTOR=<em>line-thickness-factor</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750402">PIEFILL | NOPIEFILL </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750403">POLYGONFILL | NOPOLYGONFILL </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750404">SYMBOL | NOSYMBOL </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="printer"><strong> Options that control printer hardware features 
+        <hr>
+        </strong></a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750406">AUTOCOPY | NOAUTOCOPY </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750407">AUTOFEED | NOAUTOFEED </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750408">BINDING=DEFAULTEDGE | LONGEDGE | SHORTEDGE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750409">COLLATE | NOCOLLATE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750410">DUPLEX | NODUPLEX </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750411">GCOPIES=(&lt;<em>current-copies</em>&gt;&lt;<em>,max-copies</em>&gt;) 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750412">PAPERDEST=<em>bin</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750413">PAPERFEED=<em>feed-increment</em> &lt;IN | CM&gt; 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750414">PAPERLIMIT=<em>width</em> &lt;IN | CM&gt; </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750415">PAPERSIZE='<em>size-name</em>' | (<em>width</em>,<em>height</em>) 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750416">PAPERSOURCE=<em>tray</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750417">PAPERTYPE='<em>type-name</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750418">PPDFILE=<em>fileref</em> | '<em>external-file</em>' 
+        </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750419">REPAINT=<em>redraw-factor</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750420">REVERSE | NOREVERSE </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750421">SPEED=<em>pen-speed</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750422">UCC='<em>control-characters-hex-string</em>'X </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="system"> <strong>Options that interact with the operating environment 
+        <hr>
+        </strong></a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750424">DRVINIT='<em>system-command(s)</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750425">DRVTERM='<em>system-command(s)</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750426">PREGRAPH='<em>system-command(s)</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750427">POSTGRAPH='<em>system-command(s)</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750428">PROMPT | NOPROMPT </a></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" cellpadding="6" cellspacing="2">
+    <tr> 
+      <td> 
+        <hr>
+        <a name="mainframe"><strong> Options for mainframe systems 
+        <hr>
+        </strong></a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750430">GCLASS=<em>SYSOUT-class</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750431">GDDMCOPY=FSCOPY | GSCOPY </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750432">GDDMNICKNAME=<em>nickname</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750433">GDDMTOKEN=<em>token</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750434">GDEST=<em>destination</em> </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750435">GFORMS='<em>forms-code</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750436">GWRITER='<em>writer-name</em>' </a></td>
+    </tr>
+    <tr valign="top"> 
+      <td><a name="z0750437">TRANTAB=<em>table</em> | <em>user-defined-table</em> 
+        </a></td>
+    </tr>
+  </table>
+</center>
+<!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

@@ -23,7 +23,6 @@ function scorm_openpopup(url,name,options,width,height) {
     options += ",width="+width+",height="+height;
 
     windowobj = window.open(url,name,options);
-    windowobj.opener = null;
     if (!windowobj) {
         return;
     }

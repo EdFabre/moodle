@@ -1,0 +1,89 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Querying 
+      Multiple Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Specifying Columns That Appear in Multiple Tables</strong> 
+        </p>
+        <p> When you join two or more tables, list the columns that you want to 
+          select from <strong>both</strong> tables in the SELECT clause. Separate 
+          all column names with commas. 
+        <p>If the tables that you are querying contain same-named columns and 
+          you want to list one of these columns in the SELECT clause, you must 
+          specify a table name as a prefix for that column. </td>
+    </tr>
+  </table>
+  <br>
+  <table border="0" cellpadding="2" cellspacing="0" width="85%" align="center">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Prefixing a table name to a column name is called <strong>qualifying</strong> 
+        the column name. </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>The following PROC SQL step joins the two tables <strong>Sasuser.Salcomps</strong> 
+          and <strong>Sasuser.Newsals</strong>, both of which contain columns 
+          named <code>EmpID</code> and <code>Salary</code>. To tell PROC SQL where 
+          to read the columns <code>EmpID</code> and <code>Salary</code>, the 
+          SELECT clause specifies the table name <strong>Salcomps</strong> as 
+          a prefix for <code>Empid</code>, and <strong>Newsals</strong> as a prefix 
+          for <code>Salary</code>. </p></td>
+    </tr>
+  </table>
+  <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <pre><font color="#003399">     proc sql;
+        select <strong>salcomps</strong>.empid,lastname,
+               <strong>newsals</strong>.salary,newsalary
+           from sasuser.salcomps,sasuser.newsals
+           where salcomps.empid=newsals.empid
+           order by lastname;</font></pre></td>
+      </tr>
+    </table>
+    <center>
+      <br>
+      <br>
+    </center>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

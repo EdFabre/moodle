@@ -1,0 +1,217 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing 
+      Macro Variables Indirectly<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Example</h2>
+        <P> You can use indirect referencing to improve the last example. By using 
+          an indirect reference to the macro variable whose name is the same as 
+          the current value of the macro variable <code>crsid</code>, you can 
+          write a PROC PRINT step that you can reuse without modification in order 
+          to print a report for each different course. 
+        <pre><font color="#003399">    options symbolgen;
+    data _null_;
+       set sasuser.courses;
+       call symput(course_code, trim(course_title));
+    run;
+    
+    <strong>%let crsid=C005;</strong>
+    proc print data=sasuser.schedule noobs label;
+       where course_code=&quot;&amp;crsid&quot;;
+       var location begin_date teacher;
+       title1 &quot;Schedule for <strong>&amp;&amp;&amp;crsid</strong>&quot;;
+    run;
+
+    <strong>%let crsid=C002;</strong>
+    proc print data=sasuser.schedule noobs label;
+       where course_code=&quot;&amp;crsid&quot;;
+       var location begin_date teacher;
+       title1 &quot;Schedule for <strong>&amp;&amp;&amp;crsid</strong>&quot;;
+    run;
+</font></pre>
+The SAS log shows the steps that lead to the resolution of these macro variables for each PROC PRINT step.<P><BR> 
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+43   options symbolgen;
+44   data _null_;
+45      set sasuser.courses;
+46      call symput(course_code, trim(course_title));
+47   run;
+
+NOTE: There were 6 observations read from the dataset 
+      SASUSER.COURSES.
+NOTE: DATA statement used:
+      real time           0.07 seconds
+      cpu time            0.05 seconds
+
+48
+49   %let crsid=C005;
+50   proc print data=sasuser.schedule noobs label;
+51      where course_code=&quot;&amp;crsid&quot;;
+<strong>SYMBOLGEN:  Macro variable CRSID resolves to C005</strong>
+52      var location begin_date teacher;
+<strong>SYMBOLGEN:  &amp;&amp; resolves to &amp;.
+SYMBOLGEN:  Macro variable CRSID resolves to C005
+SYMBOLGEN:  Macro variable C005 resolves to Artificial 
+            Intelligence</strong>
+53      title1 &quot;Schedule for &amp;&amp;&amp;crsid&quot;;
+54   run;
+
+NOTE: There were 3 observations read from the dataset 
+      SASUSER.SCHEDULE.
+      WHERE course_code='C005';
+NOTE: PROCEDURE PRINT used:
+      real time           0.09 seconds
+      cpu time            0.04 seconds
+
+55
+56   %let crsid=C002;
+57   proc print data=sasuser.schedule noobs label;
+58      where course_code=&quot;&amp;crsid&quot;;
+<strong>SYMBOLGEN:  Macro variable CRSID resolves to C002</strong>
+59      var location begin_date teacher;
+<strong>SYMBOLGEN:  &amp;&amp; resolves to &amp;.
+SYMBOLGEN:  Macro variable CRSID resolves to C002
+SYMBOLGEN:  Macro variable C002 resolves to Structured 
+            Query Language</strong>
+60      title1 &quot;Schedule for &amp;&amp;&amp;crsid&quot;;
+61   run;
+
+NOTE: There were 3 observations read from the dataset 
+      SASUSER.SCHEDULE.
+      WHERE course_code='C002';
+NOTE: PROCEDURE PRINT used:
+      real time           0.06 seconds
+      cpu time            0.04 seconds
+</pre></td></tr>
+</table> </div>
+
+
+<P><BR>
+          This is the output from the first PROC PRINT step.
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Schedule for Artificial Intelligence</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Location</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Begin</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Instructor</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Dallas</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">26FEB2001</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Hallis, Dr. George</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">17SEP2001</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Tally, Ms. Julia</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Seattle</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25FEB2002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Hallis, Dr. George</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+<P><BR>
+          This is the output from the second PROC PRINT step.
+<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Schedule for Structured Query Language</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv"  color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Location</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Begin</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Instructor</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Dallas</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">04DEC2000</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Wickam, Dr. Alice</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11JUN2001</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Wickam, Dr. Alice</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Seattle</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">03DEC2001</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Wickam, Dr. Alice</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+<P><BR>
+Note that the PROC PRINT steps that produced these reports were identical. Only the <NOBR>%LET</NOBR> statement that precedes each 
+PROC PRINT step and the resolved values of the macro variables changed.
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

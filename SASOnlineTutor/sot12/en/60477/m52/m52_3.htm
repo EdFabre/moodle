@@ -1,0 +1,141 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Basic 
+      Concepts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Compiling a Macro</h2>
+        <P> In order to use this macro later in your SAS programs, you must first 
+          <strong>compile</strong> it by submitting the macro definition, as follows: 
+        <P>
+<font color="#003399"><PRE>    %macro prtlast;
+       proc print data=&amp;syslast (obs=5);
+       title &quot;Listing of &amp;syslast data set&quot;;
+       run;
+    %mend;
+</PRE>
+      </font> When you submit this code, the word scanner divides the macro into 
+      tokens and sends the tokens to the macro processor for compilation. The macro 
+      processor
+<ul>
+          <li>checks all macro language statements for syntax errors (non-macro 
+            language statements are not checked until the macro is executed). 
+            <br>
+            <br>
+          <li>writes error messages to the SAS log and creates a <strong>dummy 
+            (non-executable) macro</strong> if any syntax errors are found in 
+            the macro language statements. <br><br>
+          <li>stores all compiled macro language statements and constant text 
+            in a SAS catalog entry if no syntax errors are found in the macro 
+            language statements. By default, a catalog named <strong>Work.Sasmacr</strong> 
+            is opened, and a catalog entry named <strong><em>Macro-name</em>.Macro</strong> 
+            is created. 
+        </ul>
+
+        <P> That is, if there are no syntax errors in the macro language statements 
+          within the macro, the text between <nobr>the %MACRO</nobr> statement 
+          and the <nobr>%MEND</nobr> statement will be stored under the name <strong>Prtlast</strong> 
+          for execution at a later time. 
+        <P>
+
+
+<table border="0" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif"  alt="Note:" width="20" height="20"></td>
+      <td valign="top"> You can also store a compiled macro in a permanent SAS catalog. You can learn how to do this in the lesson <!--lesson reference--><strong><script>document.write(m53title);</script></strong>.</td>
+    </tr>
+  </table><P><BR>
+        <h2>The MCOMPILENOTE Option</h2>
+          The MCOMPILENOTE option is available beginning in SAS 9. MCOMPILENOTE 
+        will cause a note to be issued to the SAS log when a macro has completed 
+        compilation.
+<P><BR>
+		  <table border="1" cellspacing="0" cellpadding="10" width="100%" bgcolor="#F7F7DE" title="General form, MCOMPILENOTE option">
+            <tr> 
+              
+            <td align="left"><strong>General form, MCOMPILENOTE option:</strong> 
+              <blockquote> <font color="#003399"><strong>OPTIONS MCOMPILENOTE=</strong> NONE | NOAUTOCALL | ALL<strong>;</strong></font> 
+                </blockquote>
+              where the option can take one of the three values listed and 
+              <ul>
+               
+              <li> <font color="#003399">NONE</font> is the default value, 
+                which specifies that no notes are issued to the log
+                <li> <font color="#003399">NOAUTOCALL</font> specifies that a 
+                  note is issed to the log for completes macro compilations for 
+                  all macros except autocall macros 
+                <li><font color="#003399">ALL</font> specifies that a note is issued to the log for all completed macro compilations. 
+            </ul>
+			<table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">You can 
+            learn more about autocall macros in the lesson 
+            <!--lesson reference-->
+            <strong> 
+            <script>document.write(m53title);</script></strong>. </td>
+      </tr>
+    </table>
+          </td>
+            </tr>
+          </table>
+		   <P><br>
+		  <h2>Example</h2>
+		  A macro might actually compile and still contain errors. If there are 
+        any errors, an ERROR message will be written to the SAS log in addition 
+        to the note. Here is an example of the note that is written to the log 
+        when a macro compiles without errors: <font color="#003399"> 
+        <pre>     options mcompilenote=all;
+     %macro mymacro;
+     %mend mymacro;</pre></font>
+	<div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>1    options mcompilenote=all;
+2    %macro mymacro;
+3    %mend mymacro;
+NOTE: The macro MYMACRO completed compilation without errors.</pre> 
+      </td>
+    </tr>
+  </table>
+</div> </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

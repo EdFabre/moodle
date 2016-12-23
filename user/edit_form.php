@@ -132,36 +132,18 @@ class user_edit_form extends moodleform {
             // Disable fields that are locked by auth plugins.
             $fields = get_user_fieldnames();
             $authplugin = get_auth_plugin($user->auth);
-            $customfields = $authplugin->get_custom_user_profile_fields();
-            $customfieldsdata = profile_user_record($userid, false);
-            $fields = array_merge($fields, $customfields);
             foreach ($fields as $field) {
-                if ($field === 'description') {
-                    // Hard coded hack for description field. See MDL-37704 for details.
-                    $formfield = 'description_editor';
-                } else {
-                    $formfield = $field;
-                }
-                if (!$mform->elementExists($formfield)) {
+                if (!$mform->elementExists($field)) {
                     continue;
                 }
-
-                // Get the original value for the field.
-                if (in_array($field, $customfields)) {
-                    $key = str_replace('profile_field_', '', $field);
-                    $value = isset($customfieldsdata->{$key}) ? $customfieldsdata->{$key} : '';
-                } else {
-                    $value = $user->{$field};
-                }
-
                 $configvariable = 'field_lock_' . $field;
                 if (isset($authplugin->config->{$configvariable})) {
                     if ($authplugin->config->{$configvariable} === 'locked') {
-                        $mform->hardFreeze($formfield);
-                        $mform->setConstant($formfield, $value);
-                    } else if ($authplugin->config->{$configvariable} === 'unlockedifempty' and $value != '') {
-                        $mform->hardFreeze($formfield);
-                        $mform->setConstant($formfield, $value);
+                        $mform->hardFreeze($field);
+                        $mform->setConstant($field, $user->$field);
+                    } else if ($authplugin->config->{$configvariable} === 'unlockedifempty' and $user->$field != '') {
+                        $mform->hardFreeze($field);
+                        $mform->setConstant($field, $user->$field);
                     }
                 }
             }

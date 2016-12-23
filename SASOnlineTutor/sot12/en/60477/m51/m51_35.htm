@@ -1,0 +1,103 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Write the following code: ';
+solutionText+='<font color="#003399"><pre>proc sql noprint;<br>';
+solutionText+='  select begin_date format=mmddyy10.<br>';
+solutionText+='     into :begin1-:begin18<br>';
+solutionText+='     from sasuser.schedule;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='Submit the program.<br><br>';
+solutionText+='<li>Submit the following statement:<br>';
+solutionText+='<font color="#003399"><pre>%put _user_;</pre></font>';
+solutionText+='You should see the new macro variables, <code>begin1</code> through <code>begin18</code>, listed in the log.<br><br>';
+solutionText+='<li>Modify the program as follows: ';
+solutionText+='<font color="#003399"><pre>%let num=4;<br>';
+solutionText+='proc print data=sasuser.all noobs n;<br>';
+solutionText+='  where course_number=&num;<br>';
+solutionText+='  var student_name student_company;<br>';
+solutionText+='  title1 "Roster for Course &num";<br>';
+solutionText+='  title2 "Beginning on &&begin&num";<br>';
+solutionText+='run;</pre></font>';
+solutionText+='Submit the program and examine the output. The second title should say ';
+solutionText+='<strong>Beginning on 01/22/2001</strong> and the data set should contain 27 observations.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create multiple macro variables 
+with the SQL procedure, using the <a href="JavaScript: openOther('../linklib/schedule.htm')">Sasuser.Schedule</a> data set.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Use the SQL procedure to create a set of macro variables named <code>begin1</code> 
+            through <code>begin18</code>, one for each course in the <strong>Sasuser.Schedule</strong> 
+            data set. The value of each <code>begin</code> macro variable should 
+            be the starting date of the corresponding class (that is, the value 
+            of the data set variable <code>Begin_date</code>) in MMDDYY10. format. 
+            Include an option that will prevent the results from being displayed 
+            as output.<br>
+          <br>
+	<li>Submit a <nobr>%PUT</nobr> statement that will list the new macro variables and their values in the SAS log.<BR><BR>
+          <li>Copy the following program and paste it into the code editing window. 
+            Modify the TITLE2 statement so that the series of Xs is replaced with 
+            the appropriate indirect macro variable reference, based on the current 
+            value of <code>num</code>, which represents the course number (<code>1</code> 
+            through <code>18</code>). Submit the modified program. 
+            <table width="85%" align="center"><pre><font color="#003399">
+%let num=4;
+proc print data=sasuser.all noobs n;
+   where course_number=&amp;num;
+   var student_name student_company;
+   title1 "Roster for Course &amp;num";
+   title2 "Beginning on XXX";
+run;
+</font></pre></table><!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

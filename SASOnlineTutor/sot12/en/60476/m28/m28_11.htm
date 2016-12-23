@@ -1,0 +1,150 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Records That Have a Varying Number of Fields<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Now, let's think about another type of variable-length record format, 
+        in which the record lengths vary because the records don't all contain 
+        the same number of fields.</p>
+    </td>
+  </tr>
+</table>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The file that is referenced by the fileref <strong>Bpdata 
+        </strong>contains variable-length records in which an employee ID number 
+        is followed by repeating blocks of data that represent dates and blood 
+        pressure readings. Notice that each repeating block of data in the file 
+        has the same length. However, the records contain varying numbers of repeating 
+        blocks.</td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <center>
+    Raw Data File Bpdata 
+    <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#F7F7DE" title="Raw Data File">
+      <thead> 
+      <tr> 
+        <td align=LEFT bgcolor="#F7F7DE" nowrap><font face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---+----30---+----40---+----50</font></td>
+      </tr>
+      </thead> <tbody> 
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">1234 
+          <span style="background-color: #CCCC99">13MAR89 120/80</span></font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">1443 
+          <span style="background-color: #CCCC99">12FEB89 120/70</span> <span style="background-color: #CCCC99">03FEB90 
+          125/80</span> <span style="background-color: #CCCC99">07OCT90 125/99</span></font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">1681 
+          <span style="background-color: #CCCC99">11JAN90 120/80</span> <span style="background-color: #CCCC99">05JUN90 
+          110/70</span></font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">2034 
+          <span style="background-color: #CCCC99">19NOV88 130/70</span> <span style="background-color: #CCCC99">12MAY89 
+          150/90</span> <span style="background-color: #CCCC99">23MAR90 130/80</span></font></td>
+      </tr>
+      </tbody> 
+    </table>
+  </center>
+  <p> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">You can read this file and create one observation for 
+          each block of data.</td>
+      </tr>
+    </table>
+    <p> <br>
+    <center>
+      SAS Data Set 
+      <table bgcolor=#cccccc border=1 cellpadding=3 cellspacing=0 frame=box 
+title="SAS Data Set">
+        <thead> 
+        <tr bgcolor="#F7F7DE"> 
+          <td align=middle><font color=#000000 
+      face="Verdana, Arial, Helvetica" size=2><strong>Obs</strong></font></td>
+          <td align=left><font color=#000000 
+      face="Verdana, Arial, Helvetica" size=2><b>ID</b></font></td>
+          <td align=middle><font color=#000000 
+      face="Verdana, Arial, Helvetica" size=2><b>Date</b></font></td>
+          <td align=middle><font color=#000000 
+      face="Verdana, Arial, Helvetica" size=2><b>BP</b></font></td>
+        </tr>
+        </thead> <tbody> 
+        <tr> 
+          <td align=right bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">1</font></td>
+          <td align=left bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">1234</font></td>
+          <td align=left bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">13MAR89</font></td>
+          <td align=right bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">120/80</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">2</font></td>
+          <td align=left bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">1443</font></td>
+          <td align=left bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">12FEB89</font></td>
+          <td align=right bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">120/70</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">3</font></td>
+          <td align=left bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">1443</font></td>
+          <td align=left bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">03FEB90</font></td>
+          <td align=right bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">125/80</font></td>
+        </tr>
+        <tr> 
+          <td align=right bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">4</font></td>
+          <td align=left bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">1443</font></td>
+          <td align=left bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">07OCT90</font></td>
+          <td align=right bgcolor=#ffffff><font color="#000000" face="Verdana, Arial, Helvetica" size="2">125/99</font></td>
+        </tr>
+        </tbody> 
+      </table>
+      <br>
+      <br>
+    </center>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

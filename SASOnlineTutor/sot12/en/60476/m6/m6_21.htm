@@ -1,0 +1,111 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Enhancing 
+      Plots<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Specifying Color</strong> </p>
+      <p align=Left> You can also specify the color of plotting symbols and interpolated 
+        lines by using the <strong>COLOR= </strong>(or <strong>C=</strong>)<strong> 
+        </strong>option. The following SYMBOL statement specifies a red plotting 
+        symbol and line: 
+      <pre>     <font color="#003399">symbol1 value=square interpol=spline</font>
+<font color="#003399">             height=1 cm width=2.5<strong> color=red</strong>; </font>
+</pre>
+      <p> This plot shows the effect of the COLOR=RED option.
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p align=Center> <br>
+  <img src="images/m6g7s1.gif" width="400" height="305" alt="Display plot with COLOR=red option."><br>
+<p align=Center> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width=85%>
+    <tr> 
+      <td align=Left><strong>Important Tip: Specifying Color for Multiple Plot 
+        Lines</strong> 
+        <p> In general, it is easier to relate SYMBOL statements to plot lines 
+          if you specify a color for each SYMBOL statement. Otherwise, you might 
+          get unexpected results. 
+        <p> For example, you might expect the following program to produce two 
+          plot lines, one with square plotting symbols and one with triangle plotting 
+          symbols. However, as you can see in the resulting plot, both plot lines 
+          have square plotting symbols. 
+        <p> 
+        <pre><font color="#003399">     symbol1 interpol=spline <strong>value=square</strong>;</font>
+<font color="#003399">     symbol2 interpol=spline <strong>value=triangle</strong>;</font>
+<font color="#003399">     proc gplot data=clinic.therapy1999;</font>
+<font color="#003399">        plot swim*month aerclass*month/overlay;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <p align=Center> <img src="images/m6g7s2.gif" width="402" height="307" alt="Display plot without COLOR= option."> 
+  <p align=Center> 
+  <table cellpadding=0 cellspacing=0 border=0 width=85%>
+    <tr> 
+      <td>Here's why the result is not what you might have expected: if you don't 
+        specify the COLOR= option in a SYMBOL statement, SAS/GRAPH software <strong>cycles 
+        that SYMBOL statement through the current list of colors for your device</strong> 
+        before using the next SYMBOL statement. This can result in one SYMBOL 
+        statement spawning a large number of plot definitions. In this case, the 
+        SYMBOL1 statement was cycled through the first two colors in the color 
+        list, black and red. The SYMBOL2 statement was not needed and so was not 
+        used. 
+        <p> 
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+            <td>The capability of SAS to generate many plot definitions 
+              from one SYMBOL statement can work to your advantage. Just remember 
+              that if you do not specify a color for each&nbsp;SYMBOL statement, 
+              there will not be a one-to-one correspondence between SYMBOL statements 
+              and plot lines.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

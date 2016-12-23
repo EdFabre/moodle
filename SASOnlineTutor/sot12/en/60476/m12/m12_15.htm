@@ -1,0 +1,330 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Writing 
+      a DATA Step Program<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Describing the Data</strong> </p>
+        <p>The INPUT statement describes the fields of raw data to be read and 
+          placed into the SAS data set.</p></td>
+    </tr>
+  </table>
+  <center>
+    <br>
+  </center>
+  <table border="1" cellpadding="2" cellspacing="0"  bgcolor="#FFFFFF" title="SAS statements" width="85%">
+    <thead>
+      <tr bgcolor="#F7F7DE"> 
+        <td width="157" align=LEFT><strong>To do this... &nbsp; </strong></td>
+        <td width="158" align=LEFT valign="top"><strong>Use this SAS statement...</strong></td>
+        <td width="278" align=LEFT valign="top" nowrap><strong>Example</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <td>Reference a SAS library</td>
+        <td valign="top">LIBNAME statement</td>
+        <td valign="top" nowrap><font color="#003399"><code>libname <em>libref</em> 
+          '<em>SAS-data-library</em>';<nobr></nobr></code></font></td>
+      </tr>
+      <tr> 
+        <td>Reference an external file</td>
+        <td valign="top">FILENAME statement 
+        <td valign="top" nowrap><font color="#003399"><code><nobr>filename tests 
+          'c:\users\tmill.dat';</nobr></code></font></td>
+      </tr>
+      <tr> 
+        <td>Name a SAS data set</td>
+        <td valign="top">DATA statement</td>
+        <td valign="top" nowrap><font color="#003399"><code>data clinic.stress;</code></font></td>
+      </tr>
+      <tr> 
+        <td>Identify an external file</td>
+        <td valign="top"><font color="Black">INFILE statement &nbsp;</font></td>
+        <td valign="top" nowrap><font color="#003399"><code>infile tests obs=10;</code></font></td>
+      </tr>
+      <tr> 
+        <td>Describe data</td>
+        <td valign="top"><strong>INPUT statement</strong></td>
+        <td valign="top"><font color="#003399"><code><nobr>input ID 1-4 Name $ 
+          6-25 ...; </nobr></code></font></td>
+      </tr>
+      <tr> 
+        <td>Execute the DATA step</td>
+        <td valign="top"><strong>RUN statement</strong></td>
+        <td valign="top"><font color="#003399"><code>run;</code></font></td>
+      </tr>
+    </tbody>
+  </table>
+  <p align="center">
+  <p align="center"> <br>
+  <center>
+    <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, INPUT statement using column input">
+      <tr> 
+        <td align="left"><strong>General form, INPUT statement using column input:</strong> 
+          <blockquote> <nobr> <font color="#003399"><strong>INPUT<i> </i></strong><i>variable</i><strong><i> 
+            &nbsp;</i></strong><i>&lt;</i><strong>$</strong>&gt;<strong> </strong><i>startcol-endcol 
+            </i>. . . <strong>;</strong></font> </nobr> </blockquote>
+          <p> where 
+          <ul>
+            <li> <font color="#003399"><em>variable </em></font>is the SAS name 
+              that you assign to the field 
+            <li> the dollar sign (<font color="#003399">$</font>)<font color="#003399"> 
+              </font>identifies the variable type as character (if the variable 
+              is numeric, then nothing appears here) 
+            <li> <font color="#003399"><i>startcol </i></font>represents the starting 
+              column for this variable 
+            <li> <font color="#003399"><em>endcol</em></font> represents the ending 
+              column for this variable. </ul></td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"><br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">Look at the small data file shown below. For each field 
+          of raw data that you want to read into your SAS data set, you must specify 
+          the following information in the INPUT statement: 
+          <ul>
+            <li> a valid SAS variable name 
+            <li> a type (character or numeric) 
+            <li> a range (starting column and ending column). </ul></td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> Raw Data File Exercise 
+  <center>
+    <font  face="Courier New, Courier" size="2" color="#000000"> 
+    <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#F7F7DE" title="Raw Data File">
+      <tbody>
+        <tr> 
+          <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2810&nbsp;61&nbsp;MOD&nbsp;&nbsp;F</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2804&nbsp;38&nbsp;HIGH&nbsp;F&nbsp;</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2807&nbsp;42&nbsp;LOW&nbsp;&nbsp;M&nbsp;</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2816&nbsp;26&nbsp;HIGH&nbsp;M</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2833&nbsp;32&nbsp;MOD&nbsp;&nbsp;F</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2823&nbsp;29&nbsp;HIGH&nbsp;M&nbsp;</font></td>
+        </tr>
+      </tbody>
+    </table>
+    </font> 
+  </center>
+  <p align="center"><br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">The INPUT statement below assigns the character variable 
+          <code>ID</code> to the data in columns 1-4, the numeric variable <code>Age</code> 
+          to the data in columns 6-7, the character variable <code>ActLevel</code> 
+          to the data in columns 9-12, and the character variable <code>Sex</code> 
+          to the data in column 14. 
+          <pre><font color="#003399">     filename exer 'c:\users\exer.dat';
+     data exercise;
+        infile exer;
+        <strong>input ID $ 1-4 Age 6-7 ActLevel $ 9-12 Sex $ 14;</strong>
+     run;</font></pre> </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> SAS Data Set Work.Exercise 
+  <center>
+    <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+    <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#F7F7DE" title="SAS Data Set">
+      <thead>
+        <tr> 
+          <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></td>
+          <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+          <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Age</b></font></td>
+          <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ActLevel</b></font></td>
+          <td align=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Sex</b></font></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2810</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">61</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">MOD</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">F</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2804</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">38</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">HIGH</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">F</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2807</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">42</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">LOW</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">M</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2816</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">26</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">HIGH</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">M</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2833</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">32</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">MOD</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">F</font></td>
+        </tr>
+        <tr> 
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">6</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2823</font></td>
+          <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">29</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">HIGH</font></td>
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">M</font></td>
+        </tr>
+      </tbody>
+    </table>
+    </font> 
+  </center>
+  <p align="center"><br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">When you use column input, you can 
+          <ul>
+            <li> read any or all fields from the raw data file 
+            <li> read the fields in any order 
+            <li> specify only the starting column for values that occupy only 
+              one column. 
+          </ul>
+          <pre>     <font color="#003399">input ActLevel $ 9-12 Sex $ 14 Age 6-7;</font></pre> </td>
+      </tr>
+    </table>
+    <table cellspacing="0" cellpadding="2" width="85%">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" hspace="10" border="0"></td>
+        <td>Remember that when you create a new variable, you must specify it 
+          in the exact case that you want it stored, for example <code>NewBalance</code>. 
+          Thereafter, you can specify the variable in lowercase. </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><b>Specifying Variable Names</b> <p> Each variable has 
+            a name that conforms to SAS naming conventions. Variable names 
+          <ul>
+            <li> must be 1 to 32 characters in length 
+            <li> must begin with a letter (A-Z) or an underscore (_) 
+            <li> can continue with any combination of numbers, letters, or underscores. 
+          </ul>
+          Let's look at an INPUT statement that uses column input to read the 
+          three data fields in the raw data file below.</td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> 
+  <p align="center"> <br>
+    Raw Data File Admit 
+  <center>
+    <font  face="Courier New, Courier" size="2" color="#000000"> 
+    <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#F7F7DE" title="Raw Data File">
+      <tbody>
+        <tr> 
+          <td align=LEFT bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">58MOD&nbsp;M&nbsp;</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">29LOW&nbsp;F&nbsp;</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">34LOW&nbsp;M&nbsp;</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">41HIGHF&nbsp;</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">30MOD&nbsp;F&nbsp;</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">22HIGHM&nbsp;&nbsp;</font></td>
+        </tr>
+      </tbody>
+    </table>
+    </font> 
+  </center>
+  <p align="center"> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">The values for the variable that you are naming <code>Age</code> 
+          are located in columns 1-2. Because <code>Age</code> is a numeric variable, 
+          you do not specify a dollar sign ($) after the variable name. 
+          <pre>   <strong> </strong><font color="#003399">input <strong>Age 1-2</strong></font>
+</pre> 
+          <p> The values for the variable <code>ActLevel</code> are located in 
+            columns &nbsp;3-6. You specify a $ to indicate that &nbsp;<code>ActLevel</code> 
+            is a character variable. 
+          <pre>    <font color="#003399">input Age 1-2 <strong>ActLevel $ 3-6</strong></font>
+</pre> <p> The values 
+            for the character variable <code>Sex</code> are located in column 
+            7. Notice that you specify only a single column. 
+          <pre>    <font color="#003399">input Age 1-2 ActLevel $ 3-6 <strong>Sex $ 7</strong>;</font>
+</pre> </td>
+      </tr>
+    </table>
+    <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

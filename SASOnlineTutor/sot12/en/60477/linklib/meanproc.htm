@@ -1,0 +1,189 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>MEANS Procedure</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->MEANS 
+      Procedure<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> The <strong>MEANS procedure</strong> provides an easy way to compute descriptive statistics. 
+These data summarization tools can answer basic questions about numeric variables. </td>
+  </tr>
+  </table>
+   <P>
+  <BR>
+  <TABLE align="center" BORDER="1" CELLSPACING="0" CELLPADDING="10" width="85%" BGCOLOR="#FFFFE0" title="General form, basic MEANS procedure">
+    <TR>
+      <TD><STRONG>General form, basic MEANS procedure:</STRONG><BR>
+	<BLOCKQUOTE>
+	  <DL>
+	    <DT>
+	      <NOBR><font color="#003399"><STRONG>PROC MEANS</STRONG>
+	      &lt;<STRONG>DATA</STRONG>=<EM>SAS-data-set</EM>&gt;</FONT></NOBR>
+	    <DD>
+	      <NOBR><font color="#003399">&lt;<EM>statistic-keyword(s)</EM>&gt;
+	      &lt;<EM>option(s)</EM>&gt;<STRONG>;</STRONG></FONT></NOBR>
+	    <DT>
+	      <font color="#003399"><STRONG>RUN;</STRONG></FONT>
+	  </DL>
+	</BLOCKQUOTE>
+	<P>
+	where
+	<UL>
+	  <LI>
+	    <font color="#003399"><EM>SAS-data-set</EM></FONT> identifies the data set to
+	    process
+	  <LI>
+	    <font color="#003399"><EM>statistic-keyword(s)</EM> </FONT>specifies the statistics
+	    to compute
+	    <LI> <font color="#003399"><EM>option(s)</EM></FONT> controls the content, 
+          analysis, and appearance of output. 
+      </UL>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BR>
+  <TABLE align="center" cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR>
+      <TD>In its simplest form, PROC MEANS prints the <EM>n</EM>-count (number
+	of non-missing values), mean, standard deviation, and minimum and maximum
+	values of every numeric variable in a data set.
+<P><BR><h2>Example</h2>
+<P>The following example prints the <em>n</em>-count, mean, standard deviation, and minimum 
+and maximum values of every numeric variable in the <strong>Sasuser.Sale2000</strong> data set.
+	  <PRE><font color="#003399">     proc means data=sasuser.sale2000;</FONT>
+<font color="#003399">     run;</FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE>
+  <P><BR>
+  <CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC MEANS Output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variable</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>N</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Mean</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Std Dev</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Minimum</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Maximum</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Cap1st<br> 
+CapBusiness<br> 
+CapEcon<br> 
+CapTotal<br> 
+CapCargo<br> 
+Date<br> 
+Psgr1st<br> 
+PsgrBusiness<br> 
+PsgrEcon<br> 
+Rev1st<br> 
+RevBusiness<br> 
+RevEcon<br> 
+CargoWgt<br> 
+RevCargo</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">156<br> 
+31<br> 
+156<br> 
+156<br> 
+156<br> 
+156<br> 
+156<br> 
+31<br> 
+156<br> 
+156<br> 
+31<br> 
+156<br> 
+156<br> 
+156</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14.9487179<br> 
+44.0645161<br> 
+146.7179487<br> 
+170.4230769<br> 
+49609.62<br> 
+14846.69<br> 
+13.4551282<br> 
+38.9677419<br> 
+128.1153846<br> 
+5581.10<br> 
+25420.45<br> 
+17000.45<br> 
+19746.79<br> 
+20139.04</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">5.5576682<br> 
+9.6261293<br> 
+26.9203832<br> 
+41.9183597<br> 
+22369.46<br> 
+117.4034019<br> 
+5.0088218<br> 
+8.7768023<br> 
+26.4538458<br> 
+8038.64<br> 
+9432.41<br> 
+26497.57<br> 
+15660.29<br> 
+42309.46</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12.0000000<br> 
+30.0000000<br> 
+125.0000000<br> 
+139.0000000<br> 
+36900.00<br> 
+14610.00<br> 
+10.0000000<br> 
+23.0000000<br> 
+94.0000000<br> 
+640.0000000<br> 
+16280.00<br> 
+2184.00<br> 
+6900.00<br> 
+710.0000000</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">34.0000000<br> 
+52.0000000<br> 
+256.0000000<br> 
+290.0000000<br> 
+105500.00<br> 
+14974.00<br> 
+33.0000000<br> 
+52.0000000<br> 
+251.0000000<br> 
+35967.00<br> 
+42570.00<br> 
+125171.00<br> 
+65700.00<br> 
+191187.00</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER><P><BR>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,140 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Indexes in the DATA Step<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>To create an index at the same time that you create a data set, use the <strong>INDEX= 
+          data set option</strong> in the DATA statement.</p>
+     
+      </td>
+  </tr>
+</table>
+<P><BR>
+<table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATA statement with the INDEX= option">
+            <tr> 
+              
+      <td align="left"><strong>General form, DATA statement with the INDEX= option:</strong> 
+        <blockquote> <dl><dt><font color="#003399"><strong>DATA</strong> <em>SAS-data-file-name 
+        </em><strong>(INDEX=</strong></font></dt>
+            <dd><font color="#003399"><em>(index-specification-1</em>&lt;<strong>/UNIQUE</strong>&gt;<em>&lt;...index-specification-n</em>&lt;<strong>/UNIQUE</strong>&gt;</em>&gt;))</em><strong>;</strong></font> 
+            </dd>
+          </dl>
+      </blockquote>
+            where    
+      <ul>
+	  <li><font color="#003399"><em>SAS-data-file-name</em></font> is a valid SAS data set name
+        <li><font color="#003399"><em>index-specification</em></font> for a simple index is the name of the key variable
+		<li><font color="#003399"><em>index-specification</em></font> for a composite 
+          index is <em>(index-name=(variable-1...variable-n))</em>
+		  <li>the <font color="#003399"><strong>UNIQUE</strong></font> option 
+            specifies that values for the key variable must be unique for each 
+            observation. 
+        </ul></td>
+            </tr>
+          </table>
+		  <P><BR>   <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        
+      <td valign="top">SAS stores the name of a composite index exactly as you 
+        specify it in the INDEX= option. Therefore, if you want the name of your 
+        index to begin with a capital letter, you must specify the name with an 
+        initial capital letter in the INDEX= option.</td>
+      </tr>
+    </table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      You can create<strong> multiple indexes</strong> on a single SAS data 
+        set. However, keep in mind that creating and storing indexes does use 
+        system resources. Therefore, you should create indexes only on variables 
+        that are commonly used in a WHERE condition or on variables that are used 
+        to combine SAS data sets. 
+        <P>
+        <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">You can create an index on a SAS data file but not on a SAS data view.</td>
+      </tr>
+    </table>
+        <p>The UNIQUE option guarantees that values for the key variable or the 
+          combination of a composite group of variables remain unique for every 
+          observation in the data set. In an existing data set, if the variable(s) 
+          on which you attempt to create a unique index has duplicate values, 
+          the index is not created. Similarly, if an update tries to add a record 
+          with a duplicate value for the index variable to that data set, the 
+          update is rejected. You will see examples of updating and maintaining 
+          indexes later in this lesson. </p>
+        <P><BR>
+    <h2>Examples</h2>
+        <p>The following example creates a simple index on the <strong>Simple</strong> 
+          data set. The index is named <strong>Division</strong>, and it contains 
+          values of the <code>Division</code> variable.</p>
+	  <font color="#003399">
+        <pre>     data simple (index=(division));
+        set sasuser.empdata;
+     run;</pre>
+        </font>
+	 <P>The following example creates two simple indexes on the <strong>Simple2</strong> 
+          data set. The first index is named <strong>Division</strong>, and it 
+          contains values of the <code>Division</code> variable. The second index 
+          is called <strong>EmpID</strong>, and it contains unique values of the 
+          <code>EmpID</code> variable. 
+        <font color="#003399">
+        <pre>     data simple2 (index=(division empid/unique));
+        set sasuser.empdata;
+     run;</pre>
+      </font>
+<P>The following example creates a composite index on the <strong>Composite</strong> 
+          data set. The index is named <strong>Empdiv</strong>, and it contains 
+          concatenated values of the <code>Division</code> variable and the <code>EmpID</code> 
+          variable. <font color="#003399">
+        <pre>     data composite (index=(Empdiv=(division empid)));
+        set sasuser.empdata;
+     run;</pre>
+      </font>
+     
+      </td>
+  </tr>
+</table><P>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

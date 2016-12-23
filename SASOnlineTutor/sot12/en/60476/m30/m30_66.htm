@@ -1,0 +1,162 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Character Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>SUBSTR Function</strong> (continued)</p>
+      <p>Using the SUBSTR function, you can extract the first letter of the <CODE>MiddleName</CODE> 
+        value to create the new variable <CODE>MiddleInitial</CODE>.</p></td>
+  </tr>
+</table>
+<P align="center"> <BR>
+  SAS Data Set Hrd.Newtemp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Agency</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>LastName</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FirstName</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>MiddleName</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F274</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CICHOCK</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">ELIZABETH</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>MARIE</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F101</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BENINCASA</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">HANNAH</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>LEE</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">OD Consulting, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F054</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">SHERE</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BRIAN</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>THOMAS</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">New Time Temps Agency</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F077</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">HODNOFF</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">RICHARD</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>LEE</STRONG></font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD>You write the SUBSTR function as: 
+        <PRE>     <FONT color="#003399">substr(middlename,1,1)</FONT></PRE>
+        This function specifies that a character string be extracted from the 
+        value of <CODE>MiddleName</CODE>. The string to be extracted begins in 
+        position 1 and contains one character. Then, you place this function in 
+        an assignment statement in your DATA step. 
+        <PRE>
+     <FONT color="#003399">data work.newtemp(drop=middlename);</FONT>
+        <FONT color="#003399">set hrd.newtemp;</FONT>
+        <FONT color="#003399">MiddleInitial=substr(middlename,1,1);</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        <P> The new <CODE>MiddleInitial</CODE> variable is given the same length 
+          as <CODE>MiddleName</CODE>. The <CODE>MiddleName</CODE> variable is 
+          then dropped from the new data set.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+  SAS Data Set Work.Newtemp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+<TR valign="top">
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Agency</b></font></TD>
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></TD>
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>LastName</b></font></TD>
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FirstName</b></font></TD>
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>MiddleInitial</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F274</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CICHOCK</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">ELIZABETH</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>M</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Administrative Support, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F101</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BENINCASA</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">HANNAH</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>L</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">OD Consulting, Inc.</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F054</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">SHERE</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BRIAN</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>T</STRONG></font></TD>
+</TR><TR valign="top">
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">New Time Temps Agency</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">F077</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">HODNOFF</font></TD>
+<TD bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">RICHARD</font></TD>
+        <TD bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>L</STRONG></font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD>You can use the SUBSTR function to extract a substring from any character 
+        value if you know the position of the value.</TD>
+    </TR>
+  </TABLE>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

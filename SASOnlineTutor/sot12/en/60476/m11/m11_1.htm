@@ -1,0 +1,455 @@
+<html><!-- InstanceBegin template="/Templates/eg_overview.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeinformationObjectTopNav1();</script>
+	
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(overviewTitle)</script></strong></font>
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+
+<p> 
+ <!-- InstanceBeginEditable name="overview" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>Introduction</strong></p>
+        <p>PROC TABULATE reports can summarize your data in many ways. But you 
+          may want to add formatting options that are not available in SAS' standard 
+          listing output. For example, you might want to draw attention to important 
+          facts. What matters most in the following table are the revenue figures 
+          (<code>Revenue</code>) and the number of passengers (<code>Deplaned</code>) 
+          to the destinations.</p>
+      </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table bgcolor="#FFFFFF" cellpadding="10" cellspacing="0" border="1" title="PROC TABULATE output">
+    <tr> 
+      <td> 
+        <pre>&nbsp;
+                 LaGuardia Flights by Destination
+                      and Revenue, March 4-10
+
+ +------------------------------------------------------------------+
+ |                         |   Min   |   Max   |   Mean  |    Sum   |
+ |------------+------------+---------+---------+---------+----------|
+ |Destination |            |         |         |         |          |
+ |------------+------------|         |         |         |          |
+ |Copenhagen  |Boarded     |       81|      154|      131|       786|
+ |            |------------+---------+---------+---------+----------|
+ |            |Transferred |        5|       21|       13|        75|
+ |            |------------+---------+---------+---------+----------|
+ |            |Deplaned    |      103|      177|      147|       881|
+ |            |------------+---------+---------+---------+----------|
+ |            |Revenue     | $109,885| $196,540| $139,951|  $839,705|
+ |------------+------------+---------+---------+---------+----------|
+ |Frankfurt   |Boarded     |      129|      210|      170|     1,190|
+ |            |------------+---------+---------+---------+----------|
+ |            |Transferred |        5|       22|       13|        91|
+ |            |------------+---------+---------+---------+----------|
+ |            |Deplaned    |      147|      237|      188|     1,314|
+ |            |------------+---------+---------+---------+----------|
+ |            |Revenue     | $100,987| $187,636| $142,912|$1,000,382|
+ |------------+------------+---------+---------+---------+----------|
+ |London      |Boarded     |      151|      241|      188|     3,760|
+ |            |------------+---------+---------+---------+----------|
+ |            |Transferred |        4|       18|       11|       227|
+ |            |------------+---------+---------+---------+----------|
+ |            |Deplaned    |      114|      250|      199|     3,987|
+ |            |------------+---------+---------+---------+----------|
+ |            |Revenue     | $106,753| $198,744| $159,478|$3,189,554|
+ |------------+------------+---------+---------+---------+----------|
+ |Paris       |Boarded     |      146|      182|      161|     2,089|
+ |            |------------+---------+---------+---------+----------|
+ |            |Transferred |        7|       29|       16|       204|
+ |            |------------+---------+---------+---------+----------|
+ |            |Deplaned    |      153|      227|      183|     2,378|
+ |            |------------+---------+---------+---------+----------|
+ |            |Revenue     | $123,456| $195,468| $151,477|$1,969,201|
+ +------------------------------------------------------------------+
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>By using the Output Delivery System (ODS), you can highlight the <code>Revenue</code> 
+        rows and certain values of <code>Deplaned</code>. You can control fonts 
+        and colors, embed GIF images, and even change cell appearance according 
+        to cell values.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" border="0" width="20" height="20"
+	    hspace="10" alt="Note:"></td>
+      <td width="100%">To see the full range of colors in the tables in this lesson, 
+        your computer must have a 16-bit or better display. If you have an 8-bit 
+        (256 color) display, some colors will not appear as described.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table align="center" cellspacing="1" rules="NONE" frame="VOID" border="0"
+  width="100%" cellpadding="1">
+    <tr> 
+      <td align="center"><b><i><font face="serif" size="4" color="brown">LaGuardia 
+        Flights by Destination</font></i></b></td>
+    </tr>
+    <tr> 
+      <td align="center"><b><i><font face="serif" size="4" color="brown">and Revenue, 
+        March 4-10</font></i></b></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table align="center" cellspacing="1" rules="GROUPS" frame="BOX" border="1"
+  cellpadding="2" bgcolor="#FFFFF0" bordercolor="#000000" title="ODS HTML output">
+    <thead> 
+    <tr valign="bottom"> 
+      <td colspan="2" bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b>&nbsp;</b></font></td>
+      <td align=CENTER bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b><i>Min</i></b></font></td>
+      <td align=CENTER bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b><i>Max</i></b></font></td>
+      <td align=CENTER bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b><i>Mean</i></b></font></td>
+      <td align=CENTER bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b><i>Sum</i></b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b><i>Destination</i></b></font></td>
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b><i>&nbsp;</i></b></font></td>
+      <td rowspan=2 align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">81</font></td>
+      <td rowspan=2 align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">154</font></td>
+      <td rowspan=2 align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">131</font></td>
+      <td rowspan=2 align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">786</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td rowspan=4 bgcolor="#BBDDCC"> 
+        <div> <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> <b>Copenhagen</b></font> 
+          <p> <img src="images/denmark.gif" alt="Flag of Denmark" width="96" height="64"> 
+        </div>
+      </td>
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Boarded</b></font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Transferred</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">5</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">21</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">13</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">75</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Deplaned</b></font></td>
+      <td title="LOW traffic. Cut flights?" align=RIGHT bgcolor="#E599A7"><font
+	      face="Arial, Helvetica, Helv" size="2" color="#000000">103</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">177</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">147</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">881</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#BBDDCC"><font face="Arial, Helvetica, Helv" size="3" color="#000000"><b>Revenue</b></font></td>
+      <td align=RIGHT bgcolor="#BBDDCC"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b> 109,885</b></font></td>
+      <td align=RIGHT bgcolor="#BBDDCC"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b> 196,540</b></font></td>
+      <td align=RIGHT bgcolor="#BBDDCC"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b> 139,951</b></font></td>
+      <td align=RIGHT bgcolor="#BBDDCC"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b> 839,705</b></font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td rowspan=4 bgcolor="#AACCBB"> 
+        <div> <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> <b>Frankfurt</b></font> 
+          <p> <img src="images/germany.gif" alt="Flag of Germany" width="96" height="64"> 
+        </div>
+      </td>
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Boarded</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">129</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">210</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">170</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">1,190</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Transferred</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">5</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">22</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">13</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">91</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Deplaned</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">147</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">237</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">188</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">1,314</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#AACCBB"><font face="Arial, Helvetica, Helv" size="3" color="#000000"><b>Revenue</b></font></td>
+      <td align=RIGHT bgcolor="#AACCBB"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>100,987</b></font></td>
+      <td align=RIGHT bgcolor="#AACCBB"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>187,636</b></font></td>
+      <td align=RIGHT bgcolor="#AACCBB"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>142,912</b></font></td>
+      <td align=RIGHT bgcolor="#AACCBB"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>1,000,382</b></font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td rowspan=4 bgcolor="#99BBAA"> 
+        <div> <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> <b>London</b></font> 
+          <p> <img src="images/uk.gif" alt="Flag of UK" width="96" height="64"> 
+        </div>
+      </td>
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Boarded</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">151</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">241</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">188</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">3,760</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Transferred</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">4</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">18</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">11</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">227</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Deplaned</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">114</font></td>
+      <td title="HIGH traffic. Add flights?" align=RIGHT bgcolor="#C0A8E5"><font
+	      face="Arial, Helvetica, Helv" size="2" color="#000000">250</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">199</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">3,987</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#99BBAA"><font face="Arial, Helvetica, Helv" size="3" color="#000000"><b>Revenue</b></font></td>
+      <td align=RIGHT bgcolor="#99BBAA"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>106,753</b></font></td>
+      <td align=RIGHT bgcolor="#99BBAA"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>198,744</b></font></td>
+      <td align=RIGHT bgcolor="#99BBAA"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>159,478</b></font></td>
+      <td align=RIGHT bgcolor="#99BBAA"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>3,189,554</b></font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td rowspan=4 bgcolor="#88AA99"> 
+        <div> <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> <b>Paris</b></font> 
+          <p> <img src="images/france.gif" alt="Flag of France" width="96" height="64"> 
+        </div>
+      </td>
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Boarded</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">146</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">182</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">161</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">2,089</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Transferred</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">7</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">29</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">16</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">204</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Deplaned</b></font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">153</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">227</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">183</font></td>
+      <td align=RIGHT bgcolor="#E8EDD5"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">2,378</font></td>
+    </tr>
+    <tr valign="bottom"> 
+      <td bgcolor="#88AA99"><font face="Arial, Helvetica, Helv" size="3" color="#000000"><b>Revenue</b></font></td>
+      <td align=RIGHT bgcolor="#88AA99"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>123,456</b></font></td>
+      <td align=RIGHT bgcolor="#88AA99"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>195,468</b></font></td>
+      <td align=RIGHT bgcolor="#88AA99"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>151,477</b></font></td>
+      <td align=RIGHT bgcolor="#88AA99"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000"><b>1,969,201</b></font></td>
+    </tr>
+    </tbody> 
+  </table>
+    <br>
+    <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>This table is the same as the first one. This version, however, uses 
+          color to draw your attention to specific items within the data. In addition, 
+          the pink and purple cells contain short notes, which Internet Explorer 
+          users can read by briefly holding the mouse pointer above the cells. 
+          This lesson leads you step by step through the process of creating the 
+          table that you see above.</td>
+    </tr>
+  </table>
+    
+    <br>
+	 <div id="le1_eg1" class="eg_div">
+	<table cellpadding=0 cellspacing=0 border=1 width="85%"><tr><td><table cellpadding=2 cellspacing=0 border=0><tr valign="Top"> 
+<td width="24" bgcolor="#ffffcc"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:" border="0"></td>
+<td align="left" bgcolor="#FFFFcc">By default, all code you submit to SAS with Enterprise Guide has ODS statements included to create 
+HTML output. You <strong>must</strong> <a href="JavaScript: openOther('../linklib/eg_ods.htm')">set options</a> in SAS Enterprise
+Guide before you can do the practices in this lesson.</td></tr></table></td></tr></table><br><br>
+	 </div>
+	 	 <div id="le2_eg2" class="eg_div">
+	<table cellpadding=0 cellspacing=0 border=1 width="85%"><tr><td><table cellpadding=2 cellspacing=0 border=0><tr valign="Top"> 
+<td width="24" bgcolor="#ffffcc"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:" border="0"></td>
+<td align="left" bgcolor="#FFFFcc">By default, all code you submit to SAS with Enterprise Guide has ODS statements included to create 
+HTML output. You <strong>must</strong> <a href="JavaScript: openOther('../linklib/eg2_ods.htm')">set options</a> in SAS Enterprise
+Guide before you can do the practices in this lesson.</td></tr></table></td></tr></table><br><br>
+	 </div>
+	 <div id="eg3_v89_v91" class="eg_div"></div>
+  </center>
+<!-- InstanceEndEditable -->
+  <!-- InstanceBeginEditable name="overview_graphic" -->
+
+<!-- InstanceEndEditable -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewTimeToComplete)</script></h2>
+      <!-- InstanceBeginEditable name="time_to_complete" -->This lesson contains 
+        <script>document.write(eval(myModule))</script>
+        pages and takes approximately 1.5 hours to complete.<!-- InstanceEndEditable -->
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewObjectives)</script></h2>
+      <!-- InstanceBeginEditable name="objectives" --> 
+      <p>In this lesson, you learn to </p>
+      <ul>
+        <li> apply the STYLE= option to table elements 
+        <li> apply colors to table cells 
+        <li> apply style attributes to multiple cells 
+        <li> change the appearance of text 
+        <li> apply conditional styles to cells (trafficlighting) 
+        <li> add fly-over text to values 
+        <li> include HTML tags directly in SAS statements
+        <li> embed images in table cells.
+      </ul>
+      <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewPrerequisites)</script></h2>
+      <!-- InstanceBeginEditable name="prerequisites_leadin" -->Before taking 
+        this lesson, you should be familiar with the concept and syntax of HTML 
+        tags. You should also complete the following lessons:<!-- InstanceEndEditable -->
+      <ul><!-- InstanceBeginEditable name="prerequisites" --> 
+          <li><strong><script>document.write(m1title);</script></strong></li>
+          <li><strong><script>document.write(m3title);</script></strong></li>
+          <li><strong><script>document.write(m16title);</script></strong></li>
+          <li><strong><script>document.write(m2title);</script></strong></li>
+          <li><strong><script>document.write(m4title);</script></strong></li>
+          <li><strong><script>document.write(m12title);</script></strong></li>
+          <li><strong><script>document.write(m22title);</script></strong></li>
+          <li><strong><script>document.write(m31title);</script></strong></li>
+          <li><strong><script>document.write(m40title);</script></strong></li>
+          <li><strong><script>document.write(m18title);</script></strong></li>
+          <li><strong><script>document.write(m5title);</script></strong>.</li>
+          <!-- InstanceEndEditable -->
+      </ul>
+    </td>
+  </tr>
+</table>
+
+  <br>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

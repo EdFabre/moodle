@@ -1,0 +1,274 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_4.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 1;
+
+salute  = "<strong>Correct.</strong><p>";
+
+correct = "To overlay the common columns, as shown, the PROC SQL outer join must " +
+          "use the COALESCE function with the qualified column names of the " +
+          "same-named columns as arguments. ";
+
+choice1 = salute + correct;
+
+choice2 = "<strong>Incorrect.</strong><p>"+
+          "The COALESCE function does not specify the correct arguments. " +
+          "" +
+          "";
+
+choice3 = "<strong>Incorrect.</strong><p>"+
+          "The PROC SQL query that you selected will display only one ID column that " +
+          "contains ID values from <strong>only the first table</strong>. Instead, the ID columns " +
+          "from the two tables need to be overlaid.";
+
+choice4 = "<strong>Incorrect.</strong><p>"+
+          "The PROC SQL query that you selected will display <strong>all</strong> " +
+          "columns from <strong>both</strong> tables, so the output will contain " +
+          "<strong>two</strong> ID columns. Instead, the ID columns from the two tables need to be overlaid.";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing SQL Joins and DATA Step Match-Merges<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+ <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>Shown below are a DATA step match-merge and PRINT step, along with 
+            the two tables that are being combined, and the output.</p>
+          <table border="0" align="center" cellspacing="10">
+            <tr> 
+              <td valign="top"> <pre><font color="#003399">data merged;
+   merge names ages;
+   by id;
+run;
+
+proc print data=merged noobs;
+   title 'Table Merged';
+run;</font></pre></td>
+              <td align="center" valign="top">Names<br> 
+                <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+                  <thead>
+                    <tr align="center" valign="top"> 
+                      <td width="40" align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+                      <td width="40" align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FName</b></font></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">01</font></td>
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Fred</font></td>
+                    </tr>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">02</font></td>
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Juan</font></td>
+                    </tr>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">06</font></td>
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Dionne</font></td>
+                    </tr>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">08</font></td>
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Leslie</font></td>
+                    </tr>
+                  </tbody>
+                </table></td>
+              <td align="center" valign="top">Ages<br> 
+                <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+                  <thead>
+                    <tr align="center" valign="top"> 
+                      <td width="40" align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+                      <td width="40" align="right" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Age</b></font></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">03</font></td>
+                      <td align=right bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">7</font></td>
+                    </tr>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">04</font></td>
+                      <td align=right bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">24</font></td>
+                    </tr>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">06</font></td>
+                      <td align=right bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">50</font></td>
+                    </tr>
+                    <tr valign="top"> 
+                      <td align=left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">07</font></td>
+                      <td align=right bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">33</font></td>
+                    </tr>
+                  </tbody>
+                </table></td>
+            </tr>
+          </table>
+            
+          <table border="0" align="center" cellspacing="10">
+            <tr> 
+              <td align="center" valign="top"> <font color="#002288" size="4"  face="Arial, Helvetica, Helv"><b><i>Table 
+                Merged </i></b></font> 
+                <p> 
+                <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+                  <thead>
+                    <TR align="center" valign="top"> 
+                      <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>ID</b></font></TD>
+                      <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FName</b></font></TD>
+                      <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Age</b></font></TD>
+                    </TR>
+                  </thead>
+                  <tbody>
+                    <TR align="center" valign="top"> 
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">01</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Fred</font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2"><strong>. 
+                        </strong></font></TD>
+                    </TR>
+                    <TR align="center" valign="top"> 
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">02</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Juan</font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2"><strong>.</strong></font></TD>
+                    </TR>
+                    <TR align="center" valign="top"> 
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">03</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp; 
+                        </font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">7</font></TD>
+                    </TR>
+                    <TR align="center" valign="top"> 
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">04</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp;</font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">24</font></TD>
+                    </TR>
+                    <TR align="center" valign="top"> 
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">06</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Dionne</font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">50</font></TD>
+                    </TR>
+                    <TR align="center" valign="top"> 
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">07</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">&nbsp;</font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">33</font></TD>
+                    </TR>
+                    <TR align="center" valign="top"> 
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">08</font></TD>
+                      <TD align="left" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Leslie</font></TD>
+                      <TD align="right" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2"><strong>.</strong></font></TD>
+                    </TR>
+                  </tbody>
+                </TABLE></td>
+            </tr>
+          </table>
+          <br>
+          <p> Select the PROC SQL full join that will generate the <strong>identical</strong> 
+            output.<br>
+            &nbsp;</p>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" -->
+          <pre><font color="#003399">proc sql;
+title 'Table Merged';
+   select coalesce(names.id, ages.id)
+          as ID, fname,  age
+      from names full join ages
+      on names.id = ages.id
+      order by id;</font></pre>
+<!-- InstanceEndEditable --></td>
+        <td rowspan="4"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" --> 
+          <pre><font color="#003399">proc sql;
+title 'Table Merged';
+   select coalesce(id)
+          as ID, fname,  age
+      from names full join ages
+      on names.id = ages.id
+      order by id;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" -->
+          <pre><font color="#003399">proc sql;
+title 'Table Merged';
+   select names.id, fname,  age
+      from names full join ages
+      on names.id = ages.id
+      order by id;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value4" onClick="openAnswer(choice4)">
+         </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice4" -->
+          <pre><font color="#003399">proc sql;
+title 'Table Merged';
+   select *
+      from names full join ages
+      on names.id = ages.id
+      order by id;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr> 
+        <td colspan="3"> 
+         <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

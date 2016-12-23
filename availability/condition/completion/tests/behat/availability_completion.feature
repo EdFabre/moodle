@@ -16,9 +16,11 @@ Feature: availability_completion
       | user     | course | role           |
       | teacher1 | C1     | editingteacher |
       | student1 | C1     | student        |
-    And the following config values are set as admin:
-      | enableavailability  | 1 |
-      | enablecompletion | 1 |
+    And I log in as "admin"
+    And I set the following administration settings values:
+      | Enable conditional access  | 1 |
+      | Enable completion tracking | 1 |
+    And I log out
 
   @javascript
   Scenario: Test condition

@@ -1,0 +1,117 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Parameters<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Macros That Include Keyword Parameters</h2> 
+
+        <P>You can also include <strong>keyword parameters</strong> in a macro definition. 
+          Like positional parameters, keyword parameters create macro variables. 
+          However, when you use keyword parameters to create macro variables, 
+          you list both the name and the value of each macro variable in the macro 
+          definition. 
+        <P>Keyword parameters can be listed in any order. Whatever value you assign 
+          to each parameter (or variable) in the <nobr>%MACRO</nobr> statement 
+          becomes its default value. Null values are allowed. 
+      </td></tr></table><P><BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, a macro definition with keyword parameters">
+    <tr> 
+      <td align="left"><STRONG>General form, macro definition that includes keyword parameters:</STRONG>
+	  <BLOCKQUOTE>
+	    <dl><dt><nobr><FONT COLOR="#003399"><STRONG>%MACRO </STRONG> <em>macro-name</em>(<em>keyword-1=&lt;value-1&gt;&lt;,...,keyword-n=&lt;value-n&gt;&gt;</em>);</FONT></nobr></dt>
+		    <dd><font color="#003399"><em>text</em></font></dd>
+	<dt><font color="#003399"><strong>%MEND</strong> <<em>macro-name</em>>;</font></dt></dl>
+	  </BLOCKQUOTE>
+	 where <font color="#003399"><em>keyword-1=&lt;value-1&gt;</em>&lt;<em>,...,keyword-n=&lt;value-n&gt;</em>&gt;</font> 
+        names one or more macro parameters followed by equal signs. Optionally, 
+        you can specify default values after the equal signs. If you omit a default 
+        value, the keyword parameter has a null value.</td>
+    </tr>
+  </table>
+
+<p><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> When you <strong>call</strong> a macro whose definition includes keyword 
+        parameters, you specify both the keyword and the value for each parameter, 
+        in any order. If you omit<strong> </strong>a keyword parameter from the 
+        macro call, the keyword variable retains its default value, as follows:<font color="#003399"> 
+        <pre>    %<em>macro-name</em>(<em>keyword-1=value-1&lt;,...,keyword-n=value-n&gt;</em>)
+</pre>
+        </font> 
+        <p><br><strong>Example</strong>
+        <P> You can use keyword parameters to create the macro variables <code>dsn</code> 
+          and <code>vars</code> in the <strong>Printdsn</strong> macro. This example 
+          assigns a default value of <em>sasuser.courses</em> to the macro variable 
+          <code>dsn</code> and assigns a default value of <em>course_code course_title 
+          days</em> to the macro variable <code>vars</code>:<font color="#003399"> 
+        <pre>     %macro printdsn<strong>(dsn=sasuser.courses,vars=course_code 
+                    course_title days)</strong>;
+        proc print data=&dsn;
+           var &vars;
+        title "Listing of %upcase(&dsn) data set";
+        run;
+     %mend;</pre>
+        </font>To invoke the <strong>Printdsn</strong> macro with a value of <em>sasuser.schedule</em> 
+        for <code>dsn</code> and a value of <em>teacher course_title begin_date</em> 
+        for <code>vars</code>, you would issue the following call: <font color="#003399"> 
+        <pre>     %printdsn(dsn=sasuser.schedule, vars=teacher 
+              course_code begin_date)</pre>
+        </font>
+<P>To call the <strong>Printdsn</strong> macro with default values for the parameters 
+          (<em>sasuser.courses</em> as the value for <code>dsn</code> and <em>course_code</em> 
+          <em>course_title days</em> as the value for <code>vars</code>), you 
+          could issue the following call: <font color="#003399"><pre>     %printdsn()</pre></font>
+
+<table cellpadding="2">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+            <td>To call the macro <strong>Printdsn</strong> with default values 
+              for the parameters, you could also issue a macro call that specified 
+              these values explicitly, as follows:<font color="#003399"> 
+              <pre>%printdsn(dsn=sasuser.courses,vars=course_code 
+          course_title days)</pre>
+              </font> </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

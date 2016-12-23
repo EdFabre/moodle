@@ -1,0 +1,261 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Rows by Using Conditional Operators<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><font size="3" color="#003399"><strong></strong></font> <h2>Using the 
+          LIKE Operator to Select a Pattern</h2>
+        To select rows that have values that match a specific <strong>pattern</strong> 
+        of characters rather than a fixed character string, use the <strong>LIKE</strong> 
+        operator. For example, using the LIKE operator, you can select all rows 
+        in which the <code>LastName</code> value starts with <em>H</em>. (If you 
+        wanted to select all rows in which the last name contains the string <em>HAR</em>, 
+        you would use the CONTAINS operator.)</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, LIKE operator">
+    <tr> 
+      <td align="left"><strong>General form, LIKE operator:</strong> <blockquote> 
+          <font color="#003399"><nobr><em>column</em> <strong>LIKE</strong> <em>'pattern'</em></nobr></font> 
+        </blockquote>
+        <p> where </p>
+        <ul>
+          <li><font color="#003399"><em>column</em></font> specifies the column 
+            name <br>
+            <br>
+          
+          <li> <font color="#003399"><em>pattern</em></font> specifies the pattern 
+            to be matched and contains one or both of the special characters underscore 
+            (&nbsp;<strong>_</strong>&nbsp;) and percent sign (<strong>%</strong>). 
+            The entire pattern must be enclosed in quotation marks and matching 
+            is case sensitive. </ul></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>When you use the LIKE operator in a query, PROC SQL uses pattern 
+          matching to compare each value in the specified column with the pattern 
+          that you specify using the LIKE operator in the WHERE clause. The query 
+          output displays all rows in which there is a match.</p>
+        <p>You specify a pattern using one or both of the special characters shown 
+          below.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Special Characters with LIKE Operator">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th nowrap><font size="-1">Special Character</font></th>
+      <th nowrap><font size="-1"> Represents</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td>underscore ( <strong>_</strong> )</td>
+      <td> any single character</td>
+    </tr>
+    <tr valign="top"> 
+      <td height="26">percent sign (<strong>%</strong>)</td>
+      <td> any sequence of zero or more characters</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The underscore (<strong>_</strong>) and percent sign (<strong>%</strong>) 
+        are sometimes referred to as wildcard characters.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Specifying a Pattern</h2>
+        <p>To specify a pattern, combine one or both of the special characters 
+          with any other characters that you want to match. The special characters 
+          can appear before, after, or on both sides of other characters. </p>
+        <p>Let's look at how the special characters can be combined to specify 
+          a pattern. Suppose you are working with a table column that contains 
+          the following list of names:</p>
+        <blockquote><strong>Diana <br>
+          Diane <br>
+          Dianna <br>
+          Dianthus <br>
+          Dyan</strong></blockquote>
+        <p>Here are several different patterns that you can use to select one 
+          or more of the names from the list. Each pattern uses one or both of 
+          the special characters. </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Patterns with LIKE Operator">
+    <tr bgcolor="#F7F7DE"> 
+      <th nowrap><font size="-1">LIKE Pattern</font></th>
+      <th nowrap><font size="-1">Name(s) Selected</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">LIKE 'D_an'</font></pre></td>
+      <td>Dyan</td>
+    </tr>
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">LIKE 'D_an_'</font></pre></td>
+      <td>Diana, Diane </td>
+    </tr>
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">LIKE 'D_an__'</font></pre></td>
+      <td>Dianna</td>
+    </tr>
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">LIKE 'D_an%'</font></pre></td>
+      <td>all names from the list </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>The following PROC SQL query uses the LIKE operator to find all frequent-flyer 
+          club members whose street name begins with <em>P</em> and ends with 
+          the word <em>PLACE</em>. The following PROC SQL step performs this query:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre>     <font color="#003399">proc sql;
+        select ffid, name, address
+           from sasuser.frequentflyers
+           where address <strong>like '% P%PLACE'</strong>;</font></pre> </td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>The pattern <strong>'% P%PLACE'</strong> specifies the following 
+          sequence: </p>
+        <ul>
+          <li>any number of characters (<strong>%</strong>)</li>
+          <li> a space</li>
+          <li>the letter <em>P</em></li>
+          <li>any number of characters (<strong>%</strong>)</li>
+          <li>the word <em>PLACE</em>.</li>
+        </ul>
+        <p>Here are the results of this query.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+      <thead>
+        <TR> 
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FFID</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Name</b></font></TD>
+          <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Address</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD8375</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">COOPER, 
+            ANTHONY</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12 
+            PIEDPIPER PLACE</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD6271</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">MORGAN, 
+            GEORGE</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">39 
+            PEPPER PLACE</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD6184</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">STARR, 
+            WILLIAM</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12 
+            PINEY PLACE</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD2118</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JOHNSON, 
+            ANTHONY</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">78 
+            PIPER PLACE</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD3827</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">KING, 
+            WILLIAM</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14 
+            PICTURE PLACE</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD8789</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">HOWARD, 
+            LEONARD</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">45 
+            PECAN PLACE</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD6169</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WILDER, 
+            NEIL</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">78 
+            PUMPKIN PLACE</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD8667</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">YOUNG, 
+            DEBORAH</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">53 
+            PINE PLACE</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WD5687</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">EDWARDS, 
+            JENNIFER</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">3 
+            PEGBOARD PLACE</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    </font> 
+  </CENTER>
+  <p> <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -66,17 +66,7 @@ if ($fileuploaddisabled) {
 
 // check the user can manage his own files (can upload)
 $context = context_user::instance($USER->id);
-
-// Allow allways to upload files to the draft area, no matter if the user can't manage his own files.
-// Files required by other webservices (like mod_assign ones) must be uploaded to the draft area.
-if ($filearea === 'private') {
-    require_capability('moodle/user:manageownfiles', $context);
-}
-
-if ($filearea !== 'private' and $filearea !== 'draft') {
-    // Do not dare to allow more areas here!
-    throw new file_exception('error');
-}
+require_capability('moodle/user:manageownfiles', $context);
 
 $fs = get_file_storage();
 

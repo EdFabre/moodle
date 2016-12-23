@@ -1,0 +1,106 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Handling 
+      Large Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using the TAGSORT Option</h2>
+        You can also use the <strong>TAGSORT option</strong> to sort a large data 
+        set. The TAGSORT option stores only the BY variables and the observation 
+        numbers in temporary files. The BY variables and the observation numbers 
+        are called <strong>tags</strong>. At the completion of the sorting process, 
+        PROC SORT uses the tags to retrieve records from the input data set in 
+        sorted order. </td>
+    </tr>
+  </table>
+  <p><br> 
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, SORT procedure with the TAGSORT option">
+    <tr> 
+      <td align="left"><strong>General form, SORT procedure with the TAGSORT option:</strong> 
+        <blockquote> <font color="#003399"><strong>PROC SORT</strong> <strong>DATA=</strong><em>SAS-data-set-name 
+          </em><strong>TAGSORT;</strong></font> </blockquote>
+        where <font color="#003399"><em>SAS-data-set-name</em></font> is a valid 
+        SAS data set name. </td>
+    </tr>
+  </table>
+  <p><br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>When the total length of the BY variables is small compared to the 
+          record length, TAGSORT reduces temporary disk usage considerably because 
+          sorting just the BY variables means sorting much less data. However, 
+          processing time is usually higher than if a regular sort is used because 
+          TAGSORT increases CPU time and I/O usage in order to save memory and 
+          disk space. TAGSORT</p>
+        <ul>
+          <li>uses significantly more CPU time and I/O than a regular sort if 
+            the data is extremely out of order with regard to the BY variables</li>
+          <li>uses slightly more CPU time and I/O than a regular sort if the data 
+            is mostly in order with regard to the BY variables.</li>
+        </ul>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <h2>Example</h2>
+        <p>In the following program, only the BY variables, <code>Customer_ID</code> 
+          and <code>Order_Date</code>, and the tags are stored in temporary files 
+          within the sort workspace. SAS then</p>
+        <ul>
+          <li>sorts the temporary files</li>
+          <li>uses the tags to retrieve the observations from the original data 
+            set</li>
+          <li>re-creates the sorted data set.</li>
+        </ul>
+        <pre><font color="#003399">     proc sort data=company.orders <strong>tagsort</strong>;
+        by customer_id order_date;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <p><font color="#FF0000"><img src="images/m84_28g1.gif" alt="TAGSORT Option" width="380" height="158"></font></p>
+  <p><font color="#FF0000"><img src="images/m84_28g2.gif" alt="TAGSORT Option" width="380" height="158"></font></p>
+  <p> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">The TAGSORT option is not supported by the threaded sort.</td>
+    </tr>
+  </table>
+  <p>&nbsp; <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

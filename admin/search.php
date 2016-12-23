@@ -22,6 +22,7 @@ if ($data = data_submitted() and confirm_sesskey()) {
     if (admin_write_settings($data)) {
         $statusmsg = get_string('changessaved');
     }
+    $adminroot = admin_get_root(true); //reload tree
 
     if (!empty($adminroot->errors)) {
         $errormsg = get_string('errorwithsettings', 'admin');
@@ -43,11 +44,10 @@ if ($errormsg !== '') {
 
 $resultshtml = admin_search_settings_html($query); // case insensitive search only
 
-echo '<form action="' . $PAGE->url->out(true) . '" method="post" id="adminsettings">';
+echo '<form action="search.php" method="post" id="adminsettings">';
 echo '<div>';
 echo '<input type="hidden" name="sesskey" value="'.sesskey().'" />';
-// HACK to prevent browsers from automatically inserting the user's password into the wrong fields.
-echo prevent_form_autofill_password();
+echo '<input type="hidden" name="query" value="'.s($query).'" />';
 echo '</div>';
 echo '<fieldset>';
 echo '<div class="clearer"><!-- --></div>';

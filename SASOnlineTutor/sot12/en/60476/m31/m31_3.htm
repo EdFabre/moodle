@@ -1,0 +1,108 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Invoking 
+      PROC FORMAT<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>To begin a PROC FORMAT step, you use a PROC FORMAT statement.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC FORMAT statement">
+    <tr> 
+      <td><strong>General form, PROC FORMAT statement:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>PROC FORMAT</strong> 
+          &lt;<em>options&gt;</em><strong>;</strong></nobr></font> </blockquote>
+        <p> where <font color="#003399"><em>options</em></font> include 
+        <ul>
+          <li> <strong>LIBRARY=</strong><em>libref</em> specifies the libref for 
+            a SAS data library that contains a permanent catalog in which user-defined 
+            formats are stored 
+          <li> <strong>FMTLIB</strong> prints the contents of a format catalog. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Any time you use PROC FORMAT to create a format, the format is stored 
+        in a format catalog. If the SAS data library does not already contain 
+        a format catalog, SAS automatically creates one. If you do not 
+        specify the LIBRARY= option, the formats are stored in a default format 
+        catalog named <strong>Work.Formats</strong>. 
+          <p> As the libref <strong>Work</strong> implies, any format that is 
+            stored in <strong>Work.Formats</strong> is a temporary format that 
+            exists only for the current SAS session. At the end of the current 
+            session, the catalog is erased. 
+          <p> <br>
+          <strong>Permanently Storing Your Formats</strong> 
+        <p> You can store your formats in a <strong>permanent format catalog named 
+          Formats</strong> when you specify the LIBRARY= option in the PROC FORMAT 
+          statement. <br>
+          <br>
+          <font color="#003399"><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;PROC 
+          FORMAT LIBRARY=</strong><em>libref</em><strong>;</strong></font> 
+        <p> But first, you need a LIBNAME statement that associates the libref 
+          with the permanent SAS data library in which the format catalog is to 
+          be stored. It is recommended, but not required, that you use the word 
+          <strong>Library</strong> as the libref when creating your own permanent 
+          formats. 
+        <pre><font color="#003399">     libname library 'c:\sas\formats\lib';</font>
+</pre>
+        <pre><font color="#003399">     libname library 'c:\data\setup\library';</font>
+</pre>
+        <pre><font color="#003399">     libname library 'c:\sales\ancillary\libset';</font>
+</pre>
+        <p> When you associate a permanent format with a variable in a subsequent 
+          DATA or PROC step, you would then use the Library libref to reference 
+          the location of the format catalog. 
+        <p> We'll discuss the use of permanent user-defined formats later, after 
+          you learn how to create them. 
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,109 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Updating 
+      Values in Existing Table Rows<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>To modify data values in some or all of the existing rows in a table, 
+          you use the <strong>UPDATE statement</strong> in PROC SQL. In the UPDATE 
+          statement, for each column whose rows you want to modify, you specify 
+          an <strong>expression</strong> that indicates how the values should 
+          be modified. For example, the following expression indicates that the 
+          values for the column <code>Units</code> should be multiplied by 4:</p>
+        <pre>     <font color="#003399">units=units*4</font></pre>
+        <p>You can use the UPDATE statement in two main ways.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Methods of Updating Existing Rows in a Table by Using SQL">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th width="46%"><font size="-1">Method of Updating Table</font></th>
+      <th width="54%"><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td>update all (or a subset of) rows in a column with the <strong>same expression</strong></td>
+      <td> <pre><font color="#003399">proc sql;
+   <strong>update</strong> work.payrollmaster_new
+      set salary=salary*1.05
+      where jobcode like '__1';</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td>update different rows in a column with <strong>different expressions</strong><em></em></td>
+      <td> <pre><font color="#003399">proc sql;
+   <strong>update</strong> work.payrollmaster_new 
+      set salary=salary*
+         case when substr(jobcode,3,1)='1'
+                 then 1.05
+              when substr(jobcode,3,1)='2'
+                 then 1.10
+              when substr(jobcode,3,1)='3'
+                 then 1.15
+              else 1.08
+         end;</font></pre></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>The UPDATE statement does <strong>not</strong> insert 
+          new rows into the table. To insert rows, you must use the INSERT statement.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>You can also use the UPDATE statement to update existing 
+          values in a table that underlies a PROC SQL view. For details, see the 
+          lesson 
+          <!--lesson reference-->
+          <strong> 
+          <script>document.write(m75title);</script></strong>.</p></td>
+    </tr>
+  </table>
+  <br>
+  <p>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Let's look at each of these methods of updating existing rows in 
+          a table.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

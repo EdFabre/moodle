@@ -1,0 +1,126 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Inserting 
+      Rows of Data into a Table<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>After you have created an empty table, you'll want to insert rows 
+          of data. You might also want to insert additional rows of data into 
+          tables that already contain data. You can use the <strong> INSERT statement</strong> 
+          in three different ways to insert rows of data into existing tables, 
+          either empty or populated.<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You can also use the INSERT statement to insert rows of 
+        data in a single table that underlies a PROC SQL view. To learn more about 
+        PROC SQL views, see the lesson 
+        <!--lesson reference-->
+        <strong> 
+        <script>document.write(m75title);</script>. </strong></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Methods of Inserting Rows of Data into Tables by Using SQL">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th width="46%"><font size="-1">Method of Inserting Row</font></th>
+      <th width="54%"><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td>insert <strong> values by column name</strong> by using the <strong>SET 
+        clause</strong><em></em></td>
+      <td> <pre><font color="#003399">proc sql;
+   <strong>insert</strong> into work.discount
+      <strong>set</strong> destination='LHR',
+          begindate='01MAR2000'd,
+          enddate='05MAR2000'd,
+          discount=.33
+      <strong>set</strong> destination='CPH',
+          begindate='03MAR2000'd,
+          enddate='10MAR2000'd,
+          discount=.15;</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td>insert <strong>lists of values</strong> by using the <strong>VALUES 
+        clause</strong></td>
+      <td> <pre><font color="#003399">proc sql;
+   <strong>insert</strong> into work.discount (destination, 
+          begindate,enddate,discount)
+      <strong>values</strong> ('LHR','01MAR2000'd, 
+             '05MAR2000'd,.33)
+      <strong>values</strong> ('CPH','03MAR2000'd,
+             '10MAR2000'd,.15);</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td>insert rows that are copied from another table <strong>by using a query 
+        result</strong><em></em></td>
+      <td> <pre><font color="#003399">proc sql; 
+   <strong>insert</strong> into payrollchanges2
+      <strong>select</strong> empid,salary,dateofhire
+         <strong>from</strong> sasuser.payrollmaster
+         <strong>where</strong> empid in ('1919','1350','1401');</font></pre></td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>In each method, the INSERT statement inserts new rows into the table, 
+        then adds data to the rows. To indicate that the rows have been inserted, 
+        the SAS log displays a message similar to the following.</td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: 1 row was inserted into WORK.DISCOUNT.</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> Let's see how to use each of these methods to insert rows of 
+        data into a table.</td>
+    </tr>
+  </table>
+  <p><br><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

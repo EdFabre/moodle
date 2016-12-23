@@ -1,0 +1,73 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Using 
+      an Index to Combine Data</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Using 
+      an Index to Combine Data<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <ol>
+	<li>This animation shows the execution of a DATA step that uses two SET 
+      statements to combine data from two input data sets (<strong>Sasuser.Sale2000</strong> and <strong>Sasuser.Dnunder</strong>) 
+	  into one output data 
+      set (<strong>Work.Profit</strong>). The DATA step also uses an index on the larger of the two input data 
+      sets, which is <strong>Sasuser.Sale2000</strong>, to find matching observations.
+	  <font color="#003399">
+          <pre>data work.profit;
+   set sasuser.dnunder;
+   set sasuser.sale2000(keep=routeid flightid date rev1st
+                        revbusiness revecon revcargo)
+                        key=flightdate;
+   Profit=sum(rev1st, revbusiness, revecon, revcargo, 
+             -expenses);
+run;</pre>
+          </font>
+            
+      <li>SAS sets up the new data set by reading the descriptor portions of 
+        the input data sets and creating the PDV.<br><br>
+      <li> The first SET statement executes. SAS reads the first observation 
+        in <strong>Sasuser.Dnunder</strong> and records the values in the PDV. <br><br>
+      <li> When the second SET statement executes, the KEY= option causes SAS 
+        to use the <strong>Flightdate</strong> index to directly access the observation in <strong>Sasuser.Sale2000</strong> 
+        that has values for <code>FlightID</code> and <code>Date</code> that match the values already in 
+        the PDV. SAS reads the observation and records the values to the PDV.<br><br>
+      <li> SAS calculates the value for <code>Profit</code> and records it in the PDV. Then, 
+        SAS writes the values from the PDV to the output data set.<br><br>
+      <li> The DATA step continues to iterate. Only the variable <code>Profit</code> is reinitialized 
+        to missing. SAS reads the second observation in <strong>Sasuser.Dnunder</strong> and records 
+        the values in the PDV, overwriting the values that have been retained.<br><br>
+      <li>SAS uses the <strong>Flightdate</strong> index to find a matching observation in <strong>Sasuser.Sale2000</strong>.
+        Then, SAS records the values from that observation in the PDV, overwriting 
+        the values that have been retained. A new value for <code>Profit</code> is calculated 
+        and recorded, and the values are written to the output data set. <br>
+      <br>
+	  <li>The DATA step continues to iterate until all observations have been read from <strong>Sasuser.Dnunder</strong>.
+	  </ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

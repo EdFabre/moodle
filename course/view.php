@@ -94,9 +94,6 @@
 
     require_once($CFG->dirroot.'/calendar/lib.php');    /// This is after login because it needs $USER
 
-    // Must set layout before gettting section info. See MDL-47555.
-    $PAGE->set_pagelayout('course');
-
     if ($section and $section > 0) {
 
         // Get section details and check it exists.
@@ -115,6 +112,7 @@
     // Fix course format if it is no longer installed
     $course->format = course_get_format($course)->get_format();
 
+    $PAGE->set_pagelayout('course');
     $PAGE->set_pagetype('course-view-' . $course->format);
     $PAGE->set_other_editing_capability('moodle/course:update');
     $PAGE->set_other_editing_capability('moodle/course:manageactivities');

@@ -1,0 +1,489 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Manipulating 
+      SAS Date Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><STRONG>MDY Function</STRONG> </p>
+      <P> The <STRONG>MDY</STRONG> function creates a SAS date value from numeric 
+        values that represent the month, day, and year. For example, suppose the 
+        data set <STRONG>Hrd.Temp</STRONG> contains the employee start date in 
+        three&nbsp;numeric variables, <CODE>Month</CODE>, <CODE>Day</CODE>, and 
+        <CODE>Year</CODE>. </td>
+  </tr>
+</table>
+<P align="center"> <BR>
+  SAS Data Set Hrd.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>State</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Zip</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Month</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Day</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>PayRate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Days</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Hours</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6224549</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>1</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>12</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>2000</STRONG></font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">88</font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6223251</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>11</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>17</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>1999</STRONG></font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">25</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">200</font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CHAPEL HILL</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27514</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">9974749</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>12</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>30</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>1999</STRONG></font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">40</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">26</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">208</font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">RALEIGH</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27612</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6970450</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>10</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>10</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>1999</STRONG></font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">15</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">80</font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD>Having the start date in three variables makes it difficult to perform 
+        calculations that are based on the length of employment. You can convert 
+        these numeric values to useful SAS date values by applying the MDY function.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE width="85%" border="1" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, MDY function">
+    <TR> 
+      <TD align="left"><STRONG>General form, MDY function:</STRONG> <BLOCKQUOTE> 
+          <FONT color="#003399"><NOBR><STRONG>MDY(</STRONG><EM>month,day,year</EM><STRONG>)</STRONG></NOBR></FONT> 
+        </BLOCKQUOTE>
+        <P> where 
+        <UL>
+          <LI> <FONT color="#003399"><EM>month</EM></FONT> can be a variable that 
+            represents the month, or a number from 1-12 
+          <LI> <FONT color="#003399"><EM>day</EM></FONT> can be a variable that 
+            represents the day, or a number from 1-31 
+          <LI> <FONT color="#003399"><EM>year</EM></FONT> can be a variable that 
+            represents the year, or a number that has 2 or 4 digits. </UL></TD>
+    </TR>
+  </table>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>In the data set <STRONG>Hrd.Temp</STRONG>, the values for month, day, 
+        and year are stored in the numeric variables <CODE>Month</CODE>, <CODE>Day</CODE>, 
+        and <CODE>Year</CODE>. You write the following MDY function to create 
+        the SAS date values: 
+        <PRE>     <FONT color="#003399">mdy(month,day,year)</FONT>
+</PRE>
+        <P> Then place this function in an assignment statement to create a new 
+          variable to contain the SAS date values. 
+        <PRE>     <FONT color="#003399">data hrd.newtemp(drop=month day year);</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399"><STRONG>Date=mdy(month,day,year);</STRONG></FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        Here is the new data set that contains the variable <CODE>Date</CODE>.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"><BR>
+  SAS Data Set Hrd.Newtemp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>State</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Zip</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>PayRate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Days</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Hours</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Date</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6224549</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">88</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14621</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6223251</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">25</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">200</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14565</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CHAPEL HILL</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27514</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">9974749</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">40</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">26</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">208</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14608</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">RALEIGH</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27612</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6970450</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">15</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">80</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>14527</STRONG></font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"><BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>Remember, to display SAS date values in a more readable form, you can 
+        associate a SAS format with the values. For example, the FORMAT statement 
+        below associates the DATE9. format with the variable <CODE>Date</CODE>. 
+        A portion of the output that is created by this PROC PRINT step appears 
+        below. 
+        <PRE>     <FONT color="#003399">proc print data=hrd.newtemp;</FONT>
+        <FONT color="#003399"><STRONG>format date date9.;</STRONG></FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE></TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> 
+<center>
+  <table border=1 cellpadding="2" cellspacing=1
+  bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC PRINT Output">
+    <thead>
+      <tr valign="top"> 
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>City</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>State</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"> <p align=Center> 
+            <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Zip</b></font> 
+        </td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Phone</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>PayRate</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Days</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Hours</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"> <p align=Center> 
+            <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Date</b></font> 
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">CARY </font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">NC</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">27513</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">6224549</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">10</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 11</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 88</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">12JAN2000</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">CARY </font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">NC</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">27513</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">6223251</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">8 </font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 25</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 200</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">17NOV1999</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"><nobr>CHAPEL HILL </nobr></font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">NC</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">27514</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">9974749</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">40</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 26</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 208</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">30DEC1999</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">RALEIGH </font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">NC</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">27612</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">6970450</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">15</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 10</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 80</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">10OCT1999</font></td>
+      </tr>
+    </tbody>
+  </table>
+</center>
+<P align="center"> 
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>The MDY function can also add the same SAS date to every observation. 
+        This may be useful if you want to compare a fixed beginning date with 
+        differing end dates. Just use numbers instead of data set variables when 
+        providing values to the MDY function. 
+        <PRE>     <FONT color="#003399">data hrd.newtemp;</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399"><STRONG>DateCons=mdy(6,17,2002);</STRONG></FONT>
+     <FONT color="#003399">proc print data=hrd.newtemp;</FONT>
+        <FONT color="#003399">format datecons date9.;</FONT>
+     <FONT color="#003399">run;</FONT></PRE></TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> 
+<center>
+  <table border=1 cellpadding="2" cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC PRINT Output">
+    <thead>
+      <tr valign="top"> 
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>City</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>State</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"> <p align=Center> 
+            <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Zip</b></font> 
+        </td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Phone</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>PayRate</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Days</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Hours</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"> <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>DateCons</b></font> 
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">CARY </font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">NC</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">27513</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">6224549</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">10</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 11</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 88</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">17JUN2002</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">CARY </font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">NC</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">27513</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">6223251</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">8 </font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 25</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 200</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">17JUN2002</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"><nobr>CHAPEL HILL </nobr></font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">NC</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">27514</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">9974749</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">40</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 26</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 208</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">17JUN2002</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">RALEIGH </font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">NC</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">27612</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">6970450</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">15</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 10</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 80</font></td>
+        <td align=RIGHT bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">17JUN2002</font></td>
+      </tr>
+    </tbody>
+  </table>
+</center>
+<P align="center"> 
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="2" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD><TABLE cellpadding="2">
+          <TR valign="top"> 
+            <TD width="41"><IMG border="0" src="../navimages/alert.gif" alt="CAUTION:" width="37" height="32"></TD>
+            <TD>Be careful when entering and formatting year values. The MDY function 
+              accepts two-digit values for the year, but SAS interprets 
+              two-digit values according to the 100-year span that is set by the 
+              <STRONG>YEARCUTOFF= system option</STRONG>. The default value of 
+              YEARCUTOFF= is 1920. For details, see the lesson <!--lesson reference--><strong><script>document.write(m24title);</script></strong>. 
+              <P> Whenever possible, use four-digit year values in the MDY function: 
+              <UL>
+                <LI><TT><FONT color="#003399">MDY(5,10,20)</FONT>&nbsp;&nbsp;&nbsp;=&nbsp;</TT>May 
+                  10, 1920 
+                <LI><TT><FONT color="#003399">MDY(5,10,2020)</FONT>&nbsp;=&nbsp;</TT>May 
+                  10, 2020 
+              </UL>
+              <P> To display the years clearly, format SAS dates with the DATE9. 
+                format. This forces the year to appear with four digits, as shown 
+                above in the <CODE>Date</CODE> and <CODE>DateCons</CODE> variables 
+                of your <STRONG>Hrd.Newtemp</STRONG> output. </TD>
+          </TR>
+        </TABLE></TD>
+    </TR>
+  </TABLE>
+  <br>
+  <BR>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,187 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --> 
+<TITLE>System Options</TITLE>
+<!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->System 
+      Options<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<p> 
+<center>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">System options are instructions that affect your SAS 
+          session. They control the way that SAS performs operations such as SAS initialization, hardware and software interfacing, and the input, 
+          processing, and output of jobs. All SAS system options have default 
+          settings that are used unless you specify otherwise. For example, page 
+          numbers are automatically displayed in SAS listing output (unless your 
+          site modifies this default). 
+          <p> Before you create reports and other output in your SAS session, 
+            you can specify the following types of system options.</td>
+      </tr>
+    </table>
+    <p> <br>
+    <table border="1" bgcolor="#FFFFFF" cellpadding="5" cellspacing="0" title="Categories of SAS System Options">
+      <tr valign="top" bgcolor="#F7F7DE"> 
+        <td><strong>Category</strong></td>
+        <td><strong>Description</strong></td>
+      </tr>
+      <tr valign="top"> 
+        <td>Communications</td>
+        <td>Remote and shared communications settings</td>
+      </tr>
+      <tr valign="top"> 
+        <td>Environment control</td>
+        <td>SAS session environment settings</td>
+      </tr>
+      <tr valign="top"> 
+        <td>Files</td>
+        <td>SAS library and member settings</td>
+      </tr>
+      <tr valign="top"> 
+        <td>Input control</td>
+        <td>Data entry and processing settings</td>
+      </tr>
+      <tr valign="top"> 
+        <td>Graphics</td>
+        <td>Devices, graphics, and maps settings</td>
+      </tr>
+      <tr valign="top"> 
+        <td>Log and procedure output control</td>
+        <td>Log and procedure output settings</td>
+      </tr>
+      <tr valign="top"> 
+        <td>Macro</td>
+        <td>SAS macro language settings</td>
+      </tr>
+      <tr valign="top"> 
+        <td>Sort</td>
+        <td>Sort procedure settings</td>
+      </tr>
+      <tr valign="top"> 
+        <td>System administration</td>
+        <td>Site license and memory settings</td>
+      </tr>
+    </table>
+    <p> <br>
+    <center>
+      <center>
+        <table cellpadding=0 cellspacing=0 border=0 width="85%">
+          <tr> 
+            <td align="left"><strong>Setting System Options</strong> 
+              <p> To modify system options in your SAS programs, you can submit 
+                an OPTIONS statement.You can place an OPTIONS statement anywhere 
+                in a SAS program to change the current settings. Because the OPTIONS 
+                statement is <strong>global</strong>, the settings remain in effect 
+                until you modify them or end your SAS session. 
+            </td>
+          </tr>
+        </table>
+        <p> <br>
+      </center>
+      <table border="2" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, OPTIONS statement">
+        <tr> 
+          <td align="left"><strong>General form, OPTIONS statement:</strong> 
+            <blockquote> <font color="Teal"><strong><font color="#003399">OPTIONS</font></strong> 
+              <font color="#003399"><em>options</em><strong>;</strong></font></font> 
+            </blockquote>
+            <p> where <font color="Teal"><em><font color="#003399">options</font></em></font> 
+              specifies one or more system options to be changed. The system options 
+              available depend on your host system. 
+          </td>
+        </tr>
+      </table>
+      <p> <br>
+      <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td align="left">For example, the following OPTIONS statement suppresses 
+            the printing of both page numbers and the date and time: 
+            <pre><font color="TEAL"><strong>  <font color="#003399">   options nonumber nodate;</font></strong></font>
+</pre>
+            <p> In this example, page numbers and the current date are not displayed 
+              on the PROC PRINT output. Page numbers are not displayed on the 
+              PROC FREQ output either, but the date does appear at the top of 
+              the report. 
+            <pre><font color="Teal"><strong><font color="#003399">     options nonumber nodate;</font></strong></font>
+<font color="#003399">     proc print data=sales.qtr4;</font>
+<font color="#003399">        var salesrep type unitsold region;</font>
+<font color="#003399">        where unitsold&gt;=30;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     <strong>options date; </strong></font>
+<font color="#003399">     proc freq data=sales.qtr4; </font>
+<font color="#003399">        where unitsold&gt;=30;</font>
+<font color="#003399">        tables salesrep;</font>
+<font color="#003399">     run;</font>
+</pre>
+            <p> The table below summarizes some frequently used system options 
+              for controlling the appearance of SAS listing output. 
+          </td>
+        </tr>
+      </table>
+      <p> <br>
+      <table cellpadding="4" border="1" width="450" cellspacing="0" title="Frequently-Used SAS System Options">
+        <tr valign="top" bgcolor="#F7F7DE"> 
+          <td width="175"> 
+            <div align="left"><strong>This option...</strong></div>
+          </td>
+          <td width="275"> 
+            <div align="left"><strong>Specifies ...</strong></div>
+          </td>
+        </tr>
+        <tr valign="top" bgcolor="#FFFFFF"> 
+          <td width="175"><strong>DATE | NODATE</strong></td>
+          <td width="275">whether the date and time appear in your output</td>
+        </tr>
+        <tr valign="top" bgcolor="#FFFFFF"> 
+          <td width="175"><strong>NUMBER&nbsp;|&nbsp;NONUMBER</strong>&nbsp;</td>
+          <td width="275">whether page numbers appear in your output</td>
+        </tr>
+        <tr valign="top" bgcolor="#FFFFFF"> 
+          <td width="175"><strong>PAGENO=</strong></td>
+          <td width="275">the beginning page number for your output</td>
+        </tr>
+        <tr valign="top" bgcolor="#FFFFFF"> 
+          <td width="175"><strong>PAGESIZE=</strong></td>
+          <td width="275">the number of lines printed on each page of output</td>
+        </tr>
+        <tr valign="top" bgcolor="#FFFFFF"> 
+          <td width="175"><strong><a name="linesize">LINESIZE=</a></strong></td>
+          <td width="275">the print line width for your log and procedure output</td>
+        </tr>
+      </table>
+      <p> <br>
+      <table cellpadding="2" width="85%">
+        <tr valign="Top"> 
+          <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+          <td>You can also set system options in the SAS System Options window.</td>
+        </tr>
+      </table>
+    </center>
+  </center>
+</center>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,148 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Controlling 
+      Page Size and the Number of Buffers<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Using the BUFNO= Option</h2>
+        <p>You can use the BUFNO= system or data set option to control the number 
+          of buffers that are available for reading or writing a SAS data set. 
+          By increasing the number of buffers, you can control how many pages 
+          of data are loaded into memory with each I/O transfer.</p>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Increasing the number of buffers might not affect 
+              performance under the Windows and UNIX operating environments, especially 
+              when you work with large data sets. By default, the Windows and 
+              UNIX operating environments read one buffer at a time. Under the 
+              SAS 9 Windows environment, you can override this default by turning 
+              on the SGIO system option when you invoke SAS. For details on the 
+              SGIO system option, see the SAS documentation for the Windows operating 
+              environment.<!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --> 
+            </td>
+          </tr>
+        </table> 
+        <p>The following techniques might help to minimize I/O consumption:<br>
+        </p>
+        <ul>
+          <li>When you work with a small data set, allocate as many buffers as 
+            there are pages in the data set so that the entire data set can be 
+            loaded into memory. This technique is most effective if you read the 
+            same observations several times during processing.<br>
+            <br>
+          </li>
+          <li>Under the z/OS operating environment, increase the number of buffers 
+            allocated, rather than the size of each buffer, as the size of the 
+            data set increases.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p> 
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, BUFNO= option">
+    <tr> 
+      <td align="left"><strong>General form, BUFNO= option:</strong> <blockquote> 
+          <p><font color="#003399"><strong>BUFNO= </strong>MIN <strong>|</strong> 
+            MAX <strong>|</strong> <em>n</em><strong>;</strong></font></p>
+        </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399">MIN</font> sets the minimum number of buffers 
+            to 0, which causes SAS to use the minimum optimal value for the operating 
+            environment. This is the default. 
+          <li><font color="#003399">MAX</font> sets the number of buffers to the 
+            maximum possible number in your operating environment, up to the largest 
+            four-byte, signed integer, which is 2<font size="+1">&sup3&sup1</font>-1, 
+            or approximately 2 billion. 
+          <li> <font color="#003399"><em>n</em> </font>specifies the number of 
+            buffers to be allocated. 
+        </ul>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">The recommended maximum for this option is 10. </td>
+          </tr>
+        </table>
+        <p> 
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"> The syntax that is shown here applies to the OPTIONS 
+              statement. On the command line or in a configuration file, the syntax 
+              is specific to your operating environment. For details, see the 
+              SAS documentation for your operating environment. <!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>In the following program, the BUFNO= system option specifies that 
+          <em>4</em> buffers are available.</p>
+        <pre><font color="#003399">     <strong>options bufno=4;</strong>
+     filename orders 'c:\orders.dat';
+     data company.orders_fact;
+        infile orders;
+        <em>&lt;more SAS code&gt;</em>
+     run;
+     <strong>proc print data=company.orders_fact;</strong>
+     run;</font></pre>
+        The buffer number is not a permanent attribute of the data set and is 
+        valid only for the current step or SAS session. </td>
+    </tr>
+  </table>
+  <p><font color="#FF0000"><img src="images/m81_7g1.gif" alt="Number of buffers = number of pages" width="300" height="157"></font> 
+  <p> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You can override the BUFNO= system option by using the 
+        BUFNO= data set option.</td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In SAS 9 and later, the BUFNO= option has no effect on 
+        thread-enabled procedures under the z/OS operating environment.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

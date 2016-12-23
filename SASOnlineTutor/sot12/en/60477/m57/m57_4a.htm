@@ -1,0 +1,98 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Array Processing</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Array 
+      Processing <!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows the execution of a DATA step that uses an array 
+        to store data temporarily for use in creating a new variable in the output 
+        data set. </p>
+      <ol>
+        <li> The following program is submitted to SAS: 
+          <pre><font color="#003399">data work.wndchill (drop = column row); 
+   array WC{4,2} _temporary_ 
+         (-22,-16,-28,-22,-32,-26,-35,-29); 
+   set sasuser.flights; 
+   row = round(wspeed,5)/5; 
+   column = (round(temp,5)/5)+3; 
+   WindChill= wc{row,column}; 
+ run;</font></pre>
+        </li>
+        <li>During the compilation phase, the <code>WC</code> array is populated 
+          with the values specified in the ARRAY statement. Also, SAS sets up 
+          the new data set by reading the descriptor portion of the input data 
+          set and creating the PDV. Since the _TEMPORARY_ keyword is specified 
+          in the ARRAY statement, there are no variables included in the PDV for 
+          array elements. <br>
+          <br>
+        </li>
+        <li>Execution begins. SAS reads the first observation from <strong>Sasuser.Flights</strong> 
+          and records values for <code>Flight</code>, <code>Temp</code>, and <code>Wspeed</code> 
+          in the PDV.<br>
+          <br>
+        </li>
+        <li>SAS calculates the value of <code>row</code> based on the value of 
+          <code>Wspeed</code>. The value of <code>Wspeed</code> is <em>9</em>, 
+          which is rounded to <em>10</em> (the nearest multiple of 5) and then 
+          divided by 5, giving <code>row</code> a value of <em>2</em>. SAS records 
+          this value in the PDV.<br>
+          <br>
+        </li>
+        <li>SAS calculates the value of <code>column</code> based on the value 
+          of <code>Temp</code>. The value of <code>Temp</code> is <nobr><em>&#8211;8</em></nobr>, 
+          which is rounded to<nobr> <em>&#8211;10</em></nobr> (the nearest multiple 
+          of <em>5</em>) and then divided by 5, leaving a value of <em><nobr>&#8211;2</nobr></em>. 
+          The offset value of 3 is then added to <em><nobr>&#8211;2,</nobr></em> 
+          giving <code>column</code> a value of <em>1</em>. SAS records this value 
+          in the PDV.<br>
+          <br>
+        </li>
+        <li>SAS determines the value of <code>WindChill</code> by looking up the 
+          value of the array element <code>WC</code>{2,1}. SAS records this value, 
+          <em>28</em>, in the PDV.<br>
+          <br>
+        </li>
+        <li>SAS writes the values from the PDV to the output data set <strong>Work.Wndchill 
+          </strong>except for the temporary variables <code>row</code> and <code>column</code>.<br>
+          <br>
+        </li>
+        <li>The DATA step iterates. SAS reads the second observation of the <strong>Sasuser.Flights</strong> 
+          data set and records the values in the PDV. Then, SAS calculates the 
+          values for <code>row</code> and <code>column</code> and uses these values 
+          to look up the value of <code>WindChill</code>. <br>
+          <br>
+        </li>
+        <li>SAS writes the values in the PDV to the output data set <strong>Work.Wndchill</strong>, 
+          except for the temporary variables <code>row</code> and <code>column</code>. 
+          <strong>Work.Wndchill </strong>contains four variables and two observations. 
+        </li>
+      </ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

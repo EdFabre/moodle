@@ -1,0 +1,126 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reducing 
+      Data Storage Space for Numeric Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Assigning Lengths to Numeric Variables</h2>
+	  
+	  You can use a <strong>LENGTH statement</strong> to assign a length from 
+        2 to 8 bytes to numeric variables. Remember, the minimum length of numeric 
+        variables depends on the operating environment. Also, keep in mind that 
+        the LENGTH statement affects the length of a numeric variable only in 
+        the output data set. Numeric variables <strong>always</strong> have a 
+        length of 8 bytes in the program data vector and during processing. </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, LENGTH statement for numeric variables">
+            
+  <tr> 
+      <td align="left"><strong>General form, LENGTH statement for numeric variables:</strong> 
+        <blockquote> <font color="#003399"><strong>LENGTH </strong><em>variable(s) 
+          </em> <em>length</em> <strong>&lt;DEFAULT=</strong><em>n</em><strong>&gt;;</strong></font> 
+        </blockquote>
+      where 
+        <ul>
+          <li><font color="#003399"><em>variable(s)</em></font> specifies the 
+            name of one or more numeric SAS variables, separated by spaces.<br>
+            <br>
+          <li><font color="#003399"><em>length</em></font> is an integer that 
+            specifies the length of the variable(s).<br>
+            <br>
+          <li>the optional <font color="#003399">DEFAULT=<em>n</em></font> argument 
+            changes the default number of bytes that SAS uses to store the values 
+            of any newly created numeric variables. If you use the <font color="#003399">DEFAULT=</font> argument, 
+            you do not need to list any <font color="#003399"><em>variable(s)</em></font>.
+</ul>
+		
+		<table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Values between 2 and 8 or between 3 and 8 depending 
+              on your operating environment are valid for <font color="#003399"><em>n</em></font> 
+              or <font color="#003399"><em>length</em></font>. </td>
+      </tr>
+    </table>
+		
+      </td>
+            </tr>
+          </table><P><BR>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td height="245">
+<p>DEFAULT= applies only to numeric variables that are added to the program data 
+          vector after the LENGTH statement is compiled. You would list specific 
+          variables in the LENGTH statement along with the DEFAULT= argument 
+          only if you wanted those variables to have a length other than the value 
+          for DEFAULT=. If you list individual variables in the LENGTH statement, 
+          you must list an integer length for each of them. </p>
+		  <P><BR><table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+    <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">You should assign reduced lengths to numeric variables 
+              only if those variables have integer values. Fractional numbers 
+              lose precision if truncated. You will learn more about the loss 
+              of precision with reduced-length numeric variables on the next page 
+              of this lesson.</td>
+      </tr>
+    </table><P><BR>
+        
+        <h2>Example</h2> 
+		The following program assigns a length of 4 to the new 
+          variable <code>Sale_Percent</code> in the data set <strong>ReducedSales</strong>. 
+          The LENGTH statement in this DATA step does not apply to the variables 
+          that are read in from the <strong>Sales</strong> data set; those variables 
+          will maintain whatever length they had in <strong>Sales</strong> when 
+          they are read into <strong>ReducedSales</strong>.</p>
+        <font color="#003399">
+        <pre>     data reducedsales;
+        length default=4;
+        set sales;
+        Sale_Percent=15;   
+     run;</pre>
+        </font>
+	 </td>
+    </tr>
+  </table>
+  <p>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

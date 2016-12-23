@@ -1,0 +1,268 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data by Using Noncorrelated Subqueries<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Using the ANY Operator</h2>
+        <p>An outer query that specifies the ANY operator selects values that 
+          pass the comparison test with <strong>any</strong> of the values that 
+          are returned by the subquery.</p>
+        <p>For example, suppose you have an outer query containing the following 
+          WHERE clause:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     where dateofbirth &lt; <strong>any</strong>
+        <em>&lt;subquery...&gt;</em></font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>This WHERE clause specifies that <code>DateofBirth</code> (the operand) 
+          should be less than <strong>any</strong> (the comparison operator) of 
+          the values returned by the subquery. </p>
+        <p>The following chart shows the effect of using ANY with these common 
+          comparison operators: greater than (<strong>&gt;</strong>), less than 
+          (<strong>&lt;</strong>) and equal to (<strong>=</strong>).</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Using the  Operator ANY">
+    <tr align="left" valign="top" bgcolor="#F7F7DE"> 
+      <th width="177"><font size="-1">Comparison Operator with ANY</font></th>
+      <th width="231"><font size="-1">Outer Query Selects&nbsp;...</font></th>
+      <th width="231"><p><font size="-1">Example</font></p></th>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td><strong>&gt; ANY</strong></td>
+      <td>values that are <strong>greater than any value</strong> returned by 
+        the subquery</td>
+      <td>If the subquery returns the values <strong>20, 30, 40</strong>, then 
+        the outer query selects all values that are <strong>&gt; 20</strong> (the 
+        lowest value that was returned by the subquery).</td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td><strong>&lt; ANY</strong></td>
+      <td>values that are <strong>less than any value</strong> returned by the 
+        subquery</td>
+      <td><p>If the subquery returns the values <strong>20, 30, 40</strong>, then 
+          the outer query selects all values that are <strong>&lt; 40</strong> 
+          (the highest value that was returned by the subquery).</p></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td><strong>= ANY</strong></td>
+      <td>values that are <strong>equal to any value</strong> returned by the 
+        subquery</td>
+      <td>If the subquery returns the values <strong>20, 30, 40</strong>, the 
+        outer query selects all values that are <strong>= 20</strong> or <strong>= 
+        30</strong> or <strong>= 40</strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">Instead of using the ANY operator with a subquery, there 
+        are some SAS functions that you can use to achieve the same result with 
+        greater efficiency. Instead of &gt;&nbsp;ANY, use the MIN function in 
+        the subquery. Instead of &lt;&nbsp;ANY, use the MAX function in the subquery.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <h2>Example</h2>
+        <p>Suppose you want to identify <strong>any</strong> flight attendants 
+          at level 1 or level 2 who are older than <strong>any</strong> of the 
+          flight attendants at level 3. Job type and level are identified in <code>JobCode</code>; 
+          each flight attendant has the job code <em>FA1</em>, <em>FA2</em>, or 
+          <em>FA3</em>. The following PROC SQL query accomplishes this task by 
+          using a subquery and the ANY operator:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">proc sql;
+   select empid, jobcode, dateofbirth
+      from sasuser.payrollmaster
+      where jobcode in ('FA1','FA2')
+            and dateofbirth <strong>&lt; any</strong>
+               (select dateofbirth
+                  from sasuser.payrollmaster
+                  where jobcode='FA3');</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>Here is what happens when this query is processed:</p>
+        <ol>
+          <li>The subquery returns the birth dates of all level-3 flight attendants.<br>
+            <br>
+          </li>
+          <li>The outer query selects only those level-1 and level-2 flight attendants 
+            whose birth date is <strong>less than</strong> <strong>any</strong> 
+            of the dates returned by the subquery.</li>
+        </ol>
+        <p>Note that both the outer query and subquery use the same table.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Internally, SAS represents a date value as the number of 
+        days from January 1, 1960, to the given date. For example, the SAS date 
+        for 17 October 1991 is 11612. Representing dates as the number of days 
+        from a reference date makes it easy for the computer to store them and 
+        perform calendar calculations. These numbers are not meaningful to users, 
+        however, so several different formats are available for displaying dates 
+        and datetime values in most of the commonly used notations. </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p>Below are the query results.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>EmpID</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCode</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>DateOfBirth</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1574</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">01MAY1958</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1475</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">19DEC1959</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1124</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">13JUL1956</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1422</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">08JUN1962</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1368</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">15JUN1959</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1411</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">31MAY1959</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1477</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">25MAR1962</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1970</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA1</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">29SEP1962</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1413</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">20SEP1963</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1434</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">14JUL1960</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1390</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">23FEB1963</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1135</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">24SEP1958</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1415</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">12MAR1956</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1122</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA2</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">04MAY1961</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top"><p>Using the ANY operator to solve this problem results 
+          in a large number of calculations, which increases processing time. 
+          For this example, it would be more efficient to use the MAX function 
+          in the subquery. The alternative WHERE clause follows:</p>
+        <pre>     <font color="#003399">where jobcode in ('FA1','FA2') 
+           and dateofbirth &lt; 
+              (select <strong>max</strong>(dateofbirth)
+                 from <em>[...]</em></font></pre>
+        For more information about the MAX function, see the 
+        <!--doc reference-->
+        SAS documentation.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

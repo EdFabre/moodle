@@ -1,0 +1,158 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      the Secondary Charts and Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>The secondary charts are finished and their links are in place, so now 
+        it's time to create the tables that show the details for each <strong>quarter</strong>. 
+        Each set of tables is stored in the same HTML file as the secondary chart 
+        for the <strong>year</strong>.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<p align="center"> <img src="images/m9f1g1.gif" width=139 height=240 alt="primary chart" border="0"><img
+      src="images/m9f3g1b.gif" width=171 height=240 alt="secondary charts and tables" border="0"> 
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>In this example, we'll use PROC TABULATE to analyze quarterly sales 
+        and to generate tables. However, you could link any type of SAS output 
+        to the secondary charts.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="Top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+      <td>To learn more about PROC TABULATE, see the lesson <!--lesson reference--><strong><script>document.write(m5title);</script></strong>.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Creating the Tables</strong> 
+        <p> Four PROC GCHART steps create the charts for annual sales. To create 
+          tables that show the details for each quarter, do the following: 
+        <ul>
+          <li> After each PROC GCHART step that represents a <strong>year</strong>, 
+            add a PROC TABULATE step for <strong>each</strong> <strong>quarter</strong>. 
+            <br>
+            <br>
+          <li> In the PROC TABULATE steps, use WHERE statements to specify the 
+            <strong>year and the quarter</strong>. 
+        </ul>
+        <p> <br>
+          For example, here is the PROC GCHART step for <b>1995</b> sales:
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     ods html body='sales95.html';</font>
+<font color="#003399">     title 'Sales for 1995 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual </font>
+<font color="#003399">             subgroup=product discrete</font>
+<font color="#003399">             html=secdrill;</font>
+<font color="#003399">        <strong>where year=1995;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Here is the set of PROC TABULATE steps for <strong>each quarter</strong> 
+        of 1995 sales:</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre> <font color="#003399">    title '<strong>1st Quarter 1995</strong> Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        <strong>where year=1995 and quarter=1;</strong></font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     title '<strong>2nd Quarter 1995</strong> Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        <strong>where year=1995 and quarter=2;</strong></font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     title '<strong>3rd Quarter 1995</strong> Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        <strong>where year=1995 and quarter=3;</strong></font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     title '<strong>4th Quarter 1995</strong> Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        <strong>where year=1995 and quarter=4;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

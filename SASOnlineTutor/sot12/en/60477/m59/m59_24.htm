@@ -1,0 +1,122 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Be sure you have copied the data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> library.<br><br>';
+solutionText+='<li>Submit the code to create a transaction data set for this practice.<br><br> ';
+solutionText+='<li>Submit the following DATA step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data empdata;<br>';
+solutionText+='   set sasuser.newsalary; <br>';
+solutionText+='   modify empdata key=empid;<br>';
+solutionText+='   if _iorc_=%sysrc(_sok) then<br>';
+solutionText+='      do;<br>';
+solutionText+='      salary=salary+increase;<br>';
+solutionText+='      replace;<br>';
+solutionText+='      end;<br>';
+solutionText+='   else do;<br>';
+solutionText+="   put '***Incorrect Employee Number***';<br>"
+solutionText+='   _error_=0;<br>';
+solutionText+='   end;<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='<li>Submit the following PROC PRINT step:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc print data=empdata (obs=5);<br>';
+solutionText+='run;</pre></font>';
+solutionText+='<li>View the log.  Notice that the error message is in the log because the observation in <strong>Newsalary</strong> did not have a match in <strong>Empdata</strong>.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            <code>_IORC_</code> and <strong>%SYSRC</strong> to control the update 
+            process.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Because this data set is used in other practices and lessons, 
+        you must copy it to the <strong>Work</strong> library so that the original 
+        data in the <strong>Sasuser</strong> library is not modified.</td>
+    </tr>
+  </table>
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Submit the following program to copy the <strong>Empdata</strong> 
+            SAS data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> 
+            library and print the first five observations of the <strong>Empdata</strong> 
+            data set:<br>
+            <pre><font color="#003399">proc copy in=sasuser out=work;
+   select empdata;
+run;</font></pre>
+          
+          <li>Submit the following program to create a transaction data set for 
+            this practice: 
+            <pre><font color="#003399">data sasuser.newsalary;
+   input EmpId $ Increase;
+   datalines;
+   E00001 3250
+   E00002 3500
+   E00300 6250
+   ;
+run;</font></pre>
+          
+          <li>Write and submit a program that uses the transaction data set <strong>Sasuser.Newsalary</strong> 
+            to modify the master data set <strong>Work.Empdata</strong>. Use the 
+            index <strong>EmpID</strong> to locate observations. For matching 
+            values in the master data set, add <code>Salary</code> and <code>Increase</code> 
+            and replace the value in the master data set. For any other condition, 
+            use the PUT statement to write ***Incorrect Employee ID*** to the 
+            log. <br>
+            <br>
+          <li>Print the first 5 observations of <strong>Work.Empdata</strong> 
+            and view the results.<br>
+            <br>
+          <li>View the log.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

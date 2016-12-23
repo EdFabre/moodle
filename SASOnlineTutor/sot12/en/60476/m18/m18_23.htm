@@ -1,0 +1,202 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Options to Specify Links and Paths<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><b>The PATH= Option</b> </p>
+        <p> So far, you've learned to specify the complete pathname for HTML files 
+          in the BODY=, CONTENTS=, and FRAME= specifications when you want to 
+          save HTML files to specific locations. To streamline your ODS HTML statement, 
+          you can also use the <strong>PATH= option</strong> to specify the location 
+          where you want to store your HTML output, and you can use the <strong>URL=NONE</strong> 
+          to prevent ODS from using the pathname in any links it creates in your 
+          files. </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" width="85%" title="General form, PATH= option">
+      <tr> 
+        <td align="left"><strong>General form, PATH= option with the URL= suboption:</strong> 
+          <blockquote> 
+            <p><font color="#003399"><strong>PATH=</strong><em>file-location-specification</em></font> 
+              <font color="#003399">&lt;<strong>(URL= NONE | '</strong><em>Uniform-Resource-Locator</em><strong>')</strong>&gt;</font> 
+            </p>
+          </blockquote>
+          <p> where 
+          <ul>
+            <li> <font color="#003399"><em>file-location-specification</em></font> 
+              identifies the location where you want HTML files to be saved. It 
+              can be one of the following: 
+              <ul>
+                <li> the complete pathname to an aggregate storage location, such 
+                  as a directory or partitioned data set 
+                <li> a fileref (file shortcut) that has been assigned to a storage 
+                  location 
+                <li> a SAS catalog (<em>libname.catalog</em>).<br>
+                  <br>
+              </ul>
+            <li><font color="#003399"><em>Uniform-Resource-Locator</em></font> 
+              provides a URL for links in the HTML files that ODS generates<font color="#003399"><em></em></font>. 
+              If you specify the keyword <strong>NONE</strong>, no information 
+              from the PATH= option appears in the links or references.<br>
+              <br>
+              If you do not use the URL= suboption, information from the PATH= 
+              option is added to links and references in the files that are created. 
+             
+            </li>
+          </ul> 
+		  <div id="v89_v91" class="eg_div">
+<table cellpadding="2"><tr valign="Top"> 
+<td><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:" border="0"></td>
+<td>In the CMS operating environment, you must use the URL= suboption with the PATH= 
+option because CMS file names do not form valid URLs.</td></tr>
+<tr valign="Top"> <td><br> <img src="../navimages/alert.gif" width="37" height="32" 
+alt="Caution:" border="0"></td><td><br>
+In the z/OS operating environment, if you store your HTML files 
+as members in a partitioned data set, the PATH= value must be 
+a <strong>PDSE</strong>, not a PDS. You can allocate a PDSE within 
+SAS as shown in this example: 
+<pre><font color="#003399">
+filename pdsehtml '.example.htm'<br>         
+   dsntype=library dsorg=po<br>
+   disp=(new, catlg, delete);</font></pre>
+<p>Also, you should specify valid member names for the HTML files (without 
+extensions). </td></tr></table>        </div>
+<div id="le1_le2_eg1_eg2_eg3" class="eg_div"> </div>
+		  </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">
+<p> <strong>Example: PATH= Option with URL=NONE</strong>
+          <p>In the program below, the PATH= option directs the files <strong>data.html</strong>, 
+            <strong>toc.html</strong>, and <strong>frame.html</strong> to the 
+            <strong>C:\Records</strong> directory in the Windows operating environment. 
+            The links from the frame file to the body and contents files contain 
+            only the HTML filenames <strong>data.html</strong> and<strong> toc.html</strong>. 
+<pre><font color="#003399">     ods listing close;     
+     ods html <strong>path='c:\records' (url=none)
+</strong></font><font color="#003399">              body='data.html'</font>
+        <font color="#003399">      contents='toc.html'</font>
+<font color="#003399">              frame='frame.html'</font>;
+<font color="#003399">     </font><font color="#003399">proc print data=clinic.admit;</font>
+<font color="#003399">     run;</font>
+<font color="#003399"><strong>     </strong>proc print data=clinic.stress2;</font>
+<font color="#003399">     run;</font>
+<font color="#003399"><strong>     </strong>ods html close;</font>
+     <font color="#003399">ods listing;</font>
+</pre>
+          <p>This program generates the same files and links as the previous example 
+            in which you learned to use the URL= suboption with the BODY= and 
+            CONTENTS= file specifications. However, it's a bit simpler to specify 
+            the path only once in the PATH= option and to specify URL=NONE. </p>
+          <table cellpadding="2">
+            <tr valign="Top"> 
+              <td width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="Tip:" border="0"></td>
+              <td>If you plan to move your HTML files, you should specify <strong>URL=NONE</strong> 
+                with the PATH= option to prevent information from the PATH= option 
+                from creating URLs that are invalid or incorrect.</td>
+            </tr>
+          </table>
+          
+        </td>
+    </tr>
+  </table>
+    <p><br>
+    </p>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p> <strong>Example: PATH= Option without the URL= Suboption</strong> 
+          <p>In the program below, the PATH= option directs the files <strong>data.html</strong>, 
+            <strong>toc.html</strong>, and <strong>frame.html</strong> to the 
+            <strong>C:\Records</strong> directory in the Windows operating environment. 
+            The links from the frame file to the body and contents files contain 
+            the complete pathname, <strong>c:\records\data.html</strong> and <strong>c:\records\toc.html</strong>: 
+          <pre><font color="#003399">     ods listing close;     
+     ods html <strong>path='c:\records'
+</strong></font><font color="#003399">              body='data.html'</font>
+        <font color="#003399">      contents='toc.html'</font>
+<font color="#003399">              frame='frame.html'</font>;
+<font color="#003399">     proc print data=clinic.admit;</font>
+<font color="#003399">     run;</font>
+<font color="#003399"><strong>     </strong>proc print data=clinic.stress2;</font>
+<font color="#003399">     run;</font>
+<font color="#003399"><strong>     </strong>ods html close;</font>
+     <font color="#003399">ods listing;</font>
+</pre></td>
+      </tr>
+    </table>
+    <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p> <strong>Example: PATH= Option with a Specified URL</strong> 
+          <p>In the program below, the PATH= option directs the files <strong>data.html</strong>, 
+            <strong>toc.html</strong>, and <strong>frame.html</strong> to the 
+            <strong>C:\Records</strong> directory in the Windows operating environment. 
+            The links from the frame file to the body and contents files contain 
+            the specified URL, <strong>http://mysite.com/myreports/data.html</strong> 
+            and <strong>http://mysite.com/myreports/toc.html</strong>: 
+          <pre><font color="#003399">     ods listing close;     
+     ods html <strong>path='c:\records'(url='http://mysite.com/myreports/')</strong></font>
+<font color="#003399">              body='data.html'</font>
+        <font color="#003399">      contents='toc.html'</font>
+<font color="#003399">              frame='frame.html'</font>;
+<font color="#003399">     proc print data=clinic.admit;</font>
+<font color="#003399">     run;</font>
+<font color="#003399"><strong>     </strong>proc print data=clinic.stress2;</font>
+<font color="#003399">     run;</font>
+<font color="#003399"><strong>     </strong>ods html close;</font>
+     <font color="#003399">ods listing;</font>
+</pre></td>
+      </tr>
+    </table>
+    <p><br></p>
+  </center>
+
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

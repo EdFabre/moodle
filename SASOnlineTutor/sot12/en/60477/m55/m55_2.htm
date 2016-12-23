@@ -1,0 +1,423 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      a FILENAME Statement <!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><p>You already know that you can use a FILENAME statement to associate 
+          a fileref with a single raw data file. You can also use a FILENAME statement 
+          to concatenate raw data files by assigning a single fileref to the raw 
+          data files that you want to combine.</p></td>
+    </tr>
+  </table>
+  <P><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, FILENAME statement">
+    <tr> 
+      <td align="left"><strong>General form, FILENAME statement: <font color="#003399"> 
+        </font></strong> 
+        <blockquote> <font color="#003399"><nobr><strong>FILENAME 
+          </strong><em>fileref </em>('<em>external-file1</em>' '<em>external-file2</em>' ...'<em>external-filen</em>')<strong>;</strong></nobr></font> 
+        </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>fileref</em></font> is any SAS name that 
+            is eight characters or fewer.</li>
+          <li><font color="#003399">'<em>external-file</em>'</font> is the physical 
+            name of an external file. The physical name is the name that is recognized 
+            by the operating environment.<br>
+            <br>
+            
+           
+          </li>
+        </ul><table  border="0" cellpadding="2" cellspacing="0">
+              <tr> 
+                <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+                <td valign="top">All of the file specifications must be enclosed 
+                  in one set of parentheses.</td>
+              </tr>
+            </table></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>When the fileref is specified in an INFILE statement, each raw data 
+          file that has been referenced can be sequentially read into a data set 
+          using an INPUT statement.</p>
+        <div id="v89_v91" class="eg_div">
+		<table width="100%" border="0" cellpadding="2" cellspacing="0"><tr> 
+<td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="Tip"></td>
+<td valign="top">If you are not familiar with the content and structure 
+of your raw data files, you can use <a href="JavaScript: openOther('../linklib/fslist.htm')
+">PROC FSLIST</a> to view them.</td></tr></table>
+		</div>
+      </td>
+    </tr>
+  </table>
+  <p>&nbsp; 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example </h2>
+        <p>In the following program, the FILENAME statement creates the fileref 
+          <strong>Qtr1</strong>, which references the raw data files <strong>Month1.dat, 
+          Month2.dat, and Month3.dat</strong>. The files are stored in the <strong>C:\Sasuser</strong> 
+          directory in the Windows operating environment. In the DATA step, the 
+          INFILE statement identifies the fileref, and the INPUT statement describes 
+          the data, just as if <strong>Qtr1</strong> referenced a single raw data 
+          file.</p>
+        <pre><font color="#003399"><strong>     filename qtr1 ('c:\sasuser\month1.dat''c:\sasuser\month2.dat'
+                    'c:\sasuser\month3.dat');</strong>
+     data work.firstqtr;
+        infile qtr1;
+        input Flight $ Origin $ Dest $
+              Date : date9. RevCargo : comma15.2;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <div id="v89_v91" class="eg_div">
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">For convenience, the sample raw data files for this lesson 
+        are stored in the same physical location as your <strong>Sasuser</strong> 
+        directory. This location might differ from the location in the sample 
+        code above. If you want to submit the sample code, you need to determine 
+        the <strong><a href="JavaScript: openOther('../linklib/physloc.htm')">physical location</a></strong> for your <strong>Sasuser</strong> directory and 
+        point to that location instead.</td>
+    </tr>
+  </table></div>
+  
+  <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">For convenience, the sample raw data files for this lesson 
+        are stored in the same physical location as your <strong>Sasuser</strong> 
+        directory. This location might differ from the location in the sample 
+        code above. If you want to submit the sample code, you need to determine 
+        the <strong><a href="JavaScript: openOther('../linklib/physloca.htm')">physical location</a></strong> for your <strong>Sasuser</strong> directory and 
+        point to that location instead.</td>
+    </tr>
+  </table></div>
+  
+  <br>
+  <br>
+  <div align="center">Raw Data File Month1.dat (first five records) 
+    <TABLE  Border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <thead>
+        <TR> 
+          <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>----+----10---+----20---+----30---+----40</nobr></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10200 
+            SYD HKG 01JAN2000 $191,187.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10201 
+            SYD HKG 01JAN2000 $169,653.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10300 
+            SYD CBR 01JAN2000 $850.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10301 
+            SYD CBR 01JAN2000 $970.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10302 
+            SYD CBR 01JAN2000 $1,030.00</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <p>
+    Raw Data File Month2.dat (first five records) 
+    <TABLE  Border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <thead>
+        <TR> 
+          <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>----+----10---+----20---+----30---+----40</nobr></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10200 
+            SYD HKG 01FEB2000 $177,801.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10201 
+            SYD HKG 01FEB2000 $174,891.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10300 
+            SYD CBR 01FEB2000 $1,070.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10301 
+            SYD CBR 01FEB2000 $1,310.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10302 
+            SYD CBR 01FEB2000 $850.00</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <p>
+    Raw Data File Month3.dat (first five records) 
+    <TABLE  Border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <thead>
+        <TR> 
+          <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>----+----10---+----20---+----30---+----40</nobr></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10200 
+            SYD HKG 01MAR2000 $181,293.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10201 
+            SYD HKG 01MAR2000 $173,727.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10300 
+            SYD CBR 01MAR2000 $1,150.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10301 
+            SYD CBR 01MAR2000 $910.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10302 
+            SYD CBR 01MAR2000 $1,170.00</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <p>&nbsp;</p>
+    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td> The SAS log indicates that the raw data files referenced by <strong>Qtr1</strong> 
+          are sequentially read into the SAS data set <strong>Work.FirstQtr</strong>.</td>
+      </tr>
+    </table>
+    <p>
+  </div>
+  <p> 
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>
+9    filename qtr1 ('c:\sasuser\month1.dat''c:\sasuser\month2.dat'
+10                  'c:\sasuser\month3.dat');
+
+11   data work.firstqtr;
+12      infile qtr1;
+13      input Flight $ Origin $ Dest $
+14      Date : date9. RevCargo : comma15.2;
+15   run;
+
+NOTE: The infile QTR1 is:
+      File Name=c:\sasuser\month1.dat,
+      File List=('c:\sasuser\month1.dat' 'c:\sasuser\month2.dat' 
+                 'c:\sasuser\month3.dat'),
+      RECFM=V,LRECL=256
+
+NOTE: The infile QTR1 is:
+      File Name=c:\sasuser\month2.dat,
+      File List=('c:\sasuser\month1.dat' 'c:\sasuser\month2.dat' 
+                 'c:\sasuser\month3.dat'),
+      RECFM=V,LRECL=256
+
+NOTE: The infile QTR1 is:
+      File Name=c:\sasuser\month3.dat,
+      File List=('c:\sasuser\month1.dat' 'c:\sasuser\month2.dat' 
+                 'c:\sasuser\month3.dat'),
+      RECFM=V,LRECL=256
+
+NOTE: 50 records were read from the infile QTR1.
+      The minimum record length was 33.
+      The maximum record length was 37.
+NOTE: 50 records were read from the infile QTR1.
+      The minimum record length was 33.
+      The maximum record length was 37.
+NOTE: 50 records were read from the infile QTR1.
+      The minimum record length was 33.
+      The maximum record length was 37.
+NOTE: The data set WORK.FIRSTQTR has 150 observations 
+      and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           4.02 seconds
+      cpu time            0.93 seconds
+</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The following PROC PRINT output shows a portion of the observations 
+          in the <strong>Work.FirstQtr</strong> data set.</p>
+        <pre><font color="#003399">     proc print data=work.firstqtr (firstobs=45 obs=55);
+        format date date9. revcargo dollar11.2;
+     run;</font>
+</pre></td>
+    </tr>
+  </table>
+  <p> <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"><TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT output">
+<thead>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Flight</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Origin</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Dest</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Date</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>RevCargo</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 45</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA03505</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BNA</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01JAN2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $2,697.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 46</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA03904</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RDU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">MCI</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01JAN2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $4,161.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 47</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA04503</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">GLA</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01JAN2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $3,498.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 48</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA04703</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRA</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01JAN2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $3,225.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 49</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA05002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01JAN2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $1,989.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 50</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA05003</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRU</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01JAN2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $2,379.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 51</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA10200</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SYD</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">HKG</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01FEB2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $177,801.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 52</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA10201</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SYD</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">HKG</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01FEB2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $174,891.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 53</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA10300</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SYD</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CBR</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01FEB2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $1,070.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 54</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA10301</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SYD</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CBR</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01FEB2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $1,310.00</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 55</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">IA10302</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SYD</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CBR</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01FEB2000</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          $850.00</font></TD>
+</TR>
+</tbody>
+</TABLE>
+  </font></font></font></font> <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  </font></font> 
+  <p>&nbsp;</p>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

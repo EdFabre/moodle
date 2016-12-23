@@ -53,7 +53,7 @@ class MoodleQuickForm_editor extends HTML_QuickForm_element {
     /** @var array options provided to initalize filepicker */
     protected $_options = array('subdirs' => 0, 'maxbytes' => 0, 'maxfiles' => 0, 'changeformat' => 0,
             'areamaxbytes' => FILE_AREA_MAX_BYTES_UNLIMITED, 'context' => null, 'noclean' => 0, 'trusttext' => 0,
-            'return_types' => 7, 'enable_filemanagement' => true);
+            'return_types' => 7);
     // $_options['return_types'] = FILE_INTERNAL | FILE_EXTERNAL | FILE_REFERENCE
 
     /** @var array values for editor */
@@ -95,25 +95,6 @@ class MoodleQuickForm_editor extends HTML_QuickForm_element {
         $this->_options['subdirs'] = (int)($this->_options['subdirs'] == 1);
 
         editors_head_setup();
-    }
-
-    /**
-     * Called by HTML_QuickForm whenever form event is made on this element
-     *
-     * @param string $event Name of event
-     * @param mixed $arg event arguments
-     * @param object $caller calling object
-     * @return bool
-     */
-    function onQuickFormEvent($event, $arg, &$caller)
-    {
-        switch ($event) {
-            case 'createElement':
-                $caller->setType($arg[0] . '[format]', PARAM_ALPHANUM);
-                $caller->setType($arg[0] . '[itemid]', PARAM_INT);
-                break;
-        }
-        return parent::onQuickFormEvent($event, $arg, $caller);
     }
 
     /**
@@ -407,8 +388,7 @@ class MoodleQuickForm_editor extends HTML_QuickForm_element {
         if (!during_initial_install() && empty($CFG->adminsetuppending)) {
             // 0 means no files, -1 unlimited
             if ($maxfiles != 0 ) {
-                $str .= html_writer::empty_tag('input', array('type' => 'hidden', 'name' => $elname.'[itemid]',
-                        'value' => $draftitemid));
+                $str .= '<input type="hidden" name="'.$elname.'[itemid]" value="'.$draftitemid.'" />';
 
                 // used by non js editor only
                 $editorurl = new moodle_url("$CFG->wwwroot/repository/draftfiles_manager.php", array(

@@ -1,0 +1,169 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      Statistics<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Your final task before writing your own PROC TABULATE step is to specify 
+        the statistics that you need. To request a statistic, you use the asterisk 
+        (<strong>*</strong>) operator to attach the statistic to the variable. 
+      </p>
+      <p> In the TABLE statements below, the statistic MEAN is specified for the 
+        variable <code>Fee</code>. Notice that you don't specify statistics in 
+        the CLASS or VAR statements. Notice also how changing the order of the 
+        variable and statistic affects the table that is produced. 
+      <pre><font color="#003399">     proc tabulate data=clinic.admit;</font>
+<font color="#003399">        var fee;</font>
+<font color="#003399">        <strong>table fee*mean;</strong></font>
+<font color="#003399">     run;</font></pre>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC TABULATE output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b>Fee</b></font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b>Mean</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 127.95</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">proc tabulate data=clinic.admit;</font>
+<font color="#003399">        var fee;</font>
+<font color="#003399">        <strong>table mean*fee;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+
+<center>
+  <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC TABULATE output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b>Mean</b></font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033AA"><b>Fee</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 127.95</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Rules for Specifying Statistics</strong> 
+        <p> Three rules apply to specifying statistics. 
+        <ol>
+          <li> If you specify <strong>only class variables </strong>in your TABLE 
+            statement, then 
+            <ul>
+              <li> the default statistic is N (frequency) 
+              <li> the only statistics you can request are N and PCTN (percent 
+                of total frequency). 
+            </ul>
+            <p> In the PROC TABULATE step below, the TABLE statement specifies 
+              only class variables, so it can request only N and PCTN. 
+            <pre><font color="#003399">     proc tabulate data=clinic.admit;</font>
+<font color="#003399">        class sex actlevel;</font>
+<font color="#003399">        <strong>table sex*pctn actlevel*n;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+          <li> If you specify <strong>any analysis variables</strong> in your 
+            TABLE statement, then 
+            <ul>
+              <li> the default statistic is SUM 
+              <li> you can request any statistic for the analysis variables. 
+            </ul>
+            <p> The TABLE statement in the PROC TABULATE step below contains two 
+              analysis variables, so it can request any statistic for those variables. 
+            <pre>     <font color="#003399">proc tabulate data=clinic.admit;</font>
+<font color="#003399">        class actlevel;</font>
+<font color="#003399">        var height weight;</font>
+<font color="#003399">        table <strong>height</strong>*mean <strong>weight</strong>*max,actlevel;</font>
+<font color="#003399">     run;</font>
+</pre>
+          <li> In a single TABLE statement, you can specify statistics in any 
+            dimension, but they must all be <strong>in the same dimension</strong>. 
+        </ol>
+        <blockquote> 
+          <pre><font color="#003399">     proc tabulate data=clinic.admit;</font>
+<font color="#003399">        class sex actlevel;</font>
+<font color="#003399">        var height weight;</font>
+<font color="#003399">        table height*<strong>mean</strong> weight*<strong>max</strong>,actlevel;</font>
+<font color="#003399">        table sex*<strong>pctn</strong> actlevel*<strong>n</strong>;</font>
+<font color="#003399">     run;</font>
+</pre>
+          <p> In the first TABLE statement above, the statistics are in the row 
+            dimension. In the second TABLE statement, the statistics are in the 
+            column dimension. 
+        </blockquote>
+      </td>
+    </tr>
+  </table>
+ 
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

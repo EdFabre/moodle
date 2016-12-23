@@ -1,0 +1,203 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --> 
+<TITLE>Formatting Variable Values</TITLE>
+<!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->Formatting 
+      Variable Values<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> In your SAS reports, <strong>formats</strong> control the way data values 
+      are displayed. To make data values more understandable when displayed in 
+      your procedure output, you can use the <strong>FORMAT statement</strong>, 
+      which associates formats with variables. The FORMAT statement remains in 
+      effect only for the PROC step in which it appears. 
+      <p> Formats affect only the way that the data values appear in output, <strong>not</strong> 
+        the actual data values as they are stored in the SAS data set.
+    </td>
+  </tr>
+</table>
+<p> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, FORMAT statement">
+    <tr> 
+      <td align="left"><strong>General form, FORMAT statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>FORMAT </strong><em>variable(s)</em> 
+          <em>format-name</em><strong>;</strong></font></nobr> </blockquote>
+        <p> where 
+        <ul>
+          <li> <font color="#003399"><em>variable(s)</em></font> is the name of 
+            one or more variables whose values are to be written according to 
+            a particular pattern (format) 
+          <li> <font color="#003399"><em>format-name</em></font> specifies a SAS 
+            or user-defined format that is used to write out the values. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">You can use a separate FORMAT statement for each variable, 
+          or&nbsp;you can format several variables (using the same or different 
+          formats) in a single FORMAT statement.</td>
+      </tr>
+    </table>
+    <p> <br>
+  </center>
+  <table bgcolor="#FFFFFF" cellpadding="5" cellspacing="0" border="1" width="450" title="Format statements">
+    <tr valign="Top" bgcolor="#F7F7DE"> 
+      <td width="225"><strong>This FORMAT statement ...</strong></td>
+      <td><strong>Associates ...</strong></td>
+    </tr>
+    <tr valign="Top"> 
+      <td width="225"> 
+        <pre><font color="#003399">format date mmddyy6.;</font>
+</pre>
+      </td>
+      <td>the format <strong>MMDDYY6. </strong>with the&nbsp;variable <code>Date</code></td>
+    </tr>
+    <tr valign="Top"> 
+      <td> 
+        <pre><font color="#003399">format net comma5.0 </font>
+<font color="#003399">       gross comma8.2;</font>
+<font color="#003399"><strong>             </strong></font>
+</pre>
+      </td>
+      <td>the format <strong>COMMA5.0</strong> with the variable <code>Net</code> 
+        and the format <strong>COMMA8.2</strong> with the variable <code>Gross</code></td>
+    </tr>
+    <tr valign="Top"> 
+      <td> 
+        <pre><font color="#003399">format net gross dollar9.2; </font>
+</pre>
+      </td>
+      <td>the format <strong>DOLLAR9.2 </strong>with both variables, <code>Net</code> 
+        and <code>Gross</code></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><h2>Example</h2>For example, the FORMAT statement below writes values of 
+        the variable <code>Fee</code> using dollar signs, commas, and no decimal 
+        places: 
+        <pre><font color="#003399">     proc print data=sasuser.admit;</font>
+<font color="#003399">        var actlevel fee;</font>
+<font color="#003399">        where actlevel='HIGH';</font>
+<font color="#003399"><strong>        format fee dollar4.;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <center>
+    <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+      bordercolor="#000000" align="Center" title="PROC PRINT output">
+      <thead> 
+      <tr bgcolor="#CCCCCC"> 
+        <td align=CENTER bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>Obs</b></font></td>
+        <td align=CENTER bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>ActLevel</b></font></td>
+        <td align=RIGHT bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>Fee</b></font></td>
+      </tr>
+      </thead> <tbody> 
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> 1</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HIGH</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> $85</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> 2</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HIGH</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">$125</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> 6</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HIGH</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">$125</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">11</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HIGH</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">$150</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">14</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HIGH</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">$125</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">18</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HIGH</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> $85</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">20</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HIGH</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">$150</font></td>
+      </tr>
+      </tbody> 
+    </table>
+  </center>
+  <p> <br>
+  <table cellpadding="2" width="85%">
+    <tr valign="Top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+      <td>You can permanently assign a format to a variable in a SAS data set, 
+        or you can temporarily specify a format in a PROC step to determine the 
+        way that the data values appear in output.</td>
+    </tr>
+  </table>
+</center>
+<!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

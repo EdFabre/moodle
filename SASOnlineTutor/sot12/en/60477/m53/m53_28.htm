@@ -1,0 +1,98 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Stored Compiled Macros<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Accessing Stored Compiled Macros</h2>
+	  <P>
+	  In order to access a stored compiled macro, you must
+	  <ol>
+	      <li>assign a libref to the SAS library that contains a <strong>Sasmacr</strong> 
+            catalog in which the macro was stored 
+          <li>set the system options MSTORED and SASMSTORE=<em>libref</em> 
+          <li>call the macro. 
+        </ol>
+	  <strong>Only one</strong> permanent catalog containing compiled macros can be accessed at any given time.
+	  <P><BR>
+	  <h2>Example</h2>
+      <P> The following program calls the <strong>Words</strong> macro. Assume that the 
+        <strong>Words</strong> macro was compiled and stored in an earlier SAS 
+        session. 
+<font color="#003399">
+      <pre>    libname macrolib 'c:\storedlib';
+    options mstored sasmstore=macrolib;
+	  
+    %words(This is a test)
+    %put Number of Words (wnum): &wnum;
+    %put Word Number 1 (w1): &w1;
+    %put Word Number 2 (w2): &w2;
+    %put Word Number 3 (w3): &w3; 
+    %put Word Number 4 (w4): &w4; 
+	  </pre>
+      </font>
+      <P>Here is a portion of the messages that are written to the SAS log when this code is submitted.
+	<P><BR>  
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+9    libname macrolib 'c:\storedlib';
+NOTE: Libref MACROLIB was successfully assigned as follows:
+      Engine:        V9
+      Physical Name: c:\storedlib
+10       options mstored sasmstore=macrolib;
+11
+12       %words(This is a test)
+13       %put Number of Words (wnum): &wnum;
+Number of Words (wnum): 4
+14       %put Word Number 1 (w1): &w1;
+Word Number 1 (w1): This
+15       %put Word Number 2 (w2): &w2;
+Word Number 2 (w2): is
+16       %put Word Number 3 (w3): &w3;
+Word Number 3 (w3): a
+17       %put Word Number 4 (w4): &w4;
+Word Number 4 (w4): test
+</pre></td></tr>
+</table> </div>
+	  </td>
+  </tr>
+</table>
+<P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

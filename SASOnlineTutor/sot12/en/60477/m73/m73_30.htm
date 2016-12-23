@@ -1,0 +1,151 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_4.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 1;
+
+salute  = "<strong>Correct.</strong><p>";
+
+correct = "The constraint specification is separated from the preceding column  " +
+          "specification by a comma. The constraint specification includes the following elements that are separated by spaces: a name that you " +
+          "assign to the constraint, the type of constraint, and (in parentheses) the name of the column to which the constraint applies.";
+
+choice1 = salute + correct;
+
+choice2 = "<strong>Incorrect.</strong><p>"+
+          "This code has two problems: the constraint is not separated from the preceding " +
+          "column definition by a comma,  and the column name is missing after the " +
+          "constraint type UNIQUE.";
+
+choice3 = "<strong>Incorrect.</strong><p>"+
+          "You must specify a name for the constraint after the keyword CONSTRAINT." +
+          "" +
+          "";
+
+choice4 = "<strong>Incorrect.</strong><p>"+
+          "The column name (<code>Code</code>) after the constraint type UNIQUE should be enclosed in " +
+          "parentheses, without an equal (=) sign." +
+          "";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Table That Has Integrity Constraints<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+ <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>Suppose you want to use a PROC SQL step to create the table <strong>Work.Departments</strong>, 
+            which will list all of a company's department names and codes. The 
+            table should have two columns: <code>Dept</code> and <code>Code</code>. 
+            You want to ensure that only unique department codes can be stored 
+            in the table.</p>
+          <p>Which of the following PROC SQL steps uses valid syntax to create 
+            <strong>Work.Departments</strong> with the integrity constraint described 
+            above?<br>
+            &nbsp;
+          </p>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" --> 
+          <pre><font color="#003399">proc sql;
+   create table work.departments
+          (Dept char(15),
+          Code num label='Dept Code',
+          constraint code_nodupe unique(code));</font></pre>
+          <!-- InstanceEndEditable --></td>
+        <td rowspan="4"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" --> 
+          <pre><font color="#003399">proc sql;
+   create table work.departments
+          (Dept char(15),
+          Code num label='Dept Code'
+          constraint code_nodupe unique);</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" -->
+          <pre><font color="#003399">proc sql;
+   create table work.departments
+          (Dept char(15),
+          Code num label='Dept Code',
+          constraint unique(code));</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value4" onClick="openAnswer(choice4)">
+         </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice4" -->
+          <pre><font color="#003399">proc sql;
+   create table work.departments
+          (Dept char(15),
+          Code num label='Dept Code',
+          constraint code_unique=code);</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr> 
+        <td colspan="3"> 
+         <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

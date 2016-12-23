@@ -1,0 +1,206 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Save 
+      a macro to an external file and use %INCLUDE to compile it.</strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+<div id="le1_le2_eg1_eg2" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+          <li>Copy the following program and paste it into the code editing window. 
+            <strong>Do not submit</strong> the program. 
+            <P> 
+          <font color="#003399"> 
+            <pre>%macro prtlast;
+   %if &syslast ne _NULL_ %then %do;
+      proc print data=&syslast(obs=5);
+         title "Listing of &syslast data set";
+      run;
+   %end;
+   %else
+      %put No data set has been created yet.;
+%mend;</pre>
+            </font> Save the program as an external file named <strong>prtlast.sas</strong>. 
+            Note the location in which you save the file. You will need to include 
+            the path to the file in the next step.<br>
+          <br>
+          <li>Open a new code editing window. Copy the following program and paste 
+            it into the code editing window. Add a statement after the PROC SORT 
+            step that will insert the contents of the external file that you created 
+            in Step 1. 
+            <P> 
+          <font color="#003399">
+            <pre>proc sort data=sasuser.courses out=bydays;
+   by days;
+run;</pre>
+          </font> Submit the program.<br>
+          <br>
+        <li>Submit a call to the <strong>Prtlast</strong> macro. Examine the output 
+          as well as any messages that are written to the SAS log. 
+		  
+		   </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+     <ol>
+          <li>Copy the following program and paste it into the code editing window. 
+            <strong>Do not submit</strong> the program. 
+            <P> 
+          <font color="#003399"> 
+            <pre>%macro prtlast;
+   %if &syslast ne _NULL_ %then %do;
+      proc print data=&syslast(obs=5);
+         title "Listing of &syslast data set";
+      run;
+   %end;
+   %else
+      %put No data set has been created yet.;
+%mend;</pre>
+            </font> Save the program as an external file named <strong>prtlast.sas</strong>. 
+            Note the location in which you save the file. You will need to include 
+            the path to the file in the next step.<br>
+          <br>
+          <li>Open a new code editing window. Copy the following program and paste 
+            it into the code editing window. Add a statement after the PROC SORT 
+            step that will insert the contents of the external file that you created 
+            in Step 1. 
+            <P> 
+          <font color="#003399">
+            <pre>proc sort data=sasuser.courses out=bydays;
+   by days;
+run;</pre>
+          </font> Submit the program.<br>
+          <br>
+        <li>Submit a call to the <strong>Prtlast</strong> macro. Examine the output 
+          as well as any messages that are written to the SAS log. 
+		  
+		   </ol>
+      
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+        <!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+<ol><li>With the code window active,  
+ select <strong>File</strong><img src="../navimages/arrow.gif" width="14" height="10" alt="then"><strong>Save <em>filename</em> As/Export</strong>.  
+ Navigate to the location to which you want to  
+ save the program. Enter <strong>prtlast.sas</strong> 
+ and click <strong>Save</strong>.<br><br>
+ <li>Open a new Code window. Submit the following program. 
+ Be sure to replace <strong><em>my-location</em></strong> with the location of the file that you saved in Step 1. 
+ <font color="#003399">
+              <pre>proc sort data=sasuser.courses out=bydays;
+    by days;
+ run;
+%include '<em><strong>my-location</strong></em>\prtlast.sas';</pre>
+              </font> 
+ The PROC SORT step insures that the value of <code>SYSLAST</code> is not null
+  The <nobr>%INCLUDE</nobr> statement compiles the <strong>Prtlast</strong> macro.<br><br> 
+ <li>Submit the following:
+ <font color="#003399"><pre>
+ %prtlast</pre></font>
+ Examine the output as well as any messages that are written to the SAS log.
+  You should see the <strong>Work.Bydays</strong> data set in the output. Depending on the options that 
+  that you have specified, you might see messages about macro execution and macro variable resolution in the log.</ol>
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="eg3_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+    <ol>
+            <li>Right-click the code item in the Project window. Select <strong>Save 
+              As</strong>. Navigate to the location to which you want to save 
+              the program. Enter <strong>prtlast.sas</strong> and click <strong>Save</strong>.<br>
+              <br>
+ <li>Open a new Code window. Submit the following program. 
+ Be sure to replace <strong><em>my-location</em></strong> with the location of the file that you saved in Step 1. 
+ <font color="#003399">
+              <pre>proc sort data=sasuser.courses out=bydays;
+    by days;
+ run;
+%include '<em><strong>my-location</strong></em>\prtlast.sas';</pre>
+              </font> 
+ The PROC SORT step insures that the value of <code>SYSLAST</code> is not null
+  The <nobr>%INCLUDE</nobr> statement compiles the <strong>Prtlast</strong> macro.<br><br> 
+ <li>Submit the following:
+ <font color="#003399"><pre>
+ %prtlast</pre></font>
+ Examine the output as well as any messages that are written to the SAS log.
+  You should see the <strong>Work.Bydays</strong> data set in the output. Depending on the options that 
+  that you have specified, you might see messages about macro execution and macro variable resolution in the log.</ol>
+
+      
+      
+       </td>
+  </tr>
+</table>
+</div>
+
+<!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

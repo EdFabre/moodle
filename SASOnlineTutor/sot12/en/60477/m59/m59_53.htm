@@ -1,0 +1,176 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Processing 
+      Generation Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>How Generation Numbers Change</h2>
+        <p>When you use the GENNUM= option, you can refer to either the absolute 
+          or relative generation number. It's helpful to understand how generation 
+          numbers change so that you can identify the generation you want to process. 
+        </p>
+        <p>First, let's take a look at how SAS names generation data sets. The 
+          first time a data set with generations in effect is replaced, SAS keeps 
+          the replaced data set and appends a four-character version number to 
+          its member name, which includes the pound symbol (#) and a three-digit 
+          number. That is, for a data set named <strong>A</strong>, the replaced 
+          data set becomes <strong>A#001</strong>. When the data set is replaced 
+          for the second time, the replaced data set becomes <strong>A#002</strong>; 
+          that is,<strong> A#002</strong> is the version that is chronologically 
+          closest to the base version. The table below shows the result after 
+          three replacements.</p>
+        <p><br></p>
+        <table width="352" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Table showing how SAS names generation data sets">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th width="83" nowrap> <font size="-1">Data Set Name</font></th>
+            <th width="511"> <font size="-1">Explanation</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td width="83"><strong>A</strong></td>
+            <td width="511">base (current) version</td>
+          </tr>
+          <tr valign="top"> 
+            <td width="83"> <p><strong>A#003</strong></p></td>
+            <td width="511">most recent (youngest) historical version</td>
+          </tr>
+          <tr valign="top"> 
+            <td width="83"><p><strong>A#002</strong></p></td>
+            <td width="511">second most recent historical version</td>
+          </tr>
+          <tr valign="top"> 
+            <td width="83"><p><strong>A#001</strong></p></td>
+            <td width="511">oldest historical version</td>
+          </tr>
+        </table>
+          
+        <p><br>
+          The limit for version numbers that SAS can append is #999. After 1000 
+          replacements, SAS rolls over the youngest version number to #000.</p>
+        <p>Now let's take a look at how absolute and relative generation numbers 
+          (specified on the GENNUM= option) change. Each time SAS creates a new 
+          generation, the absolute generation number increases sequentially. As 
+          older generations are deleted, their absolute generation numbers are 
+          retired. </p>
+        <p>In contrast, the relative generation number always refers to generations 
+          in relation to the base generation. The base or current generation is 
+          always 0 and -1 is the youngest historical version.</p>
+        <p>The following table shows data set names and their absolute and relative 
+          GENNUM= numbers.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="80%" border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Table showing GENNUM absolute and relative numbers when generations are created">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th width="43"> <font size="-1">Iteration</font></th>
+      <th width="120"> <font size="-1">SAS Code</font></th>
+      <th width="111"> <font size="-1">Data Set Names</font></th>
+      <th width="68"> <font size="-1">GENNUM= Absolute Reference </font></th>
+      <th width="68"> <font size="-1">GENNUM= Relative Reference </font></th>
+      <th width="175"> <font size="-1">Explanation</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td width="43">1</td>
+      <td width="120"><code><font color="#003399">data Year<br>
+        (genmax=3);</font></code></td>
+      <td width="111"><strong>Year</strong></td>
+      <td width="68">1</td>
+      <td width="68">0</td>
+      <td width="175">The data set <strong>Year</strong> is created, and three generations 
+        are requested.</td>
+    </tr>
+    <tr valign="top"> 
+      <td width="43">2</td>
+      <td width="120"><code><font color="#003399">data Year;</font></code></td>
+      <td width="111"> <p><strong>Year</strong></p>
+        <p><strong>Year#001</strong></p></td>
+      <td width="68"> <p>2</p>
+        <p>1</p></td>
+      <td width="68"> <p>0</p>
+        <p>-1</p></td>
+      <td width="175"><strong>Year</strong> is replaced. <strong>Year</strong> 
+        from iteration 1 is renamed <strong>Year#001</strong>.</td>
+    </tr>
+    <tr valign="top"> 
+      <td width="43">3</td>
+      <td width="120"><code><font color="#003399">data Year;</font></code></td>
+      <td width="111"><p><strong>Year</strong></p>
+        <p><strong>Year#002</strong></p>
+        <p><strong>Year#001</strong></p></td>
+      <td width="68"><p>3</p>
+        <p>2</p>
+        <p>1</p></td>
+      <td width="68"><p>0</p>
+        <p>-1</p>
+        <p>-2</p></td>
+      <td width="175"><strong>Year</strong> is replaced. <strong>Year</strong> 
+        from iteration 2 is renamed <strong>Year#002</strong>.</td>
+    </tr>
+    <tr valign="top"> 
+      <td width="43">4</td>
+      <td width="120"><code><font color="#003399">data Year;</font></code></td>
+      <td width="111"><p><strong>Year</strong></p>
+        <p><strong>Year#003</strong></p>
+        <p><strong>Year#002</strong></p></td>
+      <td width="68"><p>4</p>
+        <p>3</p>
+        <p>2</p></td>
+      <td width="68"><p>0</p>
+        <p>-1</p>
+        <p>-2</p></td>
+      <td width="175"><strong>Year</strong> is replaced. <strong>Year</strong> 
+        from iteration 3 is renamed <strong>Year#003</strong>. <strong>Year#001</strong> 
+        from iteration 1, which is the oldest, is deleted.</td>
+    </tr>
+    <tr valign="top"> 
+      <td width="43">5</td>
+      <td width="120"><p><code><font color="#003399">data Year<br>
+          </font></code><code><font color="#003399">(genmax=2);</font></code></p></td>
+      <td width="111"><p><strong>Year</strong></p>
+        <p><strong>Year#004</strong></p></td>
+      <td width="68"><p>5</p>
+        <p>4</p></td>
+      <td width="68"><p>0</p>
+        <p>-1</p></td>
+      <td width="175"><strong>Year</strong> is replaced, and the number of generations 
+        is changed to 2. <strong>Year</strong> from iteration 4 is renamed <strong>Year#004</strong>. 
+        The two oldest versions are deleted. </td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

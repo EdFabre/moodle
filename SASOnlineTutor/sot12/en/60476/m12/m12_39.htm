@@ -1,0 +1,205 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Raw Data File<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Look at the SAS program and SAS data set that you created earlier in 
+        this lesson.</p>
+        <pre><font color="#003399">    data sasuser.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       if tolerance='D';</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">    run;</font></pre>
+    </td>
+  </tr>
+</table>
+  <p align="center">SAS Data Set Sasuser.Stress <br>
+<center>
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>ID</b></font></td>
+      <td align=LEFT><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>RestHR</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>MaxHR</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>RecHR</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>TimeMin</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>TimeSec</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Tolerance</b></font></td>
+      <td align=CENTER><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>TotalTime</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2458</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Murray, 
+        W</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">72</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">185</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">128</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">12</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">38</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">D</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"> 
+        <div align="right"><font color="#000000"><font face="Verdana, Arial, Helvetica" size="2">758</font></font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2539</font></td>
+      <td align=LEFT bgcolor="#FFFFFF">LaMance, K</td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">75</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">168</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">141</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        46</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">D</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"> 
+        <div align="right"><font color="#000000"><font face="Verdana, Arial, Helvetica" size="2">706</font></font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2552</font></td>
+      <td align=LEFT bgcolor="#FFFFFF">Reberson, P</td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">69</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">158</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">139</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">15</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">41</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">D</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"> 
+        <div align="right"><font color="#000000"><font face="Verdana, Arial, Helvetica" size="2">941</font></font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2572</font></td>
+      <td align=LEFT bgcolor="#FFFFFF">Oberon, M </td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">74</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">177</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">138</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">12</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">D</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"> 
+        <div align="right"><font color="#000000"><font face="Verdana, Arial, Helvetica" size="2">731</font></font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2574</font></td>
+      <td align=LEFT bgcolor="#FFFFFF">Peterson, V </td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">80</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">164</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">137</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        14</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">9</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">D</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"> 
+        <div align="right"><font color="#000000"><font face="Verdana, Arial, Helvetica" size="2">849</font></font></div>
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2584</font></td>
+      <td align=LEFT bgcolor="#FFFFFF">Takahashi, Y</td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">76</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">163</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">135</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">16</font></td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">7</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">D</font></td>
+      <td align=LEFT bgcolor="#FFFFFF"> 
+        <div align="right"><font color="#000000"><font face="Verdana, Arial, Helvetica" size="2">967</font></font></div>
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+  </font><br>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>As you can see, the data set has been modified with SAS statements. 
+            If you wanted to write the new observations to a raw data file, you 
+            could reverse the process that you've been following and write out 
+            the observations from a SAS data set as records or lines to a new 
+            raw data file.</p>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Using the _NULL_ Keyword</strong> 
+        <p>Because the goal of your SAS program is to create a raw data file and 
+          not a SAS data set, it is inefficient to list a data set name in the 
+          DATA statement. Instead, use the keyword _NULL_, which enables you to 
+          use the DATA step without actually creating a SAS data set. A SET statement 
+          specifies the SAS data set that you want to read from.</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p> 
+          <pre><strong><font color="#003399">    data _null_;</font></strong>
+<font color="#003399">       set sasuser.stress;
+</font></pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>The next step is to specify the output file.</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

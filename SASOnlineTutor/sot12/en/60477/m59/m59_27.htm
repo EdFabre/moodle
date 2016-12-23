@@ -1,0 +1,221 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Placing 
+      Integrity Constraints on a Data Set<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Integrity constraints can be created using </p>
+        <ul>
+          <li>the DATASETS procedure</li>
+          <li>the SQL procedure.</li>
+        </ul>
+        <p>Although you can use either procedure to create integrity constraints 
+          on existing data sets, you must use PROC SQL if you want to create integrity 
+          constraints at the same time that you create the data set. In this lesson 
+          you learn to use PROC DATASETS to place integrity contraints on an existing 
+          data set.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATASETS procedure with the IC CREATE statement">
+    <tr> 
+      <td align="left"><strong>General form, DATASETS procedure with the IC CREATE 
+        statement:</strong> <blockquote> 
+          <p><font color="#003399"><nobr><strong>PROC DATASETS</strong> <strong>LIB=</strong><em>libref 
+            &lt;</em><strong>NOLIST</strong><em>&gt; </em><strong>;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>MODIFY</strong> 
+            <em>SAS-data-set</em><strong>;</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>IC CREATE</strong> 
+            <em>constraint-name</em>=<em>constraint</em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>MESSAGE</strong>='<em>Error 
+            Message</em>'&gt;<strong>;</strong><br>
+            </nobr> <strong>QUIT;</strong></font><strong><font color="#003399"><nobr></nobr></font></strong><font color="#003399"><nobr></nobr></font></p>
+        </blockquote>
+        <ul>
+          <li> where <font color="#003399"><em>libref</em></font> is the library 
+            in which the data set is stored. If you do not specify the LIB= option, 
+            the procedure uses the Work library.
+<li><strong><font color="#003399">NOLIST</font></strong> suppresses 
+            the directory listing 
+          <li><font color="#003399"><em>SAS-data-set </em></font>is the name of 
+            the data set to which you want to apply the integrity constraint 
+          <li> <font color="#003399"><em>constraint-name </em></font> is any name 
+            that you wish to give the integrity constraint 
+          <li> <font color="#003399"><em>constraint </em></font> is the type of 
+            constraint that you are creating, specified in the following format: 
+            <ul>
+              <li><font color="#003399"><strong>NOT NULL</strong> (<em>variable</em>)</font></li>
+              <li><font color="#003399"><strong>UNIQUE</strong> (<em>variables</em>)</font></li>
+              <li><font color="#003399"><strong>CHECK</strong> (<em>where-expression</em>)</font></li>
+              <li><font color="#003399"><strong>PRIMARY KEY </strong>(<em>variables</em>)</font></li>
+              <li><font color="#003399"><strong>FOREIGN KEY</strong> (<em>variables</em>) 
+                <strong>REFERENCES</strong> <em>table-name</em> </font></li>
+            </ul>
+          <li><em><font color="#003399">Error Message</font></em> is an optional 
+            message that you want the user to see if the constraint is violated. 
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You can use <font color="#003399"><strong>IC</strong></font> or <font color="#003399"><strong>INTEGRITY CONSTRAINT</strong></font> interchangeably.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">To learn how to create integrity constraints using 
+              the SQL procedure, see the lesson 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m73title);</script></strong>.</td>
+          </tr>
+        </table>
+        <br> <h2><br>
+          Example</h2>
+        <p>Suppose you have a data set that contains route information and passenger 
+          capacity for each class in an airline. You need to create integrity 
+          constraints to ensure that when the data set is updated</p>
+        <ul>
+          <li> the route ID number is both unique and required (PRIMARY KEY)</li>
+          <li> the capacity for business class passengers must either be missing 
+            or be greater than the capacity for first class passengers (CHECK). 
+          </li>
+        </ul>
+        <p>In the code below, the IC CREATE statement is used to create two general 
+          integrity constraints on variables in the data set <strong>Capinfo</strong>:</p>
+        <ul>
+          <li>The PRIMARY KEY constraint is placed on the <code>RouteID</code> 
+            variable. This constraint ensures that when values of <code>RouteID</code> 
+            are updated, they must be unique and nonmissing. <br>
+            <br>
+            <table border="0" cellpadding="2" cellspacing="0">
+              <tr> 
+                <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                <td valign="top">The same effect could be achieved by applying 
+                  both the UNIQUE and NOT NULL constraints, but the PRIMARY KEY 
+                  constraint is used as a shortcut.</td>
+              </tr>
+            </table>
+          </li>
+          <br>
+          <li> The CHECK constraint uses the WHERE expression to ensure that the 
+            only values of <code>CapBusiness</code> that are allowed are those 
+            greater than <code>Cap1st</code> or missing. </li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If you choose to run this example, you must copy 
+              the data set <strong>Capinfo</strong> from the <strong>Sasuser</strong> 
+              library to the <strong>Work</strong> library.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <blockquote> 
+    <div align="left"><font color="#003399"> 
+      <pre>     proc datasets nolist;
+        modify capinfo;
+        ic create PKIDInfo=primary key(routeid)
+           message='You must supply a Route ID Number';
+        ic create Class1=check(where=(cap1st&lt;capbusiness or capbusiness=.)) 
+           message='Cap1st must be less than CapBusiness';
+     quit;</pre>
+      </font> </div>
+  </blockquote>
+  <table width="85%" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td><p>Notice that the NOLIST option is used to prevent a listing of the 
+          Work directory that PROC DATASETS generally produces. When the constraint 
+          is created, a message is written to the SAS log. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <div align="center"> SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>45   modify capinfo;
+46   ic create PKIDInfo = primary key (routeid)
+47      message = 'You must supply a Route ID Number';
+<font color="#000000"><strong>NOTE: Integrity constraint PKIDInfo defined.</strong></font>
+48   ic create Class1 = check (where = (cap1st &lt; capbusiness
+49      or capbusiness = .)) message = 'Cap1st must be less 
+50      than CapBusiness';
+<font color="#000000"><strong>NOTE: Integrity constraint Class1 defined.</strong></font>
+51   run;</pre> 
+        </td>
+      </tr>
+    </table>
+    <p><br>
+    </p>
+    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td> <div align="center"> </div>
+          <table border="0" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+              <td valign="top">For the UNIQUE and PRIMARY KEY constraints, SAS 
+                builds indexes on the columns involved if an appropriate index 
+                does not already exist. Any index created by an integrity constraint 
+                can be used for other purposes, such as WHERE processing or the 
+                KEY= option in a SET statement.</td>
+            </tr>
+          </table>
+          <br> <table border="0" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+              <td valign="top">For more information about creating integrity constraints, 
+                see the <font size="-1" face="Arial, Helvetica, sans-serif">
+                <!--doc reference-->
+                </font>SAS documentation for the DATASETS procedure.</td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+  </div>
+  <p></p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

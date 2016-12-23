@@ -201,9 +201,17 @@ if (defined('COMPONENT_CLASSLOADER')) {
 require($CFG->dirroot.'/version.php');
 $CFG->target_release = $release;
 
-\core\session\manager::init_empty_session();
+$_SESSION = array();
+$_SESSION['SESSION'] = new stdClass();
+$_SESSION['SESSION']->lang = $CFG->lang;
+$_SESSION['USER'] = new stdClass();
+$_SESSION['USER']->id = 0;
+$_SESSION['USER']->mnethostid = 1;
+
 global $SESSION;
 global $USER;
+$SESSION = &$_SESSION['SESSION'];
+$USER    = &$_SESSION['USER'];
 
 global $COURSE;
 $COURSE = new stdClass();

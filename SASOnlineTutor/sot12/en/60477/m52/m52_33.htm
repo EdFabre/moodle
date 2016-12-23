@@ -1,0 +1,227 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Symbol Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Multiple Local Symbol Tables</h2> 
+        <p>Multiple local symbol tables can exist <strong>concurrently</strong> 
+          during macro execution if you have <strong>nested macros</strong>. That 
+          is, if you define a macro program that calls another macro program, 
+          and if both macros create local symbol tables, then two local symbol 
+          tables will exist while the second macro executes. 
+        <p> <br><strong>Example</strong>
+        <P> Suppose the following two macros, <strong>Outer</strong> and <strong>Inner</strong>, 
+          have been compiled. The macro named <strong>Outer</strong> creates a 
+          local macro variable named <code>variX</code> and assigns a value of 
+          <em>one</em> to it. Then <strong>Outer</strong> calls another macro 
+          program named<strong> Inner</strong>. The macro named <strong>Inner</strong> 
+          creates a local macro variable named <code>variY</code> and assigns 
+          the value of <code>variX</code> to it. 
+        <pre><font color="#003399">    %macro outer;
+       %local variX;
+       %let variX=one;
+       %inner
+    %mend outer;
+
+    %macro inner;
+       %local variY;
+       %let variY=&amp;variX;
+    %mend inner;
+</font></pre>
+
+Let's examine what happens to the symbol tables when you submit the following code:<P>
+<font color="#003399">
+        <pre>    %let variX=zero;
+    %outer</pre>
+        </font>
+<ol>
+          <li>The macro processor receives <code><font color="#003399">%let variX=zero;</font></code>. 
+            It checks the global symbol table for a macro variable named <code>variX</code>. 
+            There is none, so the macro processor creates <code>variX</code> and 
+            assigns a value of <em>zero</em> to it. 
+            <P><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr>
+                <td><code>variX</code></td>
+                <td><em>zero</em>
+</td></tr>
+</table><br><br>
+        <li>The macro processor receives <code><font color="#003399">%outer</font></code>. 
+          The macro processor retrieves the macro <strong>Outer</strong> from 
+          <STRONG>Work.Sasmacr</STRONG>, then begins executing it.<br>
+          <br>
+          <li>The macro processor encounters <code><font color="#003399">%local 
+            variX;</font></code>. It creates a local symbol table. The macro processor 
+            creates the macro variable <code>variX</code> in this local table 
+            and assigns a null value to it. This does not affect the macro variable 
+            <code>variX</code> that is stored in the global symbol table. 
+            <P>
+<table align="center" cellspacing="10"><tr><td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>zero</em>
+</td></tr>
+</table></td>
+<td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Outer Local Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Outer Local Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em>
+</td></tr>
+</table></td></tr></table><br>
+          <li>The macro processor encounters <code><font color="#003399">%let 
+            variX=one;</font></code>. The macro processor checks the local symbol 
+            table for <code>variX</code> and assigns a value of <em>one</em> to 
+            it. 
+            <P><table align="center" cellspacing="10"><tr><td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>zero</em>
+</td></tr>
+</table></td>
+<td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Outer Local Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Outer Local Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>one</em>
+</td></tr>
+</table></td></tr></table><br>
+        <li>The macro processor receives <code><font color="#003399">%inner</font></code>. 
+          It retrieves the macro <strong>Inner</strong> from <strong>Work.Sasmacr</strong>, then 
+          begins executing it.<br>
+          <br>
+          <li>The macro processor encounters <code><font color="#003399">%local 
+            variY;</font></code>. It creates a local symbol table. The macro processor 
+            creates a macro variable <code>variY</code> in this table and assigns 
+            a null value to it. There are now two local symbol tables in existence. 
+            <P>
+<table align="center" cellspacing="10"><tr><td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>zero</em>
+</td></tr>
+</table></td>
+<td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Outer Local Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Outer Local Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>one</em><br>
+</td></tr>
+</table></td>
+<td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Inner Local Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Inner Local Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variY</code></td>
+                      <td><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</em>
+</td></tr>
+</table></td></tr></table><br>
+          <li>The macro processor encounters <code><font color="#003399">%let 
+            variY=&amp;variX;</font></code>. It checks the most recently created 
+            local table for <code>variX</code>. There is no such macro variable 
+            in that symbol table, so the macro processor then checks the other 
+            local symbol table. It retrieves the value <em>one</em> from that 
+            symbol table and substitutes the value into the %LET statement. Then 
+            the macro processor checks the most recently created local symbol 
+            table for a macro variable named <code>variY</code>. When it finds 
+            this macro variable, it assigns the value <em>one</em> to it. 
+            <P><table align="center" cellspacing="10"><tr><td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>zero</em>
+</td></tr>
+</table></td>
+<td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Outer Local Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Outer Local Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>one</em><br>
+</td></tr>
+</table></td>
+<td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Inner Local Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Inner Local Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variY</code></td>
+                      <td><em>one</em>
+</td></tr>
+</table></td></tr></table><br>
+<li>The <strong>Inner</strong> macro finishes executing, and the local symbol table that was created within this macro is deleted. There is now only one local symbol table in existence.
+<P><table align="center" cellspacing="10"><tr><td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>zero</em>
+</td></tr>
+</table></td>
+<td><table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Outer Local Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Outer Local Symbol Table</strong></td></tr>
+<tr>
+                      <td><code>variX</code></td>
+                      <td><em>one</em>
+</td></tr>
+</table></td></tr></table><br>
+          <li>The <strong>Outer </strong>macro finishes executing, and the local 
+            symbol table that was created within this macro is deleted. There 
+            are now no local symbol tables in existence. The global symbol table 
+            has not been changed since <code>variX</code> was created and was 
+            assigned a value of <em>zero</em>. 
+            <P>
+<table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table" align="center">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr>
+                <td><code>variX</code></td>
+                <td><em>zero</em>
+</td></tr>
+</table>
+      </ol> 
+
+<P><BR>
+          As you can see, each macro program in the example above has its own 
+          local symbol table that exists as long as the macro executes. When a 
+          macro finishes executing, its local symbol table and all of the local 
+          macro variables that are contained in that table are erased. The global 
+          symbol table and all of the global macro variables that are contained 
+          in it remain. </td>
+  </tr>
+</table><p><br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,203 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Options to Specify Links and Paths<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>When ODS generates HTML files for the body, contents, and frame, 
+          it also generates links between the files using the HTML filenames that 
+          you specify in the ODS HTML statement. If you specify complete pathnames, 
+          ODS uses those pathnames in the links it generates. </p>
+        <p>The ODS statement below creates a frame file that has links to <nobr><strong>c:\records\toc.html</strong></nobr> 
+          and <nobr><strong>c:\records\data.html</strong></nobr>, and a contents 
+          file that has links to <nobr><strong>c:\records\data.html</strong></nobr>. 
+        </p>
+        <pre><font color="#003399">      ods html <strong>body='c:\records\data.html'</strong></font>
+         <font color="#003399">      <strong>contents='c:\records\toc.html'</strong></font>
+<font color="#003399">               <strong>frame='c:\records\frame.html';</strong></font></pre> 
+        <p>A portion of the source code for the HTML file<strong> frame.html</strong> 
+          is shown below. Notice that the links have the complete pathnames specified 
+          in the file specifications for the contents and body files. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="47%" border="1" cellspacing="3" cellpadding="4">
+    <tr> 
+      <td bgcolor="#FFFFFF"> <pre><br>&lt;FRAME MARGINWIDTH=&quot;4&quot; MARGINHEIGHT=&quot;0&quot; SRC=&quot;<strong>c:\records\toc.html</strong>&quot;  
+     NAME=&quot;contents&quot; SCROLLING=auto&gt;
+&lt;FRAME MARGINWIDTH=&quot;9&quot; MARGINHEIGHT=&quot;0&quot; SRC=&quot;<strong>c:\records\data.html</strong>&quot; 
+     NAME=&quot;body&quot; SCROLLING=auto&gt;
+</pre></td>
+    </tr>
+  </table>
+ <p><br></p>
+ 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">These links work when you are viewing the HTML files 
+          locally, but if you wanted to place these files on a Web server so that 
+          other people could access them, then the link needs to include either 
+          the complete URL for an absolute link or the HTML filename for a relative 
+          link. </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <br>
+  
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><strong>The URL= Suboption</strong> 
+          <p> By specifying the <strong>URL= suboption</strong> in the BODY= or 
+            CONTENTS= file specification, you can provide a URL that ODS uses 
+            in all the links that it creates to the file. You can use the URL= 
+            suboption in any ODS file specification except FRAME= (because no 
+            ODS file references the frame file).</td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <center>
+    <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, URL= option in a file specification">
+      <tr> 
+        <td align="left"><strong>General form, URL= suboption in a file specification:</strong> 
+          <blockquote> <font color="#003399"><strong><nobr> </nobr>(URL=<em>'</em></strong><em>Uniform-Resource-Locator</em><strong>') 
+            </strong></font> </blockquote>
+          <p> where <font color="#003399"><em></em></font> <font color="#003399"><em>Uniform-Resource-Locator</em></font> 
+            is the name of an HTML file or the full URL of an HTML file. ODS uses 
+            this URL instead of the file specification in all the links and references 
+            that it creates that point to the file. 
+          <p> 
+          <table cellpadding="2">
+            <tr valign="Top"> 
+              <td width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="Tip:" border="0"></td>
+              <td>The URL= suboption is useful for building HTML files that may 
+                be moved from one location to another. If the links from the contents 
+                and page files are constructed with a simple URL (one name), they 
+                work as long as the contents, page, and body files are all in 
+                the same location.</td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><strong>Example: Relative URLs</strong> <p> In this ODS 
+            HTML statement, the URL= suboption specifies only the HTML filename. 
+            This is the most common style of linking between files because maintenance 
+            is easier and the files can be moved as long as they all remain in 
+            the same directory or storage location. </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <pre><font color="#003399">     ods html</font> <font color="#003399">body='c:\records\data.html' <strong>(url='data.html')</strong></font>
+<font color="#003399">              contents='c:\records\toc.html'</font> <font color="#003399"><strong>(url='toc.html')</strong></font>
+<font color="#003399">              frame='c:\records\frame.html';</font>
+</pre> 
+        <p>The source code for <strong>frame.html</strong> has only the HTML filename 
+            as specified on the URL= suboptions for the body and contents files.</p></td>
+      </tr>
+    </table>
+    <p><br></p>
+    <table width="47%" border="1" cellspacing="3" cellpadding="4">
+      <tr> 
+        <td bgcolor="#FFFFFF"> <pre><br>&lt;FRAME MARGINWIDTH=&quot;4&quot; MARGINHEIGHT=&quot;0&quot; SRC=&quot;<strong>toc.htm</strong>&quot;  
+     NAME=&quot;contents&quot; SCROLLING=auto&gt;
+&lt;FRAME MARGINWIDTH=&quot;9&quot; MARGINHEIGHT=&quot;0&quot; SRC=&quot;<strong>data.htm</strong>&quot; 
+     NAME=&quot;body&quot; SCROLLING=auto&gt;
+</pre></td>
+      </tr>
+    </table>
+    <p><br>
+    </p>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><strong>Example: Absolute URLs</strong> <p> Alternatively, 
+            in this ODS HTML statement, the URL= suboptions specify complete URLs 
+            using Hypertext Transfer Protocol (HTTP). These files can be stored 
+            in the same or different locations. </td>
+      </tr>
+    </table>
+    <br>
+    <center>
+      <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td align="left"> <pre><font color="#003399">      ods html body='c:\records\data.html'<br>               <strong>(url='http://mysite.com/myreports/data.html')</strong></font>
+         <font color="#003399">      contents='c:\records\toc.html'</font>
+<font color="#003399">               <strong>(url='http://mysite.com/mycontents/toc.html')</strong></font>
+<font color="#003399">               frame='c:\records\frame.html';</font>
+</pre>
+            As you would expect, the source code for <strong>frame.html </strong>has 
+            the entire HTTP addresses that you specified in the URL= suboptions 
+            for the body and contents files. </td>
+        </tr>
+      </table>
+      <p><br>
+      </p>
+      <table width="47%" border="1" cellspacing="3" cellpadding="4">
+        <tr> 
+          <td bgcolor="#FFFFFF"> <pre><br>&lt;FRAME MARGINWIDTH=&quot;4&quot; MARGINHEIGHT=&quot;0&quot; SRC=&quot;<strong>http://mysite.com/myreports/data.html</strong>&quot;  
+     NAME=&quot;contents&quot; SCROLLING=auto&gt;
+&lt;FRAME MARGINWIDTH=&quot;9&quot; MARGINHEIGHT=&quot;0&quot; SRC=&quot;<strong>http://mysite.com/myreports/toc.html</strong>&quot; 
+     NAME=&quot;body&quot; SCROLLING=auto&gt;
+</pre></td>
+        </tr>
+      </table>
+      <p><br>
+      </p>
+      <table width="85%" cellpadding="2">
+        <tr valign="top"> 
+          <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+          <td>When you use the URL= suboption to specify a complete URL, you might 
+            need to move your files to that location before you can view them.</td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+    </center>
+    <p></p>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

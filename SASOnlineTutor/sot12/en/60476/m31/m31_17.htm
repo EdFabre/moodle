@@ -1,0 +1,185 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Associating 
+      User-Defined Formats with Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>When associating a format with a variable, remember to<br>
+      </p>
+      <ul>
+        <li> use the <strong>same format name</strong> in the FORMAT statement 
+          that you specified in the VALUE statement 
+        <li> place a <strong>period</strong> at the end of the format name when 
+          it is used in the FORMAT statement. 
+      </ul>
+      <p> 
+      <pre>     <font color="#003399">libname library 'c:\sas\formats\lib';</font>
+     <font color="#003399">proc format lib=library;</font>
+        <font color="#003399">value <strong>jobfmt</strong></font>
+              <font color="#003399">103='manager'</font>
+              <font color="#003399">105='text processor'</font>
+              <font color="#003399">111='assoc. technical writer'</font>
+              <font color="#003399">112='technical writer'</font>
+              <font color="#003399">113='senior technical writer';</font>
+     <font color="#003399">run;</font>
+     <font color="#003399">libname perm 'c:\data\perm';</font>
+     <font color="#003399">filename empdata 'c:\data\temp\newhires.txt';</font>
+     <font color="#003399">data perm.empinfo;</font>
+        <font color="#003399">infile empdata;</font>
+        <font color="#003399">input @9 FirstName $5. @1 LastName $7. +7 JobTitle 3.</font>
+              <font color="#003399">@19 Salary comma9.;</font>
+        <font color="#003399">format salary comma9.2 jobtitle <strong>jobfmt.</strong>;</font>
+     <font color="#003399">run;</font></pre>
+      Notice that a period is <strong>not</strong> required at the end of the 
+      SAS format COMMA9.2 in the FORMAT statement. The period in this format occurs 
+      between the width specification and the decimal place specification. All 
+      formats contain periods, but only user-defined formats invariably require 
+      periods at the end of the name. 
+        <p> If you do not format all of a variable's values, then those that are 
+          not listed in the VALUE statement are printed as they appear in the 
+          SAS data set, as shown in the following example: 
+        <pre>     <font color="#003399">proc format lib=library;</font>
+        <font color="#003399">value jobfmt</font>
+              <font color="#003399">103='manager'</font>
+              <font color="#003399">105='text processor';</font>
+     <font color="#003399">run;
+     proc print data=perm.empinfo;
+     run;</font></pre>
+    </td>
+  </tr>
+</table>
+<br>
+<table border="1" cellpadding="2" cellspacing="1" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" align="center" title="PROC PRINT Output">
+  <thead> 
+  <tr> 
+    <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Obs</b></font></td>
+    <td align="left" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>FirstName</b></font></td>
+    <td align="left" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>LastName</b></font></td>
+    <td align="left" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>JobTitle</b></font></td>
+    <td align="right" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Salary</b></font></td>
+  </tr>
+  </thead> <tbody> 
+  <tr> 
+    <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">1</font></b></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Donny</font></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Evans</font></td>
+    <td align="left" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">112</font></td>
+    <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">29996.63</font></td>
+  </tr>
+  <tr> 
+    <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">2</font></b></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Lisa</font></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Helms</font></td>
+    <td align="left" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"><nobr>text processor</nobr></font></td>
+    <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">18567.23</font></td>
+  </tr>
+  <tr> 
+    <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">3</font></b></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">John</font></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Higgins</font></td>
+    <td align="left" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">111</font></td>
+    <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">25309.00</font></td>
+  </tr>
+  <tr> 
+    <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">4</font></b></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Amy</font></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Larson</font></td>
+    <td align="left" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">113</font></td>
+    <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">32696.78</font></td>
+  </tr>
+  <tr> 
+    <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">5</font></b></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Mary</font></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Moore</font></td>
+    <td align="left" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">112</font></td>
+    <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">28945.89</font></td>
+  </tr>
+  <tr> 
+    <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">6</font></b></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Jason</font></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Powell</font></td>
+    <td align="left" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">manager</font></td>
+    <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">35099.50</font></td>
+  </tr>
+  <tr> 
+    <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">7</font></b></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Judy</font></td>
+    <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">Riley</font></td>
+    <td align="left" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">111</font></td>
+    <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">25309.00</font></td>
+  </tr>
+  </tbody> 
+</table>
+<br>
+<br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

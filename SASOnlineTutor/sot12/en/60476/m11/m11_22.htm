@@ -1,0 +1,197 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array (4);
+   answer[1] = "style={background=pwh};";
+   answer[2] = "style=[background=pwh];";
+   answer[3] = "s={background=pwh};";
+   answer[4] = "s=[background=pwh];";
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='You add the STYLE= option to the PROC TABULATE statement, \n';
+   right2='specifying a background of PWH.';
+   right3='';
+   
+   wrong1='Just add the STYLE= option and set the <font face="Courier New, Courier, mono">background</font> \n';
+   wrong2="attribute equal to PWH. There's no need to insert a \n";
+   wrong3='slash (/).';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="no";
+   var checkSemicolon="yes";
+   var useParens="no";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Inheriting 
+      Style Attributes<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Change the background 
+          color of the data cells to purplish white. Use the SAS/GRAPH color name 
+          <em>PWH</em>.<!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" -->
+          <PRE><FONT COLOR="#003399">ods listing close;</FONT>
+<FONT COLOR="#003399">ods html path='c:\data' body='table.html';</FONT>
+<FONT COLOR="#003399">proc format;</FONT>
+<FONT COLOR="#003399">   value $sexcolr 'F'='cx00DDDD'</FONT>
+<FONT COLOR="#003399">                  'M'='cx00BBBB';</FONT>
+<FONT COLOR="#003399">   value $actcolr 'HIGH'='cxFFBBFF'</FONT>
+<FONT COLOR="#003399">                  'MOD'='cxDD99DD'</FONT>
+<FONT COLOR="#003399">                  'LOW'='cxBB77BB';</FONT>
+<FONT COLOR="#003399">run;</FONT>
+<FONT COLOR="#003399">proc tabulate data=clinic.admit format=4.1</FONT>
+     <INPUT TYPE="text" size="35" NAME="anstext">
+<FONT COLOR="#003399">   class sex actlevel / style={background=cx00FFFF};</FONT>
+<FONT COLOR="#003399">   classlev sex / style={background=$sexcolr.};</FONT>
+<FONT COLOR="#003399">   classlev actlevel / style={background=$actcolr.};</FONT>
+<FONT COLOR="#003399">   var age / style=&lt;parent&gt;;</FONT>
+<FONT COLOR="#003399">   table sex*actlevel*age,mean /</FONT>
+<FONT COLOR="#003399">         box={style={background=cx00FFFF}};</FONT>
+<FONT COLOR="#003399">   keyword mean / style={background=cx00FFFF};</FONT>
+<FONT COLOR="#003399">run;</FONT>
+<FONT COLOR="#003399">ods html close;</FONT>
+<FONT COLOR="#003399">ods listing;</FONT>
+</PRE>
+          <table cellspacing="1" border="1" cellpadding="2" rules="GROUPS" frame="BOX"
+    bgcolor="#FFFFF0" bordercolor="#000000" title="ODS HTML output" align="center">
+            <thead> 
+            <tr> 
+              <td colspan="3" align="CENTER" bgcolor="#00FFFF"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>&nbsp;</b></font></td>
+              <td align=CENTER bgcolor="#00FFFF"><font face="Arial, Helvetica, Helv" size="3"
+		color="#0033A9"><b>Mean</b></font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#00FFFF"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>Sex</b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#00FFFF"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>ActLevel</b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#00FFFF"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>&nbsp;</b></font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EBDDED"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">39.8</font></td>
+            </tr>
+            <tr> 
+              <td rowspan=3 align=LEFT valign=TOP bgcolor="#00DDDD"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>F</b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#FFBBFF"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>HIGH</b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#FFBBFF"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>Age</b></font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#BB77BB"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>LOW </b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#BB77BB"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>Age</b></font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EBDDED"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">32.5</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#DD99DD"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>MOD </b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#DD99DD"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>Age</b></font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EBDDED"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">39.3</font></td>
+            </tr>
+            <tr> 
+              <td rowspan=3 align=LEFT valign=TOP bgcolor="#00BBBB"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>M</b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#FFBBFF"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>HIGH</b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#FFBBFF"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>Age</b></font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EBDDED"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">27.0</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#BB77BB"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>LOW </b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#BB77BB"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>Age</b></font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EBDDED"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">48.3</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#DD99DD"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>MOD </b></font></td>
+              <td align=LEFT valign=TOP bgcolor="#DD99DD"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033A9"><b>Age</b></font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EBDDED"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">41.5</font></td>
+            </tr>
+            </tbody> <tfoot> </tfoot> 
+          </table>
+          <!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

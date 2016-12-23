@@ -1,0 +1,92 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Copy and paste the program into the code editing window.<br><br> ';
+solutionText+='<li>Add the following OPTIONS statement before the %LET statement:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='options symbolgen;</pre></font>';
+solutionText+='Submit the program and examine the log. You will ';
+solutionText+='see two SYMBOLGEN messages, one for each reference to the macro variable ';
+solutionText+='<code>num</code>.<br><br>';
+solutionText+='<li>Replace the OPTIONS statement with the following:   ';
+solutionText+='<pre><font color="#003399">options nosymbolgen;</font></pre>';
+solutionText+='Add a %PUT statement that includes a reference to <code>num</code> to the end of the program. You can ';
+solutionText+='put any text in your %PUT statement. This is one example:';
+solutionText+='<pre><font color="#003399">%put NUM: &num;</font></pre>';
+solutionText+='Submit the program and examine the log again. ';
+solutionText+='You will see your %PUT statement message, with the resolved value of <code>num</code>.</ol>';
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Display 
+            resolved macro variables in the SAS log.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy the program below and paste it into the code editing window. 
+            <pre><font color="#003399">%let num=8;
+proc print data=sasuser.all label noobs n;
+   where course_number=&num;
+   var student_name Student_Company;
+   title "Enrollment for Course &num";
+run;</font></pre>
+        
+		  <li>Add an OPTIONS statement before the <nobr>%LET</nobr> statement to activate the 
+            SYMBOLGEN system option. Submit the program and examine the SAS log.<BR>
+		<BR>
+		  <li>Modify the OPTIONS statement to deactivate the SYMBOLGEN system 
+            option. Add a <nobr>%PUT</nobr> statement at the end of the program to display 
+            the value of the macro variable <code>num</code>. Submit the program 
+            and examine the SAS log.<BR>
+	 
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

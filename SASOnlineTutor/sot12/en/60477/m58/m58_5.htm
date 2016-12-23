@@ -1,0 +1,228 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Custom Formats Using the VALUE Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><strong></strong> <h2>Creating a Format with Overlapping Ranges</h2>
+        <p>There are times when you need to create a format that groups the same 
+          values into different ranges. To create overlapping ranges, use the 
+          <strong>MULTILABEL</strong> option in the VALUE statement in PROC FORMAT.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, VALUE statement with the MULTILABEL 
+        option">
+    <tr> 
+      <td align="left"><strong>General form, VALUE statement with the MULTILABEL 
+        option:</strong> <blockquote> <font color="#003399"><nobr><strong>VALUE 
+          </strong><em>format-name </em>(<strong>MULTILABEL</strong>)</nobr><strong>;</strong></font> 
+        </blockquote>
+        <p>where <font color="#003399"><em>format-name</em></font> is the name 
+          of the character or numeric format that is being created. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>Suppose you want to create a format that groups dates into overlapping 
+          categories. In the table below, notice that each month appears in two 
+          groups.<br>
+          <br>
+          <br>
+        </p>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Values and labels for a format">
+          <tr bgcolor="#F7F7DE"> 
+            <th width="75"><div align="left"><font size="-1">Value</font></div></th>
+            <th width="193"><div align="left"><font size="-1">Label</font></div></th>
+          </tr>
+          <tr> 
+            <td>Jan - Mar</td>
+            <td>1st Quarter</td>
+          </tr>
+          <tr> 
+            <td>Apr - Jun</td>
+            <td>2nd Quarter</td>
+          </tr>
+          <tr> 
+            <td>Jul - Sep</td>
+            <td>3rd Quarter</td>
+          </tr>
+          <tr> 
+            <td>Oct - Dec</td>
+            <td>4th Quarter</td>
+          </tr>
+          <tr> 
+            <td>Jan - Jun</td>
+            <td>First Half of Year</td>
+          </tr>
+          <tr> 
+            <td>Jul - Dec</td>
+            <td>Second Half of Year</td>
+          </tr>
+        </table>
+        <br> <br> 
+        <p>In the PROC FORMAT step below, the MULTILABEL option has been added 
+          to indicate that the DATES. format will have values with overlapping 
+          ranges:</p>
+        <pre><font color="#003399">     </font><font color="#003399">proc format;
+        value dates <strong>(<font color="#FF0000">multilabel</font>)</strong> 
+              '01jan2000'd - '31mar2000'd = '1st Quarter'
+              '01apr2000'd - '30jun2000'd = '2nd Quarter'
+              '01jul2000'd - '30sep2000'd = '3rd Quarter'
+              '01oct2000'd - '31dec2000'd = '4th Quarter'
+              '01jan2000'd - '30jun2000'd = 'First Half of Year'
+              '01jul2000'd - '31dec2000'd = 'Second Half of Year';
+     run; </font></pre><a name="mlf"></a>
+        <p>Multilabel formatting allows an observation to be included in multiple 
+          rows or categories. To use the multilabel formats, you can specify the 
+          MLF option on class variables in procedures that support it:</p>
+        <ul>
+          <li>PROC TABULATE</li>
+          <li>PROC MEANS</li>
+          <li>PROC SUMMARY.</li>
+        </ul>
+        <p>The MLF option activates multilabel format processing when a multilabel 
+          format is assigned to a class variable. For example, in the following 
+          TABULATE procedure, </p>
+        <ul>
+          <li>the FORMAT= option specifies DOLLAR15.2 as the default format for 
+            the value in each table cell </li>
+          <li>the FORMAT statement references the new format DATES. for the variable 
+            <code>Date</code></li>
+          <li>the CLASS statement identifies <code>Date</code> as the class variable 
+            and uses the MLF option to activate multilabel format processing</li>
+          <li>the row dimension of the TABLE statement creates a row for each 
+            formatted value of <code>Date</code>. </li>
+        </ul>
+        <pre><font color="#003399">     proc tabulate data = sasuser.sale2000 format = dollar15.2;
+        format Date dates.;
+        class Date / <strong><font color="#FF0000">mlf</font></strong>;
+        var RevCargo;
+        table Date, RevCargo*(mean median);
+     run; 
+</font>
+</pre>
+        <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC TABULATE Output">
+          <thead>
+            <TR> 
+              <TD ROWSPAN=2 ALIGN=CENTER VALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>&nbsp;</b></font></TD>
+              <TD COLSPAN=2 ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>RevCargo</b></font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Mean</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Median</b></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Date</b></font></TD>
+              <TD ROWSPAN=2 ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $24,839.08</font></TD>
+              <TD ROWSPAN=2 ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $4,939.00</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1st 
+                Quarter </b></font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>2nd 
+                Quarter </b></font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $14,949.77</font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $4,579.50</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>3rd 
+                Quarter </b></font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $19,836.00</font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $3,591.00</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>4th 
+                Quarter </b></font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $20,403.13</font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $1,940.00</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>First 
+                Half of Year </b></font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $19,894.42</font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $4,823.00</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=TOP bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Second 
+                Half of Year</b></font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $20,261.35</font></TD>
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $2,100.00</font></TD>
+            </TR>
+          </tbody>
+        </TABLE>
+        <CENTER>
+          <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><br>
+          <br>
+          </font> 
+          <table border="0" align="left" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="Note"></td>
+              <td valign="top">For more information about using the MULTILABEL 
+                option, see the 
+                <!--doc reference-->
+                SAS documentation for the FORMAT procedure.</td>
+            </tr>
+          </table>
+        </center>
+        <div align="left"></div></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

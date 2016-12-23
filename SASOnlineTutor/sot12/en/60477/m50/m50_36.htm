@@ -1,0 +1,106 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit the following program: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='options nocenter;<br>';
+solutionText+='proc print data=sasuser.all noobs label uniform;<br>';
+solutionText+='   where student_name contains "O\'Savio";<br>';
+solutionText+='   by student_name student_company;<br>';
+solutionText+='   var course_title begin_date location teacher;<br>';
+solutionText+='   title "Courses Taken by Selected Students";<br>';
+solutionText+='   title2 "Those with O\'Savio in Their Name";<br> ';
+solutionText+='run;</font></pre>';
+solutionText+='Examine the output. If there are any errors, check to make sure that you ';
+solutionText+='are using double quotation marks in both the WHERE statement and the TITLE2 statement.<BR><BR> ';
+solutionText+='<li>Submit the following program:';
+solutionText+='<pre><font color="#003399">%let pattern=%str(O%\'Savio);<br>';
+solutionText+='options nocenter;<br>';
+solutionText+='proc print data=sasuser.all noobs label uniform;<br>';
+solutionText+='   where student_name contains "&pattern";<br>';
+solutionText+='   by student_name student_company;<br>';
+solutionText+='   var course_title begin_date location teacher;<br>';
+solutionText+='   title "Courses Taken by Selected Students";<br>';
+solutionText+='   title2 "Those with &pattern in Their Name";<br> ';
+solutionText+='run;</font></pre>';
+solutionText+='Remember that you must use the %STR function with the additional percent sign before the apostrophe ';
+solutionText+='in O\'Savio in order to avoid errors. '; 
+solutionText+='Submit the program and examine the output. It is exactly the same as the output from <nobr>step 1.</nobr></ol>';
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use
+    macro quoting functions with the <a href="JavaScript: openOther('../linklib/all.htm')">Sasuser.All</a> data set.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy the program shown below and paste it into the code editing 
+            window. Change the name pattern in the WHERE statement and TITLE2 
+            statement to <code>O'Savio</code>. Modify the quotation marks as needed.
+            <table width="85%" align="center"><PRE><font color="#003399">
+proc print data=sasuser.all noobs label uniform;
+   where student_name contains 'Babbit';
+   by student_name student_company;
+   var course_title begin_date location teacher;
+   title 'Courses Taken by Selected Students:';
+   title2 'Those with Babbit in Their Name';
+run;
+</font></PRE></table>
+Submit the modified program.<p>
+          <li>Modify the program so that the two occurrences of <code>O'Savio</code> 
+            are replaced by references to a macro variable named <code>pattern</code>. 
+            <BR>
+            <BR>
+          Submit the program and examine the output.<br>
+
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

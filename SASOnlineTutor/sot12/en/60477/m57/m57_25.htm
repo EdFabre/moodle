@@ -1,0 +1,439 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" -->
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+          <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">sample programs</A> 
+          <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>.
+      <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <strong>Introduction</strong><br>
+        Sometimes you need to combine data from two or more sets into a single 
+        observation in a new data set according to the values of a common variable. 
+        When data sources do not have a common structure, you can use a <a href="m57_1.htm" onClick="suggestBack()">lookup 
+        table</a> to match them. 
+        <p><strong>Using Multidimensional Arrays</strong> <br>
+          When a lookup operation depends on more than one numerical factor, you 
+          can use a multidimensional array. You use an <a href="m57_2.htm" onClick="suggestBack()">ARRAY 
+          statement</a> to create an array. The ARRAY statement defines a set 
+          of elements that you plan to process as a group.</p> 
+        <p><strong>Using Stored Array Values</strong> <br>
+          In some cases, you may need to <a href="m57_8.htm" onClick="suggestBack()">store 
+          array values</a> in a SAS data set rather than loading them in an ARRAY 
+          statement. Array values should be stored in a SAS data set when</p>
+        <ul>
+          <li>there are too many values to initialize easily in the array </li>
+          <li>the values change frequently </li>
+          <li>the same values are used in many programs.<br>
+          </li>
+        </ul>
+        <p>The first step in using stored array values is to <a href="m57_9.htm" onClick="suggestBack()">create 
+          an array</a> to hold the values in the target data set. The next step 
+          is to <a href="m57_10.htm" onClick="suggestBack()">load the array elements</a>. 
+          One method for accomplishing this task is to load the array within a 
+          DO loop. The last step is to <a href="m57_11.htm" onClick="suggestBack()">read 
+          the actual values</a> stored in the other source data set.</p>
+        <p><strong>Using PROC TRANSPOSE</strong><br>
+          The TRANSPOSE procedure can also be used to match data when the orientation 
+          of the data sets differs. <a href="m57_15.htm" onClick="suggestBack()">PROC 
+          TRANSPOSE</a> creates an output data set by restructuring the values 
+          in a SAS data set, thereby transposing selected variables into observations. 
+          The transposed (output) data set can then be merged with the other data 
+          set in order to match the data.</p>
+        <p>The <a href="m57_16.htm" onClick="suggestBack()">output data set</a> 
+          contains several default variables. <code>_NAME_</code> is the default 
+          name of the variable that PROC TRANSPOSE creates to identify the source 
+          of the values in each observation in the output data set. This variable 
+          is a character variable whose values are the names of the variables 
+          that are transposed from the input data set. To override the default 
+          name, use the <a href="m57_17.htm" onClick="suggestBack()">NAME= option</a>. 
+          The remaining transposed variables are named <code>COL1</code>...<code>COL<em>n</em></code><em> 
+          </em>by default. To override the default names, use the <a href="m57_17.htm" onClick="suggestBack()">PREFIX= 
+          option</a>.</p>
+        <p><strong>Merging the Transposed Data Set<br>
+          </strong>In some cases, you may need to use a <a href="m57_20.htm" onClick="suggestBack()">BY 
+          statement</a> with PROC TRANSPOSE in order to correctly structure the 
+          data for a merge. For each BY group, PROC TRANSPOSE creates one observation 
+          for each variable that it transposes. The BY variable itself is not 
+          transposed. In order to structure the data for a merge, you may also 
+          need to <a href="m57_21.htm#sort" onClick="suggestBack()">sort</a> the 
+          output data set. Any other source data sets</a> may need to be <a href="m57_21.htm" onClick="suggestBack()">reorganized 
+          and sorted</a> as well. When the data is structured correctly, the data 
+          sets can be <a href="m57_22.htm" onClick="suggestBack()">merged</a>.<br>
+        </p>
+        </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD><h2><STRONG><A NAME="Syntax">Syntax</A></STRONG> </h2>
+        <P> <EM>To go to the page where a statement or option was presented, select 
+          a link.</EM> 
+        <P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using a Multidimensional Array</strong></TD>
+    </TR>
+  </TABLE>
+  <P> 
+  <table cellpadding="2" align="center">
+    <tr> 
+      <td><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> <strong>'</strong><em>SAS-data-library</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="Teal"><nobr><strong><font color="#003399">DATA </font></strong><font color="#003399"><em>libref.sas-data-set</em><strong> 
+        (DROP=</strong><em>variable(s</em>)<strong>);</strong></font></nobr></font></td>
+    </tr>
+    <tr> 
+      <td><A HREF="m57_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the ARRAY statement.'; "
+	      onMouseOut="window.status=''"><strong>ARRAY </strong><em>array-name 
+        </em>{<em>rows,cols,...</em>}<em> </em>&lt;<em>$</em>&gt; &lt;<em>length</em>&gt;</a> 
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m57_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the ARRAY statement.'; "
+	      onMouseOut="window.status=''"><em>&lt;array-elements</em>&gt; &lt;(<em>initial values</em>)&gt;<strong>;</strong></A></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>SET</strong>&lt;<em>SAS-data-set(s)</em> 
+        &lt;<em>(data-set-options(s) </em>)&gt;&gt; &lt;<em>options</em>&gt;<strong>;</strong> 
+        </font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><em>variable</em>=<em>expression<strong>;</strong></em></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><em>variable</em>=<em>array-name 
+        </em>{<em>rows,cols,...</em>}<strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN;</strong></font></td>
+    </tr>
+  </table>
+ <br>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using Stored Array Values</strong></TD>
+    </TR>
+  </TABLE>
+  <p> 
+  <table cellpadding="2" align="center">
+    <tr> 
+      <td><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> <strong>'</strong><em>SAS-data-library</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="Teal"><nobr><strong><font color="#003399">DATA </font></strong><font color="#003399"><em>libref.sas-data-set</em><strong>;</strong></font></nobr></font></td>
+    </tr>
+    <tr> 
+      <td><nobr><A HREF="m57_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the ARRAY statement.'; "
+	      onMouseOut="window.status=''"><strong>ARRAY </strong><em>array-name1 
+        </em>{<em>rows,cols,...</em>}<em> </em>&lt;<em>$</em>&gt; &lt;<em>length</em>&gt;</A> 
+       <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m57_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the ARRAY statement.'; "
+	      onMouseOut="window.status=''">&lt;<em>array-elements</em>&gt; &lt;(<em>initial values</em>)&gt;<strong>;</strong></A></nobr></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color="#003399">IF</font></strong> 
+        <font color="#003399"><em>expression</em> <strong>THEN DO</strong> <em>index-variable=specification</em><strong>;</strong></A></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SET</strong>&lt;<em>SAS-data-set(s)</em> 
+        &lt;<em>(data-set-options(s) </em>)&gt;&gt; &lt;<em>options</em>&gt;<strong>;</strong> 
+        </font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color="#003399">ARRAY 
+        </font></strong><font color="#003399"><em>array-name2 </em>{<em>rows,cols,...</em>}<em> 
+        </em>&lt;<em>$</em>&gt; &lt;<em>length</em>&gt;<br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>&lt;array-elements</em>&gt; 
+        &lt;(<em>initial values</em>)&gt;<strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color="#003399">DO</font></strong> 
+        <font color="#003399"><em>index-variable=specification</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#003399">array-name1 
+        </font></em><font color="#003399">{<em>rows,cols,...</em>}=<em>array-name2 
+        </em>{<em>rows,cols,...</em>}<strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color="#003399">END;</font></strong></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color="#003399">END;</font></strong></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN;</strong></font></td>
+    </tr>
+  </table>
+   <br>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using PROC TRANSPOSE and a Merge</strong></TD>
+    </TR>
+  </TABLE>
+  <P>
+  <table cellpadding="2" align="center">
+    <tr> 
+      <td><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> <strong>'</strong><em>SAS-data-library</em><strong>';</strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><A HREF="m57_15.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the TRANSPOSE procedure.'; "
+	      onMouseOut="window.status=''"><nobr><strong>PROC TRANSPOSE </strong>&lt;<strong>DATA=</strong><em>input-data-set&gt;</em></nobr></A> 
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m57_15.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the TRANSPOSE procedure.'; "
+	      onMouseOut="window.status=''"><strong>&nbsp;</strong>&lt;<strong>OUT=</strong><em>output-data-set</em>&gt;</A></font><font color="Teal"><nobr></nobr></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m57_17.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the NAME= option.'; "
+	      onMouseOut="window.status=''">&lt;<strong>NAME=</strong><em>name</em>&gt;</A></font><font color="Teal"><nobr></nobr></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m57_17.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the PREFIX= option.'; "
+	      onMouseOut="window.status=''">&lt;<strong>PREFIX=</strong><em>prefix</em>&gt;<strong>;</strong></A></font><font color="Teal"><nobr></nobr></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><A HREF="m57_21.htm#sort" onClick="suggestBack()" onMouseOver="window.status='Display details on using a BY statement with PROC TRANSPOSE.'; "
+	      onMouseOut="window.status=''"><strong>BY</strong> &lt;<strong>DESCENDING</strong>&gt; 
+        <em>variable-1</em>&nbsp;</a> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m57_21.htm#sort" onClick="suggestBack()" onMouseOver="window.status='Display details on using a BY statement with PROC TRANSPOSE.'; "
+	      onMouseOut="window.status=''">&lt;...&lt;<strong>DESCENDING</strong>&gt; 
+        <em>variable-n</em>&gt;<strong> </strong>&lt;<strong>NOTSORTED</strong>&gt;<strong>;</strong></A></font><font color="Teal"><nobr></nobr></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN;</strong></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td><strong><font color="#003399">PROC SORT; </font></strong><font color="#003399"><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>BY</strong> &lt;<strong>DESCENDING</strong>&gt; 
+        <em>variable-1</em> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;...&lt;<strong>DESCENDING</strong>&gt; 
+        <em>variable-n</em>&gt;<strong>;</strong> </font> </td>
+    </tr>
+    <tr> 
+      <td><nobr><font color="#003399"><strong>RUN;</strong></font></nobr></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td><font color="Teal"><strong><font color="#003399">DATA </font></strong><font color="#003399"><em>libref.sas-data-set</em><strong>;</strong></font></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>SET</strong>&lt;<em>SAS-data-set(s)</em> 
+        &lt;<em>(data-set-options(s) </em>)&gt;&gt; &lt;<em>options</em>&gt;<strong>;</strong> 
+        </font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color="#003399">LENGTH</font></strong><font color="#003399"><em> 
+        variable(s)</em> &lt;$&gt; <em>length</em><strong>;</strong></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><em>variable</em>=<em>expression</em><strong>;<br>
+        </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>variable</em>=<em>expression</em><strong>; </strong><strong> 
+        </strong></font></td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN;</strong></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td><strong><font color="#003399">PROC SORT;</font></strong><font color="#003399"><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;BY</strong> &lt;<strong>DESCENDING</strong>&gt; 
+        <em>variable-1</em> &lt;...&lt;<strong>DESCENDING</strong>&gt; <em>variable-n</em>&gt;<strong>;</strong> 
+        </font> </td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN;</strong></font></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td><font color="Teal"><strong><font color="#003399">DATA </font></strong><font color="#003399"><em>libref.sas-data-set</em><strong>;</strong></font></font></td>
+    </tr>
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><font color="#003399">MERGE</font></strong> 
+        <font color="#003399"><em>SAS-data-set-1</em> &lt;(<em>data-set-options</em>)&gt;<br> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>SAS-data-set-2</em> &lt;(<em>data-set-options</em>) &gt;<strong> ;</strong><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>BY</strong> &lt;<strong>DESCENDING</strong>&gt; 
+        <em>variable-1</em> &lt;...&lt;<strong>DESCENDING</strong>&gt; <em>variable-n</em>&gt;<strong>;</strong> 
+        </font> </td>
+    </tr>
+    <tr> 
+      <td><font color="#003399"><strong>RUN;</strong></font></td>
+    </tr>
+  </table>
+  <p> 
+  <P> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"> <HR> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Sample">Sample Programs</A></STRONG> 
+        </h2>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using a Multidimensional Array </strong> 
+        <pre><font color="#003399">     data work.wndchill (drop = column row);
+       array WC{4,2} _temporary_ 
+          (-22,-16,-28,-22,-32,-26,-35,-29);
+       set sasuser.flights;
+       row = round(wspeed,5)/5;
+       column = (round(temp,5)/5)+3;
+       WindChill= wc{row,column};
+     run;</font></pre>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using 
+        Stored Array Values </strong> <pre><font color="#003399">     data work.lookup1;
+        array Targets{1997:1999,12} _temporary_; 
+        if _n_=1 then do i= 1 to 3;
+           set sasuser.ctargets;
+           array Mnth{*} Jan--Dec;
+           do j=1 to dim(mnth);
+              targets{year,j}=mnth{j};
+           end;
+        end;
+        set sasuser.monthsum(keep=salemon revcargo monthno);
+        year=input(substr(salemon,4),4.); 
+        Ctarget=targets{year,monthno}; 
+        format ctarget dollar15.2; 
+     run;
+</font></pre>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using 
+        PROC TRANSPOSE and a Merge</strong> 
+        <pre><font color="#003399">     proc transpose data=sasuser.ctargets 
+          out=work</font>.<font color="#003399">ctarget2
+          name=Month
+          prefix=Ctarget;
+        by year;
+     run;   
+  
+     proc sort data=work.ctarget2;
+        by year month;
+     run; 
+
+     data work.mnthsum2;
+        set sasuser.monthsum(keep=SaleMon RevCargo);
+        length Month $ 8;
+        Year=input(substr(SaleMon,4),4.);
+        Month=substr(SaleMon,1,1)
+              ||lowcase(substr(SaleMon,2,2));
+     run; 
+   
+     proc sort data=work.mnthsum2;
+        by year month;
+     run;
+
+     data work.merged;
+        merge work.mnthsum2 work.ctarget2;
+        by year month;
+     run;</font></pre>
+        <P> 
+        <hr> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Points">Points to Remember</A></STRONG> 
+        </h2>
+        <UL>
+          <LI>The name of an array must be a SAS name that is not the name of 
+            a SAS variable in the same DATA step.<BR>
+            <BR>
+          <LI>Array elements must be either all numeric or all character.<br>
+            <br>
+          <LI>The initial values specified for an array can be numbers or character 
+            strings. You must enclose all character strings in quotation marks. 
+            <BR>
+            <BR>
+          <LI> The original SAS data set must be sorted or indexed prior to using 
+            a BY statement with PROC TRANSPOSE unless you use the NOTSORTED option. 
+        </UL>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+<!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

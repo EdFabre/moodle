@@ -1,0 +1,151 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Handling 
+      Errors in Row Insertions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>When you add rows to a table that has integrity constraints, PROC 
+          SQL evaluates the new data to ensure that it meets the conditions that 
+          are determined by the integrity constraints. If the new (or modified) 
+          data complies with the integrity constraints, the rows are added. However, 
+          if you add data that does <strong>not</strong> comply with the integrity 
+          constraints, the rows are <strong>not</strong> added. To find out whether 
+          rows of data have been successfully added, you need to check the SAS 
+          log.<br>
+        </p>
+        </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">PROC SQL also evaluates changes that are made to existing 
+        data by using the UPDATE and DELETE statements. These statements are discussed 
+        later in this lesson.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        On a previous page of this lesson, the following PROC SQL step was used 
+        to create the table <strong>Work.Discount3</strong> with two integrity 
+        constraints, one on the column <code>Discount</code> and the other on 
+        the column <code>Destination</code>:</td>
+    </tr>
+  </table>
+<br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        create table work.discount3 
+               (Destination char(3),
+               BeginDate num Format=date9.,
+               EndDate num format=date9.,
+               Discount num,
+               <strong>constraint ok_discount check (discount le .5),
+               constraint notnull_dest not null(destination)</strong>);</font></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>This table does not yet contain any rows, so let's add some data. The 
+        following INSERT statement uses the VALUES clause to add two rows of data 
+        to the table:</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        insert into work.discount3 
+               values('CDG','03MAR2000'd,'10MAR2000'd,.15)
+               values('LHR','10MAR2000'd,'12MAR2000'd,.55);</font></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>When this PROC SQL step is submitted, the following messages are displayed 
+        in the SAS log.</td>
+    </tr>
+  </table>
+  <p><br>
+  SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td height="61"> <pre><strong>ERROR:</strong> Add/Update failed for data set WORK.DISCOUNT3 <br>because data value(s) do not comply with integrity constraint <br>ok_discount.<br><strong>NOTE:</strong> This insert failed while attempting to add data from <br>VALUES clause 2 to the data set.<br><strong>NOTE:</strong> Deleting the successful inserts before error noted above <br>to restore table to a consistent state.<br></pre></td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> The three parts of this message explain what the problem is: 
+        <ul>
+          <li>The error message indicates that this attempt to add rows <strong>failed</strong>. 
+            One or more of the data values for <code>Discount</code> does not 
+            comply with the integrity constraint <code>OK_Discount</code>, which 
+            <code></code> specifies that values in the column <code>Discount</code> 
+            must be less than or equal to <strong>.5</strong>. <br>
+            <br>
+          </li>
+          <li>The first note indicates that there is a problem with the second 
+            VALUES clause. This clause specifies a value of <em>.55</em> for the 
+            column <code>Discount</code>, which does <strong>not</strong> comply.<br>
+            <br>
+            <table border="0" cellpadding="2" cellspacing="0">
+              <tr> 
+                <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+                <td valign="top">Even if multiple VALUES clauses specify non-compliant 
+                  data values, the SAS log lists only the <strong>first</strong> 
+                  VALUES clause that violates the constraint.</td>
+              </tr>
+            </table>
+            <br>
+          </li>
+          <li>The second note indicates that SAS is &quot;deleting the successful 
+            inserts&quot; before the error. Even though all the other specified 
+            data is valid, <strong>none</strong> of the data has been added to 
+            the table. </li>
+        </ul>
+        <p>Let's find out why SAS prevented any of the data from being added to 
+          the table.</p></td>
+    </tr>
+  </table>
+  <p><Br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

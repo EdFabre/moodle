@@ -1,0 +1,84 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>PUT Function</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->PUT 
+      Function <!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> You can use the PUT function to explicitly convert numeric data values 
+      to character data values.</td>
+  </tr>
+</table>
+<p> <BR>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, PUT function">
+  <tr> 
+    <td align="left"><strong>General form, PUT function:</strong> <blockquote> 
+        <font color="#003399"><nobr><strong>PUT</strong>(<em>source, format.)</em><strong>;</strong></nobr></font> 
+      </blockquote>
+where
+      <ul>
+        <li> <font color="#003399"><em>source</em></font> identifies the SAS variable 
+          or constant whose value you want to reformat. The source argument can 
+          be character or numeric. <br><br>
+        <li><font color="#003399"><em>format.</em></font> contains the SAS format 
+          that you want applied to the variable or constant that is specified 
+          in the source. The format type must be the same as the source type, 
+          either character or numeric. 
+      </ul>
+      <table border="0" align="center" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" alt="Note" width="20" height="20"></td>
+          <td valign="top"><UL>
+              <LI>The PUT function always returns a character string. <br><br>
+              <LI>The PUT function returns the <FONT color="#003399"><EM>source</EM></FONT> 
+                written with a <FONT color="#003399"><EM>format</EM></FONT>. <br><br>
+              <LI>Numeric formats right-align the result; character formats left-align 
+                the result. <br><br>
+              <LI>If you use the PUT function to create a variable that has not 
+                been previously identified, it creates a character variable whose 
+                length is equal to the format width. </UL></td>
+        </tr>
+      </table>
+     </td>
+  </tr>
+</table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <h2>Example</h2>
+	In the following DATA step, the PUT function converts the value of <code>Site</code> 
+      from numeric to character in the assignment statement for the new variable 
+      <code>Assignment</code>: <font color="#003399"> 
+      <pre>     data newtemp;
+        set sasuser.temp;
+        Assignment=<strong>put(site,2.)</strong>||'/'||department;
+     run;</pre>
+      </font></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

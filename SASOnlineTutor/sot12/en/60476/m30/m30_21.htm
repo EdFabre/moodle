@@ -1,0 +1,141 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Converting 
+      Data with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p>Now that you know the general form of the PUT function, 
+        you can rewrite the assignment statement in your DATA step to explicitly 
+        convert the numeric values of <CODE>Site</CODE> to character values. </p>
+      <P> To perform this conversion, write the PUT function, specifying <CODE>Site</CODE> 
+        as the source. Because <CODE>Site</CODE> has a length of 2, choose 2. 
+        as the numeric format. After you add this PUT function to the assignment 
+        statement, the DATA step creates the new data set that contains <CODE>Assignment</CODE>. 
+      <PRE><FONT color="#003399">     data hrd.newtemp;</FONT>
+<FONT color="#003399">        set hrd.temp;</FONT>
+   <FONT color="#003399">     Assignment=<STRONG>put(site,2.)</STRONG>||'/'||dept;</FONT>
+<FONT color="#003399">     run;</FONT>
+</PRE></td>
+  </tr>
+</table>
+<P align="center"> SAS Data Set Hrd.Newtemp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Overtime</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Job</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Contact</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Dept</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>BirthDate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Assignment</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+<TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Word Processor</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">DP</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">26</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">7054</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>26/DP</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Filing, administrative duties</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Admin. Asst.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">PURH</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">57</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">5757</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>57/PURH</STRONG></font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>Notice that no conversion messages appear in the SAS log when you use 
+        the PUT function.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+  SAS Log 
+<center>
+  <TABLE width="450" BORDER="1" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="SAS Log">
+    <TR> 
+      <TD><PRE>13    data hrd.newtemp;
+14    set hrd.temp;
+15    Assignment=put(site,2.)||'/'||dept;
+16    run;
+
+<NOBR>NOTE: The data set Hrd.Newtemp has 40 observations</NOBR>
+      and 19 variables.
+NOTE: The DATA statement used 0.71 seconds.
+</PRE></TD>
+    </TR>
+  </table>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD><STRONG>Matching the Data Type</STRONG> <P> Remember that the format 
+          specified in the PUT function must match the data type of the source. 
+        <BLOCKQUOTE> <FONT color="#003399"> <STRONG>PUT(</STRONG><EM>source,format</EM><strong>)</strong></FONT> 
+        </BLOCKQUOTE>
+        <P> So, to do an explicit numeric-to-character data conversion, you specify 
+          a numeric source and a numeric format. The form of the PUT function 
+          is very similar to the form of the INPUT function. 
+        <BLOCKQUOTE> <FONT color="#003399"><STRONG>PUT</STRONG><strong>(</strong><EM>source</EM>,<EM>format</EM></FONT><font color="#003399"><strong>)</strong></font> 
+          <P> <FONT color="#003399"> <STRONG>INPUT</STRONG><strong>(</strong><EM>source</EM>,<EM>informat</EM><strong>)</strong> 
+            </FONT> </BLOCKQUOTE>
+        <P> Note that the PUT function requires a format, whereas the INPUT function 
+          requires an informat. To remember which function requires a format versus 
+          an informat, note that the<strong> <FONT color="red">IN</FONT></strong>PUT 
+          function requires the <FONT color="red"><strong>in</strong></FONT>format. 
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <br>
+</center>
+<P> <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

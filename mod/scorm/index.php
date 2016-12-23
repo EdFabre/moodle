@@ -89,7 +89,7 @@ foreach ($scorms as $scorm) {
     if (has_capability('mod/scorm:viewreport', $context)) {
         $trackedusers = scorm_get_count_users($scorm->id, $scorm->groupingid);
         if ($trackedusers > 0) {
-            $reportshow = '<a href="report.php?id='.$scorm->coursemodule.'">'.get_string('viewallreports', 'scorm', $trackedusers).'</a>';
+            $reportshow = '<a href="report.php?id='.$scorm->coursemodule.'">'.get_string('viewallreports', 'scorm', $trackedusers).'</a></div>';
         } else {
             $reportshow = get_string('noreports', 'scorm');
         }

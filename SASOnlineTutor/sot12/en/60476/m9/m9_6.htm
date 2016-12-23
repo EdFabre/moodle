@@ -1,0 +1,153 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Defining 
+      Values for Link Locations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Now that you've created the variable (<code>PriDrill</code>) in which 
+        to store the HREF addresses, the next step is to <strong>specify values 
+        for the variable</strong>. These values will determine which pages are 
+        displayed when users click the bars of the chart.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+  <img src="images/m9c1g1.gif" width="291" height="320" alt="Defining link values"
+      border="0"> 
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Remember that your chart has four bars that track product sales by year. 
+        Because each bar shows only total sales for that year, you'll provide 
+        more detail by linking each bar to a page that contains another chart: 
+        <strong></strong> 
+        <ul>
+          <li> <strong>sales95.html</strong> 
+          <li> <strong>sales96.html</strong> 
+          <li> <strong>sales97.html</strong> 
+          <li> <strong>sales98.html</strong>. 
+        </ul>
+        <p> The bar that represents <code>YEAR=1995</code> will be a link that 
+          loads <strong>sales95.html</strong>, which will hold a chart of 1995 
+          sales by quarter. The bar for <code>YEAR=1996</code> will load <strong>sales96.html</strong>, 
+          and so on. 
+        <p> <br>
+          <strong>Assigning Values Conditionally</strong> 
+        <p> You'll create the secondary pages and their charts in a moment. For 
+          now, just assign their links to the variable <code>PriDrill</code>, 
+          basing each value on the value of <code>YEAR</code>. To perform an action 
+          based on a condition, use an <strong>IF-THEN statement</strong>. The 
+          IF-THEN statement executes a SAS statement when the condition in the 
+          IF clause is true. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, IF-THEN statement">
+    <tr> 
+      <td><strong>General form, IF-THEN statement:</strong> 
+        <blockquote> <nobr> <font color="#003399"><nobr><strong>IF</strong><em> 
+          expression </em><strong>THEN</strong><em> statement</em><strong>;</strong></nobr></font> 
+          </nobr> </blockquote>
+        <p> where 
+        <ul>
+          <li> <font color="#003399"><em>expression</em></font> is any valid SAS 
+            expression. 
+          <li> <font color="#003399"><em>statement</em></font> is any executable 
+            SAS statement. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>In this case, your executable SAS statement assigns a text string to 
+        <code>PriDrill</code>. Begin each string with <strong>HREF= </strong>to 
+        indicate a link address, then enclose the address in quotation marks. 
+        HTML filenames can end in either <strong>.html</strong> or <strong>.htm</strong>, 
+        and the HREF location can be any reference that is valid in HTML.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     data work.saletrnd;</font>
+<font color="#003399">        set finance.prdsal2;</font>
+<font color="#003399">        format actual dollar10.0;</font>
+<font color="#003399">        length PriDrill $ 40;</font>
+<font color="#003399">        if year=1995 then pridrill='<strong>HREF=</strong>"sales95.html"';</font>
+<font color="#003399">        if year=1996 then pridrill='<strong>HREF=</strong>"sales96.html"';</font>
+<font color="#003399">        if year=1997 then pridrill='<strong>HREF=</strong>"sales97.html"';</font>
+<font color="#003399">        if year=1998 then pridrill='<strong>HREF=</strong>"sales98.html"';</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" border="0" width="20"
+	    height="20" hspace="10" alt="Note:"></td>
+      <td valign="top" width="100%">HREF addresses can lead to anchors within 
+        HTML pages. To specify an anchor, add a <strong>pound sign</strong> (<strong>#</strong>) 
+        and the <strong>anchor name </strong>to the HREF address string. 
+        <p> For example, <font color="#003399"><code>HREF="sales98.html#office"</code></font> 
+          specifies the anchor named <code>office</code> within <strong>sales98.html</strong>. 
+          To link to anchors that are on the same page as your chart, omit the 
+          HTML page name and use only the pound sign and the anchor name, as in 
+          <font color="#003399"><code>HREF="#office"</code></font>. 
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

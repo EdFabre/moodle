@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      an Index to Combine Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <!--DWLayoutTable-->
+    <tr valign="top"> 
+      <td width="785" height="322" valign="top"> <p>You have seen how to use a 
+          SET statement with the KEY= option in conjunction with a second SET 
+          statement to create a data set that combines data from matching observations 
+          of two input data sets. Remember that when you use multiple SET statements, 
+          the variables in the PDV are <strong>not </strong>reinitialized when 
+          the second SET statement is executed. This can lead to problems in the 
+          output data set. 
+        <p>Suppose SAS reads an observation from the first input data set on the 
+          second iteration of the DATA step (that is, when <code>_N_</code>=<em>2</em>) 
+          and does not find a matching observation in the second input data set. 
+          Because the DATA step has already iterated once, and the values in the 
+          PDV have not been reinitialized, there are already values in the PDV 
+          for all variables. Therefore, the resulting observation in the output 
+          data set will contain values from the second observation of the first 
+          input data set, combined with values from the first observation of the 
+          second input data set. 
+        <P><BR>
+        <h2>Example</h2>
+        <p>If you examine the <strong><a href="JavaScript: openOther('m56_38b.htm')"> 
+          Work.Profit</a></strong> output data set closely, you will notice that the final 
+          observation in the output data set contains values for several variables 
+          that are identical to values in the previous observation. This duplication 
+          of data is incorrect, although the error might not be obvious. 
+        <p>The error in the output data set is caused by a data error in one of 
+          the input data sets. If you examine the <strong>Sasuser.Dnunder</strong> 
+          data set closely, you will find that all of the values for <code>FlightID</code> 
+          begin with the characters <em>IA10</em> except the value in the last 
+          observation of the data set. Instead, the value for <code>FlightID</code> 
+          in the last observation begins with the characters <em>IA11</em>. This 
+          is a data error. Because of the data error, when the DATA step executes 
+          SAS will not be able to find a matching observation in <strong>Sasuser.Sale2000</strong> 
+          for the last observation in <strong>Sasuser.Dnunder</strong>, and will 
+          write an observation to the output data set that contains data from 
+          the last observation in <strong>Sasuser.Dnunder</strong> and data from 
+          the previous DATA step iteration for <strong>Sasuser.Sale2000</strong>. 
+        <P> The SAS log provides an additional indication that the final observation 
+          in the output data set contains nonmatching data. The observation that 
+          contains unmatched data is printed to the log. As you can see in the 
+          log sample below, the unmatched observation includes an <code>_Error_ 
+          </code>variable whose value is <em>1</em>, which indicates that there 
+          is an error. The <code>_N_</code> variable indicates the iteration of 
+          the DATA step in which the error occurred. 
+        <p><br><center>SAS Log</center>
+        <table align="center" bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+          <tr> 
+            <td> <pre><strong>FlightID=IA11802 RouteID=0000108 Date=30DEC2000 Expenses=3720 
+Rev1st=1270 RevBusiness=. RevEcon=5292 RevCargo=1940 Profit=4782
+<span style="background:#CCCC99">_ERROR_=1 _IORC_=1230015 _N_=57</span></strong>
+NOTE: There were 57 observations read from the data set 
+      SASUSER.DNUNDER.
+NOTE: The data set WORK.PROFIT has 57 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.38 seconds
+      cpu time            0.04 seconds
+</pre></td>
+          </tr>
+        </table>
+        </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>You could check the SAS log for observations that contain errors in 
+        order to ensure that your output data set does not contain bad data, but 
+        there is a better way. Notice that the observation that is printed in 
+        the SAS log above also contains a variable named <code>_IORC_</code>. 
+        You can use the value of the <code>_IORC_</code> variable to prevent the 
+        observations that contain errors from being written to your output data 
+        set.</td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

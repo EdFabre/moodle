@@ -1,0 +1,126 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Executing 
+      Only Necessary Statements<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><p>In the last comparative example you saw how a subsetting IF statement 
+          can be positioned in the DATA step so that no further statements are 
+          processed for that observation. Next, let's look at how different programming 
+          techniques can be used to</p>
+        <ul>
+          <li>create variables conditionally using DO groups</li>
+          <li>create variables conditionally when calling functions.</li>
+        </ul>
+        <p>Before viewing the sample code for these two comparative examples, 
+          let's review guidelines for using these techniques.</p>          
+           <p><br> <h2>Using Conditional Logic Efficiently</h2>
+        <p>You can use conditional logic to change how SAS processes selected 
+          observations. Two techniques&#8212;IF-THEN/ELSE statements and SELECT 
+          statements&#8212;can be used interchangeably and perform comparably. 
+          Based on the characteristics of your data and depending on your environment, 
+          one of these techniques might give you better performance. Choose a 
+          technique that conserves your programming time and makes the program 
+          easiest to read.</p>
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Comparison between IF-THEN/ELSE and SELECT statements">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Technique</font></th>
+            <th><font size="-1">Action</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td>IF-THEN/ELSE statement</td>
+            <td>executes a SAS statement for observations that meet specific conditions.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>SELECT statement<em></em></td>
+            <td>executes one of several statements or groups of statements.</td>
+          </tr>
+        </table>
+        <p><br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"> <p>The number of conditions (values) tested and 
+                the type of variable tested affect CPU resources. For numeric 
+                variables, SELECT statements should always be slightly more efficient 
+                (use less CPU time) than IF-THEN/ELSE statements. The performance 
+                gap between IF-THEN/ELSE and SELECT statements gradually widens 
+                as the number of conditions increases. For character variables, 
+                IF-THEN/ELSE statements are always more efficient than SELECT 
+                statements. The performance gap widens quickly between the two 
+                techniques as the number of conditions increases.<br>
+              </p></td>
+          </tr>
+        </table>
+        <p><br>
+          Use IF-THEN/ELSE statements when</p>
+        <ul>
+          <li>the data values are character values</li>
+          <li>the data values are not uniformly distributed</li>
+          <li>there are few conditions to check.</li>
+        </ul>
+        <p>For best practices, follow these guidelines for writing efficient IF/THEN 
+          logic:</p>
+        <ul>
+          <li>For mutually exclusive conditions, use the ELSE IF statement rather 
+            than an IF statement for all conditions except the first.</li>
+          <li>Check the most frequently occurring condition first, and continue 
+            checking conditions in descending order of frequency.</li>
+          <li>When you execute multiple statements based on a condition, put the 
+            statements in a DO group.</li>
+        </ul>
+        <p>Use SELECT statements when </p>
+        <ul>
+          <li>you have a long series of mutually exclusive numeric conditions</li>
+          <li>data values are uniformly distributed. </li>
+        </ul>
+        <p>Before writing conditional logic, determine the distribution of your 
+          data values. You can use the</p>
+        <ul>
+          <li>FREQ procedure to examine the distribution of the data values</li>
+          <li>GCHART or GPLOT procedure to display the distribution graphically</li>
+          <li>UNIVARIATE procedure to examine distribution statistics and to display 
+            the information graphically.</li>
+        </ul>
+        <p><br>
+      </td>
+    </tr>
+  </table>
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

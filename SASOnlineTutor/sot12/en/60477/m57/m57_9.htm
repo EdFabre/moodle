@@ -1,0 +1,153 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Stored Array Values<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Creating an Array</h2>
+        <p>The first step is to create an array to hold the values in the target 
+          data set, <strong>Sasuser.Ctargets</strong>. The array needs two dimensions: 
+          one for the year values and one for the month values. In the following 
+          program, the first ARRAY statement creates the two-dimensional array, 
+          <code>Targets</code>. </p>
+        <p> Remember that the index of an array does not have to range from one 
+          to the number of elements. You can specify a range for the values for 
+          the index when you define the array. In this case, the dimensions of 
+          the array are specified as three rows (one for each year: 1997, 1998, 
+          and 1999) and 12 columns (one for each month). </p>
+        <pre><font color="#003399">     data work.lookup1;
+<strong>       array Targets{1997:1999,12} _temporary_; </strong>
+       if _n_=1 then do i= 1 to 3;
+	       set sasuser.ctargets;
+	       array mnth{*} Jan--Dec;
+	       do j=1 to dim(mnth);
+	          targets{year,j}=mnth{j};
+	       end;
+       end;
+       set sasuser.monthsum(keep=salemon revcargo monthno);
+       year=input(substr(salemon,4),4.); 
+       Ctarget=targets{year,monthno};
+       format ctarget dollar15.2; 
+     run;
+</font></pre>
+        The following table represents the <code>Targets</code> array. Notice 
+        that the array is not populated. The next step is to load the array elements 
+        from <strong>Sasuser.Ctargets</strong>.</td>
+    </tr>
+  </table>
+  <br>
+  Table Representation of <code>Targets</code> Array<br>
+  <table border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Table Representation of Targets Array">
+    <tr> 
+      <td>&nbsp;</td>
+      <td bgcolor="#f7F7De">&nbsp;1</td>
+      <td bgcolor="#f7F7De">&nbsp;2</td>
+      <td bgcolor="#f7F7De">&nbsp;3</td>
+      <td bgcolor="#f7F7De">&nbsp;4</td>
+      <td bgcolor="#f7F7De">&nbsp;5</td>
+      <td bgcolor="#f7F7De">&nbsp;6</td>
+      <td bgcolor="#f7F7De">&nbsp;7</td>
+      <td bgcolor="#f7F7De">&nbsp;8</td>
+      <td bgcolor="#f7F7De">&nbsp;9</td>
+      <td bgcolor="#f7F7De">10</td>
+      <td bgcolor="#f7F7De">11</td>
+      <td bgcolor="#f7F7De">12</td>
+    </tr>
+    <tr> 
+      <td bgcolor="#F7F7DE">1997</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td bgcolor="#F7F7DE">1998</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td bgcolor="#F7F7DE">1999</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>The row dimension for the <code>Targets</code> array 
+          could have been specified using the value <em>3</em>. For example,
+        <pre><font color="#003399">     array Targets{3,12} _temporary_; </font></pre>
+        However, using the notation <code>1997:1999 </code>simplifies the program 
+          by eliminating the need to map numeric values to the year values. 
+        </td>
+    </tr>
+  </table>
+
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

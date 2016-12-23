@@ -1,0 +1,163 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_2.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 1;
+
+salute  = "<strong>Correct.</strong><p>";
+correct = "\n The value of Address is retained across executions of the" +
+          "\n DATA step."; 
+          
+choice1 =   salute + correct;
+
+choice2 =   "<strong>Incorrect.</strong><p>"+
+          "\n Remember, the DATA step includes a RETAIN statement which retains" +
+          "\n the value of Address across executions of the DATA step.";
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      One Observation per Detail Record<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+<FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>As the DATA step begins the third iteration, which illustration of 
+            the program data vector is correct?</p>
+          <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File" align="center">
+            <thead> 
+            <tr> 
+              <td align=CENTER bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000">1---+----10---+----</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">H&nbsp;321&nbsp;S.&nbsp;MAIN&nbsp;ST&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">P&nbsp;MARY&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;F</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">P&nbsp;WILLIAM&nbsp;M&nbsp;23&nbsp;M&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">P&nbsp;SUSAN&nbsp;K&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;F</font></td>
+            </tr>
+          </table>
+          <pre><br>          <font color="#003399">data perm.people(drop=type);</font>
+             <font color="#003399">infile census;</font>
+             <font color="#003399">retain Address;</font>
+             <font color="#003399">input type $1. @;</font>
+             <font color="#003399">if type='H' then input @3 address $15.;</font>
+             <font color="#003399">if type='P';</font>
+             <font color="#003399">input @3 Name $10. @13 Age 3. @16 Gender $1.;</font>
+          <font color="#003399">run;</font></pre>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top"> 
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" --> 
+          <table border="1" cellspacing="0" cellpadding="3" title="program data vector">
+            <tr> 
+              <td bgcolor="#F7F7DE"><strong>_N_</strong></td>
+              <td bgcolor="#F7F7DE"><div align="center"><strong>Address</strong></div></td>
+              <td bgcolor="#F7F7DE"><div align="center"><strong>type</strong></div></td>
+              <td bgcolor="#F7F7DE"><div align="center"><strong>Name</strong></div></td>
+              <td bgcolor="#F7F7DE"><div align="center"><strong>Age</strong></div></td>
+              <td bgcolor="#F7F7DE"><strong>Gender</strong></td>
+            </tr>
+            <tr> 
+              <td bgcolor="#FFFFFF"><div align="center"><font face="Courier New, Courier, mono">3</font></div></td>
+              <td bgcolor="#FFFFFF"><div align="center"><nobr><font face="Courier New, Courier, mono">321 
+                  S. Main St.</font></nobr></div></td>
+              <td bgcolor="#FFFFFF"><div align="center">&nbsp;</div></td>
+              <td bgcolor="#FFFFFF"><div align="center">&nbsp;</div></td>
+              <td bgcolor="#FFFFFF"><div align="center"><font face="Courier New, Courier, mono">.</font></div></td>
+              <td bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          </table>
+          <!-- InstanceEndEditable --></td>
+        <td rowspan="2"><!-- InstanceBeginEditable name="figure" -->
+          
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top"> 
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" --> 
+          <table border="1" cellspacing="0" cellpadding="3" title="program data vector">
+            <tr> 
+              <td bgcolor="#F7F7DE"><strong>_N_</strong></td>
+              <td bgcolor="#F7F7DE"><div align="center"><strong>Address</strong></div></td>
+              <td bgcolor="#F7F7DE"><div align="center"><strong>type</strong></div></td>
+              <td bgcolor="#F7F7DE"><div align="center"><strong>Name</strong></div></td>
+              <td bgcolor="#F7F7DE"><div align="center"><strong>Age</strong></div></td>
+              <td bgcolor="#F7F7DE"><strong>Gender</strong></td>
+            </tr>
+            <tr> 
+              <td bgcolor="#FFFFFF"><div align="center"><font face="Courier New, Courier, mono">3</font></div></td>
+              <td bgcolor="#FFFFFF"><div align="center"><strong><nobr>&nbsp;</nobr></strong></div></td>
+              <td bgcolor="#FFFFFF"><div align="center">&nbsp;</div></td>
+              <td bgcolor="#FFFFFF"><div align="center">&nbsp;</div></td>
+              <td bgcolor="#FFFFFF"><div align="center"><font face="Courier New, Courier, mono">.</font></div></td>
+              <td bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+          </table>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      
+      <tr> 
+        <td colspan="3"> 
+<script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

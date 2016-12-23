@@ -1,0 +1,134 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Creating an Index</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Creating 
+      an Index<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+    
+       To <strong>create an index</strong> at the same time that you create 
+        a data set, use the <strong>INDEX= data set option</strong> in the DATA 
+        statement.
+     
+      </td>
+  </tr>
+</table>
+<P><BR>
+<table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATA statement with the INDEX= option">
+            <tr> 
+              
+      <td align="left"><strong>General form, DATA statement with the INDEX= option:</strong> 
+        <blockquote> <dl><dt><font color="#003399"><strong>DATA</strong> <em>SAS-data-file-name 
+        </em><strong>(INDEX=</strong></font></dt>
+            
+          <dd><font color="#003399"><em><nobr>(index-specification-1</nobr></em>&lt;<strong>/UNIQUE</strong>&gt;<em>&lt;<nobr>...index-specification-n</nobr></em>&lt;<strong>/UNIQUE</strong>&gt;</em>&gt;))</em><strong>;</strong></font> 
+          </dd>
+          </dl>
+      </blockquote>
+            where    
+      <ul>
+	  <li><font color="#003399"><em>SAS-data-file-name</em></font> is a valid SAS data set name
+        <li><font color="#003399"><em>index-specification</em></font> for a simple index is the name of the key variable
+		<li><font color="#003399"><em>index-specification</em></font> for a composite 
+          index is <em>(index-name=(variable-1...variable-n))</em>
+		  <li>the <font color="#003399"><strong>UNIQUE</strong></font> option 
+            specifies that values for the key variable must be unique for each 
+            observation. 
+        </ul></td>
+            </tr>
+          </table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      
+    <h2>Example</h2>
+      <p>The following example creates a simple index on the <strong>Simple</strong> 
+        data set. The index is named <strong>Division</strong>, and it contains 
+        values of the <code>Division</code> variable.
+	  <font color="#003399">
+        <pre>     data simple (index=(division));
+      set sasuser.empdata;
+     run;</pre>
+        </font></td></tr></table><P>
+		<table width="85%" cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr><td><h2>Using PROC DATASETS to Manage Indexes</h2>
+		You use the <strong>MODIFY statement</strong> 
+          with the <strong>INDEX CREATE statement</strong> in the DATASETS procedure to create indexes on 
+          a data set. You use the MODIFY statement with the <strong>INDEX DELETE 
+          statement</strong> in the DATASETS procedure to delete indexes<strong> </strong>from a data set. 
+          You can also use the INDEX CREATE statement and the INDEX DELETE statement 
+          in the same step.</td>
+  </tr>
+</table>
+<P><BR>
+<table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC DATASETS to create or delete an index">
+            <tr> 
+              
+      <td align="left"><strong>General form, PROC DATASETS to create and delete 
+        an index:</strong> 
+        <blockquote> <dl><dt><font color="#003399"><strong>PROC DATASETS LIBRARY=</strong><em>libref</em><strong>;</strong></font> </dt>
+			  <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>MODIFY</strong> <em>SAS-data-set-name</em><strong>;</strong></font></dt>
+			  
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>INDEX 
+              DELETE</strong> <em>index-name</em><strong>;</strong></font></dt>
+			  
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>INDEX 
+              CREATE</strong> <em>index-specification</em><strong>;</strong></font></dt>
+			  <dt><font color="#003399"><strong>RUN;</strong></font></dt>
+			  <dt><font color="#003399"><strong>QUIT;</strong></font></dt></dl>
+                
+      </blockquote>
+	  where
+	  <ul>
+	      <li><font color="#003399"><em>libref</em></font> points to the SAS library 
+            that contains <font color="#003399"><em>SAS-data-set-name</em></font>         
+			 <li><font color="#003399"><em>index-name</em></font> is the name of 
+            an existing index to be deleted
+          <li><font color="#003399"><em>index-specification</em></font> for a simple index is the name of the key variable
+		<li><font color="#003399"><em>index-specification</em></font> for a composite 
+          index is <em>index-name=(variable-1...variable-n)</em>. 
+		  </ul>
+                </td>
+            </tr>
+          </table><P><BR><table width="85%" align="center" cellpadding="0" cellspacing="0" border="0">
+<tr><td>
+<h2>Example</h2>
+        The following example creates an index named <strong>Origin</strong> 
+          on the <strong>Sasuser.Sale2000</strong> data set. <strong>Origin</strong> 
+          is a simple index that is based on the key variable <code>Origin</code>. 
+        <font color="#003399">
+        
+      <pre>     proc datasets library=sasuser;
+       modify sale2000;
+       index create dest;
+     run;
+     quit;</pre>
+        </font></td></tr></table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

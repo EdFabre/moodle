@@ -1,0 +1,328 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Producing 
+      Frequency Tables Using PROC FREQ<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>The FREQ procedure is a descriptive procedure as well as a statistical 
+        procedure. It produces one-way and <em>n</em>-way frequency tables, and 
+        it concisely describes your data by reporting the distribution of variable 
+        values. You can use the FREQ procedure to create crosstabulation tables 
+        that summarize data for two or more categorical variables by showing the 
+        number of observations for each combination of variable values. </p>
+    </td>
+  </tr>
+</table>
+<center>
+  <br>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Procedure Syntax</strong> 
+        <p> The FREQ procedure can include many statements and options for controlling 
+          frequency output. For simplicity, let's consider the procedure in its 
+          basic form. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, basic FREQ procedure">
+    <tr> 
+      <td colspan="2"><strong>General form, basic FREQ procedure:</strong> 
+        <blockquote> 
+          <dl> 
+            <dt> <nobr><font color="#003399"><strong>PROC FREQ</strong> &lt;<strong>DATA=</strong><em>SAS-data-set</em>&gt;<strong>;</strong></font></nobr><br>
+              <font color="#003399"><strong>RUN;</strong></font> 
+          </dl>
+        </blockquote>
+        <p> where <nobr><font color="#003399"><em>SAS-data-set</em></font></nobr> 
+          is the name of the data set to be used. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>By default, PROC FREQ creates a one-way table with the <strong>frequency</strong>, 
+        <strong>percent</strong>, <strong>cumulative frequency</strong>, and <strong>cumulative 
+        percent</strong> of every value of all variables in a data set.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellspacing="1" border="1" cellpadding="2" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" width="450" title="PROC FREQ Statistics">
+    <thead> 
+    <tr> 
+      <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Variable</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Frequency</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b> Percent</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Cumulative<br>
+        Frequency</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Cumulative<br>
+        Percent</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr valign="top"> 
+      <td align="center" bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Value</b></font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Number 
+        of observations with the value.</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Frequency 
+        of the value divided by the total number of observations.</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Sum 
+        of the frequency counts of the value and all other values listed above 
+        it in the table.</font></td>
+      <td bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Cumulative 
+        frequency of the value divided by the total number of observations.</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>For example, the following FREQ procedure creates a frequency table 
+        for each variable in the data set <strong>Parts.Widgets</strong>. All 
+        the unique values are shown for <code>ItemName</code>, <code>LotSize</code>, 
+        and <code>Region</code>. 
+        <pre><font color="#003399">     proc freq data=parts.widgets;</font>
+<font color="#003399">     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellspacing="1" border="1" cellpadding="2" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC FREQ Output">
+    <thead> 
+    <tr> 
+      <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>ItemName</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Frequency</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b> Percent</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Cumulative<br>
+        Frequency</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Cumulative<br>
+        Percent</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Bolt</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">2930</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">34.52</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">2930</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">34.52</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Locknut</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">3106</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">36.60</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">6036</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">71.12</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Washer</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">2451</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">28.88</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">8487</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">100.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+</center>
+<p align="center"> 
+<center>
+  <table cellspacing="1" border="1" cellpadding="2" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC FREQ Output">
+    <thead> 
+    <tr> 
+      <td align="right" valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>LotSize</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Frequency</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b> Percent</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Cumulative<br>
+        Frequency</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Cumulative<br>
+        Percent</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align="right" bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033A9"><b>1</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">4256</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">50.15</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">4256</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">50.15</font></td>
+    </tr>
+    <tr> 
+      <td align="right" bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033A9"><b>2</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">1009</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">11.89</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">5265</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">62.04</font></td>
+    </tr>
+    <tr> 
+      <td align="right" bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033A9"><b>3</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">3222</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">37.96</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">8487</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">100.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+</center>
+<p align="center"> 
+<center>
+  <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC FREQ Output">
+    <thead> 
+    <tr> 
+      <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Region</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Frequency</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b> Percent</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Cumulative<br>
+        Frequency</b></font></td>
+      <td align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Cumulative<br>
+        Percent</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>East</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">2848</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">33.56</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">2848</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">33.56</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>North</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">1355</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">15.97</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">4203</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">49.53</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>South</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">1706</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">20.10</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">5909</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">69.63</font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>West</b></font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">2578</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">30.38</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">8487</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"
+	      color="#000000">100.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

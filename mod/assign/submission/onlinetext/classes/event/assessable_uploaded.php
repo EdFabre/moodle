@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') || die();
  * @property-read array $other {
  *      Extra information about event.
  *
- *      - string format: (optional) content format.
+ *      - string format: content format.
  * }
  *
  * @package    assignsubmission_onlinetext

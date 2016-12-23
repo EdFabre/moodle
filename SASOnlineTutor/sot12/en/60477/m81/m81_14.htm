@@ -1,0 +1,77 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the SASFILE Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Guidelines for Using the SASFILE Statement</h2>
+        <p>When the SASFILE statement executes, SAS allocates the number of buffers 
+          based on the number of pages for the data file and index file. If the 
+          file in memory increases in size during processing because of changes 
+          or additions to the data, the number of buffers also increases.</p>
+        <p>It is important to note that I/O processing is reduced only if there 
+          is sufficient real memory. If there is not sufficient real memory, the 
+          operating environment might </p>
+        <ul>
+          <li>use virtual memory</li>
+          <li>use the default number of buffers.</li>
+        </ul>
+        <p>If SAS uses virtual memory, there might be a degradation in performance.</p>
+        <p> If you need to repeatedly process part of a SAS data file and the 
+          entire file won't fit into memory, use a DATA step with the SASFILE 
+          statement to create a subset of the file that does fit into memory, 
+          and then process that subset repeatedly. This saves CPU time in the 
+          processing steps because those steps will read a smaller file, in addition 
+          to the benefit of the file being resident in memory.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p>
+  <table width="84%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">When using a SASFILE statement, monitor the paging activity 
+        (the I/O activity that is done by the virtual memory management subsystem 
+        of your operating environment) while your program runs. If the paging 
+        activity increases substantially, consider keeping less data in memory 
+        and using techniques described elsewhere in this course to reduce memory 
+        requirements.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

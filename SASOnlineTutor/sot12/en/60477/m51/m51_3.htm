@@ -1,0 +1,124 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Macro Variable During DATA Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P> In order to understand the problem with this example, you should consider 
+          how macro variable processing works in conjunction with SAS processing. 
+          Remember that when both macro language statements and SAS language statements 
+          occur in the same step, the <strong>macro processor</strong> executes 
+          macro language statements <strong>before</strong> any SAS language statements 
+          are executed. 
+        <P><BR><h2>Example</h2><P>
+		Remember, you want to create a report that lists students who are enrolled in a specific course, 
+according to data in the <strong>Sasuser.All</strong> data set, and you want to include a footnote in your report to indicate whether any student fees are unpaid.
+        The following program uses SAS programming logic to determine which 
+          value is assigned to the macro variable <code>foot</code>. Then <code>foot</code> 
+          is referenced in the FOOTNOTE statement later in the program. 
+<pre><font color="#003399">    options symbolgen pagesize=30;
+    %let crsnum=3;
+    data revenue;
+       set sasuser.all end=final;
+       where course_number=&amp;crsnum;
+       total+1;
+       if paid='Y' then paidup+1;
+       if final then do;
+          put total= paidup=; /* Write information
+                                to the log. */
+          if paidup&lt;total then do;
+             <strong>%let foot=Some Fees Are Unpaid;</strong>
+          end;
+          else do;
+             <strong>%let foot=All Students Have Paid;</strong>
+          end;
+       end;
+    run;
+    
+    proc print data=revenue;
+       var student_name student_company paid;
+       title &quot;Payment Status for Course &amp;crsnum&quot;;
+       footnote &quot;&amp;foot&quot;;
+    run;
+</font></pre>
+<P>In this example, the first <nobr>%LET</nobr> statement inside the DATA step 
+          is passed to the macro processor as soon as the word scanner encounters 
+          it. The macro processor then creates a macro variable named <code>foot</code> 
+          in the symbol table and assigns the value <em>Some Fees Are Unpaid</em> 
+          to the variable. 
+        <P> The word scanner then continues to read the program and passes the 
+          second <nobr>%LET</nobr> statement in the DATA step to the macro processor 
+          as well. This time, the macro processor reassigns the value <em>All 
+          Students Have Paid</em> to <code>foot</code> in the symbol table. 
+        <P> When the RUN statement in the DATA step is encountered, SAS recognizes 
+          that the step is complete, and executes it. Remember that at this point 
+          the DATA step no longer includes any of the <nobr>%LET</nobr> statements 
+          (which have already been executed by the macro processor). Because the 
+          <nobr>%LET</nobr> statements are <strong>always</strong> processed by 
+          the macro processor <strong>before</strong> the DATA step is executed, 
+          the value of <code>foot</code> will always be whatever the last <nobr>%LET</nobr> 
+          statement assigns. 
+        <P> Here is a representation of the program that is processed by the data 
+          step compiler as a result of the above code: 
+        <P><center>Code After Substitution</center><table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" align="center" title="Code After Substitution">
+<tr bgcolor="#F7F7DE"><td><pre><font color="#003399">
+data revenue;
+   set sasuser.all end=final;
+   where course_number=3;
+   total+1;
+   if paid='Y' then paidup+1;
+   if final then do;
+      put total= paidup=;
+      if paidup&lt;total then do;
+      end;
+      else do;
+      end;
+   end;
+run;
+proc print data=revenue;
+   var student_name student_company paid;
+   title &quot;Payment Status for Course 3&quot;;
+   footnote &quot;All Students Have Paid&quot;;
+run;</font></pre></td></tr>
+</table>
+<P><BR> Let's look at a way to solve this problem.
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,123 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Set Operations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Modifying Results by Using Keywords</h2>
+        <p> To modify the behavior of set operators, you can use either or both 
+          of the keywords <strong>ALL</strong> and <strong>CORR </strong>immediately 
+          following the set operator:<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre>     <font color="#003399">proc sql;
+        select *
+           from table1
+   <strong>     set-operator <font color="red">&lt;all&gt; &lt;corr&gt;</font></strong><strong><corr> <all></strong>
+        select *
+           from table2;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> The use of each keyword is described below.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Keywords Used in Set Operations">
+    <tr align="left" valign="top"> 
+      <th bgcolor="#F7F7DE"><font size="-1">Keyword</font></th>
+      <th bgcolor="#F7F7DE"><font size="-1">Action</font></th>
+      <th bgcolor="#F7F7DE"><font size="-1">Used When&nbsp;...</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td align="left"><strong>ALL</strong></td>
+      <td align="left"> <p>Makes only <strong>one pass</strong> through the data 
+          and does <strong>not</strong> remove duplicate rows.</p>
+        <p><br>
+        </p></td>
+      <td align="left"> <p>You do not care if there are duplicates.</p>
+        <p>Duplicates are not possible.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:"></td>
+            <td valign="top"><strong>ALL</strong> <strong>cannot</strong> be used 
+              with <strong>OUTER UNION</strong>.</td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr valign="top"> 
+      <td align="left"><strong>CORR</strong> (or <strong>CORRESPONDING</strong>)</td>
+      <td align="left"> <p><strong>Compares</strong> and overlays columns by <strong>name</strong> 
+          instead of by position:</p>
+        <ul>
+          <li>When used with <strong>EXCEPT</strong>, <strong>INTERSECT</strong>, 
+            and <strong>UNION</strong>, <strong>removes</strong> any columns that 
+            do not have the same name in both tables.<br>
+            <br>
+          </li>
+          <li>When used with <strong>OUTER UNION</strong>, <strong>overlays</strong> 
+            same-named columns and displays columns that have nonmatching names 
+            <strong>without overlaying.</strong></li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If an alias is assigned to a column in the SELECT 
+              clause, CORR will use the alias instead of the permanent column 
+              name.</td>
+          </tr>
+        </table></td>
+      <td align="left">Two tables have some or all columns in common, but the 
+        columns are not in the same order.</td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>In the remainder of this lesson, you will learn more about the use of 
+        each set operator, with and without the keywords ALL and CORR. </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

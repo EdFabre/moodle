@@ -627,17 +627,10 @@ Y.extend(RESOURCETOOLBOX, TOOLBOX, {
 
         // If activity is conditionally hidden, then don't toggle.
         if (!dimarea.hasClass(CSS.CONDITIONALHIDDEN)) {
-            if (action === 'hide') {
-                // Change the UI.
-                dimarea.addClass(toggleclass);
-                // We need to toggle dimming on the description too.
-                activity.all(SELECTOR.CONTENTAFTERLINK).addClass(CSS.DIMMEDTEXT);
-            } else {
-                // Change the UI.
-                dimarea.removeClass(toggleclass);
-                // We need to toggle dimming on the description too.
-                activity.all(SELECTOR.CONTENTAFTERLINK).removeClass(CSS.DIMMEDTEXT);
-            }
+            // Change the UI.
+            dimarea.toggleClass(toggleclass);
+            // We need to toggle dimming on the description too.
+            activity.all(SELECTOR.CONTENTAFTERLINK).toggleClass(CSS.DIMMEDTEXT);
         }
         // Toggle availablity info for conditional activities.
         if (availabilityinfo) {

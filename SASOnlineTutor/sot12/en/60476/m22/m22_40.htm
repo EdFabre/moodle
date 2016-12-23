@@ -1,0 +1,99 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Testing 
+      Your Programs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>PUT Statement</strong> </p>
+      <p> When the source of program errors is not apparent, you can use the <strong>PUT 
+        statement</strong> to examine variable values and to print your own message 
+        in the log. For diagnostic purposes, you can use IF-THEN/ELSE statements 
+        to conditionally check for values. You can learn about IF-THEN/ELSE statements 
+        in detail in the lesson <!--lesson reference--> <strong><script>document.write(m39title);</script></strong>. 
+      <pre><font color="#003399">     data work.test;</font>
+<font color="#003399">        infile loan;</font>
+<font color="#003399">        input Code $ 1 Amount 3-10 Rate 12-16
+              Account $ 18-25 Months 27-28;</font>
+<font color="#003399">        if code='1' then type='variable';</font>
+<font color="#003399">        else if code='2' then type='fixed';</font>
+<font color="#003399">        else <strong>put 'MY NOTE: invalid value: '</strong></font>
+<font color="#003399">             <strong>code=;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> In this example, if <code>CODE</code> does not have the expected values 
+        of <em>1</em> or <em>2</em>, the PUT statement writes a message to the 
+        log: 
+    </td>
+  </tr>
+</table>
+<center>
+  <p> SAS Log 
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> 
+        <pre><span style="background:#CCCC99"><strong>MY NOTE: invalid value: Code=V</strong></span>
+NOTE: The data set WORK.TEST has 9 observations
+      and 6 variables.</pre>
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="1" width="85%" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" title="General form, simple PUT statement">
+    <tr> 
+      <td><strong>General form, simple PUT statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>PUT</strong><em> specification(s)</em><strong>;</strong></font></nobr> 
+        </blockquote>
+        <p> where <nobr><font color="#003399"><em>specification</em></font></nobr> 
+          specifies what is written, how it is written, and where it is written. 
+          This can include 
+        <ul>
+          <li> a character string 
+          <li> one or more data set variables 
+          <li> the automatic variables <code>_N_</code> and <code>_ERROR_ </code> 
+          <li> the automatic variable <code>_ALL_</code> 
+        </ul>
+        <p> and much more. The following pages show examples of PUT specifications.
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<p>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

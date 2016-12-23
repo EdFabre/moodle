@@ -1,0 +1,445 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Adding 
+      Color to Table Cells<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Using Formats as Option Values</strong> </p>
+      <p> You've seen how to add color to class level headings by combining the 
+        CLASSLEV statement with the STYLE= option. This approach applies a color 
+        to all of the levels. But what if you would like to use a different color 
+        for each level of a class variable? For example, the LaGuardia table has 
+        four destinations that could each use a different background color. 
+      <p> To apply different colors, create a <strong>user-defined format</strong>. 
+      <p> <br>
+        <strong>Creating Formats</strong> 
+      <p> If you completed the lesson 
+        <!--lesson reference--><strong><script>document.write(m31title);</script></strong>, you know that you can apply 
+        user-defined formats to data values. For example, the first version of 
+        your TABULATE program formatted values to display the full name of flight 
+        destinations. 
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     ods listing close;</font>
+<font color="#003399">     ods html path='c:\data' body='laguard.html';</font>
+<font color="#003399">     title1 'LaGuardia Flights by Destination';</font>
+<font color="#003399">     title2 'and Revenue, March 4-10';</font>
+<font color="#003399">     <strong>proc format;</strong></font>
+<font color="#003399"><strong>        value $desname 'CPH'='Copenhagen'</strong></font>
+<font color="#003399"><strong>                       'FRA'='Frankfurt'</strong></font>
+<font color="#003399"><strong>                       'LON'='London'</strong></font>
+<font color="#003399"><strong>                       'PAR'='Paris';</strong></font>
+<font color="#003399"><strong>     run;</strong></font>
+<font color="#003399">     proc tabulate data=flights.laguardia format=comma9.;</font>
+<font color="#003399">        class dest / style={background=cxCCEEDD};</font>
+<font color="#003399">        var boarded transferred deplaned revenue;</font>
+<font color="#003399">        table dest*(boarded transferred deplaned revenue),</font>
+<font color="#003399">              min max mean sum / box={style={background=cxCCEEDD}};</font>
+<font color="#003399">        keyword min max mean sum / style={background=cxCCEEDD};</font>
+<font color="#003399">        label dest='Destination';</font>
+<font color="#003399">        <strong>format dest $desname.;</strong></font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html close;</font>
+<font color="#003399">     ods listing;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>You can use a similar procedure to specify colors for the different 
+        destinations: 
+        <ol>
+          <li> First, use a VALUE statement to <strong>create a character format</strong>, 
+            specifying colors for the values of <code>Dest</code>. 
+        </ol>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     value $desback 'CPH'='cxBBDDCC'</font>
+<font color="#003399">                    'FRA'='cxAACCBB'</font>
+<font color="#003399">                    'LON'='cx99BBAA'</font>
+<font color="#003399">                    'PAR'='cx88AA99';</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <ol start="2">
+          <li> Next, in the CLASSLEV statement, <strong>specify the format</strong> 
+            (here, <code>$DESBACK.</code>) as the background color in the STYLE= 
+            option. 
+        </ol>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">         classlev dest / style={background=$desback.};</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Your program and its output are shown below.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     ods listing close;</font>
+<font color="#003399">     ods html path='c:\data' body='laguard.html';</font>
+<font color="#003399">     title1 'LaGuardia Flights by Destination';</font>
+<font color="#003399">     title2 'and Revenue, March 4-10';</font>
+<font color="#003399">     proc format;</font>
+<font color="#003399">        value $desname 'CPH'='Copenhagen'</font>
+<font color="#003399">                       'FRA'='Frankfurt'</font>
+<font color="#003399">                       'LON'='London'</font>
+<font color="#003399">                       'PAR'='Paris';</font>
+<font color="#003399"><strong>        value $desback 'CPH'='cxBBDDCC'</strong></font>
+<font color="#003399"><strong>                       'FRA'='cxAACCBB'</strong></font>
+<font color="#003399"><strong>                       'LON'='cx99BBAA'</strong></font>
+<font color="#003399"><strong>                       'PAR'='cx88AA99';</strong></font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc tabulate data=flights.laguardia format=comma9.;</font>
+<font color="#003399">        class dest / style={background=cxCCEEDD};</font>
+<font color="#003399"><strong>        classlev dest / style={background=$desback.};</strong></font>
+<font color="#003399">        var boarded transferred deplaned revenue;</font>
+<font color="#003399">        table dest*(boarded transferred deplaned revenue),</font>
+<font color="#003399">              min max mean sum / box={style={background=cxCCEEDD}};</font>
+<font color="#003399">        keyword min max mean sum / style={background=cxCCEEDD};</font>
+<font color="#003399">        label dest='Destination';</font>
+<font color="#003399">        format dest $desname.;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html close;</font>
+<font color="#003399">     ods listing;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellspacing="1" border="0" width="100%" cellpadding="1" rules="NONE"
+  frame="VOID">
+    <tr> 
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="4" color="#002187"><b><i>LaGuardia 
+        Flights by Destination</i></b></font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="4" color="#002187"><b><i>and 
+        Revenue, March 4-10</i></b></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellspacing="1" border="1" cellpadding="2" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" title="ODS HTML output">
+    <thead> 
+    <tr> 
+      <td colspan="2" align="CENTER" bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>&nbsp;</b></font></td>
+      <td align=CENTER bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033A9"><b>Min</b></font></td>
+      <td align=CENTER bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033A9"><b>Max</b></font></td>
+      <td align=CENTER bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033A9"><b>Mean</b></font></td>
+      <td align=CENTER bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv" size="3"
+	      color="#0033A9"><b>Sum</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Destination</b></font></td>
+      <td align=LEFT valign=TOP bgcolor="#CCEEDD"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>&nbsp;</b></font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 81</font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 154</font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 131</font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 786</font></td>
+    </tr>
+    <tr> 
+      <td rowspan=4 align=LEFT valign=TOP bgcolor="#BBDDCC"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Copenhagen</b></font></td>
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Boarded</b></font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Transferred</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 5</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 21</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 13</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 75</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Deplaned</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 103</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 177</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 147</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 881</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Revenue</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 109,885</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 196,540</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 139,951</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 839,705</font></td>
+    </tr>
+    <tr> 
+      <td rowspan=4 align=LEFT valign=TOP bgcolor="#AACCBB"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Frankfurt </b></font></td>
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Boarded</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 129</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 210</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 170</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">1,190</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Transferred</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 5</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 22</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 13</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 91</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Deplaned</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 147</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 237</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 188</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">1,314</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Revenue</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 100,987</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 187,636</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 142,912</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">1,000,382</font></td>
+    </tr>
+    <tr> 
+      <td rowspan=4 align=LEFT valign=TOP bgcolor="#99BBAA"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>London </b></font></td>
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Boarded</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 151</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 241</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 188</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">3,760</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Transferred</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 4</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 18</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 11</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 227</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Deplaned</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 114</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 250</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 199</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">3,987</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Revenue</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 106,753</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 198,744</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 159,478</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">3,189,554</font></td>
+    </tr>
+    <tr> 
+      <td rowspan=4 align=LEFT valign=TOP bgcolor="#88AA99"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033AA"><b>Paris </b></font></td>
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Boarded</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 146</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 182</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 161</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">2,089</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Transferred</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 7</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 29</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 16</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 204</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Deplaned</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 153</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 227</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 183</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">2,378</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv"
+	      size="3" color="#0033A9"><b>Revenue</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 123,456</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 195,468</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000"> 151,477</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#D2D2D2"><font face="Arial, Helvetica, Helv"
+	      size="2" color="#000000">1,969,201</font></td>
+    </tr>
+    </tbody> <tfoot> </tfoot> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table border="0" cellpadding="2" cellspacing="0" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" border="0" width="20" height="20"
+	    hspace="10" alt="Tip:"></td>
+      <td width="100%">Use restraint when adding color to tables. Excessive color 
+        is distracting and makes it difficult for readers to study your data. 
+        The LaGuardia table uses many colors, but this is just to demonstrate 
+        ODS HTML features. Notice that, to improve clarity, five shades of the 
+        same color have been used so far.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

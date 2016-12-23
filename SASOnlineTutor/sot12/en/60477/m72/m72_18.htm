@@ -1,0 +1,241 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_4.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 4;
+
+salute  = "<strong>Correct.</strong><p>";
+
+correct = "All three queries will produce the report that you want. The first two queries " +
+          "differ only in the sequence of tables, which does not affect the output from " +
+          "the INTERSECT operator in this example. The third query selects only the desired columns, which are in the same position in the two tables, so CORR is not needed. ";
+
+choice1 = "<strong>Incorrect.</strong><p>"+
+          "This query will meet your needs, but it is not the only one. " +
+          "" +
+          "";
+
+choice2 = "<strong>Incorrect.</strong><p>"+
+          "This query will meet your needs, but it is not the only one. " +
+          "" +
+          "";
+
+choice3 = "<strong>Incorrect.</strong><p>"+
+          "This query will meet your needs, but it is not the only one. " +
+          "" +
+          "";
+
+choice4 = salute + correct;
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the INTERSECT Set Operator<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+ <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>You need to generate a report that lists the first and last name 
+            (and no other columns) for all authors who have had a book published 
+            by XYZ Books, Inc., <strong>and</strong> who have won a national literary 
+            prize. You will use a set operation to combine data from two tables:</p>
+          <ul>
+            <li><strong>Authors</strong> lists information for all authors who 
+              have had books published by XYZ Books, Inc., some of whom have won 
+              a national literary prize.<br>
+              <br>
+            </li>
+            <li><strong>Prizewinners</strong> lists information for all authors 
+              who have won a national literary prize, some of whom have had books 
+              published by XYX Books, Inc.</li>
+          </ul>
+          <p>The first few rows of each table are shown below, along with the 
+            first few rows of the output that you want.</p>
+          <table border="0" align="center" cellspacing="10">
+            <tr> 
+              <td align="center" valign="top"> 
+                <div align="center">Authors </div>
+                <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+                  <thead>
+                    <tr align="center" valign="top"> 
+                      <td align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>LName</b></font></td>
+                      <td align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FName</b></font></td>
+                      <td align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><strong>PubNum</strong></font></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr align="left" valign="top" bgcolor="#FFFFFF"> 
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Aardema</font></td>
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Doris</font></td>
+                      <td align="left">xyz_432</td>
+                    </tr>
+                    <tr align="left" valign="top" bgcolor="#FFFFFF"> 
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Abbot</font></td>
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Ted</font></td>
+                      <td align="left">xyz_300</td>
+                    </tr>
+                    <tr align="left" valign="top" bgcolor="#FFFFFF"> 
+                      <td align="left"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">Adelman</font></td>
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Leah</font></td>
+                      <td align="left">xyz_105</td>
+                    </tr>
+                  </tbody>
+                </table></td>
+              <td align="center" valign="top"> 
+                <div align="center">Prizewinners </div>
+                <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+                  <thead>
+                    <tr align="center" valign="top"> 
+                      <td align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>LName</b></font></td>
+                      <td align="left" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>FName</b></font></td>
+                      <td align="right" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr align="left" valign="top" bgcolor="#FFFFFF"> 
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Adelman</font></td>
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Leah</font></td>
+                      <td align="right">1991</td>
+                    </tr>
+                    <tr align="left" valign="top" bgcolor="#FFFFFF"> 
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Brown</font></td>
+                      <td align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Anna</font></td>
+                      <td align="right">1985</td>
+                    </tr>
+                    <tr align="left" valign="top"> 
+                      <td align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Bulina</font></td>
+                      <td align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Carson</font></td>
+                      <td align="right" bgcolor="#FFFFFF">2000</td>
+                    </tr>
+                  </tbody>
+                </table></td>
+            </tr>
+          </table>
+          <br>
+          <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+            <thead>
+              <TR align="left" valign="top"> 
+                <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LName</b></font></TD>
+                <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FName</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR align="left" valign="top"> 
+                <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Adelman</font></TD>
+                <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Leah</font></TD>
+              </TR>
+              <TR align="left" valign="top"> 
+                <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Collins</font></TD>
+                <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">William</font></TD>
+              </TR>
+              <TR align="left" valign="top"> 
+                <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Detry</font></TD>
+                <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Claude</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+          <p>
+		  <br>
+          Which query will generate the results that you want?<br>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" -->
+          <pre><font color="#003399">proc sql;
+   select *
+      from authors
+   intersect corr
+   select *
+      from prizewinners;</font></pre>
+          <!-- InstanceEndEditable --></td>
+        <td rowspan="4"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" -->
+          <pre><font color="#003399">proc sql;
+   select *
+      from prizewinners
+   intersect corr
+   select *
+      from authors;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" -->
+          <pre><font color="#003399">proc sql;
+   select lname, fname
+      from authors
+   intersect
+   select lname, fname
+      from prizewinners;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%"> 
+          <input type="radio" name="answer" value="value4" onClick="openAnswer(choice4)">
+         </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice4" -->all of the 
+          above <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr> 
+        <td colspan="3"> 
+         <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

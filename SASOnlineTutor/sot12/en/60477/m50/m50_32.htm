@@ -1,0 +1,99 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Functions to Mask Special Characters<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The %STR Function</h2> 
+        The <nobr>%STR</nobr> function is used to mask (or quote) tokens so that 
+      the macro processor does not interpret them as macro-level syntax. That 
+      is, the <nobr>%STR</nobr> function hides the normal meaning of a semicolon 
+      and other special tokens and mnemonic equivalents of comparison or logical 
+      operators so that they appear as constant text. Special tokens and mnemonic 
+      equivalents include 
+      <P>
+     
+        <PRE>     ; + - * / , &lt; &gt; = blank
+     LT  EQ  GT  AND  OR  NOT  LE  GE  NE
+</PRE>
+     
+      The %STR function also 
+      <UL>
+        <LI>enables macro triggers to work normally</LI>
+        <LI>preserves leading and trailing blanks in its argument.</LI>
+      </UL>
+    </td>
+  </tr>
+</table>
+<br>
+<table border="1" cellspacing="0" width="85%" align="center" cellpadding="10"  bgcolor="#F7F7DE" title="General form, %STR function">
+  <tr> 
+    <td align="left"><strong>General form, %STR function:</strong> 
+      <blockquote> <nobr><font color="#003399"><strong>%STR </strong> ( <em>argument 
+        </em> ) </font></nobr> </blockquote>
+      <p> where <font color="#003399"><em>argument</em></font> is any combination 
+        of text and macro triggers. 
+    </td>
+  </tr>
+</table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> Applying this to our previous example, there are a number of ways that 
+        text can be quoted. Remember that we wanted to create a macro variable 
+        named <code>prog</code> that has<em> data new; x=1; run;</em> as its value. 
+        <P> <strong>Method One:</strong> You could quote all text. 
+      <PRE><font color="#003399">    %let prog=%str(data new; x=1; run;);
+</font></PRE>
+      <strong>Method Two:</strong> You could quote only the semicolons. 
+      <PRE><font color="#003399">    %let prog=data new%str(;) x=1%str(;)run%str(;);
+</font></PRE>
+        <strong>Method Three:</strong> You could create an additional macro variable, 
+        assign a quoted value to it, and reference it in the assignment statement 
+        for the <code>prog</code> macro variable. 
+        <PRE><font color="#003399">    %let s=%str(;);
+    %let prog=data new&amp;s x=1&amp;s run&amp;s;
+</font></PRE>
+        Each of these methods accomplishes the same thing: they all assign the 
+        value <em>data=new; x=1; run;</em> to the macro variable <code>prog</code>. 
+      </td>
+  </tr>
+</table>
+<P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

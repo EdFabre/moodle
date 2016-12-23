@@ -1,0 +1,69 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using Macro Variables in SCL Programs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+
+        <p>SAS Component Language (SCL) programs are placed into the input stack, 
+          and word scanning is performed for macro triggers in the same process 
+          as in other SAS programs. Macro variable references that are outside 
+          of SUBMIT blocks<strong> </strong>are resolved prior to execution. Therefore, 
+          in the following example, a<strong> constant value</strong> will be 
+          compared to the SCL variable <code>Wage</code> during SCL execution:<font color="#003399">
+        <pre>    MAIN:
+       erroroff wage;
+       if wage gt &max then erroron wage;
+    return;</pre>
+        </font> Any text <strong>within</strong> a SUBMIT block is assumed to 
+        be SAS code and is therefore ignored by the SCL compiler when the SCL 
+        program is compiled. Macro variable references within SUBMIT blocks are 
+        not resolved until the SUBMIT block executes and the SAS code within the 
+        SUBMIT block is tokenized. 
+        <P>When a SUBMIT block executes, SAS attempts to resolve a macro variable 
+          reference (<code>&name</code>) to a corresponding SCL variable. If there 
+          is no corresponding SCL variable, the reference is passed to the macro 
+          processor for lookup in the global symbol table. You can force a reference 
+          (<code>&name</code>) within a SUBMIT block to be passed as a macro variable 
+          reference by preceding the name with two ampersands (<code>&&name</code>). 
+        <P> Also, there are several functions and routines that enable SCL programs 
+          and the macro facility to exchange information at execution time. Let's 
+          take a look at these functions and routines. </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

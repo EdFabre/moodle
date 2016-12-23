@@ -1,0 +1,93 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --><TITLE>Processing a Correlated Subquery</TITLE><!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->Processing a Correlated Subquery<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" -->
+<TABLE CELLPADDING="2" ALIGN="Center" width="85%">
+  <TR> 
+    <TD COLSPAN=2> <ol>
+        <li>This animation shows how PROC SQL processes the following query that 
+          contains a correlated subquery:<font color="#003399"> 
+          <pre>     proc sql;
+        select lastname, firstname
+           from sasuser.staffmaster
+           where 'NA'=
+              (select jobcategory
+                 from sasuser.supervisors
+                 where staffmaster.empid=
+                       supervisors.empid);</pre>
+          </font> 
+        <li>PROC SQL first looks at the subquery and notes the columns that are 
+          specified in the subquery. Because this is a correlated subquery, the 
+          outer query must be executed before the subquery.<br>
+          <br>
+        </li>
+        <li>The outer query takes the first row in <strong>Sasuser.Staffmaster</strong> 
+          and finds <code>EmpID</code>, <code>LastName</code>, and <code>FirstName</code>.<br>
+          <br>
+        </li>
+        <li>The subquery tries to match the first value of <code>EmpID</code> 
+          in <strong>Staffmaster</strong> with an <code>EmpID</code> in <strong>Supervisors</strong>. 
+          PROC SQL reads all values of <code>Supervisors.EmpID</code>, but finds 
+          no match. The first row of <strong>Staffmaster</strong> does not qualify.<br>
+          <br>
+        </li>
+        <li>PROC SQL reads the next row from <strong>Sasuser.Staffmaster</strong> 
+          and identifies the qualifying row in <strong>Sasuser.Supervisors</strong>. 
+          This time there is a matching <code>EmpID</code>.<br>
+          <br>
+        </li>
+        <li> The subquery now passes the <code>JobCategory</code> of the selected 
+          row in <strong>Sasuser.Supervisors</strong> back to the outer query 
+          by using the equal to (<strong>=</strong>) operator. Then PROC SQL compares 
+          the passed <code>JobCategory</code> value with the value specified in 
+          the outer query. The values do <strong>not</strong> match.<br>
+          <br>
+        </li>
+        <li>PROC SQL continues to read each row from <strong>Sasuser.Staffmaster</strong>, 
+          looking for matching values of <code>EmpID</code> in <strong>Sasuser.Supervisors</strong> 
+          until all rows are read.<br>
+          <br>
+        </li>
+        <li>Whenever <code>EmpID</code> matches, the <code>JobCategory</code> 
+          passes to the outer query for comparison. For the <code>EmpID</code> 
+          highlighted here (<em>1935</em>), the WHERE condition resolves to TRUE.<br>
+          <br>
+        </li>
+        <li>When a row matches the WHERE condition, PROC SQL writes the values 
+          of <code>LastName</code> and <code>FirstName</code> from <strong>Sasuser.Staffmaster</strong> 
+          as a row of output.<br>
+          <br>
+        </li>
+        <li>PROC SQL continues this process until all rows are read from the table 
+          in the outer query, <strong>Sasuser.Staffmaster</strong>. This program 
+          creates 3 rows of output.</li>
+      </ol>
+    </TD>
+  </TR>
+</TABLE>
+<!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

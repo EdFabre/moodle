@@ -85,6 +85,7 @@ function report_outline_get_common_log_variables() {
             // If legacy reader is preferred reader.
             if ($readerpluginname == 'logstore_legacy') {
                 $uselegacyreader = true;
+                break;
             }
 
             // If sql_internal_reader is preferred reader.
@@ -92,6 +93,7 @@ function report_outline_get_common_log_variables() {
                 $useinternalreader = true;
                 $logtable = $reader->get_internal_log_table_name();
                 $minloginternalreader = $DB->get_field_sql('SELECT min(timecreated) FROM {' . $logtable . '}');
+                break;
             }
         }
     }

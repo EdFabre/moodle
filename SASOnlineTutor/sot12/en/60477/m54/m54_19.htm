@@ -1,0 +1,112 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Indexes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><strong></strong> <p>An <strong>index</strong> can help you quickly 
+          locate one or more particular observations that you want to read. An 
+          index is an optional file<strong> </strong> that you can create for 
+          a SAS data set in order to specify the location of observations based 
+          on values of one or more<strong> key variables</strong>. Indexes can 
+          provide direct access to observations in SAS data sets to 
+        <ul>
+          <li>yield faster access to small subsets of observations for WHERE processing 
+          <li>return observations in sorted order for BY processing 
+          <li>perform table lookup operations 
+          <li>join observations 
+          <li>modify observations. 
+        </ul>
+        <p>Without an index, SAS accesses observations sequentially, in the order 
+          in which they are stored in a data set. For example, if you want to 
+          access the observation in the sample SAS data set shown below 
+          that has a value of <em>Smith</em> for the variable <code>Name</code>, 
+          SAS begins with the first observation and reads through each one until 
+          it reaches the observation that satisfies the condition.</td>
+    </tr>
+  </table>
+  <p>
+    <img src="images/m54_19a.gif" width="242" height="169" alt="Sequential read of a data set"> 
+  <p>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> An index stores values in ascending value order for a specific variable 
+        or variables and includes information about the location of those values 
+        within observations in the data file. That is, an index is composed of 
+        <strong>value/identifier pairs</strong> that enable you to locate an observation 
+        by value. For example, if you create an index on the sample SAS data set 
+        shown below based on the variable <code>Name</code>, SAS uses the index 
+        to find the observation that has a value of <em>Smith</em> for <code>Name</code> 
+        directly without having to read all the prior observations.</td>
+    </tr>
+  </table>
+  <p>
+    <img src="images/m54_19b.gif" width="242" height="160" alt="Direct-access read of a data set">
+  <P><a name="types"></a>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <h2>Types of Indexes</h2>
+        <p>You can create two types of indexes:
+<ul>
+          <li>a simple index 
+          <li>a composite index. 
+        </ul>
+        <P>A <strong>simple index</strong> consists of the values of one key variable, 
+          which can be character or numeric. When you create a simple index, SAS 
+          assigns the name of the key variable<strong> </strong>as the name of 
+          the index. 
+        <P> A <strong>composite index</strong> consists of the values of multiple 
+          key variables, which can be character, numeric, or a combination. The 
+          values of these key variables are concatenated to form a single value. 
+          For example, if an index is built on the key variables <code>Lastname</code> 
+          and <code>Firstname</code>, a value for the index is composed of the 
+          value for <code>Lastname</code> followed by the value for <code>Firstname</code>. 
+          When you create a composite index, you must specify a <strong>unique 
+          </strong>index name that is not the name of any existing variable or 
+          index in the data set. 
+        <p>Often, only the first variable of a composite index is used. For example, 
+          you could use the composite index specified in the example above (<code>Lastname</code> 
+          plus <code>Firstname</code>) for a WHERE expression that uses only <code>Lastname</code>. 
+          For example, the expression <code>where Lastname='Smith'</code> uses 
+          the the composite index because <code>Lastname</code> is the first variable 
+          in the index. That is, the value for <code>Lastname</code> is the first 
+          part of the value listed in the index.</p></td>
+    </tr>
+  </table>
+  <P><BR>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,189 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Compressing 
+      Data Files<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>The COMPRESS= System Option and the COMPRESS= Data Set Option</h2>
+	  To compress a data file, you use either the COMPRESS= data set option or 
+        the COMPRESS= system option. You use the <strong>COMPRESS= system option 
+        </strong>to compress all data files that you create during a SAS session. 
+        Similarly, you use the <strong>COMPRESS= data set option</strong> to compress 
+        an individual data file. </td>
+    </tr>
+  </table>
+  <p> <br><table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, COMPRESS= system option">
+    <tr> 
+      <td align="left"><strong>General form, COMPRESS= system option:</strong> 
+        <blockquote> <font color="#003399"><strong>OPTIONS COMPRESS= NO | YES | CHAR | BINARY ;</strong></font> 
+        </blockquote>
+        where
+        <ul>
+          <li><font color="#003399"><strong>NO</strong></font> is the default 
+            setting, which does not compress the data set. <br>
+            <br>
+          <li><font color="#003399"><strong>CHAR</strong></font> or <font color="#003399"><strong>YES</strong></font> uses the 
+            Run Length Encoding (RLE) compression algorithm, which compresses 
+            repeating consecutive bytes such as trailing blanks or repeated zeros. 
+            <br>
+            <br>
+          <li><font color="#003399"><strong>BINARY</strong></font> uses Ross Data 
+            Compression (RDC), which combines run-length encoding and sliding-window 
+            compression. </ul></td>
+    </tr>
+  </table><P><BR>
+  <table width="85%"border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+    <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            
+      <td valign="top">If you set the COMPRESS= system option to a value other 
+        than <em>NO</em>, SAS compresses every data set that is created during 
+        the current SAS session, including temporary data sets in the <strong>Work</strong> 
+        library. Although this might conserve data storage space, it will also 
+        use greater amounts of other resources.</td>
+      </tr>
+    </table>
+	<P><BR><table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, Generic Title">
+    <tr> 
+      <td align="left"><strong>General form, COMPRESS= data set option:</strong> 
+        <blockquote> <font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em> <strong>(COMPRESS= NO | YES | CHAR | BINARY );</strong></font> 
+        </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>SAS-data-set</em></font> specifies the 
+            data set that you want to compress. <br>
+            <br>
+          <li><font color="#003399"><strong>NO</strong></font> is the default 
+            setting, which does not compress the data set. <br>
+            <br>
+          <li><font color="#003399"><strong>CHAR</strong></font> or <font color="#003399"><strong>YES</strong></font> uses the Run Length Encoding (RLE) compression algorithm, which compresses repeating consecutive bytes such as trailing blanks or repeated zeros. <br><br>
+          <li><font color="#003399"><strong>BINARY</strong></font> uses Ross Data Compression (RDC), which combines run-length encoding and sliding-window compression. </ul>
+		  <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+            <td valign="top" width="41"><img src="../navimages/note.gif" width="20" height="20" alt="Caution"></td>
+            <td valign="top">The COMPRESS= data set option overrides the COMPRESS= system option.</td>
+      </tr>
+    </table>
+		  </td>
+    </tr>
+  </table>
+  <P><BR>
+ <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>The <em>YES</em> or <em>CHAR</em> setting for the COMPRESS= option 
+          uses the RLE compression algorithm. RLE compresses observations by reducing 
+          repeated consecutive characters (including blanks) to two-byte or three-byte 
+          representations. Therefore, RLE is most often useful for character data 
+          that contains repeated blanks. The <em>YES</em> or <em>CHAR</em> setting 
+          is also good for compressing numeric data in which most of the values 
+          are zero.</p>
+        <p>The <em>BINARY</em> setting for the COMPRESS= option uses RDC, which 
+          combines run-length encoding and sliding-window compression. This method 
+          is highly effective for compressing medium to large blocks of binary 
+          data (numeric variables).</p>
+        <p>A file that has been compressed using the <em>BINARY</em> setting of 
+          the COMPRESS= option takes significantly more CPU time to uncompress 
+          than a file that was compressed with the <em>YES</em> or <em>CHAR</em> 
+          setting. <em>BINARY</em> is more efficient with observations that are 
+          several hundred bytes or more in length. <em>BINARY</em> can also be 
+          very effective with character data that contains patterns rather than 
+          simple repetitions. </p>
+        <p>When you create a compressed data file, SAS compares the size of the 
+          compressed file to the size of the uncompressed file of the same page 
+          size and record count. Then SAS writes a note to the log indicating 
+          the percentage of reduction that is obtained by compressing the file. 
+        </p>
+        <p>When you use either of the COMPRESS= options, SAS calculates the size 
+          of the overhead that is introduced by compression as well as the maximum 
+          size of an observation in the data set that you are attempting to compress. 
+          If the maximum size of the observation is smaller than the overhead 
+          that is introduced by compression, SAS disables compression, creates 
+          an uncompressed data set, and issues a warning message stating that 
+          the file was not compressed. This feature is available beginning in 
+          SAS 8.2.</p>
+        <p>Once a file is compressed, the setting is a permanent attribute of 
+          the file. In order to change the setting to uncompressed, you must re-create 
+          the file. </p>
+        <p><br><table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+    <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">Compression of observations is not supported by all 
+              SAS engines. See the SAS documentation for the COMPRESS= data set 
+              option for more information.<font color="red">&nbsp;</font></td>
+      </tr>
+    </table>
+	<P><BR><h2>Example</h2>
+        The data set <strong>Company.Customer</strong> contains demographic information 
+        about a retail company's customers. The data set includes character variables 
+        such as <code>Customer_Name</code>, <code>Customer_FirstName</code>, <code>Customer_LastName</code>, 
+        and <code>Customer_Address</code>. These character variables have the 
+        potential to contain many repeated blanks in their values. The following 
+        program will create a compressed data set named <strong>Company.Customers_Compressed</strong> 
+        from <strong>Company.Customer</strong> even if the COMPRESS= system option 
+        is set to <em>NO</em>. <font color="#003399"> 
+        <pre>     data company.customer_compressed (compress=char);
+        set company.customer;
+     run;</pre>
+        </font>
+        <P>SAS writes a note to the SAS log about the compression of the new data 
+          set, as shown below.
+<P><BR>
+        <div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>NOTE: There were 89954 observations read from the data 
+      set COMPANY.CUSTOMER.
+NOTE: The data set COMPANY.CUSTOMER_COMPRESSED has 89954 
+      observations and 11 variables.
+<span style="background:#CCCC99"><strong>NOTE: Compressing data set COMPANY.CUSTOMER_COMPRESSED 
+      decreased size by 32.81 percent.
+      Compressed is 991 pages; un-compressed would require 
+      1475 pages.</strong></span>
+NOTE: DATA statement used (Total process time):
+      real time           3.90 seconds
+      cpu time            0.96 seconds
+<br></pre> 
+      </td>
+    </tr>
+  </table>
+</div>
+	 </td>
+    </tr>
+  </table><P><BR>
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

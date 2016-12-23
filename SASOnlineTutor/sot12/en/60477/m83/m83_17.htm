@@ -1,0 +1,149 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Eliminating 
+      Unnecessary Passes through the Data<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Creating a Sorted Subset of a SAS Data Set</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Suppose you want to create a sorted subset of a SAS data set named 
+        <strong>Retail.Customer</strong>. You want only data for customers in 
+        the United States, France, Italy, Germany, and Spain. 
+      <p>Techniques for creating sorted subsets of SAS data sets include
+<ol>
+        <li><a href="#1">A DATA Step and PROC SORT</a></li>
+        <li><a href="#2">PROC SORT with a WHERE Statement.</a></li>
+      </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results may vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for eliminating unnecessary passes through the data. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        A DATA Step and PROC SORT</strong></p>
+      <blockquote> 
+        <p>This program has two steps. The first step creates a SAS data set by 
+          subsetting observations based on the value of the variable <code>Country</code>. 
+          The second step sorts the data according to the values for each country. 
+          Passing through all the data once and the subset twice can increase 
+          I/O and CPU operations. </p>
+              </blockquote>
+         <blockquote> 
+        <pre><font color="#003399">     <strong>data retail.CountrySubset;</strong>
+        set retail.customer;
+        where country in('US','FR','IT','DE','ES');
+     <strong>run;</strong>
+
+     <strong>proc sort data=retail.CountrySubset;</strong>
+        by country;
+     <strong>run;</strong></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        PROC SORT with a WHERE Statement</strong></p>
+      <blockquote> 
+        <p>In one step, this program sorts data and selects only those observations 
+          that meet the conditions of the WHERE statement. Processing only one 
+          data set once saves CPU and I/O resources.</p>
+        <p>Note that if this program did not create a second data set named <strong>Retail.CountrySubset</strong>, 
+          it would write over the data set named <strong>Retail.Customer</strong> 
+          with only part of the data. </p>
+      </blockquote>
+         <blockquote> 
+        <pre><font color="#003399">     <strong>proc sort data=retail.customer out=retail.CountrySubset;</strong>
+        by country;
+        where country in('US','FR','IT','DE','ES');
+     <strong>run;</strong></font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><ul>
+        <li>When you need to process a subset of data with a procedure, use a 
+          WHERE statement in the procedure instead of creating a subset of data 
+          and reading that data with the procedure.</li>
+        <br><br>
+                
+        <li>Write one program step that both sorts and subsets. This approach 
+          can take less programmer time and debugging time than writing separate 
+          program steps that subset and sort.</li>
+      </ul></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

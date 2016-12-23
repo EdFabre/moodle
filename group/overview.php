@@ -113,7 +113,7 @@ foreach ($rs as $row) {
     if (!array_key_exists($row->groupid, $members[$row->groupingid])) {
         $members[$row->groupingid][$row->groupid] = array();
     }
-    if (!empty($user->id)) {
+    if(isset($user->id)){
         $members[$row->groupingid][$row->groupid][] = $user;
     }
 }
@@ -206,6 +206,7 @@ foreach ($members as $gpgid=>$groupdata) {
         echo $OUTPUT->heading($groupings[$gpgid]->formattedname, 3);
         $description = file_rewrite_pluginfile_urls($groupings[$gpgid]->description, 'pluginfile.php', $context->id, 'grouping', 'description', $gpgid);
         $options = new stdClass;
+        $options->noclean = true;
         $options->overflowdiv = true;
         echo $OUTPUT->box(format_text($description, $groupings[$gpgid]->descriptionformat, $options), 'generalbox boxwidthnarrow boxaligncenter');
     }

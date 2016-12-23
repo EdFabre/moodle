@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Updating 
+      Values in Existing Table Rows<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Updating Rows by Using the CASE Expression with a Case Operand</h2>
+        <p>If the expression in the SET clause uses an equals (<strong>=</strong>) 
+          comparison operator, you may use the optional case operand in the CASE 
+          expression. Let's take another look at the PROC SQL step that was shown 
+          in the preceding example, and see how the CASE expression in the UPDATE 
+          statement can be rewritten by using the alternate syntax.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2> Example</h2>
+        <p>In the following PROC SQL step, which was shown earlier, the CASE expression 
+          contains three WHEN-THEN clauses. These clauses contain similar 
+          expressions, each of which specifies the same SUBSTR function:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        update work.payrollmaster_new2 
+           set salary=salary*
+              case 
+                 when <strong>substr(jobcode,3,1)</strong>='1'
+                        then 1.05
+                 when <strong>substr(jobcode,3,1)</strong>='2'
+                        then 1.10
+                 when <strong>substr(jobcode,3,1)</strong>='3'
+                        then 1.15
+                 else 1.08
+              end;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p> Because the expression in this SET clause uses an equals (=) operator, 
+          you can restructure the CASE expression for more efficient processing. 
+          In the alternate syntax, the repeated SUBSTR function is removed from 
+          each WHEN-THEN clause and is placed after the keyword CASE, as 
+          an operand:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        update work.payrollmaster_new2 
+           set salary=salary*
+              case <strong>substr(jobcode,3,1)</strong>
+                 when '1'
+                      then 1.05
+                 when '2'
+                      then 1.10
+                 when '3'
+                      then 1.15
+                 else 1.08
+              end;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p> Using the alternate syntax, the SUBSTR function is evaluated only 
+          once, so this PROC SQL step is more efficient than the original version.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You may use the case operand syntax <strong>only</strong> 
+        if the SET clause expression uses the equals (<strong>=</strong>) comparison 
+        operator.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -303,7 +303,7 @@
                         foreach ($aaa as $a) {
                             $contents .= "<tr>";
                             $contents .= '<td class="fullnamecell">'.fullname($a).'</td>';
-                            $contents .= '<td valign="top">'.s($a->answer1).'</td>';
+                            $contents .= '<td valign="top">'.$a->answer1.'</td>';
                             $contents .= "</tr>";
                         }
                     }
@@ -358,7 +358,7 @@
                        $OUTPUT->user_picture($a, array('courseid'=>$course->id)),
                        "<a href=\"report.php?id=$id&amp;action=student&amp;student=$a->userid\">".fullname($a)."</a>",
                        userdate($a->time),
-                       s($answer1), s($answer2));
+                       $answer1, $answer2);
 
             }
         }
@@ -485,28 +485,22 @@
 
         require_capability('mod/survey:download', $context);
 
-        $numusers = survey_count_responses($survey->id, $currentgroup, $groupingid);
-        if ($numusers > 0) {
-            echo html_writer::tag('p', get_string("downloadinfo", "survey"), array('class' => 'centerpara'));
+        echo '<p class="centerpara">'.get_string("downloadinfo", "survey").'</p>';
 
-            echo $OUTPUT->container_start('reportbuttons');
-            $options = array();
-            $options["id"] = "$cm->id";
-            $options["group"] = $currentgroup;
+        echo $OUTPUT->container_start('reportbuttons');
+        $options = array();
+        $options["id"] = "$cm->id";
+        $options["group"] = $currentgroup;
 
-            $options["type"] = "ods";
-            echo $OUTPUT->single_button(new moodle_url("download.php", $options), get_string("downloadods"));
+        $options["type"] = "ods";
+        echo $OUTPUT->single_button(new moodle_url("download.php", $options), get_string("downloadods"));
 
-            $options["type"] = "xls";
-            echo $OUTPUT->single_button(new moodle_url("download.php", $options), get_string("downloadexcel"));
+        $options["type"] = "xls";
+        echo $OUTPUT->single_button(new moodle_url("download.php", $options), get_string("downloadexcel"));
 
-            $options["type"] = "txt";
-            echo $OUTPUT->single_button(new moodle_url("download.php", $options), get_string("downloadtext"));
-            echo $OUTPUT->container_end();
-
-        } else {
-             echo html_writer::tag('p', get_string("nobodyyet", "survey"), array('class' => 'centerpara'));
-        }
+        $options["type"] = "txt";
+        echo $OUTPUT->single_button(new moodle_url("download.php", $options), get_string("downloadtext"));
+        echo $OUTPUT->container_end();
 
         break;
 

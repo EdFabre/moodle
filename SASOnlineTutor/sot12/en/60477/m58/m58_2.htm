@@ -1,0 +1,126 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Custom Formats Using the VALUE Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Review of Creating Non-Overlapping Formats</strong></p>
+        <p>As you learned in 
+          <strong><script>document.write(m31title)</script></strong>, you can use the VALUE statement in the <a href="JavaScript: openOther('../linklib/pformat.htm')">FORMAT 
+          procedure</a> to create a custom format for displaying data in a particular 
+          way. For example, suppose you have airline data and you want to create 
+          several custom formats that you can use for your report-writing tasks. 
+          You need formats that </p>
+         <ul>
+          <li>group airline routes into zones</li>
+          <li>label airport codes as International or Domestic</li>
+          <li>group cargo revenue figures into ranges.</li>
+        </ul>
+        <p>The following PROC FORMAT step creates these three formats:</p>
+        <pre><font color="#003399">     libname library 'c:\sas\newfmts'; 
+     proc format lib=library;
+        value $routes
+              'Route1' = 'Zone 1'
+              'Route2' - 'Route4' = 'Zone 2'
+              'Route5' - 'Route7' = 'Zone 3'
+              ' ' = 'Missing'
+              other = 'Unknown';
+        value $dest
+              'AKL','AMS','ARN','ATH','BKK','BRU',
+              'CBR','CCU','CDG','CPH','CPT','DEL',
+              'DXB','FBU','FCO','FRA','GLA','GVA',
+              'HEL','HKG','HND','JED','JNB','JRS',
+              'LHR','LIS','MAD','NBO','PEK','PRG',
+              'SIN','SYD','VIE','WLG' = 'International'
+              'ANC','BHM','BNA','BOS','DFW','HNL',
+              'IAD','IND','JFK','LAX','MCI','MIA',
+              'MSY','ORD','PWM','RDU','SEA','SFO' = 'Domestic';
+        value revfmt
+              . = 'Missing'
+              low - 10000 = 'Up to $10,000'
+              10000 &lt;- 20000 = '$10,000+ to $20,000'
+              20000 &lt;- 30000 = '$20,000+ to $30,000'
+              30000 &lt;- 40000 = '$30,000+ to $40,000'
+              40000 &lt;- 50000 = '$40,000+ to $50,000'
+              50000 &lt;- 60000 = '$50,000+ to $60,000'
+              60000 &lt;- HIGH  = 'More than $60,000';
+     run;</font></pre> 
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="Tip:"></td>
+            <td valign="top">If you choose to run this example code, be sure to 
+              change the path in the LIBNAME statement to a storage location in 
+              your operating environment.</td>
+          </tr>
+        </table> 
+        
+        <p>The PROC FORMAT step creates three formats: $ROUTES. and $DEST., which 
+          are character formats, and REVFMT., which is numeric.</p>
+        <p>$ROUTES. groups airline routes into zones. In $ROUTES.,</p>
+        <ul>
+          <li>both single values and ranges are assigned labels</li>
+          <li>missing values are designated by a space in quotation marks and 
+            are assigned the label &quot;Missing&quot;</li>
+          <li>the keyword <strong>OTHER</strong> is used to assign the label &quot;Unknown&quot; 
+            to any values that are not addressed in the range. </li>
+        </ul>
+        <p>$DEST. labels airport codes as either International or Domestic. In 
+          $DEST., </p>
+        <ul>
+          <li> unique character values are enclosed in quotation marks and separated 
+            by commas</li>
+          <li>missing values and values not included in the range are not handled 
+            in this format. </li>
+        </ul>
+        <p>REVFMT. groups cargo revenue figures into ranges. In REVFMT.,</p>
+        <ul>
+          <li>the &quot;less than&quot; operator (&lt;) is used to show a <strong>non-inclusive 
+            range</strong> (<code>10000&lt;-20000</code> indicates that the first 
+            value is not included in the range)</li>
+          <li>the keyword <strong>LOW</strong> is used to specify the lower limit 
+            of a variable's value range, but it does not include missing values</li>
+          <li>missing values are designated with a period (.) and assigned the 
+            label &quot;Missing&quot; </li>
+          <li>the keyword <strong>HIGH</strong> is used to specify the upper limit 
+            of a variable's value range.</li>
+        </ul>
+        </td>
+  </tr>
+</table>
+  <p>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

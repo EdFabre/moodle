@@ -151,13 +151,7 @@ class qtype_random extends question_type {
 
     public function save_question($question, $form) {
         $form->name = '';
-
-        // In case someone set the question text to true/false in the old style, set it properly.
-        if ($form->questiontext['text']) {
-            $form->questiontext['text'] = '1';
-        } else {
-            $form->questiontext['text'] = '0';
-        }
+        $form->questiontextformat = FORMAT_MOODLE;
         $form->tags = array();
 
         // Name is not a required field for random questions, but

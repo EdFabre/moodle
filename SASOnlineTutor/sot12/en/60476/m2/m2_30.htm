@@ -1,0 +1,82 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Resolving 
+      Common Problems<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Missing RUN Statement</strong> </p>
+      <p> Each step in a SAS program is compiled and executed independently from 
+        every other step. As a step is compiled, SAS recognizes the end of the 
+        current step when it encounters 
+      <ul>
+        <li>a DATA or PROC statement, which indicates the beginning of a new step 
+        <li>a RUN or QUIT statement, which indicates the end of the current step. 
+      </ul>
+      When the program below is submitted, the DATA step executes, but the PROC 
+      step does not. The PROC step does not execute because there is no following 
+      DATA or PROC step to indicate the beginning of a new step, nor is there 
+      a following RUN statement to indicate the end of the step. 
+      <pre>     <font color="#003399">data clinic.admitfee;</font>
+        <font color="#003399">set clinic.admit;</font>
+     <font color="#003399">run;</font>
+     <font color="#003399"><strong>proc print data=clinic.admitfee;</strong></font>
+     <font color="#003399"><strong>   var id name actlevel fee;</strong></font></pre>
+      <p>Because there is nothing to indicate the end of the PROC step, the PRINT 
+        procedure waits before executing, and a "PROC PRINT running" message appears 
+        at the top of the active window.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <img src="images/m2l2s1.gif" width="352" height="250" alt="Program Editor Window" border="0"> 
+<p align="center"><br>
+<div align="center"> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Resolving the Problem</strong> 
+        <p> To correct the error, submit a RUN statement to complete the PROC 
+          step. 
+        <pre>     <font color="#003399"><strong>run;</strong></font></pre>
+        If you are using the Program Editor window, you do <strong>not</strong> 
+        need to recall the program to the Program Editor window.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</div>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

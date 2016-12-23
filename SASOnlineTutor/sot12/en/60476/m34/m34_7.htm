@@ -1,0 +1,187 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Constructing 
+      DO Loops<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Counting Iterations of DO Loops</strong> </p>
+      <p> In some cases, it is useful to create an index variable to count and 
+        store the number of iterations in the DO loop. Then you can drop the index 
+        variable from the data set.
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table border="0" cellpadding="0" cellspacing="0" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre>    <font color="#003399"> data work.earn <strong>(drop=counter)</strong>;</font>
+<font color="#003399">        Value=2000;</font>
+        <font color="#003399">do <strong>counter</strong>=1 to 20;</font>
+<font color="#003399">           Interest=value*.075;</font>
+<font color="#003399">           value+interest;</font>
+           <font color="#003399">Year+1;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre>
+      </td>
+      <td align="center">SAS Data Set Work.Earn <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+          <thead> 
+          <tr bgcolor="#F7f7DE"> 
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Value</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Interest</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8495.70</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">592.723</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">20</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The sum statement <tt>Year+1</tt> accumulates the number of iterations 
+        of the DO loop and stores the total in the new variable <code>Year</code>. 
+        The final value of <code>Year</code> is then stored in the data set, whereas 
+        the index variable <code>counter</code> is dropped. The data set has one 
+        observation. 
+        <p><br>
+          <strong>Explicit OUTPUT Statements</strong> 
+        <p>To create an observation for each iteration of the DO loop, place an 
+          OUTPUT statement inside the loop. By default, every DATA step contains 
+          an implicit OUTPUT statement at the end of the step. But placing an 
+          explicit OUTPUT statement in a DATA step overrides automatic output, 
+          causing SAS to add an observation to the data set only when 
+          the explicit OUTPUT statement is executed. 
+        <p> The previous example created one observation because it used automatic 
+          output at the end of the DATA step. In the following example, the OUTPUT 
+          statement overrides automatic output, so the DATA step writes 20 observations.
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     data work.earn;</font>
+<font color="#003399">        Value=2000;</font>
+<font color="#003399">        do Year=1 to 20;</font>
+<font color="#003399">            Interest=value*.075;</font>
+<font color="#003399">            value+interest;</font>
+           <font color="#003399"> <strong>output;</strong></font>
+<font color="#003399">         end;</font>
+<font color="#003399">     run;</font></pre>
+      </td>
+      <td align="center" valign="top">SAS Data Set Work.Earn<br>
+        (Partial Listing) <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Value</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Interest</b></font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2150.00</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">150.000</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2311.25</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">161.250</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2484.59</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">173.344</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2670.94</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">186.345</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">2871.26</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">200.320</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3086.60</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">6</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">215.344</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3318.10</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">7</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">231.495</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3566.96</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">248.857</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">...</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">...</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">...</font></td>
+          </tr>
+          <tr> 
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8495.70</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">20</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">592.723</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

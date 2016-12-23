@@ -563,8 +563,8 @@ class gradingform_guide_controller extends gradingform_controller {
             return $this->get_instance($instance);
         }
         if ($itemid && $raterid) {
-            $params = array('definitionid' => $this->definition->id, 'raterid' => $raterid, 'itemid' => $itemid);
-            if ($rs = $DB->get_records('grading_instances', $params, 'timemodified DESC', '*', 0, 1)) {
+            if ($rs = $DB->get_records('grading_instances', array('raterid' => $raterid, 'itemid' => $itemid),
+                'timemodified DESC', '*', 0, 1)) {
                 $record = reset($rs);
                 $currentinstance = $this->get_current_instance($raterid, $itemid);
                 if ($record->status == gradingform_guide_instance::INSTANCE_STATUS_INCOMPLETE &&
@@ -645,8 +645,7 @@ class gradingform_guide_controller extends gradingform_controller {
         $returnvalue['maxscore'] = $maxscore;
         $returnvalue['minscore'] = 0;
         if (!empty($this->moduleinstance->grade)) {
-            $graderange = make_grades_menu($this->moduleinstance->grade);
-            $returnvalue['modulegrade'] = count($graderange) - 1;
+            $returnvalue['modulegrade'] = $this->moduleinstance->grade;
         }
         return $returnvalue;
     }
@@ -908,7 +907,7 @@ class gradingform_guide_instance extends gradingform_instance {
             if (!empty($this->validationerrors)) {
                 foreach ($this->validationerrors as $id => $err) {
                     $a = new stdClass();
-                    $a->criterianame = s($criteria[$id]['shortname']);
+                    $a->criterianame = $criteria[$id]['shortname'];
                     $a->maxscore = $criteria[$id]['maxscore'];
                     $html .= html_writer::tag('div', get_string('err_scoreinvalid', 'gradingform_guide', $a),
                         array('class' => 'gradingform_guide-error'));

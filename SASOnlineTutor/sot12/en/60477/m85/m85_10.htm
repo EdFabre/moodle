@@ -1,0 +1,148 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Identifying 
+      Available Indexes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2> Compound Optimization</h2>
+        <p>SAS usually uses an index to process just one condition, no matter 
+          how many conditions and variables a WHERE expression contains. However, 
+          in a process<strong> </strong> called <strong>compound optimization</strong>, 
+          SAS can use a composite index to optimize multiple conditions on multiple 
+          variables, which are joined with a logical operator such as AND. Constructing 
+          your WHERE expression to take advantage of multiple key variables in 
+          a single index can greatly improve performance. </p>
+        <p>In order for compound optimization to occur, at least the first two 
+          key variables in the composite index must be used in the WHERE conditions. 
+          Later in this lesson, you will learn about other requirements that must 
+          be met in order for compound optimization to occur.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The WHERE expression can also contain non-indexed 
+              variables, and the key variables and non-indexed variables can appear 
+              in any order in the expression.</td>
+          </tr>
+        </table>
+        <p><br>
+        <h2>Example: Composite Index That Can Be Used to Optimize Multiple Conditions</h2>
+        <p>Suppose your program contains a WHERE statement that has two conditions, 
+          and suppose that each condition references one of the first two key 
+          variables in a composite index:</p>
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE statement and available index">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th align="center"><font size="-1">WHERE statement</font></th>
+            <th align="center"><font size="-1">Available Index</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">where <strong>order_date='01jan2000'd</strong> and 
+      <strong>delivery_date='02jul2000'd'</strong>;</font></pre></td>
+            <td> <p> composite index defined on the following variables:</p>
+              <ul>
+                <li> <code>Order_Date</code> (first key variable)</li>
+                <li><code>Delivery_Date</code> (second key variable)</li>
+                <li><code>Product_ID</code> (third key variable)</li>
+              </ul></td>
+          </tr>
+        </table>
+		<p><br>
+        <p>Because the two variables that are referenced in the WHERE expression 
+          are the first two key variables in the composite index, SAS can use 
+          the composite index for compound optimization if the WHERE conditions 
+          meet all other requirements for optimization. 
+        <p><br>
+        <h2>Example: Composite Index That Can Be Used to Optimize One Condition</h2>
+        <p>The following WHERE statement also contains two conditions, and each 
+          condition references one of the variables in the composite index: </p>
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE statement and available index">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th align="center"><font size="-1">WHERE statement</font></th>
+            <th align="center"><font size="-1">Available Index</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">where <strong>order_date='01jan2000'd</strong> and 
+      <strong>product_id='220101400106'</strong>;</font></pre></td>
+            <td> <p> composite index defined on the following variables:</p>
+              <ul>
+                <li> <code>Order_Date</code> (first key variable)</li>
+                <li><code>Delivery_Date</code> (second key variable)</li>
+                <li><code>Product_ID</code> (third key variable)</li>
+              </ul></td>
+          </tr>
+        </table>
+<p><br>
+        <p>As in the previous WHERE statement, <code>Order_Date</code> is the 
+          first key variable in the index. However, in this situation, the composite 
+          index can be used to optimize only the first condition. The second condition 
+          references the third key variable, <code>Product_ID</code>, but the 
+          WHERE expression does not reference the second key variable, <code>Delivery_Date</code>. 
+          Without a reference to both the first and second key variables, compound 
+          optimization cannot occur.
+		  <p><br>
+        <h2>Example: Composite Index That Cannot Be Used for Optimizing</h2>
+        <p>Now suppose your program contains a WHERE statement that references 
+          only the second and third key variables in the composite index, as shown 
+          below: 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE statement and available index">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th align="center"><font size="-1">WHERE statement</font></th>
+            <th align="center"><font size="-1">Available Index</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><pre><font color="#003399">where <strong>delivery_date='02jul2000'd'</strong> and 
+      <strong>product_id='220101400106'</strong>;</font></pre></td>
+            <td> <p> composite index defined on the following variables:</p>
+              <ul>
+                <li> <code>Order_Date</code> (first key variable)</li>
+                <li><code>Delivery_Date</code> (second key variable)</li>
+                <li><code>Product_ID</code> (third key variable)</li>
+              </ul></td>
+          </tr>
+        </table>
+<p><br>
+          In this situation, SAS <strong>cannot</strong> use the index for optimization 
+          at all because the WHERE statement does not reference the first key 
+          variable. 
+      </td>
+    </tr>
+  </table>
+<p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

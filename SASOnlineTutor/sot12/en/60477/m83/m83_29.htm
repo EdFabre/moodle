@@ -1,0 +1,176 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      and Writing Only Essential Data<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Creating a Subset of Data by Reading Data from an External File</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Suppose you want to create a SAS data set by reading a subset of data 
+        from an external file that is referenced by the fileref <strong>Customerdata</strong>. 
+        You want the subset to contain only customers in the United Kingdom. 
+      <p>The subset is approximately 5.56% of the countries in the external file, 
+        which contains 89,954 records and 12 fields.
+      <p>Techniques for doing this include
+<ol>
+        <li><a href="#1">Reading All Variables and Subsetting</a></li>
+        <li><a href="#2">Reading Selected Variables and Subsetting.</a></li>
+              </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results may vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for reading and writing only essential data. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        Reading All Variables and Subsetting</strong></p>
+      <blockquote> 
+        <p>In this program, the INPUT statement reads the values for all variables 
+          before the subsetting IF statement checks for the value of <code>Country</code>. 
+          Then, if the value for <code>Country</code> is <code><em>GB</em></code>, 
+          the observation is written to the output data set <strong>Retail.UnitedKingdom</strong>. 
+        </p>
+      </blockquote>
+         <blockquote> 
+        <pre><font color="#003399">     data retail.UnitedKingdom;
+        infile customerdata;
+        input @1   Customer_ID         12.
+              @13  Country             $2.
+              @15  Gender              $1.
+              @16  Personal_ID        $15.
+              @31  Customer_Name      $40.
+              @71  Customer_FirstName $20.
+              @91  Customer_LastName  $30.
+              @121 Birth_Date       date9.
+              @130 Customer_Address   $45.
+              @175 Street_ID           12.
+              @199 Street_Number       $8.
+              @207 Customer_Type_ID     8.;
+         <strong>if country='GB';</strong>
+      run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Reading Selected Variables and Subsetting</strong></p>
+      <blockquote> 
+        <p>In this program, the first INPUT statement reads only the value for 
+          <code>Country </code>and holds the record in the input buffer using 
+          the single trailing @ sign. Then the program uses a subsetting IF statement 
+          to check for the value of <code>Country</code>. If the value for <code>Country</code> 
+          <strong>is</strong> <strong>not</strong> <em>GB,</em> values for other 
+          variables are not read in or written to the output data set <strong>Retail.UnitedKingdom</strong>. 
+          If the value for Country <strong>is</strong> <em>GB</em>, values for 
+          other variables are input and written to the output data set <strong>Retail.UnitedKingdom</strong>.</p>
+      </blockquote>
+           <blockquote> 
+        <pre><font color="#003399">     data retail.UnitedKingdom;
+        infile customerdata;
+        input @13 Country $2. @;
+        <strong>if country='GB';</strong>
+        input @1   Customer_ID         12.
+              @15  Gender              $1.
+              @16  Personal_ID        $15.
+              @31  Customer_Name      $40.
+              @71  Customer_FirstName $20.
+              @91  Customer_LastName  $30.
+              @121 Birth_Date       date9.
+              @130 Customer_Address   $45.
+              @175 Street_ID           12.
+              @199 Street_Number       $8.
+              @207 Customer_Type_ID     8.;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><ul>
+        <li>Position a subsetting IF statement in a DATA step so that only variables 
+          that are necessary to select the record are read before subsetting. 
+          This can result in significant savings in CPU time. There is no difference 
+          in I/O or memory usage between the two techniques. </li>
+        <br><br>
+        <li>When selecting rows of data from an external file, read the field(s) 
+          on which the selection is being made before reading all the fields into 
+          the program data vector. </li>
+        <br><br>
+        <li>Use the single trailing @ sign to hold the input buffer so that you 
+          can continue to read the record when the variable(s) satisfy the IF 
+          condition.</li>
+      </ul></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

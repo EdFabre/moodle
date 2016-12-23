@@ -1,0 +1,218 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Conditional Clauses with the Iterative DO Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You have seen how the DO WHILE and DO UNTIL statements enable you to 
+        execute statements conditionally and how the iterative DO statement enables 
+        you to execute statements a set number of times, unconditionally. </p>
+      <pre><font color="#003399">     DO WHILE(<em>expression</em>);</font>
+<font color="#003399">     DO UNTIL(<em>expression</em>);</font>
+<font color="#003399">     DO <em>index-variable</em>=<em>start</em> TO <em>stop</em> BY <em>increment</em>;</font>
+</pre>
+      <p> Now let's look at a form of the iterative DO statement that combines 
+        features of both conditional and unconditional execution of DO loops. 
+      <p> In this DATA step, the DO UNTIL statement determines how many years 
+        it takes (13) for an investment to reach $50,000. 
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table border="0" cellpadding="0" cellspacing="0" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre><font color="#003399">     data work.invest;</font>
+<font color="#003399">        do until(Capital&gt;=50000); </font>
+<font color="#003399">           Year+1;</font>
+<font color="#003399">           capital+2000;</font>
+<font color="#003399">           capital+capital*.10;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+      <td align="center">SAS Data Set Work.Invest <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Capital</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"> 
+              <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">53949.97</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">13</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>Suppose you also want to limit the number of years you invest your 
+          capital to 10 years. You can add the UNTIL or WHILE expression to an 
+          iterative DO statement to further control the number of iterations. 
+          This iterative DO statement enables you to execute the DO loop until 
+          <code>Capital</code> is greater than or equal to <em>50000</em> or until 
+          the DO loop executes ten times, whichever occurs first.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellpadding="0" cellspacing="0" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre><font color="#003399">     data work.invest(drop=i);</font>
+<font color="#003399">        <strong>do i=1 to 10 until(Capital&gt;=50000); </strong></font>
+<font color="#003399">           Year+1;</font>
+<font color="#003399">           capital+2000;</font>
+<font color="#003399">           capital+capital*.10;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre>
+      </td>
+      <td align="center"><nobr>SAS Data Set Work.Invest</nobr> <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Capital</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"> 
+              <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">35062.33</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>In this case, the DO loop stops executing after ten iterations, and 
+        the value of <code>Capital</code> never reaches 50000. If you increase 
+        the amount added to <code>Capital</code> each year to 4000, the DO loop 
+        stops executing after the eighth iteration when the value of <code>Capital</code> 
+        exceeds 50000.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellpadding="0" cellspacing="0" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre><font color="#003399">     data work.invest(drop=i);</font>
+<font color="#003399">        <strong>do i=1 to 10 until(Capital&gt;=50000); </strong></font>
+<font color="#003399">           Year+1;</font>
+<font color="#003399">           <strong>capital+4000;</strong></font>
+<font color="#003399">           capital+capital*.10;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+      <td align="center"><nobr>SAS Data Set </nobr><nobr>Work.Invest</nobr> <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Capital</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"> 
+              <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">50317.91</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The UNTIL and WHILE specifications in an iterative DO statement function 
+        similarly to the DO UNTIL and DO WHILE statements. Both statements require 
+        a valid SAS expression enclosed in parentheses.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td width="39%"><pre><font color="#003399"></font><font color="#003399">     DO <em>index-variable</em>=<em>start</em> TO <em>stop</em> BY <em>increment</em> </font>
+</pre> 
+        </td>
+        <td width="61%"><pre><font color="#003399"><strong>UNTIL(<em>expression</em>)</strong>;</font>
+<font color="#003399"><strong>WHILE(<em>expression</em>)</strong>;</font></pre></td>
+      </tr>
+    </table>
+  </center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The UNTIL expression is evaluated at the <strong>bottom</strong> of 
+        the DO loop, so the DO loop always executes at least once. The WHILE expression 
+        is evaluated <strong>before</strong> the execution of the DO loop. So, 
+        if the condition is not true, the DO loop never executes.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

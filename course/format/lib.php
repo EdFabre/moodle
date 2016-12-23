@@ -109,11 +109,6 @@ abstract class format_base {
             return self::$classesforformat[$format];
         }
 
-        if (PHPUNIT_TEST && class_exists('format_' . $format)) {
-            // Allow unittests to use non-existing course formats.
-            return $format;
-        }
-
         // Else return default format
         $defaultformat = get_config('moodlecourse', 'format');
         if (!in_array($defaultformat, $plugins)) {
@@ -141,7 +136,7 @@ abstract class format_base {
         if (!isset($classnames[$format])) {
             $plugins = core_component::get_plugin_list('format');
             $usedformat = self::get_format_or_default($format);
-            if (isset($plugins[$usedformat]) && file_exists($plugins[$usedformat].'/lib.php')) {
+            if (file_exists($plugins[$usedformat].'/lib.php')) {
                 require_once($plugins[$usedformat].'/lib.php');
             }
             $classnames[$format] = 'format_'. $usedformat;
@@ -941,7 +936,7 @@ class format_site extends format_base {
      * @return null|moodle_url
      */
     public function get_view_url($section, $options = array()) {
-        return new moodle_url('/', array('redirect' => 0));
+        return new moodle_url('/');
     }
 
     /**

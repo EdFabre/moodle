@@ -1,0 +1,81 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Temporary IN= Variables</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Temporary 
+      IN= Variables<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> You can use the <strong>IN= data set option</strong> to exclude unmatched observations 
+      from a match-merge. Since the IN= variable is a <strong>temporary variable</strong>, 
+      it is available to program statements during the DATA step but it is 
+      not included in the SAS data set that is being created. </td>
+  </tr>
+  </table>
+  <P><BR>
+  <TABLE align="center" BORDER="1" CELLSPACING="0" CELLPADDING="10" width="85%" BGCOLOR="#FFFFE0" title="General form, IN= data set option">
+	<TR>
+	  <TD align="left"><STRONG>General form, IN= data set option:</STRONG>
+	    <BLOCKQUOTE>
+	      <FONT COLOR="#003399"><NOBR><STRONG>(IN=</STRONG><EM>variable</EM><STRONG>)</STRONG>&nbsp;&nbsp;
+	      </NOBR></FONT>
+	    </BLOCKQUOTE>
+	    <P>
+	    where
+	    <UL>
+	      <LI>
+		the <font color="#003399"><STRONG>IN=</STRONG></font> option, in parentheses, follows the data set name
+	      <LI>
+		<FONT COLOR="#003399"><EM>variable</EM></FONT> names the variable to be created.
+	    </UL>
+	    
+      <P> Within the DATA step, the value of the IN= variable is <EM>1</EM> if 
+        the data set contributed data to the current observation. If the data 
+        set did not contribute to the current observation, the value of the IN= 
+        variable is <EM>0</EM>. </TD>
+	</TR>
+      </TABLE>
+	  <P><BR>
+	  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <h2>Example</h2>
+	  <p>Suppose you want to match-merge the <strong>Sasuser.Expenses</strong> 
+        data set with the <strong>Sasuser.Revenue</strong> data set. You use the 
+        IN= option to create two temporary variables whose values indicate whether 
+        the data set to which they are connected has contributed to the current 
+        observation in the Program Data Vector. Then you use a subsetting IF statement 
+        to include only observations that contain data from both input data sets.</p>
+      <p>In the following example, only those observations with data from both 
+        <strong>Sasuser.Expenses</strong> and <strong>Sasuser.Revenue</strong> 
+        are included in the output data set:<font color="#003399"><pre>     data combined;
+        merge sasuser.expenses(in=e) sasuser.revenue(in=r);
+        by flightid date;
+        if e and r;
+     run;</pre></font></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

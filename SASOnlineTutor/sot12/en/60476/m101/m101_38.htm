@@ -1,0 +1,363 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_inline.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_desc" -->Join 
+            the ListingSales and Listings tables. Replace values in the SQFEET 
+            column to show houses that qualify for a sales contest. Then create 
+            a report to find the winner of the contest.<!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+
+<center>
+<p>
+<!-- InstanceBeginEditable name="optionalNote" --><table cellpadding="2" align="Center" width="85%">
+  <tr valign="top"> 
+            
+      <td width="24" valign="top"><img border="0" width="37" height="32" src="../navimages/alert.gif" alt="Note:"></td>
+      <td>This practice uses the <strong>Practice3</strong> query that was created 
+        in the last practice. If you haven't created this query, <a href="m101_26.htm" onClick="suggestBack()" onMouseOver="window.status='Return to a previous practice.';" onMouseOut="window.status=''">return 
+        to the practice</a> and create it before continuing here.</td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+<div id="le2_eg2" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+        <td> <ol>
+            <li>Reopen <strong>Practice3</strong>. <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>In the Project window, double-click <strong>Practice3</strong> 
+                  to open the query.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Add the <strong>ListingSales</strong> table. Join the <code>PROPID</code> 
+              column in the <strong>Listings</strong> table to the <code>PropertyID</code> 
+              column in the <strong>ListingSales</strong> table. <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Click <strong>Add Data</strong>. Navigate to the directory 
+                  where you stored the downloaded data. Double-click <strong>ListingSales</strong>. 
+                  Click <strong>OK</strong> when you are prompted to join the 
+                  tables manually.</li>
+                <li>In the <strong>Listings</strong> table, click <strong>PROPID</strong> 
+                  and drag the join line to the <strong>PropertyID</strong> column 
+                  in the <strong>ListingSales</strong> table.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Include the following columns (in order) in the query output: 
+              <code>AGENT</code>, <code>SalesPrice</code>, <code>SaleDate</code>, 
+              <code>SQFEET</code>. <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Click the <strong>Select and Sort</strong> tab.</li>
+                <li>While holding down the <strong>Ctrl</strong> key, select <strong>STYLE</strong>, 
+                  <strong>PRICE</strong>, and <strong>PropertyID</strong>, then 
+                  click <strong>Delete</strong>.</li>
+                <li>Select <strong>SQFEET</strong> and click <strong>Move Down</strong> 
+                  until the column is at the bottom of the list.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>For this contest, only sales of properties greater than 1300 square 
+              feet qualify. In the <strong>SQFEET</strong> column, replace values 
+              above 1300 with <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">Qualifies</font> 
+              and replace all other values with <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">DNQ</font>. 
+              Don't forget to click <strong>Add to List</strong> after you replace 
+              values above 1300. <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Select the <strong>SQFEET</strong> column, and click <strong>Properties</strong>.</li>
+                <li>In the Properties window, click <strong>Replace Values</strong>.</li>
+                <li>Select <strong>Replace a range of values</strong>. </li>
+                <li>Click the <strong>Set a lower limit </strong>drop-down box 
+                  and select <strong>1300</strong>. Clear the <strong>Set an upper 
+                  limit</strong> check box. In the <strong>Replace with</strong> 
+                  box, type <font face="Verdana, Arial, Helvetica, sans-serif">Qualifies</font>. 
+                </li>
+                <li>Click <strong>Add to List</strong>.</li>
+                <li>In the <strong>Replace all others with</strong> box, type 
+                  <font face="Verdana, Arial, Helvetica, sans-serif">DNQ</font>.</li>
+                <li>Click <strong>OK</strong>.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Set a filter so that the results list only sales that qualify 
+              for the contest.<br>
+              <br>
+              <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                  <td valign="top">In real life you would simply create a filter 
+                    so that only properties &gt; 1300 sq.ft. are included in the 
+                    output. For this practice, filter the replaced values in SQFEET.</td>
+                </tr>
+              </table>
+              <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Click <strong>Filter Data</strong>. </li>
+                <li>In the <strong>Computed Columns</strong> list, drag and drop 
+                  <strong>_SQFEET</strong> in the filter area. </li>
+                <li>In the Edit Filter Condition window, type <font face="Verdana, Arial, Helvetica, sans-serif">&quot;Qualifies&quot;</font> 
+                  (with quotation marks) in the <strong>Value</strong> box. </li>
+                <li>Click <strong>OK</strong>.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Set the results format to create a data table.<br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Click <strong>More Query Options</strong>. </li>
+                <li>In the <strong>Result set format </strong>area, click <strong>Data 
+                  table</strong>.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Run the query and <strong>do not</strong> replace the results 
+              of the previous query. View the data. <br>
+              <span class="eg2_le2"><br>
+              </span> <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Click <strong>Run Query</strong>. In the prompt window, click 
+                  <strong>No</strong>.</li>
+                <li>Only sales that qualify for the contest are listed in the 
+                  data. </li>
+              </ul>
+              </span><br>
+            <li>Rename the query <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">Practice4</font>. 
+              <br>
+              <br>
+            <li>The winner of the contest is the agent with the highest total 
+              sales of qualifying houses. Using the query as input, create a summary 
+              table that shows the <code>SalesPrice</code> total for each agent. 
+              Who won the contest? <span class="eg2_le2"> <br>
+              <br>
+              <ul type="square">
+                <li>Select <strong>Analysis<img src="../navimages/arrow.gif" alt="then" width="14" height="10">Descriptive<img src="../navimages/arrow.gif" alt="then" width="14" height="10">Summary 
+                  Tables</strong>.</li>
+                <li>Assign <strong>SalesPrice</strong> to the <strong>Analysis 
+                  Variables</strong> role and <strong>AGENT</strong> to the <strong>Classification 
+                  variables</strong> role.</li>
+                <li>Click the <strong>Tables</strong> tab.</li>
+                <li>Drag <strong>Agent</strong> to the row box. Drag <strong>SalesPrice</strong> 
+                  to the column box. In the <strong>Available statistics</strong> 
+                  box, select <strong>Sum</strong> and drag it below SalesPrice. 
+                  Your model should look like this: <br>
+                  <br>
+                  <img src="images/m101_38.gif" alt="Table model" width="212" height="149"> 
+                  <br>
+                  <br>
+                </li>
+                <li>Click <strong>Finish</strong>. </li>
+                <li>Len Mizusawa won the contest with $280,000 in sales of qualifying 
+                  houses. </li>
+              </ul>
+              </span> </ol>
+     
+       </td>
+  </tr>
+</table>
+</div>
+  
+<span id="divider" class="eg_div"><hr width="85%"><br></span>
+  
+<div id="eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+        <td> <ol>
+            <li>Reopen <strong>Practice3</strong>. <br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>In the Process Flow window, double-click <strong>Practice3</strong> 
+                  to open the query.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Add the <strong>ListingSales</strong> table. Join the <code>PROPID</code> 
+              column in the <strong>Listings</strong> table to the <code>PropertyID</code> 
+              column in the <strong>ListingSales</strong> table. <br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>Click <strong>Add Data</strong>. In the Open Data window, 
+                  click <strong>Project</strong>. In the Add from Project window, 
+                  select <strong>ListingSales</strong> and click <strong>OK</strong>. 
+                  When you are prompted to join the tables manually, click <strong>OK</strong>.</li>
+                <li>In the <strong>Listings</strong> table, click <strong>PROPID</strong> 
+                  and drag the join line to the <strong>PropertyID</strong> column 
+                  in the <strong>ListingSales</strong> table.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Include the following columns (in order) in the query output: 
+              <code>AGENT</code>, <code>SalesPrice</code>, <code>SaleDate</code>, 
+              <code>SQFEET</code>. <br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>Click the <strong>Select and Sort</strong> tab.</li>
+                <li>While holding down the <strong>Ctrl</strong> key, select <strong>STYLE</strong>, 
+                  <strong>PRICE</strong>, and <strong>PropertyID</strong>, then 
+                  click <strong>Delete</strong>.</li>
+                <li>Select <strong>SQFEET</strong> and click <strong>Move Down</strong> 
+                  until the column is at the bottom of the list.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>For this contest, only sales of properties greater than 1300 square 
+              feet qualify. In the <strong>SQFEET</strong> column, replace values 
+              above 1300 with <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">Qualifies</font> 
+              and replace all other values with <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">DNQ</font>. 
+              Don't forget to click <strong>Add to List</strong> after you replace 
+              values above 1300. <br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>Select the <strong>SQFEET</strong> column, and click <strong>Properties</strong>.</li>
+                <li>In the Alias box, type <font face="Verdana, Arial, Helvetica, sans-serif">_SQFEET</font>.</li>
+                <li>In the Properties window, click the <strong>Replace Values</strong> 
+                  tab.</li>
+                <li>Select <strong>Replace a range of values</strong>. </li>
+                <li>Click the <strong>Set a lower limit</strong> ellipsis box 
+                  and select <strong>1300</strong>. Click <strong>OK</strong>. 
+                  Clear the <strong>Set an upper limit</strong> check box. In 
+                  the <strong>Replace with</strong> box, type <font face="Verdana, Arial, Helvetica, sans-serif">Qualifies</font>. 
+                </li>
+                <li>Click <strong>Add to List</strong>.</li>
+                <li>From the <strong>Replace all others with</strong> drop-down 
+                  box, select <strong>New Value</strong>. Type <font face="Verdana, Arial, Helvetica, sans-serif">DNQ</font>.</li>
+                <li>Click <strong>OK</strong>.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Set a filter so that the results list only sales that qualify 
+              for the contest.<br>
+              <br>
+              <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                  <td valign="top">In real life you would simply create a filter 
+                    so that only properties &gt; 1300 sq.ft. are included in the 
+                    output. For this practice, filter the replaced values in SQFEET.</td>
+                </tr>
+              </table>
+              <br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>Click <strong>Filter Data</strong>. </li>
+                <li>In the <strong>Computed Columns</strong> list, drag and drop 
+                  <strong>_SQFEET</strong> in the filter area. </li>
+                <li>In the Edit Filter Condition window, type <font face="Verdana, Arial, Helvetica, sans-serif">&quot;Qualifies&quot;</font> 
+                  (with quotation marks) in the <strong>Value</strong> box. </li>
+                <li>Click <strong>OK</strong>.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Set the results format to create a data table.<br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>In the Query Builder window, click the <strong>Advanced</strong> 
+                  tab. </li>
+                <li>In the <strong>Result set format </strong>area, click <strong>Data 
+                  table</strong>.</li>
+              </ul>
+              <br>
+              </span> 
+            <li>Run the query and <strong>do not</strong> replace the results 
+              of the previous query. View the data. <br>
+              <span class="eg2_le2"><br>
+              </span> <span class="eg3"> 
+              <ul type="square">
+                <li>Click <strong>Run Query</strong>. In the prompt window, click 
+                  <strong>No</strong>.</li>
+                <li>Only sales that qualify for the contest are listed in the 
+                  data. </li>
+              </ul>
+              </span><br>
+            <li>Rename the query <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">Practice4</font>. 
+              <br>
+              <br>
+            <li>The winner of the contest is the agent with the highest total 
+              sales of qualifying houses. Using the query as input, create a summary 
+              table that shows the <code>SalesPrice</code> total for each agent. 
+              Who won the contest? <span class="eg3"> <br>
+              <br>
+              <ul type="square">
+                <li>Select <strong>Describe<img src="../navimages/arrow.gif" alt="then" width="14" height="10">Summary 
+                  Tables</strong>.</li>
+                <li>Click <strong>Task Roles</strong> in the selection pane. Assign 
+                  <strong>SalesPrice</strong> to the <strong>Analysis Variables</strong> 
+                  role and <strong>AGENT</strong> to the <strong>Classification 
+                  variables</strong> role.</li>
+                <li>Click <strong>Summary Tables</strong> in the selection pane.</li>
+                <li>Drag <strong>Agent</strong> to the row box. Drag <strong>SalesPrice</strong> 
+                  to the column box. In the <strong>Available statistics</strong> 
+                  box, select <strong>Sum</strong> and drag it below SalesPrice. 
+                  Your model should look like this: <br>
+                  <br>
+                  <img src="images3/m101_38s.gif" alt="Table model" width="271" height="164"> 
+                  <br>
+                  <br>
+                </li>
+                <li>Click <strong>Run</strong>. </li>
+                <li>Len Mizusawa won the contest with $280,000 in sales of qualifying 
+                  houses. </li>
+              </ul>
+              </span> </ol>
+     
+       </td>
+  </tr>
+</table>
+</div>
+
+<!-- InstanceEndEditable --> 
+<script>writeinlinePracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

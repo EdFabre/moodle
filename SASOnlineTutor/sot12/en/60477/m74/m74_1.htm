@@ -1,0 +1,175 @@
+<html><!-- InstanceBegin template="/Templates/overview.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(overviewTitle)</script></strong></font>
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center>
+
+<p> 
+ <!-- InstanceBeginEditable name="overview" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <h2>Introduction</h2>
+        <p> When processing a query that contains a subsetting WHERE clause or 
+          that joins multiple tables, PROC SQL must locate specific rows in the 
+          referenced table(s). Creating an index for a table enables PROC SQL, 
+          in certain circumstances, to locate specific rows more quickly and efficiently. 
+          An <strong>index</strong> is an auxiliary file that stores the physical 
+          location of values for one or more specified columns (<strong>key columns</strong>) 
+          in a table. In an index, each unique value of the key column(s) is paired 
+          with a location identifier for the row that contains that value. In 
+          the same way that you use a book's subject index to find a page that 
+          discusses a particular subject, PROC SQL uses the system of directions 
+          in an index to access specific rows in the table directly, by index 
+          value. You can create more than one index for a single table. All indexes 
+          for a SAS table are stored in one index file.</p>
+        </td>
+    </tr>
+  </table>
+<br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You cannot create an index on a view.</td>
+    </tr>
+  </table>
+<br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>The following PROC SQL step uses the CREATE INDEX statement to create 
+          an index for a table, and uses the DESCRIBE TABLE statement to display 
+          information about the index, along with other information about the 
+          table, in the SAS log:</p>
+        <pre><font color="#003399">     proc sql;
+        create unique index empid 
+           on work.payrollmaster(empid);
+        describe table work.payrollmaster;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>create table WORK.PAYROLLMASTER( bufsize=4096 )<br>  (<br>   DateOfBirth num format=DATE9. informat=DATE9.,<br>   DateOfHire num format=DATE9. informat=DATE9.,<br>   EmpID char(4),<br>   Gender char(1),<br>   JobCode char(3),<br>   Salary num format=DOLLAR9.<br>  );<br><strong>create unique index EmpID on WORK.PAYROLLMASTER(EmpID);</strong></pre></td>
+      </tr>
+    </table>
+    <p><br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+      <tr valign="top"> 
+        <td> <p>In this lesson, you will learn to use PROC SQL to create and manage 
+            various types of indexes.</p></td>
+      </tr>
+    </table>
+  </div>
+  <!-- InstanceEndEditable -->
+  <!-- InstanceBeginEditable name="overview_graphic" --> 
+  <p>&nbsp;<!-- InstanceEndEditable -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewTimeToComplete)</script></h2>
+      <p><script>document.write(overviewTimeIntro)</script><!-- InstanceBeginEditable name="time_to_complete" -->30 
+          minutes <!-- InstanceEndEditable --><script>document.write(overviewTimeEnd)</script></p>
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewObjectives)</script></h2>
+      <!-- InstanceBeginEditable name="objectives" --> 
+        <p>In this lesson, you learn to</p>
+        <ul>
+          <li>determine when it is appropriate to create an index</li>
+          <li>create simple and composite indexes on a table</li>
+          <li> create an index that ensures that values of the key column(s) are 
+            unique</li>
+          <li> control whether PROC SQL uses an index or which index it uses</li>
+          <li> display information about the structure of an index in the SAS 
+            log</li>
+          <li> drop (delete) an index from a table.</li>
+        </ul>
+        <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewPrerequisites)</script></h2>
+      <p><script>document.write(overviewPrerequisitesIntro)</script><!-- InstanceBeginEditable name="prerequisites_leadin" -->complete 
+        the following lessons:<!-- InstanceEndEditable --></p>
+      <ul><!-- InstanceBeginEditable name="prerequisites" --> 
+          <li><strong>
+            <script>document.write(m1title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m3title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m16title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m2title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m4title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m12title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m22title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m10title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m70title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m71title);</script>
+            </strong></li>
+          <li><strong>
+            <script>document.write(m73title);</script></strong>.</li>
+          <!-- InstanceEndEditable -->
+      </ul>
+    </td>
+  </tr>
+</table>
+
+  <br>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

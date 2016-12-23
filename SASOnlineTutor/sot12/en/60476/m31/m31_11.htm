@@ -1,0 +1,87 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Defining 
+      a Unique Format<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Specifying Value Ranges</strong> </p>
+        <p> You can specify a non-inclusive range of numeric values by using the 
+          "less than" symbol (&lt;) to avoid any overlapping. In this example, 
+          the range of values from 0 to less than 13 is labeled as <b>child</b>. 
+          The next range begins at 13, so the label <b>teenager</b> would be assigned 
+          to the values 13 to 19. 
+        <pre>     <font color="#003399">proc format lib=library;</font>
+        <font color="#003399">value agefmt</font>
+              <font color="#003399">0-</font><font color="Red">&lt;</font><font color="#003399">13='child'</font>
+              <font color="#003399">13-</font><font color="Red">&lt;</font><font color="#003399">20='teenager'</font>
+              <font color="#003399">20-</font><font color="Red">&lt;</font><font color="#003399">65='adult'</font>
+              <font color="#003399">65-100='senior citizen';</font>
+     <font color="#003399">run;</font></pre>
+      You can also use the keywords <strong>LOW</strong> and <strong>HIGH</strong> 
+      to specify the lower and upper limits of a variable's value range. The keyword 
+      LOW does not include missing numeric values. The keyword <strong>OTHER</strong> 
+      can be used to label missing values as well as any values that are not specifically 
+      addressed in a range. 
+        <pre>     <font color="#003399">proc format lib=library;</font>
+        <font color="#003399">value agefmt</font>
+              <font color="#003399"><strong>low</strong>-&lt;13='child'</font>
+              <font color="#003399">13-&lt;20='teenager'</font>
+              <font color="#003399">20-&lt;65='adult'</font>
+              <font color="#003399">65-<strong>high</strong>='senior citizen'</font>
+              <font color="#003399"><strong>other</strong>='unknown';</font>
+     <font color="#003399">run;</font></pre>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If applied to a character format, the keyword LOW 
+              includes missing character values.</td>
+          </tr>
+        </table> 
+        <p>When specifying a label for displaying each range, remember to </p>
+        <ul>
+        <li>enclose the label in quotation marks 
+        <li>limit the label to 256 characters 
+        <li>use two single quotation marks if you want an apostrophe to appear 
+          in the label, as in this example: 
+      </ul>
+      <pre>     <font color="#003399">000='employee''s jobtitle unknown';</font></pre>
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

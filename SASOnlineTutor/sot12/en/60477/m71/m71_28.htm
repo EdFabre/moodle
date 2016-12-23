@@ -1,0 +1,111 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      SQL Joins and DATA Step Match-Merges<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Understanding Advantages of PROC SQL Joins</h2>
+        <p> DATA step match-merges and PROC SQL joins both have advantages and 
+          disadvantages. Here are some of the main advantages of PROC SQL joins.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Advantages of PROC SQL Joins">
+    <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+      <th width="172"><font size="-1">Advantage</font></th>
+      <th width="314"><font size="-1">Example</font></th>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="172">PROC SQL joins do <strong>not</strong> require <strong>sorted 
+        or indexed</strong> tables.</td>
+      <td width="314"><pre><font color="#003399">proc sql;
+   select table1.x, a, b
+      from table1
+           full join
+           table2
+           on table1.x = table2.x;</font></pre> <p>where <strong>table-1</strong> 
+          is <strong>sorted</strong> by column <code>X</code> and <strong>table-2</strong> 
+          is <strong>not</strong></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="172">PROC SQL joins do <strong>not</strong> require that the 
+        columns in join expressions have the <strong>same name</strong>. </td>
+      <td width="314"><pre><font color="#003399">proc sql;
+   select table1.x, lastname, 
+          status
+      from table1, table2
+      where <strong>table1.id = 
+            table2.custnum</strong>;</font></pre></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="172">PROC SQL joins can use comparison operators <strong>other 
+        than the equal sign (=).</strong></td>
+      <td width="314"><pre><font color="#003399">proc sql;
+   select a.itemnumber, cost,
+          price
+      from table1 as a,
+           table2 as b
+      where a.itemnumber = b.itemnumber
+            and <strong>a.cost>b.price</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Join performance can be substantially improved when the 
+        tables are indexed on the column(s) on which the tables are being joined. 
+        You can learn more about indexing in the lesson 
+        <!--lesson reference-->
+        <strong> 
+        <script>document.write(m74title);</script></strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You can learn more about the comparative advantages and disadvantages 
+          of DATA step match-merges and PROC SQL joins in the lesson <!--lesson reference--><strong><script>document.write(m56title);</script></strong>.</p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

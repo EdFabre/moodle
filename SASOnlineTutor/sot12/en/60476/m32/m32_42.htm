@@ -1,0 +1,92 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='To force the execution of the DATA step, add a RUN statement before the first TITLE statement.';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Using 
+      the <a href="JavaScript: openOther('../linklib/talnt99x.htm')" onMouseOver="window.status='Display a data set description and sample data.';  "
+	    onMouseOut="window.status=''">Sasuser.Talent99</a> data set, correct errors 
+      in macro variable references.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" -->
+          <LI>Copy the program below and paste it into the code editing window. 
+            <PRE><FONT color="#003399">%let number=11;</FONT>
+<FONT color="#003399">%let name=November;</FONT>
+<FONT color="#003399">%let abbrev=nov;</FONT>
+<FONT color="#003399">%let year=99;</FONT>
+<FONT color="#003399">data &amp;abbrev.hire;</FONT>
+<FONT color="#003399">   set sasuser.talent&amp;year end=final;</FONT>
+<FONT color="#003399">   if month(lasthired)=&amp;number then</FONT>
+<FONT color="#003399">   do;</FONT>
+<FONT color="#003399">      Fee=rate*.10;</FONT>
+<FONT color="#003399">      TotFee+fee;</FONT>
+<FONT color="#003399">      output;</FONT>
+<FONT color="#003399">   end;</FONT>
+<FONT color="#003399">   format lasthired date9.;</FONT>
+<FONT color="#003399">   if final then call symput</FONT>
+<FONT color="#003399">      ('sumfee',put(totfee,dollar6.));</FONT>
+<FONT color="#003399">   title1 "Actors Hired in &amp;name";</FONT>
+<FONT color="#003399">   title2 "Agency Commission &amp;sumfee";</FONT>
+<FONT color="#003399">   footnote1 "Report Number &amp;number";</FONT>
+<FONT color="#003399">proc print data=&amp;abbrev.hire;</FONT>
+<FONT color="#003399">run;</FONT>&nbsp;
+</PRE>
+          Submit the program. Note that the variable <font face="Courier New, Courier, mono">sumfee</font>, 
+          which is created with the CALL SYMPUT routine, does not resolve. 
+          <P>
+	    <LI>Modify the program to force the DATA step to execute before the TITLE 
+          and FOOTNOTE statements are processed. Submit the program and view the 
+          output. 
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

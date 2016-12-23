@@ -1,0 +1,130 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the Autocall Facility<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Accessing Autocall Macros</h2>
+     <P>Remember that an autocall library is either a SAS catalog, an external directory, or a partitioned data set. 
+This is true both for the default autocall library that SAS supplies and for autocall libraries that you create.
+<P>In order to access a macro definition that is stored in an autocall library, you must use two SAS system options, as follows: 
+	 <ul>
+	      <li>The MAUTOSOURCE system option must be specified.</li>
+	      <li>The SASAUTOS system option must be set to identify the location of 
+            the autocall library or libraries. </li>
+      </ul>
+	 Both the MAUTOSOURCE and SASAUTOS system options can be set either at SAS invocation or with an OPTIONS statement during program execution.
+	 <P>The MAUTOSOURCE system option controls whether the autocall facility is available.
+</td></tr></table><P><BR>
+	 <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, MAUTOSOURCE system option">
+  <tr> 
+    <td align="left"><strong>General form, MAUTOSOURCE system option:</strong> 
+      <blockquote> 
+        <dl>
+          <dt><font color="#003399"><strong>OPTIONS MAUTOSOURCE | NOMAUTOSOURCE</strong>;</font></dt>
+     
+        </dl>
+      </blockquote>
+	  where
+	  <ul>
+	  <li><font color="#003399"><strong>MAUTOSOURCE</strong></font> is the default setting, and specifies that the autocall facility is available
+	  <li><font color="#003399"><strong>NOMAUTOSOURCE</strong></font> specifies that the autocall facility is not available.
+	   </ul></td>
+	  
+  </tr>
+</table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><a name="sasautos"></a>The SASAUTOS system option controls where the macro facility looks for autocall macros.
+</td></tr></table>
+<P><BR>
+ <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, SASAUTOS system option">
+  <tr> 
+    <td align="left"><strong>General form, SASAUTOS system option:</strong> 
+      <blockquote> 
+        <dl>
+          <dt><font color="#003399"><strong>OPTIONS SASAUTOS=</strong><em>library-1</em>;</font></dt>
+     	<dt><font color="#003399"><strong>OPTIONS SASAUTOS=</strong>(<em>library-1,...,library-n)</em>;</font></dt>
+        </dl>
+      </blockquote>
+	  where the values of <font color="#003399"><em>library-1</em></font> through <font color="#003399"><em>library-n</em></font> 
+	  are references to source libraries that contain macro definitions. To specify a source library you can 
+	  <ul>
+	  <li>use a fileref to refer to its location
+	  <li>specify the pathname (enclosed in quotation marks) for the library.</ul>
+      </td>
+  </tr>
+</table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>Unless your system administrator has changed the default value for the SASAUTOS system option, 
+	its value is the fileref <strong>Sasautos</strong>, and that fileref points to the location
+        where the default autocall library was created during installation. The <strong>Sasautos</strong> fileref 
+	can refer to multiple locations that are concatenated. 
+        <P>Generally, it is a good idea to concatenate any autocall libraries that you 
+          create yourself with the default autocall library in the value of the 
+          SASAUTOS system option. Otherwise, the new autocall library will replace 
+          the default or existing libraries in the value of SASAUTOS, and the 
+          autocall facility will have access to only the new autocall library. 
+        <P><BR><h2>Example</h2>
+      <P> Suppose you want to access the <strong>Prtlast</strong> macro, which is 
+        stored in the autocall library <strong>C:\Mysasfiles</strong>. You also 
+        want to make sure that the default autocall library (which the 
+         fileref <strong>Sasautos</strong> points to) is still available 
+        to the autocall facility. You would submit the following code: <font color="#003399"><pre>    options mautosource sasautos=('c:\mysasfiles',sasautos);
+    %prtlast</pre></font>
+<table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The MAUTOLOCDISPLAY option is a Boolean option which 
+              is available beginning in SAS 9. When set, MAUTOLOCDISPLAY will 
+              cause a note to be issued to the SAS log indicating where the source 
+              code was obtained to compile an autocall macro. The note is similar 
+              to the information displayed when using the MLOGIC option. The default 
+              setting of this option is NOMAUTOLOCDISPLAY.</td>
+      </tr>
+    </table>
+      </td>
+  </tr>
+</table>
+<BR><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,135 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Executing 
+      Only Necessary Statements<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p> You've seen different ways of efficiently creating variables conditionally, 
+          which reinforce the principle of executing only necessary statements. 
+          The next comparative example in this topic addresses techniques that 
+          can be used to create data in DO groups. Before viewing this example, 
+          you might want to review the following information about which statements 
+          are needed in DO groups. </p> 
+       <p><br>
+        <h2>Using DO Groups Efficiently</h2>
+              
+        <p>You can conditionally execute only necessary statements by placing 
+          them in DO groups that are associated with IF-THEN/ELSE statements or 
+          with SELECT/WHEN statements. Groups of statements execute only when 
+          a particular condition is true. Remember to use the following criteria 
+          when choosing which technique is more efficient:</p>
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Comparison between IF-THEN/ELSE and SELECT WHEN statements">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th>&nbsp;</th>
+            <th><font size="-1">IF-THEN/ELSE Statements</font></th>
+            <th><font size="-1">SELECT/WHEN Statements</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td>The number of conditions</td>
+            <td>few</td>
+            <td>many</td>
+          </tr>
+          <tr valign="top"> 
+            <td>The distribution of a variable's values</td>
+            <td>not uniform<em></em></td>
+            <td>uniform</td>
+          </tr>
+          <tr valign="top"> 
+            <td>The type of variable </td>
+            <td>character<em></em></td>
+            <td>numeric</td>
+          </tr>
+        </table><p><br>
+          When using a DO group with IF-THEN/ELSE statements, add DO after the 
+          THEN clause, and add an END statement after all of the statements that 
+          you want executed as a group. </p>
+        <pre><font color="#003399">     data orders;
+        set company.orders;
+        if order_type = 1 then 
+           do;
+           &lt;<em>multiple executable statements here</em>&gt;
+           end;
+        else if order_type = 2 then 
+           do;
+           &lt;<em>multiple executable statements here</em>&gt;
+           end;
+        else if order_type = 3 then 
+           do;
+           &lt;<em>multiple executable statements here</em>&gt;
+           end;
+     run;</font></pre> 
+      
+                    <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Use an IF-THEN DO group when you create multiple 
+              variables based on a condition.</td>
+          </tr>
+        </table> 
+        <p>When using a DO group with SELECT/WHEN statements, add DO after the 
+          WHEN condition, and add an END statement after all of the statements 
+          that you want executed as a group. Use an OTHERWISE statement to specify 
+          the statements that you want executed if no WHEN condition is met.</p>
+        <pre><font color="#003399">     data orders;
+        set company.orders;
+        select (order_type);
+           when (1) 
+              do;
+              &lt;<em>multiple executable statements here</em>&gt;
+              end;
+           when (2) 
+              do;
+              &lt;<em>multiple executable statements here</em>&gt;
+              end;
+           when (3) 
+              do;
+              &lt;<em>multiple executable statements here</em>&gt;
+              end;
+           otherwise;
+        end;
+     run;</font></pre>
+    
+        <p>Remember that IF-THEN/ELSE and SELECT/WHEN logic require that there 
+          be no intervening statements between the IF and the ELSE conditions 
+          or between the SELECT and the WHEN conditions.</p>
+              </td>
+    </tr>
+  </table>
+   <p><br> 
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

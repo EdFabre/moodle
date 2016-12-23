@@ -1,0 +1,231 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Inheriting 
+      Style Attributes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Changing Headings for Analysis Variables</strong> </p>
+      <p> The headings for <code>Revenue</code> are particularly important, so 
+        let's change the color of their cells to match the levels of <code>Dest</code>. 
+        Because <code>Revenue</code> is an analysis variable, you need to add 
+        the STYLE= option to the <strong>VAR statement</strong>: 
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     var boarded transferred deplaned revenue;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>But if you do this, the STYLE= option will affect all four variables, 
+        not just the variable <code>Revenue</code>. How do you isolate <code>Revenue</code>? 
+        Write a <strong>second</strong> VAR statement, with <code>Revenue</code> 
+        as its only variable:</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     var boarded transferred deplaned;</font>
+<font color="#003399">     var revenue;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="2" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" alt="Note:" border="0" height="20"
+	    hspace="10" width="20"></td>
+      <td width="100%">You can also use multiple CLASS and CLASSLEV statements 
+        to target specific variables for the STYLE= option.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Specifying Inheritance</strong> 
+        <p> Now you can add the STYLE= option, but remember that you want the 
+          <code>Revenue</code> cells to <strong>repeat</strong> the colors that 
+          are used for the <code>Dest</code> class levels. To specify that cells 
+          inherit the style attributes of a parent cell, use <strong>&lt;parent&gt;</strong> 
+          as the argument of the STYLE= option. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     var revenue <strong>/ style=&lt;parent&gt;</strong>;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Because the <code>Revenue</code> cells are nested beneath the <code>Dest</code> 
+        levels, <code>Dest</code> is considered the parent of Revenue. <code>Dest</code> 
+        is also the parent of <code>Boarded</code>, <code>Transferred</code>, 
+        and <code>Deplaned</code>.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table bgcolor="#FFFFF0" border="0" cellpadding="2" cellspacing="1" title="ODS HTML output">
+    <tr> 
+      <td nowrap rowspan="4" valign="middle"><font face="Arial, Helvetica, Helv"
+	    size="3" color="#000000"><b>Parent Cell</b>&nbsp;&nbsp;<img src="../navimages/arrow.gif" alt="--&gt;" border="0"
+	    width="14" height="10">&nbsp;&nbsp;</font></td>
+      <td rowspan="4" valign="top" bgcolor="#BBDDCC"><font face="Arial, Helvetica, Helv"
+	    size="3" color="#0033A9"><b>Copenhagen</b></font></td>
+      <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Boarded</b></font></td>
+      <td nowrap><font face="Arial, Helvetica, Helv" size="3" color="#000000">&nbsp;&nbsp;<img
+	    src="../navimages/arrowl.gif" alt="&lt;--" border="0" width="14" height="10">&nbsp;&nbsp;<b>Child 
+        Cell</b></font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Transferred</b></font></td>
+      <td nowrap><font face="Arial, Helvetica, Helv" size="3" color="#000000">&nbsp;&nbsp;<img
+	    src="../navimages/arrowl.gif" alt="&lt;--" border="0" width="14" height="10">&nbsp;&nbsp;<b>Child 
+        Cell</b></font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Deplaned</b></font></td>
+      <td nowrap><font face="Arial, Helvetica, Helv" size="3" color="#000000">&nbsp;&nbsp;<img
+	    src="../navimages/arrowl.gif" alt="&lt;--" border="0" width="14" height="10">&nbsp;&nbsp;<b>Child 
+        Cell</b></font></td>
+    </tr>
+    <tr> 
+      <td bgcolor="#BBDDCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Revenue</b></font></td>
+      <td nowrap><font face="Arial, Helvetica, Helv" size="3" color="#000000">&nbsp;&nbsp;<img
+	    src="../navimages/arrowl.gif" alt="&lt;--" border="0" width="14" height="10">&nbsp;&nbsp;<b>Child 
+        Cell</b></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Using the &lt;parent&gt; argument makes the <code>Revenue</code> cells 
+        repeat whatever color is used for their level of <code>Dest</code>.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td align="right"> 
+        <table bgcolor="#FFFFF0" border="0" cellpadding="2" cellspacing="1" title="ODS HTML output">
+          <tr> 
+            <td rowspan="4" valign="top" bgcolor="#DDAAAA"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033A9"><b>London</b></font></td>
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Boarded</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Transferred</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Deplaned</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#DDAAAA"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Revenue</b></font></td>
+          </tr>
+        </table>
+      </td>
+      <td>&nbsp;&nbsp;</td>
+      <td align="middle"> 
+        <table bgcolor="#FFFFF0" border="0" cellpadding="2" cellspacing="1" title="ODS HTML output">
+          <tr> 
+            <td rowspan="4" valign="top" bgcolor="#AADDAA"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033A9"><b>London</b></font></td>
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Boarded</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Transferred</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Deplaned</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#AADDAA"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Revenue</b></font></td>
+          </tr>
+        </table>
+      </td>
+      <td>&nbsp;&nbsp;</td>
+      <td> 
+        <table bgcolor="#FFFFF0" border="0" cellpadding="2" cellspacing="1" title="ODS HTML output">
+          <tr> 
+            <td rowspan="4" valign="top" bgcolor="#AAAADD"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033A9"><b>London</b></font></td>
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Boarded</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Transferred</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#AFAFAF"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Deplaned</b></font></td>
+          </tr>
+          <tr> 
+            <td bgcolor="#AAAADD"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Revenue</b></font></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

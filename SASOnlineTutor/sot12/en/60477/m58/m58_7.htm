@@ -1,0 +1,216 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Custom Formats Using the PICTURE Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You have learned that you can use the VALUE statement to convert 
+          output values to a different form. Suppose one of the variables in your 
+          data set had numeric values that you wanted to format a certain way. 
+          For example, you might have a phone number listed in your data set as 
+          <em>1111231234 </em>and you want to format it as <em>(111) 123-1234</em>. 
+          You can use the <strong>PICTURE statement</strong> to create a template 
+          for printing numbers.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC FORMAT with the PICTURE statement">
+    <tr> 
+      <td align="left"><strong>General form, PROC FORMAT with the PICTURE statement:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>PROC FORMAT;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PICTURE </strong><em>format-name<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value-or-range</em>=<strong>'</strong><em>picture</em><strong>';<br>
+          RUN;</strong></nobr></font> </blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>format-name</em></font> is the name of 
+            the format you are creating. <br>
+            <br>
+          <li> <font color="#003399"><em>value-or-range</em></font> is the individual 
+            value or range of values you want to label.<br>
+            <br>
+          <li> <font color="#003399"><em>picture</em></font> specifies a template 
+            for formatting values of numeric variables. The template is a sequence 
+            of characters enclosed in quotation marks. The maximum length for 
+            a picture is 40 characters. </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Ways to Specify Pictures</h2>
+        <p>Pictures are specified with three types of characters:</p>
+        <ul>
+          <li>digit selectors</li>
+          <li>message characters</li>
+          <li>directives.</li>
+        </ul>
+        <p>Let's look at using digit selectors and message characters first. You'll 
+          learn about directives a little later. 
+        <p><strong>Digit selectors</strong> are numeric characters (0 through 
+          9) that define positions for numeric values. If you use <strong>nonzero</strong> 
+          digit selectors, zeros are added to the formatted value as needed. If 
+          you use <strong>zeros</strong> as digit selectors, no zeros are added 
+          to the formatted value. </p>
+        <p>In the picture definitions below you can see the difference between 
+          using nonzero digit selectors (99) and zero digit selectors (00) on 
+          the formatted values.</p>
+        <p><br>
+        <table border="1" align="center" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF" title="Data values and formatted values with digit selectors in the picture definition">
+          <tr bgcolor="#F7F7DE"> 
+            <th nowrap><font size="-1">Picture Definition</font></th>
+            <th nowrap><font size="-1">Data Values</font></th>
+            <th nowrap> <font size="-1">Formatted Values</font></th>
+          </tr>
+          <tr> 
+            <td width="103" valign="top"> <pre><font color="#003399">picture month 1-12='<strong>99</strong>';</font></pre></td>
+            <td width="103"><div align="right">01<br>
+                1<br>
+                12<br>
+              </div></td>
+            <td width="103"><div align="right">01<br>
+                01<br>
+                12 <em></em></div></td>
+          </tr>
+          <tr> 
+            <td width="103" valign="top"> <pre><font color="#003399">picture month 1-12='<strong>00</strong>';</font></pre></td>
+            <td width="103"><div align="right">01<br>
+                1<br>
+                12 </div></td>
+            <td width="103"><div align="right">1<br>
+                1<br>
+                12 <em></em></div></td>
+          </tr>
+        </table>
+        <p><br>
+        </p>
+        <p><strong>Message characters</strong> are nonnumeric characters that 
+          print as specified in the picture. They are inserted into the picture 
+          after the numeric digits are formatted. Digit selectors must come before 
+          message characters in the picture definition. In the picture definition 
+          below, the text string <em>JAN</em> is made up of message characters.</p>
+        <p><br>
+        </p>
+        <table border="1" align="center" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF" title="Data values and formatted values with message characters in the picture definition">
+          <tr bgcolor="#F7F7DE"> 
+            <th nowrap><font size="-1">Picture Definition</font></th>
+            <th><font size="-1">Data Value</font></th>
+            <th> <div align="center"><font size="-1">Formatted Value</font></div></th>
+          </tr>
+          <tr> 
+            <td valign="top" nowrap> <nobr><code><font color="#003399">picture 
+              month 1='99<strong> JAN</strong>';</font></code></nobr></td>
+            <td> <div align="right">1 </div></td>
+            <td> <div align="right">01 JAN <em></em></div></td>
+          </tr>
+        </table>
+        <p><br>
+          <strong>Example</strong></p>
+        <p> The following PICTURE statement contains both digit selectors and 
+          message characters. Because the RAINAMT. format has nonzero digit selectors, 
+          values are printed with leading zeros. The keyword OTHER is used to 
+          print values and message characters for any values that do not fall 
+          into the specified range.</p>
+        <pre><font color="#003399">     proc format;
+        picture rainamt
+                0-2='<strong>9.99 slight</strong>'
+                2&lt;-4='<strong>9.99 moderate</strong>'
+                4&lt;-&lt;10='<strong>9.99 heavy</strong>'
+                other='<strong>999 check value</strong>';
+     run;
+     data rain;
+        input Amount;
+        datalines;
+        4
+        3.9
+        20
+        .5
+        6
+        ;
+     run;
+     proc print data=rain;
+        format amount rainamt.;
+     run;</font></pre> 
+        <p>The following output shows the values with the RAINAMT. format applied.</p>
+        <br> <center>
+          <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+            <thead>
+              <tr> 
+                <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Obs</b></font></td>
+                <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Amount</b></font></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1</b></font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                  4.00 moderate</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>2</b></font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                  3.90 moderate</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>3</b></font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">020 
+                  check value</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>4</b></font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                  0.50 slight</font></td>
+              </tr>
+              <tr> 
+                <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>5</b></font></td>
+                <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                  6.00 heavy</font></td>
+              </tr>
+            </tbody>
+          </table>
+          <p align="left"><br>
+            Next you learn about using <strong>directives</strong> to specify 
+            picture formats.</p>
+        </center></td>
+    </tr>
+  </table>
+  <p>&nbsp; 
+  <p> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

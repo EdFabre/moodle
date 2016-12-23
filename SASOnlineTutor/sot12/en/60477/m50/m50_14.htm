@@ -1,0 +1,162 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      User-Defined Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>%LET Statement Examples</h2>
+        When you define a macro variable, remember that its value is always a 
+        character string. This table provides examples of macro variable assignment 
+        statements to illustrate the rules that are listed on the previous page.</td>
+  </tr>
+</table>
+<P><BR>
+<div align="center">
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="%LET Statement Examples">
+<tr bgcolor="#F7F7DE"><th><font size="-1">%LET Statement</font></th><th><font size="-1">Variable Name</font></th><th><font size="-1">Variable Value</font></th><th><font size="-1">Length</font></th></tr>
+<tr><td><code>%let name= Ed Norton ;</code></td><td><code>name</code></td><td><em>Ed Norton</em></td><td align="right">9</td></tr>
+<tr><td><code>%let name2=' Ed Norton ';</code></td><td><code>name2</code></td><td><em>' Ed Norton '</em></td><td align="right">13</td></tr>
+<tr><td><code>%let title="Joan's Report";</code></td><td><code>title</code></td><td><em>"Joan's Report"</em></td><td align="right">15</td></tr>
+<tr><td><code>%let start=;</code></td><td><code>start</code></td><td>&nbsp;</td><td align="right">0</td></tr>
+<tr><td><code>%let total=0;</code></td><td><code>total</code></td><td><em>0</em></td><td align="right">1</td></tr>
+<tr><td><code>%let sum=4+3;</code></td><td><code>sum</code></td><td><em>4+3</em></td><td align="right">3</td></tr>
+<tr><td><code>%let total=&total+&amp;sum;</code></td><td><code>total</code></td><td><em>0+4+3</em></td><td align="right">5</td></tr>
+<tr><td><code>%let x=varlist;</code></td><td><code>x</code></td><td><em>varlist</em></td><td align="right">7</td></tr>
+<tr><td><code>%let &x=name age height;</code></td><td><code>varlist</code></td><td><em>name age height</em></td><td align="right">15</td></tr>
+</table></div><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><P>
+In the following example, the value <em>DALLAS</em> is assigned to the macro variable <code>site</code>. 
+The macro variable <code>site</code> is then used to control program output.
+<PRE><font color="#003399">    <strong>%let site=DALLAS;</strong>
+    title &quot;REVENUES FOR <strong>&amp;site</strong> TRAINING CENTER&quot;;
+    proc tabulate data=sasuser.all(keep=location
+                             course_title fee);
+       where upcase(location)=&quot;<strong>&amp;site</strong>&quot;;
+       class course_title;
+       var fee;
+       table course_title=' ' all='TOTALS',
+             fee=' '*(n*f=3. sum*f=dollar10.)
+             / rts=30 box='COURSE';
+    run;
+</font></PRE>
+
+      <P><TABLE border=0 width=100% cellpadding=1 cellspacing=1 rules=NONE frame=VOID
+  bgcolor="#FFFFF0">
+    <TR>
+      <TD ALIGN=CENTER bgcolor="#FFFFF0"><FONT face="Arial, Helvetica, Helv" size="4"
+	    color="#002288"><B><I>REVENUES FOR DALLAS TRAINING CENTER</I></B></FONT></TD>
+    </TR>
+  </TABLE><P>
+<table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+    bordercolor="#000000" title="PROC PRINT output" align="center">
+  <thead> 
+  <tr bgcolor="#CCCCCC"> 
+    <td align=CENTER bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Course</b></font></td>
+    <td align=CENTER bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>N</b></font></td>
+    <td align=CENTER bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Sum</b></font></td>
+  </tr>
+  </thead> <tbody> 
+  <tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Artificial Intelligence  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 25</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $10,000</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Basic Telecommunications  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 18</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $14,310</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Computer Aided Design  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 19</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $30,400</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Database Design  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 23</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $8,625</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Local Area Networks  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 24</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $15,600</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Structured Query Language  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 24</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $27,600</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">TOTALS  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 133</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $106,535</font></td>
+  </tr>
+</table>
+
+       
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

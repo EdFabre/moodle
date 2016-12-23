@@ -1,0 +1,241 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Repeating Blocks of Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>DATA Step Processing of Repeating Blocks of Data</strong> </p>
+      <p> Here is&nbsp;the complete DATA step. 
+        <pre><font color="#003399">     data perm.april90;  </font>
+<font color="#003399">        infile tempdata;</font>
+<font color="#003399">      <strong>  </strong>input Date : date. HighTemp @@;</font>
+        <font color="#003399">format date date9.;        </font>
+<font color="#003399">     run;<strong> </strong></font>
+</pre>
+        <p> <em>Select buttons below to view a series of graphics that depict 
+          DATA step processing of repeating blocks of data.</em> <em>You can also 
+          see a <a href="JavaScript: openOther('m26_9a.htm')">text-only version</a> 
+          of the information.</em> </td>
+  </tr>
+</table>
+<br>
+<br>
+<table border="2" cellpadding="2" cellspacing="0" align="center">
+  <tr> 
+    <td> 
+      <script language="JavaScript">
+	  <!-- Specify the number of animation graphics -->
+	  var totalanim=9; 
+  	  <!-- Specify the width and height of the images -->
+	  var imageWidth=455;
+	  var imageHeight=417;
+	  <!-- Don't edit the rest of the script or the form -->
+	  if (document.images) document.write('<img width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" name="animation" alt="Animation frame"></a>');else
+	  document.write('<iframe name="animation" width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" scrolling=no frameborder="0"></iframe>');</script>
+    </td>
+  </tr>
+  <tr valign="Top"> 
+    <td> 
+      <table cellspacing="0" cellpadding="0">
+        <tr valign="Top"> 
+          <td align="center"> 
+            <form name="frameplay" onSubmit="return false">
+              <input type="button" name="back" value="Back" onClick="scroll('back',totalanim);return false">
+              <input type="text" name="page" value="Start" size="7">
+              <input type="button" name="next" value="Next" onClick="scroll('next',totalanim);return false">
+              <input type="button" name="replay" value="Replay" onClick="scroll('same',totalanim);return false">
+            </form>
+            <script>document.frameplay.page.value=" 1 of "+totalanim;</script>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">You can display the data set with the PRINT procedure.</td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">
+        <pre><font color="#003399">     proc print data=perm.april90;</font>
+<font color="#003399">     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+    bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Date</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>HighTemp</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        1</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">01APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">68</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        2</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">02APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">67</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        3</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">03APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">70</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        4</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">04APR1990 </font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">74</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        5</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">05APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">72</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        6</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">06APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">73</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        7</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">07APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">71</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        8</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">08APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">75</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+        9</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">09APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">76</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">10</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">10APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">78</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">11</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">11APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">70</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">12</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">12APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">69</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">13</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">13APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">71</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">14</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">14APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">71</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">15</font></b></td>
+          <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">15APR1990</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">74</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

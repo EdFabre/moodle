@@ -41,7 +41,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2014 Adrian Greeve <adrian@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class course_viewed extends base {
+class course_viewed extends \core\event\base {
 
     /**
      * Init method.
@@ -59,13 +59,7 @@ class course_viewed extends base {
      * @return string
      */
     public function get_description() {
-
-        $sectionstr = '';
-        if (!empty($this->other['coursesectionid'])) {
-            $sectionstr = "section number '{$this->other['coursesectionid']}' of the ";
-        }
-        $description = "The user with id '$this->userid' viewed the " . $sectionstr . "course with id '$this->courseid'.";
-        return $description;
+        return "The user with id '$this->userid' viewed the course with id '$this->courseid'.";
     }
 
     /**
@@ -108,7 +102,7 @@ class course_viewed extends base {
         }
 
         if (isset($this->other['coursesectionid'])) {
-            return array($this->courseid, 'course', 'view section', 'view.php?id=' . $this->courseid . '&amp;section='
+            return array($this->courseid, 'course', 'view section', 'view.php?id=' . $this->courseid . '&amp;sectionid='
                     . $this->other['coursesectionid'], $this->other['coursesectionid']);
         }
         return array($this->courseid, 'course', 'view', 'view.php?id=' . $this->courseid, $this->courseid);

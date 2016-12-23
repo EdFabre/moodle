@@ -1,0 +1,227 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Sorts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p> The <strong>Company.Orders </strong>data set contains the variable 
+          <code>Order_Type</code>, which has three discrete values:</p>
+        <ul>
+          <li><em>Retail</em></li>
+          <li><em>Catalog</em></li>
+          <li><em>Internet</em>.</li>
+        </ul>
+        <p>Suppose you want to show the average retail price, cost per unit, and 
+          discount for each value of <code>Order_Type</code>. You could use the 
+          MEANS procedure with either a BY statement or a CLASS statement to complete 
+          this task. The statistics created with either of these techniques are 
+          the same. However, the report layouts differ.</p></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>When the BY statement is used, SAS creates a report for each value 
+          of the BY variable. The statistics for each value of <code>Order_Type</code> 
+          appear in a separate tabular report.</p>
+        <pre><font color="#003399">     proc sort data=company.order_fact(keep=order_type
+               quantity total_retail_price
+               costprice_per_unit discount) out=company.orders;
+        <strong>by order_type;</strong>
+     run;</font></pre>
+        <pre><font color="#003399">     proc means data=company.orders mean;
+        <strong>by order_type;</strong>
+        var total_retail_price -- discount;
+        freq quantity;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <p> 
+  <p> Output, PROC MEANS with a BY Statement 
+  <table width="85%" border="1" cellspacing="0" cellpadding="10" title="PROC MEANS Output">
+    <tr> 
+      <td><P> 
+        <CENTER>
+          <TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100%>
+            <TR> 
+              <TD ALIGN=CENTER><font color="#002288" size="3"  face="Arial, Helvetica, Helv"><b>Order_Type=Retail</b></font></TD>
+            </TR>
+          </TABLE>
+        </CENTER>
+        <P> 
+        <CENTER>
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000">
+            <thead>
+              <TR> 
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Variable</b></font></TD>
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Mean</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total_Retail_Price<br>
+                  CostPrice_Per_Unit<br>
+                  Discount</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">177.0073169<br>
+                  38.3716413<br>
+                  0.3881087</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+        </CENTER>
+        <font color="#002288" size="2" face="Arial, Helvetica, Helv"><A NAME="IDX1">&nbsp;</A> 
+        </font> <CENTER>
+          <TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100%>
+            <TR> 
+              <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Order_Type=Catalog</b></font></TD>
+            </TR>
+          </TABLE>
+        </CENTER>
+        <P> 
+        <CENTER>
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000">
+            <thead>
+              <TR> 
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Variable</b></font></TD>
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Mean</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total_Retail_Price<br>
+                  CostPrice_Per_Unit<br>
+                  Discount</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">196.3417829<br>
+                  40.8664533<br>
+                  0.3885046</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+        </CENTER>
+        <font color="#002288" size="2" face="Arial, Helvetica, Helv"><A NAME="IDX2">&nbsp;</A> 
+        </font> <CENTER>
+          <TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100%>
+            <TR> 
+              <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Order_Type=Internet</b></font></TD>
+            </TR>
+          </TABLE>
+        </CENTER>
+        <P> 
+        <CENTER>
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000">
+            <thead>
+              <TR> 
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Variable</b></font></TD>
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Mean</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total_Retail_Price<br>
+                  CostPrice_Per_Unit<br>
+                  Discount</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">200.2136179<br>
+                  41.6397101<br>
+                  0.3945766</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+        </CENTER></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>When the CLASS statement is used, only one report is created. The statistics 
+        for each value of <code>Order_Type</code> are consolidated into one tabular 
+        report. 
+        <pre><font color="#003399">     proc means data=company.orders(keep=order_type
+        quantity total_retail_price 
+        costprice_per_unit discount) mean;
+        <strong>class order_type;</strong>
+        var total_retail_price -- discount;
+        freq quantity;
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <p> Output, PROC MEANS with a CLASS Statement 
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC MEANS Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Order_Type</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>N 
+          Obs</b></font></TD>
+        <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Variable</b></font></TD>
+        <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Mean</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Retail</font></TD>
+        <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1184633</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total_Retail_Price<br>
+          CostPrice_Per_Unit<br>
+          Discount</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">177.0073169<br>
+          38.3716413<br>
+          0.3881087</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Catalog</font></TD>
+        <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">222195</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total_Retail_Price<br>
+          CostPrice_Per_Unit<br>
+          Discount</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">196.3417829<br>
+          40.8664533<br>
+          0.3885046</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Internet</font></TD>
+        <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">190489</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">Total_Retail_Price<br>
+          CostPrice_Per_Unit<br>
+          Discount</font></TD>
+        <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">200.2136179<br>
+          41.6397101<br>
+          0.3945766</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

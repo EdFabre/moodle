@@ -1,0 +1,92 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      SAS Functions with Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Quoting with %QSYSFUNC</h2>
+        As with macro character functions, if the argument for a <nobr>%SYSFUNC</nobr> 
+        function contains special characters or mnemonic operators, you must use 
+        the quoting version of the function. The <nobr>%QSYSFUNC</nobr> function 
+        has the same syntax as the <nobr>%SYSFUNC</nobr> function. <nobr>%QSYSFUNC</nobr> 
+        works the same as <nobr>%SYSFUNC</nobr> except that it also masks mnemonic 
+        operators and special characters. 
+        <P><BR>
+<h2>Example</h2>
+Suppose
+ you want to create a report title that includes the current date in WORDDATE. format. 
+	You could use this statement:
+<PRE><font color="#003399">    title &quot;Report Produced on %sysfunc(today(),worddate.)&quot;;
+</font></PRE>
+However, that would result in the following title:<P>
+<CENTER><strong>Report Produced on &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;June 7, 2002</strong></center>
+        <P> The extra blanks are from the default length of the WORDDATE. format. 
+          You need to left justify the resulting formatted date. You <strong>cannot 
+          </strong>nest functions within <nobr>%SYSFUNC</nobr>, but you can use 
+          a <nobr>%SYSFUNC</nobr> for each function that you need, as shown in 
+          this example: 
+        <PRE><font color="#003399">    title &quot;Report Produced on 
+                  %sysfunc(left(%sysfunc(today(),worddate.)))&quot;;
+</font></PRE>
+        However, this statement results in the following error message. 
+        <P><BR>
+<div align="center">
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+ERROR: The function LEFT referenced by the %SYSFUNC or
+       %QSYSFUNC macro function has too many arguments.
+</pre></td></tr>
+</table> </div>
+<P><BR>
+          The LEFT function expects only <B>one</B> argument, but you are passing 
+          &quot;June 12, 2000&quot; to it. It interprets the comma as the delimiter 
+          between <B>two</B> arguments. 
+        <P><a name="qfunc"> </a> You can mask the comma by using the <nobr>%QSYSFUNC</nobr> 
+          function instead, as follows: 
+        <PRE><font color="#003399">    title &quot;Report Produced on 
+                  %sysfunc(left(%qsysfunc(today(),worddate.)))&quot;;
+</font></PRE>
+The modified statement generates the following title:<P>
+ <CENTER><strong>Report Produced on June 7, 2002</strong></center>
+
+  </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

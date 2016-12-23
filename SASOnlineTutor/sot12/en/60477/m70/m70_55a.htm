@@ -1,0 +1,82 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --><TITLE>Processing a Correlated Subquery by Using the NOT EXISTS Operator</TITLE><!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->Processing a Correlated Subquery by Using the NOT EXISTS Operator<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" -->
+<TABLE CELLPADDING="2" ALIGN="Center" width="85%">
+  <TR> 
+    <TD COLSPAN=2> <ol>
+        <li>This animation shows how PROC SQL processes the following query that 
+          contains a correlated subquery and the NOT EXISTS operator:<font color="#003399"> 
+          <pre>     proc sql;
+        select lastname, firstname, empid
+           from sasuser.flightattendants
+           where not exists
+              (select *
+                 from sasuser.flightschedule
+                 where flightattendants.empid=
+                       flightschedule.empid);</pre>
+          </font> 
+        <li>After PROC SQL looks at the correlated subquery, the outer query begins 
+          to execute. For each row of <strong>Sasuser.Flightattendants</strong>, 
+          the outer query finds <code>LastName</code>, <code>FirstName</code>, 
+          and <code>EmpID</code>.<br>
+          <br>
+        </li>
+        <li>The subquery looks for a matching <code>EmpID</code> in <strong>Sasuser.Flightschedule</strong>. 
+          In one of the rows, a match has been found (<em>1413</em>).<br>
+          <br>
+        </li>
+        <li>The NOT EXISTS operator looks for rows of <strong>Sasuser.Flightattendants</strong> 
+          that have <strong>no</strong> matching <code>EmpID</code> in <strong>Flightschedule</strong>. 
+          The NOT EXISTS condition resolves to TRUE only if the subquery passes 
+          <strong>no</strong> results back to the outer query. The row mentioned 
+          above has a match, so it is <strong>not</strong> selected.<br>
+          <br>
+        </li>
+        <li>The outer query continues to look at each successive row of <strong>Sasuser.Flightattendants</strong>, 
+          searching for a matching <code>EmpID</code> in <strong>Sasuser.Flightschedule</strong>. 
+          The query finds the first row of <strong>Sasuser.Flightattendants</strong> 
+          (in which the value of <code>EmpID</code> is <em>1415</em>) that has 
+          no matching <code>Flightschedule.EmpID</code>.<br>
+          <br>
+        </li>
+        <li> Because there is no match for the current value of <code>Flightattendants.EmpID</code>, 
+          the subquery returns no results to the outer query. The NOT EXISTS condition 
+          resolves to TRUE, and the current row of <strong>Sasuser.Flightattendants</strong> 
+          is written as a row of output.<br>
+          <br>
+        </li>
+        <li>PROC SQL continues this process until all rows are read from the table 
+          in the outer query, <strong>Sasuser.Flightattendants</strong>. The program 
+          in this example has found 2 rows of <strong>Sasuser.Flightattendants</strong> 
+          that meet the NOT EXISTS condition. The output consists of these 2 rows.</li>
+      </ol>
+    </TD>
+  </TR>
+</TABLE>
+<!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

@@ -1,0 +1,149 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Summarized Data Set Using PROC SUMMARY<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p> You can also create a summarized output data set by using PROC SUMMARY. When 
+        you use PROC SUMMARY, you use the same code to produce the output data 
+        set that you would use with PROC MEANS. 
+      <p> The difference between the two procedures is that PROC MEANS produces 
+        a report by default (remember that you can use the NOPRINT option to suppress 
+        the default report). By contrast, to produce a report in PROC SUMMARY, 
+        you must include a PRINT option in the PROC SUMMARY statement.
+    </td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Example</strong> 
+        <p> The following example creates an output data set but does not create 
+          a report: 
+        <pre><font color="#003399">     proc summary data=clinic.diabetes;
+        var age height weight;
+        class sex;
+        output out=work.sum_gender
+           mean=AvgAge AvgHeight AvgWeight;
+     run; </font></pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr valign="top"> 
+      <td>If you placed a PRINT option in the PROC SUMMARY statement above, this 
+        program would produce the same report as if you replaced the word SUMMARY 
+        with MEANS. 
+        <pre><font color="#003399">     proc summary data=clinic.diabetes <strong>print</strong>;
+        var age height weight;
+        class sex;
+        output out=work.sum_gender
+           mean=AvgAge AvgHeight AvgWeight;
+     run; </font></pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table bgcolor=#fffff0 border=1 bordercolor=#000000 cellpadding=2 cellspacing=1
+frame=box rules=groups title="PROC MEANS Output">
+    <thead> 
+    <tr bgcolor="#CCCCCC"> 
+      <td align=left valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Sex</b></font></td>
+      <td align=right valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>N 
+        Obs</b></font></td>
+      <td align=left valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Variable</b></font></td>
+      <td align=right valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>N</b></font></td>
+      <td align=right valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Mean</b></font></td>
+      <td align=right valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Std 
+        Dev</b></font></td>
+      <td align=right valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Minimum</b></font></td>
+      <td align=right valign=bottom><font color="#0033aa" face="Arial, Helvetica, Helv" size="3"><b>Maximum</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr bgcolor="#efefef"> 
+      <td align=left valign=top><font color="#000000" face="Arial, Helvetica, Helv" size="2">F</font></td>
+      <td align=right valign=top><font color="#000000" face="Arial, Helvetica, Helv" size="2">11</font></td>
+      <td align=left><font color="#000000" face="Arial, Helvetica, Helv" size="2">Age<br>
+        Height<br>
+        Weight</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">11<br>
+        11<br>
+        11</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">48.9090909<br>
+        63.9090909<br>
+        150.4545455</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">13.3075508<br>
+        2.1191765<br>
+        18.4464828</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">16.0000000<br>
+        61.0000000<br>
+        102.0000000</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">63.0000000<br>
+        68.0000000<br>
+        168.0000000</font></td>
+    </tr>
+    <tr bgcolor="#efefef"> 
+      <td align=left valign=top><font color="#000000" face="Arial, Helvetica, Helv" size="2">M</font></td>
+      <td align=right valign=top><font color="#000000" face="Arial, Helvetica, Helv" size="2">9</font></td>
+      <td align=left><font color="#000000" face="Arial, Helvetica, Helv" size="2">Age<br>
+        Height<br>
+        Weight</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">9<br>
+        9<br>
+        9</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">44.0000000<br>
+        70.6666667<br>
+        204.2222222</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">12.3895117<br>
+        2.6457513<br>
+        30.2893454</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">15.0000000<br>
+        66.0000000<br>
+        140.0000000</font></td>
+      <td align=right><font color="#000000" face="Arial, Helvetica, Helv" size="2">54.0000000<br>
+        75.0000000<br>
+        240.0000000</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

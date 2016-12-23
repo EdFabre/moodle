@@ -1,0 +1,142 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Automatic Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p>Using other automatic macro variables is just as easy as using the SYSDATE 
+        macro variable. For example, if you need the day of the week and the full 
+        date on which a SAS session began, you can reference the <strong>SYSDAY</strong> 
+        and <strong>SYSDATE9</strong> automatic macro variables. Simply specify 
+        the macro variable name, preceded by an ampersand. </p>
+      <pre><font color="#003399">     title 'Temporary Employees Hired in November';</font>
+    <font color="#003399"> <strong>footnote</strong> </font><font color="Red">"</font><font color="#003399">Report Run on <strong>&amp;sysday</strong>, <strong>&amp;sysdate9</strong></font><font color="Red">"</font><font color="#003399">;</font>
+<font color="#003399">     data hrd.tempnov;</font>
+<font color="#003399">        set hrd.temp;</font>
+<font color="#003399">        if month(begindate)=11;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.tempnov;</font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> The output is displayed with the following footnote.
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <font face="Arial, Helvetica, Helv" size="1" color="#002288"></font> 
+  <table border=0 width=85% cellpadding=1 cellspacing=1 rules=NONE frame=VOID>
+    <tr> 
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Report 
+        Run on Friday, 12MAY2000</i></b></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>Here is a list of some commonly used automatic macro variables and the 
+        information that they supply.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table bgcolor="#ffffff" border="1" cellpadding="2" cellspacing="0" title="automatic macro variables">
+    <tr bgcolor="#F7F7DE" valign="top"> 
+      <th width="20%"><font size="-1">Name</font></th>
+      <th width="60%"><font size="-1">Information Supplied</font></th>
+      <th width="20%"><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SYSDATE9</strong></td>
+      <td>date the job or session began executing</td>
+      <td><tt>21APR2000</tt></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SYSDATE</strong></td>
+      <td>date the job or session began executing</td>
+      <td><tt>16FEB98</tt></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SYSDAY</strong></td>
+      <td>weekday the job or session began executing</td>
+      <td><tt>Tuesday</tt></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SYSTIME</strong></td>
+      <td>time the job or session began executing</td>
+      <td><tt>15:32</tt></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SYSSCP</strong></td>
+      <td>operating system abbreviation</td>
+      <td><tt>WIN</tt></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SYSVER</strong></td>
+      <td>SAS version and/or release number</td>
+      <td><tt>8.0</tt></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SYSLAST</strong></td>
+      <td>name of the most recently created data set</td>
+      <td><tt>HRD.TEMP99</tt></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+        <td><strong>Reserved Names for Macro Variables</strong> <p> Notice that 
+            all automatic macro variables begin with the letters <strong>SYS</strong>. 
+            SAS reserves the right to use the SYS prefix for automatic macro variables. 
+            It is recommended that you not begin the name of any user-defined 
+            macro variable with the letters SYS. For a complete list of automatic 
+            macro variables, see the 
+            <!--doc reference-->
+            SAS documentation for the macro language. </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

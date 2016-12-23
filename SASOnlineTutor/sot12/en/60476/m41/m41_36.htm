@@ -1,0 +1,176 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Suppressing 
+      Table Information<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p> Another way to control the format of crosstabulations is to limit the 
+        output of the FREQ procedure to a <strong>few specific statistics</strong>. 
+        Remember that when crosstabulations are run, PROC FREQ produces tables 
+        with cells that contain: 
+      <ul>
+        <li> cell frequency 
+        <li> cell percentage of total frequency 
+        <li> cell percentage of row frequency 
+        <li> cell percentage of column frequency. 
+      </ul>
+      <p> You can use options to suppress any of these statistics. To control 
+        the depth of crosstabulation results, add any combination of the following 
+        options to the TABLES statement: 
+      <ul>
+        <li> <strong>NOFREQ</strong> suppresses cell frequencies 
+        <li> <strong>NOPERCENT</strong> suppresses cell percentages 
+        <li> <strong>NOROW</strong> supresses row percentages 
+        <li> <strong>NOCOL</strong> suppresses column percentages.
+      </ul>
+      <p> <br>
+        <strong>Example</strong> 
+      <p> Suppose you want to use only the percentages of <code>Sex</code> and 
+        <code>Weight</code> combinations in the data set <strong>Clinic.Diabetes</strong>. 
+        To block frequency counts and row and column percentages, add the NOFREQ, 
+        NOROW, and NOCOL options to your program's TABLES statement. 
+      <pre><font color="#003399">     proc format;</font>
+<font color="#003399">        value wtfmt low-139='&lt; 140'</font>
+<font color="#003399">                    140-180='140-180'</font>
+<font color="#003399">                    181-high='&gt; 180';</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc freq data=clinic.diabetes;</font>
+<font color="#003399">        tables sex*weight <strong>/ nofreq norow nocol</strong>;</font>
+<font color="#003399">        format weight wtfmt.;</font>
+<font color="#003399">     run;</font></pre>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table rules=none frame=void title="PROC FREQ Output">
+    <tr> 
+      <td valign=TOP> 
+        <table cellspacing="1" rules="GROUPS" frame="BOX" border="1"
+	cellpadding="2" bgcolor="#FFFFF0" bordercolor="#000000">
+          <tr> 
+            <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>Percent </b></font></td>
+          </tr>
+        </table>
+      </td>
+      <td> 
+        <center>
+          <table cellspacing="1" rules="GROUPS" frame="BOX" border="1" cellpadding="2"
+	  bgcolor="#FFFFF0" bordercolor="#000000">
+            <tbody> </tbody> <thead> 
+            <tr> 
+              <td colspan=5 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Table of Sex by Weight</b></font></td>
+            </tr>
+            <tr> 
+              <td rowspan=2 align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Sex</b></font></td>
+              <td colspan=3 align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Weight</b></font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Total</b></font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>&lt; 140 </nobr></b></font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>140-180</nobr></b></font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>&gt; 180 </nobr></b></font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>F</b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 10.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 45.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 55.00</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>M</b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 5.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 40.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 45.00</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Total </b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 2<br>
+                10.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 10<br>
+                50.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 8<br>
+                40.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 20<br>
+                100.00</font></td>
+            </tr>
+            </thead> 
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Notice that Percent is the only statistic that remains in the table's 
+        legend box.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

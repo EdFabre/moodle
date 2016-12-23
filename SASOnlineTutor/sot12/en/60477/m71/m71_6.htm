@@ -1,0 +1,251 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Inner Joins<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Introducing Inner Join Syntax</h2>
+        <p> An inner join combines and displays only the rows from the first table 
+          that match rows from the second table, based on the matching criteria 
+          (also known as join conditions) that are specified in the WHERE clause. 
+          A join condition is an expression that specifies the column(s) on which 
+          the tables are to be joined.</p>
+        <p>The following diagram illustrates an inner join of two tables. The 
+          shaded area of overlap represents the matching rows (the subset of rows) 
+          that the inner join returns as output.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="0">
+    <tr> 
+      <td>Table 1</td>
+      <td><p><img src="images/m71_6g1.gif" alt="Diagram of two intersecting circles, with intersection shaded" width="92" height="61"></p></td>
+      <td>Table 2</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">An inner join is sometimes called a <strong>conventional 
+        join</strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Inner join syntax builds on the syntax of the simplest type of join 
+        that was shown earlier. In an inner join, a WHERE clause is added to restrict 
+        the rows of the Cartesian product that will be displayed in output.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, SELECT statement for inner join">
+    <tr> 
+      <td align="left"><strong>General form, SELECT statement for inner join:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>SELECT </strong><em>column-1&lt;,...column-n&gt;</em></nobr></font> 
+          <br>
+          <font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM 
+          </strong><em>table-1 | view-1, table-2 | view-2&lt;,...table-n | view-n&gt;</em></font> 
+          <br>
+          <font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE 
+          </strong><em>join-condition(s)</em></font> <br>
+          <font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>AND 
+          </strong><em>other subsetting condition(s)&gt;</em></font> <br>
+          <font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><em>&lt;other 
+          clauses&gt;;</em></font> </blockquote>
+        <p> where </p>
+        <ul>
+          <li><font color="#003399"><em>join-condition(s)</em></font> refers to 
+            one or more expressions that specify the column or columns on which 
+            the tables are to be joined 
+          <li> <font color="#003399"><em>other subsetting condition(s) </em></font> 
+            refers to optional expressions that are used to subset rows in the 
+            query results 
+          <li> <font color="#003399"><em>&lt;other clauses&gt;</em></font> refers 
+            to optional PROC SQL clauses. </ul></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You can combine a maximum of 32 tables in a single inner 
+        join. If the join involves views (either in-line views or PROC SQL views), 
+        it is the number of tables that underlie the views, not the number of 
+        views themselves, that counts towards the limit of 32. In-line views are 
+        covered later in this lesson and PROC SQL views are discussed in the lesson 
+        <!--lesson reference-->
+        <strong> 
+        <script>document.write(m75title);</script></strong>.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>When a WHERE clause is added to the PROC SQL query shown earlier, only 
+          a subset of rows is included in output. The modified query, tables, 
+          and output are shown below:</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td valign="top"> <pre><font color="#003399">proc sql;
+   select *
+      from one, two
+      <strong>where one.x = two.x</strong>;</font></pre></td>
+      <td align="center" valign="top"> One 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">a</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">b</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">d</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td align="center" valign="top"> Two 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">x</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">y</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">v</font> 
+              </td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <br>
+  <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+    <thead>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>A</b></font></TD>
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+        <TD width="40" bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>B</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">b</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">x</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>Because of the WHERE clause, this inner join does <strong>not</strong> 
+        display <strong>all</strong> rows from the Cartesian product (all possible 
+        combinations of rows from both tables) but only a <strong>subset</strong> 
+        of rows. The WHERE clause expression (join condition) specifies that the 
+        result set should include only rows whose values of column <code>X</code> 
+        in the table <strong>One</strong> are <strong>equal to</strong> values 
+        in column <code>X</code> of the table <strong>Two</strong>. Only one row 
+        from <strong>One</strong> and one row from <strong>Two</strong> have matching 
+        values of <code>X</code>. Those two rows are combined into one row of 
+        output.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>PROC SQL will not perform a join unless the columns 
+          that are compared in the join condition (in this example, <code>One.X</code> 
+          and <code>Two.X</code>) have the same data type. However, the two columns 
+          are <strong>not</strong> required to have the same name. For example, 
+          the join condition shown in the following WHERE statement is valid if 
+          <code>ID</code> and <code>EmpID</code> have the same data type: </p>
+        <pre><font color="#003399">     where table1.id = table2.empid</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The join condition that is specified in the WHERE clause 
+        often contains the equal (<strong>=</strong>) operator, but the expression 
+        may contain one or more other operators instead. An inner join that matches 
+        rows based on the equal (<strong>=</strong>) operator, in which the value 
+        of a column or expression in one table must be equivalent to the value 
+        of a column or expression in another table, is called an <strong>equijoin</strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>Let&#8217;s take a closer look at how PROC SQL processes this inner 
+        join.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

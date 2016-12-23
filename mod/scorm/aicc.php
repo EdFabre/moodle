@@ -111,11 +111,7 @@ if (!empty($command)) {
                         $userdata->status = '';
                         $userdata->score_raw = '';
                     }
-                    if (!empty($cfg_scorm->aiccuserid)) {
-                        $userdata->student_id = $aiccuser->id;
-                    } else {
-                        $userdata->student_id = $aiccuser->username;
-                    }
+                    $userdata->student_id = $aiccuser->username;
                     $userdata->student_name = $aiccuser->lastname .', '. $aiccuser->firstname;
                     $userdata->mode = $mode;
                     if ($userdata->mode == 'normal') {

@@ -1,0 +1,166 @@
+<html><!-- InstanceBegin template="/Templates/overview.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(overviewTitle)</script></strong></font>
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center>
+
+<p> 
+ <!-- InstanceBeginEditable name="overview" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <h2>Introduction</h2>
+        <p>By using PROC SQL, you can create, modify, and drop (delete) tables 
+          quickly and efficiently. Many PROC SQL statements are quite versatile, 
+          enabling you to perform the same action in several different ways. For 
+          example, there are three methods of creating a table by using the CREATE 
+          TABLE statement:</p>
+        <ul>
+          <li> creating an empty table (a table without rows) by defining columns</li>
+          <li> creating an empty table that has the same columns and attributes 
+            as another table</li>
+          <li>creating a table from a query result.</li>
+        </ul>
+        <p>The following PROC SQL step uses the CREATE TABLE statement to create 
+          an empty table by defining columns, and uses the DESCRIBE TABLE statement 
+          to display information about the table's structure in the SAS log:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><pre><font color="#003399">     proc sql;
+        create table work.discount 
+               (Destination char(3),
+               BeginDate num Format=date9.,
+               EndDate num format=date9.,
+               Discount num);<br>        describe table work.discount;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>1    proc sql;<br>2       create table work.discount<br>3              (Destination char(3),<br>4              BeginDate num Format=date9.,<br>5              EndDate num format=date9.,<br>6              Discount num);<br><strong>NOTE: Table WORK.DISCOUNT created, with 0 
+rows and 4 columns.</strong><br>7       describe table work.discount;<br><strong>NOTE: SQL table WORK.DISCOUNT was created like:</strong></pre>
+          <pre>create table WORK.DISCOUNT( bufsize=4096 )
+            (<br>            Destination char(3),
+            BeginDate num format=DATE9.,
+            EndDate num format=DATE9.,
+            Discount num
+            );</pre>
+          <p></p></td>
+      </tr>
+    </table>
+  </div>
+  <p>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td height="35"> 
+        <p>In this lesson, you will learn to create and manage tables by using 
+          the PROC SQL statements shown above, and many others.</p></td>
+    </tr>
+  </table>
+  <!-- InstanceEndEditable -->
+  <!-- InstanceBeginEditable name="overview_graphic" -->
+  <p>&nbsp;
+  <!-- InstanceEndEditable -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewTimeToComplete)</script></h2>
+      <p><script>document.write(overviewTimeIntro)</script><!-- InstanceBeginEditable name="time_to_complete" -->3 
+          hours <!-- InstanceEndEditable --><script>document.write(overviewTimeEnd)</script></p>
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewObjectives)</script></h2>
+      <!-- InstanceBeginEditable name="objectives" -->
+      <p>In this lesson, you learn to</p>
+        <ul>
+          <li>create a table that has no rows by specifying columns and values</li>
+          <li>create a table that has no rows by copying the columns and attributes 
+            from an existing table</li>
+          <li>create a table that has rows, based on a query result</li>
+          <li>display the structure of a table in the SAS log</li>
+          <li>insert rows into a table by listing values</li>
+          <li>insert rows into a table by specifying column-value pairs</li>
+          <li>insert rows into a table, based on a query result</li>
+          <li>create a table that has integrity constraints</li>
+          <li>set the UNDO_POLICY option to control how PROC SQL handles errors 
+            in table insertions and updates</li>
+          <li>display the integrity constraints of a table in the SAS log</li>
+          <li>update values in existing rows of a table by using one expression 
+            and by using conditional processing with multiple expressions</li>
+          <li>delete rows in a table</li>
+          <li>add, modify, or drop (delete) columns in a table</li>
+          <li>drop (delete) entire tables.</li>
+        </ul>
+        <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewPrerequisites)</script></h2>
+      <p><script>document.write(overviewPrerequisitesIntro)</script><!-- InstanceBeginEditable name="prerequisites_leadin" -->complete 
+        the following lessons:<!-- InstanceEndEditable --></p>
+      <ul><!-- InstanceBeginEditable name="prerequisites" --> 
+          <li><strong><script>document.write(m1title);</script></strong></li>
+          <li><strong><script>document.write(m3title);</script></strong></li>
+          <li><strong><script>document.write(m16title);</script></strong></li>
+          <li><strong><script>document.write(m2title);</script></strong></li>
+          <li><strong><script>document.write(m4title);</script></strong></li>
+          <li><strong><script>document.write(m12title);</script></strong></li>
+          <li><strong><script>document.write(m22title);</script></strong></li>
+          <li><strong><script>document.write(m14title);</script></strong></li>
+          <li><strong><script>document.write(m30title);</script></strong></li>
+          <li><strong><script>document.write(m10title);</script></strong></li>
+          <li><strong><script>document.write(m70title);</script></strong></li>
+          <li><strong><script>document.write(m71title);</script></strong>.</li>
+          <!-- InstanceEndEditable -->
+      </ul>
+    </td>
+  </tr>
+</table>
+
+  <br>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

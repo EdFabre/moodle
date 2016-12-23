@@ -1,0 +1,69 @@
+<html><!-- InstanceBegin template="/Templates/animationText.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Accessing Data Sequentially</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="animText_title" -->Accessing 
+      Data Sequentially<!-- InstanceEndEditable --></font></strong></td>
+</tr>
+</table><p><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+ <tr valign="top">
+  <td><script>document.write(animationTextIntro)</script><!-- InstanceBeginEditable name="animDescrip" -->what 
+      happens when SAS uses sequential access to process a WHERE statement in 
+      a query. <!-- InstanceEndEditable --></td></tr></table>
+
+<br>
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <ol>
+        <li> 
+          <p>The following DATA step creates a new data set, <strong>Company.D02jul2000</strong>, 
+            that contains all observations from the data set <strong>Company.Dates</strong> 
+            in which the value of <code>Date_ID</code> is <em>02JUL2000</em>:</p>
+          <pre>     <font color="#003399">data company.d02jul2000;
+        set company.dates;
+        where date_id='02JUL2000'd;
+     run;</font></pre>
+        <li> SAS loads <strong>one</strong> page of the data set <strong>Company.Dates</strong> 
+          into each input page buffer that has been allocated. <br>
+          <br>
+        <li> SAS then reads the observations in the input page buffer(s) sequentially 
+          until it finds an observation that meets the WHERE criterion (a qualified 
+          observation). <br>
+          <br>
+        <li> SAS loads the qualified observation into the program data vector.<br>
+          <br>
+        <li> SAS copies the observation in the program data vector into an output 
+          buffer.<br>
+          <br>
+        <li> SAS continues to read observations sequentially and to load qualified 
+          observations until an output buffer is filled.<br>
+          <br>
+        <li> When an output buffer is filled, SAS writes the data in the output 
+          buffer to disk as a page of the data set <strong>Company.D02jul2000</strong>.</ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script>
+</center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script>
+</center>
+    </body>
+<!-- InstanceEnd --></html>

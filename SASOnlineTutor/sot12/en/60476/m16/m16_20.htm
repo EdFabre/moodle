@@ -1,0 +1,500 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Setting 
+      System Options<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>To modify system options, you submit an OPTIONS statement. You can place 
+        an OPTIONS statement anywhere in a SAS program to change the settings 
+        from that point onward. However, it is good programming practice to place 
+        OPTIONS statements outside of DATA or PROC steps so that your programs 
+        are easier to read and debug.</p>
+    </td>
+  </tr>
+</table>
+<br>
+<table border="0" cellpadding="2" cellspacing="0" align="center" width="85%">
+  <tr> 
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="More Information"></td>
+    <td valign="top">Because the OPTIONS statement is <strong>global</strong>, 
+      the settings remain in effect until you modify them, or until you end your 
+      SAS session.</td>
+  </tr>
+</table>
+<br>
+  <div align="center"><br>
+    <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, OPTIONS statement">
+    <tr> 
+      <td align="left"><strong>General form, OPTIONS statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>OPTIONS</strong> <em>options</em><strong>;</strong></font></nobr> 
+        </blockquote>
+        <p> where <font color="#003399"><em>options</em></font> specifies one 
+          or more system options to be changed. The available system options depend 
+          on your host operating system. 
+      </td>
+    </tr>
+  </table>
+</div>
+<p align="center"> <br>
+<div align="center"> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <p><strong><a name="datenum"></a>Example: DATE | NODATE and NUMBER | NONUMBER 
+          Options</strong></p>
+        <p>By default, page numbers and dates appear with output. The following 
+          OPTIONS statement suppresses the printing of both page numbers and the 
+          date and time in listing output. </p>
+        <pre><font color="#003399"><strong>     </strong>options nonumber nodate;</font>
+</pre>
+        <p> In the following example, page numbers and the current date are not 
+          displayed in the PROC PRINT output. Page numbers are not displayed in 
+          the PROC FREQ output, either, but the date does appear at the top of 
+          the page that contains the PROC FREQ report. 
+        <pre><font color="#003399">     <strong>options nonumber nodate;
+</strong>     proc print data=clinic.admit;
+        var id sex age height weight;
+        where age>=30;
+     run;
+     <strong>options date;</strong>
+     proc freq data=clinic.diabetes;
+        where fastgluc>=300;
+        tables sex;
+     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p align="center"> 
+<div align="center"> 
+  <table border="1" cellspacing="0" cellpadding="10" width="400" bgcolor="#F7F7DE" title="PROC PRINT listing output">
+    <tr> 
+      <td> 
+        <p align="center"><font face="Courier New, Courier, mono">The SAS System</font></p>
+        <table  border=0 cellspacing=0 cellpadding=0 frame=BOX>
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;Obs</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;ID</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;Sex&nbsp;&nbsp;</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;Age&nbsp;&nbsp;</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;Height&nbsp;&nbsp;</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;Weight&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"></div>
+            </td>
+          </tr>
+          </thead> <tbody> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;2</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;2462</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">34</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">66</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">152</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;3</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;2501</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">31</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">61</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">123</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;4</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;2523</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">43</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">63</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">137</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;5</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;2539</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;M</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">51</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">71</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">158</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;7</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2552</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">32</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">67</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">151</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;8</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2555</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;M</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">35</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">70</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">173</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;9</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2563</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;M</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">34</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">73</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">154</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;10</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2568</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">49</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">64</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">172</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;11</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2571</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">44</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">66</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">140</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;13</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2574</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;M</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">30</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">69</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">147</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;14</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2575</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">40</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">69</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">163</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;15</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2578</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;M</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">47</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">72</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">173</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;16</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2579</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;M</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">60</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">71</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">191</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;17</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2584</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">43</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">65</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">123</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;20</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2589</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">41</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">67</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">141</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;21</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">2595</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;M</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">54</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">71</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">183</font></div>
+            </td>
+          </tr>
+          </tbody> 
+        </table>
+        <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        </font></font></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+<p align="center"><br> 
+  <table border="1" cellspacing="0" cellpadding="10" width="425" bgcolor="#F7F7DE" title="PROC FREQ listing output">
+    <tr> 
+      <td> 
+        <p align="center"><font face="Courier New, Courier, mono">The SAS System<br>
+          15:19 Thursday, September 23, 1999</font></p>
+        <table  border=0 cellspacing=0 cellpadding=0 frame=BOX>
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER bgcolor="#F7F7DE" valign="bottom"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;Sex</font></td>
+            <td align=CENTER bgcolor="#F7F7DE" valign="bottom"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;Frequency</font></td>
+            <td align=CENTER bgcolor="#F7F7DE" valign="bottom"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;Percent&nbsp;&nbsp;</font></td>
+            <td align=CENTER valign="bottom"> 
+              <div align="left"><font face="Courier New, Courier" size="2" color="#000000">Cumulative<br>
+                Frequency&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></div>
+            </td>
+            <td align=CENTER valign="bottom"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">Cumulative<br>
+                Percent &nbsp;&nbsp;</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT colspan="5"><nobr>----------------------------------------------------------------------------------------------------------</nobr> 
+              <div align="center"></div>
+              </td>
+          </tr>
+          </thead> <tbody> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;F</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;2</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;25.0</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">2</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">25.0</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;M</font></td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="right"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;6</font></div>
+            </td>
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;75.0</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">8</font></div>
+            </td>
+            <td align=RIGHT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">100.0</font></div>
+            </td>
+          </tr>
+          </tbody> 
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</div>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

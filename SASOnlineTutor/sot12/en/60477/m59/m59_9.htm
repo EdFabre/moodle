@@ -1,0 +1,110 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Be sure you have copied the data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> library.<br><br>';
+solutionText+='<li>Write the following DATA step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='data empdata;<br>';
+solutionText+='   modify empdata sasuser.empdatu;<br>';
+solutionText+='   by empid;<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='<li>Write the following PROC PRINT step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc print data=empdata (obs=15);<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='<li>Submit the program and notice that the employee EmpID E00014  ';
+solutionText+='is now a MECH03 with a salary of $19,950.</ol> ';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            the transaction data set <a href="JavaScript: openOther('../linklib/empdatu.htm')">Empdatu</a> to modify the data set <a href="JavaScript: openOther('../linklib/empdata.htm')">Empdata</a> 
+            by employee ID. </strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --> <table width="85%" border="0" cellpadding="2" cellspacing="0">
+  <tr> 
+    <td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+    <td valign="top">You must complete this practice to do the next practice in 
+      this lesson.</td>
+  </tr>
+</table><p></p>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Because this data set is used in other practices and lessons, 
+        you must copy it to the <strong>Work</strong> library so that the original 
+        data in the <strong>Sasuser</strong> library is not modified. </td>
+    </tr>
+  </table>
+  <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Submit the following program to copy the <strong>Empdata</strong> 
+            data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> 
+            library and print the first 15 observations of the <strong>Empdata</strong> 
+            data set:<br>
+            <pre><font color="#003399">proc copy in=sasuser out=work;
+   select empdata;
+run;
+proc print data=empdata (obs=15);
+run;</font></pre>
+            Notice that the employee with employee ID E00014 is a MECH02 and has 
+            a salary of $19,000.<br>
+            <br>
+          <li>Write a DATA step that uses the MODIFY statement with a BY statement 
+            to modify <strong>Work.Empdata</strong> using the transaction data 
+            set <strong>Sasuser.Empdatu</strong>. Locate observations with the 
+            <code>EmpID</code> variable. The <strong>Empdatu</strong> data set 
+            has changes for employee ID E00014.<br>
+            <br>
+          <li>Write a PROC PRINT step to print the first 15 observations of <strong>Work.Empdata</strong>.<br>
+            <br>
+          <li>Submit the program and notice the changes for employee ID E00014.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

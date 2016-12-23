@@ -1,0 +1,111 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      Statistics<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>To specify a statistic other than the default statistic FREQ, you use 
+        the <strong>TYPE= </strong>option in the statement that specifies the 
+        chart. Let's look at the general form of the GCHART procedure again, this 
+        time focusing on the options. The TYPE= option is just one of the possible 
+        options. Notice that a <strong>slash</strong> precedes options.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC GCHART step with TYPE= option">
+    <tr> 
+      <td align="left"><strong>General form, PROC GCHART step with TYPE= option:</strong> 
+        <blockquote> <font color="#003399"><strong>PROC GCHART</strong> &lt;<strong>DATA=</strong><em>SAS-data-set</em>&gt;<strong>;</strong></font><br>
+          <nobr><font color="#003399">&nbsp; &nbsp; &nbsp; &nbsp; <em>chart-form</em> 
+          <em>chart-variable</em> <strong><big>/</big></strong> <strong>TYPE=</strong><em>statistic</em><strong>;</strong></font></nobr><br>
+          <font color="#003399"><strong>RUN;</strong></font> </blockquote>
+        <p> where <font color="#003399"><em>statistic</em></font> indicates the 
+          statistic to display for the chart variable. Statistics include <strong>CFREQ</strong> 
+          (cumulative frequency), <strong>PERCENT</strong> (percent), and <strong>CPERCENT</strong> 
+          (cumulative percent). 
+        <p> 
+        <table cellspacing="0" cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+            <td>CFREQ&nbsp;(cumulative frequency) and CPERCENT (cumulative percent) 
+              are <strong>not available for pie charts</strong>.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Example</strong> 
+        <p> The program below creates a vertical bar chart of the variable&nbsp;<code>Company</code>, 
+          displaying the default statistic FREQ. 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        <strong>vbar company;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=center> <img src="images/m7e1s1.gif" alt="Vertical bar chart with default statistic."
+    width="400" height="305"> 
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">If you use the TYPE= option to specify the statistic <strong>CFREQ</strong>, 
+        the bars now display the <strong>cumulative frequency</strong> of <code>Company</code>, 
+        as shown below. Notice that the label on the vertical axis&nbsp;has changed 
+        from FREQUENCY to CUMULATIVE FREQUENCY. 
+        <pre><font color="#003399">     proc gchart data=clinic.insure;</font>
+<font color="#003399">        vbar company <strong>/ type=cfreq</strong>;</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=center> <img src="images/m7e1s2.gif" alt="Vertical bar chart of cumulative frequency."
+    width="400" height="305"> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

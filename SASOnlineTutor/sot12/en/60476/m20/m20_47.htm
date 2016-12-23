@@ -1,0 +1,362 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" --> 
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+          <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">sample programs</A> 
+          <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>. 
+        <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>One-to-One Reading</strong><br>
+        You can combine data sets with <a href="m20_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on one-to-one reading.';" onMouseOut="window.status='';">one-to-one 
+        reading</a> by including multiple SET statements in a DATA step. When 
+        you perform one-to-one reading, the new data set contains all the variables 
+        from all the input data sets. If the data sets contain same-named variables, 
+        the values that are read in from the last data set replace those that 
+        were read in from earlier ones. The number of observations in the new 
+        data set is the number of observations in the smallest original data set. 
+      </p>
+      <pre>     <font color="#003399">data one2one;</font>
+        <font color="#003399">set a;</font>
+        <font color="#003399">set b;</font>
+     <font color="#003399">run;</font></pre>
+      <strong>Concatenating</strong><br>
+        To append the observations from one data set to another data set, you 
+        <a href="m20_7.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on concatenating.';" onMouseOut="window.status='';">concatenate</a> 
+        them by specifying the data set names in the SET statement. When SAS concatenates, 
+        data sets in the SET statement are read sequentially, in the order in 
+        which they are listed. The new data set contains all the variables and 
+        the total number of observations from all input data sets. 
+        <pre>     <font color="#003399">data concat;</font>
+        <font color="#003399">set a b;</font>
+     <font color="#003399">run;</font></pre>
+      <strong>Interleaving</strong><br>
+        If you use a BY statement when you concatenate data sets, the result is 
+        <a href="m20_11.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on interleaving.';" onMouseOut="window.status='';">interleaving</a>. 
+        Interleaving intersperses observations from two or more data sets, based 
+        on one or more common variables. Each input data set must be sorted or 
+        indexed in ascending order based on the BY variable(s). Observations in 
+        each BY group in each data set in the SET statement are read sequentially, 
+        in the order in which the data sets and BY variables are listed, until 
+        all observations have been processed. The new data set contains all the 
+        variables and the total number of observations from all input data sets. 
+        <pre>     <font color="#003399">data interlv;</font>
+        <font color="#003399">set a b;</font>
+        <font color="#003399">by num;</font>
+     <font color="#003399">run;</font></pre>
+      <strong>Match-Merging</strong><br>
+      Sometimes you need to combine observations from two or more data sets into 
+      a single observation in a new data set according to the values of a same-named 
+      variable. This is <a href="m20_14.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on match-merging.';" onMouseOut="window.status='';">match-merging</a>, 
+      which uses a MERGE statement rather than a SET statement to combine data 
+      sets. Each input data set must be sorted or indexed in ascending order based 
+      on the BY variable(s). During match-merging, SAS sequentially checks 
+      each observation of each data set to see whether the BY values match, then 
+      writes the combined observation to the new data set. 
+      <pre>     <font color="#003399">data merged;</font>
+        <font color="#003399">merge a b;</font>
+        <font color="#003399">by num;</font>
+     <font color="#003399">run;</font></pre>
+      <p> <strong>Match-Merge Processing</strong><br>
+        To predict the results of match-merging correctly, you need to understand 
+        how the DATA step processes data in match-merges. 
+      <blockquote> <a href="m20_22.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the compilation phase of match-merging.';" onMouseOut="window.status=''"><strong>Compiling</strong></a><br>
+        To prepare to merge data sets, SAS 
+        <ol>
+          <li>reads the descriptor portions of the data sets that are listed in 
+            the MERGE statement 
+          <li>reads the rest of the DATA step program 
+          <li>creates the program data vector (PDV), an area of memory where SAS builds your data set one observation at a time 
+          <li>assigns a tracking pointer to each data set that is listed in the 
+            MERGE statement. 
+        </ol>
+        <p> If variables with the same name appear in more than one data set, 
+          the variable from the first data set that contains the variable (in 
+          the order listed in the MERGE statement) determines the length of the 
+          variable. 
+        <p> <a href="m20_24.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the execution phase of match-merging.';"
+		      onMouseOut="window.status='';"><strong>Executing</strong></a><br>
+          After compiling the DATA step, SAS sequentially match-merges 
+          observations by moving the pointers down each observation of each data 
+          set and checking to see <strong>whether the BY values match</strong>. 
+        <ul>
+          <li>If <strong>Yes</strong>, the observations are written to the PDV 
+            in the order in which the data sets appear in the MERGE statement. 
+            Values of any same-named variable are overwritten by values of the 
+            same-named variable in subsequent data sets. SAS writes the 
+            combined observation to the new data set and retains the values in 
+            the PDV until the BY value changes in all the data sets. <br>
+            <br>
+          <li>If <strong>No</strong>, SAS determines which of the values 
+            comes first and writes the observation that contains this value to 
+            the PDV. Then the observation is written to the new data set. 
+        </ul>
+        When the BY value changes in all the input data sets, the PDV is initialized 
+        to missing. The DATA step merge continues to process every observation 
+        in each data set until it has processed all observations in all data sets. 
+        <p> <a href="m20_28.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on unmatched observations and missing values.';" onMouseOut="window.status=''"><strong>Handling 
+          Unmatched Observations and Missing Values</strong></a><br>
+          All observations that are written to the PDV, including observations 
+          that have missing data and no matching BY values, are written to the 
+          output data set. 
+        <ul>
+          <li>If an observation contains missing values for a variable, then the 
+            observation in the output data set contains the missing values as 
+            well. Observations that have missing values for the BY variable appear 
+            at the top of the output data set.<br>
+            <br>
+          <li>If an input data set doesn't have a matching BY value, then the 
+            observation in the output data set contains missing values for the 
+            variables that are unique to that input data set. 
+        </ul>
+      </blockquote>
+      <strong>Renaming Variables</strong><br>
+      Sometimes you might have same-named variables in more than one input data 
+      set. In this case, match-merging <a href="m20_31.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on renaming variables.';" onMouseOut="window.status='';">overwrites 
+      values</a> of the same-named variable in the first data set with values 
+      of the same-named variable in subsequent data sets. To prevent overwriting, 
+      use the RENAME= data set option in the MERGE statement to rename variables. 
+      <p> <strong>Excluding Unmatched Observations</strong><br>
+        By default, match-merging combines all observations in all input data 
+        sets. However, you might want to select only observations that match for 
+        two or more input data sets. To exclude <a href="m20_36.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on excluding unmatched observations.';" onMouseOut="window.status='';">unmatched 
+        observations</a>, use the IN= data set option and the subsetting IF statement 
+        in your DATA step. The IN= data set option creates a variable to indicate 
+        whether the data set contributed data to the current observation. The 
+        subsetting IF statement then checks the IN= values and writes to the merged 
+        data set only observations that appear in the data sets for which IN= 
+        is specified. 
+      <p> <strong>Selecting Variables</strong><br>
+        You can specify the variables you want to drop or keep by using the <a href="m20_42.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on selecting variables.';" onMouseOut="window.status='';">DROP= 
+        and KEEP= data set options</a>. When match-merging, you can specify these 
+        options in either the DATA statement or the MERGE statement, depending 
+        on whether or not you want to process values of the variables in that 
+        DATA step. When used in the DATA statement, the DROP= option simply drops 
+        the variables from the new data set. However, they are still read from 
+        the original data set and are available within the DATA step. 
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD><STRONG><A NAME="Syntax">Syntax</A></STRONG> 
+        <P> <EM>To go to the page where a statement or option was presented, select 
+          a link.</EM> 
+      </TD>
+    </TR>
+  </TABLE>
+  <p align="center"> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td> <blockquote> 
+              <p><strong>One-to-One Reading</strong> </p>
+              <dl>
+                <dt><font color="#003399"><strong>LIBNAME</strong> <em>libref</em> 
+                  '<em>SAS-data-library</em>'<strong>;</strong></font> 
+                <dt><font color="#003399"><strong>DATA</strong> <em>output-SAS-data-set</em><strong>;</strong></font> 
+                <dd><font color="#003399"><a href="m20_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on one-to-one reading.';" onMouseOut="window.status='';"><strong>SET</strong> 
+                  <em>SAS-data-set-1</em><strong>;</strong></a></font> 
+                <dd><font color="#003399"><a href="m20_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on one-to-one reading.';" onMouseOut="window.status='';"><strong>SET</strong> 
+                  <em>SAS-data-set-2</em><strong>;</strong></a></font> 
+                <dt><font color="#003399"><strong>RUN;</strong></font> 
+              </dl>
+              <p><strong>Concatenating</strong> </p>
+              <dl>
+                <dt><font color="#003399"><strong>DATA</strong> <em>output-SAS-data-set</em><strong>;</strong></font> 
+                <dd><font color="#003399"><a href="m20_7.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on concatenating.';" onMouseOut="window.status='';"><strong>SET</strong> 
+                  <em>SAS-data-set-1 SAS-data-set-2</em><strong>;</strong></a></font> 
+                <dt><font color="#003399"><strong>RUN;</strong></font> 
+              </dl>
+              <p><strong>Interleaving</strong> </p>
+              <dl>
+                <dt><font color="#003399"><strong>PROC SORT DATA=</strong><em>SAS-data-set</em> 
+                  <strong>OUT=</strong><em>SAS-data-set</em><strong>;</strong></font> 
+                <dd><font color="#003399"><strong>BY</strong> <em>variable(s)</em><strong>;</strong></font> 
+                <dt><font color="#003399"><strong>RUN;</strong></font> 
+                <dt><font color="#003399"><strong>DATA</strong> <em>output-SAS-data-set</em><strong>;</strong></font> 
+                <dd><font color="#003399"><a href="m20_11.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on interleaving.';" onMouseOut="window.status='';"><strong>SET</strong> 
+                  <em>SAS-data-set-1 SAS-data-set-2</em><strong>;</strong></a></font> 
+                <dd><font color="#003399"><a href="m20_11.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on interleaving.';" onMouseOut="window.status='';"><strong>BY</strong> 
+                  <em>variable(s)</em><strong>;</strong></a></font> 
+                <dt><font color="#003399"><strong>RUN;</strong></font> 
+              </dl>
+              <p><strong>Match-Merging</strong> </p>
+              <dl>
+                <dt><font color="#003399"><strong>PROC SORT DATA=</strong><em>SAS-data-set</em> 
+                  <strong>OUT=</strong><em>SAS-data-set</em><strong>;</strong></font> 
+                <dd><font color="#003399"><strong>BY</strong> <em>variable(s)</em><strong>;</strong></font> 
+                <dt><font color="#003399"><strong>RUN;</strong></font> 
+                <dt><nobr><font color="#003399"><strong>DATA</strong> <em>output-SAS-data-set</em> 
+                  <a href="m20_42.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DROP= and KEEP= options.';" onMouseOut="window.status='';"><strong>(DROP=</strong><em>variable(s)</em> 
+                  | <strong>KEEP=</strong><em>variable(s)</em><strong>);</strong></a></font></nobr> 
+                <dd><font color="#003399"><a href="m20_14.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on match-merging.';" onMouseOut="window.status='';"><strong>MERGE</strong> 
+                  <em>SAS-data-set-1 SAS-data-set-2</em></a></font> 
+                <dd><nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><a href="m20_33.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the RENAME= option.';" onMouseOut="window.status=''"><strong>(RENAME=</strong><strong>(</strong><em>old-variable-name</em>=<em>new-variable-name</em><strong>)</strong></a></font></nobr> 
+                <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><a href="m20_37.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the IN= option.';" onMouseOut="window.status='';"><strong>IN=</strong><em>variable</em></a> 
+                  <a href="m20_42.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the DROP= and KEEP= options.';" onMouseOut="window.status='';"><strong>DROP=</strong><em>variable(s)</em> 
+                  | <strong>KEEP=</strong><em>variable(s)</em><strong>);</strong></a></font> 
+                <dd><font color="#003399"><a href="m20_14.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the BY statement.';" onMouseOut="window.status=''"><strong>BY</strong> 
+                  <em>variable(s)</em><strong>;</strong></a></font> 
+                <dd><a href="m20_39.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the subsetting IF statement.';" onMouseOut="window.status=''"><strong>IF</strong> 
+                  <em>expression</em><strong>;</strong></a> 
+                <dt><font color="#003399"><strong>RUN;</strong></font> 
+              </dl>
+            </blockquote></td>
+      </tr>
+    </table>
+   
+  </center>
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"> 
+        <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+</center>
+<!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Sample">Sample Programs</A></STRONG> <blockquote> 
+          <p><STRONG>One-to-One Reading</STRONG> </p>
+        </blockquote>
+        <PRE>     <FONT color="#003399">data clinic.one2one;</FONT>
+        <FONT color="#003399">set clinic.patients;</FONT>
+        <FONT color="#003399">if age<60;</FONT>
+        <FONT color="#003399">set clinic.measure;</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        <blockquote> 
+          <p><STRONG>Concatenating</STRONG> </p>
+        </blockquote>
+        <PRE>     <FONT color="#003399">data clinic.concat;</FONT>
+        <FONT color="#003399">set clinic.therapy1999 clinic.therapy2000;</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        <blockquote> 
+          <p><STRONG>Interleaving</STRONG> </p>
+        </blockquote>
+        <PRE>     <FONT color="#003399">data clinic.intrleav;</FONT>
+        <FONT color="#003399">set clinic.therapy1999 clinic.therapy2000;</FONT>
+        <FONT color="#003399">by month;</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        <blockquote>
+          <p><STRONG>Match-Merging</STRONG> </p>
+        </blockquote>
+        <PRE>     <FONT color="#003399">data clinic.merged(drop=id);</FONT>
+        <FONT color="#003399">merge clinic.demog(in=indemog</FONT>
+                           <FONT color="#003399">rename=(date=BirthDate))</FONT>
+              <FONT color="#003399">clinic.visit(drop=weight in=invisit</FONT>
+                           <FONT color="#003399">rename=(date=VisitDate));</FONT>
+        <FONT color="#003399">by id;</FONT>
+        <FONT color="#003399">if indemog and invisit;</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        <P> 
+        <HR> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Points">Points to Remember</A></STRONG> 
+        <ul>
+          <li>You can rename any number of variables in each occurrence of the 
+            RENAME= option.<br>
+            <br>
+          <li>In match-merging, the IN= data set option can apply to any data 
+            set in the MERGE statement. The RENAME=, DROP=, and KEEP= options 
+            can apply to any data set in the DATA or MERGE statements. <br>
+            <br>
+          <li>Use the KEEP= option instead of the DROP= option if more variables 
+            are dropped than kept.<br>
+            <br>
+          <li>When you specify multiple data set options for a particular data 
+            set, enclose them in a single set of parentheses. </ul>
+        </TD>
+    </TR>
+  </TABLE>
+  <!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

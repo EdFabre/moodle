@@ -1,0 +1,226 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Generating 
+      Column Totals<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>To produce column totals for numeric variables, you can list the variables 
+        to be summed in a <strong>SUM statement</strong> in your PROC PRINT step.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, SUM statement: ">
+    <tr> 
+      <td><strong>General form, SUM statement:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>SUM </strong><em>variable(s)</em></nobr><strong>;</strong></font> 
+        </blockquote>
+        where <font color="#003399"><em>variable(s)</em></font> is one or more 
+        variable names, separated by blanks. You do not need to name the variables 
+        in a VAR statement if you specify them in the SUM statement.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>The SUM statement in the following PROC PRINT step requests column totals 
+        for the variable <code>BalanceDue</code>: 
+        <pre><font color="#003399">     proc print data=clinic.insure;
+        var name policy balancedue;
+        where pctinsured < 100;
+   <strong>     sum balancedue;</strong>
+     run;
+</font></pre>
+        Column totals appear at the end of the report in the same format as the 
+        values of the variables.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Obs</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Name</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Policy</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>BalanceDue</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+        2</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Almers, 
+        C</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">95824</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">156.05</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+        3</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Bonaventure, 
+        T</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">87795</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        9.48</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+        4</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Johnson, 
+        R</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">39022</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        61.04</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+        5</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">LaMance, 
+        K</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">63265</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        43.68</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+        6</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Jones, 
+        M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">92478</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        52.42</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+        7</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Reberson, 
+        P</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">25530</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">207.41</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+        8</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">King, 
+        E</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">18744</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        27.19</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b> 
+        9</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Pitts, 
+        D</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">60976</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">310.82</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>10</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Eberhardt, 
+        S</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">81589</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">173.17</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>13</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Peterson, 
+        V</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">75986</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">228.00</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>14</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Quigley, 
+        M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">97048</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        99.01</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>15</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Cameron, 
+        L</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">42351</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">111.41</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>17</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Takahashi, 
+        Y</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">54219</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">186.58</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>18</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Derber, 
+        B</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">74653</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">236.11</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>20</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Wilcox, 
+        E</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">94034</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">212.20</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>21</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">Warren, 
+        C</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">20347</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">164.44</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>&nbsp;</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>&nbsp;</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>&nbsp;</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b><font size="3">2279.0</font></b></font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

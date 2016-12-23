@@ -1,0 +1,105 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Managing 
+      Indexes with PROC SQL <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You can also create indexes on or delete indexes from an existing data set 
+          within a PROC SQL step. The <strong>CREATE INDEX statement</strong> 
+          enables you to create an index on a data set. The <strong>DROP INDEX 
+          statement</strong> enables you to delete an index from a data set.</p>
+
+     
+      </td>
+  </tr>
+</table>
+<P><BR>
+<table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC SQL to create and delete an index">
+            <tr> 
+              
+      <td align="left"><strong>General form, PROC SQL to create and delete an 
+        index:</strong> 
+        <blockquote> <dl><dt><font color="#003399"><strong>PROC SQL</strong><strong>;</strong></font></dt>
+			  
+          <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>CREATE</strong> <strong>&lt;UNIQUE&gt;</strong> 
+            <strong>INDEX</strong> <em>index-name</em></font>
+<dd>
+			  
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>ON</strong> <em>table-name(column-name-1&lt;...<strong>,</strong>column-name-n&gt;)</em><strong>;</strong></font></dt>
+			  <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>DROP INDEX</strong> <em>index-name</em> <strong>FROM</strong> <em>table-name</em> <strong>;</strong></font></dt>
+			  <dt><font color="#003399"><strong>QUIT;</strong></font></dt></dl>
+                </blockquote>
+				where
+				<ul>
+          <li><font color="#003399"><em>index-name</em></font> is the same as 
+            <font color="#003399"><em>column-name-1</em></font> if the index is 
+            based on the values of one column only
+<li><font color="#003399"><em>index-name</em></font> is not the same as any <font color="#003399"><em>column-name</em></font> if the index is based on multiple columns
+<li><font color="#003399"><em>table-name</em></font> is the name of the data set to which <font color="#003399"><em>index-name</em></font> is associated.
+				</ul>
+              </td>
+            </tr>
+          </table>
+		  <P><BR>
+		  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+
+<h2>Example</h2>
+      <P>The following example creates a simple index named <strong>Origin</strong> 
+        on the <strong>Sasuser.Sale2000</strong> data set. The index is based 
+        on the values of the <code>Origin</code> column. <font color="#003399">
+        <pre>     proc sql;
+        create index origin on sasuser.sale2000(origin);
+     quit; </pre>
+      </font> <p>The following example deletes the <strong>Origin</strong> index 
+          from the <strong>Sasuser.Sale2000</strong> data set and creates a new 
+          index named <strong>Tofrom</strong> that is based on the concatenation 
+          of the values from the columns <code>Origin</code> and <code>Dest</code>:</p>
+      <font color="#003399">
+        <pre>     proc sql;
+        create index Tofrom 
+           on sasuser.sale2000(origin, dest);
+        drop index origin from sasuser.sale2000;
+     quit;</pre>
+        </font></td>
+  </tr>
+</table>
+
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

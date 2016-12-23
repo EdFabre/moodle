@@ -1,0 +1,123 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(13); 
+   answer[1] = "(keep=age sex bodymass); <p><br><font color='black'>or</font><p><br>(drop=height actlevel weight);"
+   answer[2] = "(drop=height actlevel weight);"
+   answer[3] = "(drop=weight actlevel height);"
+   answer[4] = "(drop=weight height actlevel);"
+   answer[5] = "(drop=actlevel height weight);"
+   answer[6] = "(drop=actlevel weight height);"
+   answer[7] = "(drop=height weight actlevel);"
+   answer[8] = "(keep=age bodymass sex);"
+   answer[9] = "(keep=sex age bodymass);"
+   answer[10] = "(keep=sex bodymass age);"
+   answer[11] = "(keep=bodymass age sex);"
+   answer[12] = "(keep=bodymass sex age);"
+   answer[13] = "(keep=age sex bodymass);"
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='You specify either the DROP= or KEEP= option, and then \n';
+   right2='the variables to keep or drop.';
+   right3='';
+   
+   wrong1='Specify either the DROP= or KEEP= option in \n';
+   wrong2='parentheses after the data set name and enter the variables\n';
+   wrong3='as shown. When you look for errors, check for misspellings.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="no";
+   var checkSemicolon="yes";
+   var useParens="yes";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Suppose you are reading 
+          data for the variables <code>Age</code>, <code>Height</code>, <code>Weight</code>, 
+          <code>ActLevel</code>, and <code>Sex</code>. You are also creating the 
+          variable <code>BodyMass</code>. However, you don't need all these variables 
+          in your data set. Specify a data set option so that only the variables 
+          <code>Age</code>, <code>Sex</code>, and <code>BodyMass</code> will be 
+          used. (Remember to end the statement with a semicolon.)<br>&nbsp;
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" --><PRE>
+<FONT color="#003399">     data test.results <input type="text" size="30" name="anstext">
+        infile cltrials;
+        input Age 1-2 Height 4-6 Weight 8-10
+              ActLevel $ 12 Sex $ 14;
+        BodyMass=weight/height**2;    
+     run;</FONT>
+</PRE><!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

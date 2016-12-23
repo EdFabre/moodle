@@ -1,0 +1,90 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Random Sample with Replacement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2>Example</h2>
+		  The following DATA step creates one observation with one variable named 
+        <code>varone</code> and assigns a random number to it. You can submit 
+        this DATA step multiple times, or in multiple SAS sessions, and <code>varone</code> 
+        will have the same value. <font color="#003399"> 
+        <pre>     data random1;
+        varone=ranuni(10);
+     run;</pre>
+        </font> The following DATA step creates ten observations with one variable 
+        named <code>varone</code> and assigns a random number as a value for <code>varone</code>. 
+        You can submit this DATA step multiple times, or in multiple SAS sessions, 
+        and <code>varone</code> will have the same ten values. <font color="#003399"> 
+        <pre>     data random2;
+        do i=1 to 10 by 1;
+           varone=ranuni(10);
+           output;
+        end;
+     run;</pre>
+        </font> If you changed the seed value from <em>10</em> to a different 
+        value in either of the two DATA steps above, the values for <code>varone</code> 
+        would be different when you submitted the DATA step than it was when the 
+        seed value was <em>10</em>. However, <code>varone</code> will have the 
+        same ten values each time you submit the DATA step with a constant seed 
+        value. 
+        <p>
+        <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For clarity and consistency in the sample programs, 
+              all remaining examples of the RANUNI function in this lesson will 
+              use a seed of <em>0</em>. </td>
+      </tr>
+    </table>
+        <P><BR>
+		<h2>Using a Multiplier with the RANUNI Function</h2>
+        <P>By default, RANUNI generates numbers that are between 0 and 1. To increase 
+          the interval from which the random number is chosen, you use a <strong>multiplier</strong> 
+          on the RANUNI function. For example, if you want to generate a random 
+          number between 0 and 50, you use the following code: <font color="#003399"><pre>     ranuni(0)*50</pre></font>
+		 
+      </td>
+    </tr>
+  </table>
+
+  <p>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

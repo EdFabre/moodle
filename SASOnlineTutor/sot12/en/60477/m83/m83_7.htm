@@ -1,0 +1,286 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT language="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Executing 
+      Only Necessary Statements<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Creating Variables Conditionally Using DO Groups</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p> Suppose you want to calculate an adjusted profit based on the values 
+        of the variable <code>Order_Type</code> in the data set <strong>Retail.Order_fact</strong>. 
+        For retail sales, which are represented by the value <em>1</em>, the adjusted 
+        profit should be calculated as 105% of profit. For catalog sales, which 
+        are represented by the value <em>2</em>, the adjusted profit should be 
+        calculated as 103% of profit. For internet sales, which are represented 
+        by the value <em>3</em>, the adjusted profit should be equal to profit. 
+      <p> The following table shows that the values for the variable <code>Order_Type</code> 
+        are not uniformly distributed.<p><br> 
+      <p align="center">
+      <table border="1px" align="center" cellpadding="2" cellspacing="1" bordercolor="#000000" frame="box" rules="groups" class="Table" summary="Procedure Freq: One-Way Frequencies" title="Frequency table">
+        <colgroup>
+        <col>
+        </colgroup>
+        <colgroup>
+        <col>
+        <col>
+        </colgroup>
+        <thead>
+          <tr bgcolor="#CCCCCC"> 
+            <th colspan="3"><font color="#003399" size="3">Order Type</font></th>
+          </tr>
+          <tr bgcolor="#CCCCCC"> 
+            <th><font color="#003399" size="3">Order_Type</font></th>
+            <th><font color="#003399" size="3">Frequency</font></th>
+            <th><font color="#003399" size="3">Percent</font></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr bgcolor="#CCCCCC"> 
+            <th bgcolor="#CCCCCC"><font color="#003399">1</font></th>
+            <td bgcolor="#EFEFEF"><font size="2">3579850</font></td>
+            <td bgcolor="#EFEFEF"><font size="2">75.23</font></td>
+          </tr>
+          <tr> 
+            <th bgcolor="CCCCCC"><font color="#003399">2</font></th>
+            <td bgcolor="#EFEFEF"><font size="2">635645</font></td>
+            <td bgcolor="#EFEFEF"><font size="2">13.36</font></td>
+          </tr>
+          <tr> 
+            <th bgcolor="CCCCCC"><font color="#003399">3</font></th>
+            <td bgcolor="#EFEFEF"><font size="2">542850</font></td>
+            <td bgcolor="#EFEFEF"><font size="2">11.41</font></td>
+          </tr>
+        </tbody>
+      </table> 
+       <p><br>
+        The following table shows that the values for the variable <code>Discount</code> 
+        also are not uniformly distributed. 
+      <p><br>
+     <p align="center">
+      <table border="1px" align="center" cellpadding="2" cellspacing="1" bordercolor="#000000" frame="box" rules="groups" class="Table" summary="Procedure Freq: One-Way Frequencies" title="Frequency table">
+        <colgroup>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+          <tr bgcolor="#CCCCCC">
+        <th colspan="3" bgcolor="#CCCCCC"><font color="#003399">Discount</font></th>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC"><font color="#003399" size="3">Discount</font></th>
+          <th bgcolor="#CCCCCC"><font color="#003399" size="3">Frequency</font></th>
+          <th bgcolor="#CCCCCC"> <font color="#003399" size="3">Percent</font></th>
+        </tr></thead>
+        <tbody>
+          <tr> 
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">.</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">4712585</font></td>
+            <td bgcolor="#EFEFEF"><font size="2">99.04</font></td>
+          </tr>
+          <tr> 
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">30%</font></th>
+            <td bgcolor="#EFEFEF"><font size="2">19740</font></td>
+            <td bgcolor="#EFEFEF"><font size="2">0.41</font></td>
+          </tr>
+          <tr> 
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">40%</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">15170</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">0.32</font></td>
+          </tr>
+          <tr> 
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">50%</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">9805</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">0.21</font></td>
+          </tr>
+          <tr> 
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">60%</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">1045</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">0.02</font></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><br>
+      <p>Techniques for creating new variables conditionally include
+<ol>
+        <li><a href="#1">IF-THEN/ELSE statements</a></li>
+        <li><a href="#2">SELECT statements.</a></li>
+      </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results may vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for executing only necessary statements. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        IF-THEN/ELSE Statements</strong></p>
+		<blockquote>
+        <p>This program uses IF-THEN/ELSE statements with DO groups to conditionally 
+          execute multiple statements that calculate an adjusted profit. Conditions 
+          are checked in descending order of frequency.</p>
+      </blockquote><p>        
+      <blockquote> 
+        <pre><font color="#003399">     data retail.order_info_1;
+        set retail.order_fact;
+        <strong>if order_type=1 then 
+           do;</strong>                     /* Retail Sale */
+              Float=delivery_date-order_date;
+              RevenueQuarter=qtr(order_date);
+              AveragePrice=total_retail_price/quantity;
+              if discount=. then NetPrice=total_retail_price;
+              else NetPrice=total_retail_price-discount;
+              Profit=netPrice-(quantity*costprice_per_unit)*1.05;
+           end;
+        <strong>else if order_type=2 then 
+           do;</strong>                    /* Catalog Sale */
+              Float=delivery_date-order_date;
+              RevenueQuarter=qtr(order_date);
+              AveragePrice=total_retail_price/quantity;
+              if discount=. then NetPrice=total_retail_price;
+              else NetPrice=total_retail_price-discount;
+              Profit=netprice-(quantity*costprice_per_unit)*1.03;
+           end;
+        <strong>else 
+           do;</strong>                    /* Internet Sale */
+              Float=delivery_date-order_Date;
+              RevenueQuarter=qtr(order_date);
+              AveragePrice=total_retail_price/quantity;
+              if discount=. then NetPrice=total_retail_price;
+              else NetPrice=total_retail_price-discount;
+              Profit=netprice-(quantity*costprice_per_unit);
+           end;
+     run;
+</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        SELECT Statements</strong></p>
+		<blockquote>
+        <p>This program uses SELECT/WHEN statements with DO groups to conditionally 
+          execute multiple statements that calculate an adjusted profit. Conditions 
+          are checked in descending order of frequency.</p>
+		</blockquote><p>
+         <blockquote> 
+        <pre><font color="#003399">     data retail.order_info_2;
+        set retail.order_fact;
+        <strong>select(order_type);
+           when (1) 
+              do; </strong>                                   /* Retail Sale */
+                 Float=delivery_date-order_date;
+                 RevenueQuarter=qtr(order_date);
+                 AveragePrice=total_retail_price/quantity;
+                 if discount=. then NetPrice=total_retail_price;
+                 else NetPrice=total_retail_price-discount;
+                 Profit=netprice-(quantity*costprice_per_unit)*1.05;
+              end;
+           <strong>when (2) 
+              do;</strong>                                   /* Catalog Sale */
+                 Float=delivery_date-order_date;
+                 RevenueQuarter=qtr(order_date);
+                 AveragePrice=total_retail_price/quantity;
+                 if discount=. then NetPrice=total_retail_price;
+                 else NetPrice=total_retail_price-discount;
+                 Profit=netprice-(quantity*costprice_per_unit)*1.03;
+              end;
+           <strong>otherwise 
+              do;</strong>                                  /* Internet Sale */
+                 Float=delivery_date-order_date;
+                 RevenueQuarter=qtr(order_date);
+                 AveragePrice=total_retail_price/quantity;
+                 if discount=. then NetPrice=total_retail_price;
+                 else NetPrice=total_retail_price-discount;
+                 Profit=netprice-(quantity*costprice_per_unit);
+              end;
+        end;
+    run;
+</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br><!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><ul>
+        <li>Check the most frequently occurring condition first, and continue 
+          checking conditions in descending order of frequency, regardless of 
+          whether you use IF-THEN/ELSE or SELECT statements.</li>
+        <br><br>
+        <li>When you execute multiple statements based on a condition, put the 
+          statements in a DO group.</li>
+      </ul><p><br></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

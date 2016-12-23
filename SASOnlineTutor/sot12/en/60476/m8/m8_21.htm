@@ -1,0 +1,190 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Exporting 
+      Graphs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Using Program Statements</strong> <strong>to Export SAS/GRAPH 
+        Output </strong></p>
+      <p> When you use program statements to export SAS/GRAPH output, you specify 
+      <ul>
+        <li> a destination for the output 
+        <li> a device driver that creates the type of graphics output that you 
+          want. 
+      </ul>
+      <p> <br>
+        <strong><a name="filename">Specifying an Output Destination</a></strong> 
+      <p> To specify an output destination, you 
+      <ul>
+        <li> use a <a href="JavaScript: openOther('../linklib/filename.htm')">FILENAME 
+          statement</a> to assign a fileref to the external file to which you 
+          want to send the output 
+      </ul>
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p> 
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE"
+  align="Center" title="General form, FILENAME statement">
+    <tr> 
+      <td align="left"><strong>General form, FILENAME statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>FILENAME </strong><em>fileref</em> 
+          <strong>'</strong><em>filename</em><strong>';</strong></font></nobr> 
+        </blockquote>
+        <p> where <font color="#003399"><em></em></font> 
+        <ul>
+          <li> <font color="#003399"><em>fileref</em></font> is a valid SAS name 
+            that you associate with an external file. The fileref must be 1 to 
+            8 characters long. It must begin with a letter (A-Z) or an underscore 
+            (_), and it can continue with any combination of numbers, letters, 
+            or underscores. You can also use the dollar sign ($), the pound sign 
+            (#), and the at sign (@) in filerefs.<br>
+            <br>
+          <li> <font color="#003399"><em>filename</em></font> is the fully qualified 
+            name or location of the file. 
+        </ul>
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+            <td>The <em>filename</em> must be the complete physical name of the 
+              external file and must include a file extension that indicates what 
+              type of graphics file you are creating, such as <strong>.GIF</strong> 
+              for a GIF file.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">
+        <ul>
+          <li> assign the fileref to the <strong>GSFNAME=</strong> graphics option 
+            in the <a href="JavaScript: openOther('../linklib/goptions.htm')" name="gsfname">GOPTIONS 
+            statement</a>. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> 
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE"
+  align="Center" title="General form, GOPTIONS statement">
+    <tr> 
+      <td align="left"><strong>General form, GOPTIONS statement:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>GOPTIONS</strong> &lt;<em>options-list&gt;</em><strong>;</strong></font></nobr> 
+        </blockquote>
+        <p> where <font color="#003399"><em>options-list </em></font>can be one 
+          or more graphics options.<br>
+          <br>
+        <table cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:" border="0"></td>
+            <td>With the exception of RESET=, graphics options can be listed in 
+              any order in a GOPTIONS statement. RESET= should be the first option 
+              in the GOPTIONS statement.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">For example, the following FILENAME statement assigns the 
+        fileref <strong>Mygif</strong> to the file <strong>C:\My SAS Files\Hbar1.gif 
+        </strong>in the Windows environment. Then the GOPTIONS statement specifies 
+        <strong>Mygif</strong> as the output destination for the SAS/GRAPH procedure 
+        that follows. 
+        <pre><font color="#003399">     filename <strong>mygif</strong> 'c:\my sas files\hbar1.gif';<br>     goptions <strong>gsfname=mygif</strong>;<br>     <em>SAS/GRAPH statements...</em><br>     run;</font>
+</pre>
+        <p> <br>
+          <strong><a name="device">Specifying a Device Driver</a></strong> 
+        <p> To specify the device driver, you use the DEVICE= graphics option 
+          in the GOPTIONS statement.
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE"
+  align="Center" title="General form, DEVICE= option">
+    <tr> 
+      <td align="left"><strong>General form, DEVICE= option:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>DEVICE=</strong><em>device-driver</em></font></nobr> 
+        </blockquote>
+        <p> where <font color="#003399"><em>device-driver</em></font> is a valid 
+          device driver.
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">For example, to specify your output as a GIF file, you 
+        add the following DEVICE= option: 
+        <pre><font color="#003399">     filename mygif 'c:\my sas files\hbar1.gif';<br>     goptions gsfname=mygif <strong>device=gif</strong>;<br>     <em>...SAS/GRAPH statements...</em><br>     run;</font>
+</pre>
+        <p> <br>
+          <strong>Example: Exporting Two Charts</strong> 
+        <p> The following SAS program creates a bar chart and a pie chart, each 
+          of which is stored in a separate GIF file. 
+        <pre><font color="#003399">     <strong>filename bargif 'g:\images\barchart.gif';</strong><br>     <strong>goptions gsfname=bargif device=gif;</strong><br>     proc gchart data=clinic.admit;</font>
+<font color="#003399">        vbar actlevel / sumvar=fee;<br>     run;</font>
+<font color="#003399">     <strong>filename piegif 'g:\images\piechart.gif';</strong><br>     <strong>goptions gsfname=piegif device=gif;</strong><br>     proc gchart data=clinic.stresstest;</font>
+<font color="#003399">        pie tolerance;<br>     run;</font>
+<font color="#003399">     quit;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

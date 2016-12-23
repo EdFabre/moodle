@@ -1,0 +1,113 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Identifying Available Indexes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p> The first step for SAS is to <strong>determine whether there are 
+          any existing indexes</strong> that might be used to process the WHERE 
+          expression. Specifically, SAS checks the variable in each condition 
+          in the WHERE expression to determine whether the variable is a <strong>key 
+          variable</strong> in an index. </p>
+        <p><br>
+          <center>
+            <img src="images/m85_8a.gif" alt="Diagram of program containing WHERE statement and arrow to index file" width="400" height="121"> 
+          </center>
+        <p><br>
+        <p>SAS can use either a simple index or a composite index to optimize 
+          a WHERE expression. To be considered for use in optimizing a single 
+          WHERE condition, one of the following requirements must be met:</p>
+        <ul>
+          <li>the variable in the WHERE condition is the <strong>key variable</strong> 
+            in a <strong>simple</strong> index</li>
+          <li>the variable in the WHERE condition is the <strong>first key variable</strong> 
+            in a <strong>composite</strong> index.</li>
+        </ul>
+        <p>SAS identifies all indexes that are defined on any variable in the 
+          WHERE expression. However, no matter how many indexes are available, 
+          <strong>SAS can use only one index to process a WHERE expression</strong>. 
+          So, if multiple indexes are available, SAS must choose between them. 
+        </p>
+        <p>When SAS looks for available indexes, there are three possible outcomes: 
+        </p>
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Possible outcomes of looking for available indexes">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th align="left"><font size="-1">If ...</font></th>
+            <th align="left"><font size="-1">Then ...</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td><p> there is<strong> no index </strong>defined on any variables 
+                in the WHERE expression</p></td>
+            <td><p>SAS <strong>does not continue</strong> with the decision process. 
+                SAS must use sequential access to process the WHERE expression. 
+              </p></td>
+          </tr>
+          <tr valign="top"> 
+            <td><p>there is <strong>one available index</strong> that is defined 
+                on one or more variables in the WHERE expression</p></td>
+            <td><p>SAS <strong>continues</strong> with the decision process and 
+                determines whether using the available index is more efficient 
+                than using sequential access.</p></td>
+          </tr>
+          <tr valign="top"> 
+            <td>there are <strong>multiple available indexes</strong>, each of 
+              which is defined on one or more of the variables in the WHERE expression</td>
+            <td><p>SAS <strong>continues</strong> with the decision process. SAS 
+                must choose between the available indexes in the next few steps. 
+                SAS tries to select the index that satisfies the most conditions 
+                and that selects the smallest subset of observations.</p></td>
+          </tr>
+        </table>
+        <p><br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If a program specifies both a WHERE expression and 
+              a BY statement, SAS looks for one index that satisfies conditions 
+              for both. If such an index is not found, the BY statement takes 
+              precedence so that SAS can ensure that the data is returned in sorted 
+              order. With a BY statement, SAS cannot use an index to optimize 
+              a WHERE expression if the optimization invalidates the BY order.</td>
+          </tr>
+        </table>
+        
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,204 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Defining 
+      Variable Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Using Across Variables</strong></p>
+      <p>So far, we've looked at display, analysis, order, and group variables. 
+        You can also define variables as <strong>across</strong> variables, which 
+        are functionally similar to group variables. However, PROC REPORT displays 
+        the groups that it creates for an across variable <strong>horizontally</strong> 
+        rather than vertically. </p>
+      <p>Let's look at an example of across variables to clarify this usage.</p>
+      <p><br>
+        <strong>Example</strong></p>
+      <p>The following program uses <strong>group</strong> variables to produce 
+        the output shown. The table shows unique combinations of values of the 
+        group variables, and sums of each analysis variable for each combination.</p>
+    </td>
+  </tr>
+</table>
+<center>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">proc report data=flights.europe nowd headline headskip;
+        where dest in ('LON','PAR'); 
+        column flight dest mail freight revenue;
+        define revenue / format=dollar15.2;
+        define flight / <strong>group</strong> 'Flight/Number' width=6 center;
+        define dest / <strong>group</strong> width=11 spacing=5 
+                      'Flight/Destination' center;
+     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> </font> <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  </font> <br>
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC REPORT output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Number</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Destination</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Mail</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Freight</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Revenue</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">219</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        2700</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        2513</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        $1,111,647.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">271</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PAR</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        5050</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        4421</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        $1,969,201.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        4438</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        4284</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        $2,077,907.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>Now let's suppose that you change the group variables to <strong>across</strong> 
+          variables, as in this program. </p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">proc report data=flights.europe nowd headline headskip;
+        where dest in ('LON','PAR'); 
+        column flight dest mail freight revenue;
+        define revenue / format=dollar15.2;
+        define flight / <strong>across</strong> 'Flight/Number' width=6 center;
+        define dest / <strong>across</strong> width=11 spacing=5 
+                      'Flight/Destination' center;
+     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> </font> <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+  </font> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>In this case, for each across variable, the table cells contain a frequency 
+          count for each unique value. For each analysis variable, the table cells 
+          represent the sum of all the variable's values.</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <font face="Arial, Helvetica, Helv" size="2" color="#002288"><br>
+  </font> 
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC REPORT output">
+    <thead> 
+    <tr> 
+      <td colspan=3 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Number</b></font></td>
+      <td colspan=2 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Destination</b></font></td>
+      <td colspan=3 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>&nbsp;</b></font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>219</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>271</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>821</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>LON</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>PAR</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Mail</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Freight</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Revenue</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        7</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        13</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        13</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        20</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        13</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        12188</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        11218</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $5,158,755.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

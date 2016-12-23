@@ -1,0 +1,109 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit the program and examine the output to see how the results look.<br><br> ';
+solutionText+='<li>Modify the program as follows:';
+solutionText+='<pre><font color="#003399">%let table1=schedule;<br>';
+solutionText+='%let table2=register;<br>';
+solutionText+='%let joinvar=course_number;<br>';
+solutionText+='%let freqvar=location;<br>';
+solutionText+='title;<br>';
+solutionText+='proc sql;<br>';
+solutionText+='   select &freqvar,n(&freqvar) label=\'Count\'<br>'; 
+solutionText+='     from sasuser.&table1,sasuser.&table2<br>';
+solutionText+='     where &table1..&joinvar=&table2..&joinvar<br>';
+solutionText+='   group by &freqvar;<br>';
+solutionText+='quit;</font></pre>';
+solutionText+='Submit the program and examine the output. It is the same as the output from step 1.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Combine macro 
+  variable references with text and use delimiters with macro variable names, using the <a href="JavaScript: openOther('../linklib/schedule.htm')">Sasuser.Schedule</a>
+ and <a href="JavaScript: openOther2('../linklib/courses.htm')">Sasuser.Courses</a> data sets.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy this program and paste it into the code editing window: 
+            <PRE><font color="#003399">title;
+proc sql;
+   select location,n(location) label='Count'
+      from sasuser.schedule,sasuser.register
+      where schedule.course_number=
+            register.course_number
+      group by location;
+quit;
+</font></PRE>
+            Submit the program and examine the output. The SELECT statement creates a listing from two 
+            SAS data sets (tables) that are merged (joined) by a common variable, 
+            <code>Course_Number</code>. The GROUP BY clause reduces the listing 
+            to distinct values of <code>Location</code>. The <code>N</code> function 
+            counts the number of observations that are within distinct values 
+            of the GROUP BY variable. </LI>
+<br>
+          <br>
+        <li>Modify the program so that it creates and references these macro variables:
+<ul>
+              <li><code>table1</code> (the second-level name of one input data 
+                set) 
+              <li><code>table2</code> (the second-level name of the other input 
+                data set) 
+              <li><code>joinvar</code> (the name of the variable that is in both 
+                input data sets) 
+              <li><code>freqvar</code> (the name of the GROUP BY variable). 
+            </ul><BR>
+            Submit the program and compare the listing with the listing that was 
+            created earlier. </LI>
+<br><br>
+
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

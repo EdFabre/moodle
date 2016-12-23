@@ -1,0 +1,241 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>INSERT Statement</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->INSERT 
+      Statement<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> The INSERT statement adds rows to a new or existing table or view.</td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2>Inserting Rows by Using the SET Clause</h2>
+      <p>The <strong>SET clause</strong> in the <strong>INSERT statement</strong> 
+        enables you to insert rows and specify new data to be added to a table. 
+        The SET clause specifies column names and values in pairs. PROC SQL reads 
+        each column name-value pair and assigns the value to the specified column. 
+        A separate SET clause is used for each row to be added to the table. </p></td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, INSERT statement containing the SET clause">
+  <tr> 
+    <td align="left"><p><strong>General form, INSERT statement containing the 
+        SET clause:</strong> </p>
+      <blockquote> 
+        <p><font color="#003399"><strong>INSERT INTO</strong> <em>table-name</em> 
+          | <em>proc-sql-view</em> </font><font color="#003399"><em>&lt;(target-column-1&lt;, 
+          ... target-column-n</em>)&gt;</font><br>
+          <font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SET</strong> 
+          <em>column-1</em>=<em>value-1&lt;, ... column-n</em>=<em>value-n</em>&gt;<strong><br>
+          </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>...</strong> </font><font color="#003399"><strong>SET</strong> 
+          <em>column-1</em>=<em>value-1&lt;, ... column-n</em>=<em>value-n</em>&gt;&gt;<strong>;</strong></font> 
+        </p>
+        <p> where </p>
+        <ul>
+          <li><font color="#003399"><em>table-name</em></font> specifies the name 
+            of the table to which rows will be inserted.</li>
+          <li><font color="#003399"><em>proc-sql-view</em></font> specifies a 
+            PROC SQL view into which you are inserting rows. proc-sql-view can 
+            be a one-level name, a two-level libref.view name, or a physical pathname 
+            that is enclosed in single quotation marks.</li>
+          <li><em><font color="#003399">target-column</font></em> specifies the 
+            name of a column into which data will be inserted.</li>
+          <li>each<font color="#003399"> <font color="#003399"><strong>SET</strong></font> 
+            </font>clause specifies one or more values to be inserted in one or 
+            more specified columns in a row. Multiple SET clauses are not separated 
+            by commas.</li>
+          <li><em><font color="#003399">column</font></em> specifies the name 
+            of a column into which data will be inserted.</li>
+          <li><em><font color="#003399">value</font></em> specifies a data value 
+            to be inserted into the specified column. Character values must be 
+            enclosed in quotation marks. </li>
+          <li>multiple <em><font color="#003399">column</font></em>=<em><font color="#003399">value</font></em> 
+            pairs in a <font color="#003399"><strong>SET</strong></font> clause 
+            are separated by commas. </li>
+        </ul>
+      </blockquote>
+      <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top"><p>It is optional to include a list of target column 
+              names after the table name in the INSERT TABLE statement that includes 
+              a SET clause. The list can include the names of all or only a subset 
+              of columns in the table. If an optional list of target column names 
+              is specified, then values can be specified <strong>only</strong> 
+              for columns that are included in the list. Target columns may be 
+              listed in any order, regardless of their position in the table. 
+              Any columns that are in the table but <strong>not</strong> listed 
+              are given missing values in the inserted rows.</p></td>
+        </tr>
+      </table>
+      <br> <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top"><p>Although it is recommended that the SET clause list 
+              column-value pairs in order (as they appear in the table or the 
+              optional column list), it is <strong>not</strong> required.</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<br>
+<br>
+<br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2>Inserting Rows by Using the VALUES Clause</h2>
+      <p> The INSERT statement uses the <strong>VALUES clause</strong> to insert 
+        a <strong>list of values into a table</strong>. Unlike the SET clause, 
+        the VALUES clause does <strong>not</strong> specify a column name for 
+        each value, so the values must be listed in the correct order. Values 
+        must be specified in the order in which the columns appear in the table 
+        or, if an optional column list is specified, in the order that the columns 
+        appear in that list.</p></td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, INSERT statement containing the VALUES clause">
+  <tr> 
+    <td align="left"><p><strong>General form, INSERT statement containing the 
+        VALUES clause:</strong> </p>
+      <blockquote> 
+        <p><font color="#003399"><strong>INSERT INTO</strong> <em>table-name</em> 
+          </font><font color="#003399">| <em>proc-sql-view</em> </font><font color="#003399"><em></em></font><font color="#003399"><em>&lt;(target-column-1&lt;, 
+          ... target-column-n</em>)&gt;</font><br>
+          <font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>VALUES</strong> 
+          <strong>(</strong><em>value-1&lt;, ... value-n</em>&gt;<strong>)<br>
+          </strong></font><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>...</strong> 
+          </font><font color="#003399"><strong>VALUES</strong> <strong>(</strong><em>value-1&lt;, 
+          ... value-n</em>&gt;<strong>)</strong>&gt;<strong>;</strong></font> 
+        </p>
+        <p> where </p>
+        <ul>
+          <li><font color="#003399"><em>table-name</em></font> specifies the name 
+            of the table to which rows will be inserted.</li>
+          <li><font color="#003399"><em>proc-sql-view</em></font> specifies a 
+            PROC SQL view into which you are inserting rows. proc-sql-view can 
+            be a one-level name, a two-level libref.view name, or a physical pathname 
+            that is enclosed in single quotation marks.</li>
+          <li><em><font color="#003399">target-column</font></em> specifies the 
+            name of a column into which data will be inserted.</li>
+          <li>each <font color="#003399"><strong>VALUES</strong></font> clause 
+            lists the values to be inserted in some or all columns in 1 row. Multiple 
+            VALUES clauses are not separated by commas.</li>
+          <li><em><font color="#003399">value</font></em> specifies a data value 
+            to be added. Character values must be enclosed in quotation marks. 
+            Multiple values must be separated by commas. Values must be listed 
+            in positional order, either as they appear in the table or, if the 
+            optional column list is specified, as they appear in the column list.</li>
+        </ul>
+      </blockquote>
+      <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top"><p>It is optional to include a list of target column 
+              names after the table name in the INSERT TABLE statement that includes 
+              a VALUES clause. The list can include the names of all or only a 
+              subset of columns in the table. If an optional list of target column 
+              names is specified, then only those columns are given values by 
+              the statement. Target columns can be listed in any order, regardless 
+              of their position in the table. Any columns that are in the table 
+              but <strong>not</strong> listed are given missing values in the 
+              inserted rows.</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2>Inserting Rows from a Query Result</h2>
+      <p>To insert rows from a query result, use an <strong>INSERT statement</strong> 
+        that includes the <strong>clauses that are used in a query</strong>: SELECT, 
+        FROM, and any optional clauses, such as ORDER BY. Values from the query 
+        result are inserted into columns in the order in which the columns appear 
+        in the table or, if an optional column list is specified, in the order 
+        that the columns appear in that list.<br>
+      </p></td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, INSERT statement containing query clauses">
+  <tr> 
+    <td align="left"><p><strong>General form, INSERT statement containing query 
+        clauses:</strong> </p>
+      <blockquote><font color="#003399"><strong>INSERT INTO</strong> <em>table-name</em> 
+        </font><font color="#003399">| <em>proc-sql-view</em> </font><font color="#003399"><em></em></font><font color="#003399"><em>&lt;(target-column-1&lt;, 
+        ... target-column-n</em>)&gt;</font><br>
+        <font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#003399"><strong>SELECT</strong> 
+        <em>column-1&lt;, ... column-n</em>&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FROM</strong> 
+        <em>table-1 | view-1&lt;, ... table-n | view-n&gt;</em><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<em>optional 
+        query clauses&gt;</em><strong>;</strong></font>
+<p> where </p>
+        <ul>
+          <li><font color="#003399"><em>table-name</em></font> specifies the name 
+            of the table to which rows will be inserted.</li>
+          <li><font color="#003399"><em>proc-sql-view</em></font> specifies a 
+            PROC SQL view into which you are inserting rows. proc-sql-view can 
+            be a one-level name, a two-level libref.view name, or a physical pathname 
+            that is enclosed in single quotation marks.</li>
+          <li><em><font color="#003399">target-column</font></em> specifies the 
+            name of a column into which data will be inserted.</li>
+          <li><strong><font color="#003399">SELECT</font></strong> specifies the 
+            column(s) that will be inserted.</li>
+          <li><strong><font color="#003399">FROM</font></strong> specifies the 
+            table(s) or view(s) to be queried.</li>
+          <li><em><font color="#003399">optional query clauses</font></em> are 
+            used to refine the query further. These include the WHERE, GROUP BY, 
+            HAVING, and ORDER BY clauses.</li>
+        </ul>
+      </blockquote>
+      <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top"><p>It is optional to include a list of target column 
+              names after the table name in the INSERT TABLE statement that includes 
+              query clauses. The list can include the names of all or only a subset 
+              of columns in the table. If an optional list of target column names 
+              is specified, then only those columns are given values by the statement. 
+              Target columns may be listed in any order, regardless of their position 
+              in the table. Any columns that are in the table but <strong>not</strong> 
+              listed are given missing values in the inserted rows.</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

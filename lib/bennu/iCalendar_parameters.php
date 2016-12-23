@@ -104,7 +104,9 @@ class iCalendar_parameter {
                         'VIDEO'       => array('MPEG', 'QUICKTIME', 'VND.VIVO', 'VND.MOTOROLA.VIDEO', 'VND.MOTOROLA.VIDEOP')
                 );
                 $value = strtoupper($value);
-                // Mimetype is enumerated above and anything else results in false.
+                if(rfc2445_is_xname($value)) {
+                    return true;
+                }
                 @list($type, $subtype) = explode('/', $value);
                 if(empty($type) || empty($subtype)) {
                     return false;
@@ -176,7 +178,7 @@ class iCalendar_parameter {
                 if(empty($value)) {
                     return false;
                 }
-                return (strcspn($value, ';:,') == strlen($value));
+                return (strcspn($value, '";:,') == strlen($value));
             break;
 
             case 'VALUE':
@@ -225,7 +227,7 @@ class iCalendar_parameter {
 
             // Parameters we shouldn't be messing with
             case 'TZID':
-                return str_replace('"', '', $value);
+                return $value;
             break;
         }
     }

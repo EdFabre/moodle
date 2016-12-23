@@ -1,0 +1,126 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Basic 
+      Concepts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Calling a Macro</h2>
+        <P> After the macro is successfully compiled, you can use it in your SAS 
+          programs for the duration of your SAS session without resubmitting the 
+          macro definition. Just as you must reference macro variables in order 
+          to access them in your code, you must call a macro program in order 
+          to execute it within your SAS program. 
+        <P>
+A <strong>macro call</strong> 
+<UL>
+          <LI>is specified by placing a percent sign (%) before the name of the 
+            macro</LI>
+          <LI>can be made anywhere in a program <strong>except </strong>within 
+            the data lines of a DATALINES statement (similar to a macro variable 
+            reference)</LI>
+        <LI>requires <strong>no semicolon</strong> because it is <strong>not</strong> 
+          a SAS statement.</LI>
+</UL>
+      <p>To execute the macro <strong>Prtlast</strong> you would call the macro as follows:</p>
+
+  <pre><font color="#003399">    %prtlast</font></pre>
+
+<table border="0" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+            <td valign="top" width="24"><img src="../navimages/alert.gif"  alt="Alert" width="37" height="32"></td>
+      <td valign="top"> A semicolon after a macro call might insert an 
+  inappropriate semicolon into the resulting program, leading to errors during 
+  compilation or execution. </td>
+    </tr>
+  </table>
+
+        <P>Macros come in three types, depending on how they are called: name 
+          style, command style, and statement style. Of the three, name 
+          style is the most efficient. This is because calls to name 
+          style macros always begin with a percent sign (%) , 
+          which immediately tells the word scanner to pass the token to the macro 
+          processor. With the other two types, the word scanner does not know 
+          immediately whether the token should be sent to the macro processor 
+          or not. Therefore, time is wasted while the word scanner determines 
+          this. All of the macros in this lesson are name style macros. 
+        <P><BR>
+          <h2>Example</h2> 
+        <P> Suppose a SAS program consists of several program steps that create 
+        SAS data sets. Suppose that after each of these program steps you want 
+        to print out the data set that has been created. Remember that the macro 
+        <strong>Prtlast </strong>prints the most recently created data set. If 
+        <strong>Prtlast</strong> has been compiled, you can call it after each 
+        step in order to print each data set. 
+      <P>
+<font color="#003399"><PRE>    proc sort data=sasuser.courses out=courses;
+       by course_code;
+    run;
+
+    <strong>%prtlast</strong>
+    
+    proc sort data=sasuser.schedule out=schedule;
+       by begin_date;
+    run;
+
+    <strong>%prtlast</strong>
+    
+    proc sort data=sasuser.students out=students;
+       by student_name;
+    run;
+
+    <strong>%prtlast</strong>
+</pre></font>
+<table border="0" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif"  alt="More information" width="20" height="20"></td>
+            <td valign="top"> The example above is simply meant to show you how 
+              you can incorporate a macro into your SAS program. Although this 
+              is a valid use of the <strong>Prtlast</strong> macro, this might 
+              not be the best way to code this example. Since the <strong>Prtlast</strong> 
+              macro uses no conditional logic or macro programming statements 
+              and it makes no decisions, this example does not illustrate the 
+              full power of a macro program. In the rest of this lesson, you will 
+              see examples of macro programs that are more useful than this one.</td>
+    </tr>
+  </table>
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

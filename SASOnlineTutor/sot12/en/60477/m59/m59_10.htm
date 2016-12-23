@@ -1,0 +1,91 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Observations Using a Transaction Data Set<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Handling Duplicate Values</h2>
+        <p> When you use the MODIFY and BY statements to update a data set, WHERE 
+          processing starts at the top of the master data set and finds the first 
+          match and updates it. Let's take a look at what happens if there are 
+          duplicate values in the master or transaction data sets. Suppose you 
+          have the following code to make updates to the master data set <strong>M</strong> 
+          using the transaction data set <strong>T</strong>:</p>
+        <pre><font color="#003399">     data m;
+        modify m t;
+        by a;
+     run;</font></pre>
+        <p>If duplicate values of the BY variable exist in the <strong>master 
+          data set</strong>, only the first observation in the group of duplicate 
+          values is updated because WHERE processing begins at the top of the 
+          data set and updates the first match.</p></td>
+    </tr>
+  </table>
+  <p> <img src="images/m59_10a.gif" alt="Graphic showing the update" width="277" height="158"> 
+  
+
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>If duplicate values of the BY variable exist in the <strong>transaction 
+          data set</strong>, the duplicate values overwrite each other so that 
+          the last value in the group of duplicate transaction values is the result 
+          in the master data set. </p></td>
+    </tr>
+  </table>
+  <p> <img src="images/m59_10b.gif" alt="Graphic showing the update" width="277" height="158"><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>You can avoid overwriting duplicate values by writing an accumulation 
+          statement so that all the observations in the transaction data set are 
+          added to the master observation.</p></td>
+    </tr>
+  </table>
+  <p></p><table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">If duplicate values exist in both the <strong>master 
+              and transaction data sets</strong>, you can use PROC SQL to apply 
+              the duplicate values in the transaction data set to the duplicate 
+              values in the master data set in a one-to-one correspondence. </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p>&nbsp; <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

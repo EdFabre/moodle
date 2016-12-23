@@ -1,0 +1,581 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Setting 
+      System Options<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Using System Options to Specify Observations</strong></p>
+        <p>You've seen how to use SAS system options to change the appearance 
+          of output and interpret two-digit year values. You can also use the 
+          <strong>FIRSTOBS=</strong> and <strong>OBS=</strong> system options 
+          to specify the observations to process from SAS data sets. </p>
+        <p>You can specify either or both of these options as needed. That is, 
+          you can use </p>
+        <ul>
+          <li>OBS= to process the beginning of a data set</li>
+          <li>FIRSTOBS= to process the end of a data set</li>
+          <li>FIRSTOBS= and OBS= together to process the middle of a data set.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <br>
+  <div align="center"> 
+    <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, OPTIONS statement">
+      <tr> 
+        <td align="left"><strong>General form, FIRSTOBS= and OBS= options in an 
+          OPTIONS statement:</strong> <blockquote> <nobr><font color="#003399"><strong>FIRSTOBS=</strong><em>n</em></font></nobr> 
+            <p><nobr><font color="#003399"><strong>OBS=</strong><em>n</em></font></nobr></p>
+          </blockquote>
+          <p> where <font color="#003399"><em>n</em></font> is a positive integer. 
+            For FIRSTOBS=, <font color="#003399"><em>n</em></font> specifies the 
+            number of the <strong>first</strong> observation to process. For OBS=, 
+            <font color="#003399"><em>n</em></font> specifies the number of the 
+            <strong>last</strong> observation to process. By default, FIRSTOBS=1. 
+            The default value for OBS= is MAX, which is the largest signed, four-byte 
+            integer that is representable in your operating environment.<br>
+            <br>
+          <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+              <td valign="top">Each of these options applies to every input data 
+                set that is used in a program or a SAS process.</td>
+            </tr>
+          </table>
+          
+        </td>
+      </tr>
+    </table>
+    <div align="center"> <br>
+      <br>
+      <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td align="left"> <p><strong>Examples: FIRSTOBS= and OBS= Options</strong></p>
+            <p>The data set <strong>Sasuser.Heart</strong> contains 20 observations. 
+              If you specify FIRSTOBS=10, SAS reads the 10th observation of the 
+              data set first and reads through the last observation (for a total 
+              of 11 observations).</p>
+            <pre><font color="#003399"><strong>     </strong>options <strong>firstobs=10</strong>;<br>     proc print data=sasuser.heart;<br>     run;</font>
+</pre> 
+            <p>The PROC PRINT step produces the following output:</p>
+            </td>
+        </tr>
+      </table>
+      <br>
+    </div>
+    <br>
+    <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+      <colgroup>
+      <col>
+      </colgroup>
+      <colgroup>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      </colgroup>
+      <thead>
+        <tr bgcolor="#CCCCCC"> 
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Obs</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Patient</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Sex</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Survive</font></th>
+          <th class="l Header" scope="col"><font color="#0033AA" size="3">Shock</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Arterial</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Heart</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Cardiac</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Urinary</font></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">10</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">509</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">OTHER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 79</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 84</td>
+          <td bgcolor="#EFEFEF" class="r Data">256</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 90</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">11</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">742</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">HYPOVOL</td>
+          <td bgcolor="#EFEFEF" class="r Data">100</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 54</td>
+          <td bgcolor="#EFEFEF" class="r Data">135</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 0</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">12</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">609</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">NONSHOCK</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 93</td>
+          <td bgcolor="#EFEFEF" class="r Data">101</td>
+          <td bgcolor="#EFEFEF" class="r Data">260</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 90</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">13</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">318</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">OTHER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 72</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 81</td>
+          <td bgcolor="#EFEFEF" class="r Data">410</td>
+          <td bgcolor="#EFEFEF" class="r Data">405</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">14</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">412</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">BACTER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 61</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 87</td>
+          <td bgcolor="#EFEFEF" class="r Data">296</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 44</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">15</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">601</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">BACTER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 84</td>
+          <td bgcolor="#EFEFEF" class="r Data">101</td>
+          <td bgcolor="#EFEFEF" class="r Data">260</td>
+          <td bgcolor="#EFEFEF" class="r Data">377</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">16</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">402</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">CARDIO</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 88</td>
+          <td bgcolor="#EFEFEF" class="r Data">137</td>
+          <td bgcolor="#EFEFEF" class="r Data">312</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 75</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">17</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">98</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">CARDIO</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 84</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 87</td>
+          <td bgcolor="#EFEFEF" class="r Data">260</td>
+          <td bgcolor="#EFEFEF" class="r Data">377</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">18</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">4</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">HYPOVOL</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 81</td>
+          <td bgcolor="#EFEFEF" class="r Data">149</td>
+          <td bgcolor="#EFEFEF" class="r Data">406</td>
+          <td bgcolor="#EFEFEF" class="r Data">200</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">19</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">50</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">HYPOVOL</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 72</td>
+          <td bgcolor="#EFEFEF" class="r Data">111</td>
+          <td bgcolor="#EFEFEF" class="r Data">332</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 12</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">20</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">2</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">OTHER</td>
+          <td bgcolor="#EFEFEF" class="r Data">101</td>
+          <td bgcolor="#EFEFEF" class="r Data">114</td>
+          <td bgcolor="#EFEFEF" class="r Data">424</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 97</td>
+        </tr>
+      </tbody>
+    </table>    
+    <br>
+    <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p> If you specify OBS=10 instead, SAS reads through 
+            the 10th observation, in this case for a total of 10 observations. 
+            (Notice that FIRSTOBS= has been reset to the default value.)</p>
+          <pre><font color="#003399"><strong>     </strong>options firstobs=1 <strong>obs=10</strong>;<br>     proc print data=sasuser.heart;<br>     run;</font>
+</pre> 
+          <p>Now the PROC PRINT step produces this output:</p></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+      <colgroup>
+      <col>
+      </colgroup>
+      <colgroup>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      </colgroup>
+      <thead>
+        <tr bgcolor="#CCCCCC"> 
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Obs</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Patient</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Sex</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Survive</font></th>
+          <th class="l Header" scope="col"><font color="#0033AA" size="3">Shock</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Arterial</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Heart</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Cardiac</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Urinary</font></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            1</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">203</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">NONSHOCK</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 88</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 95</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 66</td>
+          <td bgcolor="#EFEFEF" class="r Data">110</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            2</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">54</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">HYPOVOL</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 83</td>
+          <td bgcolor="#EFEFEF" class="r Data">183</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 95</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 0</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            3</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">664</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">CARDIO</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 72</td>
+          <td bgcolor="#EFEFEF" class="r Data">111</td>
+          <td bgcolor="#EFEFEF" class="r Data">332</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 12</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            4</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">210</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">BACTER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 74</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 97</td>
+          <td bgcolor="#EFEFEF" class="r Data">369</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 0</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            5</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">101</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">NEURO</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 80</td>
+          <td bgcolor="#EFEFEF" class="r Data">130</td>
+          <td bgcolor="#EFEFEF" class="r Data">291</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 0</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            6</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">102</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">OTHER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 87</td>
+          <td bgcolor="#EFEFEF" class="r Data">107</td>
+          <td bgcolor="#EFEFEF" class="r Data">471</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 65</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            7</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">529</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">CARDIO</td>
+          <td bgcolor="#EFEFEF" class="r Data">103</td>
+          <td bgcolor="#EFEFEF" class="r Data">106</td>
+          <td bgcolor="#EFEFEF" class="r Data">217</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 15</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            8</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">524</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">CARDIO</td>
+          <td bgcolor="#EFEFEF" class="r Data">145</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 99</td>
+          <td bgcolor="#EFEFEF" class="r Data">156</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 10</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3"> 
+            9</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">426</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">OTHER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 68</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 77</td>
+          <td bgcolor="#EFEFEF" class="r Data">410</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 75</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">10</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">509</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">OTHER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 79</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 84</td>
+          <td bgcolor="#EFEFEF" class="r Data">256</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 90</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p> Combining FIRSTOBS= and OBS= processes observations 
+            in the middle of the data set. For example, the following program 
+            processes only observations 10 through 15, for a total of 6 observations:</p>
+          <pre><font color="#003399"><strong>     </strong>options <strong>firstobs=10 obs=15</strong>;<br>     proc print data=sasuser.heart;<br>     run;</font>
+</pre> 
+          <p>Here is the output:</p></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+      <colgroup>
+      <col>
+      </colgroup>
+      <colgroup>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      <col>
+      </colgroup>
+      <thead>
+        <tr bgcolor="#CCCCCC"> 
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Obs</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Patient</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Sex</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Survive</font></th>
+          <th class="l Header" scope="col"><font color="#0033AA" size="3">Shock</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Arterial</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Heart</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Cardiac</font></th>
+          <th class=" Header" scope="col"><font color="#0033AA" size="3">Urinary</font></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">10</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">509</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">OTHER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 79</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 84</td>
+          <td bgcolor="#EFEFEF" class="r Data">256</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 90</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">11</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">742</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">HYPOVOL</td>
+          <td bgcolor="#EFEFEF" class="r Data">100</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 54</td>
+          <td bgcolor="#EFEFEF" class="r Data">135</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 0</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">12</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">609</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">NONSHOCK</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 93</td>
+          <td bgcolor="#EFEFEF" class="r Data">101</td>
+          <td bgcolor="#EFEFEF" class="r Data">260</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 90</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">13</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">318</td>
+          <td bgcolor="#EFEFEF" class="r Data">2</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">OTHER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 72</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 81</td>
+          <td bgcolor="#EFEFEF" class="r Data">410</td>
+          <td bgcolor="#EFEFEF" class="r Data">405</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">14</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">412</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">SURV</td>
+          <td bgcolor="#EFEFEF" class=" Data">BACTER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 61</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 87</td>
+          <td bgcolor="#EFEFEF" class="r Data">296</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 44</td>
+        </tr>
+        <tr> 
+          <th bgcolor="#CCCCCC" class="r RowHeader" scope="row"><font color="#0033AA" size="3">15</font></th>
+          <td bgcolor="#EFEFEF" class=" Data">601</td>
+          <td bgcolor="#EFEFEF" class="r Data">1</td>
+          <td bgcolor="#EFEFEF" class=" Data">DIED</td>
+          <td bgcolor="#EFEFEF" class=" Data">BACTER</td>
+          <td bgcolor="#EFEFEF" class="r Data"> 84</td>
+          <td bgcolor="#EFEFEF" class="r Data">101</td>
+          <td bgcolor="#EFEFEF" class="r Data">260</td>
+          <td bgcolor="#EFEFEF" class="r Data">377</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p> To reset the number of the last observation to process, 
+            you can specify <strong>OBS=MAX</strong> in the OPTIONS statement.</p>
+          <pre><font color="#003399"><strong>     </strong>options <strong>obs=max</strong>;</font></pre> 
+          <p>This instructs any subsequent SAS programs in the SAS session to 
+            process through the last observation in the data set being read.</p></td>
+      </tr>
+    </table>
+    <p><br>
+    <div align="center">
+      <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tr valign="top"> 
+          <td> <p><strong>Using FIRSTOBS= and OBS= for Specific Data Sets</strong></p>
+            <p align="left">As you saw above, using the FIRSTOBS= or OBS= system 
+              options determines the first or last observation, respectively, 
+              that is read for all steps for the duration of your current SAS 
+              session or until you change the setting. However, you may want to 
+            <ul>
+              <li>override these options for a given data set</li>
+              <li>apply these options to a specific data set only.</li>
+            </ul>
+            <p align="left"> To affect any single file, you can use FIRSTOBS= 
+              or OBS= as <strong>data set options</strong> instead of as system 
+              options. You specify the data set option in parentheses immediately 
+              following the input data set name. <br>
+            <br>
+            <table border="0" cellpadding="2" cellspacing="0" align="center" width="100%">
+              <tr> 
+                <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="More Information"></td>
+                <td valign="top">A FIRSTOBS= or OBS= specification from a data 
+                  set option overrides the corresponding FIRSTOBS= or OBS= system 
+                  option. </td>
+              </tr>
+            </table>
+            <p align="left"><br>
+              <strong>Example: FIRSTOBS= and OBS= as Data Set Options</strong>
+            <p align="left">As shown in the last example above, this program processes 
+              only observations 10 through 15, for a total of 6 observations: 
+            <pre><font color="#003399"><strong>     </strong>options firstobs=10 obs=15;<br>     proc print data=sasuser.heart;<br>     run;</font>
+</pre>
+            <p align="left">You can create the same output by specifying FIRSTOBS= 
+              and OBS= as data set options, as follows. The data set options override 
+              the system options for this instance only. 
+<pre><font color="#003399"><strong>     </strong>options firstobs=10 obs=15;<br>     proc print data=sasuser.heart<strong>(firstobs=10 obs=15)</strong>;<br>     run;</font>
+</pre>
+            <p>To specify FIRSTOBS= or OBS= for this program only, you could omit 
+              the OPTIONS statement altogether and simply use the data set options.</p>
+            </td>
+        </tr>
+      </table>
+      <br>
+      <br>
+    </div>
+  </div>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

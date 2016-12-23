@@ -1,0 +1,154 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      One Observation per Header Record<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>In the previous example, you learned how to create one observation per 
+        detail record. But suppose you only want to know how many people reside 
+        at each address. You can create a data set that reads each detail record, 
+        counts the number of people, and stores this value in a summary variable. 
+      </p>
+      <p> In the example below, this summary variable, <code>Total</code>, is 
+        combined with the header record to form an observation in the data set. 
+        As you can see, creating one observation per header record condenses a 
+        large amount of information into a concise data set. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td align="center" valign="top">Raw Data File <font  face="Courier New, Courier" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <thead>
+          <tr> 
+            <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">H&nbsp;321&nbsp;S.&nbsp;MAIN&nbsp;ST&nbsp;</span></font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;MARY&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;F</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;WILLIAM&nbsp;M&nbsp;23&nbsp;M&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;SUSAN&nbsp;K&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;F</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">H&nbsp;324&nbsp;S.&nbsp;MAIN&nbsp;ST&nbsp;</span></font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;THOMAS&nbsp;H&nbsp;&nbsp;79&nbsp;M</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;WALTER&nbsp;S&nbsp;&nbsp;46&nbsp;M</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;ALICE&nbsp;A&nbsp;&nbsp;&nbsp;42&nbsp;F&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;MARYANN&nbsp;A&nbsp;20&nbsp;F&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;JOHN&nbsp;S&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;M&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">H&nbsp;325A&nbsp;S.&nbsp;MAIN&nbsp;ST</span></font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;JAMES&nbsp;L&nbsp;34&nbsp;M&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;LIZA&nbsp;A&nbsp;31&nbsp;F&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000"><span style="background-color: #CCCC99">H&nbsp;325B&nbsp;S.&nbsp;MAIN&nbsp;ST</span></font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;MARGO&nbsp;K&nbsp;27&nbsp;F&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;WILLIAM&nbsp;R&nbsp;27&nbsp;M&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">P&nbsp;ROBERT&nbsp;W&nbsp;1&nbsp;M&nbsp;</font></td>
+          </tr>
+        </table>
+        </font></td>
+      <td align="center" valign="top">SAS Data Set <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Address</b></font></td>
+            <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><span style="background-color: #CCCC99"><b>Total</b></span></font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">321 
+              S. MAIN ST</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><span style="background-color: #CCCC99">&nbsp;&nbsp;&nbsp;&nbsp;3</span></font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">324 
+              S. MAIN ST</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><span style="background-color: #CCCC99">&nbsp;&nbsp;&nbsp;&nbsp;5</span></font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">325A 
+              S. MAIN ST</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><span style="background-color: #CCCC99">&nbsp;&nbsp;&nbsp;&nbsp;2</span></font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">325B 
+              S. MAIN ST</font></td>
+            <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><span style="background-color: #CCCC99">&nbsp;&nbsp;&nbsp;&nbsp;3</span></font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

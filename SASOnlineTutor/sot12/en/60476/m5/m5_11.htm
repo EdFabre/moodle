@@ -1,0 +1,145 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Analysis Variables</strong> </p>
+      <p> Unlike class variables, analysis variables 
+      <ul>
+        <li> must be <strong>numeric</strong> 
+        <li> are used for<strong> statistical analysis </strong> 
+        <li> often contain<strong> continuous values. </strong> 
+      </ul>
+      <p> It makes sense to sum or average analysis variables. For example, you 
+        can sum values of <code>Fee</code> to find the total of admission fees 
+        that have been paid to the wellness clinic. Or you can average the values 
+        of <code>Height</code> to find the mean height for all patients that have 
+        been admitted. 
+      <p> In the table below, <code>Total</code> (total balance) and <code>BalanceDue</code> 
+        (balance due) are analysis variables. Notice that their values are used 
+        to compute the numbers that appear in the cells (boxes) of the table. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC TABULATE output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Total</b></font></td>
+      <td align=CENTER bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>BalanceDue</b></font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Sum</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033A9"><b>Mean</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">$13,079.32</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">$108.52</font></td>
+    </tr>
+    </tbody> <tfoot> </tfoot> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td align="left">As you might realize, some numeric variables are appropriate 
+        as either class variables or analysis variables. But you specify variables 
+        for each PROC TABULATE step separately. This means that the same variable 
+        cannot appear in both the CLASS statement and the VAR statement in the 
+        same step. 
+        <p> Depending on your table, you might need a CLASS statement, a VAR statement, 
+          or both.<strong></strong> 
+        <pre>    <font color="#003399"> proc tabulate data=stress;</font>
+<font color="#003399">        <strong>var resthr maxhr glucose;</strong></font>
+<font color="#003399">        table mean*(maxhr resthr);</font>
+<font color="#003399">     run;</font>
+</pre>
+        <pre><font color="#003399">     proc tabulate data=clinic.stress;</font>
+<font color="#003399">        <strong>class chol tolerance;</strong></font>
+<font color="#003399">        table chol tolerance all,n;</font>
+<font color="#003399">     run;</font>
+</pre>
+        <pre><font color="#003399">     proc tabulate data=clinic.stress;</font>
+<font color="#003399">        <strong>class tolerance;</strong></font>
+<font color="#003399">        <strong>var glucose;</strong></font>
+<font color="#003399">        table glucose*mean,tolerance;</font>
+<font color="#003399">     run;</font>
+</pre>
+        <p> <br>
+          <strong>Error Messages Related to Specifying Variables</strong> 
+        <p> The following error messages occur when you specify variables incorrectly. 
+          Examine the messages in case you encounter any of them during the upcoming 
+          practice. </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table bgcolor="#ffffff" border="1" cellpadding="2" cellspacing="0" width="70%" title="error messages and their meanings">
+    <tr bgcolor="#F7F7DE" valign="top"> 
+      <th width="50%"><font size="-1">Error Message</font></th>
+      <th width="50%"><font size="-1">Meaning</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><tt>VARIABLE appears in both CLASS and VAR lists.</tt></td>
+      <td>You specified the same variable in both the CLASS and VAR statements. 
+      </td>
+    </tr>
+    <tr valign="top"> 
+      <td><tt>Type of name (VARIABLE) unknown at line n.</tt></td>
+      <td>You used a variable in the TABLE statement without specifying that variable 
+        in either a CLASS or VAR statement.</td>
+    </tr>
+    <tr valign="top"> 
+      <td><tt>Variable VARIABLE in list does not match type prescribed for this 
+        list.</tt></td>
+      <td>You specified a character variable as an analysis variable.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

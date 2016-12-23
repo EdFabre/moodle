@@ -1,0 +1,108 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Observations Using a Transaction Data Set<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You have seen that you can use a MODIFY statement to update all 
+          observations in a data set, but there are times when you only want to 
+          update selected observations. You can modify a <strong>master</strong> 
+          SAS data set with values in a <strong>transaction</strong> data set 
+          by using the MODIFY statement with a BY statement to apply updates by 
+          matching observations.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, MODIFY statement with a BY statement">
+    <tr> 
+      <td align="left"><strong>General form, MODIFY statement with a BY statement:</strong> 
+        <blockquote> 
+          <p><font color="#003399"><nobr><strong>DATA </strong><em>SAS-data-set</em><strong>;</strong></nobr><br>
+            </font><font color="#003399"><nobr><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MODIFY 
+            </strong><em>SAS-data-set</em><em>&nbsp;transaction-data-set</em><strong>;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BY </strong><em>key-variable</em><strong>;<br>
+            RUN;</strong></nobr></font></p>
+        </blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>SAS-data-set </em></font> is the name 
+            of the SAS data set that you want to modify (also called the master 
+            data set) 
+          <li> <font color="#003399"><em>transaction-data-set</em></font> is the 
+            name of the SAS data set in which the updated values are stored 
+          <li> <font color="#003399"><em>key-variable </em></font> is the name 
+            of the variable whose values will be matched in the master and transaction 
+            data sets. 
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">In the MODIFY statement, you must list the master 
+              data set followed by the transaction data set.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The BY statement matches observations from the transaction data set 
+          with observations in the master data set. When the MODIFY statement 
+          reads an observation from the transaction data set, it uses dynamic 
+          WHERE processing (SAS internally generates a WHERE statement) to locate 
+          the matching observation in the master data set. The matching observation 
+          in the master data set can be replaced, deleted, or appended. By default, 
+          the observation is replaced. </p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Because the MODIFY statement uses WHERE processing 
+              to locate matching observations, neither data set requires sorting. 
+              However, having the master data set sorted or indexed and the transaction 
+              data set sorted reduces processing overhead, especially for large 
+              files.</td>
+          </tr>
+        </table>
+        
+        <p><br>
+        </p></td>
+    </tr>
+  </table>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

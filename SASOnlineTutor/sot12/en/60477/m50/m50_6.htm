@@ -1,0 +1,136 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Basic 
+      Concepts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Referencing Macro Variables</h2>
+        <p>In order to substitute the value of a macro variable in your program, 
+          you must <strong>reference</strong> the macro variable. A macro variable 
+          reference is created by preceding the macro variable name with an <strong>ampersand</strong> 
+          (<strong>&amp;</strong>). The reference causes the <strong>macro processor</strong> 
+          to search for the named variable in the symbol table and to return the 
+          value of the variable if the variable exists. If you need to reference 
+          a macro variable within quotation marks, such as in a title, you must 
+          use double quotation marks. The macro processor will not resolve macro 
+          variable references that appear within single quotation marks. </td>
+  </tr>
+</table><P>
+<table cellpadding="2" width="85%" align="center">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+          <td>You will learn more about the macro processor later in this lesson.</td>
+        </tr>
+      </table>
+<P>
+<div align="center">
+<table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr><td><code>CITY</code></td><td><em>Dallas</em></td></tr> 
+<tr><td><code>DATE</code></td><td><em>05JAN2000</em></td></tr>
+<tr><td><code>AMOUNT</code></td><td><em>975</em>
+</td></tr></table></div><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+      <h2>Example: Referencing a macro variable</h2>
+       To reference the macro variable <code>amount</code> from the global 
+          symbol table that is represented above, you place <strong><code>&amount</code></strong> 
+          in your program, as follows:
+<pre><font color="#003399">    data new;
+       set perm.mast;
+       where fee&gt;<strong>&amp;amount</strong>;
+    run;
+    proc print;
+    run;
+</font></pre>
+
+<center>
+Code After Substitution
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Code After Substitution">
+<tr bgcolor="#F7F7DE"><td><pre><font color="#003399">data new;
+   set perm.mast;
+   where fee&gt;<strong>975</strong>;
+run;
+proc print;
+run;</font></pre></td></tr>
+</table></center>
+
+<p><br><table cellpadding="2"  align="center">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+          
+    <td>You will see representations of code after substitution throughout this 
+      lesson. In a SAS session, you will not see this code. These representations 
+      are meant to show you what happens to your code behind the scenes, after 
+      macro processing. </td>
+        </tr>
+      </table>
+<P><br>
+          <h2>Example: Referencing a macro variable in a title</h2>
+        To reference the macro variable <code>city</code> in a title, you must 
+          use double quotation marks to enclose the title text in the TITLE statement, 
+          as follows:
+        <font color="#003399">
+        <pre>     title "Students from &amp;city";</pre>
+        </font>
+<P>When the macro processor cannot resolve a macro variable reference, a 
+        message is printed in the <strong>SAS log</strong>. For example, referencing a nonexistent macro variable results in a warning message.
+Referencing an invalid macro variable name results in an error message. 
+
+    </td>
+  </tr>
+</table><P><BR>
+  <div align="center"> SAS Log 
+    <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+34 title "Students from &cityst";
+<strong>WARNING: Apparent symbolic reference CITYST not resolved.</strong>
+35
+36  title "Students from "the_city_in_which_the_student_is_located";
+<strong>ERROR: Symbolic variable name THE_CITY_IN_WHICH_THE_STUDENT_I must 
+       be 32 or fewer characters long.</strong>
+</pre></td></tr>
+</table> </div>
+ 
+  
+<P><BR>
+<p>
+      <br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

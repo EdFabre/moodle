@@ -1,0 +1,113 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Processing 
+      Statements Conditionally<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+   <td>
+<h2>Case Sensitivity in Macro Comparisons</h2> 
+        <P> Remember that comparisons that are made in <nobr>%IF</nobr> expressions are 
+          <strong>case sensitive</strong>. 
+        <P><BR>
+<h2>Example</h2>
+        <P> If you construct your <nobr>%IF</nobr> statement using incorrect case in any program 
+          text, the statement will <strong>never</strong> be true. For example, 
+          the <nobr>%IF</nobr> statement below will always be false because <code>_null_</code> 
+          is specified in lowercase but is always stored in SAS in uppercase:
+<P>
+<font color="#003399">
+        <PRE>    %macro prtlast;
+       %if &amp;syslast=<strong>_null_</strong> %then %do;
+          %put No data sets created yet.;
+       %end;
+       %else %do;
+          proc print;
+             title &quot;Last Created Data Set is &amp;syslast&quot;;
+          run;
+       %end;
+    %mend;
+    options mprint mlogic symbolgen;
+    %prtlast
+</pre>
+        </font>
+Suppose <code>SYSLAST</code> has a value of <em>_NULL_</em> when you submit this example. The following messages are written to the SAS log.<P><BR>
+<div align="center">
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+29   %prtlast
+MLOGIC(PRTLAST): Beginning execution.
+<strong>SYMBOLGEN: Macro variable SYSLAST resolves to _NULL_
+MLOGIC(PRTLAST): %IF condition &amp;syslast = _null_ is FALSE</strong>
+
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: PROCEDURE PRINT used:
+      real time           1:32.58
+      cpu time            0.05 seconds
+
+MPRINT(PRTLAST): proc print;
+<strong>ERROR: There is not a default input data set (_LAST_ is _NULL_).</strong>
+SYMBOLGEN: Macro variable SYSLAST resolves to _NULL_
+MPRINT(PRTLAST): title &quot;Last Created Data Set is _NULL_&quot;;
+MPRINT(PRTLAST): run;
+
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: PROCEDURE PRINT used:
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+
+MLOGIC(PRTLAST): Ending execution.
+</pre></td></tr>
+</table> </div>
+
+    </td>
+  </tr>
+</table><P><BR>
+<table cellpadding="2" width="85%" align="center">
+        <tr valign="Top"> 
+            
+      <td width="24" valign="top"><img src="../navimages/tip.gif" width="20" height="20" alt="More information"></td>
+          
+      <td>The <nobr>%UPCASE</nobr> function is often useful when you construct <nobr>%IF</nobr> statements. 
+        For more information about the <nobr>%UPCASE</nobr> function, see the lesson 
+        <!--lesson reference-->
+        <strong> 
+        <script>document.write(m50title);</script></strong>.</td>
+        </tr>
+      </table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

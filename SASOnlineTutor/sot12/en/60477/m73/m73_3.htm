@@ -1,0 +1,218 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      an Empty Table by Defining Columns<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Sometimes you want to create a new table that is unlike any existing 
+          table. In this case, you need to define all of the columns and attributes 
+          that the table will have. To accomplish this, use the <strong>CREATE 
+          TABLE statement</strong> that includes <strong>column specifications</strong> 
+          for the columns that you want to include. This statement creates a table 
+          without rows (an empty table).</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In addition, integrity constraints can be specified in 
+        the CREATE TABLE statement. Integrity constraints are discussed later 
+        in this lesson.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, basic CREATE TABLE statement with column specifications">
+    <tr> 
+      <td align="left"><p><strong>General form, basic CREATE TABLE statement with 
+          column specifications:</strong> </p>
+        <blockquote><font color="#003399"><strong>CREATE TABLE </strong> <em>table-name</em><br>
+          <nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>(</strong><em>column-specification-1</em></nobr>&lt;<strong>,</strong> 
+          <nobr><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>...</strong><em>column-specification-n</em>&gt;</nobr><nobr><strong>);</strong></nobr></font> 
+        </blockquote>
+          <p> where </p>
+          
+        <ul>
+          <li><font color="#003399"><em>table-name</em></font> specifies the name 
+            of the table to be created.<br>
+            <br>
+          </li>
+          <li><em><font color="#003399">column-specification</font></em> specifies 
+            a column to be included in the table, and consists of <br>
+            <br>
+            <font color="#003399"><em>column-definition</em> <nobr><em>&lt;column-constraint-1</em></nobr><nobr><em>&lt;<strong>,</strong> 
+            ... column-constraint-n&gt;&gt;</em></nobr> <nobr>&lt;<strong>MESSAGE=</strong><em>'message-string'</em> 
+            </nobr><nobr>&lt;<strong>MSGTYPE=</strong><em>message-type</em>&gt;&gt;</nobr></font><br>
+            <br>
+            where <br>
+            <br>
+            <ul>
+              <li> <em><font color="#003399">column-definition</font></em> consists 
+                of the following:<br>
+                <br>
+                <font color="#003399"><em>column-name data-type</em> <nobr>&lt;(<em>column-width</em>)&gt;</nobr> 
+                <nobr>&lt;<em>column-modifier-1</em></nobr> <nobr>&lt; <strong>...</strong><em>column-modifier-n&gt;</em>&gt;<br>
+                <br>
+                </nobr></font> 
+                <ul>
+                  <li><font color="#003399"><em>column-name</em></font> specifies 
+                    the name of the column. The column name is stored in the table 
+                    in the same case that is used in <font color="#003399"><em>column-name</em></font>. 
+                    <br>
+                    <br>
+                  </li>
+                  <li><em><font color="#003399">data-type</font></em> is enclosed 
+                    in parentheses and specifies one of the following: CHARACTER 
+                    (or CHAR) | VARCHAR | INTEGER (or INT) | SMALLINT | DECIMAL 
+                    (or DEC) | NUMERIC (or NUM) | FLOAT | REAL | DOUBLE PRECISION 
+                    | DATE.<br>
+                    <br>
+                  </li>
+                  <li><em><font color="#003399">column-width</font></em>, which 
+                    is enclosed in parentheses, is an integer that specifies the 
+                    width of the column.<br>
+                    <br>
+                    <table border="0" cellpadding="2" cellspacing="0">
+                      <tr> 
+                        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                        <td valign="top">PROC SQL processes this value only for 
+                          the CHARACTER and VARCHAR data types.</td>
+                      </tr>
+                    </table>
+                    <br>
+                  </li>
+                  <li><font color="#003399"><em>column-modifier</em></font> is 
+                    one of the following: INFORMAT= | FORMAT= | LABEL= . More 
+                    than one column-modifier may be specified.<br>
+                    <br>
+                  </li>
+                </ul>
+              <li><em><font color="#003399">column-constraint</font></em> specifies 
+                an integrity constraint.<br>
+                <br>
+              </li>
+              <li><strong><font color="#003399">MESSAGE=</font></strong> and <strong><font color="#003399">MSGTYPE=</font></strong> 
+                specify an error message that is related to an integrity constraint.<br>
+                <br>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+                    <tr> 
+                      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                      <td valign="top">Integrity constraints, the column-constraint, 
+                        MESSAGE=, and MSGTYPE= are not elaborated here, but are 
+                        discussed in detail later in this lesson<code></code>.</td>
+                    </tr>
+                  </table>
+          <p>The entire set of <em><font color="#003399">column-specifications</font></em> 
+            must be enclosed in parentheses. Multiple <em><font color="#003399">column-specifications</font></em> 
+            must be separated by commas. Elements within a <em><font color="#003399">column-specification</font></em> 
+            must be separated by spaces.</p>
+            </td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+        <p> Suppose you want to create the temporary table <strong>Work.Discount</strong>, 
+          which contains data about discounts that are offered by an airline. 
+          There is no existing table that contains the four columns (and column 
+          attributes) that you would like to include: <code>Destination</code>, 
+          <code>BeginDate</code>, <code>EndDate</code>, and <code>Discount</code>. 
+          You use the following PROC SQL step to create the table, based on column 
+          definitions that you specify:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        <strong>create table</strong> work.discount 
+               <strong>(Destination char(3),
+               BeginDate num Format=date9.,
+               EndDate num format=date9.,
+               Discount num)</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The SAS log confirms that the table has been created.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: Table WORK.DISCOUNT created, with 0 
+rows and 4 columns.</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">In this example and all other examples in this lesson, 
+        you are instructed to save your data to a temporary table (in the library 
+        <strong>Work</strong>) that will be deleted at the end of the SAS session. 
+        To save the table permanently in a different <strong></strong> library, 
+        use the appropriate libref instead of the libref <strong>Work</strong> 
+        in the CREATE TABLE clause. </td>
+    </tr>
+  </table>
+<br> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>On the next few pages, you will learn more about specifying data 
+          types and column modifiers in a column specification.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">You will learn to insert rows of data in a table later 
+        in this lesson.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -152,33 +152,13 @@ class grade_report_user extends grade_report {
     public $pbarurl;
 
     /**
-     * The modinfo object to be used.
-     *
-     * @var course_modinfo
-     */
-    protected $modinfo = null;
-
-    /**
-     * View as user.
-     *
-     * When this is set to true, the visibility checks, and capability checks will be
-     * applied to the user whose grades are being displayed. This is very useful when
-     * a mentor/parent is viewing the report of their mentee because they need to have
-     * access to the same information, but not more, not less.
-     *
-     * @var boolean
-     */
-    protected $viewasuser = false;
-
-    /**
      * Constructor. Sets local copies of user preferences and initialises grade_tree.
      * @param int $courseid
      * @param object $gpr grade plugin return tracking object
      * @param string $context
      * @param int $userid The id of the user
-     * @param bool $viewasuser Set this to true when the current user is a mentor/parent of the targetted user.
      */
-    public function __construct($courseid, $gpr, $context, $userid, $viewasuser = null) {
+    public function __construct($courseid, $gpr, $context, $userid) {
         global $DB, $CFG;
         parent::__construct($courseid, $gpr, $context);
 
@@ -193,8 +173,6 @@ class grade_report_user extends grade_report {
         $this->showweight      = grade_get_setting($this->courseid, 'report_user_showweight',      !empty($CFG->grade_report_user_showweight));
         $this->showlettergrade = grade_get_setting($this->courseid, 'report_user_showlettergrade', !empty($CFG->grade_report_user_showlettergrade));
         $this->showaverage     = grade_get_setting($this->courseid, 'report_user_showaverage',     !empty($CFG->grade_report_user_showaverage));
-
-        $this->viewasuser = $viewasuser;
 
         // The default grade decimals is 2
         $defaultdecimals = 2;
@@ -215,28 +193,20 @@ class grade_report_user extends grade_report {
         // Grab the grade_tree for this course
         $this->gtree = new grade_tree($this->courseid, false, $this->switch, null, !$CFG->enableoutcomes);
 
-        // Get the user (for full name).
-        $this->user = $DB->get_record('user', array('id' => $userid));
-
-        // What user are we viewing this as?
-        $coursecontext = context_course::instance($this->courseid);
-        if ($viewasuser) {
-            $this->modinfo = new course_modinfo($this->course, $this->user->id);
-            $this->canviewhidden = has_capability('moodle/grade:viewhidden', $coursecontext, $this->user->id);
-        } else {
-            $this->modinfo = $this->gtree->modinfo;
-            $this->canviewhidden = has_capability('moodle/grade:viewhidden', $coursecontext);
-        }
-
-        // Determine the number of rows and indentation.
+        // Determine the number of rows and indentation
         $this->maxdepth = 1;
         $this->inject_rowspans($this->gtree->top_element);
-        $this->maxdepth++; // Need to account for the lead column that spans all children.
+        $this->maxdepth++; // Need to account for the lead column that spans all children
         for ($i = 1; $i <= $this->maxdepth; $i++) {
             $this->evenodd[$i] = 0;
         }
 
         $this->tabledata = array();
+
+        $this->canviewhidden = has_capability('moodle/grade:viewhidden', context_course::instance($this->courseid));
+
+        // get the user (for full name)
+        $this->user = $DB->get_record('user', array('id' => $userid));
 
         // base url for sorting by first/last name
         $this->baseurl = $CFG->wwwroot.'/grade/report?id='.$courseid.'&amp;userid='.$userid;
@@ -266,15 +236,7 @@ class grade_report_user extends grade_report {
         $count = 1;
 
         foreach ($element['children'] as $key=>$child) {
-            // If category is hidden then do not include it in the rowspan.
-            if ($child['type'] == 'category' && $child['object']->is_hidden() && !$this->canviewhidden
-                    && ($this->showhiddenitems == GRADE_REPORT_USER_HIDE_HIDDEN
-                    || ($this->showhiddenitems == GRADE_REPORT_USER_HIDE_UNTIL && !$child['object']->is_hiddenuntil()))) {
-                // Just calculate the rowspans for children of this category, don't add them to the count.
-                $this->inject_rowspans($element['children'][$key]);
-            } else {
-                $count += $this->inject_rowspans($element['children'][$key]);
-            }
+            $count += $this->inject_rowspans($element['children'][$key]);
         }
 
         $element['rowspan'] = $count;
@@ -388,7 +350,7 @@ class grade_report_user extends grade_report {
 
             /// Hidden Items
             if ($grade_grade->grade_item->is_hidden()) {
-                $hidden = ' dimmed_text';
+                $hidden = ' hidden';
             }
 
             $hide = false;
@@ -401,7 +363,7 @@ class grade_report_user extends grade_report {
                 // The grade object can be marked visible but still be hidden if
                 // the student cannot see the activity due to conditional access
                 // and it's set to be hidden entirely.
-                $instances = $this->modinfo->get_instances_of($grade_object->itemmodule);
+                $instances = $this->gtree->modinfo->get_instances_of($grade_object->itemmodule);
                 if (!empty($instances[$grade_object->iteminstance])) {
                     $cm = $instances[$grade_object->iteminstance];
                     if (!$cm->uservisible) {
@@ -441,18 +403,6 @@ class grade_report_user extends grade_report {
 
                 /// Actual Grade
                 $gradeval = $grade_grade->finalgrade;
-                if (!$this->canviewhidden) {
-                    /// Virtual Grade (may be calculated excluding hidden items etc).
-                    $adjustedgrade = $this->blank_hidden_total_and_adjust_bounds($this->courseid,
-                                                                                 $grade_grade->grade_item,
-                                                                                 $gradeval);
-                    $gradeval = $adjustedgrade['grade'];
-
-                    // We temporarily adjust the view of this grade item - because the min and
-                    // max are affected by the hidden values in the aggregation.
-                    $grade_grade->grade_item->grademax = $adjustedgrade['grademax'];
-                    $grade_grade->grade_item->grademin = $adjustedgrade['grademin'];
-                }
 
                 if ($this->showfeedback) {
                     // Copy $class before appending itemcenter as feedback should not be centered
@@ -480,19 +430,13 @@ class grade_report_user extends grade_report {
                         $data['grade']['class'] = $class;
                         $data['grade']['content'] = get_string('submittedon', 'grades', userdate($grade_grade->get_datesubmitted(), get_string('strftimedatetimeshort')));
 
-                    } else if ($grade_grade->is_hidden()) {
-                        $data['grade']['class'] = $class.' dimmed_text';
-                        $data['grade']['content'] = '-';
-                        if ($this->canviewhidden) {
-                            $data['grade']['content'] = grade_format_gradevalue($gradeval,
-                                                                                $grade_grade->grade_item,
-                                                                                true);
-                        }
+                    } elseif ($grade_grade->is_hidden()) {
+                            $data['grade']['class'] = $class.' hidden';
+                            $data['grade']['content'] = '-';
                     } else {
                         $data['grade']['class'] = $class;
-                        $data['grade']['content'] = grade_format_gradevalue($gradeval,
-                                                                            $grade_grade->grade_item,
-                                                                            true);
+                        $gradeval = $this->blank_hidden_total($this->courseid, $grade_grade->grade_item, $gradeval);
+                        $data['grade']['content'] = grade_format_gradevalue($gradeval, $grade_grade->grade_item, true);
                     }
                     $data['grade']['headers'] = "$header_cat $header_row grade";
                 }
@@ -510,11 +454,8 @@ class grade_report_user extends grade_report {
                         $data['percentage']['class'] = $class.' gradingerror';
                         $data['percentage']['content'] = get_string('error');
                     } else if ($grade_grade->is_hidden()) {
-                        $data['percentage']['class'] = $class.' dimmed_text';
+                        $data['percentage']['class'] = $class.' hidden';
                         $data['percentage']['content'] = '-';
-                        if ($this->canviewhidden) {
-                            $data['percentage']['content'] = grade_format_gradevalue($gradeval, $grade_grade->grade_item, true, GRADE_DISPLAY_TYPE_PERCENTAGE);
-                        }
                     } else {
                         $data['percentage']['class'] = $class;
                         $data['percentage']['content'] = grade_format_gradevalue($gradeval, $grade_grade->grade_item, true, GRADE_DISPLAY_TYPE_PERCENTAGE);
@@ -528,7 +469,7 @@ class grade_report_user extends grade_report {
                         $data['lettergrade']['class'] = $class.' gradingerror';
                         $data['lettergrade']['content'] = get_string('error');
                     } else if ($grade_grade->is_hidden()) {
-                        $data['lettergrade']['class'] = $class.' dimmed_text';
+                        $data['lettergrade']['class'] = $class.' hidden';
                         if (!$this->canviewhidden) {
                             $data['lettergrade']['content'] = '-';
                         } else {
@@ -547,7 +488,7 @@ class grade_report_user extends grade_report {
                         $data['rank']['class'] = $class.' gradingerror';
                         $data['rank']['content'] = get_string('error');
                         } elseif ($grade_grade->is_hidden()) {
-                            $data['rank']['class'] = $class.' dimmed_text';
+                            $data['rank']['class'] = $class.' hidden';
                             $data['rank']['content'] = '-';
                     } else if (is_null($gradeval)) {
                         // no grade, no rank
@@ -954,14 +895,7 @@ function grade_report_user_settings_definition(&$mform) {
     $mform->addHelpButton('report_user_showtotalsifcontainhidden', 'hidetotalifhiddenitems', 'grades');
 }
 
-/**
- * Profile report callback.
- *
- * @param object $course The course.
- * @param object $user The user.
- * @param boolean $viewasuser True when we are viewing this as the targetted user sees it.
- */
-function grade_report_user_profilereport($course, $user, $viewasuser = false) {
+function grade_report_user_profilereport($course, $user) {
     global $OUTPUT;
     if (!empty($course->showgrades)) {
 
@@ -973,7 +907,7 @@ function grade_report_user_profilereport($course, $user, $viewasuser = false) {
         /// return tracking object
         $gpr = new grade_plugin_return(array('type'=>'report', 'plugin'=>'user', 'courseid'=>$course->id, 'userid'=>$user->id));
         // Create a report instance
-        $report = new grade_report_user($course->id, $gpr, $context, $user->id, $viewasuser);
+        $report = new grade_report_user($course->id, $gpr, $context, $user->id);
 
         // print the page
         echo '<div class="grade-report-user">'; // css fix to share styles with real report page

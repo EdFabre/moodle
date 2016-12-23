@@ -1,0 +1,207 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Audit Trails<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>As you modify a data set, you may want to track the changes that 
+          you make by using an audit trail. An audit trail is an optional SAS 
+          file that logs modifications to a SAS table. Audit trails are used to 
+          track changes that are made to the data set in place. Specifically, 
+          audit trails track changes made with </p>
+        <ul>
+          <li>  <div id="v89_v91" class="eg_div">the VIEWTABLE window</div>
+		  <div id="le1_le2_eg1_eg2_eg3" class="eg_div">the data grid</div></li>
+          <li>the MODIFY statement in the DATA step</li>
+          <li>the UPDATE, INSERT, or DELETE statement in PROC SQL.</li>
+        </ul>
+        <p> For each addition, deletion, and update to the data, the audit trail 
+          automatically stores a copy of the variables in the observation that 
+          was updated, and information such as who made the modification, what 
+          was modified, and when the modification was made. It can also store 
+          additional information in user-defined variables.</p>
+        <p>The following PROC CONTENTS output lists the variables in an audit 
+          trail file for a data set that has two variables, <code>A</code> and 
+          <code>B</code>. You will learn more about these variables later in this 
+          lesson.</p>
+        <p><br>
+         
+        <font  face="Arial, Helvetica, Helv" size="2" color="#002288">
+        <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC CONTENTS Output">
+          <thead>
+            <TR> 
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>#</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><div align="center"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variable</b></font></div></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><div align="center"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Type</b></font></div></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><div align="center"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Len</b></font></div></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><div align="center"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Pos</b></font></div></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><div align="center"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Format</b></font></div></TD>
+              <TD ALIGN=CENTER bgcolor="#CCCCCC"><div align="center"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Label</b></font></div></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                1</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">A</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                2</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">B</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                3</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Who</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Name</font></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                4</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2" face="Arial, Helvetica, Helv">Why</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">36</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Reason</font></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                5</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">_ATDATETIME_</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000" size="2" face="Arial, Helvetica, Helv">8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">56</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DATETIME19.</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                10</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">_ATMESSAGE_</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">114</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                6</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">_ATOBSNO_</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">64</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                9</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">_ATOPCODE_</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">112</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                7</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">_ATRETURNCODE_</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Num</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">72</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"></div></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>8</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font color="#000000">_ATUSERID_</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">32</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">80</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF">&nbsp;</TD>
+              <TD ALIGN=RIGHT bgcolor="#EFEFEF"><div align="left"></div></TD>
+            </TR>
+          </tbody>
+        </TABLE>
+        </font>
+<p><br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">Any procedure or action that replaces the data set 
+              (such as the DATA step, CREATE TABLE in PROC SQL, or SORT without 
+              the OUT= option) will delete the audit trail. Audit trails should 
+              not be deleted with system tools such as Windows Explorer.</td>
+          </tr>
+        </table>
+        <p>A SAS table can have only one audit trail file. The audit trail file 
+        </p>
+        <ul>
+          <li> is a read-only file </li>
+          <li>is created by PROC DATASETS</li>
+          <li>must be in the same library as the data file associated with it</li>
+          <li>has the same name as the data set it is monitoring, but with a member 
+            type of AUDIT.</li>
+        </ul>
+        <p>Next let's take a look at how you initiate an audit trail on a SAS 
+          data set.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

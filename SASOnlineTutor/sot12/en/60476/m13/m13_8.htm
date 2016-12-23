@@ -1,0 +1,164 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Preserving 
+      Table and Column Names<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p>When you read data from or pass data to a DBMS, you might want to preserve 
+          spaces, special characters, and case sensitivity in column or table 
+          names. You can use the SAS/ACCESS LIBNAME options <STRONG>PRESERVE_COL_NAMES=</STRONG> 
+          and <STRONG>PRESERVE_TAB_NAMES=</STRONG> to preserve column names and 
+          table names, respectively. 
+</td>
+  </tr>
+</table>
+<P> <BR>
+<TABLE border="1" cellspacing="0" cellpadding="10" align="center" width="85%" bgcolor="#F7F7DE" title="General form, PRESERVE_COL_NAMES= and PRESERVE_TAB_NAMES= options">
+  <TR> 
+    <TD><STRONG><NOBR>General form, PRESERVE_COL_NAMES= and</NOBR> PRESERVE_TAB_NAMES= 
+      options:</STRONG> 
+      <BLOCKQUOTE> <FONT COLOR="#003399"><STRONG>PRESERVE_COL_NAMES=</STRONG>NO 
+        | YES</FONT> 
+        <P> <FONT COLOR="#003399"><STRONG>PRESERVE_TAB_NAMES=</STRONG>NO | YES</FONT> 
+      </BLOCKQUOTE>
+    </TD>
+  </TR>
+</TABLE>
+<P><BR>
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD>For example, in the program below, specifying the value <EM>YES</EM> for 
+      the PRESERVE_COL_NAMES= option retains the case of the column names in the 
+      Oracle data that is accessed through <STRONG>Oraclib.Staff</STRONG>. 
+      <PRE>
+     <FONT color="#003399">libname oraclib oracle</FONT>
+<FONT color="#003399">             user=kilroy password=washere</FONT>
+        <FONT color="#003399">     path=oracpath <STRONG>preserve_col_names=yes</STRONG>;</FONT>
+     <FONT color="#003399">proc sql;</FONT>
+<FONT color="#003399">        create table oraclib.emps as</FONT>
+           <FONT color="#003399">(select IDnum, LName, FName</FONT>
+        <FONT color="#003399">       from oraclib.staff</FONT>
+        <FONT color="#003399">       where City="STAMFORD");</FONT>
+     <FONT color="#003399">quit;</FONT>
+</PRE>
+      <P> <BR>
+      <TABLE CELLPADDING="2">
+        <TR VALIGN="Top"> 
+          <TD width="24"><IMG SRC="../navimages/note.gif" WIDTH="20" HEIGHT="20" ALT="Note:" BORDER="0"></TD>
+            <TD>If PRESERVE_COL_NAMES=YES, then special characters and the exact, 
+              case-sensitive spelling of the names are preserved when column names 
+              are read from and passed to the DBMS. In order to use column names 
+              that are not valid SAS names in your SAS program, you must use either 
+              the DQUOTE=ANSI option or the VALIDVARNAME=ANY option. To learn 
+              more about these options, see the documentation for 
+              <!--doc reference-->
+              SAS/ACCESS. </TD>
+        </TR>
+      </TABLE>
+      <P><BR>
+        The default values of these options depend on the DBMS that you are using. 
+        The table below explains what happens in general when you specify <EM>NO</EM> 
+        or <EM>YES</EM> for these options.
+    </TD>
+  </TR>
+</TABLE>
+<P><BR>
+<TABLE BORDER="1" CELLPADDING="5" cellspacing="0" align="center" width="85%" bgcolor="#FFFFFF" title="preserve_col_names option values">
+  <thead> 
+  <TR bgcolor="#F7F7DE"> 
+    <TD><STRONG>Value</STRONG></TD>
+    <TD><STRONG>Result</STRONG></TD>
+    <TD><STRONG>Example</STRONG></TD>
+  </TR>
+  </thead> 
+  <TR VALIGN="Top"> 
+    <TD ROWSPAN=3><STRONG>NO</STRONG></TD>
+    <TD>Names of columns or tables in the DBMS are specified using SAS naming 
+      conventions.</TD>
+    <TD ROWSPAN=3>In your SAS program, you can reference the Oracle column <STRONG>Total$Cost</STRONG> 
+      as the variable <CODE>Total_Cost</CODE>.</TD>
+  </TR>
+  <TR> 
+    <TD>Mixed-case alphanumerics and the underscore (_) character are supported.</TD>
+  </TR>
+  <TR VALIGN="Top"> 
+    <TD>If a column or table name contains something else, it is converted to 
+      an underscore when referenced by SAS.</TD>
+  </TR>
+  <TR VALIGN="Top"> 
+    <TD><STRONG>YES</STRONG></TD>
+    <TD>Names are read from and passed to the DBMS with special characters and 
+      exact spelling preserved.</TD>
+    <TD>In your SAS program, you can reference the Oracle column <STRONG>Total$Cost</STRONG> 
+      as the variable <CODE>Total$Cost</CODE>.</TD>
+  </TR>
+</TABLE>
+<P><BR>
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD>For details, see the following: 
+      <UL>
+        <LI> <A HREF="JavaScript: openOther('m13_8a.htm')">Conversion of DBMS 
+          Column Names to SAS Variable Names</A>
+        <LI> <A HREF="JavaScript: openOther('m13_8b.htm')">Conversion of DBMS 
+          Table Names to SAS Data Set Names</A>
+        <LI> <A HREF="JavaScript: openOther('m13_8c.htm')">Conversion of SAS Variable 
+          Names to DBMS Column Names</A>
+        <LI> <A HREF="JavaScript: openOther('m13_8d.htm')">Conversion of SAS Data 
+          Set Names to DBMS Table Names</A>
+      </UL>
+        <P> To learn about similar options for the SQL procedure, see the information 
+          about the SQL procedure in the 
+          <!--doc reference-->
+          SAS documentation. </TD>
+  </TR>
+</TABLE>
+<P> 
+<TABLE CELLPADDING="2" width="85%" align="center">
+  <TR VALIGN="Top"> 
+    <TD width="24"><IMG SRC="../navimages/note.gif" WIDTH="20" HEIGHT="20" ALT="Note:" BORDER="0"></TD>
+    <TD>In <strong>SAS/ACCESS Release 8.2</strong>, the behavior of the PRESERVE_COL_NAMES= 
+      option <a href="JavaScript: openOther('m13_8e.htm')">changed</a> to apply 
+      only to table creation. </TD>
+  </TR>
+</TABLE>
+<br>
+<br>
+<P> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

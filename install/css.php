@@ -132,9 +132,7 @@ and remove the following.
     width: 245px;
     text-align: right;
 }
-html[dir=rtl] .fitemtitle {
-    float: right;
-}
+
 label {
     font-weight: bold;
     display: inline-block;
@@ -144,11 +142,7 @@ label {
 .fitemelement {
     margin-left: 265px;
 }
-html[dir=rtl] .fitemelement {
-    margin-right: 265px;
-    margin-left: 0;
-    direction: ltr;
-}
+
 .alert, .alert h4 {
     color: #c09853;
 }

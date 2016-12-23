@@ -473,9 +473,7 @@ class behat_course extends behat_base {
 
             // The activity should not be dimmed.
             try {
-                $xpath = "/descendant-or-self::a[contains(concat(' ', normalize-space(@class), ' '), ' dimmed ')] | ".
-                         "/descendant-or-self::div[contains(concat(' ', normalize-space(@class), ' '), ' dimmed_text ')]";
-                $this->find('xpath', $xpath, false, $activitynode);
+                $this->find('css', 'a.dimmed', false, $activitynode);
                 throw new ExpectationException('"' . $activityname . '" is hidden', $this->getSession());
             } catch (ElementNotFoundException $e) {
                 // All ok.
@@ -503,9 +501,7 @@ class behat_course extends behat_base {
 
             // Should be hidden.
             $exception = new ExpectationException('"' . $activityname . '" is not dimmed', $this->getSession());
-            $xpath = "/descendant-or-self::a[contains(concat(' ', normalize-space(@class), ' '), ' dimmed ')] | ".
-                     "/descendant-or-self::div[contains(concat(' ', normalize-space(@class), ' '), ' dimmed_text ')]";
-            $this->find('xpath', $xpath, $exception, $activitynode);
+            $this->find('css', 'a.dimmed', $exception, $activitynode);
 
             // Also 'Show' icon.
             $noshowexception = new ExpectationException('"' . $activityname . '" don\'t have a "' . get_string('show') . '" icon', $this->getSession());
@@ -701,12 +697,12 @@ class behat_course extends behat_base {
      * @return Given[]
      */
     public function i_delete_activity($activityname) {
-        $steps = array();
-        $activity = $this->escape($activityname);
-        if ($this->running_javascript()) {
-            $steps[] = new Given('I open "' . $activity . '" actions menu');
-        }
-        $steps[] = new Given('I click on "' . get_string('delete') . '" "link" in the "' . $activity . '" activity');
+
+        $deletestring = get_string('delete');
+
+        $steps = array(
+            new Given('I click on "' . $this->escape($deletestring) . '" "link" in the "' . $this->escape($activityname) . '" activity')
+        );
 
         // JS enabled.
         // Not using chain steps here because the exceptions catcher have problems detecting

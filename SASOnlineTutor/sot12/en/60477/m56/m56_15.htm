@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>The <code>EmpID</code> variable is common to ';
+solutionText+='<strong>Sasuser.Newsals</strong> and <strong>Sasuser.Empdata</strong>. ';
+solutionText+='The <code>JobCode</code> variable is common to <strong>Sasuser.Empdata</strong> ';
+solutionText+='and <strong>Sasuser.Jcodedat</strong>.<br><br> ';
+solutionText+='<li>Submit the following program:';
+solutionText+='<pre><font color="#003399">proc sort data=sasuser.empdata out=empdata;<br>';
+solutionText+='   by empid;<br>run;<br> <br>';
+solutionText+='proc sort data=sasuser.newsals out=newsals;<br>   by empid;<br>';
+solutionText+='run;<br> <br>data temp1;<br>   merge newsals(in=n) empdata(in=e);<br> ';
+solutionText+='   by empid;<br>   if e and n;<br>run;<br> <br>';
+solutionText+='proc sort data=temp1;<br>   by jobcode;<br>run;<br> <br>';
+solutionText+='proc sort data=sasuser.jcodedat out=jcodedat;<br>   by jobcode;<br>run;<br> <br>';
+solutionText+='data jobdata (keep=empid jobcode <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;descript salary newsalary);<br>   merge temp1(in=t) jcodedat(in=j);<br>   by jobcode;<br>';
+solutionText+='   if t and j;<br>run;</font></pre>';
+solutionText+='<li>Submit the following step:';
+solutionText+='<font color="#003399"><pre>proc print data=jobdata;<br>run;</pre></font>';
+solutionText+='The output data set should contain fifty observations';
+solutionText+=' and five variables.</ol>';
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Merge 
+            three SAS data sets that do not have a common BY variable. Combine 
+            <a href="JavaScript: openOther('../linklib/empdata.htm')">Sasuser.Empdata</a>, 
+            <a href="JavaScript: openOther2('../linklib/jcodedat.htm')">Sasuser.Jcodedat</a>, 
+            and <a href="JavaScript: openOther3('../linklib/newsals.htm')">Sasuser.Newsals</a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+  <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Examine <strong>Sasuser.Empdata</strong>, <strong>Sasuser.Jcodedat</strong>, 
+            and <strong>Sasuser.Newsals</strong> in order to identify any common 
+            variables among them. You can either use the links at the top of this 
+            page to view more information about the data sets, or you can examine 
+            them in SAS. 
+            <P> 
+            <table border="0" cellpadding="2" cellspacing="0">
+              <tr> 
+                <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+                <td valign="top">If there is not one variable that appears in 
+                  all three data sets, you will need to pick two variables. Make 
+                  sure that the variables that you choose appear in at least two 
+                  of the three data sets. Also be sure that each of the three 
+                  data sets contains at least one of the variables that you choose.</td>
+              </tr>
+            </table>
+          <br>
+          <li>Write a program that combines <strong>Sasuser.Empdata</strong>, 
+            <strong>Sasuser.Jcodedat</strong>, and <strong>Sasuser.Newsals</strong> 
+            into a new data set named <strong>Work.Jobdata</strong>. The new data 
+            set should contain variables that display employee ID numbers, employee 
+            job codes, job descriptions, current salaries, and new salaries.<br>
+            <br>
+            You should create temporary versions of your input data sets that 
+            are sorted by their common variables. Also, use the IN= option and 
+            a subsetting IF statement to ensure that only observations that contain 
+            data from all input data sets are included in the <strong>Work.Jobdata</strong> 
+            output data set. Submit the program. <br>
+            <br>
+          <li>Write a step that will print the <strong>Work.Jobdata</strong> data 
+            set. Submit the program and examine the output. <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,186 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing DBMS Objects in SAS Programs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>Example 1: Querying a DBMS Table</strong> 
+<P> In this program, the SQL procedure reads flight information from the 
+        Oracle table <STRONG>Delay</STRONG>. The WHERE clause selects only flights 
+        to London and Frankfurt. The PROC SQL output is shown below. 
+      <PRE>     <FONT color="#003399">libname oraclib oracle user=cestmoi </FONT>
+<FONT color="#003399">             password=sesame path='oracpath';</FONT>
+     <FONT color="#003399">proc sql;</FONT>
+        <FONT color="#003399">select dates format=date9., dest </FONT>
+<FONT color="#003399">           from oraclib.delay</FONT>
+           <FONT color="#003399">where dest in("FRA","LON")</FONT>
+        <FONT color="#003399">   order by dest;</FONT>
+     <FONT color="#003399">quit;</FONT>
+</PRE>
+    </td>
+  </tr>
+</table>
+<P> 
+<TABLE border="1" cellpadding="2" cellspacing="1" rules="groups" frame="box"
+  bgcolor="#FFFFF0" bordercolor="#000000" align="center" title="Proc SQL Output">
+  <THEAD> 
+  <TR> 
+    <TD align="right" bgcolor="#CCCCCC" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><B>Dates</B></FONT></TD>
+    <TD align="left" bgcolor="#CCCCCC" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><B>Dest</B></FONT></TD>
+  </TR>
+  </THEAD> <TBODY> 
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">01MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">FRA</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">04MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">FRA</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">07MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">FRA</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">03MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">FRA</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">05MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">FRA</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">02MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">FRA</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">04MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">LON</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">07MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">LON</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">02MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">LON</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">06MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">LON</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">05MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">LON</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">03MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">LON</FONT></TD>
+  </TR>
+  <TR> 
+    <TD align="right" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">01MAR1998</FONT></TD>
+    <TD align="left" bgcolor="#EFEFEF" bordercolor="#000000"><FONT face="Arial, Helvetica, Helv"
+              size="2" color="#000000">LON</FONT></TD>
+  </TR>
+  </TBODY> 
+</TABLE>
+<P> <BR>
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD><STRONG>Example 2: Combining DBMS Data and SAS Data</STRONG> 
+      <P> This example shows how to read DBMS data and how to create an additional 
+        variable for calculations or subsets. The program below creates the SAS 
+        data set <STRONG>Work.Highwage</STRONG> by reading the DB2 table <STRONG>Payroll</STRONG> 
+        (referenced as <STRONG>Db2lib.Payroll</STRONG>). It also creates a variable, 
+        <CODE>Category</CODE>, based on the value of the <CODE>Salary</CODE> column 
+        in the DB2 table <STRONG>Payroll</STRONG>. The <STRONG>Payroll</STRONG> 
+        table is not modified. 
+      <PRE>     <FONT color="#003399">libname db2lib db2 ssid=db2;</FONT>
+     <FONT color="#003399">data highwage;</FONT>
+        <FONT color="#003399">set db2lib.payroll(drop=sex birth hired);</FONT>
+        <FONT color="#003399">if salary&gt;60000 then</FONT>
+           <FONT color="#003399">Category="High";</FONT>
+        <FONT color="#003399">else if salary&lt;30000 then</FONT>
+             <FONT color="#003399">Category="Low";</FONT>
+        <FONT color="#003399">else Category="Avg";</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE>
+      <P> 
+      <TABLE CELLPADDING="2">
+        <TR VALIGN="Top"> 
+          <TD width="24"><IMG SRC="../navimages/note.gif" WIDTH="20" HEIGHT="20" ALT="Note:" BORDER="0"></TD>
+            <TD>For details about SET statements and IF-THEN/ELSE statements, 
+              see the 
+              <!--doc reference-->
+              SAS documentation.</TD>
+        </TR>
+      </TABLE>
+    </TD>
+  </TR>
+</TABLE>
+<br>
+<br>
+<P> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

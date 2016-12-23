@@ -1,0 +1,208 @@
+<html><!-- InstanceBegin template="/Templates/opt_summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong>
+      <script>document.write(summaryTitle)</script>
+      </strong></font>
+	  
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left">
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+  <br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td><!-- InstanceBeginEditable name="TextSummary" --> 
+      <p><strong>Avoiding Unnecessary Sorts</strong><br>
+        When <a href="m84_2.htm" onClick="suggestBack()">BY-group processing with 
+        an index</a> is used, the data can be sequenced by different variables 
+        without having to repeat the SORT procedure if multiple indexes are used. 
+        Because indexes are updated automatically, there is no need to re-sort 
+        a data set when observations are modified or added. However, BY-group 
+        processing with an index is less efficient than reading a sorted data 
+        set sequentially, and storage space is required for the index.</p>
+      <p>You can also use the <a href="m84_5.htm" onClick="suggestBack()">NOTSORTED 
+        option</a> with a BY statement to create ordered or grouped reports without 
+        sorting the data. The NOTSORTED option specifies that observations that 
+        have the same BY value are grouped together but are not necessarily sorted 
+        in alphabetical or numeric order. The NOTSORTED option works best when 
+        observations that have the same BY value are stored together. </p>
+      <p>The NOTSORTED option can be used with <a href="m84_7.htm" onClick="suggestBack()">FIRST. 
+        and LAST.</a>, which are temporary automatic variables in the PDV that 
+        identify the first and last observations in each BY group. These temporary 
+        variables are available for DATA step programming but are not added to 
+        the output data set. </p>
+      <p>The <a href="m84_8.htm" onClick="suggestBack()">GROUPFORMAT option</a> 
+        is useful when you have defined formats for grouped data. The GROUPFORMAT 
+        option uses the formatted values of a variable, instead of the internal 
+        values to determine where a BY group begins and ends, and how FIRST. and 
+        LAST. are computed. When the GROUPFORMAT option is used, the data set 
+        must be sorted by the GROUPFORMAT variable or grouped by the formatted 
+        values of the GROUPFORMAT variable.</p>
+      <p>You can use a <a href="m84_10.htm" onClick="suggestBack()">CLASS statement</a> 
+        to specify the variables whose values define the subgroup combinations 
+        for an analysis by a SAS procedure. Unlike the BY statement, when the 
+        CLASS statement is used with Base SAS procedures, it does not require 
+        the data to be presorted using the BY-variable values or that you have 
+        an index based on the BY variables. If the data cannot be sorted, the 
+        CLASS statement is more efficient than the BY statement in terms of CPU 
+        time, memory, and I/O usage. <br>
+        <br>
+        If you are working with input data that is already sorted, you can specify 
+        how the data is ordered by using the <a href="m84_16.htm" onClick="suggestBack()">SORTEDBY= 
+        data set option</a>. Although the SORTEDBY= option does not sort a data 
+        set, it sets the Sorted flag on the data set.</p>
+      <p>Review the related comparative examples:</p>
+      <ul>
+        <li> <a href="m84_3.htm" onClick="suggestBack()">Using BY-Group Processing 
+          with an Index to Avoid a Sort</a></li>
+        <li><a href="m84_12.htm" onClick="suggestBack()">Using a BY or CLASS Statement 
+          to Avoid a Sort</a>.</li>
+      </ul>
+      <hr size="1" noshade>
+      <p><strong>Using a Threaded Sort</strong> <br>
+        Beginning with SAS 9, the SORT procedure can take advantage of threaded 
+        processing. Threaded jobs are completed in substantially less real time 
+        than if each task is handled sequentially. However, the CPU time for threaded 
+        jobs is generally increased</p>
+      <p><a href="m84_19.htm" onClick="suggestBack()">Threaded sorting</a> is 
+        enabled or disabled by using the THREADS | NOTHREADS SAS system option 
+        or procedure option. The procedure option overrides the value of the system 
+        option.</p>
+      <p>When a threaded sort is used, the observations in the input data set 
+        are divided into equal temporary subsets, based on how many processors 
+        are allocated to the SORT procedure. Each subset is then sorted on a different 
+        processor. The sorted subsets are then interleaved to recreate the sorted 
+        version of the input data set.</p>
+      <p>The performance of a threaded sort is affected by the value of the <a href="m84_20.htm" onClick="suggestBack()">CPUCOUNT= 
+        system option</a>. CPUCOUNT= specifies the number of processors that thread-enabled 
+        applications should assume will be available for concurrent processing. 
+        SAS uses this information to determine how many threads to start, not 
+        to restrict the number of CPUs that will be used.</p>
+      <hr size="1" noshade>
+      <p><strong>Calculating and Allocating Sort Resources<br>
+        </strong>When data is sorted, SAS requires enough space in the data library 
+        for two copies of the data file that is being sorted, as well as additional 
+        workspace. </p>
+      <p>In releases prior to SAS 9, the <a href="m84_22.htm" onClick="suggestBack()"> 
+        required</a><a href="m84_22.htm" onClick="suggestBack()"> workspace</a> 
+        is approximately three to four times the size of the data file. Beginning 
+        with SAS 9, the required workspace is approximately twice the size of 
+        the data file. The workspace can be allocated in memory and/or on disk 
+        as a utility file, depending on which sort utility and options are specified. 
+      </p>
+      <p>The <a href="m84_23.htm" onClick="suggestBack()">SORTSIZE= option</a> 
+        specifies how much memory is available to the SORT procedure. Generally, 
+        the value of SORTSIZE= should be less than the physical memory that is 
+        available to your process. If the required workspace is less than or equal 
+        to the value specified in the SORTSIZE= system option or procedure option, 
+        then the entire sort can take place in memory, which reduces processing 
+        time.</p>
+      <hr size="1" noshade>
+      <p><strong>Handling Large Data Sets</strong><br>
+        A data set is too large to sort when there is insufficient room in the 
+        data library for a second copy of the data set or when there is insufficient 
+        disk space for three to four temporary copies of the data set. </p>
+      <p>One approach to this situation is to <a href="m84_25.htm" onClick="suggestBack()">divide</a> 
+        the large data set into smaller subsets. The subsets can then be sorted 
+        and combined to re-create the large data set.</p>
+      <p>You can also use the <a href="m84_28.htm" onClick="suggestBack()">TAGSORT 
+        option</a> to sort a large data set. The TAGSORT option stores only the 
+        BY variables and the observation numbers in temporary files. The BY variables 
+        and the observation numbers are called tags. At the completion of the 
+        sorting process, PROC SORT uses the tags to retrieve records from the 
+        input data set in sorted order. </p>
+      <p>When the total length of the BY variables is small compared to the record 
+        length, TAGSORT reduces temporary disk usage considerably because sorting 
+        just the BY variables means sorting much less data. However, processing 
+        time might be much higher because the TAGSORT option increases CPU and 
+        I/O usage in order to save memory and disk space.</p>
+      <p>Review the related comparative examples:</p>
+      <ul>
+        <li><a href="m84_26.htm" onClick="suggestBack()">Dividing and Sorting 
+          a Large Data Set 1</a></li>
+        <li><a href="m84_26.htm" onClick="suggestBack()">Dividing and Sorting 
+          a Large Data Set 2</a>.</li>
+      </ul>
+      <hr size="1" noshade>
+      <p><strong>Removing Duplicate Observations Efficiently</strong><br>
+        The <a href="m84_31.htm" onClick="suggestBack()">NODUPKEY option</a> checks 
+        for and eliminates observations that have duplicate BY-variable values. 
+        If you specify this option, then PROC SORT compares all BY-variable values 
+        for each observation to those for the previous observation that was written 
+        to the output data set. If an exact match is found, then the observation 
+        is not written to the output data set. </p>
+      <p>The <a href="m84_32.htm" onClick="suggestBack()">NODUPRECS option</a> 
+        checks for and eliminates duplicate observations. However, unlike the 
+        NODUPKEY option, the NODUPRECS option compares all of the variable values 
+        for each observation to those for the previous observation that was written 
+        to the output data set. If an exact match is found, then the observation 
+        is not written to the output data set. </p>
+      <p><a href="m84_33.htm" onClick="suggestBack()">EQUALS | NOEQUALS</a> is 
+        a procedure option that helps to determine the order of observations in 
+        the output data set. When you use NODUPRECS or NODUPKEY to remove observations 
+        from the output data set, the choice of EQUALS or NOEQUALS can have an 
+        effect on which observations are removed.</p>
+      <p>EQUALS is the default. For observations that have identical BY-variable 
+        values, EQUALS maintains the order from the input data set in the output 
+        data set. NOEQUALS does not necessarily preserve this order in the output 
+        data set. NOEQUALS can save CPU time and memory resources.</p>
+      <p><a href="m84_34.htm" onClick="suggestBack()">FIRST. LAST. processing</a> 
+        in the DATA step can also be used to remove duplicate observations in 
+        a SAS data set.</p>
+      <p> Review the related comparative example:</p>
+      <ul>
+        <li><a href="m84_35.htm" onClick="suggestBack()">Removing Duplicate Observations 
+          Efficiently</a>.</li>
+      </ul>
+      <hr size="1" noshade>
+      <p><strong>Additional Features</strong><br>
+        Depending on your operating environment, you might be able to use additional 
+        sorting options, called <a href="m84_38.htm" onClick="suggestBack()">host 
+        sort utilities</a>. Host sort utilities are third-party sort packages. 
+        In some cases, using a host sort utility might be more efficient than 
+        using the SAS sort utility with PROC SORT.</p>
+      <p>SAS uses the values that are set for the <a href="m84_39.htm" onClick="suggestBack()">SORTPGM=</a>, 
+        <a href="m84_40.htm" onClick="suggestBack()">SORTCUTP=</a>, <a href="m84_41.htm" onClick="suggestBack()">SORTCUT=</a> 
+        and <a href="m84_42.htm" onClick="suggestBack()">SORTNAME=</a> system 
+        options to determine which sort utility to use.</p>
+      <hr size="1" noshade>
+      <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<P> <br>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

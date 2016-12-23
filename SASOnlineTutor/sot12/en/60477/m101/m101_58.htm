@@ -1,0 +1,235 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Outer Joins<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <div id="le2_eg2" class="eg_div">
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+        <td> <p>Now let's see how you can use outer joins to combine the <strong>Products</strong> 
+            and <strong>ProdCategories</strong> tables. </p>
+          <p>You've used the <strong>Products</strong> table in several queries 
+            already. For example, in the <strong>Group-Profit</strong> query, 
+            you grouped products by category. However, in your query output, you 
+            saw only the category ID, not category names.</p>
+          <p>The <strong>ProdCategories</strong> table contains both the category 
+            ID and the category name (<code>CategoryName</code>) for the categories. 
+            By joining the <strong>Products</strong> and <strong>ProdCategories</strong> 
+            tables by <code>CategoryID</code>, you can show the category names 
+            instead of the category IDs in your query output. Showing the descriptive 
+            information makes your query output easier to interpret and more meaningful.</p>
+          </td>
+    </tr>
+  </table>
+    <p><br>
+    <p><img src="images/m101_58.gif" alt="joining tables" width="350" height="485"></p>
+    <p><br>
+    </p>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p><strong>Example: Outer Joins of the Products and ProdCategories 
+            Tables</strong></p>
+          <p>The table below describes the results of different types of outer 
+            joins of the <strong>Products</strong> and <strong>ProdCategories</strong> 
+            tables, assuming that <strong>Products</strong> is the first table 
+            in the join and that <strong>ProdCategories</strong> is the second 
+            table.</p>
+          </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table border="1" cellpadding="4" cellspacing="1" bgcolor="#FFFFFF" frame="box" rules="all" title="types of joins">
+      <tr bgcolor="#f7f7de"> 
+        <th align="left" nowrap><strong><font size="-1">Type of Outer Join</font></strong></th>
+        <th align="left" nowrap><font size="-1"><b>Rows in Query Results</b></font></th>
+      
+      <tr valign="top"> 
+        <td><strong><font size="-1">left </font></strong></td>
+        <td><p><font size="-1">all rows from<strong> Products</strong>, plus matching 
+            rows in <strong>ProdCategories</strong></font></p>
+          <table border="0" align="center" cellpadding="3" cellspacing="0">
+            <tr> 
+              <td nowrap>Products</td>
+              <td><div align="center"><img src="images/leftjoin.gif" alt="left outer join" width="92" height="61"><br>
+                </div></td>
+              <td nowrap>ProdCategories</td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr valign="top"> 
+        <td nowrap><strong><font size="-1">right </font></strong></td>
+        <td><p><font size="-1">all rows from<strong> </strong><strong>ProdCategories</strong>, 
+            plus matching rows in <strong>Products</strong></font></p>
+          <table border="0" align="center" cellpadding="3" cellspacing="0">
+            <tr> 
+              <td nowrap>Products</td>
+              <td><div align="center"><img src="images/rightjoin.gif" alt="right outer join" width="92" height="61"><br>
+                </div></td>
+              <td nowrap>ProdCategories</td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr valign="top"> 
+        <td><strong><font size="-1">full </font></strong></td>
+        <td><p><font size="-1">all rows from both <strong>Products </strong>and<strong> 
+            ProdCategories</strong></font></p>
+          <table border="0" align="center" cellpadding="3" cellspacing="0">
+            <tr> 
+              <td nowrap>Products</td>
+              <td><div align="center"><img src="images/fulljoin.gif" alt="full outer join" width="92" height="61"><br>
+                </div></td>
+              <td nowrap>ProdCategories</td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p>Now try joining the <strong>Products</strong> and <strong>ProdCategories</strong> 
+            tables using outer joins.</p>
+          </td>
+      </tr>
+    </table>
+    <br>
+  </div>
+  
+  <span id="divider" class="eg_div"><hr width="85%"></span>
+  
+<div id="eg3" class="eg_div">
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+        <td> <p>Now let's see how you can use outer joins to combine the <strong>Products</strong> 
+            and <strong>ProdCategories</strong> tables. </p>
+          <p>You've used the <strong>Products</strong> table in several queries 
+            already. For example, in the <strong>Group-Profit</strong> query, 
+            you grouped products by category. However, in your query output, you 
+            saw only the category ID, not category names.</p>
+          <p>The <strong>ProdCategories</strong> table contains both the category 
+            ID and the category name (<code>CategoryName</code>) for the categories. 
+            By joining the <strong>Products</strong> and <strong>ProdCategories</strong> 
+            tables by <code>CategoryID</code>, you can show the category names 
+            instead of the category IDs in your query output. Showing the descriptive 
+            information makes your query output easier to interpret and more meaningful.</p>
+          </td>
+    </tr>
+  </table>
+    <p><br>
+    <p><img src="images3/m101_58.gif" alt="joining tables" width="384" height="480"></p>
+    <p><br>
+    </p>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p><strong>Example: Outer Joins of the Products and ProdCategories 
+            Tables</strong></p>
+          <p>The table below describes the results of different types of outer 
+            joins of the <strong>Products</strong> and <strong>ProdCategories</strong> 
+            tables, assuming that <strong>Products</strong> is the first table 
+            in the join and that <strong>ProdCategories</strong> is the second 
+            table.</p>
+          </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table border="1" cellpadding="4" cellspacing="1" bgcolor="#FFFFFF" frame="box" rules="all" title="types of joins">
+      <tr bgcolor="#f7f7de"> 
+        <th align="left" nowrap><strong><font size="-1">Type of Outer Join</font></strong></th>
+        <th align="left" nowrap><font size="-1"><b>Rows in Query Results</b></font></th>
+      
+      <tr valign="top"> 
+        <td><strong><font size="-1">left </font></strong></td>
+        <td><p><font size="-1">all rows from<strong> Products</strong>, plus matching 
+            rows in <strong>ProdCategories</strong></font></p>
+          <table border="0" align="center" cellpadding="3" cellspacing="0">
+            <tr> 
+              <td nowrap>Products</td>
+              <td><div align="center"><img src="images/leftjoin.gif" alt="left outer join" width="92" height="61"><br>
+                </div></td>
+              <td nowrap>ProdCategories</td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr valign="top"> 
+        <td nowrap><strong><font size="-1">right </font></strong></td>
+        <td><p><font size="-1">all rows from<strong> </strong><strong>ProdCategories</strong>, 
+            plus matching rows in <strong>Products</strong></font></p>
+          <table border="0" align="center" cellpadding="3" cellspacing="0">
+            <tr> 
+              <td nowrap>Products</td>
+              <td><div align="center"><img src="images/rightjoin.gif" alt="right outer join" width="92" height="61"><br>
+                </div></td>
+              <td nowrap>ProdCategories</td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr valign="top"> 
+        <td><strong><font size="-1">full </font></strong></td>
+        <td><p><font size="-1">all rows from both <strong>Products </strong>and<strong> 
+            ProdCategories</strong></font></p>
+          <table border="0" align="center" cellpadding="3" cellspacing="0">
+            <tr> 
+              <td nowrap>Products</td>
+              <td><div align="center"><img src="images/fulljoin.gif" alt="full outer join" width="92" height="61"><br>
+                </div></td>
+              <td nowrap>ProdCategories</td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="85%" border="0" cellpadding="0" cellspacing="0">
+      <tr valign="top"> 
+        <td> <p>Now try joining the <strong>Products</strong> and <strong>ProdCategories</strong> 
+            tables using outer joins.</p>
+          </td>
+      </tr>
+    </table>
+    <br>
+  </div>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

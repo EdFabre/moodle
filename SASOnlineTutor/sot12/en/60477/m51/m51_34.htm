@@ -1,0 +1,104 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Working 
+      with PROC SQL Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P>When you submit a PROC SQL step, the PROC SQL program code is placed into the 
+          input stack, and word scanning is performed for macro triggers in the 
+          same process as in other SAS programs. 
+        <P>In the following code, the macro variable reference <code>&amp;crsid</code> 
+          is resolved during the creation of the PROC SQL view, resulting in a 
+          <strong>constant value</strong> whenever the view is used. For example, 
+          if the value of <code>crsid</code> is <em>C003</em> when this code is 
+          submitted, the view <strong>Subcrsid</strong> will always be based on 
+          the course code C003. 
+        <pre><font color="#003399">    proc sql;
+       create view subcrsid as
+          select student_name, student_company,paid
+             from sasuser.all
+             where course_code=&quot;&amp;crsid&quot;;
+    quit;
+</font></pre>
+        A better approach would be to use the SYMGET function to enable the view 
+        to look up the macro variable value. In the following example, the view 
+        <strong>Subcrsid</strong> is based on whatever value <code>crsid</code> 
+        has when the view is used: 
+        <pre><font color="#003399">    proc sql;
+       create view subcrsid as
+          select student_name,student_company,paid
+             from sasuser.all
+             where course_code=<strong>symget('crsid')</strong>;
+    quit;
+
+    <strong>%let crsid=C003;</strong>
+    proc print data=subcrsid noobs;
+       title &quot;Status of Students in Course Code <strong>&amp;crsid</strong>&quot;;
+    run;
+    <strong>%let crsid=C004;</strong>
+    proc print data=subcrsid noobs;
+       title &quot;Status of Students in Course Code <strong>&amp;crsid</strong>&quot;;
+    run;
+</font></pre>
+
+<P> PROC SQL does<strong> not</strong> perform automatic data conversion. You 
+          must use the INPUT function to convert the macro variable value to numeric 
+          if it is compared to a numeric variable. 
+        <P>The following code performs a query that is based on the numeric equivalent 
+          of the current value of the macro variable <code>crsnum</code>. The 
+          INPUT function is necessary in this WHERE statement because the value 
+          of the data set variable <code>Course_number</code> is numeric, but 
+          <code>crsnum</code> has a character value because it is a macro variable. 
+        <pre><font color="#003399">    proc sql;
+        create view subcnum as
+           select student_name, student_company, paid
+              from sasuser.all
+              where course_number=<strong>input(symget('crsnum'),2.)</strong>;
+    quit;
+    
+    %let crsnum=4;
+    proc print data=subcnum noobs;
+       title &quot;Status of Students in Course Number &amp;crsnum&quot;;
+    run;
+</font></pre>
+
+    </td>
+  </tr>
+</table><P>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

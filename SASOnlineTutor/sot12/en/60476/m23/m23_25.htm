@@ -1,0 +1,314 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      List Input<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Processing the DATA Step</strong> </p>
+      <p> At compile time, the informat $12. in the example below sets the length 
+        of <code>City</code> to 12 and stores this information in the descriptor 
+        portion of the data set. During the execution phase, however, the <em>w</em> 
+        value of 12 does <strong>not</strong> determine the number of columns 
+        that are read. This is different from the function of informats in the 
+        formatted input style. 
+    </td>
+  </tr>
+</table>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre>     <font color="#003399">data perm.cityrank;</font>
+<font color="#003399">        infile topten;</font>
+<font color="#003399">        input Rank City &amp; <strong>$12.</strong></font>
+<font color="#003399">              Pop86 : comma.;</font>
+     <font color="#003399">run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+----20---+--</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;1&nbsp;NEW&nbsp;YORK&nbsp;&nbsp;7,262,700&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;2&nbsp;LOS&nbsp;ANGELES&nbsp;&nbsp;3,259,340&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;3&nbsp;CHICAGO&nbsp;&nbsp;3,009,530&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;4&nbsp;HOUSTON&nbsp;&nbsp;1,728,910&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;5&nbsp;PHILADELPHIA&nbsp;&nbsp;1,642,900&nbsp;</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font>
+</center>
+<p> <br>
+<center>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+          <td align="left">The &amp; modifier indicates that the values for <code>City</code> 
+            should be read until two consecutive blanks<strong> </strong>are encountered. 
+            Therefore, the value <em>NEW YORK</em> is read from column 4 to column 
+            11, a total of only 8 columns. When blanks are encountered in both 
+            columns 12 and 13, the value <em>NEW YORK </em>is written to the program 
+            data vector.</td>
+      </tr>
+    </table>
+    <p> 
+    <center>
+      <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td align="left"> 
+            <pre>     <font color="#003399">data perm.cityrank;</font>
+<font color="#003399">        infile topten;</font>
+<font color="#003399">        input Rank City <strong>&amp;</strong> $12.</font>
+<font color="#003399">              Pop86 : comma.;</font>
+     <font color="#003399">run;</font>
+</pre>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;<font face="Courier New, Courier, mono" size="2" color="red">&nbsp;12345678</font></td>
+        </tr>
+        <tr> 
+          <td><font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+            <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+              <thead> 
+              <tr> 
+                <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10<strong><font color="red">V</font></strong>--+----20---+--</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+              </tr>
+              </thead> <tbody> 
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;1&nbsp;<font color="#003399"><strong>NEW&nbsp;YORK</strong></font>&nbsp;&nbsp;7,262,700&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;2&nbsp;LOS&nbsp;ANGELES&nbsp;&nbsp;3,259,340&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;3&nbsp;CHICAGO&nbsp;&nbsp;3,009,530&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;4&nbsp;HOUSTON&nbsp;&nbsp;1,728,910&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;5&nbsp;PHILADELPHIA&nbsp;&nbsp;1,642,900&nbsp;</font></td>
+              </tr>
+              </tbody> 
+            </table>
+            </font></font></td>
+        </tr>
+      </table>
+    </center>
+    <p>
+      <center>
+        <br>
+        <img src="images/m23j2g1.gif" width="222" height="73" alt="Program Data Vector"><br>
+        <br>
+      </center>
+    <center>
+      <center>
+        <table cellpadding=0 cellspacing=0 border=0 width="85%">
+          <tr> 
+            <td align="left">The input pointer moves forward to the next <strong>nonblank</strong> 
+              column, which is column 14 in the first record. Now the values for 
+              <code>Pop86</code> are read from column 14 <strong>until the next 
+              blank</strong> is encountered. The COMMA<em>w</em>.<em>d</em> informat 
+              removes the commas, and the value is written to the program data 
+              vector.</td>
+          </tr>
+        </table>
+        <p> 
+        <center>
+          <center>
+            <table cellpadding=0 cellspacing=0 border=0 width="85%">
+              <tr> 
+                <td align="left"> 
+                  <pre><font color="#003399">     data perm.cityrank;</font>
+<font color="#003399">        infile topten;</font>
+<font color="#003399">        input Rank City &amp; $12.</font>
+<font color="#003399">              <strong>Pop86 : comma.</strong>;</font>
+     <font color="#003399">run;</font>
+</pre>
+                </td>
+              </tr>
+            </table>
+            </center><p><center> 
+          </center>
+          <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+          <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+            <thead> 
+            <tr> 
+              <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+----20-<strong><font color="red">V</font></strong>-+--</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;1&nbsp;NEW&nbsp;YORK&nbsp;&nbsp;<font color="#003399"><strong>7,262,700</strong></font>&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;2&nbsp;LOS&nbsp;ANGELES&nbsp;&nbsp;3,259,340&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;3&nbsp;CHICAGO&nbsp;&nbsp;3,009,530&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;4&nbsp;HOUSTON&nbsp;&nbsp;1,728,910&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;5&nbsp;PHILADELPHIA&nbsp;&nbsp;1,642,900&nbsp;</font></td>
+            </tr>
+            </tbody> 
+          </table>
+          </font></font>
+</center>
+        <p>
+          <center>
+            <br>
+            <img src="images/m23j2g2.gif" width="222" height="73" alt="Program Data Vector"><br>
+            <br>
+          </center>
+        <center>
+          <table cellpadding=0 cellspacing=0 border=0 width="85%">
+            <tr> 
+              <td align="left">Notice that the <strong>character </strong>values 
+                for <code>City</code> and the <strong>nonstandard</strong> values 
+                for <code>Pop86</code> are stored correctly in the data set.</td>
+            </tr>
+          </table>
+          <p> SAS Data Set Perm.Cityrank 
+          <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+          <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+            <thead> 
+            <tr bgcolor="#F7F7DE"> 
+              <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Rank</b></font></td>
+              <td align=LEFT><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City</b></font></td>
+              <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Pop86</b></font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                1</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">NEW 
+                YORK</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">7262700</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                2</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">LOS 
+                ANGELES</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3259340</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                3</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">CHICAGO</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">3009530</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                4</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">HOUSTON</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1728910</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                5</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">PHILADELPHIA</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1642900</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                6</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">DETROIT</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1086220</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                7</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">SAN 
+                DIEGO</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1015190</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                8</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">DALLAS</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1003520</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                9</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">SAN 
+                ANTONIO</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                914350</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">PHOENIX</font></td>
+              <td align=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+                894070</font></td>
+            </tr>
+            </tbody> 
+          </table>
+          </font></font>
+<p> <br>
+        </center>
+      </center>
+    </center>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

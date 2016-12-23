@@ -1,0 +1,147 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      List Input<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Reading Nonstandard Values </strong> </p>
+      <p> The colon (:)<strong> </strong>modifier enables you to read nonstandard 
+        data values and character values that are longer than eight characters, 
+        but which contain no embedded blanks. The : &nbsp;indicates that values 
+        are read until a blank (or other delimiter) is encountered, and then an 
+        informat is applied. If an informat for reading character values is specified, 
+        the <em>w</em> value specifies the variable's length, overriding the default 
+        length. 
+      <p> Notice the values representing the 1986 population of each city in the 
+        raw data file below. Because they contain commas, these values are <strong>nonstandard</strong> 
+        numeric values.
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+  Raw Data File Topten 
+<div align="center"> <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+----20---+--</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;1&nbsp;NEW&nbsp;YORK&nbsp;&nbsp;<font color="#003399"><strong>7,262,700</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;2&nbsp;LOS&nbsp;ANGELES&nbsp;&nbsp;<font color="#003399"><strong>3,259,340</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;3&nbsp;CHICAGO&nbsp;&nbsp;<font color="#003399"><strong>3,009,530</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;4&nbsp;HOUSTON&nbsp;&nbsp;<font color="#003399"><strong>1,728,910</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;5&nbsp;PHILADELPHIA&nbsp;&nbsp;<font color="#003399"><strong>1,642,900</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;6&nbsp;DETROIT&nbsp;&nbsp;<font color="#003399"><strong>1,086,220</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;7&nbsp;SAN&nbsp;DIEGO&nbsp;&nbsp;<font color="#003399"><strong>1,015,190</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;8&nbsp;DALLAS&nbsp;&nbsp;<font color="#003399"><strong>1,003,520</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;9&nbsp;SAN&nbsp;ANTONIO&nbsp;&nbsp;<font color="#003399"><strong>914,350</strong></font>&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">10&nbsp;PHOENIX&nbsp;&nbsp;<font color="#003399"><strong>894,070</strong></font>&nbsp;</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font></div>
+<p align="center"> <br>
+<div align="center">
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">In order to read these values, you can modify list input 
+        with the colon (:) modifier, followed by the COMMA<em>w</em>.<em>d</em> 
+        informat, as shown in the program below. Notice that the COMMA<em>w</em>.<em>d</em> 
+        informat does <strong>not</strong> specify a <em>w</em> value.</td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p align="center"> 
+<div align="center">
+  <table border="0" cellpadding="0" width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">data perm.cityrank;</font>
+<font color="#003399">        infile topten;</font>
+<font color="#003399">        input Rank City &amp; $12.</font>
+<font color="#003399">             <strong> Pop86 : comma.;</strong></font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+        <td align="left">Remember that list input reads each value until the next 
+          blank is detected. The default length of numeric variables is 8, so 
+          you don't need to specify a <em>w</em> value to indicate the length 
+          of a numeric variable.</td>
+    </tr>
+  </table>
+</div>
+<p align="center">&nbsp; 
+<div align="center">
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">This is different from using a numeric informat with <strong>formatted 
+        </strong>input. In that case, you must specify a <em>w</em> value in order 
+        to indicate the number of columns to be read.</td>
+    </tr>
+  </table>
+</div>
+<center>
+  <p align="center"> <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

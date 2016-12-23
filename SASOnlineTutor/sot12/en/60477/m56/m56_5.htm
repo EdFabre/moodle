@@ -1,0 +1,101 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Working 
+      with Lookup Values Outside of SAS Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> Remember that it is not necessary for your lookup table to be a SAS 
+        data set. Suppose you want to combine the data from your base table with 
+        lookup values that are not stored in a SAS data set. You can use the following 
+        techniques to hard-code lookup values into your program: 
+        <ul>
+		<li>the IF-THEN/ELSE statement
+		<li>SAS arrays
+		<li>user-defined SAS formats.
+		</ul>
+		<P><BR>
+		<h2>The IF-THEN/ELSE Statement</h2>
+		<p>You should be familiar with the syntax and use of the IF-THEN/ELSE 
+          statement. Overall, this technique is easy to use and easy to understand. 
+          Because of its simplicity and because you can use other DATA step syntax 
+          with it, the IF-THEN/ELSE statement can be quite versatile as a technique 
+          for performing lookup operations. You can use this technique if your 
+          lookup values are not stored in a data set, and you can use it to handle 
+          any of the possible relationships between your base table and your lookup 
+          table if your lookup values are stored in a data set. You can use it 
+          to retrieve single or multiple values. For example, you can use DO groups 
+          to provide multiple values based on a condition.</p>
+        <p>Keep in mind that this technique will require maintenance. If you expect 
+          your lookup values to change and you have a large number of lookup values, 
+          or if you use the lookup values in multiple programs, the resources 
+          required for maintaining the IF-THEN/ELSE statements in your programs 
+          might make this technique inappropriate. Also, this technique might 
+          result in a prohibitively long program or even in a program that will 
+          not execute because it times out.</p>
+		  <P><BR>
+		  <h2>Example: Using the IF-THEN/ELSE Statement to Combine Data</h2>
+		  Suppose you have a data set, <strong>Mylib.Employees</strong>, that 
+        contains information about employees. <strong>Mylib.Employees</strong> 
+        contains a variable named <code>IDnum</code> that records each employee's 
+        unique identification number. If you want to combine the data from <strong>Mylib.Employees</strong> 
+        with a list of employees' birthdates that is not stored in a data set, 
+        you can use the IF-THEN/ELSE statement to do so. <font color="#003399"> 
+        <pre>     data mylib.employees_new;
+        set mylib.employees;
+        if IDnum=1001 then Birthdate='01JAN1963'd;
+        else if IDnum=1002 then Birthdate='08AUG1946'd;
+        else if IDnum=1003 then Birthdate='23MAR1950'd;
+        else if IDnum=1004 then Birthdate='17JUN1973'd;
+     run;</pre>
+        </font> <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">Note that <strong>Mylib.Employees</strong> is a fictitious 
+              data set that is used for this example and for the examples on the 
+              next two pages. The <strong>Mylib</strong> library and the <strong>Employees</strong> 
+              data set are not included in the practice data for this lesson; 
+              therefore, these sample programs will not run.</td>
+      </tr>
+    </table></td>
+    </tr>
+  </table>
+
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

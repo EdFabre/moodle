@@ -1,0 +1,143 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Enhancing 
+      Query Output<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td><h2><font size="3" color="#003399"><strong></strong> </font><a name="column"></a>Specifying 
+          Column Formats and Labels</h2>
+        <p>By default, PROC SQL formats output using column attributes that are 
+          already saved in the table or, if none are saved, the default attributes. 
+          To control the formatting of columns in output, you can specify SAS 
+          data set options, such as LABEL= and FORMAT=, after any column name 
+          specified in the SELECT clause. When you define a new column in the 
+          SELECT clause, you can assign a label rather than an alias, if you prefer.</p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Data Set Options LABEL= and FORMAT=">
+    <tr align="left" valign="top" bgcolor="#F7F7DE"> 
+      <th><font size="-1">Data Set Option</font></th>
+      <th><font size="-1">Specifies&nbsp;...</font></th>
+      <th><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>LABEL=</strong><em></em></td>
+      <td> the label to be displayed for the column</td>
+      <td> <pre><font color="#003399">select hiredate 
+       label='Date of Hire'</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>FORMAT=</strong></td>
+      <td> the format used to display column data</td>
+      <td> <pre><font color="#003399">select hiredate 
+       format=date9.</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The data set options LABEL= and FORMAT= are not part of 
+        the ANSI standard. These options are SAS enhancements.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">To force PROC SQL to ignore permanent labels in a table, 
+        specify the NOLABEL system option.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> Your first task is to specify column labels for the first two columns. 
+        Below, the <strong>LABEL=</strong> option has been added after both <code>EmpID</code> 
+        and <code>JobCode</code>, and the text of each label is enclosed in quotation 
+        marks. For easier reading, each of the four columns in the SELECT clause 
+        is now listed on its own line.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql outobs=15;
+        select empid <strong>label='Employee ID'</strong>,
+               jobcode <strong>label='Job Code'</strong>,
+               salary,
+               salary * .10 as Bonus
+           from sasuser.payrollmaster
+           where salary&gt;75000
+           order by salary desc;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Next, you will add a format for the <code>Bonus</code> column. Because 
+          the <code>Bonus</code> values are dollar amounts, you will use the format 
+          <strong>Dollar12.2</strong>. The <strong>FORMAT=</strong> option has 
+          been added to the SELECT clause, below, immediately following the column 
+          alias <code>Bonus</code>:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql outobs=15;
+        select empid label='Employee ID',
+               jobcode label='Job Code',
+               salary,
+               salary * .10 as Bonus
+               <strong>format=dollar12.2</strong>
+        from sasuser.payrollmaster
+        where salary&gt;75000
+        order by salary desc;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> Now that column formats and labels have been specified, let's add a 
+        title to this PROC SQL query.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

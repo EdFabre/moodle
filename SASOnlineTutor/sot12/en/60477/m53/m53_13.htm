@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>With the program in an active code editing window,  ';
+solutionText+='select <strong>File</strong><img src="../navimages/arrow.gif" width="14" height="10" alt="then" ><strong>Save As Object</strong>. ';
+solutionText+='Select the <strong>Sasuser</strong> library. ';
+solutionText+='If the <strong>Mymacs</strong> catalog doesn\'t already exist, ';
+solutionText+='then click the <strong>Create New Catalog</strong> button (on z/OS, the <strong>New Cat</strong> button). ';
+solutionText+='You can hold the mouse pointer over the buttons in order to read their names. ';
+solutionText+='Enter <strong>Mymacs</strong> in the Catalog Create window. Click <strong>OK</strong>.';
+solutionText+='<br><br>Once you have created the <strong>Mymacs</strong> catalog, ';
+solutionText+='make sure it is selected and enter <strong>sortlast</strong> ';
+solutionText+='as the entry name. Then click <strong>Save</strong>.<br><br>  ';
+solutionText+='<li>Clear the code editing window if necessary. Use the CATALOG access method to compile the ';
+solutionText+='<strong>Sortlast</strong> macro. You will need a ';
+solutionText+='FILENAME statement and a %INCLUDE statement. <br>';
+solutionText+='Here is an example of the program you submit:';
+solutionText+='<font color="#003399"><pre>filename srtlast ';
+solutionText+='catalog <br>         "sasuser.mymacs.sortlast.source";<br>';
+solutionText+='%include srtlast;<br>';
+solutionText+='data course1;<br>   set sasuser.register;<br>';
+solutionText+='   where course_number=1;<br>run;</pre></font>';
+solutionText+='View any messages written to the SAS log.<br><br>';
+solutionText+='<li>Submit the following code:';
+solutionText+='<font color="#003399"><pre>%sortlast(paid)<br>title;<br>';
+solutionText+='proc print data=sorted;<br>run;</pre></font>';
+solutionText+='Examine the output.<br><br>';
+solutionText+='<li>Submit the following step:';
+solutionText+='<font color="#003399"><pre>proc catalog cat=sasuser.mymacs;<br>';
+solutionText+='   contents;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='Examine the output. You should see the contents of the <strong>Sasuser.Mymacs</strong> catalog listed as output,';
+solutionText+=' including the <strong>Sortlast</strong> macro. </ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Save 
+      a macro as a catalog SOURCE entry.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+        
+          <li>Copy the following program and paste it into the code editing window. 
+            <strong>Do not submit</strong> the program.<font color="#003399"> 
+            <pre>%macro sortlast(sortby);
+   %if &syslast ne _NULL_ %then %do;
+      proc sort data=&syslast out=sorted;
+         by &sortby;
+      run;
+   %end;
+   %else
+      %put No data set has been created yet.;
+%mend;</pre>
+          </font> Save the program in a SOURCE entry in the SAS catalog <strong>Sasuser.Mymacs</strong>. 
+          You might need to create the <strong>Mymacs</strong> catalog before 
+          you save the SOURCE entry in it.<br>
+          <br>
+          <li>Make sure that the code editing window is clear. Write a statement 
+            that will compile the <strong>Sortlast </strong>macro that you created 
+            and saved in <nobr>Step 1</nobr>. Also write a step that will create 
+            a new data set named <strong>Course1</strong> that contains all of 
+            the observations from the data set <strong>Sasuser.Register</strong> 
+            that have a value of <em>1</em> for <code>Course_number</code>. Submit 
+            this code.<br>
+            <br>
+	<li>Write a call to the <strong>Sortlast</strong> macro. 
+	Use <code>paid</code> as the parameter value in the macro call. Also write a step to print the new data set (<strong>Work.Sorted</strong>) that the <strong>Sortlast</strong> macro creates. Submit this code and examine the output.<br><br>
+	      <li>Write a PROC CATALOG statement to display the contents of the <strong>Sasuser.Mymacs</strong> 
+            catalog. Submit the statement and examine the output. <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

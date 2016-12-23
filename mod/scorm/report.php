@@ -52,7 +52,6 @@ $url->param('mode', $mode);
 $PAGE->set_url($url);
 
 require_login($course, false, $cm);
-$PAGE->set_pagelayout('report');
 
 require_capability('mod/scorm:viewreport', $contextmodule);
 

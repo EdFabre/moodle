@@ -1,0 +1,130 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Compressing 
+      Data Files<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td>Now that you have seen how to create a compressed data set, let's look 
+        at working with compressed data sets. In general, you use a compressed 
+        data set in your programs in the same way that you would use an uncompressed 
+        data set. However, there are two options that relate specifically to compressed 
+        data sets. 
+        <P><BR><h2>Accessing Observations Directly in a Compressed Data Set</h2>
+        <p>By default, the DATA step processes observations in a SAS data set 
+          sequentially. However, sometimes you might want to access observations 
+          directly rather than sequentially because doing so can conserve resources 
+          such as CPU time, I/O, and real time. You can use the POINT= option 
+          in the MODIFY or SET statement to access observations directly rather 
+          than sequentially. You can review information about the POINT= option 
+          in the lesson 
+          <!--lesson reference--> <strong><script>document.write(m54title);</script></strong>. You can also use the FSEDIT procedure to access observations 
+          directly.</p>
+        <p>Allowing direct access to observations in a compressed data set increases 
+          the CPU time that is required for creating or updating the data set. 
+          You can set an option that does not allow direct access for compressed 
+          data sets. If it is not important for you to be able to point directly 
+          to an observation by number within a compressed data set, it is a good 
+          idea to disallow direct access in order to improve the efficiency of 
+          creating and updating the data set. Let's look at how to disallow direct 
+          access to observations in a compressed data set. </p>
+        <P><BR>
+        <h2>The POINTOBS= Data Set Option</h2>
+        <p>When you are working with compressed data sets, you use the <strong>POINTOBS= 
+          </strong>data set option to control whether observations can be processed 
+          with direct access (by observation number) rather than with sequential 
+          access only. This option is available beginning in SAS 8.</p></td>
+    </tr>
+  </table>
+  
+  <P><BR>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, POINTOBS= data set option">
+    <tr> 
+      <td align="left"><strong>General form, POINTOBS= data set option:</strong> 
+        <blockquote> <font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em> 
+          <strong>(POINTOBS= YES | NO);</strong></font> </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>SAS-data-set</em></font> specifies the 
+            data set that you want to compress. <br>
+            <br>
+          
+          <li><font color="#003399"><strong>YES </strong></font> is the default 
+            setting, which allows random access to the data set. <br>
+            <br>
+          <li><font color="#003399"><strong>NO</strong></font> does not allow 
+            random access to the data set. 
+        </ul>
+			<table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">In order to use the POINTOBS= data set option, the 
+              COMPRESS= option must have a value of <em>YES</em>, <em>CHAR</em>, 
+              or <em>BINARY</em> for the <font color="#003399"><em>SAS-data set</em></font> 
+              that is specified.</td>
+      </tr>
+    </table></td>
+    </tr>
+  </table>
+  <P><BR>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>Allowing random access to a data set does not affect the efficiency 
+          of retrieving information from a data set, but it does increase the 
+          CPU usage by approximately 10% when you create or update a compressed 
+          data set. That is, allowing random access reduces the efficiency of 
+          writing to a compressed data set but does not affect the efficiency 
+          of reading from a compressed data set. Therefore, if you do not need 
+          to access data by observation number, then by specifying POINTOBS=<em>NO</em>, 
+          you can improve performance by approximately 10% when creating a compressed 
+          data set and when updating or adding observations to it. 
+        <P><BR>
+		<h2>Example</h2>
+	The following program creates a data set named <strong>Company.Customer_Compressed</strong> 
+        from the <strong>Company.Customer </strong>data set and ensures that random 
+        access to the compressed data set is not allowed. <font color="#003399"> 
+        <pre>     data company.customer_compressed (compress=yes pointobs=no);
+        set company.customer;
+     run;</pre>
+        </font> Now let's look at an option that enables you to further reduce 
+        the data storage space that is required for your compressed data sets.</td>
+    </tr>
+  </table>
+  <p>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

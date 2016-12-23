@@ -1,0 +1,68 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>How SAS Updates Data Using the MODIFY and BY Statements</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->How 
+      SAS Updates Data Using the MODIFY and BY Statements<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows how SAS updates values in the master data set 
+        (<strong>Capacity</strong>) based on values in a transaction data set 
+        (<strong>Sasuser.Newrtnum</strong>).</p>
+      <ol>
+        <li> The following program is submitted to SAS: 
+          <pre><font color="#003399">data capacity; 
+   modify capacity sasuser.newrtnum;
+   by flightid; 
+run;</font></pre>
+        </li>
+        <li>SAS reads the first observation from the transaction data set (<strong>Sasuser.Newrtnum</strong>) 
+          into the transaction PDV, which is a memory buffer.<br>
+          <br>
+        </li>
+        <li>Based on the value of the BY variable (<code>FlightID</code>) in the 
+          transaction data set, SAS builds a dynamic WHERE statement (<font color="#003399"><code>where 
+          flightid = 'IA00100';</code></font>).<br>
+          <br>
+        </li>
+        <li>SAS then applies the dynamic WHERE statement to the master data set 
+          (<strong>Capacity</strong>) and reads the selected observation into 
+          the master PDV.<br>
+          <br>
+        </li>
+        <li>To update the master data set, SAS overlays common variables from 
+          the transaction PDV onto variables in the master PDV. Only <code>RouteID</code> 
+          changes.<br>
+          <br>
+        </li>
+        <li>Finally, SAS writes the updated observation from the master PDV to 
+          the same location in the master data set. Then SAS processes the remaining 
+          transactions in the same way.</li>
+      </ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

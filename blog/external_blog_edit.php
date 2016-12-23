@@ -79,16 +79,13 @@ if ($externalblogform->is_cancelled()){
             $newexternal->description = (empty($data->description)) ? $rss->get_description() : $data->description;
             $newexternal->userid = $USER->id;
             $newexternal->url = $data->url;
-            $newexternal->filtertags = (!empty($data->filtertags)) ? $data->filtertags : null;
+            $newexternal->filtertags = $data->filtertags;
             $newexternal->timemodified = time();
 
             $newexternal->id = $DB->insert_record('blog_external', $newexternal);
             blog_sync_external_entries($newexternal);
-            if ($CFG->usetags) {
-                $autotags = (!empty($data->autotags)) ? $data->autotags : null;
-                tag_set('blog_external', $newexternal->id, explode(',', $autotags), 'core',
-                    context_user::instance($newexternal->userid)->id);
-            }
+            tag_set('blog_external', $newexternal->id, explode(',', $data->autotags), 'core',
+                context_user::instance($newexternal->userid)->id);
 
             break;
 
@@ -102,15 +99,13 @@ if ($externalblogform->is_cancelled()){
                 $external->description = (empty($data->description)) ? $rss->get_description() : $data->description;
                 $external->userid = $USER->id;
                 $external->url = $data->url;
-                $external->filtertags = (!empty($data->filtertags)) ? $data->filtertags : null;
+                $external->filtertags = $data->filtertags;
                 $external->timemodified = time();
 
                 $DB->update_record('blog_external', $external);
-                if ($CFG->usetags) {
-                    $autotags = (!empty($data->autotags)) ? $data->autotags : null;
-                    tag_set('blog_external', $external->id, explode(',', $autotags), 'core',
-                        context_user::instance($external->userid)->id);
-                }
+                tag_set('blog_external', $external->id, explode(',', $data->autotags), 'core',
+                    context_user::instance($newexternal->userid)->id);
+
             } else {
                 print_error('wrongexternalid', 'blog');
             }

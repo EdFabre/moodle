@@ -1,0 +1,121 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Your Own Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>SYMBOLGEN System Option</strong> </p>
+      <p> Now that you know how to create and reference macro variables in your 
+        programs, you might want to use the <strong>SYMBOLGEN</strong> system 
+        option. This option specifies whether messages about the resolution of 
+        macro variable references are written to the SAS log. These messages can 
+        help you verify the values of macro variables that are referenced in your 
+        program. 
+    </td>
+  </tr>
+</table>
+<p> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, OPTIONS statement with SYMBOLGEN option">
+    <tr> 
+      <td><strong>General form, OPTIONS statement with SYMBOLGEN option:</strong> 
+        <blockquote> <font color="#003399"><strong>OPTIONS NOSYMBOLGEN</strong> 
+          | <strong>SYMBOLGEN;</strong></font> </blockquote>
+        <p> where 
+        <ul>
+          <li> <font color="#003399"><strong>NOSYMBOLGEN</strong></font> specifies 
+            that the values of macro variables will <strong>not</strong> be displayed 
+            in the log. This is the default.<br>
+            <br>
+          <li> <font color="#003399"><strong>SYMBOLGEN</strong></font> specifies 
+            that the values of macro variables <b>will</b> be displayed in the 
+            log. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>Let's see how this option works by specifying the SYMBOLGEN option and 
+        resubmitting the program about temporary employees. Remember that SAS 
+        system options can be specified in an OPTIONS statement. 
+        <pre><font color="#003399">     <strong>options symbolgen;</strong></font>
+<font color="#003399">     %let year=1999;</font>
+<font color="#003399">     title "Temporary Employees for &amp;year";</font>
+<font color="#003399">     data hrd.newtemp;</font>
+<font color="#003399">        set hrd.temp;</font>
+<font color="#003399">        if year(enddate)=&amp;year;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=hrd.newtemp;</font>
+<font color="#003399">     run;</font>
+</pre>
+        <p> Here are the messages that the SYMBOLGEN option produces. Notice that 
+          a message is displayed for each resolved macro variable reference. 
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+    SAS Log 
+  <table border="1" cellpadding="10" cellspacing="0" title="log output">
+    <tr bgcolor="#F7F7DE"> 
+      <td>
+        <pre>36  options symbolgen;
+37  %let year=1999;
+38  data hrd.newtemp;
+39     set hrd.temp;
+40     if year(enddate)=&amp;year;
+<strong>SYMBOLGEN: Macro variable YEAR resolves to 1999</strong>
+
+NOTE: The data set HRD.NEWTEMP has 8 observations
+      and 18 variables.
+NOTE: The DATA statement used 0.71 seconds.
+
+41  proc print data=hrd.newtemp;
+<strong>SYMBOLGEN: Macro variable YEAR resolves to 1999</strong>
+42     title "Temporary Employees for &amp;year";
+43  run;
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,193 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Character Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><STRONG>INDEX Function</STRONG> </p>
+      <P> The <STRONG>INDEX </STRONG>function enables you to search a character 
+        value for a specified string. The INDEX function searches values from 
+        left to right, looking for the first occurrence of the string. It returns 
+        the position of the string's first character; if the string is not found, 
+        it returns a value of <EM>0</EM>. 
+      <P> Suppose you need to search the values of the variable <CODE>Job</CODE>, 
+        which lists job skills. You want to create a data set that contains the 
+        names of all temporary employees who have word processing experience. 
+    </td>
+  </tr>
+</table>
+<P align="center"> <BR>
+  SAS Data Set Hrd.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Job</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Contact</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Dept</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">WORD PROCESSOR</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">DP</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">26</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">filing, administrative duties</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">ADMIN. ASST.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">PURH</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">57</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">organizational dev. specialist</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CONSULTANT</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">PERS</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">34</font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>The INDEX function can complete this search.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE width="85%" BORDER="1" CELLPADDING="10" CELLSPACING="0" bgcolor="#F7F7DE" title="General form, INDEX function">
+    <TR> 
+      <TD align="left"><STRONG>General form, INDEX function:</STRONG> <BLOCKQUOTE> 
+          <FONT color="#003399"><nobr><STRONG>INDEX(</STRONG><EM>source,excerpt</EM><strong>)</strong></nobr></FONT> 
+        </BLOCKQUOTE>
+        <P> where 
+        <UL>
+          <LI> <FONT color="#003399"><EM>source</EM></FONT> specifies the character 
+            variable or expression to search 
+          <LI> <FONT color="#003399"><EM>excerpt</EM></FONT> specifies a character 
+            string that is enclosed in quotation marks <NOBR>('&nbsp;').</NOBR> 
+        </UL></TD>
+    </TR>
+  </table>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>To search for the occurrences of <EM>word processing</EM> in the values 
+        of the variable <CODE>Job</CODE>, you write the INDEX function as shown 
+        below. Note that the character string is enclosed in quotation marks. 
+        <PRE>
+     <FONT color="#003399">index(job,'word processing')</FONT>
+</PRE>
+        <P> Then, to create the new data set, include the INDEX function in a 
+          subsetting IF statement. Only those observations in which the function 
+          locates the string and returns a value greater than <EM>0</EM> are written 
+          to the data set. 
+        <PRE>
+     <FONT color="#003399">data hrd.datapool;</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399">if index(job,'word processing') &gt; 0;</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE>
+        <P> Here's your data set that shows the temporary employees who have word 
+          processing experience.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+  SAS Data Set Hrd.Datapool 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Job</b></font></TD>
+        <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Contact</b></font></TD>
+        <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Dept</b></font></TD>
+        <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">WORD PROCESSOR</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">DP</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">26</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">bookkeeping, word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">BOOKKEEPER AST</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">BK</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">57</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">word processing, sec. work</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">WORD PROCESSOR</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">DP</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">95</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">bookkeeping, word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">BOOKKEEPER AST</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">BK</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">44</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">WORD PROCESSOR</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">DP</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">59</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">word processing, sec. work</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">WORD PROCESSOR</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">PUB</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">38</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">WORD PROCESSOR</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">DP</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">44</font></TD>
+</TR><TR valign="top">
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">WORD PROCESSOR</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">DP</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">90</font></TD>
+</TR>
+</tbody>
+</table></center>
+<P> <BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

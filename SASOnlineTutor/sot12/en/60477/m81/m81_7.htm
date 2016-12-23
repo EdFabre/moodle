@@ -1,0 +1,161 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Controlling 
+      Page Size and the Number of Buffers <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td height="16"><h2>Using the BUFSIZE= Option</h2>
+        <p>To select a default page size, SAS uses an algorithm that is based 
+          on observation length, engine, and operating environment. The default 
+          page size is optimal for most SAS activities, especially on computers 
+          that are supporting multiple SAS jobs concurrently. However, in some 
+          cases, choosing a page/buffer size that is larger than the default can 
+          speed up execution time by reducing the number of times that SAS must 
+          read from or write to the storage medium.</p>
+        <p>You can use the <strong>BUFSIZE=</strong> system option or data set 
+          option to control the page size of an output SAS data set. BUFSIZE= 
+          specifies not only the page size (in bytes), but also the size of each 
+          buffer that is used for reading or writing the SAS data set. The new 
+          buffer size is a permanent attribute of the data set; after it is specified, 
+          it is used whenever the data set is processed. </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, BUFSIZE= option">
+    <tr> 
+      <td align="left"><strong>General form, BUFSIZE= option:</strong> <blockquote> 
+          <p><font color="#003399"><strong>BUFSIZE= </strong>MIN <strong>|</strong> 
+            MAX <strong>|</strong> <em>n;</em></font></p>
+        </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399">MIN</font> sets the page size to the smallest 
+            possible number in your operating environment. 
+          <li><font color="#003399">MAX</font> sets the page size to the maximum 
+            possible number in your operating environment. 
+          <li><font color="#003399"><em>n </em></font>specifies the page size 
+            in bytes. For example, a value of 8 specifies a page size of 8 bytes, 
+            and a value of 4K specifies a page size of 4096 bytes. The default 
+            is 0, which causes SAS to use the optimal page size for the operating 
+            environment. 
+        </ul>
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top"><font color="#003399">MIN</font> might cause unexpected 
+              results and should be avoided. Use BUFSIZE=0 to reset the buffer 
+              page size to the default value in your operating environment. </td>
+          </tr>
+        </table>
+        <p> 
+        <table width="100%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"> The syntax that is shown here applies to the OPTIONS 
+              statement. On the command line or in a configuration file, the syntax 
+              is specific to your operating environment. For details, see the 
+              SAS documentation for your operating environment. <!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --></td>
+          </tr>
+        </table>
+        <p> </td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Only certain page/buffer size values are valid for each operating 
+          environment. If you request an invalid value for your operating environment, 
+          SAS automatically rounds up to the next valid page/buffer size. BUFSIZE=0 
+          is interpreted as a request for the default page/buffer size.</p></td>
+    </tr>
+  </table>
+  <p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>In the following program, the BUFSIZE= system option specifies a page 
+        size of <em>30720</em> bytes. 
+        <pre><font color="#003399">     <strong>options bufsize=30720;</strong>
+     filename orders 'c:\orders.dat';
+     data company.orders_fact;
+        infile orders;
+        <em>&lt;more SAS code&gt;</em>
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Before you change the default page size, it is important to consider 
+          the access pattern for the data as well as the I/O transfer rate of 
+          the underlying hardware. In some cases, increasing the page size might 
+          degrade performance, particularly when the data is processed using direct 
+          (random) access.</p>
+        </td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The default value for BUFSIZE= is determined by your operating 
+        environment and is set to optimize sequential access. To improve performance 
+        for direct access, you should change the value for BUFSIZE=. For the default 
+        setting and possible settings for direct access, see the BUFSIZE= system 
+        option in the SAS documentation for your operating environment. </td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>You can override the BUFSIZE= system option by using 
+          the BUFSIZE= data set option.</p>
+        </td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">If you use the COPY procedure to copy a data set to a library 
+        that is accessed via a different engine, the original page/buffer size 
+        is <strong>not</strong> necessarily retained.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

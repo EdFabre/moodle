@@ -1,0 +1,202 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing 
+      a Raw Data File<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Using a FILENAME Statement</strong> </p>
+        <p> Before you can read your raw data, you must point to the location 
+          of the external file that contains the data. You use the FILENAME statement 
+          to point to this location. </td>
+    </tr>
+  </table>
+  <p align="center"> <br>
+  <center>
+    <table border="1" cellpadding="2" cellspacing="0"  bgcolor="#FFFFFF" title="SAS statements" width="85%">
+      <thead>
+        <tr bgcolor="#F7F7DE"> 
+          <td width="157" align=LEFT><strong>To do this... &nbsp; </strong></td>
+          <td width="158" align=LEFT><strong>Use this SAS statement...</strong></td>
+          <td width="278" align=LEFT nowrap><strong>Example</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr> 
+          <td>Reference a SAS library</td>
+          <td>LIBNAME statement</td>
+          <td nowrap> <font color="#003399"><code>libname <em>libref</em> '<em>SAS-data-library</em>';</code></font></td>
+        </tr>
+        <tr> 
+          <td>Reference an external file</td>
+          <td><strong>FILENAME statement </strong> 
+          <td nowrap><font color="#003399"><code><nobr>filename tests 'c:\users\tmill.dat';</nobr></code></font></td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">Just as you assign a libref by using a LIBNAME statement, 
+          you assign a fileref by using a FILENAME statement. 
+          <p> Filerefs perform the same function as librefs: they temporarily 
+            point to a storage location for data. However, librefs reference SAS 
+            data libraries, whereas filerefs reference external files. </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <img src="images/m12e1g1.gif" width="217" height="155" align="Middle"
+      alt="Libref and Fileref"> 
+  <p align="center"> <br>
+  <center>
+    <table BORDER cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, FILENAME statement">
+      <tr> 
+        <td align="left"><strong>General form, FILENAME statement:</strong> <blockquote> 
+            <nobr> <font color="#003399"><strong>FILENAME </strong><i>fileref 
+            </i>&nbsp;'<i>filename</i>'<strong>;</strong></font> </nobr> </blockquote>
+          <p> where 
+          <ul>
+            <li><font color="#003399"><i>fileref </i></font><i>i</i>s a&nbsp;name 
+              that you associate with an external file. The name must be 1 to 
+              8 characters long, begin with a letter or underscore, and contain 
+              only letters, numbers, or underscores. </li>
+            <li> '<font color="#003399"><i>filename</i></font><font color="Black">' 
+              </font>is the fully qualified name or location of the file.</li>
+          </ul></td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p><strong>Defining a Fully Qualified Filename</strong></p>
+          <p>The following FILENAME statement temporarily associates the fileref 
+            <strong>Tests</strong> with the external file that contains the data 
+            from the exercise stress tests.<strong> </strong>The complete filename 
+            is specified as <strong> C:\Users\Tmill.dat </strong>in the Windows 
+            environment. </p>
+          <pre>   <font color="#003399">  filename tests 'c:\users\tmill.dat';</font><br>
+</pre> </td>
+      </tr>
+    </table>
+    Raw Data File Tests <font  face="Courier New, Courier" size="2" color="#000000"> 
+    <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <tbody>
+        <tr> 
+          <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---+----30---+----40---+--</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2458&nbsp;Murray,&nbsp;W&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;72&nbsp;&nbsp;&nbsp;185&nbsp;128&nbsp;12&nbsp;38&nbsp;D</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2462&nbsp;Almers,&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;68&nbsp;&nbsp;&nbsp;171&nbsp;133&nbsp;10&nbsp;5&nbsp;&nbsp;I</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2501&nbsp;Bonaventure,&nbsp;T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;78&nbsp;&nbsp;&nbsp;177&nbsp;139&nbsp;11&nbsp;13&nbsp;I</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2523&nbsp;Johnson,&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69&nbsp;&nbsp;&nbsp;162&nbsp;114&nbsp;9&nbsp;&nbsp;42&nbsp;S</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2539&nbsp;LaMance,&nbsp;K&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;75&nbsp;&nbsp;&nbsp;168&nbsp;141&nbsp;11&nbsp;46&nbsp;D</font></td>
+        </tr>
+        <tr> 
+          <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">2552&nbsp;Reberson,&nbsp;P&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69&nbsp;&nbsp;&nbsp;158&nbsp;139&nbsp;15&nbsp;41&nbsp;D&nbsp;</font></td>
+        </tr>
+      </tbody>
+    </table>
+    </font> 
+  </center>
+  <p align="center"> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p><strong>Defining an Aggregate Storage Location</strong></p>
+          <p>You can also use a FILENAME statement to associate a fileref with 
+            an aggregate storage location, such as a directory that contains multiple 
+            external files.</p></td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"><br>
+    <img src="images/m12e1g2.gif" width="238" height="131" align="Middle"
+	  alt="Fileref"> 
+  <p align="center"> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p>This FILENAME statement temporarily associates the 
+            fileref <strong>Finance</strong> with the aggregate storage directory 
+            <strong>C:\Users\Personal\Finances</strong>: </p>
+          <pre>    <font color="#003399"> filename finance 'c:\users\personal\finances';</font></pre> 
+</td>
+      </tr>
+    </table></center>
+     <div id="le1_le2_eg1_eg2_eg3" class="eg_div"></div>
+	 
+ <div id="v89_v91" class="eg_div">
+<table cellpadding=0 cellspacing=0 border=0 width="85%">
+<tr><td align="left"><br><h2>Viewing Active Filerefs</h2> 
+<p>Like librefs, the filerefs currently defined for your SAS session are 
+listed in the SAS Explorer window.</p>
+<p>To view details about a referenced file, double-click<strong> File 
+Shortcuts</strong> (or select<strong> File Shortcuts</strong> and then 
+<strong>Open</strong> from the pop-up menu). Then select <strong>View<img src="../navimages/arrow.gif" alt="then" width="14" height="10">Details</strong>. 
+Information for each file (name, size, type, and host path name) is 
+listed. </p></td></tr></table><p>
+ </div>
+ 
+  <center>
+    <table cellpadding=2 cellspacing=0 border=0 width="85%">
+      <tr valign="Top"> 
+        <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td>Both the LIBNAME and FILENAME statements are global. In other words, 
+          they remain in effect until you change them, cancel them, or end your 
+          SAS session.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

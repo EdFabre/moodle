@@ -1,0 +1,108 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --> 
+<TITLE>Selecting Variables Using DROP= and KEEP=</TITLE>
+<!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Selecting 
+      Variables Using DROP= and KEEP=<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<p> 
+<table cellpadding=0 cellspacing=0 border=0 align="center" width="85%">
+  <tr> 
+    <td align="left">When you create a new data set, you can use options to either 
+      drop or keep variables that are stored in the original data set. You specify 
+      which variables you want to drop or keep by using the DROP= and KEEP= data 
+      set options. 
+      <p> You can use the KEEP= option instead of the DROP= option if more variables 
+        are dropped than kept. You specify data set options in parentheses after 
+        a SAS data set name.
+    </td>
+  </tr>
+</table>
+<p> <br>
+<table border="2" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, DROP= and KEEP= data set options">
+  <tr> 
+    <td align="left"><strong>General form, DROP= and KEEP= data set options:</strong> 
+      <blockquote> <font color="#003399"><strong>(DROP=</strong><em>variable-1 
+        &lt; . . . variable-n&gt;</em><strong>)</strong></font><br>
+        <font color="#003399"><strong>(KEEP=</strong><em>variable-1 &lt; . . . 
+        variable-n&gt;</em><strong>)</strong></font> </blockquote>
+      <p> where 
+      <ul>
+        <li> the <font color="#003399">DROP=</font> or <font color="#003399">KEEP=</font> 
+          option, in parentheses, follows the name of the data set that contains 
+          the variables to be dropped or kept 
+        <li> <font color="#003399"><em>variable</em></font> is the name of one 
+          or more variables, separated by blanks. 
+      </ul>
+    </td>
+  </tr>
+</table>
+<p> <br>
+<table cellpadding=0 cellspacing=0 border=0 align="center" width="85%">
+  <tr> 
+    <td>You can specify DROP= and KEEP= anywhere you name a SAS data set: 
+      <ul>
+        <li> If you <strong>don't</strong> want to process certain variables and 
+          you don't want them to appear in the new data set, specify them in the 
+          DROP= option in the SET statement. <br>
+          <br>
+          In the DATA step below, the DROP= option in the SET statement prevents 
+          the variables <code>Triglycerides </code>and <code>UricAcid</code> from 
+          being read. These variables won't appear in the <code>Lab23.Drug1H</code> 
+          data set. 
+      </ul>
+      <blockquote> 
+        <pre><font color="#003399">     data lab23.drug1h;</font>
+<font color="#003399">        <strong>set research.cltrials
+            (drop=triglycerides uricacid)</strong>;</font>
+<font color="#003399">        if placebo='YES';</font>
+<font color="#003399">     run; </font>
+</pre>
+      </blockquote>
+      <p> 
+      <ul>
+        <li> If you <strong>do</strong> need to process a variable in the original 
+          data set (in a subsetting IF statement, for example), but you don't 
+          want the variable to appear in the output data set, you must specify 
+          the variable in the DROP= option in the DATA statement. <br>
+          <br>
+          In the following example, the DATA step uses the variable <code>Placebo</code> 
+          to select observations. In order to drop <code>Placebo</code> from the 
+          new data set LAB23, you must place the DROP= option in the DATA statement. 
+      </ul>
+      <blockquote> 
+        <pre><font color="#003399">     <strong>data lab23.drug1h(drop=placebo)</strong>;</font>
+<font color="#003399">        set research.cltrials
+</font><font color="#003399">        if placebo='YES';</font>
+<font color="#003399">     run; </font>
+</pre>
+      </blockquote>
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

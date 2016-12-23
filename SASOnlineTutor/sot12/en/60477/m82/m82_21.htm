@@ -1,0 +1,97 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      SAS DATA Step Views to Conserve Data Storage Space<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Creating and Referencing a SAS DATA Step View</h2>
+        <p>In order to use DATA step views successfully, you need to understand 
+          what happens when you create and reference one. </p>
+        <p>When you create a DATA step view, </p>
+        <ul>
+          <li>the DATA step is partially compiled</li>
+          <li>the intermediate code is stored in the specified SAS data library 
+            with a member type of VIEW.</li>
+        </ul>
+        <p><br><center>
+            <img src="images/m82_21g1.gif" width="332" height="112" alt="DATA step code to create a data view is partially compiled and stored in the specified data library."> 
+          </center>
+	    <p><br>You reference a DATA step view in the same way that you reference a 
+          data file. When you reference the view in a subsequent DATA or PROC 
+          step, 
+        <ul>
+          <li>the compiler resolves the intermediate code and generates executable 
+            code for the host environment</li>
+          <li>the generated code is executed as the DATA or PROC step requests 
+            observations.</li>
+        </ul>
+
+        <p>
+		
+      <center>
+          <img src="images/m82_21g2.gif" width="276" height="233" alt="Program code that references a data view in a PROC PRINT step accesses an external file at execution and then displays output.">
+</center>
+        
+        <p><br>
+          You can use a DATA step view as you would use any other SAS data set, 
+          with the exception that you cannot write to the view except under very 
+          specific circumstances. Also, you should keep in mind that a SAS data 
+          view reads from its source files each time it is used, so if the data 
+          that it is accessing changes, the view will change also. LIkewise, if 
+          the structure of the data that a view accesses changes, you will probably 
+          need to alter the view in order to account for this change.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">In SAS 9.1, the OBSBUF= data set option enables you 
+              to specify how many observations to read at one time from the source 
+              data for the DATA step view. The default size of the view buffer 
+              is 32K, which means that the number of observations that can be read 
+              into the view buffer at one time depends on the observation length. 
+              If the observation length is larger than 32K, then only one observation 
+              can be read into the buffer at a time.</td>
+          </tr>
+        </table> 
+      
+      </td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

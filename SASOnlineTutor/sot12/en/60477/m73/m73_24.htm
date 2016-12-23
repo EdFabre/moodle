@@ -1,0 +1,184 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+<!--STEP 1-->
+solutionText='<ol><li>Write and submit the following PROC SQL step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   create table work.awards<br>';
+solutionText+="      (PtsReqd num label='Points Required',<br>";
+solutionText+='      Rank num format=3.,<br>';
+solutionText+='      Award char(25));<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The following message should appear in the SAS log: <br>';
+solutionText+='<pre>NOTE: Table WORK.AWARDS created, with 0 rows <br>';
+solutionText+='and 3 columns.</pre>';
+<!--STEP 2-->
+solutionText+='<li>Write and submit either of the following PROC SQL steps: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   insert into work.awards(ptsreqd,rank,award)<br>';
+solutionText+="       values(2000, 1, 'free night in hotel')<br>";
+solutionText+="       values(10000, 2, '50% discount on flight')<br>";
+solutionText+="       values(20000, 3, 'free domestic flight')<br>";
+solutionText+="       values(40000, 4, 'free international flight');<br>";
+solutionText+='quit;<br></pre></font>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   insert into work.awards<br>';
+solutionText+="       set ptsreqd=2000, rank=1,<br>";
+solutionText+="           award='free night in hotel'<br>";
+solutionText+="       set ptsreqd=10000, rank=2,<br>";
+solutionText+="           award='50% discount on flight'<br>";
+solutionText+="       set ptsreqd=20000, rank=3,<br>";
+solutionText+="           award='free domestic flight'<br>";
+solutionText+="       set ptsreqd=40000, rank=4,<br>";
+solutionText+="           award='free international flight';<br>";
+solutionText+='quit;<br></pre></font>';
+solutionText+='The following message should appear in the SAS log: <br>';
+solutionText+='<pre>NOTE: 4 rows were inserted into WORK.AWARDS.</pre>';
+<!--STEP 3-->
+solutionText+='<li>Write and submit the following PROC SQL query: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   select *<br>';
+solutionText+='      from work.awards;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 3 in this practice.<br><br>';
+<!--STEP 4-->
+solutionText+='<li>Write and submit the following PROC SQL query: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+="title 'Awards for AZ Frequent Flyers';<br>";
+solutionText+='   select ffid, name,<br>';
+solutionText+="          pointsearned-pointsused as<br>";
+solutionText+='          AvailablePoints,<br>';
+solutionText+='          award<br>';
+solutionText+='      from work.awards, sasuser.frequentflyers<br>';
+solutionText+='      where calculated availablepoints>=ptsreqd<br>';
+solutionText+="            and state='AZ'<br>";
+solutionText+='      order by 1;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 4 in this practice.<br><br>';
+<!--STEP 5-->
+solutionText+='<li>Submit the following statement:<br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='title;</pre></font></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+            a temporary table based on column specifications, insert rows of data, 
+            and join the temporary table with the existing table <a href="JavaScript: openOther('../linklib/freqflyr.htm')"><strong>Sasuser.Frequentflyers</strong></a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --> <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write a PROC SQL step that creates a temporary table based on column 
+            specifications. The table is named <strong>Work.Awards</strong> and 
+            is intended to store data about awards that are earned by members 
+            of a frequent-flyer program. The table should include zero rows and 
+            three columns with the following attributes:<br>
+            <br>
+            <ul>
+              <li><code>PtsReqd</code>: numeric, length=8 (default), label=<strong>Points 
+                Required</strong></li>
+              <li><code>Rank</code>: numeric, length=8 (default), format=3.</li>
+              <li><code>Award</code>: character, length=25.</li>
+            </ul>
+            <br>
+            Add a QUIT statement to the step. Submit the step and view the SAS 
+            log to verify that the table was created with the correct number of 
+            rows and columns. <br>
+            <br>
+          <li> Write a PROC SQL step to load the following rows of data into the 
+            table <strong>Work.Awards</strong>, using whichever method you prefer. 
+            Values are listed in the order in which the columns appear in the 
+            table:<br>
+            <br>
+            <ul>
+              <li><em>2000</em>, <em>1</em>, <em>free night in hotel</em></li>
+              <li><em>10000</em>, <em>2</em>, 50<em>% discount on flight</em></li>
+              <li><em>20000</em>, <em>3</em>, <em>free domestic flight</em></li>
+              <li><em>40000</em>, <em>4</em>, <em>free international flight </em></li>
+            </ul>
+            <br>
+            Add a QUIT statement to the step. Submit the step and view the SAS 
+            log to verify that the rows were inserted into the table. <br>
+            <br>
+          <li>Write a PROC SQL query that displays all columns and rows of the 
+            table <strong>Work.Awards</strong>. Add a QUIT statement to the query. 
+            Submit the query and view the <a href="JavaScript: openOther('m73_24a.htm')">output</a>. 
+            <br>
+            <br>
+          <li>Write a PROC SQL query to generate a report that lists frequent-flyer 
+            program members and all the awards (one or more) that are available 
+            to each member, based on the member's remaining points. The query 
+            joins the tables <strong>Work.Awards</strong>, which contains data 
+            about the available awards,<strong> </strong>and <strong>Sasuser.Frequentflyers</strong>, 
+            which contains data about the number of points that each member has 
+            earned and used. In the report, display the following columns for 
+            only the frequent-flyer program members who live in Arizona (<em>AZ</em>):<br>
+            <br>
+            <ul>
+              <li><code>FFID</code></li>
+              <li><code>Name</code></li>
+              <li><code>AvailablePoints</code> (calculated by subtracting <code>PointsUsed</code> 
+                from <code>PointsEarned</code>)</li>
+              <li><code>Award</code></li>
+            </ul>
+            <br>
+            Display this title: <strong>Awards for AZ Frequent Flyers</strong>. 
+            Order the report by <code>FFID</code>.<br>
+            <br>
+            Add a QUIT statement to the query. Submit the query and view the <a href="JavaScript: openOther('m73_24b.htm')">output</a>.<br>
+            <br>
+          <li>Submit a null TITLE statement to cancel titles. <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -15,10 +15,6 @@ $userid       = optional_param('user', 0, PARAM_INT);
 $filtertype   = optional_param('filtertype', '', PARAM_ALPHA);
 $filterselect = optional_param('filterselect', 0, PARAM_INT);
 
-if (empty($CFG->enablenotes)) {
-    print_error('notesdisabled', 'notes');
-}
-
 $url = new moodle_url('/notes/index.php');
 if ($courseid != SITEID) {
     $url->param('course', $courseid);
@@ -71,7 +67,6 @@ if ($course->id == SITEID) {
 } else {
     $coursecontext = context_course::instance($course->id);   // Course context
 }
-require_capability('moodle/notes:view', $coursecontext);
 $systemcontext = context_system::instance();   // SYSTEM context
 
 // Trigger event.
@@ -80,6 +75,10 @@ $event = \core\event\notes_viewed::create(array(
     'context' => $coursecontext
 ));
 $event->trigger();
+
+if (empty($CFG->enablenotes)) {
+    print_error('notesdisabled', 'notes');
+}
 
 $strnotes = get_string('notes', 'notes');
 if ($userid) {
@@ -132,13 +131,12 @@ if ($courseid != SITEID) {
             $ccontext = context_course::instance($c->id);
             $cfullname = format_string($c->fullname, true, array('context' => $ccontext));
             $header = '<a href="' . $CFG->wwwroot . '/course/view.php?id=' . $c->id . '">' . $cfullname . '</a>';
-            $viewcoursenotes = has_capability('moodle/notes:view', $ccontext);
-            if (has_capability('moodle/notes:manage', $ccontext)) {
+            if (has_capability('moodle/notes:manage', context_course::instance($c->id))) {
                 $addid = $c->id;
             } else {
                 $addid = 0;
             }
-            note_print_notes($header, $addid, $viewcoursenotes, $c->id, $userid, NOTES_STATE_PUBLIC, 0);
+            note_print_notes($header, $addid, $view, $c->id, $userid, NOTES_STATE_PUBLIC, 0);
         }
     }
 }

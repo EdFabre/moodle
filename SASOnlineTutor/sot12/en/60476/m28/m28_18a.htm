@@ -1,0 +1,97 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>DATA Step Processing of Records That Have a Varying Number of Fields </TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->DATA 
+      Step Processing of Records That Have a Varying Number of Fields <!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows the processing of a DATA step that reads the 
+        varying number of fields in the raw data file <strong>Bpdata</strong>.</p>
+      <p align="center">Raw Data File Bpdata 
+      <table  border=1 align="center" cellpadding=0 cellspacing=0 bgcolor="#F7F7DE" frame=BOX rules=NONE title="Raw Data File">
+        <thead>
+          <tr> 
+            <td align=LEFT bgcolor="#F7F7DE" nowrap><font face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---+----30---+----40---+----50</font></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">1234 
+              13MAR89 120/80</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">1443 
+              12FEB89 120/70 03FEB90 
+              125/80 07OCT90 125/99</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">1681 
+              11JAN90 120/80 05JUN90 
+              110/70</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">2034 
+              19NOV88 130/70 12MAY89 
+              150/90 23MAR90 130/80</font></td>
+          </tr>
+        </tbody>
+      </table>
+      <ol>
+        <li> The following program is submitted to SAS: 
+          <pre><font color="#003399">data perm.health;<br>   infile bpdata length=reclen;<br>   input ID 4. @;<br>   do index=6 to reclen by 15;<br>      input Date : date. BP $ @;<br>      output;<br>   end;<br> run;</font></pre>
+        The first time the DATA step executes, the first INPUT statement reads 
+          the values for <code>ID</code> and holds the record. Then the numeric 
+          length of the first record (<code>reclen)</code> is assigned.<br>
+          <br>
+        </li>
+        <li>The initial value of <code>index</code> is <em>6</em>, so the loop 
+          begins to execute.<br>
+          <br>
+        </li>
+        <li>The second INPUT statement reads the first block of values for <code>Date</code> 
+          and <code>BP</code>, and holds the record.<br>
+          <br>
+        </li>
+        <li>The OUTPUT statement writes the values to the data set as the first 
+          observation.<br>
+          <br>
+        </li>
+        <li> The END statement passes control back to the DO statement, where 
+          the value of <code>index</code> is incremented by 15 to a total of <em>21</em>. 
+          Now <code>index</code> exceeds the value of <code>reclen</code>, and 
+          the loop is not executed.<br>
+          <br>
+        </li>
+        <li>Control returns to the beginning of the DATA step. The values in the 
+          program data vector are reset to missing, and the input pointer moves 
+          down to column 1 of the next record.</li>
+      </ol>
+      </td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

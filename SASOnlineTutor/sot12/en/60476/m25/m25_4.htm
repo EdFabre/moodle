@@ -1,0 +1,369 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Multiple Records Sequentially<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Using the / Line Pointer Control</strong> </p>
+      <p> Take a closer look at using the forward slash (/) line pointer control 
+        in the following example. 
+      <p> The raw data file <strong>Memdata</strong> contains the mailing list 
+        of a professional organization. Your task is to combine the information 
+        for each member into one data set observation. We'll begin by reading 
+        each member's name, followed by the street address, and finally the city, 
+        state, and zip code.<br>
+      <ul>
+        <li> As you write the instructions to read the values for <code>Fname</code> 
+          and <code>Lname</code>, notice that not all of the values for <code>Lname</code> 
+          begin in the same column. So, you should use standard list input to 
+          read these values. 
+      </ul>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table border="0" cellspacing="0" cellpadding="4" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre>
+
+<font color="#003399">     data perm.members;   </font>
+<font color="#003399">        infile memdata;</font>
+<font color="#003399">        <strong>input Fname $ Lname $</strong></font>
+</pre>
+      </td>
+      <td align="center"> <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <thead> 
+          <tr> 
+            <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#CCCC99"><font  face="Courier New, Courier" size="2" color="#000000">LEE&nbsp;ATHNOS&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1215&nbsp;RAINTREE&nbsp;CIRCLE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">PHOENIX&nbsp;&nbsp;AZ&nbsp;85044&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HEIDIE&nbsp;BAKER&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1751&nbsp;DIEHL&nbsp;ROAD&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">VIENNA&nbsp;&nbsp;VA&nbsp;22124&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MYRON&nbsp;BARKER&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">131&nbsp;DONERAIL&nbsp;DRIVE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">ATLANTA&nbsp; 
+              GA&nbsp;30363&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">JOYCE&nbsp;BENEFIT&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">85&nbsp;MAPLE&nbsp;AVENUE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MENLO&nbsp;PARK&nbsp; 
+              CA&nbsp;94025&nbsp;</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <ul>
+          <li> Now you want to read the values for <code>Address</code> from the 
+            second record. The / line pointer control advances the input pointer 
+            to the next record. At this point the INPUT statement is incomplete, 
+            so you should not place a semicolon after the line pointer control. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellspacing="0" cellpadding="4" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre>
+
+<font color="#003399">     data perm.members;</font>
+<font color="#003399">        infile memdata;</font>
+<font color="#003399">        input Fname $ Lname $</font> <font color="#003399"><strong>/</strong></font>
+</pre>
+        <p> 
+      </td>
+      <td align="center"> <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <thead> 
+          <tr> 
+            <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#CCCC99"><font  face="Courier New, Courier" size="2" color="#000000">LEE&nbsp;ATHNOS&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1215&nbsp;RAINTREE&nbsp;CIRCLE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">PHOENIX&nbsp;&nbsp;AZ&nbsp;85044&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HEIDIE&nbsp;BAKER&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1751&nbsp;DIEHL&nbsp;ROAD&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">VIENNA&nbsp;&nbsp;VA&nbsp;22124&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MYRON&nbsp;BARKER&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">131&nbsp;DONERAIL&nbsp;DRIVE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">ATLANTA&nbsp; 
+              GA&nbsp;30363&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">JOYCE&nbsp;BENEFIT&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">85&nbsp;MAPLE&nbsp;AVENUE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MENLO&nbsp;PARK&nbsp; 
+              CA&nbsp;94025&nbsp;</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <ul>
+          <li> You can use column input to read the values in the next record 
+            as one variable named <code>Address</code>. Then add a line pointer 
+            control to move the input pointer to the next record. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellspacing="0" cellpadding="4" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre>
+
+<font color="#003399">     data perm.members;</font>
+<font color="#003399">        infile memdata;</font>
+<font color="#003399">        input Fname $ Lname $</font> <font color="#003399">/</font>
+<font color="#003399">              <strong>Address $ 1-20 /</strong></font>
+</pre>
+      </td>
+      <td align="center"> <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <thead> 
+          <tr> 
+            <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">LEE&nbsp;ATHNOS&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#CCCC99"><font  face="Courier New, Courier" size="2" color="#000000">1215&nbsp;RAINTREE&nbsp;CIRCLE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">PHOENIX&nbsp;&nbsp;AZ&nbsp;85044&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HEIDIE&nbsp;BAKER&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1751&nbsp;DIEHL&nbsp;ROAD&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">VIENNA&nbsp;&nbsp;VA&nbsp;22124&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MYRON&nbsp;BARKER&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">131&nbsp;DONERAIL&nbsp;DRIVE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">ATLANTA&nbsp; 
+              GA&nbsp;30363&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">JOYCE&nbsp;BENEFIT&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">85&nbsp;MAPLE&nbsp;AVENUE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MENLO&nbsp;PARK&nbsp; 
+              CA&nbsp;94025&nbsp;</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></font></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <ul>
+          <li> <a name="modified"></a>As you write the statements to read the 
+            values for <code>City</code>, notice that some of the values are longer 
+            than eight characters and contain embedded blanks. Also note that 
+            each value is followed by two consecutive blanks. To read these values, 
+            you should use modified list input with the ampersand (&amp;) modifier. 
+            <br>
+            <br>
+            The values for <code>State</code> and the values for <code>Zip</code> 
+            do not begin in the same column. Therefore, you should use list input 
+            to read these values. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellspacing="0" cellpadding="4" width="85%">
+    <tr valign="top"> 
+      <td> 
+        <pre>
+
+<font color="#003399">     data perm.members; </font>
+<font color="#003399">        infile memdata;</font>
+<font color="#003399">        input Fname $ Lname $</font> <font color="#003399">/</font>
+<font color="#003399">              Address $ 1-20 /</font>
+<font color="#003399">              <strong>City &amp; $10. State $ Zip $;</strong></font>
+<strong><font color="#003399">     </font></strong><font color="#003399">run;</font>
+</pre>
+      </td>
+      <td align="center"> <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <thead> 
+          <tr> 
+            <td align=LEFT bgcolor="#F7F7DE" nowrap><font  face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20</font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">LEE&nbsp;ATHNOS&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1215&nbsp;RAINTREE&nbsp;CIRCLE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#CCCC99"><font  face="Courier New, Courier" size="2" color="#000000">PHOENIX&nbsp;&nbsp;AZ&nbsp;85044&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HEIDIE&nbsp;BAKER&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">1751&nbsp;DIEHL&nbsp;ROAD&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">VIENNA&nbsp;&nbsp;VA&nbsp;22124&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MYRON&nbsp;BARKER&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">131&nbsp;DONERAIL&nbsp;DRIVE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">ATLANTA&nbsp; 
+              GA&nbsp;30363&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">JOYCE&nbsp;BENEFIT&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">85&nbsp;MAPLE&nbsp;AVENUE&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#339999"><b><font color="#003399">MENLO&nbsp;PARK</font></b></font><font  face="Courier New, Courier" size="2" color="#000000">&nbsp; 
+              CA&nbsp;94025&nbsp;</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></font></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

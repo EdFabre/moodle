@@ -1,0 +1,210 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Selecting Variables</strong> </p>
+      <p> Sometimes you may need to read and process fields that you don't want 
+        to keep in your data set. In this case, you can use the <strong>DROP= 
+        and KEEP= data set options</strong> to specify the variables that you 
+        want to drop or keep. </p>
+      Use the KEEP= option instead of the DROP= option if more variables are dropped 
+      than kept. You specify data set options in parentheses after a SAS data 
+      set name. </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DROP= and KEEP= data set options">
+    <tr> 
+      <td align="left"><strong>General form, DROP= and KEEP= data set options:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>(DROP=</strong><em>variable(s)</em><strong>)</strong></nobr><strong><br>
+          (KEEP=</strong><em>variable(s)</em><strong>)</strong></font> </blockquote>
+        <p> where <font color="#003399"><em></em></font> 
+        <ul>
+          <li>the <strong>DROP=</strong> or <strong>KEEP= </strong>option, in 
+            parentheses, follows the name of the data set that contains the variables 
+            to be dropped or kept 
+          <li><font color="#003399"><em>variable(s)</em></font> identifies the 
+            variables to drop or keep. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Example</strong> 
+        <p> Suppose you are interested in keeping only the new variable <code>TotalTime</code> 
+          and not the original variables <code>TimeMin</code> and <code>TimeSec</code>. 
+          You can drop <code>TimeMin</code> and <code>TimeSec</code> when you 
+          create the <strong>Stress</strong> data set. 
+      </td>
+    </tr>
+  </table>
+</center>
+<P>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">    data clinic.stress</font><font color="#003399"><strong>(drop=timemin timesec)</strong>;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       if tolerance='D';</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       retain SumSec 5400;</font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">       length TestLength $ 6;</font>
+<font color="#003399">       if totaltime&gt;800 then testlength='Long';</font>
+<font color="#003399">       else if 750<=totaltime<=800 then testlength='Normal';</font>
+<font color="#003399">       else if totaltime&lt;750 then TestLength='Short';</font>
+<font color="#003399">    run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> SAS Data Set Clinic.Stress (Partial Listing) 
+<center>
+  <table  cellspacing=0 cellpadding=3 border=1 bgcolor="#FFFFFF" align="center" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>ID</b></font></td>
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>Name</b></font></td>
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>RestHR</b></font></td>
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>MaxHR</b></font></td>
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>RecHR</b></font></td>
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>Tolerance</b></font></td>
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>TotalTime</b></font></td>
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>SumSec</b></font></td>
+      <td align=CENTER><font face="Arial, Helvetica, Helv" size="2" color="#000000"><b>TestLength</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">2458</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Murray, 
+        W</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">72</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">185</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">128</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">758</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        6158</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Normal</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">2539</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">LaMance, 
+        K</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">75</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">168</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">141</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">706</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        6864</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Short</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">2552</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Reberson, 
+        P</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">69</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">158</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">139</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">941</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        7805</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Long</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">2572</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Oberon, 
+        M</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">74</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">177</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">138</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">731</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        8536</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Short</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">2574</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Peterson, 
+        V</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">80</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">164</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">137</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">849</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        9385</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Long</font></td>
+    </tr>
+    <tr> 
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">2584</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Takahashi, 
+        Y</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">76</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">163</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">135</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">967</font></td>
+      <td align=RIGHT><font face="Arial, Helvetica, Helv" size="2" color="#000000">10352</font></td>
+      <td align=LEFT><font face="Arial, Helvetica, Helv" size="2" color="#000000">Long</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <center>
+  </center>
+  <br>
+  <br>
+</center>
+<p>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

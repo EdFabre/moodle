@@ -1,0 +1,83 @@
+<!--/* Copyright © 2003-2004 Rustici Software, LLC  All Rights Reserved. */-->
+<HTML>
+	<HEAD>
+		<title></title>
+		<script language="JavaScript1.2" src="../APIConstants.js"></script>
+		<script language="JavaScript1.2" src="../Configuration.js"></script>
+		<script language="JavaScript1.2" src="../UtilityFunctions.js"></script>
+		<script language="JavaScript1.2" src="../SCORMFunctions.js"></script>
+		<script language="JavaScript1.2" src="../NONEFunctions.js"></script>
+		<script language="JavaScript1.2" src="../LMSAPI.js"></script>
+		<script language="JavaScript1.2" src="../API.js"></script>
+		<script language="JavaScript1.2" src="../tut.js"></script>
+
+		<script language="JavaScript1.2">
+
+		function InferContentModule(){
+			
+			var strDirName;
+			
+			var strFullPath = new String(window.document.location.href);
+			
+			var intLastSlashPos = strFullPath.lastIndexOf("/");
+			
+			strFullPath = strFullPath.substring(0, intLastSlashPos);
+			
+			intLastSlashPos = strFullPath.lastIndexOf("/"); 
+					
+			intLastUnderscorePos = strFullPath.lastIndexOf("_"); 
+				
+			strDirName = strFullPath.substring(intLastSlashPos + 1, intLastUnderscorePos);
+			
+			WriteToDebug("Launch EG module = " + strDirName);
+		
+			return strDirName;
+		}
+
+		function LoadContent(){
+		
+            <!-- determine which version of the lesson to display -->			
+            checkVersion();
+			
+			var moduleEG=InferContentModule();
+
+			var strContentLocation = filterEGSCORM(moduleEG);
+
+            <!-- determine path and module for the lesson -->			
+		  	var strContentPath = strContentLocation.substring(0,strContentLocation.lastIndexOf("/")+1); 
+
+		  	var strContentModule = strContentLocation.substring(strContentLocation.lastIndexOf("/")+1,strContentLocation.lastIndexOf("_")); 
+
+            <!-- check for bookmark -->			
+			var strBookmark = GetBookmark();
+			
+			if (strBookmark.length > 0){
+
+               var bookmarkModule = strBookmark.substring(0,strBookmark.lastIndexOf("_")); 
+
+               var bookmarkPage = strBookmark.substring(strBookmark.lastIndexOf("_")+1);
+			   
+               <!-- if bookmark module doesn't match current module, go to page 1 of current module -->			
+               if(bookmarkModule != strContentModule) strContentLocation = strContentPath + strContentModule + "_1.htm";
+			   
+               <!-- otherwise go to bookmarked page -->			
+			   else strContentLocation = strContentPath + strBookmark;
+			}
+
+			WriteToDebug("Launch page = " + strContentLocation);
+			
+			window.content.document.location.href = strContentLocation;
+		}
+		</script>
+	
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+	<frameset rows="100%,0%,0%" onload="Start()" onbeforeunload="Unload()" onunload="Unload()">
+		<frame name="content" src="blank.htm">
+		<frame name="AICCComm" src="blank.htm">
+		<frame name="rusticisoftware_aicc_results" src="blank.htm">
+	</frameset>
+	<noframes>
+		Your browser must be able to view frames for this content to display.
+	</noframes>
+</HTML>

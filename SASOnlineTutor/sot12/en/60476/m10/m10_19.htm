@@ -1,0 +1,128 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Querying 
+      Multiple Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>This topic deals with the more complex task of extracting data from 
+          two or more tables. </p>
+        <p> In the previous practice,&nbsp;you wrote a PROC SQL step to query 
+          a single table. Suppose you now want to examine data that is stored 
+          in <strong>two</strong> tables. PROC SQL allows you to combine tables 
+          horizontally, in other words, to combine rows of data. </td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <center>
+   <img src="../navimages/tbl_ab_h.gif" alt="Diagram of two tables joined horizontally" width="212" height="49"> 
+      <p><br>
+    
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p>In SQL terminology, combining tables horizontally 
+            is called <strong>joining</strong> tables. Joins do not alter the 
+            original tables. </p>
+          <p> Suppose you want to create a report that displays the following 
+            information for employees of a company: employee identification number, 
+            last name, original salary, and new salary. There is no single table 
+            that contains all of these columns, so you will have to join the two 
+            tables <strong>Sasuser.Salcomps</strong> and <strong>Sasuser.Newsals</strong>. 
+            In your query, you want to select four columns, two from the first 
+            table and two from the second table. You also need to be sure that 
+            the rows you join belong to the same employee. To check this, you 
+            want to match employee identification numbers for rows that you merge 
+            and to select only the rows that match. </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </center>
+  <p align="center"> <img src="images/m10f1g1.gif" width="329" height="130" alt="Diagram of joining two tables to produce query output"><br>
+    <p>
+    <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p>This type of join is known as an <strong>inner join</strong>. 
+            An inner join returns a result set for all of the rows in a table 
+            that have one or more matching rows in another table. </p></td>
+      </tr>
+    </table>
+      <br>
+    <table border="0" cellpadding="2" cellspacing="0" width="85%" align="center">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">For more information about PROC SQL joins, see the lesson 
+          <!--lesson reference--><strong><script>document.write(m71title);</script></strong>.</td>
+      </tr>
+    </table>
+     <br>
+  </center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> <p>Now let's see how you write a PROC SQL step to combine 
+          tables. To join two tables for a query, you can use a PROC SQL step 
+          such as the one below. This step uses the SELECT statement to join data 
+          from the tables <strong>Salcomps</strong> and <strong>Newsals</strong>. 
+          Both of these tables are stored in a SAS library to which the libref 
+          <strong>Sasuser</strong> has been assigned.</p></td>
+    </tr>
+  </table>
+  <p align="center"> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <pre><font color="#003399">     proc sql;
+        select salcomps.empid,lastname,
+               newsals.salary,newsalary
+           from sasuser.salcomps,sasuser.newsals
+           where salcomps.empid=newsals.empid
+           order by lastname;</font></pre></td>
+      </tr>
+    </table>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> <p>Let's take a closer look at each clause of this PROC 
+            SQL step.</p></td>
+      </tr>
+    </table>
+	<p>
+    <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

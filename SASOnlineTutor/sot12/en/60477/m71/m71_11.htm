@@ -1,0 +1,138 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Inner Joins<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Specifying a Table Alias</h2>
+        <p> To enable PROC SQL to distinguish between same-named columns from 
+          different tables, you use qualified column names. To create a qualified 
+          column name, you prefix the column name with its table name. For example, 
+          the following PROC SQL inner join contains several qualified column 
+          names (shown in bold):</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <pre>     <font color="#003399">proc sql;
+     title 'Employee Names and Job Codes';
+        select <strong>staffmaster.empid</strong>, lastname, firstname, jobcode
+           from sasuser.staffmaster, sasuser.payrollmaster
+           where <strong>staffmaster.empid</strong>=<strong>payrollmaster.empid</strong>;</font><br></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <p> It can be difficult to read PROC SQL code that contains lengthy 
+          qualified column names. In addition, typing (and retyping) long table 
+          names can be time-consuming. Fortunately, you can use a temporary, alternate 
+          name for any or all tables in any PROC SQL query. This temporary name, 
+          which is called a <strong>table alias</strong>, is specified after the 
+          table name in the FROM clause. The keyword AS is often used, although 
+          its use is optional. </p>
+        <p> The following modified PROC SQL query specifies table aliases in the 
+          FROM clause, and then uses the table aliases to qualify column names 
+          in the SELECT and WHERE clauses:<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <pre><font color="#003399"> </font><font color="#003399">    proc sql;
+     title 'Employee Names and Job Codes';
+        select <font color="red"><strong>s</strong></font>.empid, lastname, firstname, jobcode
+           from sasuser.staffmaster <strong><font color="red">as s</font></strong>, 
+                sasuser.payrollmaster <strong><font color="red">as p</font></strong>
+           where <font color="red"><strong>s</strong></font>.empid=<font color="red"><strong>p</strong></font>.empid;</font><br></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <p> In this query, the optional keyword AS is used to define the table 
+          aliases in the FROM clause. The FROM clause would be equally valid with 
+          AS omitted, as shown below:<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <pre>     <font color="#003399">from sasuser.staffmaster <font color="red"><strong>s</strong></font>,
+          sasuser.payrollmaster <font color="red"><strong>p</strong></font></font><br></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">While using table aliases will help you to work more efficiently, 
+        the use of table aliases does not cause SAS to execute the query more 
+        quickly.</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <p> Table aliases are usually optional. However, there are two situations 
+          that require their use, as shown below.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table width="500" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Situations Requiring a Table Alias">
+    <tr align="left" valign="top" bgcolor="#F7F7DE"> 
+      <th nowrap><font size="-1">Table aliases are required when&nbsp;&#8230;</font></th>
+      <th width="264"><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td>a table is joined to itself (called a self-join or reflexive join)</td>
+      <td width="264"><pre><font color="#003399">from airline.staffmaster <strong>as s1</strong>, 
+	  airline.staffmaster <strong>as s2</strong></font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td>you need to reference columns from same-named tables in different libraries</td>
+      <td width="264"><pre><font color="#003399">from airline.flightdelays <strong>as af</strong>, 
+     work.flightdelays <strong>as wf</strong>
+where <strong>af.delay</strong> &gt; <strong>wf.delay</strong></font></pre></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

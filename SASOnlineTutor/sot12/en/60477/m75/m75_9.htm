@@ -1,0 +1,125 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Managing 
+      PROC SQL Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Guidelines for Using PROC SQL Views</h2>
+        <p>When you are working with PROC SQL views, it is best to follow these 
+          guidelines:</p>
+        <ul>
+          <li>Avoid using an ORDER BY clause in a view definition, which causes 
+            the data to be sorted every time the view is executed. Users of the 
+            view might differ in how or whether they want the data to be sorted, 
+            so it is more efficient to specify an ORDER BY clause in a query that 
+            references the view.<br>
+            <br>
+          </li>
+          <li>If the same data is used many times in one program or in multiple 
+            programs, it is more efficient to create a table rather than a view 
+            because the data must be accessed at each view reference. (This table 
+            can be a temporary table in the <strong>Work</strong> library.)<br>
+            <br>
+          </li>
+          <li>Avoid creating views that are based on tables whose structure might 
+            change. A view is no longer valid when it references a nonexistent 
+            column.<br>
+            <br>
+          </li>
+          <li>If a view resides in the same SAS data library as the contributing 
+            table(s), it is best to specify a one-level name in the FROM clause. 
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Omitting the Libref</h2>
+        <p>The default libref for the table or tables in the FROM clause is the 
+          libref of the library that contains the view. Using a one-level name 
+          in the FROM clause prevents you from having to change the view if you 
+          assign a different libref to the SAS data library that contains the 
+          view and its contributing table or tables.</p></td>
+    </tr>
+  </table>
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The following PROC SQL step creates the view <strong>Sasuser.Payrollv</strong>. 
+        The FROM clause specifies a two-level name for the contributing table, 
+        <strong>Sasuser.Payrollmaster</strong>. However, it isn't necessary to 
+        specify the libref <strong>Sasuser</strong> because the contributing table 
+        is assumed to be stored in the same library as the view.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        create view sasuser.payrollv as
+           select *
+              <strong>from sasuser.payrollmaster</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>When the one-level name <strong>Payrollmaster</strong> is used in the 
+        FROM clause, <strong>Sasuser.Payrollmaster</strong> is being specified, 
+        though it appears that<strong> Work.Payrollmaster</strong> is being specified.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        create view sasuser.payrollv as
+           select *
+            <strong>  from payrollmaster</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">If you are creating a view that is stored in a different 
+        library than the table(s) referenced in the FROM clause, you must specify 
+        a two-level name for the table(s).</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

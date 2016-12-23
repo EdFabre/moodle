@@ -1,0 +1,103 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Custom Formats <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>When a format is referenced, SAS automatically looks through the 
+          following libraries in this order: </p>
+        <ul>
+          <li><strong>Work.Formats</strong></li>
+          <li><strong>Library.Formats</strong>.</li>
+        </ul>
+        <p> The <strong>Library</strong> libref is recommended for formats because 
+          it is automatically searched when a format is referenced. If you store 
+          formats in libraries or catalogs other than those in the default search 
+          path, you must use the FMTSEARCH= system option to tell SAS where to 
+          find your formats. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, FMTSEARCH= system option">
+    <tr> 
+      <td align="left"><strong>General form, FMTSEARCH= system option: </strong> 
+        <blockquote> <font color="#003399"><nobr><strong>OPTIONS FMTSEARCH= </strong><em>(catalog-1 
+          catalog-2...catalog-n); </em></nobr></font> </blockquote>
+        <p>where<em><font color="#003399"> </font></em><font color="#003399"><em>catalog</em></font> 
+          is the name of one or more catalogs to search. The value of <font color="#003399"><em>catalog</em></font> 
+          can be either <em>libref</em> or <em>libref.catalog</em>. If only the 
+          libref is given, SAS assumes that <strong>Formats</strong> is the catalog 
+          name. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The <strong>Work.Formats</strong> catalog is always searched first, 
+          and the<strong> Library.Formats</strong> catalog is searched next, unless 
+          one or both catalogs appear in the FMTSEARCH= list. </p>
+        <p></p>
+        <br> <h2>Example </h2>
+        <p>Suppose you have formats stored in the <strong>Rpt </strong>library 
+          and in the <strong>Prod.Newfmt</strong> catalog. The following OPTIONS 
+          statement tells SAS where to find your formats:</p>
+        <pre>    <font color="#003399"> options fmtsearch=(rpt prod.newfmt);</font></pre>
+        <p>Because no catalog is specified with the <strong>Rpt</strong> libref, 
+          the default catalog name <strong>Formats</strong> is assumed. This OPTIONS 
+          statement creates the following search order:<br>
+          <br>
+          <br>
+        </p></td>
+    </tr>
+  </table>
+  <div align="center"></div>
+  <div align="center"><img src="images/m58_16.gif" alt="work.formats then library.formats then rpt.formats then prod.newfmt" width="242" height="221"><br>
+    <br>
+    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td>Because the <strong>Work</strong> and <strong>Library</strong> librefs 
+          were not specified in the FMTSEARCH= option, they are searched in default 
+          order.</td>
+      </tr>
+    </table>
+    <p><br>
+    </p>
+  </div>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

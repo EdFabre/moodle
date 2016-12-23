@@ -1,0 +1,85 @@
+<!--/* Copyright © 2003-2004 Rustici Software, LLC  All Rights Reserved. */-->
+<HTML>
+	<HEAD>
+		<title></title>
+		<script language="JavaScript1.2" src="../APIConstants.js"></script>
+		<script language="JavaScript1.2" src="../Configuration.js"></script>
+		<script language="JavaScript1.2" src="../UtilityFunctions.js"></script>
+		<script language="JavaScript1.2" src="../SCORMFunctions.js"></script>
+		<script language="JavaScript1.2" src="../NONEFunctions.js"></script>
+		<script language="JavaScript1.2" src="../LMSAPI.js"></script>
+		<script language="JavaScript1.2" src="../API.js"></script>
+
+		<script language="JavaScript1.2">
+
+myVersion = "v91";
+
+function filterEG(lesson,linkOrNot) {
+   <!-- if version is not EG or LE, send to regular lesson -->
+   if ((myVersion.indexOf('eg') == "-1") && (myVersion.indexOf('le') == "-1")) {
+	  if (linkOrNot == "link") {
+	     if (IsSCORM) window.location.href="../" + lesson + "/" + lesson + "_1.htm";
+	     else window.location.href=lesson + "/" + lesson + "_1.htm";
+	  }
+      else return lesson;
+   }
+   <!-- if version is EG or LE, send to regular+00 lesson -->
+   else {
+	  if (linkOrNot == "link") {
+	     if (IsSCORM) window.location.href="../" + lesson + "00/" + lesson + "00_1.htm";
+	     else window.location.href=lesson + "00/" + lesson + "00_1.htm";
+	  }
+      else return lesson+"00";
+   }
+}  
+
+var strDirName=filterEG('m3','link');
+alert (strDirName);
+		
+		function InferContentLocation(){
+alert('starting infercontentlocation');
+			
+	//		var strDirName;
+			
+			var strFullPath = new String(window.document.location.href);
+			
+			var intLastSlashPos = strFullPath.lastIndexOf("/");
+			
+			strFullPath = strFullPath.substr(0, intLastSlashPos);
+			
+			intLastSlashPos = strFullPath.lastIndexOf("/");
+			
+	//		strDirName = strFullPath.substr(intLastSlashPos + 1);
+			
+	//		strDirName += "_1.htm";
+	
+			WriteToDebug("Launch page = " + strDirName);
+		
+			return strDirName;
+		}
+		
+		function LoadContent(){
+			
+			var strContentLocation = InferContentLocation();
+		
+			var strBookmark = GetBookmark();
+			
+			if (strBookmark.length > 0){
+				strContentLocation = strBookmark;
+			}
+
+			window.content.document.location.href = strContentLocation;
+		}
+		</script>
+	
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+	<frameset rows="100%,0%,0%" onload="Start()" onbeforeunload="Unload()" onunload="Unload()">
+		<frame name="content" src="blank.htm">
+		<frame name="AICCComm" src="blank.htm">
+		<frame name="rusticisoftware_aicc_results" src="blank.htm">
+	</frameset>
+	<noframes>
+		Your browser must be able to view frames for this content to display.
+	</noframes>
+</HTML>

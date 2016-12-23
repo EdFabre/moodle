@@ -1,0 +1,167 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            the FILEVAR= option and SAS date functions to concatenate raw data 
+            files that contain records from the current year and the previous 
+            year. </strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+  <!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+          <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <li>Create the SAS data set <strong>Work.Last2</strong> by concatenating 
+            two raw data files. One file contains records from the current year. 
+            The other file contains records from the previous year.<br>
+            <br>
+            The files use the following naming convention: <strong>Y<em>yyyy</em>.dat</strong>, 
+            for example, <strong>Y2002.dat</strong>. The raw data files have the 
+            same file layout as <a href="JavaScript: openOther('../linklib/y2003x.htm')"><strong>Y2003.dat</strong></a>.<br>
+           <BR> <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">Remember that you need to point to the <strong><a href="JavaScript: openOther
+('../linklib/physloca.htm')
+">physical location</a></strong> of  the sample raw data files in your operating environment.</td>
+    </tr>
+  </table>
+            <br>
+          <li>Print the <strong>Work.Last2</strong> data set and view the output.
+		   </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <li>Create the SAS data set <strong>Work.Last2</strong> by concatenating 
+            two raw data files. One file contains records from the current year. 
+            The other file contains records from the previous year.<br>
+            <br>
+            The files use the following naming convention: <strong>Y<em>yyyy</em>.dat</strong>, 
+            for example, <strong>Y2002.dat</strong>. The raw data files have the 
+            same file layout as <a href="JavaScript: openOther('../linklib/y2003x.htm')"><strong>Y2003.dat</strong></a>.<br>
+           <BR> <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">Remember that you need to point to the <strong><a href="JavaScript: openOther
+('../linklib/physloc.htm')
+">physical location</a></strong> of  the sample raw data files in your operating environment.</td>
+    </tr>
+  </table>
+            <br>
+          <li>Print the <strong>Work.Last2</strong> data set and view the output.
+		   </ol>
+      
+       </td>
+  </tr>
+</table>
+</div><!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_eg3_v89_v91_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+<ol><li>Submit one of the following programs: 
+<font color="#003399">
+              <pre>
+data work.last2 (drop=thisyear lastyear);
+   thisyear=year(today());
+   lastyear=thisyear-1;
+   do Year = thisyear, lastyear;
+      nextfile="<em>your-sasuser-location</em>\y"
+         !!put(year,4.)!!".dat";
+      do until (lastobs);
+         infile temp filevar=nextfile end=lastobs
+            dlm=",";
+         input Flight $ Date : date9. Depart $;
+      output;
+      end;
+   end;
+   stop;
+run;</pre>
+              </font>
+<font color="#003399">
+              <pre>
+data work.last2 (drop=thisyear lastyear);
+   thisyear=year(today());
+   lastyear=year(intnx('year',today(),-1));
+   do Year = thisyear, lastyear;
+      nextfile="<em>your-sasuser-location</em>\y"
+         !!put(year,4.)!!".dat";
+      do until (lastobs);
+         infile temp filevar=nextfile end=lastobs
+            dlm=",";
+         input Flight $ Date : date9. Depart $;
+      output;
+      end;
+   end;
+   stop;
+run;</pre>
+              </font>
+<li>Submit the following PROC PRINT step:
+<font color="#003399">
+              <pre>
+proc print data=work.last2;
+run;</pre>
+              </font></ol>
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+  <!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  * @property-read array $other {
  *      Extra information about event.
  *
- *      - int section: (optional) section id.
+ *      - int section: section id.
  * }
  *
  * @package    mod_wiki

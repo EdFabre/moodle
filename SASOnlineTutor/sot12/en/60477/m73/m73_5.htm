@@ -1,0 +1,106 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      an Empty Table by Defining Columns<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Specifying Column Widths</h2>
+        <p> In SAS, the default <strong>column width</strong> for both character 
+          and numeric columns is 8 bytes. However, character and numeric data 
+          values are stored differently:</p>
+        <ul>
+          <li><strong>Character data</strong> is stored one character per byte.<br>
+            <br>
+          </li>
+          <li><strong>Numeric data</strong> is stored as floating point numbers 
+            in real binary representation, which allows for 16- or 17-digit precision 
+            within 8 bytes. </li>
+        </ul>
+        <p>PROC SQL allows you to specify a column width for character columns 
+          but not for numeric columns. </p></td>
+    </tr>
+  </table>
+<br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">PROC SQL allows the WIDTH and NDEC (decimal places) arguments 
+        to be included in the column specification for the DECIMAL, NUMERIC, and 
+        FLOAT data types. However, PROC SQL ignores this specification and uses 
+        the SAS defaults.</td>
+    </tr>
+  </table>
+<br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <p>In a column specification, the column width follows the data type 
+          and is specified as an integer enclosed in parentheses:</p>
+        <center>
+          <font color="#003399"><em>column-name data-type</em> <nobr><strong>&lt;(<em>column-width</em>)&gt;</strong></nobr> 
+          <nobr>&lt;<em>column-modifier-1</em></nobr> <nobr>&lt; <strong>...</strong><em>column-modifier-n&gt;</em>&gt;</nobr></font> 
+        </center></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <p>In the following PROC SQL step, the first column specification indicates 
+          a column width of 3 for the character column <code>Destination</code>:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><pre><font color="#003399">     proc sql;
+        create table work.discount 
+               (Destination char<strong><font color="red">(3)</font></strong>,
+               BeginDate num format=date9.,
+               EndDate num format=date9.,
+               Discount num);</font></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>Because the last three columns are numeric, no width is specified 
+          and these columns will have the default column width of 8 bytes.</p></td>
+    </tr>
+  </table>
+  <br>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

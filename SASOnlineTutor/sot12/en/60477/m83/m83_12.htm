@@ -1,0 +1,331 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Executing 
+      Only Necessary Statements<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Creating Data in DO Groups</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Suppose you want to identify which customer groups are Club Members, 
+        Club Gold Members, or Internet/Catalog members, based on data from the 
+        data set <strong>Retail.Customer_hybrid</strong>. You also want to identify 
+        the nature of customer activity as &quot;inactive&quot;, &quot;low activity&quot;, 
+        &quot;medium activity&quot;, or &quot;high activity&quot;. 
+      <p>The following table shows the distribution of values for <code>Customer_Type_ID</code>.
+              <p><br>
+      <table border="1px" align="center" cellpadding="2" cellspacing="1" bordercolor="#000000" frame="box" rules="groups" class="Table" summary="Procedure Freq: One-Way Frequencies" title="Frequency table">
+        <colgroup>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+          <tr> 
+            <th colspan="3" bgcolor="#CCCCCC"><font color="#003399" size="3">Customer 
+              Type ID</font></th>
+</tr>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">Customer_Type_ID</font></th>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">Frequency</font></th>
+            <th bgcolor="#CCCCCC"> <font color="#003399" size="3">Percent</font></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">1010</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">568446</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">12.39</font></td>
+</tr>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">1020</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">579156</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">12.62</font></td>
+</tr>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">1030</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">571608</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">12.46</font></td>
+</tr>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">1040</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">574209</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">12.52</font></td>
+</tr>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">2010</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">566457</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">12.35</font></td>
+</tr>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">2020</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">571914</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">12.47</font></td>
+</tr>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">2030</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">579054</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">12.62</font></td>
+</tr>
+<tr>
+            <th bgcolor="#CCCCCC"><font color="#003399" size="3">3010</font></th>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">576810</font></td>
+            <td bgcolor="#EFEFEF"><font color="#000000" size="2">12.57</font></td>
+</tr>
+</tbody>
+</table>
+      <p><br>
+      <p>Techniques for creating new variables based on the values of specific 
+        variables include
+<ol>
+        <li><a href="#1">SELECT, IF/SELECT Statements</a></li>
+        <li><a href="#2">Nested SELECT Statements</a></li>
+        <li><a href="#3">Serial IF Statements</a></li>
+        <li><a href="#4">IF-THEN/ELSE IF Statements with a Link.</a></li>
+             </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results may vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for executing only necessary statements. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        SELECT, IF/SELECT Statements</strong></p>
+      <blockquote> 
+        <p>This program creates a permanent SAS data set named <strong>Retail.Customers</strong> 
+          by reading the <strong>Retail.Customer_hybrid</strong> data set. SELECT/WHEN 
+          logic and SELECT/WHEN statements in an IF/THEN DO group populate the 
+          variables <code>Customer_Group</code> and <code>Customer_Activity</code>. 
+          If the value of the first two digits of <code>Customer_Type_ID</code> 
+          is <em>10</em>, <em>20</em>, or <em>30</em>, then <code>Customer_Group</code> 
+          is populated. If the value of the first two digits of <code>Customer_Type_ID</code> 
+          is <em>10</em> or <em>20</em>, then <code>Customer_Activity</code> is 
+          populated by reading the last two digits of <code>Customer_Type_ID</code>.</p>
+        </blockquote>
+       
+      <blockquote> 
+        <pre><font color="#003399">     data retail.customers;
+        length Customer_Group $ 26 Customer_Activity $ 15;
+        set retail.customer_hybrid;
+           <strong>select(substr(put(customer_type_ID,4.),1,2));
+              when ('10') customer_group='Orion Club members';
+              when ('20') customer_group='Orion Club Gold members';
+              when ('30') customer_group='Internet/Catalog Customers';
+              otherwise;
+           end;
+        if substr(put(customer_type_ID,4.),1,2) in ('10', '20') then 
+           do;
+              select(substr(put(customer_type_ID,4.),3,2));
+                 when ('10') customer_activity='inactive';
+                 when ('20') customer_activity='low activity';
+                 when ('30') customer_activity='medium activity';
+                 when ('40') customer_activity='high activity';
+                 otherwise;
+              end;
+           end;</strong>
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Nested SELECT Statements</strong></p>
+      <blockquote> 
+        <p>This program creates a permanent SAS data set named <strong>Retail.Customers</strong> 
+          by reading the <strong>Retail.Customer_hybrid</strong> data set. Nested 
+          SELECT statements are used to populate the variables <code>Customer_Group</code> 
+          and <code>Customer_Activity</code>.</p>
+      </blockquote>
+           <blockquote> 
+        <pre><font color="#003399">     data retail.customers;
+        length Customer_Group $ 26 Customer_Activity $ 15;
+        set retail.customer_hybrid;
+        <strong>select(substr(put(customer_type_ID,4.),1,2));
+           when ('10') 
+              do;
+                 customer_group='Orion Club members';
+                 select(substr(put(customer_type_ID,4.),3,2));
+                    when ('10') customer_activity='inactive';
+                    when ('20') customer_activity='low activity';
+                    when ('30') customer_activity='medium activity';
+                    when ('40') customer_activity='high activity';
+                    otherwise;
+                 end;
+              end;</strong>
+           <strong>when ('20') 
+              do;
+                 customer_group='Orion Club Gold members';
+                 select(substr(put(customer_type_ID,4.),3,2));
+                    when ('10') customer_activity='inactive';
+                    when ('20') customer_activity='low activity';
+                    when ('30') customer_activity='medium activity';
+                    when ('40') customer_activity='high activity';
+                    otherwise;
+                 end;
+              end;
+           when ('30') customer_group='Internet/Catalog Customers';
+           otherwise;
+        end;</strong>
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="3" id="3"></a><img src="../navimages/opt_3.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Serial IF Statements</strong></p>
+      <blockquote>This program creates a permanent SAS data set named <strong>Retail.Customers</strong> 
+        by reading the <strong>Retail.Customer_hybrid</strong> data set. Serial 
+        IF statements are used to populate the variables <code>Customer_Group</code> 
+        and <code>Customer_Activity</code>. </blockquote>
+         <blockquote> 
+        <pre><font color="#003399">     data retail.customers;
+        length Customer_Group $ 26 Customer_Activity $ 15;
+        set retail.customer_hybrid;
+        <strong>if substr(put(customer_type_ID,4.),1,2)='10' then
+           customer_group='Orion Club members';
+        if substr(put(customer_type_ID,4.),1,2)='20' then
+           customer_group='Orion Club Gold members';
+        if substr(put(customer_type_ID,4.),1,2)='30' then
+           customer_group='Internet/Catalog Customers';
+        if substr(put(customer_type_ID,4.),1,2) in ('10', '20') and
+           substr(put(customer_type_ID,4.),3,2)='10' then
+              customer_activity='inactive';
+        if substr(put(customer_type_ID,4.),1,2) in ('10', '20') and
+           substr(put(customer_type_ID,4.),3,2)='20' then
+              customer_activity='low activity';
+        if substr(put(customer_type_ID,4.),1,2) in ('10', '20') and
+           substr(put(customer_type_ID,4.),3,2)='30' then
+              customer_activity='medium activity';
+        if substr(put(customer_type_ID,4.),1,2) in ('10', '20') and
+           substr(put(customer_type_ID,4.),3,2)='40' then
+              customer_activity='high activity';</strong>
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="4" id="4"></a><img src="../navimages/opt_4.gif" alt="4." width="20" height="20" align="absmiddle"> 
+        IF-THEN/ELSE IF Statements with a Link</strong></p>
+      <blockquote> 
+        <p>This program creates a permanent SAS data set named <strong>Retail.Customers</strong> 
+          by reading the <strong>Retail.Customer_hybrid</strong> data set. IF-THEN/ELSE 
+          IF statements are used with a link to populate the variables <code>Customer_Group</code> 
+          and <code>Customer_Activity</code>. </p>
+      </blockquote>
+         <blockquote> 
+        <pre><font color="#003399">     data retail.customers;
+        length Customer_Group $ 26 Customer_Activity $ 15;
+        set retail.customer_hybrid;
+        <strong>if substr(put(customer_type_ID,4.),1,2)='10' then 
+           do;
+              customer_group='Orion Club members';
+              link activity;
+           end;
+        else if substr(put(customer_type_ID,4.),1,2)='20' then 
+           do;
+              customer_group='Orion Club Gold members';
+              link activity;
+           end;
+        else if substr(put(customer_type_ID,4.),1,2)='30' then
+           customer_group='Internet/Catalog Customers';</strong>
+        return;
+        activity:
+        if substr(put(customer_type_ID,4.),3,2)='10' then
+           customer_activity='inactive';
+        else if substr(put(customer_type_ID,4.),3,2)='20' then
+           customer_activity='low activity';
+        else if substr(put(customer_type_ID,4.),3,2)='30' then
+           customer_activity='medium activity';
+        else if substr(put(customer_type_ID,4.),3,2)='40' then
+           customer_activity='high activity';
+        return;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><ul>
+        <li>Avoid serial IF statements because they use extra resources.</li>
+      </ul></td>
+  </tr>
+</table>
+<p><br>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

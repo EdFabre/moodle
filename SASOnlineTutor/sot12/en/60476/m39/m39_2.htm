@@ -1,0 +1,280 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      and Modifying Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Accumulating Totals</strong> </p>
+      <p> It is often useful to create a variable that accumulates the values 
+        of another variable. 
+      <p> Suppose you want to create the data set <strong>Clinic.Stress</strong> 
+        and to add a new variable, <code>SumSec</code>, to accumulate the total 
+        number of elapsed seconds in treadmill stress tests. 
+    </td>
+  </tr>
+</table>
+<p align="center"><br>
+  SAS Data Set Clinic.Stress (Partial Listing)
+<CENTER>
+  <TABLE  cellspacing=0 cellpadding=3 border=1 bgcolor="#FFFFFF" title="SAS Data Set">
+    <thead> 
+    <TR bgcolor="#F7F7DE"> 
+      <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv"><b>ID</b></font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv"><b>Name</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv"><b>RestHr</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv"><b>MaxHR</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv"><b>RecHR</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv"><b>TimeMin</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv"><b>TimeSec</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv"><b>Tolerance</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv"><b>TotalTime</b></font></TD>
+    </TR>
+    </thead> <tbody> 
+    <TR> 
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2458</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Murray, 
+        W</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">72</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">185</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">128</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">12</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">38</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">758</font></TD>
+    </TR>
+    <TR> 
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2462</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Almers, 
+        C</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">68</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">171</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">133</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">10</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        5</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">I</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">605</font></TD>
+    </TR>
+    <TR> 
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2501</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Bonaventure, 
+        T</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">78</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">177</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">139</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">13</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">I</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">673</font></TD>
+    </TR>
+    <TR> 
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2523</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Johnson, 
+        R</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">69</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">162</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">114</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        9</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">42</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">S</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">582</font></TD>
+    </TR>
+    <TR> 
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">2539</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LaMance, 
+        K</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">75</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">168</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">141</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">46</font></TD>
+      <TD ALIGN=LEFT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">D</font></TD>
+      <TD ALIGN=RIGHT><font  face="Arial, Helvetica, Helv" size="2" color="#000000">706</font></TD>
+    </TR>
+    </tbody> 
+  </TABLE>
+  <p><br>
+
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>To add the result of an expression to an accumulator variable, you can 
+        use a <strong>sum statement </strong>in your DATA step.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, sum statement">
+    <tr> 
+      <td><strong>General form, sum statement:</strong> 
+        <blockquote> <font color="#003399"><em>variable+expression</em><strong>;</strong></font> 
+        </blockquote>
+        <p> where 
+        <ul>
+          <li><font color="#003399"><em>variable</em></font> specifies the name 
+            of the accumulator variable. This variable must be numeric. The variable 
+            is automatically set to 0 before the first observation is read. The 
+            variable's value is retained from one DATA step execution to the next. 
+            <br>
+            <br>
+          <li><font color="#003399"><em>expression</em></font> is any valid SAS 
+            expression. 
+        </ul>
+        <p> 
+        <table cellspacing="0" cellpadding="2">
+          <tr valign="Top"> 
+            <td width="42">
+              <center>
+                <img src="../navimages/alert.gif" alt="CAUTION:" width="37" height="32"
+		  border="0">
+              </center>
+            </td>
+              <td>If the <font color="#003399"><em>expression</em></font> produces 
+                a missing value, the sum statement ignores it. (Remember, however, 
+                that assignment statements assign a missing value if the <font color="#003399"><em>expression</em></font> 
+                produces a missing value.)</td>
+          </tr>
+        </table>
+        <p> 
+        <table cellspacing="0" cellpadding="2">
+          <tr valign="top"> 
+            <td width="42">
+              <center>
+                <img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0">
+              </center>
+            </td>
+            <td>The sum statement is one of the few SAS statements that doesn't 
+              begin with a keyword.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>The sum statement adds the result of the expression that is on the right 
+        side of the plus sign (+) to the numeric variable that is on the left 
+        side of the plus sign. At the top of the DATA step, the value of the numeric 
+        variable is not set to missing as it usually is when reading raw data. 
+        Instead, the variable retains the new value in the program data vector 
+        for use in processing the next observation. 
+        <p><br>
+          <strong>Example</strong> 
+        <p> To find the total number of elapsed seconds in treadmill stress tests, 
+          you need a variable (in this example, <code>SumSec</code>) whose value 
+          begins at <em>0</em> and increases by the amount of the total seconds 
+          in each observation. To calculate the total number of elapsed seconds 
+          in treadmill stress tests, you use the sum statement shown below: 
+          <pre><font color="#003399">    data clinic.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       <strong>SumSec+totaltime;</strong></font>
+<font color="#003399">    run;</font></pre>
+        The value of the variable on the left side of the plus sign (here, <code>SumSec</code>) 
+        begins at <em>0</em> and increases by the value of <code>TotalTime</code> 
+        with each observation. </td>
+    </tr>
+  </table>
+</center>
+<p align="center">&nbsp; 
+<center>
+  <table border="1" cellspacing="0" cellpadding="2" align="center" bgcolor="#FFFFFF" title="Total Number of Elapsed Seconds">
+    <tr bgcolor="#F7F7DE"> 
+      <td align="right">&nbsp;<b><tt>SumSec</tt></b>&nbsp;</td>
+      <td align="center"> <b><tt>&nbsp;=&nbsp;</tt></b> </td>
+      <td>&nbsp;<b><tt>TotalTime</tt></b>&nbsp;</td>
+      <td align="center"> <b><tt>&nbsp;+&nbsp;</tt></b> </td>
+      <td>&nbsp;<b><tt>previous&nbsp;total</tt></b>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">0&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">758&nbsp;</td>
+      <td align="center"> <tt>&nbsp;=&nbsp;</tt> </td>
+      <td> 
+        <p align="right">758&nbsp; 
+      </td>
+      <td align="center"> <tt>+</tt> </td>
+      <td align="right">0&nbsp; </td>
+    </tr>
+    <tr> 
+      <td align="right">1363&nbsp;</td>
+      <td align="center"> <tt>&nbsp;=&nbsp;</tt> </td>
+      <td align="right">605&nbsp;</td>
+      <td align="center"> <tt>+</tt> </td>
+      <td align="right">758&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">2036&nbsp;</td>
+      <td align="center"> <tt>=</tt> </td>
+      <td align="right">673&nbsp;</td>
+      <td align="center"> <tt>+</tt> </td>
+      <td align="right">1363&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">2618&nbsp;</td>
+      <td align="center"> <tt>=</tt> </td>
+      <td align="right">582&nbsp;</td>
+      <td align="center"> <tt>+</tt> </td>
+      <td align="right">2036&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="right">3324&nbsp;</td>
+      <td align="center"> <tt>=</tt> </td>
+      <td align="right">706&nbsp;</td>
+      <td align="center"><tt>+</tt></td>
+      <td align="right">2618&nbsp;</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

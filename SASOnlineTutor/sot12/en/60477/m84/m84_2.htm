@@ -1,0 +1,116 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Sorts<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <P> In some cases you can avoid a sort by using </p>
+        <ul>
+          <li>BY-group processing with an index</li>
+          <li>BY-group processing with the NOTSORTED option</li>
+          <li>a CLASS statement</li>
+          <li>the SORTEDBY= data set option.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Using BY-Group Processing with an Index</h2>
+        <P> BY-group processing is a method of processing observations from one 
+          or more SAS data sets that are grouped or ordered by the values of one 
+          or more common variables. You can use BY-group processing in both DATA 
+          steps and PROC steps. </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, BY statement">
+    <tr> 
+      <td align="left"><strong>General form, BY statement:</strong> <blockquote> 
+          <font color="#003399"><strong>BY </strong><em>variable(s)</em><strong>;</strong></font> 
+        </blockquote>
+        where <font color="#003399"><em>variable(s)</em></font> names each variable 
+        by which the data set is sorted or indexed.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>The most common use of BY-group processing in the DATA step is to 
+          combine two or more SAS data sets by using the BY statement with a SET, 
+          MERGE, UPDATE, or MODIFY statement. When you use a SET, MERGE, or UPDATE 
+          statement, the data sets must first be ordered on the values of the 
+          BY variable unless you index the data sets. You can also use the NOTSORTED 
+          option in the BY statement with a SET statement.</p>
+        <p>When BY-group processing is used with an index that is based on one 
+          of the BY variables, the data can be sequenced without using the SORT 
+          procedure. The data can be sequenced by different variables if multiple 
+          indexes are used. Because indexes are updated automatically, there is 
+          no need to re-sort a data set when observations are modified or added.</p>
+        <p>However, using BY-group processing with an index has two disadvantages:</p>
+        <ul>
+          <li>It is generally less efficient than sequentially reading a sorted 
+            data set because processing BY groups typically means retrieving the 
+            entire file.<br>
+            <br>
+          </li>
+          <li>It requires storage space for the index.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p> 
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"> A BY statement does not use an index if the BY statement 
+        includes the DESCENDING or NOTSORTED option or if SAS detects that the 
+        data file is physically stored in sorted order on the BY variables.</td>
+    </tr>
+  </table>
+  <p>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"> If you use a MODIFY statement, the data does not need 
+        to be ordered. However, your program might run more efficiently with ordered 
+        data. </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

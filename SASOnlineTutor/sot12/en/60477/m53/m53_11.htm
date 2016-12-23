@@ -1,0 +1,185 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Storing 
+      Macro Definitions in Catalog SOURCE Entries<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p> You can also use the CATALOG access method to reference multiple SOURCE entries 
+          as long as the entries are stored in the same SAS catalog. </td></tr></table>
+<P><BR>
+	<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, CATALOG access method to reference multiple SOURCE entries">
+  <tr> 
+    <td align="left"><strong>General form, CATALOG access method to reference multiple SOURCE entries:</strong> 
+      <blockquote> 
+        <dl>
+                <dt><font color="#003399"><strong>FILENAME</strong> <em>fileref</em> 
+                  <strong>CATALOG</strong> <em>'libref.catalog'</em><strong>;</strong></font></dt>
+                <dt><font color="#003399"><strong>%INCLUDE</strong> <em>fileref(entry-1)</em><strong>;</strong></font></dt>
+                <dt><font color="#003399"><strong>%INCLUDE</strong> <em>fileref(entry-2)</em><strong>;</strong></font></dt>
+        </dl>
+      </blockquote>
+	where <ul>
+	<li><font color="#003399"><em>fileref</em></font> is a valid fileref
+	<li><font color="#003399"><em>libref.catalog</em></font> is a two-level catalog name
+	<li><font color="#003399"><em>entry-1</em> and <em>entry-2</em></font> are names of SOURCE entries in <font color="#003399"><em>library.catalog</em></font>.
+	</ul>
+      </td>
+  </tr>
+</table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Example</h2>
+      <P> Suppose you have two macros, named <strong>Prtlast</strong> and 
+        <strong>Sortlast</strong>, that are stored in a SAS catalog. 
+      <P><BR>
+        Catalog Entry: <strong>Sasuser.Mymacs.Prtlast.Source</strong> 
+      <TABLE title="Catalog Entry" bgcolor="#f7f7de"><tr><td>
+<font color="#003399">
+            <pre>    %macro prtlast;
+       %if &syslast ne _NULL_ %then %do;
+          proc print data=&syslast(obs=5);
+          title "Listing of &syslast data set";
+          run;
+       %end;
+       %else
+         %put No data set has been created yet.;
+    %mend;</pre>
+      </font></td></tr></TABLE>
+	  <br><br>
+      Catalog Entry: <strong>Sasuser.Mymacs.Sortlast.Source </strong> 
+      <TABLE title="Catalog Entry" bgcolor="#f7f7de"><tr><td>
+ <font color="#003399">
+      <pre>    %macro sortlast(sortby);
+       %if &syslast ne _NULL_ %then %do;
+          proc sort data=&syslast out=sorted;
+             by &sortby;
+          run;
+       %end;
+       %else
+         %put No data set has been created yet.;
+    %mend;</pre>
+      </font> </td></tr></TABLE>
+		
+	  <P><BR>
+          You can use the CATALOG access method in conjunction with the <nobr>%INCLUDE</nobr> 
+          statement to compile both macros. Then you can call the macros later 
+          in the program. In this example, assume that the macros have the same 
+          names as the SOURCE entries in which they are stored:<font color="#003399"> 
+      <pre>    <strong>filename prtsort catalog 'sasuser.mymacs';
+    %include prtsort(prtlast) / source2;
+    %include prtsort(sortlast) / source2;</strong>
+    
+    data current(keep=student_name course_title begin_date location);
+       set sasuser.all;
+       if year(begin_date)=2001;
+       diff=year(today())-year(begin_date);
+       begin_date=begin_date+(365*diff);
+    run; 
+    
+    <strong>%sortlast(begin_date)
+    %prtlast</strong></pre>
+        </font> This code produces the following output: 
+        <P><BR>
+	  <CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Listing of WORK.SORTED                           data set</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Obs</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Student_Name</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Location</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Begin_Date</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Course_Title</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>  1</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Bills, Ms. Paulette</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">08JAN2002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Local Area Networks</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>  2</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Chevarley, Ms. Arlene</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">08JAN2002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Local Area Networks</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>  3</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Clough, Ms. Patti</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">08JAN2002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Local Area Networks</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>  4</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Crace, Mr. Ron</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">08JAN2002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Local Area Networks</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>  5</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Davis, Mr. Bruce</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">08JAN2002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Local Area Networks</font></TD>
+</TR>
+
+</tbody>
+</TABLE>
+</font></CENTER>
+   </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,249 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Defining 
+      Variable Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>So far, you've selected data for your list report and have defined column 
+        attributes and headings. Next, let's look at a more complex PROC REPORT 
+        feature: <strong>usage</strong> for variables in your report. You've seen 
+        that you define variable usage in the DEFINE statement. Now you can see 
+        how each usage affects the layout of your report and the values that the 
+        report contains.</p>
+      <p><br>
+        <strong>How PROC REPORT Uses Variables</strong></p>
+      <p>PROC REPORT uses each variable in one of six ways (DISPLAY, ORDER, GROUP, 
+        ACROSS, ANALYSIS, or COMPUTED). By default, PROC REPORT uses</p>
+      <ul>
+        <li> character variables as <strong>display</strong> variables</li>
+        <li>numeric variables as <strong>analysis</strong> variables, which are 
+          used to calculate the SUM statistic.</li>
+      </ul>
+      <p>Because you haven't explicitly defined any variable usages, your current 
+        list report contains only display and analysis variables:</p>
+      <ul>
+        <li> The character variables <code>Flight</code>, <code>Orig</code>, and 
+          <code>Dest</code> are display variables. Display variables don't affect 
+          the order of rows in the report. A report that contains one or more 
+          display variables has a detail row for each observation that is read 
+          from the data set. Each detail row contains a value for each display 
+          variable.<br>
+          <br>
+        </li>
+        <li>The numeric variables <code>Mail</code>, <code>Freight</code>, and 
+          <code>Revenue</code> are analysis variables. Analysis variables are 
+          used to calculate a statistic (in this case, the default SUM).</li>
+      </ul>
+      <p>In the illustration below, columns for display variables are shown in 
+        white. Columns for analysis variables are shown in gray.</p>
+    </td>
+  </tr>
+</table>
+<center>
+  <br>
+  <br>
+  <table border="0" cellspacing="0" cellpadding="5">
+    <tr> 
+      <td> 
+        <p><font face="Arial, Helvetica, sans-serif" size="-1" color="#003399"><strong>character<br>
+          variables</strong> <br>
+          <br>
+          (default=<br>
+          DISPLAY)</font></p>
+      </td>
+      <td> 
+        <center>
+          Illustration of Partial PROC REPORT Output<br>
+        </center>
+        <center>
+          <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="Partial PROC REPORT Output">
+            <thead> 
+            <tr> 
+              <td align=CENTER bgcolor="#FFFFFF"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+                Number</b></font></td>
+              <td align=CENTER bgcolor="#FFFFFF"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+                Origin</b></font></td>
+              <td align=CENTER bgcolor="#FFFFFF"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+                Destination</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Mail</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Freight</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Revenue</b></font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">821</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">LGA</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">LON</font> 
+                </center>
+              </td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                403</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                209</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $150,634.00</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">271</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">LGA</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">PAR</font> 
+                </center>
+              </td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                492</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                308</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $156,804.00</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">271</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">LGA</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">PAR</font> 
+                </center>
+              </td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                366</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                498</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $190,098.00</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">821</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">LGA</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">LON</font> 
+                </center>
+              </td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                345</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                243</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $150,634.00</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">821</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">LGA</font> 
+                </center>
+              </td>
+              <td align=LEFT bgcolor="#FFFFFF"> 
+                <center>
+                  <font  face="Arial, Helvetica, Helv" size="2" color="#000000">LON</font> 
+                </center>
+              </td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                248</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                307</font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                $193,930.00</font></td>
+            </tr>
+            </tbody> 
+          </table>
+        </center>
+      </td>
+      <td><font face="Arial, Helvetica, sans-serif" size="-1" color="#003399"><strong>numeric<br>
+        variables </strong><br>
+        <br>
+        (default=<br>
+        ANALYSIS)</font></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>How you use a variable in a report determines, among other things, 
+          the order of the rows in your report. Let's see the effect of defining 
+          a variable as an <strong>order variable</strong>.</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

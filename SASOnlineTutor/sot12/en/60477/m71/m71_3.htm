@@ -1,0 +1,223 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Generating 
+      a Cartesian Product<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The most basic type of join combines data from two tables that are 
+          specified in the FROM clause of a SELECT statement. When you specify 
+          multiple tables in the FROM clause but do not include a WHERE statement 
+          to subset data, PROC SQL returns the <strong>Cartesian product</strong> 
+          of the tables. In a Cartesian product, each row in the first table is 
+          combined with every row in the second table. Below is an example of 
+          this type of query, which joins the tables <strong>One</strong> and 
+          <strong>Two</strong>:</p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table border="0" align="center" cellspacing="10">
+    <tr> 
+      <td valign="top"> <pre><font color="#003399">proc sql;
+   select *
+      <strong>from one, two</strong>;</font>
+</pre></td>
+      <td align="center" valign="top"> One 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>A</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">1</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">a</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">b</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">d</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td align="center" valign="top"> Two 
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr align="center" valign="top"> 
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>X</b></font></td>
+              <td width="40" bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>B</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">2</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">x</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">3</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">y</font></td>
+            </tr>
+            <tr valign="top"> 
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">5</font></td>
+              <td align=center bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">v</font> 
+              </td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <br>
+  <TABLE border=1 align="center" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+    <thead>
+      <TR align="center" valign="top"> 
+        <TD ALIGN=center VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+        <TD ALIGN=center VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>A</b></font></TD>
+        <TD ALIGN=center VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>X</b></font></TD>
+        <TD ALIGN=center VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>B</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">a</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">a</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">3</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">y</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">a</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">5</font></TD>
+        <TD width="40" bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">v</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">3</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">y</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">b</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">5</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">v</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">4</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">d</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">2</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">x</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">4</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">d</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">3</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">y</font></TD>
+      </TR>
+      <TR align="center" valign="top"> 
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">4</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">d</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">5</font></TD>
+        <TD bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">v</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The output shown above displays all possible combinations of each 
+          row in table <strong>One</strong> with all rows in table <strong>Two.</strong> 
+          Note that each table has a column named <code>X</code>, and both of 
+          these columns appear in the output. A Cartesian product includes all 
+          columns from the source tables; columns that have common names are <strong>not</strong> 
+          overlaid. </p>
+        <p>Let&#8217;s take a closer look at how the Cartesian product is generated.</p>
+        <p><em>Click the buttons below to view a series of graphics that show 
+          how PROC SQL creates a Cartesian product. You can also see a <a href="JavaScript: openOther('m71_3a.htm')">text-only 
+          version</a> of the information.</em> </p></td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table border="2" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+      <td> <script language="JavaScript">
+	  <!-- Specify the number of animation graphics -->
+	  var totalanim=11; 
+  	  <!-- Specify the width and height of the images -->
+	  var imageWidth=427;
+	  var imageHeight=500;
+	  <!-- Don't edit the rest of the script or the form -->
+	  if (document.images) document.write('<img width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" name="animation" alt="Animation frame"></a>');else
+	  document.write('<iframe name="animation" width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" scrolling=no frameborder="0"></iframe>');</script> 
+      </td>
+    </tr>
+    <tr valign="Top"> 
+      <td> <table cellspacing="0" cellpadding="0">
+          <tr valign="Top"> 
+            <td align="center"> <form name="frameplay" onSubmit="return false">
+                <input type="button" name="back" value="Back" onClick="scroll('back',totalanim);return false">
+                <input type="text" name="page" value="Start" size="7">
+                <input type="button" name="next" value="Next" onClick="scroll('next',totalanim);return false">
+              </form>
+              <script>document.frameplay.page.value=" 1 of "+totalanim;</script> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p>
+<br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

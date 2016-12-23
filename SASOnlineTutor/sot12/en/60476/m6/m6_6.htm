@@ -1,0 +1,156 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Specifying 
+      Tick-Mark Values for the Axes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>To specify tick-mark values for the axes in your plot, you can specify 
+        the <strong>VAXIS= and HAXIS= options</strong> in the PLOT statement. 
+        The VAXIS= option specifies tick marks along the vertical axis, and the 
+        HAXIS= option specifies tick marks along the horizontal axis. Notice that 
+        a <strong>slash</strong> (<font color="#003399"><strong>/</strong></font>) 
+        precedes options in the PLOT statement.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PLOT statement with VAXIS= and HAXIS= options">
+    <tr> 
+      <td align="left"><strong>General form, PLOT statement with VAXIS= and HAXIS= 
+        options:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>PLOT</strong> <em>vertical-variable*horizontal-variable</em> 
+          <strong><big><strong>/</strong></big> </strong></nobr><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>VAXIS=</strong><em>&lt;value-list 
+          | range&gt;</em><br>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>HAXIS=</strong><em>&lt;value-list 
+          | range</em>&gt;<strong>;</strong></font> </blockquote>
+        <p> where <font color="#003399"><em>value-list</em></font> or <font color="#003399"><em>range</em></font> 
+          determines the placement of tick marks along the axis. 
+        <p> 
+        <table cellspacing="0" cellpadding="2">
+          <tr valign="Top"> 
+            <td width="20"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+            <td>If some values for the horizontal axis are not plotted within 
+              the value list or range that you specify, the data for those values 
+              will not appear on the plot.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Specifying Values</strong> 
+        <p> As you saw above, you can specify tick-mark values for the axes using 
+        <ul>
+          <li> a value list:<br>
+            <br>
+            <font color="#003399"><code>haxis='MON' 'TUES' 'WED' 'THUR' 'FRI'</code></font> 
+        </ul>
+        <ul>
+          <li> a range of values:<br>
+            <br>
+            <font color="#003399"><code>vaxis=10 to 100 by 10</code></font> 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>Let's&nbsp;see how each of these methods works. 
+        <p> <br>
+          <strong>Value Lists</strong> 
+        <p> Notice the default tick-mark values for the axes in the plot below. 
+          All months of the year are represented. </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <img src="images/m6d2s1.gif" width="400" height="305" alt="Single plot with default axes."> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>But suppose you want to plot only January, June, and December. By specifying 
+        the <strong>HAXIS= </strong>option, as shown below, you can include only 
+        those months on the horizontal axis. Note that <code>Month</code> is a 
+        <strong>character</strong> <strong>variable</strong>, even though its 
+        values are <strong>digits</strong>. You must enclose character values 
+        in quotation marks, and you must specify them exactly as they appear in 
+        the data set.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre> <font color="#003399">  proc gplot data=clinic.therapy1999;<br>      plot aerclass*month / </font>
+<font color="#003399">           <strong>haxis='01' '06' '12'</strong>;</font><br>  <font color="#003399"> run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <img src="images/m6e1s1.gif" width="400" height="305" alt="Single plot with optional horizontal axis."> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>Notice the modified horizontal axis. Also note that points are plotted 
+        only for the months that are specified in the HAXIS= option.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

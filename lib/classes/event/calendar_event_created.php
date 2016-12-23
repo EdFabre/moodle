@@ -107,7 +107,7 @@ class calendar_event_created extends base {
         if (empty($this->other['name'])) {
             throw new \coding_exception('The \'name\' value must be set in other.');
         }
-        if (!isset($this->other['timestart'])) {
+        if (empty($this->other['timestart'])) {
             throw new \coding_exception('The \'timestart\' value must be set in other.');
         }
     }

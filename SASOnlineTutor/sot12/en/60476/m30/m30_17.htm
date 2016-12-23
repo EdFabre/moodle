@@ -1,0 +1,110 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Converting 
+      Data with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><STRONG>Automatic 
+        Numeric-to-Character Conversion</STRONG> </p>
+      <P> The automatic conversion of numeric data to character data is very similar 
+        to character-<WBR>to-<WBR>numeric conversion. Numeric data values are 
+        converted to character values whenever they are used in a <STRONG>character 
+        context</STRONG>. 
+      <P> For example, the numeric values of the variable <CODE>Site</CODE> are 
+        converted to character values if you 
+      <UL>
+        <LI>assign the numeric value to a previously defined character variable, 
+          such as the character variable <CODE>SiteCode</CODE>: <NOBR><TT><FONT color="#003399">SiteCode=site;</FONT></TT></NOBR> 
+          <BR>
+          <BR>
+        <LI>use the numeric value with an operator that requires a character value, 
+          such as the concatenation operator: <NOBR><TT><FONT color="#003399">SiteCode=site||dept;</FONT></TT></NOBR> 
+          <BR>
+          <BR>
+          <LI>specify the numeric value in a function that requires character 
+            arguments, such as the SUBSTR function: <NOBR><TT><FONT color="#003399">Region=substr(site,1,4);</FONT></TT></NOBR> 
+        </UL>
+        <P>Specifically, SAS writes the numeric value with the BEST12. format, 
+          and the resulting character value is right-aligned. This conversion 
+          occurs before the value is assigned or used with any operator or function. 
+          Automatic numeric-to-character conversion can cause unexpected results. 
+          For example, suppose the original numeric value has fewer than 12 digits. 
+          The resulting character value will have leading blanks, which might 
+          cause problems when you perform an operation or function. 
+        <P>Numeric-to-character conversion also causes a message to be written 
+          to the SAS log indicating that the conversion has occurred.</td>
+  </tr>
+</table>
+<P align="center"><BR>
+  SAS Log 
+<center>
+  <TABLE width="450" BORDER="1" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="SAS Log">
+    <TR> 
+      <TD> <PRE>9    data hrd.newtemp;
+10      set hrd.temp;
+11      SiteCode=site;
+12   run;
+
+<STRONG>NOTE: Numeric values have been converted
+      to character values at the
+      places given by: (Line):(Column).
+
+      11:13</STRONG>
+
+<NOBR>NOTE: The data set HRD.NEWTEMP has 40 observations</NOBR>
+      and 19 variables.
+NOTE: The data statement used 1.06 seconds.
+</PRE></TD>
+    </TR>
+  </table>
+</center>
+<P align="center">&nbsp; 
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>As we saw with the INPUT statement, it is best not to rely on automatic 
+        conversion. When you know that numeric data must be converted to character 
+        data, perform an explicit conversion by including a PUT function in your 
+        SAS program. We look at the PUT function in the next section.</TD>
+    </TR>
+  </TABLE>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

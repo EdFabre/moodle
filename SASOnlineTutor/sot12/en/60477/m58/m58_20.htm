@@ -1,0 +1,231 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Custom Formats <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <h2>Substituting Formats to Avoid Errors</h2>
+        <p>Let's look at what happens if you forget to specify a catalog in the 
+          FMTSEARCH= option, misspell a format name, or make some other mistake 
+          that causes SAS to fail to locate the format you have specified. </p>
+        <p>By default, the <strong>FMTERR</strong> system option is in effect. 
+          If you use a format that SAS cannot load, SAS issues an error message 
+          and stops processing the step. To prevent this, you must change the 
+          system option FMTERR to NOFMTERR. When <strong>NOFMTERR</strong> is 
+          in effect, SAS substitutes a format for the missing format and continues 
+          processing.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, FMTERR system option">
+    <tr> 
+      <td align="left"><strong>General form, FMTERR system option:</strong> <blockquote> 
+          <font color="#003399"><nobr><strong>OPTIONS FMTERR | NOFMTERR;</strong></nobr></font> 
+        </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"> <strong>FMTERR</strong></font> specifies that when SAS cannot 
+            find a specified variable format, it generates an error message and 
+            stops processing. Substitution does not occur.</li><br><br>
+          <li><font color="#003399"><strong>NOFMTERR</strong></font> replaces missing formats with 
+            the <em>w</em>. or $<em>w</em>. default format and continues processing.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>Suppose the FMTERR system option is in effect. In a previous 
+          example, we created the $ROUTES. format to group airline routes into 
+          zones. In the following code, the $ROUTES. format is misspelled:</p>
+        <pre>     <font color="#003399">proc print data=sasuser.cargorev(obs=10);
+        format route <strong>$route.</strong>;
+     run;</font></pre>
+        <p>Because FMTERR is in effect, the format cannot be located and SAS stops 
+          processing. An error message is written to the log. </p>
+        <br></td>
+    </tr>
+  </table>
+  SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre><font color="#000000">30   proc print data=sasuser.cargorev(obs=10);
+31      format route $route.;
+<strong>ERROR: The format $ROUTE was not found or could not be loaded.</strong>
+32   run;
+
+
+NOTE: The SAS System stopped processing this step because of errors.</font></pre></td>
+    </tr>
+  </table>
+  <div align="center"> <br>
+    <br>
+    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td><p>If the NOFMTERR system option is specified, substitution occurs 
+            and SAS continues to process the step.</p>
+          <pre>   <font color="#003399">  <strong>options nofmterr;</strong></font>
+     <font color="#003399">proc print data=sasuser.cargorev(obs=10);
+        format Route $route.;
+     run;</font></pre>
+          <CENTER>
+            <p align="left"><font size="2" face="Arial, Helvetica, Helv">SAS substitutes 
+              the $<em>w</em> format for the $ROUTE. format that it could not 
+              locate. No message is written to the log and processing continues. 
+              You can see from the output that the format you intended to use 
+              has not been applied.</font><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+              <br>
+              <br>
+              <br>
+              </font></p>
+            <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+            <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+              <thead>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+                  <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Month</b></font></TD>
+                  <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Date</b></font></TD>
+                  <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>RevCargo</b></font></TD>
+                  <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Route</b></font></TD>
+                </TR>
+              </thead>
+              <tbody>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    1</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14610</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    2260</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Route2</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    2</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14610</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">220293</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Route3</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    3</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14610</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    4655</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    Route1</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    4</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14610</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    4004</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    Route1</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    5</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14611</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    8911</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    Route1</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    6</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14611</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">102900</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Route3</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    7</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14612</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    1963</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Route3</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    8</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14612</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    3321</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Route5</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    9</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14612</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    2562</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Route3</font></TD>
+                </TR>
+                <TR> 
+                  <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b> 
+                    10</b></font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14612</font></TD>
+                  <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    9447</font></TD>
+                  <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+                    Route1</font></TD>
+                </TR>
+              </tbody>
+            </TABLE>
+            </font><font size="2" face="Arial, Helvetica, Helv"> </font> </CENTER></td>
+      </tr>
+    </table>
+    <p><br>
+    </p>
+  </div>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

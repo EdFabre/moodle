@@ -1,0 +1,675 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Identifying 
+      Observations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>You've learned how to remove the <code>Obs</code> column altogether. 
+        As another alternative, you can use one or more <strong>variables</strong> 
+        to replace the <code>Obs</code> column in the output. </p>
+      <p> To specify which variables should replace the <code>Obs</code> column, 
+        use the <strong>ID statement</strong>. This technique is particularly 
+        useful when observations are too long to print on one line. 
+    </td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, ID statement">
+    <tr> 
+      <td><strong>General form, ID statement:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>ID </strong><em>variable(s)</em></nobr><strong>;</strong></font> 
+        </blockquote>
+        where <font color="#003399"><em>variable(s)</em></font> specifies one 
+        or more variables to print instead of the observation number at the beginning 
+        of each row of the report. </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Example</strong> 
+        <p> To replace the <code>Obs</code> column and identify observations based 
+          on an employee's ID number and last name, you can submit the following 
+          program. 
+        <pre>    <font color="#003399"> proc print data=sales.reps;</font>
+<font color="#003399">        id idnum lastname;</font>
+<font color="#003399">     run;</font></pre>This is HTML output from the program:
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+    <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT output">
+      <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>IDnum</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>LastName</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>FirstName</b></font></td>
+          <td align=left bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>City</b></font></td>
+          <td align=left bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>State</b></font></td>
+          <td align=left bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Sex</b></font></td>
+          <td align=left bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>JobCode</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Salary</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Birth</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Hired</b></font></td>
+          <td align=left bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>HomePhone</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1269</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>CASTON</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRANKLIN</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">STAMFORD</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CT</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">41690.00</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">06MAY60</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01DEC80</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">203/781-3335</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1935</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>FERNANDEZ</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">KATRINA</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRIDGEPORT</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CT</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">51081.00</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">31MAR42</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">19OCT69</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">203/675-2962</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1417</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>NEWKIRK</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WILLIAM</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PATERSON</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NJ</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">,</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">52270.00</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">30JUN52</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">10MAR77</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">201/732-6611</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1839</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>NORRIS</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DIANE</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NEW 
+        YORK</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">YN</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">F</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">43433.00</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">02DEC58</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">06JUL81</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">718/384-1767</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1111</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>RHODES</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">JEREMY</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PRINCETON</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NJ</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40586.00</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">17JUL61</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">03NOV80</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">201/812-1837</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1352</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>RIVERS</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">SIMON</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NEW 
+        YORK</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NY</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        5379.80</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">05DEC48</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">19OCT74</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">718/383-3345</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1332</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>STEPHENSON</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ADAM</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRIDGEPORT</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CT</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">42178.00</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20SEP58</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">07JUN79</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">203/675-1497</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>1443</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>WELLS</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AGNES</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">STAMFORD</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CT</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">F</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        422.74</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">20NOV56</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01SEP79</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">203/781-5546</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" cellspacing="0" cellpadding="2">
+    <tr valign="top"> 
+      <td width="24"><img border="0" src="../navimages/note.gif" alt="NOTE:" width="20" height="20"></td>
+      <td>In listing output, the <code>IDnum</code> and <code>LastName</code> 
+        columns are repeated for each observation that is printed on more than 
+        one line. </td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" width="450" title="PROC PRINT listing output">
+    <tr> 
+      <td> 
+        <table  border=0 cellspacing=0 cellpadding=0 frame=BOX bgcolor="#F7F7DE">
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;IDnum&nbsp;&nbsp;</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">LastName&nbsp;&nbsp;</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">FirstName&nbsp;</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;City&nbsp;&nbsp;&nbsp;</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;State&nbsp;</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;Sex&nbsp;&nbsp;</font></td>
+            <td align=CENTER><font face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;JobCode&nbsp;</font></td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE">&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+          </tr>
+          </thead> <tbody> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">1269</font></div>
+            </td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">CASTON</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">FRANKLIN</font></td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">STAMFORD</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">CT</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">M</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NA1</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">1935</font></div>
+            </td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">FERNANDEZ</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">KATRINA</font></td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">BRIDGEPO</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">CT</font></div>
+            </td>
+            <td align=LEFT>&nbsp; 
+              <div align="center"></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NA2</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">1417</font></div>
+            </td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">NEWKIRK</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">WILLIAM</font></td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">PATERSON</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NJ</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">,</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NA2</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">1839</font></div>
+            </td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">NORRIS</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">DIANE</font></td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NEW 
+                YORK</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier, mono" size="2">NY</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">F</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NA1</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">1111</font></div>
+            </td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">RHODES</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">JEREMY</font></td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">PRINCETO</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NJ</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">M</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NA1</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">1352</font></div>
+            </td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">RIVERS</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">SIMON</font></td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NEW 
+                YORK</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier, mono" size="2">NY</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">M</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NA2</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">1332</font></div>
+            </td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">STEPHENS</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">ADAM</font></td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">BRIDGEPO</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">CT</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">M</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NA1</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT bgcolor="#F7F7DE"> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">1443</font></div>
+            </td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">WELLS</font></td>
+            <td align=LEFT><font face="Courier New, Courier" size="2" color="#000000">AGNES</font></td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">STAMFORD</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">CT</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">F</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font face="Courier New, Courier" size="2" color="#000000">NA1</font></div>
+            </td>
+          </tr>
+          </tbody> 
+        </table>
+        <br>
+        <br>
+        <p>
+        <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000">
+        <table  border=0 cellspacing=0 cellpadding=0 frame=BOX bgcolor="#F7F7DE">
+          <thead> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=CENTER><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;IDnum&nbsp;&nbsp;</font></td>
+            <td align=CENTER><font  face="Courier New, Courier" size="2" color="#000000">LastName&nbsp;&nbsp;</font></td>
+            <td align=CENTER><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;Salary</font></td>
+            <td align=CENTER><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;Birth</font></td>
+            <td align=CENTER><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;Hired</font></td>
+            <td align=CENTER><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HomePhone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+            <td align=LEFT>&nbsp;</td>
+          </tr>
+          </thead> <tbody> 
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">1269</font></div>
+            </td>
+            <td align=LEFT><font  face="Courier New, Courier" size="2" color="#000000">CASTON</font></td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">41690.00</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">06MAY60</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">01DEC80</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">203/781-3335</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">1935</font></div>
+            </td>
+            <td align=LEFT><font  face="Courier New, Courier" size="2" color="#000000">FERNANDEZ</font></td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">51081.00</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">31MAR42</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">19OCT69</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">203/675-2962</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">1417</font></div>
+            </td>
+            <td align=LEFT><font  face="Courier New, Courier" size="2" color="#000000">NEWKIRK</font></td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">52270.00</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">30JUN52</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">10MAR77</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">201/732-6611</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">1839</font></div>
+            </td>
+            <td align=LEFT><font  face="Courier New, Courier" size="2" color="#000000">NORRIS</font></td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">43433.00</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">02DEC58</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">06JUL81</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">718/384-1767</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">1111</font></div>
+            </td>
+            <td align=LEFT><font  face="Courier New, Courier" size="2" color="#000000">RHODES</font></td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">40586.00</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">17JUL61</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">03NOV80</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">201/812-1837</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">1352</font></div>
+            </td>
+            <td align=LEFT><font  face="Courier New, Courier" size="2" color="#000000">RIVERS</font></td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">5379.80</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">05DEC48</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">19OCT74</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">718/383-3345</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">1332</font></div>
+            </td>
+            <td align=LEFT><font  face="Courier New, Courier" size="2" color="#000000">STEPHENS</font></td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">42178.00</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">20SEP58</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">07JUN79</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">203/675-1497</font></div>
+            </td>
+          </tr>
+          <tr bgcolor="#F7F7DE"> 
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">1443</font></div>
+            </td>
+            <td align=LEFT><font  face="Courier New, Courier" size="2" color="#000000">WELLS</font></td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">422.74</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">20NOV56</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="right"><font  face="Courier New, Courier" size="2" color="#000000">01SEP79</font></div>
+            </td>
+            <td align=LEFT> 
+              <div align="center"><font  face="Courier New, Courier" size="2" color="#000000">203/781-5546</font></div>
+            </td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></font>
+      </td>
+    </tr>
+  </table>
+  <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  </font></font> 
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding="2" width="85%">
+    <tr valign="Top"> 
+      <td width="705">If a variable in the ID statement also appears in the VAR 
+        statement, the output contains two columns for that variable. In the example 
+        below, the variable <code>IDnum</code> appears twice. 
+        <pre>    <font color="#003399"> proc print data=sales.reps;</font>
+        <font color="#003399">id <strong>idnum</strong> lastname;</font>
+<font color="#003399">        <font color="#003399">var <strong>idnum</strong> sex jobcode salary;</font>
+<font color="#003399"></font>     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>IDnum</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>LastName</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>IDnum</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Sex</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>JobCode</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Salary</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1269</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>CASTON</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">1269</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">41690.00</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1935</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>FERNANDEZ</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">1935</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NA2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">51081.00</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1417</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>NEWKIRK</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">1417</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">,</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NA2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">52270.00</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1839</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>NORRIS</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">1839</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">F</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">43433.00</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1111</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>RHODES</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">1111</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">40586.00</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1352</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>RIVERS</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">1352</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NA2</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        5379.80</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1332</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>STEPHENSON</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">1332</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">M</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">42178.00</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1443</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="2" color="#002288"><b>WELLS</b></font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">1443</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">F</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000">NA1</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        422.74</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

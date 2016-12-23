@@ -1,0 +1,352 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Joining 
+      Multiple Tables and Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: Technique 1 (PROC SQL Subqueries, Joins, and In-Line Views)<br>
+        </h2></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Query Specifications: Task and Data">
+    <tr valign="top"> 
+      <th width="63" align="left" bgcolor="#F7F7DE"><font size="-1">Task</font></th>
+      <td width="595">List the names of supervisors for the crew on the flight 
+        to Copenhagen on March 4, 2000. </td>
+    </tr>
+    <tr valign="top"> 
+      <th width="63" align="left" bgcolor="#F7F7DE"><font size="-1">Data</font></th>
+      <td width="595"><p><strong><a href="JavaScript: openOther('../linklib/fltsched.htm')">Sasuser.Flightschedule</a></strong> 
+          (<code>EmpID, Date, Destination</code>) </p>
+        <p> <strong><a href="JavaScript: openOther2('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a></strong> 
+          (<code>EmpID, FirstName, LastName, State</code>) </p>
+        <p><strong><a href="JavaScript: openOther3('../linklib/payrmstr.htm')">Sasuser.Payrollmaster</a></strong> 
+          (<code>EmpID, JobCode</code>)</p>
+        <p><strong><a href="JavaScript: openOther4('../linklib/suprvisr.htm')">Sasuser.Supervisors</a></strong> 
+          (<code>EmpID, State, JobCategory</code>) </p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Supervisors live in the same state as the employees they 
+        supervise. There is one supervisor for each state and job category.</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>Completing the stated task requires a complex query that includes 
+          several subqueries, joins, and an in-line view. To make the task more 
+          manageable, let's build the complex query piece-by-piece in four steps:</p>
+        <ol>
+          <li>Identify the <strong>crew for the Copenhagen flight</strong>.<br>
+            <br>
+          </li>
+          <li>Find the <strong>states and job categories of the crew members</strong> 
+            that were returned by the first query.<br>
+            <br>
+          </li>
+          <li>Find the <strong>employee numbers of the crew supervisors</strong>, 
+            based on the states and job categories that were returned by the second 
+            query.<br>
+            <br>
+          </li>
+          <li>Find the <strong>names of the supervisors</strong>, based on the 
+            employee numbers that were returned by the third query.</li>
+        </ol>
+        <p>Note that at each of the four steps, a new piece of the final query 
+          will be added. The final query will include the four separate pieces.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top"><p><strong>Query 1: Identify the crew for the Copenhagen 
+          (CPH) flight. </strong></p>
+        <p>This query lists the employee ID numbers of all six crew members on 
+          the Copenhagen flight:</p>
+        <pre><font color="#003399">proc sql;
+   select empid
+      from sasuser.flightschedule
+      where date='04mar2000'd
+            and destination='CPH';</font></pre></td>
+      <td>&nbsp;&nbsp;&nbsp;</td>
+      <td align="center" valign="top"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+        </font></font> <TABLE border=1 align="right" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+          <thead>
+            <TR> 
+              <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>EmpID</b></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1556</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1830</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1124</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1135</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1437</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">1839</font></TD>
+            </TR>
+          </tbody>
+        </TABLE></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top"><p><strong>Query 2: Find the states and job categories 
+          of the crew members.</strong></p>
+        <p>Query 1 becomes a subquery and returns the employee ID numbers of the 
+          six Copenhagen crew members to the outer query, <strong>Query</strong> 
+          <strong>2. </strong>(Query 2 is shown in bold.) Query 2 uses an inner 
+          join to combine two tables. Query 2 selects the job category (by using 
+          the SUBSTR function to extract the job category from <code>JobCode</code>) 
+          and state for each of the six crew members.</p>
+        <pre><font color="#003399">proc sql;
+<strong>   select substr(JobCode,1,2) as JobCategory,
+          state 
+      from sasuser.staffmaster as s,
+           sasuser.payrollmaster as p
+      where s.empid=p.empid and s.empid in</strong>
+         (select empid
+            from sasuser.flightschedule
+            where date='04mar2000'd
+                  and destination='CPH');</font></pre></td>
+      <td>&nbsp;&nbsp;&nbsp;</td>
+      <td align="center" valign="middle"> <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+        </font></font> <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+          <thead>
+            <tr> 
+              <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>JobCategory</b></font></td>
+              <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>State</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">CT</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NY</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NA</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NY</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PT</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NY</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">PT</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">CT</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">FA</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">NY</font></td>
+            </tr>
+          </tbody>
+        </table></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top">
+<p><strong>Query 3: Find the employee numbers 
+          of the crew supervisors.</strong> </p>
+        <p>Query 2 becomes an in-line view within <strong>Query 3</strong>, and 
+          the alias <strong><code>c</code></strong> has been assigned to the in-line 
+          view. (Query 3 is shown in bold.) Query 2 returns to Query 3 the job 
+          category and state for each crew member. Query 3 selects the employee 
+          ID numbers for supervisors whose job category and state match the job 
+          category and state of a crew member. </p>
+        <table width="85%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"> <strong>Sasuser.Supervisors</strong> specifies the 
+              label <code>Supervisor ID</code> for the <code>EmpID</code> column, 
+              and this label appears in the output.</td>
+          </tr>
+        </table>
+        <pre><font color="#003399"><font color="#003399">proc sql;</font>
+   <strong>select empid
+      from sasuser.supervisors as m,</strong>
+         (select substr(jobcode,1,2) as JobCategory,
+                 state
+            from sasuser.staffmaster as s,
+                 sasuser.payrollmaster as p
+            where s.empid=p.empid and s.empid in
+               (select empid
+                  from sasuser.flightschedule
+                  where date='04mar2000'd
+                        and destination='CPH')) as c
+      <strong>where m.jobcategory=c.jobcategory
+            and m.state=c.state;</strong></font></pre>
+        <p> Note that two rows contain the same value of <code>EmpID</code>: <em>1983</em>. 
+          This duplication indicates that two different crew members have the 
+          same manager. In all, there are five supervisors for the six crew members 
+          of the Copenhagen flight.</p></td>
+      <td>&nbsp;&nbsp;&nbsp;</td>
+      <td width="21%" align="center" valign="middle"> <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+        </font></font> <CENTER>
+          <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+          <TABLE border=1 align="right" cellpadding=2  cellspacing=1 bordercolor="#000000" bgcolor="#FFFFF0" frame=BOX rules=GROUPS title="PROC SQL Output">
+            <thead>
+              <TR> 
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Supervisor 
+                  Id</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1431</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1983</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1352</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1118</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1106</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1983</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+          </font></CENTER></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td valign="top"><p><strong>Query 4: Find the names of the supervisors.</strong> 
+        </p>
+        <p>Query 3 becomes a subquery within Query 4. (Query 4 is shown in bold.) 
+          Query 3 returns to Query 4 the employee numbers (supervisor ID's) for 
+          the supervisors of the Copenhagen crew. Query 4 selects the names of 
+          the supervisors. </p>
+        <pre><font color="#003399"><font color="#003399">proc sql;</font>
+   <strong>select firstname, lastname
+      from sasuser.staffmaster 
+      where empid in</strong>
+         (select empid
+            from sasuser.supervisors as m,
+               (select substr(jobcode,1,2) 
+                       as JobCategory, 
+                       state
+                  from sasuser.staffmaster as s,
+                       sasuser.payrollmaster as p
+                  where s.empid=p.empid
+                        and s.empid in
+                     (select empid
+                        from sasuser.flightschedule
+                        where date='04mar2000'd
+                              and destination='CPH'))
+                              as c
+            where m.jobcategory=c.jobcategory
+                  and m.state=c.state);</font></pre>
+        <p>Note that the output has five rows, one for each supervisor. The duplicate 
+          name of a supervisor has been eliminated.</p></td>
+      <td align="center" valign="middle">&nbsp;&nbsp;&nbsp;</td>
+      <td align="center" valign="middle"><table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+          <thead>
+            <tr> 
+              <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FirstName</b></font></td>
+              <td align=LEFT valign=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">SHARON</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DEAN</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">ROGER</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DENNIS</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">JASPER</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">MARSHBURN</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">SIMON</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">RIVERS</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DEBORAH</font></td>
+              <td align=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">YOUNG</font></td>
+            </tr>
+          </tbody>
+        </table>
+        <font  face="Arial, Helvetica, Helv" size="2" color="#002288"><font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+        </font></font></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Technique 1 produces a PROC SQL query that includes</p>
+        <ul>
+          <li>four SELECT statements</li>
+          <li>four tables, each read separately.</li>
+        </ul>
+        <p>This program is not optimized and, in addition, includes complex code 
+          that is likely to take a long time to write.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

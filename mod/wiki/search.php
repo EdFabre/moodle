@@ -26,7 +26,7 @@ require_once($CFG->dirroot . '/mod/wiki/lib.php');
 require_once($CFG->dirroot . '/mod/wiki/locallib.php');
 require_once($CFG->dirroot . '/mod/wiki/pagelib.php');
 
-$search = optional_param('searchstring', null, PARAM_TEXT);
+$search = optional_param('searchstring', null, PARAM_ALPHANUMEXT);
 $courseid = optional_param('courseid', 0, PARAM_INT);
 $searchcontent = optional_param('searchwikicontent', 0, PARAM_INT);
 $cmid = optional_param('cmid', 0, PARAM_INT);

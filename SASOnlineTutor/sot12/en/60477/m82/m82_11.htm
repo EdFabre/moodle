@@ -1,0 +1,131 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Compressing 
+      Data Files<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td>
+        <h2>Compressed Data File Structure</h2>
+        
+        <p>Compressed data files </p>
+        <ul>
+          <li>treat an observation as a single string of bytes by ignoring variable 
+            types and boundaries. <br>
+            <br>
+          <li>collapse consecutive repeating characters and numbers into fewer 
+            bytes. <br>
+            <br>
+          <li>contain a 28-byte overhead at the beginning of each page. <br>
+            <br>
+          <li>contain a 12-byte- or 24-byte-per-observation overhead following 
+            the page overhead. This space is used for deletion status, compressed 
+            length, pointers, and flags. <br>
+            <br>
+        </ul>
+        <p>Each observation in a compressed data file can have a different length, 
+          which means that some pages in the data file can store more observations 
+          than others can. When an updated observation is larger than its original 
+          size, it is stored on the same data file page and uses available space. 
+          If not enough space is available on the original page, the observation 
+          is stored on the next page that has enough space, and a pointer is stored 
+          on the original page. </p>
+        <p>The image below depicts the structure of a compressed data file. </p></td>
+    </tr>
+  </table>
+ <p><br><center>
+      <img src="images/m82_11g1.gif" width="404" height="259" alt="Compressed data file, in which observation size is variable.">
+</center>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">The overhead for each observation is
+	  12 bytes per observation on 32-bit operating environments and 
+	     24 bytes per observation on 64-bit operating environments. 
+		</td>
+      </tr>
+    </table><P><BR><h2>Deciding Whether to Compress a Data File</h2>
+        <p> Not all data files are good candidates for compression. Remember that 
+          in order for SAS to read a compressed file, each observation must be 
+          uncompressed. This requires more CPU resources than reading an uncompressed 
+          file. However, compression can be beneficial when the data file has 
+          one or more of the following properties:</p>
+        <ul>
+          <li>It is large. 
+          <li>It contains many long character values. 
+          <li>It contains many values that have repeated characters or binary 
+            zeros. 
+          <li>It contains many missing values. 
+          <li>It contains repeated values in variables that are physically stored 
+            next to one another. 
+        </ul>
+        <P> In character data, the most frequently encountered repeated value 
+          is the blank. Long text fields, such as comments and addresses, often 
+          contain repeated blanks. Likewise, binary zeros are used to pad numeric 
+          values that can be stored in fewer bytes than are available in a particular 
+          numeric variable. This happens most often when you assign a small or 
+          medium-sized integer to an 8-byte numeric variable. 
+        <P>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If saving disk space is crucial, consider storing 
+              missing data as a small integer, such as 0 or 9, rather than as 
+              a SAS missing value. Small integers can be compressed more than 
+              SAS missing values can.</td>
+          </tr>
+        </table>
+        <P> <a name="CompressNo"></a>A data file is <strong>not</strong> a good 
+          candidate for compression if it has 
+        <ul>
+          <li>few repeated characters 
+          <li>small physical size 
+          <li>few missing values 
+          <li>short text strings. 
+        </ul>
+        Next, let's look at how to compress a data file.
+	    </td>
+    </tr>
+  </table>
+  
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

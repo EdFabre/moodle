@@ -1,0 +1,148 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Compressing 
+      Data Files<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2>The REUSE= System Option and the REUSE= Data Set Option</h2>
+	    <p>In a compressed data set, SAS appends new observations to the end of 
+          the data set by default. If you delete an observation within the data 
+          set, empty disk space remains in its place. However, it is possible 
+          to track and reuse free space within the data set when you delete or 
+          update observations. By reusing space within a data set, you can conserve 
+          data storage space.</p>
+        <p>The <strong>REUSE= system option</strong> and the <strong>REUSE= data 
+          set option</strong> specify whether or not SAS reuses space when observations 
+          are added to a compressed data set. If you set the REUSE= data set option 
+          to <em>YES</em> in a DATA statement, SAS tracks and reuses space in 
+          the compressed data set that is created in that DATA step. If you set 
+          the REUSE= system option to <em>YES</em>, SAS tracks and reuses free 
+          space in all compressed data sets that are created for the remainder 
+          of the current SAS session. </p></td>
+    </tr>
+  </table>
+  <p> <br><table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, REUSE= system option">
+    <tr> 
+      <td align="left"><strong>General form, REUSE= system option:</strong> 
+        <blockquote> <font color="#003399"><strong>OPTIONS REUSE= NO | YES;</strong></font> 
+        </blockquote>
+
+        where 
+        <ul>
+          <li><font color="#003399"><strong>NO</strong></font> is the default 
+            setting, which specifies that SAS does not track unused space in the 
+            compressed data set. <strong><br>
+            <br>
+            </strong> 
+          <li><font color="#003399"><strong>YES</strong></font> specifies that 
+            SAS tracks free space and reuses it whenever observations are added 
+            to an existing compressed data set.</ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, REUSE= data set option">
+    <tr> 
+      <td align="left"><strong>General form, REUSE= data set option:</strong> 
+        <blockquote> <font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em> 
+          <strong>(COMPRESS=YES REUSE= NO | YES);</strong></font> </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>SAS-data-set</em></font> specifies the 
+            data set that you want to compress. <br>
+            <br>
+          <li><font color="#003399"><strong>NO</strong></font> is the default 
+            setting, which specifies that SAS does not track unused space in the 
+            compressed data set. <br>
+            <br>
+          <li><font color="#003399"><strong>YES</strong></font> specifies that 
+            SAS tracks free space and reuses it whenever observations are added 
+            to an existing compressed data set. 
+        </ul>
+		<table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The REUSE= data set option overrides the REUSE= system 
+              option.</td>
+      </tr>
+    </table></td>
+    </tr>
+  </table><P><BR>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>If the REUSE= option is set to <em>YES</em>, observations that are 
+          added to the SAS data set are inserted wherever enough free space exists, 
+          instead of at the end of the SAS data set.</p>
+        <p>Specifying <em>NO</em> for the REUSE= option results in less efficient 
+          usage of space if you delete or update many observations in a SAS data 
+          set because there will be unused space within the data set. With the 
+          REUSE= option set to <em>NO</em>, the APPEND procedure, the FSEDIT procedure, 
+          and other procedures that add observations to the SAS data set add observations 
+          to the end of the data set, as they do for uncompressed data sets.</p>
+        <p>You cannot change the REUSE= attribute of a compressed data set after 
+          it is created. This means that space is tracked and reused in the compressed 
+          SAS data set according to the value of the REUSE= option that was specified 
+          when the SAS data set was created, not when you add and delete observations. 
+          Also, you should be aware that even with the REUSE= option set to <em>YES</em>, 
+          the APPEND procedure will add observations to the end of the data set.</p>
+		  <p><br>
+        <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+    <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top">Specifying <em>YES</em> as the value for the REUSE= 
+              option causes the POINTOBS= option to have a value of <em>NO</em> 
+              even if you specify <em>YES</em> as the value for POINTOBS=. The 
+              insertion of a new observation into unused space (rather than at 
+              the end of the data set) and the use of direct access are not compatible.</td>
+      </tr>
+    </table>
+	<p><br><h2>Example</h2>
+	    The following program creates a compressed data set named <strong>Company.Customer_Compressed</strong> 
+        from the <strong>Company.Customer</strong> data set. Because the REUSE= 
+        option is set to <em>YES</em>, SAS will track and reuse any empty space 
+        within the compressed data set. <font color="#003399"> 
+        <pre>     data company.customer_compressed (compress=yes reuse=yes);   
+        set company.customer;
+     run;</pre>
+        </font>
+        </td>
+    </tr>
+  </table><p>
+
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

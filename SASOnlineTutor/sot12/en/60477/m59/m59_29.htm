@@ -1,0 +1,156 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Placing 
+      Integrity Constraints on a Data Set<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>How Constraints Are Enforced</h2>
+        <p>Once integrity constraints are in place, SAS enforces them whenever 
+          you modify values in the data set in place. Techniques for modifying 
+          data in place include using</p>
+        <ul>
+          <li> a DATA step with the MODIFY statement</li>
+          <li>interactive data editing windows</li>
+          <li> PROC SQL with the INSERT INTO, SET, or UPDATE statements</li>
+          <li> PROC APPEND. </li>
+        </ul>
+        <h2><br>
+          Example</h2>
+        <p>The code in the previous example placed a check constraint on <code>Cap1st</code> 
+          and <code>CapBusiness</code> to ensure that values for the capacity 
+          in business class were either greater than first class or missing. Suppose 
+          that you ran the following program to triple the capacity in first class. 
+          This would probably violate the check constraint for some observations.</p>
+        <pre> <font color="#003399">    data capinfo;
+        modify capinfo;
+        cap1st=cap1st*3;
+     run;</font></pre> 
+        <p align="left">The observations that failed to pass the integrity constraint 
+          are written to the SAS log. As you can see, all these observations would 
+          have had values of <code>Cap1st</code> greater than those of <code>CapBusiness</code>.</p></td>
+    </tr>
+  </table>
+  
+  <p><br></p>
+    SAS Log<br>
+  
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>FlightID=IA00100 RouteID=0000001 Origin=RDU Dest=LHR Cap1st=42 
+CapBusiness=30 CapEcon=163<br>_ERROR_=1 _IORC_=660130 _N_=1<br>FlightID=IA00201 RouteID=0000002 Origin=LHR Dest=RDU Cap1st=42 
+CapBusiness=30 CapEcon=163<br>_ERROR_=1 _IORC_=660130 _N_=2<br>FlightID=IA00300 RouteID=0000003 Origin=RDU Dest=FRA Cap1st=42 
+CapBusiness=30 CapEcon=163<br>_ERROR_=1 _IORC_=660130 _N_=3<br>FlightID=IA00400 RouteID=0000004 Origin=FRA Dest=RDU Cap1st=42 
+CapBusiness=30 CapEcon=163<br>_ERROR_=1 _IORC_=660130 _N_=4<br>FlightID=IA02900 RouteID=0000029 Origin=SFO Dest=HNL Cap1st=42 
+CapBusiness=30 CapEcon=163<br>_ERROR_=1 _IORC_=660130 _N_=29<br>FlightID=IA03000 RouteID=0000030 Origin=HNL Dest=SFO Cap1st=42 
+CapBusiness=30 CapEcon=163<br>_ERROR_=1 _IORC_=660130 _N_=30<br>FlightID=IA03300 RouteID=0000033 Origin=RDU Dest=ANC Cap1st=42 
+CapBusiness=30 CapEcon=163<br>_ERROR_=1 _IORC_=660130 _N_=33<br>FlightID=IA03400 RouteID=0000034 Origin=ANC Dest=RDU Cap1st=42 
+CapBusiness=30 CapEcon=163<br>_ERROR_=1 _IORC_=660130 _N_=34<br><font color="#000000"><strong>NOTE: There were 50 observations read from the data set WORK.CAPINFO.<br>NOTE: The data set WORK.CAPINFO has been updated.  There were 42 
+      observations rewritten, 0 observations added and 0 
+      observations deleted.<br>NOTE: There were 8 rejected updates, 0 rejected adds, and 0 rejected 
+      deletes.</strong></font><br></pre></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <div id="v89_v91" class="eg_div">
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>If you used the VIEWTABLE window or another window to make this update, 
+SAS would have displayed the error message defined for the integrity 
+constraint. </p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"><p>Rejected observations can be collected in a special 
+                file using the audit trail functionality that you will learn about 
+                later in this lesson.</p></td>
+          </tr>
+        </table>
+        <h2><br>
+          Copying a Data Set and Preserving Integrity Constraints</h2>
+        <p>The APPEND, COPY, CPORT, CIMPORT, and SORT procedures preserve integrity 
+          constraints when their operation results in a copy of the original data 
+          file. Integrity constraints are also preserved if you copy a data set using the SAS Explorer window.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More information"></td>
+              <td valign="top">For more information about preserving integrity 
+                constraints, see the 
+                <!--doc reference-->
+                SAS documentation.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  </div>
+  
+    <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"><p>Rejected observations can be collected in a special 
+                  file using the audit trail functionality that you will learn 
+                  about later in this lesson.</p></td>
+          </tr>
+        </table>
+        <h2><br>
+          Copying a Data Set and Preserving Integrity Constraints</h2>
+        <p>The APPEND, COPY, CPORT, CIMPORT, and SORT procedures preserve integrity 
+          constraints when their operation results in a copy of the original data 
+          file. </p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More information"></td>
+            <td valign="top">For more information about preserving integrity constraints, 
+              see the 
+              <!--doc reference-->
+              SAS documentation.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  </div>
+  <p> <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

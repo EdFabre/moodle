@@ -93,13 +93,30 @@ class data_field_picture extends data_field_base {
         $str .= $output->render($fm);
 
         $str .= '<div class="mdl-left">';
-        $str .= '<input type="hidden" name="field_'.$this->field->id.'_file" value="'.s($itemid).'" />';
+        $str .= '<input type="hidden" name="field_'.$this->field->id.'_file" value="'.$itemid.'" />';
         $str .= '<label for="field_'.$this->field->id.'_alttext">'.get_string('alttext','data') .'</label>&nbsp;<input type="text" name="field_'
                 .$this->field->id.'_alttext" id="field_'.$this->field->id.'_alttext" value="'.s($alttext).'" />';
         $str .= '</div>';
 
         $str .= '</fieldset>';
         $str .= '</div>';
+
+        $module = array(
+            'name'=>'form_filemanager',
+            'fullpath'=>'/lib/form/filemanager.js',
+            'requires' => array('core_filepicker', 'base', 'io-base', 'node',
+                    'json', 'core_dndupload', 'panel', 'resize-plugin', 'dd-plugin'),
+            'strings' => array(
+                array('error', 'moodle'), array('info', 'moodle'), array('confirmdeletefile', 'repository'),
+                array('draftareanofiles', 'repository'), array('entername', 'repository'), array('enternewname', 'repository'),
+                array('invalidjson', 'repository'), array('popupblockeddownload', 'repository'),
+                array('unknownoriginal', 'repository'), array('confirmdeletefolder', 'repository'),
+                array('confirmdeletefilewithhref', 'repository'), array('confirmrenamefolder', 'repository'),
+                array('confirmrenamefile', 'repository'), array('edit', 'moodle')
+            )
+        );
+
+        $PAGE->requires->js_init_call('M.form_filemanager.init', array($fm->options), true, $module);
 
         return $str;
     }
@@ -123,7 +140,7 @@ class data_field_picture extends data_field_base {
 
     function display_search_field($value = '') {
         return '<label class="accesshide" for="f_'.$this->field->id.'">' . get_string('fieldname', 'data') . '</label>' .
-               '<input type="text" size="16" id="f_'.$this->field->id.'" name="f_'.$this->field->id.'" value="'.s($value).'" />';
+               '<input type="text" size="16" id="f_'.$this->field->id.'" name="f_'.$this->field->id.'" value="'.$value.'" />';
     }
 
     function parse_search_field() {

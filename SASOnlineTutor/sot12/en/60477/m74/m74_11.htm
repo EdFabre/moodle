@@ -1,0 +1,156 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Displaying 
+      Index Specifications<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Sometimes you want to know whether an existing table has any indexes. 
+          To display a CREATE INDEX statement in the SAS log for each index that 
+          is defined for one or more specified tables, you can use the DESCRIBE 
+          TABLE statement. (The DESCRIBE TABLE statement also writes a CREATE 
+          TABLE statement to the SAS log for each specified table.) </p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, DESCRIBE TABLE statement">
+    <tr> 
+      <td align="left"><p><strong>General form, DESCRIBE TABLE statement:</strong> 
+        </p>
+        <blockquote><font color="#003399"><strong>DESCRIBE TABLE </strong> <em>table-name-1&lt;, 
+          ... table-name-n&gt;</em><nobr><strong>;</strong></nobr></font> </blockquote> 
+        <p> where <font color="#003399"><em>table-name</em></font> specifies the 
+          table to be described as one of the following:</p>
+        <ul>
+          <li>a one-level name</li>
+          <li>a two-level <strong>libref.table</strong> name</li>
+          <li>a physical pathname that is enclosed in single quotation marks. 
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>If a specified table has no indexes defined, a CREATE INDEX statement 
+          will not appear. </p>
+        <h2><br>
+          Alternatives to the DESCRIBE TABLE Statement</h2>
+        <p>The DESCRIBE TABLE statement is only one of several methods that can 
+          be used to list information about indexes that are defined on a table. 
+          One alternative is to query the special table <strong>Dictionary.Indexes</strong>, 
+          which contains information about indexes that are defined for all tables 
+          that are known to the current SAS session. (<strong>Dictionary.Indexes</strong> 
+          is one of many read-only Dictionary tables that are created at PROC 
+          SQL initialization. These tables contain information about SAS data 
+          libraries, SAS macros, and external files that are in use or available 
+          in the current SAS session.) </p>
+        <p>You can also use other SAS procedures, such as PROC CONTENTS and PROC 
+          DATASETS, to generate a report that contains information about indexes. 
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">To learn more about the use of Dictionary tables, see the 
+        lesson <strong> 
+        <script>document.write(m76title);</script></strong>. To learn more about using PROC CONTENTS and PROC DATASETS, 
+        see the lesson <strong> 
+        <script>document.write(m54title);</script></strong>. </td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+        <p> Earlier in this lesson, the following code was used to create a unique 
+          composite index named <strong>daily</strong> on the columns <code>FlightNumber</code> 
+          and <code>Date</code> in the temporary table <strong>Marchflights</strong>. 
+        </p>
+        <pre><font color="#003399">     proc sql;
+        create unique index daily
+           on work.marchflights(flightnumber,date);</font></pre>
+        <p>The following DESCRIBE TABLE statement writes a CREATE INDEX statement 
+          to the SAS log (after the CREATE TABLE statement) for the table <strong>Marchflights</strong>:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        describe table marchflights;</font></pre></td>
+    </tr>
+  </table>
+  <p> 
+  <div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>NOTE: SQL table WORK.MARCHFLIGHTS was created like:
+
+
+create table WORK.MARCHFLIGHTS( bufsize=8192 )
+  (
+   Date num format=DATE9. informat=DATE9.,
+   DepartureTime num format=TIME5. informat=TIME5.,
+   FlightNumber char(3),
+   Origin char(3),
+   Destination char(3),
+   Distance num,
+   Mail num,
+   Freight num,
+   Boarded num,
+   Transferred num,
+   NonRevenue num,
+   Deplaned num,
+   PassengerCapacity num
+  );
+<strong>create unique index daily on WORK.MARCHFLIGHTS(FlightNumber,Date);</strong>
+</pre></td>
+    </tr>
+  </table>
+    </div>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>If the table <strong>Marchflights</strong> had no index defined, 
+          no CREATE INDEX statement would appear in the SAS log.</p></td>
+    </tr>
+  </table>
+  <p><br><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

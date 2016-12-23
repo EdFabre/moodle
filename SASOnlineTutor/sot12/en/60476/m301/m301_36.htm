@@ -1,0 +1,184 @@
+<html><!-- InstanceBegin template="/Templates/eg_stepByStep.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_stepByStepTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Generating 
+      and Editing Task Code<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_stepByStepTopNav2();</script>
+	
+	<!-- InstanceBeginEditable name="task_desc" -->Edit 
+      and run a copy of the bar chart task code.<!-- InstanceEndEditable -->
+			
+<script>writeeg_stepByStepTopNav3();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+  <div id="le2_eg2" class="eg_div"> 
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li> In the Project window, double-click the <strong>Code</strong> 
+              item under the Bar Chart task.<br>
+              <br>
+            </li>
+            <li> You want to insert the <code>CLM=95</code> option into the graph 
+              options for the chart. Place your cursor after the forward slash 
+              (/) and begin to type. When you are prompted whether to create a 
+              new code item in the project, click <strong>Yes</strong>.<br>
+              <br>
+            </li>
+            <li>Type <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">CLM=95</font> 
+              after the forward slash (you can add this option anywhere in the 
+              list of options for the graph).</li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+    <img src="images/m301_30b.gif" alt="Modifying code in the Code window" width="367" height="386"> 
+    <br>
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li value="4">Select <strong>Code<span class="eg2"><strong><img src="../navimages/arrow.gif" width="14" height="10" alt="arrow"></strong></span>Run 
+              on &lt;<em>server-name</em>&gt;</strong>.<br>
+              <br>
+            </li>
+            <li>The results open and you can see that the bar chart now includes 
+              error bars to show the confidence intervals around each mean.</li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>  
+    <a href="JavaScript: openImage('images/m301_30c.gif',498,415)" onMouseOver="window.status='';return true"><img src="images/m301_30cs.gif" alt="New bar chart showing confidence intervals added to the code" width="350" height="292" border="0"></a> 
+    	<br>
+  <em><font color="#003399">Click to view the full window.</font></em> 
+    <br>
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td>Next, you learn how to insert code into the task.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </div>
+  
+  <span id="divider" class="eg_div"><hr width="85%"><br></span>
+  
+  <div id="eg3" class="eg_div">
+   <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li> In the Project window, right-click the <strong>Bar Chart</strong> 
+              item and select <strong>Add as Code Template</strong>. A new item 
+              named Code for Bar Chart is added to the project and the code opens 
+              in a code window. You can edit this code.<br>
+              <br>
+            </li>
+            <li> You want to create a bar chart that shows net sales by region. 
+              The Shoes data does not contain a column for net sales, but you 
+              can write a short DATA step to create one. Make the following changes 
+              to the code:<br>
+              <br>
+              <ul>
+                <li type="square">Find the PROC SQL query that creates the View. 
+                  Add the variable <strong>Returns</strong> to the SELECT statement 
+                  so you can use the column in the DATA step. The name of the 
+                  view that is created by this procedure will be different in 
+                  your code, so <strong>take note of the name</strong> so you 
+                  can reference it later in the DATA step. <br>
+                  <br>
+                  <br>
+                  <img src="images3/m301_30f.gif" width="476" height="77"> <br>
+                  <br>
+                  <br>
+                </li>
+                <li type="square">Find the TITLE statements. Change TITLE1 to 
+                  <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">Net 
+                  Sales by Region</font>. Copy the following DATA step and paste 
+                  it after the FOOTNOTE statements. Edit the SET statement to 
+                  <strong>reference the view</strong> that was created by the 
+                  query.<br>
+                  <pre>   data work.net;
+      set <font color="#FF0000">work.sort7680</font>;
+      netsales = sales - returns;
+      format netsales dollar12.;
+      label netsales="Net Sales";
+   run;</pre>
+                  <img src="images3/m301_30b.gif" width="323" height="188"><br>
+                  <br>
+                </li>
+                <li type="square">In the GCHART procedure, use <strong>work.net</strong> 
+                  for the input data and change the SUMVAR variable to <strong>Netsales</strong>.<br>
+                  <br>
+                  <br>
+                  <img src="images3/m301_30c.gif" width="228" height="325"> </li>
+              </ul>
+            </li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td><ol>
+            <li value="3">Press F8 to run the code. <br>
+              <br>
+            </li>
+            <li>The results open and you can see that the bar chart now represents 
+              net sales for each region.</li>
+          </ol></td>
+      </tr>
+    </table>
+    <br>
+    <a href="JavaScript: openImage('images3/m301_30e.gif',843,575)" onMouseOver="window.status='';return true"><img src="images3/m301_30es.gif" alt="Results of the Bar Chart task" width="350" height="286" border="0"></a><br>
+    <a href="JavaScript: openImage('images3/m301_30a.gif',770,554)" onMouseOver="window.status='';return true"> 
+    </a> <em><font color="#003399"> Click to view the full window.</font></em> 
+    <br>
+    <br>
+    <br>
+    <table width="85%"  border="0" cellspacing="0" cellpadding="0">
+      <tr> 
+        <td>Next, you learn how to insert code into a task.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </div>
+
+  <!-- InstanceEndEditable --> 
+</center>
+<p>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,159 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      an Empty Table That Is Like Another Table<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Specifying a Subset of Columns from a Table</h2>
+        <p> If you want to create an empty table that contains only a specified 
+          subset of columns from an existing table, use the SAS data set options 
+          <strong>DROP=</strong> or <strong>KEEP=</strong>. <br>
+        </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, DROP= and KEEP= data set options">
+    <tr> 
+      <td align="left"><p><strong>General form, DROP= and KEEP= data set options:</strong> 
+        </p>
+        <blockquote><font color="#003399"><strong>(DROP</strong> | <strong>KEEP</strong> 
+          =<em>column-1&lt; ...column-n&gt;</em><strong>)</strong> </font></blockquote>
+        <p>where <font color="#003399"><em>column</em></font> specifies the name 
+          of a column to be dropped or kept. Multiple column names must be separated 
+          by spaces. The entire option must be enclosed in parentheses.</p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>In the CREATE TABLE statement, the DROP= or KEEP= option can be 
+          inserted in either of the following locations:</p>
+        <ul>
+          <li>between the name of the table that is being created and the LIKE 
+            clause (as shown in the following example)</li>
+          <li>after the name of the source table, at the end of the LIKE clause.<br>
+          </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+        <p> The following PROC SQL step creates the new table <strong>Work.Flightdelays3</strong> 
+          that contains a subset of columns from the table <strong>Sasuser.Flightdelays</strong>. 
+          The DROP= option is used to specify that all columns except <code>DelayCategory</code> 
+          and <code>DestinationType</code> will be included in the new table.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        create table work.flightdelays3
+               <strong>(drop=delaycategory destinationtype)</strong>
+           like sasuser.flightdelays;</font></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>For comparison, the results of running the DESCRIBE TABLE statement 
+          for the original table and the new table are shown below.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: SQL table WORK.FLIGHTDELAYS was created like:
+		
+create table <strong>SASUSER.FLIGHTDELAYS</strong>( bufsize=8192 )
+  (
+   Date num format=DATE9. informat=DATE9.,
+   FlightNumber char(3),
+   Origin char(3),
+   Destination char(3),
+   <strong>DelayCategory char(15),
+   DestinationType char(15),</strong>
+   DayOfWeek num,
+   Delay num
+  );</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: SQL table WORK.FLIGHTDELAYS was created like:
+		
+create table <strong>WORK.FLIGHTDELAYS3</strong>( bufsize=4096 )
+  (
+   Date num format=DATE9. informat=DATE9.,
+   FlightNumber char(3),
+   Origin char(3),
+   Destination char(3),
+   DayOfWeek num,
+   Delay num
+  );</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>As these messages show, <strong>Sasuser.Flightdelays</strong> contains 
+          the columns <code>DelayCategory</code> and <code>DestinationType</code>, 
+          while <strong>Work.Flightdelays3</strong> does not.</p></td>
+    </tr>
+  </table>
+  <p>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In PROC SQL, you can apply most of the SAS data set options, 
+        such as DROP= and KEEP=, to tables any time that you specify a table. 
+        You can use a more limited set of SAS data set options with PROC SQL views. 
+        However, because the DROP= and KEEP= options are SAS options and not part 
+        of the ANSI standard for SQL, you can use the DROP= and KEEP= options 
+        only with the SAS implementation of SQL.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

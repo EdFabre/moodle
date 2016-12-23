@@ -50,11 +50,6 @@ $attempt = new stdClass();
 $user = new stdClass();
 $attemptid = optional_param('attemptid', 0, PARAM_INT);
 
-$formattextdefoptions = new stdClass();
-$formattextdefoptions->noclean = true;
-$formattextdefoptions->para = false;
-$formattextdefoptions->context = $context;
-
 if ($attemptid > 0) {
     $attempt = $DB->get_record('lesson_attempts', array('id' => $attemptid));
     $answer = $DB->get_record('lesson_answers', array('lessonid' => $lesson->id, 'pageid' => $attempt->pageid));
@@ -187,7 +182,7 @@ switch ($mode) {
 
         $pages = $lesson->load_all_pages();
         foreach ($pages as $key=>$page) {
-            if ($page->qtype != LESSON_PAGE_ESSAY) {
+            if ($page->qtype !== LESSON_PAGE_ESSAY) {
                 unset($pages[$key]);
             }
         }
@@ -206,6 +201,8 @@ switch ($mode) {
         if (!$answers = $DB->get_records_select('lesson_answers', "lessonid = ? AND pageid $answerUsql", $parameters, '', 'pageid, score')) {
             print_error('cannotfindanswer', 'lesson');
         }
+        $options = new stdClass;
+        $options->noclean = true;
 
         foreach ($attempts as $attempt) {
             $essayinfo = unserialize($attempt->useranswer);
@@ -229,9 +226,8 @@ switch ($mode) {
 
                 // Set rest of the message values
                 $currentpage = $lesson->load_page($attempt->pageid);
-                $a->question = format_text($currentpage->contents, $currentpage->contentsformat, $formattextdefoptions);
-                $a->response = format_text($essayinfo->answer, $essayinfo->answerformat,
-                        array('context' => $context, 'para' => true));
+                $a->question = format_text($currentpage->contents, $currentpage->contentsformat, $options);
+                $a->response = s($essayinfo->answer);
                 $a->comment  = s($essayinfo->response);
 
                 // Fetch message HTML and plain text formats
@@ -269,7 +265,7 @@ switch ($mode) {
         // Get lesson pages that are essay
         $pages = $lesson->load_all_pages();
         foreach ($pages as $key=>$page) {
-            if ($page->qtype != LESSON_PAGE_ESSAY) {
+            if ($page->qtype !== LESSON_PAGE_ESSAY) {
                 unset($pages[$key]);
             }
         }
@@ -360,11 +356,11 @@ switch ($mode) {
                     $attributes = array();
                     // Different colors for all the states of an essay (graded, if sent, not graded)
                     if (!$essayinfo->graded) {
-                        $attributes['class'] = "essayungraded";
+                        $attributes['class'] = "graded";
                     } elseif (!$essayinfo->sent) {
-                        $attributes['class'] = "essaygraded";
+                        $attributes['class'] = "sent";
                     } else {
-                        $attributes['class'] = "essaysent";
+                        $attributes['class'] = "ungraded";
                     }
                     $essaylinks[] = html_writer::link($url, userdate($essay->timeseen, get_string('strftimedatetime')).' '.format_string($pages[$essay->pageid]->title,true), $attributes);
                 }
@@ -405,9 +401,8 @@ switch ($mode) {
         $data->id = $cm->id;
         $data->attemptid = $attemptid;
         $data->score = $essayinfo->score;
-        $data->question = format_text($currentpage->contents, $currentpage->contentsformat, $formattextdefoptions);
-        $data->studentanswer = format_text($essayinfo->answer, $essayinfo->answerformat,
-                array('context' => $context, 'para' => true));
+        $data->question = format_string($currentpage->contents, $currentpage->contentsformat);
+        $data->studentanswer = format_string($essayinfo->answer, $essayinfo->answerformat);
         $data->response = $essayinfo->response;
         $mform->set_data($data);
 

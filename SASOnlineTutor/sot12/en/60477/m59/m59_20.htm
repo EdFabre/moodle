@@ -1,0 +1,120 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Controlling 
+      the Update Process<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>The way SAS writes observations to a SAS data set when the DATA 
+          step contains a MODIFY statement depends on whether certain other statements 
+          are present. If no other statements are present, SAS writes the current 
+          observation to its original place in the SAS data set. This action occurs 
+          by default through an implied REPLACE statement at the bottom of the 
+          DATA step. </p>
+        <p>However, you can override this default behavior by explicitly adding 
+          the <strong>OUTPUT</strong>, <strong>REPLACE</strong>, or <strong>REMOVE</strong> 
+          statement. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form for OUTPUT, REPLACE, and REMOVE statements">
+    <tr> 
+      <td align="left"><strong>General form for OUTPUT, REPLACE, and REMOVE statements:</strong> 
+        <blockquote> 
+          <p><font color="#003399"><nobr><strong>OUTPUT;</strong></nobr><br>
+            <strong>REPLACE;</strong><br>
+            <strong>REMOVE</strong></font><strong><font color="#003399"><nobr></nobr></font></strong><font color="#003399"><nobr><strong>;</strong></nobr></font></p>
+        </blockquote>
+        <p> where <font color="#003399"><em></em></font> </p>
+        <ul>
+          <li> <font color="#003399"><strong>OUTPUT</strong> </font>specifies that the current 
+            observation be written to the <strong>end</strong> of the data set 
+          <li> <font color="#003399"><strong>REPLACE</strong></font> specifies that the current 
+            observation be rewritten to the <strong>same location </strong>in 
+            the data set 
+          <li> <font color="#003399"><strong>REMOVE</strong></font> specifies that the current 
+            observation be <strong>deleted</strong> from the master data set.</ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Using OUTPUT, REPLACE, or REMOVE in a DATA step overrides the default 
+          replacement of observations. If you use any one of these statements 
+          in a DATA step, you must explicitly program each action that you want 
+          to take. You can use these three statements together as long as the 
+          sequence is logical.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:"></td>
+            <td valign="top">If you use an OUTPUT statement in conjunction with 
+              a REPLACE or REMOVE statement, be sure the OUTPUT statement is executed 
+              <strong>after</strong> any REPLACE or REMOVE statements to ensure 
+              the integrity of the index position.</td>
+          </tr>
+        </table>
+        <h2><br>
+          Example</h2>
+        <p>If the SAS data set <strong>Transaction</strong> has a variable named 
+          <code>code</code> having values of <em>yes</em>, <em>no</em>, and <em>new</em>, 
+          you can submit the following program to</p>
+        <ul>
+          <li>delete rows where the value of <code>code</code> is <em>no</em></li>
+          <li>update rows where the value of <code>code</code> is <em>yes</em></li>
+          <li>append rows where the value of <code>code</code> is <em>new</em>.</li>
+        </ul>
+        <pre>    <font color="#003399"> data master;
+        set transaction;
+        modify master key = id;
+        a = b;
+        if code = 'no' then remove;
+        else if code = 'yes' then replace;
+        else if code = 'new' then output;
+     run;</font></pre> <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You cannot run this example because <strong>Transaction</strong> and 
+              <strong>Master</strong> are fictitious data sets.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

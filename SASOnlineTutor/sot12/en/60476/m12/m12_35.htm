@@ -1,0 +1,111 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>As you read your data, you can subset it by processing only those observations 
+        that meet a specified condition. To do this, you can use a <strong>subsetting 
+        IF statement </strong>in any DATA step.</p>
+      <p>The subsetting IF statement causes the DATA step to continue processing 
+        only those raw data records or observations that meet the condition of 
+        the expression specified in the IF statement. The resulting SAS data set 
+        or data sets contain a subset of the original external file or SAS data 
+        set.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table BORDER cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, subsetting IF statement">
+    <tr> 
+      <td align="left"><strong>General form, subsetting IF statement:</strong> 
+        <blockquote> <nobr> <font color="#003399"><strong>IF </strong><em>expression</em><strong>;&nbsp;&nbsp; 
+          </strong></font> </nobr> </blockquote>
+        <p> where <font color="#003399"><em>expression</em></font> is any valid 
+          SAS expression. 
+          <ul>
+            <li> If the expression is <strong>true</strong>,<strong>&nbsp;</strong>the 
+              DATA step continues to process that record or observation.<br>
+            <li> If the expression is <strong>false</strong>, no further statements 
+              are processed for that record or observation, and control returns 
+              to the top of the DATA step.</ul>
+          </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+        <td align="left"><p><strong>Example</strong></p>
+          <p>The subsetting IF statement below selects only observations whose 
+            values for <code>Tolerance</code> are <em>D</em>. It is positioned 
+            in the DATA step so that other statements do not need to process unwanted 
+            observations. </p>
+          <pre><font color="#003399">    data sasuser.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       <strong>if tolerance='D';</strong></font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">    run;</font>
+</pre>
+        Because <code>Tolerance</code> is a character variable, the value<em> 
+        D</em> must be enclosed in quotation marks, and it must be the same case 
+        as in the data set.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table border="0" cellpadding="2" width="85%">
+    <tr valign="Top"> 
+      <td width="24"><img src="../navimages/note.gif" alt="Note" width="20" height="20"></td>
+        <td>See the <font size="-1" face="Arial, Helvetica, sans-serif"> 
+          <!--doc reference-->
+          </font>SAS documentation for a comparison of the WHERE and subsetting 
+          IF statements when they are used in the DATA step.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

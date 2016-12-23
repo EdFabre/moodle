@@ -1,0 +1,471 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" --> 
+          <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+            the lesson</A> 
+          <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+          <LI><a href="#Sample">sample programs</a> 
+          <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>. <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" --> 
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><strong>Using the MODIFY Statement</strong> <br>
+          When you use the <a href="m59_2.htm" onClick="suggestBack()">MODIFY statement</a> 
+           to modify a SAS data set, SAS does not create a second copy 
+          of the data as it does when you use the SET, MERGE, or UPDATE statements. 
+          The descriptor portion of the SAS data set stays the same and the updated 
+          observation is written to the data set in the location of the original 
+          observation. </p>
+        <p><strong>Modifying All Observations in a SAS Data Set</strong><br>
+          You can use the <a href="m59_3.htm" onClick="suggestBack()">MODIFY statement with an assignment statement</a> 
+           to modify all the observations 
+          for a variable in a SAS data set.</p>
+        <p><strong>Modifying Observations Using a Transaction Data Set</strong><br>
+          To modify a master data set using a transaction data set, you use the 
+          <a href="m59_6.htm" onClick="suggestBack()">MODIFY statement with a 
+          BY statement</a> to specify the variable you want to use to match. When 
+          you use the MODIFY/BY statements, SAS uses a dynamic WHERE clause to 
+          locate observations in the master data set. You can specify how missing 
+          values in the transaction data set are handled by using the <a href="m59_11.htm" onClick="suggestBack()">UPDATEMODE= option</a> 
+           in the MODIFY statement.<br>
+          <br>
+          <strong>Modifying Observations Located by an Index</strong><br>
+          You can use the MODIFY statement with the <a href="m59_14.htm" onClick="suggestBack()">KEY= 
+          option </a> to name a simple or composite index for the SAS data set 
+          that is being modified. The KEY= argument retrieves observations from 
+          the SAS data file based on index values that are supplied by like-named 
+          variables in a transaction data set. If you have contiguous duplications 
+          in the transaction data set such that there is no match in the master 
+          data set, you can use the <a href="m59_17.htm" onClick="suggestBack()">UNIQUE 
+          option</a> to cause a KEY= search to always begin at the top of the 
+          index file for each duplicate transaction. <br>
+          <br>
+          <strong>Controlling the Update Process</strong><br>
+          The way SAS writes observations to a SAS data set when the DATA step 
+          contains a MODIFY statement depends on whether certain other statements 
+          are present. If no statement is present, SAS writes the current observation 
+          to its original place in the SAS data set. This occurs as the last action 
+          in the step as though a REPLACE statement were the last statement in 
+          the step. However, you can override this default behavior by explicitly 
+          adding the <a href="m59_20.htm" onClick="suggestBack()">OUTPUT, REPLACE, 
+          or REMOVE statement</a>. </p>
+        <p>You can use the automatic variable <a href="m59_22.htm" onClick="suggestBack()"><code>_IORC_</code> 
+          with the %SYSRC autocall macro</a> to test for specific I/O error conditions 
+          that are created when you use the BY statement or the KEY= option in 
+          the MODIFY statement. The automatic variable <code>_IORC_</code> contains 
+          a return code for each I/O operation that the MODIFY statement attempts 
+          to perform. The best way to test for values of <code>_IORC_</code> is 
+          with the mnemonic codes that are provided by the <strong>SYSRC</strong> 
+          autocall macro. </p>
+        <p><strong>Placing Integrity Constraints on a Data Set</strong><br>
+          <a href="m59_25.htm" onClick="suggestBack()">Integrity constraints</a> 
+          are rules that you can specify in order to restrict the data values 
+          that can be stored for a variable in a SAS data file. SAS enforces integrity 
+          constraints when values associated with a variable are added, updated, 
+          or deleted. You can place integrity constraints on an existing data 
+          set using the <a href="m59_27.htm" onClick="suggestBack()">IC CREATE 
+          statement</a> in the DATASETS procedure. </p>
+        <p><strong>Documenting and Removing Integrity Constraints</strong><br>
+          You can view information about the integrity constraints on a data set 
+          using the <a href="m59_31.htm" onClick="suggestBack()">CONTENTS statement</a> 
+           in the DATASETS procedure. If you want to remove integrity 
+          constraints from a file, you use the <a href="m59_32.htm" onClick="suggestBack()">IC 
+          DELETE statement</a>.</p>
+        <p> <strong>Initiating and Terminating Audit Trails</strong><br>
+          An audit trail is an optional SAS file that logs modifications to a 
+          SAS table. You initiate an audit trail using the DATASETS procedure 
+          with the <a href="m59_35.htm" onClick="suggestBack()">AUDIT and INITIATE 
+          statements</a>. You also <a href="m59_46.htm" onClick="suggestBack()">suspend, 
+          resume, and terminate</a> audit trails using the DATASETS procedure. 
+          Once there is data in the audit trail file, you can read it with the 
+          <a href="m59_36.htm" onClick="suggestBack()">TYPE= data set option</a>. 
+        </p>
+        
+        <p><strong>Controlling Data in the Audit Trail<br>
+          </strong> The audit trail file can contain three types of variables: 
+        </p>
+        <ul>
+          <li> <a href="m59_39.htm" onClick="suggestBack()">data set variables</a> 
+            that store copies of the columns in the audited SAS data file </li>
+          <li> <a href="m59_40.htm" onClick="suggestBack()">audit trail variables</a> 
+            that automatically store information about data modifications </li>
+          <li> <a href="m59_43.htm" onClick="suggestBack()">user variables</a> 
+            that store user-entered information. </li>
+        </ul>
+        <p>You can use the <a href="m59_40.htm#log" onClick="suggestBack()">LOG statement</a> 
+          to control which types of records are written to an audit trail file.</p>
+        <p><strong>Initiating Generation Data Sets</strong><br>
+          Each generation of a generation data set is stored as part of a generation 
+          group. A new generation is created each time the file is replaced. Each 
+          generation in a generation group has the same root member name, but 
+          each has a different version number. You initiate generation data sets 
+          by using the <a href="m59_49.htm" onClick="suggestBack()">GENMAX= option</a> 
+           to specify the number of generation data sets to keep.</p>
+        <p><strong>Processing Generation Data Sets</strong><br>
+          To select a particular generation to process, you use the <a href="m59_52.htm" onClick="suggestBack()">GENNUM= option</a>. GENNUM= is an input/update data set option that identifies which 
+          generation to open. The GENNUM can be a relative or absolute reference 
+          to a generation within a generation group. You can rename or delete 
+          generations using the <a href="m59_55.htm" onClick="suggestBack()">CHANGE 
+          and DELETE statements</a> in a PROC DATASETS step.</p></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD><h2><STRONG><A NAME="Syntax">Syntax</A></STRONG> </h2>
+        <P> <EM>To go to the page where a statement or option was presented, select 
+          a link.</EM> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Modifying 
+        All Observations in a SAS Data Set</strong> </td>
+    </tr>
+  </table>
+  <br> <TABLE width="70%" CELLPADDING="2">
+    <TR><TD><font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em>;</font></TD></TR>
+	<TR>       
+	  <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<NOBR><a href="m59_3.htm" onClick="suggestBack()"><strong>MODIFY</strong> 
+        <em>SAS-data-set</em></a>;</NOBR></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>existing-variable = expression</em>;</font></TD>
+    </TR>
+    <TR> 
+      <TD height="20"><font color="#003399"><strong>RUN</strong><strong>;</strong></font></TD>
+    </TR>
+  </TABLE>
+  <br>
+
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Modifying 
+        a Master Data Set Using the BY Statement</strong> </td>
+    </tr>
+  </table>
+  <br>
+  
+  <TABLE width="70%" CELLPADDING="2">
+    <TR> 
+      <TD><font color="#003399"><NOBR><a href="m59_6.htm" onClick="suggestBack()"><strong>MODIFY</strong> 
+        <em>master-data-set transaction-data-set</em></a></NOBR></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<a href="m59_11.htm" onClick="suggestBack()"><strong>UPDATEMODE=MISSINGCHECK 
+        | NOMISSINGCHECK</strong></a>&gt;<strong>;</strong></font></TD>
+    </TR>
+    <TR> 
+      <TD height="20"><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_6.htm" onClick="suggestBack()"><strong>BY</strong> 
+        <em>key-variable</em></a><strong>;</strong></font></TD>
+    </TR>
+  </TABLE>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Modifying 
+        a Master Data Set Using a Transaction Data Set <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and an Index </strong></td>
+    </tr>
+  </table>
+  <br>
+  <TABLE width="70%" CELLPADDING="2">
+    <TR> 
+      <TD><font color="#003399"><a href="m59_14.htm" onClick="suggestBack()"><strong>MODIFY</strong><em> 
+        master-data-set </em><strong>KEY=</strong><em>index </em></a>&lt;<a href="m59_17.htm#uniq" onClick="suggestBack()"><strong>/UNIQUE</strong></a>&gt;<strong>;</strong></font></TD>
+    </TR>
+  </TABLE>
+  <br>
+   <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Controlling the Update Process</strong></td>
+    </tr>
+  </table>
+   <br>
+  <TABLE width="70%" CELLPADDING="2">
+    <TR> 
+      <TD><font color="#003399"><a href="m59_20.htm" onClick="suggestBack()"><strong>OUTPUT;</strong></a></font></TD>
+    </TR>
+	<TR> 
+      <TD><font color="#003399"><a href="m59_20.htm" onClick="suggestBack()"><strong>REPLACE;</strong></a></font></TD>
+    </TR>
+	<TR> 
+      <TD><font color="#003399"><a href="m59_20.htm" onClick="suggestBack()"><strong>REMOVE;</strong></a></font></TD>
+    </TR>
+  </TABLE>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using PROC DATASETS to create integrity constraints, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;generation data 
+        sets, and audit trails</strong></td>
+    </tr>
+  </table>
+  <br>
+  <TABLE width="70%" align="center" CELLPADDING="2">
+    <TR> 
+      <TD><font color="#003399"><NOBR><strong>PROC DATASETS</strong> &lt;<strong>LIB=</strong><em>libref</em>&gt; 
+        &lt;<strong>NOLIST</strong>&gt; <strong>;</strong></NOBR></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_27.htm" onClick="suggestBack()"><strong>IC 
+        CREATE </strong>&lt;<em>constraint-name</em>=&gt;<em>constraint-type</em></a></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_27.htm" onClick="suggestBack()">&lt;<strong>MESSAGE=</strong>'<em>Error 
+        Message</em>'</a>&gt;<strong>;</strong></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_32.htm" onClick="suggestBack()"><strong>IC 
+        DELETE</strong> <em>constraint-name</em>;</a></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>MODIFY</strong> 
+        <em>SAS-data-set</em> <a href="m59_49.htm" onClick="suggestBack()"><strong>(GENMAX=</strong><em>n</em><strong>)</strong></a><strong>;</strong></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_35.htm" onClick="suggestBack()"><strong>AUDIT</strong> 
+        <em>SAS-data-file</em> &lt;<em>password</em>&gt;</a><strong>;</strong></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_35.htm" onClick="suggestBack()"><strong>INITIATE;</strong></a></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_40.htm#log" onClick="suggestBack()">&lt;<strong>LOG</strong> 
+        &lt;<em>audit-settings</em>&gt;&gt;</a><strong>;</strong></font></TD>
+    </TR>
+    <TR>
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_43.htm" onClick="suggestBack()">&lt;<strong>USER_VAR</strong> 
+        <em>variable-name</em> &lt;$&gt;&lt;<em>length</em>&gt;&lt;<strong>LABEL=</strong>'<em>variable-label</em>'&gt;&gt;</a><strong>;</strong></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_46.htm" onClick="suggestBack()"><strong>SUSPEND | RESUME | TERMINATE;</strong></a></font></TD>
+    </TR>
+    <TR> 
+      <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m59_31.htm" onClick="suggestBack()"><strong>CONTENTS</strong> 
+        data=<em>SAS-data-set</em></a><strong>;</strong></font></TD>
+    </TR>
+  
+    <TR> 
+      <TD><font color="#003399"><strong>QUIT;</strong></font></TD>
+    </TR>
+  </TABLE>
+  <br>
+   <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using <code>_IORC_</code> with %SYSRC</strong></td>
+    </tr>
+  </table>
+   <br>
+  <TABLE width="70%" CELLPADDING="2">
+    <TR> 
+      <TD><font color="#003399"><a href="m59_22.htm" onClick="suggestBack()"><strong>IF _IORC_=%SYSRC</strong><em>(mnemonic)</em> <strong>THEN...</strong></a></font></TD>
+    </TR>
+  </TABLE>
+   <br>
+   <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Specifying an Audit Trail File</strong></td>
+    </tr>
+  </table>
+   <br>
+  <TABLE width="70%" CELLPADDING="2">
+    <TR> 
+      <TD><font color="#003399"><a href="m59_36.htm" onClick="suggestBack()"><strong>(TYPE=AUDIT)</strong></a></font></TD>
+    </TR>
+  </TABLE>
+   <br>
+   <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Using 
+        PROC DATASETS to Rename or Delete Generation Data Sets</strong></td>
+    </tr>
+  </table>
+   <br>
+  <TABLE width="70%" CELLPADDING="2">
+    <TR> 
+      <TD><font color="#003399"><strong>PROC DATASETS LIB=</strong><em>SAS-library</em> 
+        &lt;NOLIST&gt;<em> </em>;</font></TD>
+		</TR>
+		<TR>
+		<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><a href="m59_55.htm" onClick="suggestBack()"><strong>CHANGE</strong></a> <em>SAS-data-set</em>&lt;(<a href="m59_52.htm" onClick="suggestBack()"><strong>GENNUM=</strong><em>n</em></A>)&gt;=<em>new-data-set-name</em>;</font></TD>
+    </TR>
+	<TR>
+		<TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><a href="m59_55.htm" onClick="suggestBack()"><strong>DELETE</strong></a> <em>SAS-data-set</em>&lt;(<strong>GENNUM=</strong><em>n</em><strong> | HIST | ALL</strong>)&gt;;</font></TD>
+    </TR>
+
+<TR><TD><font color="#003399"><strong>QUIT;</strong></font></TD></TR>
+  </TABLE>
+   
+  <P> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"> <HR> </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Sample">Sample Programs</A></STRONG> 
+        </h2><P>
+        <blockquote><strong>Modifying a Data Set Using the MODIFY Statement with 
+          <br>a BY Statement and with the KEY= Option</strong></blockquote>
+		<font color="#003399"> 
+        <pre>     data capacity;
+        modify capacity sasuser.newrtnum;
+        by< flightid;
+     run;
+
+     data cargo99;
+        set sasuser.newcgnum (rename = 
+            (capcargo = newCapCargo 
+            cargowgt = newCargoWgt
+            cargorev = newCargoRev));
+        modify cargo99 key=flghtdte;
+        capcargo = newcapcargo;
+        cargowgt = newcargowgt;
+        cargorev = newcargorev;
+     run;
+</pre>
+        </font> 
+        <blockquote><strong>Placing Integrity Constraints on Data</strong></blockquote>
+		<font color="#003399"> 
+        <pre>     proc datasets nolist;
+        modify capinfo;
+        ic create PKIDInfo=primary key(routeid)
+           message='You must supply a Route ID Number';
+        ic create Class1=check(where=(cap1st&lt;capbusiness 
+                                     or capbusiness=.)) 
+           message='Cap1st must be less than CapBusiness';
+     quit;</pre>
+        </font> 
+        <blockquote><strong>Initiating an Audit Trail</strong></blockquote>
+		
+        <font color="#003399"> 
+        <pre>     proc datasets nolist;
+        audit capinfo;
+        initiate;
+     quit;</pre>
+        </font>
+        <blockquote> <strong>Initiating Generation Data Sets</strong></blockquote>
+	    <font color="#003399"> 
+        <pre>     proc datasets nolist;
+        modify cargorev (genmax=4);
+     quit;</pre>
+        </font> 
+        <P> 
+        <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Points">Points to Remember</A></STRONG> 
+        </h2>
+        <UL>
+          <LI> The MODIFY statement in a DATA step is used to make updates to 
+            a SAS data set in place. The descriptor portion of the SAS data set 
+            cannot be changed.<BR>
+            <BR>
+          <LI> Integrity constraints are only enforced when modifications are 
+            made to the data. If the data set is replaced, integrity constraints 
+            are lost.<BR>
+            <BR>
+          <LI> Audit trail files track changes made to data sets <strong>in place</strong> 
+            with <br><br>
+            <ul>
+              <li><div id="v89_v91" class="eg_div">the VIEWTABLE window</div>
+		  <div id="le1_le2_eg1_eg2_eg3" class="eg_div">the data grid</div></li>
+              <li>the MODIFY statement in the DATA step</li>
+              <li>the UPDATE, INSERT, or DELETE statement in PROC SQL.</li>
+            </ul>
+            <br>
+          <LI>Generation data sets are used to track changes that are made when 
+            a data set is replaced by<br><br>
+<ul>
+              <li>using the SET, MERGE, or UPDATE statements in the DATA step</li>
+              <li>sorting data in place with PROC SORT</li>
+              <li>using the CREATE TABLE statement in PROC SQL.</li>
+            </ul>
+        </UL></TD>
+    </TR>
+  </TABLE>
+  <br>
+<!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

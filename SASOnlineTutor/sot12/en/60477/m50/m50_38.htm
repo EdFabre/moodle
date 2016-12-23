@@ -1,0 +1,176 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Functions to Manipulate Character Strings<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The %UPCASE Function</h2>
+The <nobr>%UPCASE</nobr> function enables you to change the value of a macro variable 
+        from lowercase to uppercase before substituting that value in a SAS program. 
+        Since most comparison operators in the SAS language are case sensitive, 
+        it is often necessary to change values to uppercase. </td>
+    </tr></table><P><BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, %UPCASE function">
+  <tr> 
+    <td align="left"><strong>General form, %UPCASE function:</strong> 
+      <blockquote> <font color="#003399"><strong>%UPCASE </strong>( <em>argument</em> )<strong>;</strong> </font>
+        <br>
+        </blockquote>
+      <p> where <font color="#003399"><em>argument</em></font> is a character string.
+      
+      
+    </td>
+  </tr>
+</table><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P><BR>
+<h2>Example</h2>
+        The <strong>Sasuser.All</strong> data set contains student information 
+          and registration information for computer training courses. Suppose 
+          you want to create a summary of the uncollected course fees:
+<PRE><font color="#003399">    %let paidval=n;
+    proc means data=sasuser.all sum maxdec=0;
+       where paid=&quot;&amp;paidval&quot;;
+       var fee;
+       class course_title;
+    title &quot;Uncollected Fees for Each Course&quot;;
+    run;
+</font></PRE>
+    </td>
+  </tr>
+</table>
+<P>
+  <div align="center"> SAS Log 
+    <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+163 %let paidval=n;
+164  proc means data=sasuser.all sum maxdec=0;
+165       where paid="&paidval";
+166       var fee;
+167       class course_title;
+168  title "Uncollected Fees for Each Course";
+169  run;
+
+NOTE: No observations were selected from data set SASUSER.ALL.
+</pre></td></tr>
+</table> </div><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><P> Because the value of the macro variable <code>paidval</code> was specified 
+          in lowercase, the WHERE expression finds no matching observations. All 
+          the values of the data set variable <code>Paid</code> are stored in 
+          uppercase. 
+        <P> Now let's use the <nobr>%UPCASE</nobr> function in the WHERE statement:
+<PRE><font color="#003399">    %let paidval=n;
+    proc means data=sasuser.all sum maxdec=0;
+       where paid=&quot;<strong>%upcase(&amp;paidval)</strong>&quot;;
+       var fee;
+       class course_title;
+    title &quot;Uncollected Fees for Each Course&quot;;
+    run;
+</font></PRE>
+You can see that this time the WHERE expression does find matching observations.
+	</td></tr></table><P><BR>
+	<center>
+	<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Uncollected Fees for Each Course</i></b></font></TD>
+</TR>
+</TABLE>
+</CENTER>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="4" color="#002288"> 
+<TABLE  title="SAS output" cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>The MEANS Procedure</i></b></font></TD>
+</TR>
+</TABLE>
+</font> 
+</CENTER><P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE title="PROC MEANS output" cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000">
+<thead>
+<TR>
+ <TD COLSPAN=3 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Analysis Variable : Fee Course Fee</b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Description</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>N Obs</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Sum</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Artificial Intelligence</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">17</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">6800</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Basic Telecommunications</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">19875</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Computer Aided Design</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">18</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">28800</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Database Design</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">5250</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Local Area Networks</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">15</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">9750</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Structured Query Language</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">18400</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER><BR><BR>
+
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,77 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Execution of a PROC SQL Join</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Execution 
+      of a PROC SQL Join<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+	<ol>
+	<li>This animation shows the execution of the PROC SQL step below. This PROC SQL step creates a new 
+	data set to hold the results of an inner join on two input data sets. This animation 
+	provides a conceptual view of how PROC SQL works rather than a literal depiction of the 
+	join process. In reality, SAS employs optimization routines that make the process more efficient.
+	<font color="#003399">
+          <pre>proc sql;
+   create table work.data4 as 
+      select * 
+        from data1, data 2
+        where data1.x=data2.x;
+quit;</pre>
+          </font>
+			
+        <li>Conceptually, PROC SQL first creates a Cartesian product of the two 
+          input data sets, where each observation from the first data set is combined 
+          with each observation from the second data set. PROC SQL starts by taking 
+          the first observation from <strong>Work.Data1</strong> and combining 
+          it with the first observation of <strong>Work.Data2</strong>.<br>
+          <br>
+			<li>Next, PROC SQL takes the first observation from <strong>Work.Data1</strong> and combines it with the 
+			second observation from <strong>Work.Data2</strong>.<br><br>
+			
+        <li>PROC SQL continues in this manner until it has combined each observation 
+          from <strong>Work.Data1</strong> with every observation from <strong>Work.Data2</strong>. 
+          This is the Cartesian product of the two input data sets.<br>
+          <br>
+			<li>Finally, PROC SQL eliminates from the output data set those observations that do not 
+			satisfy the condition in the WHERE clause of the program. In this example, observations 
+			that do not have matching values for <code>X</code> are eliminated so that the 
+			two columns for <code>X</code> have identical values for each observations.<br><br>
+			
+        <li>The results are written to the output data set. Only one of the <code>X</code> 
+          columns is included in the output data set; because they have identical 
+          values for each observation, it does not matter which <code>X</code> 
+          column is kept and which is discarded. In this example, the output data 
+          set <strong>Work.Data4</strong> contains three variables and four observations. 
+          None of the observations in <strong>Work.Data4</strong> contains any 
+          missing values. 
+      </ol>
+	 </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

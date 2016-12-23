@@ -1,0 +1,101 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='Revise the SET statement to include the END= option as shown below:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='set sasuser.talent&year end=final;<br></pre></font>';
+solutionText+='Place the CALL SYMPUT routine in an IF-THEN statement as shown below:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+="if final then <br>   call symput('total',put(totfee,dollar6.));<br></pre></font>";
+solutionText+='The IF-THEN statement can also be written as:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+="if final=1 then <br>   call symput('total',put(totfee,dollar6.));<br></pre></font>";
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><STRONG>Using 
+            the <A HREF="JavaScript: openOther('../linklib/talnt99x.htm')" onMouseOver="window.status='Display a data set description and sample data.';  "
+	    onMouseOut="window.status=''">Sasuser.Talent99</A> data set, control execution 
+            of a CALL SYMPUT routine.</STRONG><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <LI>Copy the following program and paste it into the code editing window. 
+            (This program reads a data set that was created during a <A HREF="m32_11.htm" onClick="suggestBack()" onMouseOver="window.status='Go to the previous practice.'"
+		onMouseOut="window.status=''">previous practice</A>.) 
+            <PRE><font color="#003399">%let number=11;
+%let name=November;
+%let abbrev=nov;
+%let year=99;
+data &amp;abbrev.hire;
+   set sasuser.talent&amp;year;
+   if month(lasthired)=&amp;number then
+   do;
+      Fee=rate*.10;
+      TotFee+fee;
+      output;
+   end;
+   call symput('total',
+        put(totfee,dollar6.));
+run;
+title1 "Actors Hired in &amp;name";
+title2 "Agency Commission &amp;total";
+footnote1 "Report Number &amp;number";
+proc print data=&amp;abbrev.hire;
+run;&nbsp;</font>
+</PRE>
+            Revise the program to create the temporary variable <CODE>final</CODE> 
+            to store an end-of-file marker. Then edit the program to execute the 
+            CALL SYMPUT routine when the last observation is read. <br>
+            <br> 
+          <LI> Submit the program and view the output.<BR>
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,235 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Add 
+      codes to a custom format.</strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">You must complete the <a href="m58_28.htm" onClick="suggestBack();">previous practice</a> 
+        before you can do this practice.</td>
+    </tr>
+  </table>
+  <!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+          <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol><li>Submit a PROC FORMAT step that writes the $JCODES. format out to 
+            the data set <strong>Sasuser.Jcodedata</strong>. <br>
+            <br>
+          <li>First, close the <strong>Jcodedata</strong> data grid.  Then, submit the following PROC SQL code to add three rows to the data 
+            set <strong>Sasuser.Jcodedata</strong>:<br>
+            <pre><font color="#003399">proc sql;
+   insert into sasuser.jcodedata
+   set fmtname='$jcodes',
+       start='TKTAG1',
+       end='TKTAG1',
+       label='Ticket Agent Grade 1'
+   set fmtname='$jcodes',
+       start='TKTAG2',
+       end='TKTAG2',
+       label='Ticket Agent Grade 2'
+   set fmtname='$jcodes',
+       start='TKTAG3', 
+       end='TKTAG3',
+       label='Ticket Agent Grade 3';
+quit;</font></pre>
+          <li>Submit a PROC FORMAT step that reads in the data set <strong>Sasuser.Jcodedata</strong> 
+            and saves a new version of the $JCODES. format in the <strong>Sasuser</strong> 
+            library. <br>
+            <br>
+          <li>Submit a PROC FORMAT step that documents the $JCODES. format. View 
+            the output and verify that the new values were added to the format. 
+			 </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol><li>Submit a PROC FORMAT step that writes the $JCODES. format out to 
+            the data set <strong>Sasuser.Jcodedata</strong>. <br>
+            <br>
+          <li>Submit the following PROC SQL code to add three rows to the data 
+            set <strong>Sasuser.Jcodedata</strong>:<br>
+            <pre><font color="#003399">proc sql;
+   insert into sasuser.jcodedata
+   set fmtname='$jcodes',
+       start='TKTAG1',
+       end='TKTAG1',
+       label='Ticket Agent Grade 1'
+   set fmtname='$jcodes',
+       start='TKTAG2',
+       end='TKTAG2',
+       label='Ticket Agent Grade 2'
+   set fmtname='$jcodes',
+       start='TKTAG3', 
+       end='TKTAG3',
+       label='Ticket Agent Grade 3';
+quit;</font></pre>
+          <li>Submit a PROC FORMAT step that reads in the data set <strong>Sasuser.Jcodedata</strong> 
+            and saves a new version of the $JCODES. format in the <strong>Sasuser</strong> 
+            library. <br>
+            <br>
+          <li>Submit a PROC FORMAT step that documents the $JCODES. format. View 
+            the output and verify that the new values were added to the format. 
+			 </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+          <!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_eg3_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+<ol><li>Submit the following PROC FORMAT step: 
+<font color="#003399">
+              <pre>
+proc format lib=sasuser cntlout=sasuser.jcodedata;
+   select $jcodes;
+run;</pre>
+              </font>
+<li>Close the <strong>Jcodedata</strong> data grid, then submit the following PROC SQL step:
+<font color="#003399">
+              <pre>
+proc sql;
+insert into sasuser.jcodedata
+set fmtname='$jcodes',
+    start='TKTAG1',
+    end='TKTAG1',
+    label='Ticket Agent Grade 1'
+set fmtname='$jcodes',
+    start='TKTAG2',
+    end='TKTAG2',
+    label='Ticket Agent Grade 2'
+set fmtname='$jcodes',
+    start='TKTAG3',
+    end='TKTAG3',
+    label='Ticket Agent Grade 3';
+quit;</pre>
+              </font>
+<li>Submit the following PROC FORMAT step:
+<font color="#003399">
+              <pre>
+proc format lib=sasuser cntlin=sasuser.jcodedata;
+run;</pre>
+              </font>
+<li>Submit the following PROC FORMAT step:
+<font color="#003399">
+              <pre>
+proc format lib=sasuser fmtlib;
+   select $jcodes;
+run;</pre>
+              </font></ol>
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="v89_v91_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+<ol><li>Submit the following PROC FORMAT step: 
+<font color="#003399">
+              <pre>
+proc format lib=sasuser cntlout=sasuser.jcodedata;
+   select $jcodes;
+run;</pre>
+              </font>
+<li>Submit the following PROC SQL step:
+<font color="#003399">
+              <pre>
+proc sql;
+   insert into sasuser.jcodedata 
+   set fmtname='$jcodes',
+      start='TKTAG1',
+      end='TKTAG1',
+      label='Ticket Agent Grade 1'
+   set fmtname='$jcodes',
+      start='TKTAG2',
+      end='TKTAG2',
+      label='Ticket Agent Grade 2'
+   set fmtname='$jcodes',
+      start='TKTAG3',
+      end='TKTAG3',
+      label='Ticket Agent Grade 3';
+quit;</pre>
+              </font>
+<li>Submit the following PROC FORMAT step:
+<font color="#003399">
+              <pre>
+proc format lib=sasuser cntlin=sasuser.jcodedata;
+run;</pre>
+              </font>
+<li>Submit the following PROC FORMAT step:
+<font color="#003399">
+              <pre>
+proc format lib=sasuser fmtlib;
+   select $jcodes;
+run;</pre>
+              </font></ol>
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+<!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,136 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing 
+      DBMS Objects in SAS Programs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>Example 3: Updating a SAS Data Set with DBMS Data</strong> 
+<P> You can use the DATA step to update an existing SAS data set with new 
+        DBMS data. In this case, the SAS data set <STRONG>Work.Payroll</STRONG> 
+        is updated with data from the DB2 tables <STRONG>Payroll</STRONG> and 
+        <STRONG>Payroll2</STRONG>. The DB2 tables are not modified. 
+      <PRE>     <FONT color="#003399">libname db2lib db2 ssid=db2;</FONT>
+     <FONT color="#003399">data payroll;</FONT>
+        <FONT color="#003399">update db2lib.payroll db2lib.payroll2;</FONT>
+        <FONT color="#003399">by idnum;</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE>
+    </td>
+  </tr>
+</table>
+<TABLE cellpadding="2" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD valign="top" width="24"><IMG src="../navimages/note.gif" border="0" width="20"
+	    height="20" alt="Note:"></TD>
+    <TD>SAS assumes that the variables in SAS data sets correspond to 
+      the columns in DBMS tables. If the variables and columns do not match, you 
+      can use the <A HREF="JavaScript: openOther('m13_15a.htm')">DROP= or KEEP= 
+      data set options</A> to specify only the SAS variables and DBMS columns 
+      that do correspond. 
+        <P> To learn more about the BY statement and the UPDATE statement, see 
+          the 
+          <!--doc reference-->
+          SAS documentation. </TD>
+  </TR>
+</TABLE>
+<P> <BR>
+<TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+  <TR> 
+    <TD><STRONG>Example 4: Updating DBMS Data</STRONG> 
+      <P> You can write directly to a DBMS, updating rows, columns, and tables 
+        with the SQL procedure. The following example adds a new row to the DB2 
+        table <STRONG>Superv</STRONG>. 
+      <PRE>     <FONT color="#003399">libname db2lib db2 ssid=db2;</FONT>
+     <FONT color="#003399">proc sql;</FONT>
+        <FONT color="#003399">insert into db2lib.superv</FONT>
+        <FONT color="#003399">values('1588','NY','FA');</FONT>
+     <FONT color="#003399">quit;</FONT>
+</PRE>
+      <P> 
+      <TABLE CELLPADDING="2">
+        <TR VALIGN="Top"> 
+          <TD width="24"><IMG src="../navimages/note.gif" border="0" width="20" height="20" alt="Note:"></TD>
+            <TD>For more information, see the 
+              <!--doc reference-->
+              SAS documentation.</TD>
+        </TR>
+      </TABLE>
+      <P> <BR>
+        <STRONG>Example 5: Creating a DBMS Table</STRONG> 
+      <P> You can also use the SQL procedure to create new tables in a DBMS. This 
+        example creates the Oracle table <STRONG>Gtforty</STRONG> by retrieving 
+        data from the <STRONG>Staff</STRONG> and <STRONG>Payroll</STRONG> tables. 
+      <PRE>
+     <FONT color="#003399">libname oraclib oracle user=cestmoi</FONT>
+     <FONT color="#003399">        password=sesame path=oracpath</FONT>
+<FONT color="#003399">             preserve_col_names=yes;</FONT>
+     <FONT color="#003399">proc sql dquote=ansi;</FONT>
+        <FONT color="#003399">create table oraclib.gtforty as</FONT>
+           <FONT color="#003399">select lname as LastName,</FONT>
+                  <FONT color="#003399">fname as FirstName,</FONT>
+                  <FONT color="#003399">salary as Salary</FONT>
+                  <FONT color="#003399">format=dollar10.2</FONT>
+              <FONT color="#003399">from oraclib.staff a,</FONT>
+                   <FONT color="#003399">oraclib.payroll b</FONT>
+              <FONT color="#003399">where (a.idnum eq b.idnum) and</FONT>
+                    <FONT color="#003399">(salary gt 40000);</FONT>
+     <FONT color="#003399">quit;</FONT>
+</PRE>
+      <P> 
+      <TABLE CELLPADDING="2">
+        <TR VALIGN="Top"> 
+          <TD width="24"><IMG src="../navimages/note.gif" border="0" width="20" height="20" alt="Note:"></TD>
+            <TD><strong>DQUOTE=ANSI</strong> is a PROC SQL option that specifies 
+              whether PROC SQL treats values that are enclosed in double quotation 
+              marks as a character string or as a column name or table name. For 
+              more information about this option, see the 
+              <!--doc reference-->
+              SAS/ACCESS documentation. For more information about PROC SQL, see 
+              the 
+              <!--doc reference-->
+              SAS documentation.</TD>
+        </TR>
+      </TABLE>
+    </TD>
+  </TR>
+</TABLE>
+<br>
+<br>
+<P> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

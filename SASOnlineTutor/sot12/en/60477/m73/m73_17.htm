@@ -1,0 +1,202 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Inserting 
+      Rows of Data into a Table<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Inserting Rows by Using the SET Clause</h2>
+        <p> Sometimes you need to add rows of data to a table, but the data is 
+          not currently contained in any table. In this situation, you can use 
+          either the SET clause or the VALUES clause in the INSERT statement to 
+          specify the data to be added. </p>
+        <p>The <strong>SET clause</strong> in the <strong>INSERT statement</strong> 
+          enables you to insert rows and specify new data to be added to a table. 
+          The SET clause specifies column names and values in pairs. PROC SQL 
+          reads each column name-value pair and assigns the value to the specified 
+          column. A separate SET clause is used for each row to be added to the 
+          table. </p>
+        <p>The syntax of the INSERT statement that contains the SET clause is 
+          shown below.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, INSERT statement containing the SET clause">
+    <tr> 
+      <td align="left"><p><strong>General form, INSERT statement containing the 
+          SET clause:</strong> </p>
+        <blockquote> 
+          <p><font color="#003399"><strong>INSERT INTO</strong> <em>table-name</em> 
+            </font><font color="#003399"><em>&lt;(target-column-1&lt;, ... target-column-n</em>)&gt;</font><br>
+            <font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>SET</strong> 
+            <em>column-1</em>=<em>value-1&lt;, ... column-n</em>=<em>value-n</em>&gt;<strong><br>
+            </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>...</strong> 
+            </font><font color="#003399"><strong>SET</strong> <em>column-1</em>=<em>value-1&lt;, 
+            ... column-n</em>=<em>value-n</em>&gt;&gt;<strong>;</strong></font> 
+          </p></blockquote>
+          <p>where </p>
+          <ul>
+            
+          <li><font color="#003399"><em>table-name</em></font> specifies the name 
+            of the table to which rows will be inserted.</li>
+            
+          <li><em><font color="#003399">target-column</font></em> specifies the 
+            name of a column into which data will be inserted.</li>
+            <li>each<font color="#003399"> <font color="#003399"><strong>SET</strong></font> 
+              </font>clause specifies one or more values to be inserted in one 
+              or more specified columns in a row. Multiple SET clauses are not 
+              separated by commas.</li>
+            
+          <li><em><font color="#003399">column</font></em> specifies the name 
+            of a column into which data will be inserted.</li>
+            <li><em><font color="#003399">value</font></em> specifies a data value 
+              to be inserted into the specified column. Character values must 
+              be enclosed in quotation marks. </li>
+            
+          <li>multiple <em><font color="#003399">column</font></em>=<em><font color="#003399">value</font></em> 
+            pairs in a SET clause are separated by commas. </li>
+          </ul>
+       
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"><p>It is optional to include a list of target column 
+                names after the table name in the INSERT TABLE statement that 
+                includes a SET clause. The list can include the names of all or 
+                only a subset of columns in the table. If you specify an optional 
+                list of target column names, then you can specify values <strong>only</strong> 
+                for columns that are in the list. You can list target columns 
+                in any order, regardless of their position in the table. Any columns 
+                that are in the table but <strong>not</strong> listed are given 
+                missing values in the inserted rows.</p>
+              </td>
+          </tr>
+        </table>
+        <br> <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"><p>Although it is recommended that the SET clause 
+                list column-value pairs in order (as they appear in the table 
+                or the optional column list), it is <strong>not</strong> required.</p></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2> Example</h2>
+        <p> Let's take another look at the table <strong>Work.Discount</strong>, 
+          which was presented in the last topic. <strong>Work.Discount</strong> 
+          stores airline discounts for certain flight destinations and time periods 
+          in March. By submitting a DESCRIBE TABLE statement, you can see this 
+          table's columns and column attributes.</p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: SQL table WORK.DISCOUNT was created like:
+		
+create table WORK.DISCOUNT( bufsize=4096 )<br>  (<br>   Destination char(3),<br>   BeginDate num format=DATE9.,<br>   EndDate num format=DATE9.,<br>   Discount num<br>  );</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>The following PROC SQL step does both of the following:</p>
+        <ul>
+          <li> adds two rows of new data to <strong>Work.Discount</strong> by 
+            using an INSERT statement that contains two SET clauses, one for each 
+            row</li>
+          <li> generates a report that displays <strong>Work.Discount</strong>, 
+            with its two new rows, by using a SELECT statement.</li>
+        </ul>
+        <p>In this situation, you don't need to include an optional list of column 
+          names.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><pre>     <font color="#003399">proc sql;
+        insert into work.discount
+           <strong>set</strong> destination='LHR',
+               begindate='01MAR2000'd,
+               enddate='05MAR2000'd,
+               discount=.33
+           <strong>set</strong> destination='CPH',
+               begindate='03MAR2000'd,
+               enddate='10MAR2000'd,
+               discount=.15;
+        select *
+          from discount;</font></pre></td>
+    </tr>
+  </table>
+<br>
+  <CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+<thead>
+<TR>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Destination</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>BeginDate</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>EndDate</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Discount</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">01MAR2000</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">05MAR2000</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0.33</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CPH</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">03MAR2000</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">10MAR2000</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0.15</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

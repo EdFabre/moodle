@@ -1,0 +1,178 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Table That Has Integrity Constraints<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Integrity constraints are rules that you can specify in order to 
+          restrict the data values that can be stored for a column in a table. 
+          SAS enforces integrity constraints when values associated with a column 
+          are added, updated, or deleted. Integrity constraints help you preserve 
+          the validity and consistency of your data. </p>
+        <p>You can create integrity constraints by using either <strong>PROC SQL</strong> 
+          or <strong>PROC DATASETS</strong>. PROC DATASETS can assign constraints 
+          only to an existing table. PROC SQL can assign constraints either as 
+          it creates a new table or as it modifies an existing table. This lesson 
+          discusses the use of PROC SQL to create integrity constraints while 
+          creating a table. </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>To learn more about the use of PROC DATASETS to create 
+          integrity constraints, see the lesson 
+          <!--lesson reference-->
+          <strong> 
+          <script>document.write(m59title);</script></strong>. For additional information about integrity constraints, see 
+          the SAS documentation.</p></td>
+    </tr>
+  </table>
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>When you place integrity constraints on a table, you specify the 
+          type of constraint that you want to create. Each constraint has a different 
+          action.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Types of Integrity Constraints">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th align="center"> <font size="-1">Constraint&nbsp;Type</font></th>
+      <th align="center"> <font size="-1">Action</font></th>
+    </tr>
+    <tr> 
+      <td valign="top"><strong>CHECK</strong></td>
+      <td>Ensures that a specific set or range of values are the only values in 
+        a column. It can also check the validity of a value in one column based 
+        on a value in another column within the same row.</td>
+    </tr>
+    <tr> 
+      <td valign="top"><strong>NOT NULL</strong></td>
+      <td>Guarantees that a column has non-missing values in each row.</td>
+    </tr>
+    <tr> 
+      <td valign="top"><strong>UNIQUE</strong></td>
+      <td>Enforces uniqueness for the values of a column.</td>
+    </tr>
+    <tr> 
+      <td valign="top"><strong>PRIMARY KEY</strong></td>
+      <td>Uniquely defines a row within a table, which can be a single column 
+        or a set of columns. A table can have only one PRIMARY KEY. PRIMARY KEY 
+        includes the attributes of the constraints NOT NULL and UNIQUE.</td>
+    </tr>
+    <tr> 
+      <td valign="top"><strong>FOREIGN KEY</strong></td>
+      <td>Links one or more rows in a table to a specific row in another table 
+        by matching a column or set of columns (a FOREIGN KEY) in one table with 
+        the PRIMARY KEY in another table. This parent/child relationship limits 
+        modifications made to both PRIMARY KEY and FOREIGN KEY constraints. The 
+        only acceptable values for a FOREIGN KEY are values of the PRIMARY KEY 
+        or missing values.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">When you add an integrity constraint to a table that contains 
+        data, SAS checks all data values to determine whether they satisfy the 
+        constraint before the constraint is added.</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>You can use integrity constraints in two ways, <strong>general</strong> 
+          and <strong>referential</strong>. General constraints enable you to 
+          restrict the data values accepted for a column in a single table. Referential 
+          constraints enable you to link the data values of a column in one table 
+          to the data values of columns in another table. 
+        <p><br>
+        <h2>General Integrity Constraints</h2>
+        <p>General integrity constraints enable you to restrict the values of 
+          columns within a single table. The following four integrity constraints 
+          can be used as general integrity constraints:</p>
+        <ul>
+          <li>CHECK</li>
+          <li>NOT NULL</li>
+          <li>UNIQUE</li>
+          <li>PRIMARY KEY.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">A PRIMARY KEY constraint is a general integrity constraint 
+        if it does not have any FOREIGN KEY constraints referencing it. A PRIMARY 
+        KEY used as a general constraint, is a shortcut for assigning the constraints 
+        NOT NULL and UNIQUE.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Referential Integrity Constraints</h2>
+        <p>A referential integrity constraint is created when a PRIMARY KEY integrity 
+          constraint in one table is referenced by a FOREIGN KEY integrity constraint 
+          in another table. There are two steps that must be followed to create 
+          a referential integrity constraint:</p>
+        <ol>
+          <li>Define a<strong> </strong>PRIMARY KEY constraint on the first table.<br>
+            <br>
+          </li>
+          <li>Define a FOREIGN KEY constraint on other tables.</li>
+        </ol></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p> Integrity constraints</p>
+        <ul>
+          <li>follow ANSI standards</li>
+          <li>cannot be defined for views</li>
+          <li>cannot be defined for historical versions of generation data sets.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

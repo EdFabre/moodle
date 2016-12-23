@@ -1,0 +1,95 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Processing 
+      Statements Conditionally<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Macro Execution with Conditional Processing</h2>
+        <P>Now let's take another look at the execution of a macro. Earlier you 
+          learned that when the macro processor receives <nobr><code>%<em>macro-name</em></code></nobr>, 
+          it executes compiled macro language statements such as <nobr>%IF</nobr>-<nobr>%THEN</nobr>. 
+          The values of macro variables that are used within the <nobr>%IF</nobr> 
+          logical expression are resolved during macro execution. The <nobr>%IF</nobr> 
+          logical expression is automatically evaluated. 
+        <P><BR>
+<h2>Example</h2>
+      <P>Suppose the <strong>Printit</strong> macro has been compiled 
+        and has been stored in the <strong>Work.Sasmacr</strong> catalog.
+<ol>
+          <li>First, you submit a call to the <strong>Printit</strong> macro, 
+            as follows:<font color="#003399"> 
+            <pre>%printit</pre></font>
+<li>The macro processor locates the macro in the SAS catalog <strong>Work.Sasmacr</strong>. <P>
+Catalog Entry <strong>Work.Sasmacr.Printit.Macro</strong>
+<TABLE title="Catalog Entry" bgcolor="#f7f7de"><tr><td>
+<font color="#003399"><PRE>    %macro printit;
+       %if &amp;syslast ne _NULL_ %then %do;
+          proc print data=_last_(obs=5);
+          title &quot;Last Created Data Set Is &amp;syslast&quot;;
+          run;
+       %end;
+    %mend;
+</pre></font></td></tr></table><br><br>
+          <li>The macro processor begins to execute compiled macro language statements 
+            from <strong>Printit</strong> (that is, the <nobr>%IF</nobr>-<nobr>%THEN</nobr> 
+            statement). Because the <nobr>%IF</nobr> expression is true, the <nobr>%DO</nobr> 
+            block is processed. <br>
+          <br>
+<li>The macro processor places the text that follows the %DO statement (that is, the PROC PRINT step) on the input stack.
+<P>
+Input Stack 
+<TABLE title="Input Stack" bgcolor="#cccc99"><tr><td>
+<font color="#003399"><PRE>proc print data=_last_(obs=5);
+  title &quot;Last Created Data Set Is &amp;syslast&quot;;
+run;</PRE></font></td></tr></TABLE><P><BR>
+<li>
+Word scanning proceeds as usual on the PROC PRINT step. When a macro trigger such as <code>&syslast</code> is encountered, 
+the macro reference is passed to the macro processor for resolution. The macro processor returns resolved 
+values to the input stack.<br><br>
+          <li>After the word scanner sends all of the tokens from the PROC PRINT 
+            step to the compiler, and the RUN statement is encountered, the PROC 
+            PRINT step executes.<br>
+            <br>
+<li>
+Macro execution pauses while the PROC PRINT step executes, and macro execution stops when the <nobr>%MEND</nobr> statement is encountered.
+</ol>
+    </td>
+  </tr>
+</table><P>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

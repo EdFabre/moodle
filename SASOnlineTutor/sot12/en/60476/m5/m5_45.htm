@@ -1,0 +1,274 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      One- and Three-Dimensional Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td><strong></strong> 
+        <p>Throughout this lesson, you've created and enhanced a two-dimensional 
+        table. However, with a simple modification, you can easily produce a one- 
+        or three-dimensional table. </p>
+      <p> Think again about how the TABLE statement specifies table dimensions. 
+        As shown below, a TABLE statement that has two dimension expressions requests 
+        a table that displays rows and columns. 
+      <pre><font color="#003399">     proc tabulate data=clinic.admit;</font>
+<font color="#003399">        class sex;</font>
+<font color="#003399">        var height weight;</font>
+<font color="#003399">        <strong>table sex,height*min weight*min;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> Here is the two-dimensional table that the PROC TABULATE step produces. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC TABULATE output">
+    <thead> 
+    <tr> 
+      <td rowspan=2 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>&nbsp;</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Height</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Weight</b></font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Min</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Min</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>Sex</b></font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 61.00</font></td>
+      <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 118.00</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>F</b></font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+              color="#0033AA"><b>M</b></font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 69.00</font></td>
+      <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 147.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>
+        <p><strong>Three-Dimensional Tables</strong></p>
+        <p>To create a three-dimensional table, you add a third dimension expression 
+          on the left. </p>
+        <p> In the TABLE statement below, <code>ActLevel </code>is specified in 
+          the page expression, <code>Sex</code> is specified in the row expression, 
+          and <code>Height</code> and <code>Weight</code> are specified in the 
+          column expression. This PROC TABULATE step produces separate pages for 
+          each value of <code>ActLevel</code>. 
+        <pre><font color="#003399"><strong>     </strong>proc tabulate data=clinic.admit;</font>
+<font color="#003399">        class sex <strong>actlevel</strong>;</font>
+<font color="#003399">        var height weight;</font>
+<font color="#003399">        <strong>table actlevel,sex,height*min weight*min;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+        <p> The following output illustrates the three-dimensional table.
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table rules=none frame=void>
+    <tr> 
+      <td><font face="Arial, Helvetica, Helv" size="3" color="#000000"><b>ActLevel 
+        HIGH</b></font></td>
+    </tr>
+    <tr> 
+      <td> 
+        <center>
+          <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0" bordercolor="#000000" title="PROC TABULATE output">
+            <thead> 
+            <tr> 
+              <td rowspan=2 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>&nbsp;</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Height</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Weight</b></font></td>
+            </tr>
+            <tr> 
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Min</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Min</b></font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>Sex</b></font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 66.00</font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 140.00</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>F</b></font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>M</b></font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 72.00</font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 168.00</font></td>
+            </tr>
+            </tbody> 
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table rules=none frame=void>
+    <tr> 
+      <td><font face="Arial, Helvetica, Helv" size="3" color="#000000"><b>ActLevel 
+        LOW</b></font></td>
+    </tr>
+    <tr> 
+      <td> 
+        <center>
+          <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0" bordercolor="#000000" title="PROC TABULATE output">
+            <thead> 
+            <tr> 
+              <td rowspan=2 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>&nbsp;</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Height</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Weight</b></font></td>
+            </tr>
+            <tr> 
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Min</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Min</b></font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>Sex</b></font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 61.00</font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 118.00</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>F</b></font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>M</b></font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 71.00</font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 154.00</font></td>
+            </tr>
+            </tbody> 
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table rules=none frame=void>
+    <tr> 
+      <td><font face="Arial, Helvetica, Helv" size="3" color="#000000"><b>ActLevel 
+        MOD</b></font></td>
+    </tr>
+    <tr> 
+      <td> 
+        <center>
+          <table cellspacing=1 border=1 cellpadding=2 rules=GROUPS frame=BOX bgcolor="#FFFFF0" bordercolor="#000000" title="PROC TABULATE output">
+            <thead> 
+            <tr> 
+              <td rowspan=2 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>&nbsp;</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Height</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Weight</b></font></td>
+            </tr>
+            <tr> 
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Min</b></font></td>
+              <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Min</b></font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>Sex</b></font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 63.00</font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 123.00</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>F</b></font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+                      color="#0033AA"><b>M</b></font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 69.00</font></td>
+              <td align=RIGHT valign=BOTTOM bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+                      size="2" color="#000000"> 147.00</font></td>
+            </tr>
+            </tbody> 
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -27,11 +27,7 @@
 require('../config.php');
 require_once('lib.php');
 
-require_login(0, false);
-if (isguestuser()) {
-    // Guest users cannot perform lookups.
-    throw new require_login_exception('Guests are not allowed here.');
-}
+require_login();
 
 $ip   = optional_param('ip', getremoteaddr(), PARAM_HOST);
 $user = optional_param('user', 0, PARAM_INT);

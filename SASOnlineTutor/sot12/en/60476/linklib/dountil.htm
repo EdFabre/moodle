@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>DO UNTIL Statement</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->DO 
+      UNTIL Statement<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> The DO UNTIL statement executes a DO loop until the expression is true. 
+    </td>
+  </tr>
+  </table>
+   <p>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DO UNTIL statement">
+    <tr> 
+      <td><strong>General form, DO UNTIL statement:</strong> <blockquote> 
+          <dl>
+            <dt> <nobr><font color="#003399"><strong>DO UNTIL(</strong><em>expression</em><strong>);</strong></font></nobr> 
+            <dd> <font color="#003399"><em>more SAS statements</em></font>; 
+            <dt> <font color="#003399"><strong>END;</strong></font> 
+          </dl>
+        </blockquote>
+        <p> where 
+        <ul>
+          <li><font color="#003399"><em>expression</em></font> is a valid SAS 
+            expression enclosed in parentheses</li>
+          <li> <font color="#003399"><em>more SAS statements</em></font> are statements 
+            executed within the loop</li>
+          <li>The END statement closes the DO loop and returns control to the 
+            DO UNTIL statement. </li>
+        </ul></td>
+    </tr>
+  </table>
+</center>
+<p align="center">&nbsp; 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The expression is not evaluated until the bottom of the loop, so a DO 
+        UNTIL loop always executes at least once. When the expression is evaluated 
+        as true, the DO loop is not executed again. 
+		<P><BR>
+		<h2>Example</h2>
+         Suppose you want to know how many years it will take to earn $50,000 
+          if you deposit $2,000 each year into an account that earns 10% interest. 
+          The DATA step below uses a DO UNTIL statement to perform the calculation 
+          until the value is reached. Each iteration of the DO loop represents 
+          one year of earning. 
+        <pre><font color="#003399">     data work.invest;</font>
+<font color="#003399">        do until(Capital&gt;=50000);</font>
+<font color="#003399">           capital+2000;</font>
+<font color="#003399">           capital+capital*.10;</font>
+<font color="#003399">           Year+1;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre>
+        During each iteration of the DO loop, 
+        <ul>
+          <li>2000 is added to the value of <code>Capital</code> to reflect the 
+            annual deposit of $2,000 
+          <li>the value of <code>Capital</code> with 10% interest is calculated 
+          <li>the value of <code>Year</code> is incremented by 1. 
+        </ul>
+        Because there is no index variable in the DO UNTIL statement, the variable 
+        <code>Year</code> is created in a sum statement to count the number of 
+        iterations of the DO loop. This program produces a data set that contains 
+        the single observation shown below. To accumulate more than $50,000 in 
+        capital requires thirteen years (and thirteen iterations of the DO loop).</td>
+    </tr>
+  </table>
+
+<p align="center"><br>
+  SAS Data Set Work.Invest 
+  <font  face="Verdana, Arial, Helvetica" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <tr bgcolor="#F7F7DE"> 
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Capital</b></font></td>
+      <td align=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF">
+        <div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">53949.97</font></div>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">13</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font>
+</center>
+<p>
+<br>
+ <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

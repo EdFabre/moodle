@@ -1,0 +1,155 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data by Using Subqueries<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Introducing Subqueries</h2>
+        <p>The WHERE and HAVING clauses both subset data based on an expression. 
+          In the query examples shown earlier in this lesson, the WHERE and HAVING 
+          clauses contained standard SAS expressions. For example, the expression 
+          in the following WHERE clause uses the BETWEEN-AND conditional operator 
+          and specifies the <code>Salary</code> column as an operand:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     where <strong>salary between</strong> 70000 <strong>and</strong> 80000</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>PROC SQL also offers another type of expression that can be used 
+          for subsetting in WHERE and HAVING clauses: a query-expression or <strong>subquery</strong>. 
+          A subquery is a query that is nested in, and is part of, another query. 
+          A PROC SQL query may contain subqueries at one or more levels. </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Subqueries are also known as nested queries, inner queries, 
+        and sub-selects.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The following PROC SQL query contains a subquery in the HAVING clause:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        select jobcode, 
+               avg(salary) as AvgSalary 
+               format=dollar11.2
+           from sasuser.payrollmaster
+           group by jobcode
+           having avg(salary) &gt;
+              <strong>(select avg(salary)
+                 from sasuser.payrollmaster);</strong></font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">It is recommended that you enclose a subquery (inner query) 
+        in parentheses, as shown here.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>
+<p>A subquery selects one or more rows from a table, then returns single or multiple 
+          values to be used by the outer query. The subquery shown above is a 
+          <strong>single-value subquery</strong>; it returns a single value, the 
+          average salary from the table <strong>Sasuser.Payrollmaster</strong>, 
+          to the outer query. A subquery can return values for <strong>multiple 
+          rows</strong> but only for a <strong>single column</strong>. </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The table that a subquery references can be either the same as or 
+          different from the table referenced by the outer query. In the PROC 
+          SQL query shown above, the subquery selects data from the same table 
+          as the outer query. </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Types of Subqueries</h2>
+        <p>There are two types of subqueries.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Types of Subqueries">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th width="24%"><font size="-1">Type of Subquery</font></th>
+      <th width="76%"><font size="-1">Description</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>noncorrelated</strong></td>
+      <td>a self-contained subquery that <strong>executes independently of the 
+        outer query</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>correlated</strong></td>
+      <td>a dependent subquery that <strong>requires one or more values to be 
+        passed to it by the outer query</strong> before the subquery can return 
+        a value to the outer query</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Both noncorrelated and correlated subqueries can return either single 
+          or multiple values to the outer query.</p>
+        <p>The next few pages provide a more in-depth look at noncorrelated and 
+          correlated subqueries, and how they are processed. </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

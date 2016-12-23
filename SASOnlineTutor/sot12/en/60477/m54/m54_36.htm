@@ -1,0 +1,92 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Documenting 
+      and Maintaining Indexes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Renaming Data Sets</h2>
+	  Another common task is to rename an indexed data set. To preserve the index, 
+        you can use the <strong>CHANGE statement</strong> in PROC DATASETS to 
+        rename a data set. The index file will be automatically renamed as well.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC DATASETS with the CHANGE statement">
+            <tr> 
+              
+      <td align="left"><strong>General form, PROC DATASETS with the CHANGE statement:</strong> 
+        <blockquote> <font color="#003399">
+          <dl>
+            <dt><strong>PROC DATASETS LIBRARY=</strong><em>libref</em> <strong>&lt;NOLIST&gt;;</strong></dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>CHANGE</strong> 
+              <em>old-data-set-name</em> <strong>=</strong> <em>new-data-set-name</em><strong>;</strong></dt>
+            <dt><strong>QUIT;</strong></dt>
+          </dl>
+		</font> 
+        </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>libref</em></font> names the SAS library 
+            where the data set is stored 
+          <li> <font color="#003399"><em>old-data-set-name</em></font> is the 
+            current name of the data set 
+          <li> <font color="#003399"><em>new-data-set-name</em></font> is the 
+            new name of the data set. 
+        </ul></td>
+            </tr>
+          </table><P><BR>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>Example</h2>
+	  The following example copies the <strong>Revenue</strong> data set from 
+        <strong>Sasuser</strong> into <strong>Work</strong>, then renames the 
+        <strong>Work.Revenue</strong> data set to <strong>Work.Income</strong>. 
+        The index file that is associated with <strong>Work.Revenue</strong> is 
+        also renamed to <strong>Work.Income</strong>. <font color="#003399"> 
+        <pre>     proc copy out=work in=sasuser;
+        select revenue;
+     run;
+
+     proc datasets library=work nolist;
+        <strong>change revenue=income;</strong>
+     quit;</pre>
+        </font> </td>
+    </tr>
+  </table>
+  <P>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,131 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Managing 
+      Index Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Controlling Index Usage</h2>
+        <p>In general, it is recommended that you allow SAS to decide whether 
+          to use an index, or which index to use, in processing a PROC SQL query 
+          (or other SAS program). However, in some situations, such as testing, 
+          you might find it useful to control the use of indexes by SAS. </p>
+        <p>To control index usage, use the <strong>IDXWHERE=</strong> and <strong>IDXNAME=</strong> 
+          SAS data set options to override the default settings. You can use either 
+          of these options, but you cannot use both options at the same time. 
+          As with other SAS data set options, you specify the IDXWHERE= or IDXNAME= 
+          option in parentheses after the table name in the FROM clause of a PROC 
+          SQL query.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using IDXWHERE= to Direct SAS to Use or Not to Use an Index</h2>
+        <p>The IDXWHERE= option enables you to override the decision that SAS 
+          makes about whether to use an index. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table align="center" border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, IDXWHERE= option">
+    <tr> 
+      <td align="left"><strong>General form, IDXWHERE= option:</strong> <blockquote>
+          <p><font color="#003399"><nobr><strong>IDXWHERE=</strong>YES | NO; </nobr></font></p>
+        </blockquote>
+        <p>where</p>
+        <ul>
+          <li><font color="#003399">YES</font> tells SAS to choose the best index 
+            to optimize a WHERE expression, and to disregard the possibility that 
+            a sequential search of the table might be more resource-efficient. 
+            <br>
+            <br>
+          </li>
+          <li><font color="#003399">NO</font> tells SAS to ignore all indexes 
+            and satisfy the conditions of a WHERE expression with a sequential 
+            search of the table. </li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>In an earlier example, you used the option MSGLEVEL=I to verify that 
+          PROC SQL <strong>does</strong> use an index to process the following 
+          query:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     options msglevel=i;<br>     proc sql;
+        select *
+           from marchflights
+           where flightnumber='182';</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>To force SAS to ignore the index and to process the rows of the 
+          table sequentially, specify IDXWHERE=NO in the query:</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <pre><font color="#003399">     proc sql;
+        select *
+           from marchflights <strong>(idxwhere=no)</strong>
+           where flightnumber='182';</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>A message in the SAS log indicates that SAS was forced to process 
+          the data sequentially.</td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>INFO: Data set option (IDXWHERE=NO) forced a <br>sequential pass of the data rather than use of <br>an index for where-clause processing.</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

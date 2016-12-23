@@ -1,0 +1,157 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Functions to Manipulate Character Strings<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The %SUBSTR Function</h2>
+The <nobr>%SUBSTR</nobr> function enables you to extract part of a character string 
+        from the value of a macro variable. 
+        <P><BR>
+ <table border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" title="General form, %SUBSTR function">
+    <tr> 
+      <td align="left"><strong>General form, %SUBSTR function:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>%SUBSTR </strong>( <em>argument,</em>
+	<em> position</em> <<em>,n</em>> )  </font></nobr> 
+        </blockquote>
+        <p> where 
+	<ul>
+	<li><font color="#003399"><em>argument</em></font> is a character string or a text expression from which a substring will be returned.
+	<li>  <font color="#003399"><em>position</em></font> is an integer or an expression (text, 
+	logical, or mathematical) that yields an integer, which specifies the position of the first 
+	character in the substring. 
+	<li><font color="#003399"><em>n</em></font> is an optional integer or an expression (text, 
+	logical, or mathematical) that yields an integer that specifies the number of characters in the 
+	substring. 
+	</ul> 
+        <P>
+
+      </td>
+    </tr>
+  </table>
+<P><BR>
+<table cellpadding="2">
+        <tr valign="Top"><td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+            <td>If the length of <em>n</em> is greater than the number of characters 
+              following <em>position</em> in <em>argument</em>, <nobr>%SUBSTR</nobr> 
+              issues a warning message and returns a substring that contains the 
+              characters from <em>position</em> to the end of the string. If <em>n</em> 
+              is not specified, <nobr>%SUBSTR</nobr> also returns a substring 
+              that contains the characters from <em>position</em> to the end of 
+              the string. </td>
+        </tr>
+      </table> 
+    <P><BR>
+          For example, assume that the macro variable <code>date</code> has the 
+          value <em>05JAN2002</em>. 
+        <ul>
+          <li>The code <nobr><font color="#003399"><code>%substr(&date,3)</code></font></nobr> 
+            will return the value <em>JAN2002</em>.
+<li>The code 
+<nobr><font color="#003399"><code>%substr(&date,3,3)</code></font></nobr> will return the value <em>JAN</em>.
+<li>The code <nobr><font color="#003399"><code>%substr(&date,3,9)</code></font></nobr> will return the value <em>JAN2002</em> and will produce a warning message.
+</ul>
+        <P> The values of <em>position</em> and <em>n</em> can also be the result 
+          of a mathematical expression that yields an integer. For example, <nobr><code><font color="#003399">%substr(&amp;var,%length(&amp;var)-1)</font></code></nobr> 
+          returns the last two characters of the value of the macro variable <code>var</code>. 
+        <P>
+<table cellpadding="2">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+            <td>The <nobr><strong>%LENGTH function</strong></nobr> accepts an argument that 
+              is either a character string or a text expression. If the argument 
+              is a character string, <nobr>%LENGTH</nobr> returns the length of the string. 
+              If the argument is a text expression, <nobr>%LENGTH</nobr> returns the length 
+              of the resolved value. If the argument has a null value, <nobr>%LENGTH</nobr> 
+              returns 0. </td>
+        </tr>
+      </table>
+<P><BR>
+<h2>Example</h2>
+         Suppose you want to print a report on all courses that have been taught 
+          since the start of the current month. You can use the <nobr>%SUBSTR</nobr> 
+          function and the <code>SYSDATE9</code> macro variable to determine the 
+          month and year, as follows:
+<PRE><font color="#003399">    proc print data=sasuser.schedule;
+       where begin_date between
+             <strong>&quot;01%substr(&amp;sysdate9,3)&quot;d</strong> and
+             &quot;&amp;sysdate9&quot;d;
+       title &quot;All Courses Held So Far This Month&quot;;
+       title2 &quot;(as of &amp;sysdate9)&quot;;
+    run;
+</font></PRE>
+    </td>
+  </tr>
+</table>
+<center>
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>All Courses Held So Far This Month</i></b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>(as of 25MAR2002)</i></b></font></TD>
+</TR>
+</TABLE></CENTER><P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  title="SAS output" cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000">
+<thead>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Obs</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Course_Number</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Course_Code</b></font></TD>
+ <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Location</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Begin_Date</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Teacher</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>18</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">18</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">C006</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Dallas</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25MAR2002</font></TD>
+ <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Berthan, Ms. Judy</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER><BR><BR>
+
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

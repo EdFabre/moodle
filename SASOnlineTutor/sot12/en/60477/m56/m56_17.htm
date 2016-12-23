@@ -1,0 +1,100 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>The <code>EmpID</code> variable is common to ';
+solutionText+='<strong>Sasuser.Newsals</strong> and <strong>Sasuser.Empdata</strong>. ';
+solutionText+='The <code>JobCode</code> variable is common to <strong>Sasuser.Empdata</strong> ';
+solutionText+='and <strong>Sasuser.Jcodedat</strong>.<br><br> ';
+solutionText+='<li>Submit the following program:';
+solutionText+='<font color="#003399"><pre>proc sql;<br>   create table jobdata2 as<br>';
+solutionText+='      select empdata.empid, empdata.salary, <br>';
+solutionText+='             newsals.newsalary, jcodedat.jobcode, <br>';
+solutionText+='             jcodedat.descript<br>';
+solutionText+='         from sasuser.empdata, sasuser.newsals, <br>';
+solutionText+='              sasuser.jcodedat<br>';
+solutionText+='         where empdata.empid=newsals.empid<br>               and jcodedat.jobcode=empdata.jobcode<br>';
+solutionText+='         order by jobcode, empid;<br>quit;</pre></font>';
+solutionText+='<li>Submit the following program: ';
+solutionText+='<font color="#003399"><pre>proc print data=work.jobdata;<br>run;</pre></font>';
+solutionText+='Examine the output. This data set should be identical to  ';
+solutionText+='the <strong>Work.Jobdata</strong> data set that was ';
+solutionText+='created in the last practice. It should contain fifty observations and five variables.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            PROC SQL to join three data sets that do not have a common BY variable. 
+            Combine <a href="JavaScript: openOther('../linklib/empdata.htm')">Sasuser.Empdata</a>, 
+            <a href="JavaScript: openOther2('../linklib/jcodedat.htm')">Sasuser.Jcodedat</a>, 
+            and <a href="JavaScript: openOther3('../linklib/newsals.htm')">Sasuser.Newsals</a>. 
+            </strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+  <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Examine <strong>Sasuser.Empdata</strong>, <strong>Sasuser.Jcodedat</strong>, 
+            and <strong>Sasuser.Newsals</strong> to familiarize yourself with 
+            the variables that they contain. You can either use the links at the 
+            top of this page, or you can examine them in SAS. <br>
+            <br>
+          <li>Write a PROC SQL step that will create a temporary data set named 
+            <strong>Jobdata2</strong> that combines information from the three 
+            data sets listed in Step 1. The new data set should contain variables 
+            that display employee ID numbers, employee job codes, job descriptions, 
+            current salaries, and new salaries. Order the data in <strong>Jobdata2</strong> 
+            by <code>JobCode</code>. Submit the program.<br>
+            <br>
+			
+          <li>Write a PROC PRINT step to print the <strong>Work.Jobdata2</strong> 
+            data set. Submit the program and examine the output. Compare this 
+            output to the output that you created in the <a href="m56_15.htm" onClick="suggestBack()">previous 
+            practice</a>. <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

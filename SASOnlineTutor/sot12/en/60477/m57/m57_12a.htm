@@ -1,0 +1,121 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Array Processing</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Array 
+      Processing <!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>This animation shows how stored array values are used to match the 
+        values for <br>
+        each month and year in <strong>Sasuser.Monthsum</strong> with the values 
+        for each month <br>
+        and year in <strong>Sasuser.Ctargets</strong>.</p>
+      <ol>
+        <li> The following program is submitted to SAS: 
+          <pre><font color="#003399">data sasuser.lookup1 (drop=i j);
+   array Targets{1997:1999, 12} _temporary_;
+   if _N_=1 then do i=1 to 3;
+      set sasuser.ctargets;
+      array Mnth{*} Jan--Dec;
+      do j=1 to dim(Mnth);
+         targets{year, j}=mnth{j};
+      end;
+   end;
+   set sasuser.monthsum(keep=salemon revcargo monthno);
+   Year=input(substr(salemon,4),4.);
+   Ctargets=targets{year,monthno};
+   format ctarget dollar15.2;
+run; </font></pre>
+        </li>
+        <li>During the compilation phase, SAS creates the <code>Targets</code> 
+          and <code>Mnth</code> arrays. Also, SAS sets up the new data set by 
+          reading the descriptor portion of the input data sets and creating the 
+          PDV. <br>
+          <br>
+        </li>
+        <li>Execution begins. During the first iteration of the DATA step, the 
+          value of <code>_N_</code> is <em>1</em>. Therefore the DO loops executes 
+          three times: once for each year in the target data set, <strong>Sasuser.Ctargets</strong>.<br>
+          <br>
+        </li>
+        <li>SAS reads the first observation in <strong>Sasuser.Ctargets</strong> 
+          and records the values in the <code>Mnth</code> array.<br>
+          <br>
+        </li>
+        <li>Within the nested DO loop, the <code>Targets</code> array reference 
+          is matched with the <code>Mnth</code> array reference in order to populate 
+          the <code>Targets</code> array. <code>Year</code> equals <em>1997</em> 
+          and <code>j</code> equals <em>1</em>. So, <code>Targets</code>{1997,1} 
+          is assigned the value of <code>Mnth</code>{1}. <br>
+          <br>
+        </li>
+        <li>The values for the 11 remaining months in 1997 are assigned to the 
+          <code>Targets</code> array as the inner DO loop iterated 11 more times.<br>
+          <br>
+        </li>
+        <li>After the value for <code>Mnth</code>{12} is read into the <code>Targets</code> 
+          array, control returns to the top of the outer DO loop. The values for 
+          the second observation (year) are read from <strong>Sasuser.Ctargets</strong>. 
+          The process continues until the values for all three observations (years) 
+          are read and assigned to the <code>Targets</code> array.<br>
+          <br>
+        </li>
+        <li>After the third iteration of the outer DO loop, control drops down 
+          to the second SET statement and the values from the first observation 
+          of <strong>Sasuser.Monthsum</strong> are read into the PDV.<br>
+          <br>
+        </li>
+        <li>The new value of <code>Year</code> is extracted from the value of 
+          <code>Salemon</code> using the SUBSTR function and is converted to a 
+          numeric value by the INPUT function.<br>
+          <br>
+        </li>
+        <li>The value of <code>Ctarget</code> is pulled from the <code>Targets</code> 
+          array. For the first observation, the value of <code>Ctarget</code> 
+          equals the value of <code>Targets</code>{1997,1}, which is <em>198284420</em>. 
+          <br>
+          <br>
+        </li>
+        <li>The values in the PDV are written to the output data set, <strong>Sasuser.Lookup1</strong>, 
+          as the first observation and control returns to the top of the DATA 
+          step.<br>
+          <br>
+        </li>
+        <li>During the second iteration of the DATA step, the condition <code>_N_</code>=1 
+          is false, so the <code>Targets</code> array is not populated again. 
+          Control drops to the second SET statement, which reads the second observation 
+          from <strong>Sasuser.Monthsum</strong>, which is processed as before 
+          and is written to <strong>Sasuser.Lookup1</strong> as the second observation.<br>
+          <br>
+        </li>
+        <li>The program continues to execute until all observations from <strong>Sasuser.Monthsum</strong> 
+          have been read.</li>
+      </ol></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

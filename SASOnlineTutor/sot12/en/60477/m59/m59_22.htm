@@ -1,0 +1,155 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Controlling 
+      the Update Process<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Monitoring I/O Error Conditions </h2>
+        <p>When you use the MODIFY statement with a BY statement or KEY= option 
+          to update a data set, error checking is important for several reasons. 
+          The most important reason is that these tools use nonsequential access 
+          methods, so there is no guarantee that an observation will be located 
+          that satisfies the request. Error checking enables you to perform updates 
+          or not, depending on the outcome of the I/O condition. </p>
+        <p>The <strong>automatic variable <code>_IORC_</code></strong> (Input 
+          Output Return Code) is created when you use the MODIFY statement with 
+          the BY statement or KEY= option. The value of <code>_IORC_</code> is 
+          a numeric return code that indicates the status of the most recently 
+          executed I/O operation. Checking the value of this variable allows you 
+          to detect abnormal I/O conditions and direct execution in particular 
+          ways rather than having the application terminate abnormally. </p>
+        <h5><br>
+          Using <code>_IORC_</code> with %SYSRC</h5>
+        <p>Because the values of the <code>_IORC_</code> automatic variable are 
+          internal and subject to change, <strong>%SYSRC</strong>, an autocall 
+          macro, was created to enable you to test for <strong>specific I/O conditions</strong> 
+          while protecting your code from future changes in <code>_IORC_</code> 
+          values. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, _IORC_ with the %SYSRC autocall macro">
+    <tr> 
+      <td align="left"><strong>General form, _IORC_ with the %SYSRC autocall macro:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>IF_IORC_</strong>=<strong>%SYSRC</strong>(<em>mnemonic</em>) 
+          <strong>THEN</strong>... </nobr></font></blockquote>
+        <p> where <font color="#003399"><em>mnemonic</em></font> is a code for 
+          a specific I/O condition. </p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"><strong>%SYSRC</strong> is in the autocall library. 
+              You must have the MACRO system option in effect to use this macro. 
+              To learn more about using autocall macros, see the lesson <!--lesson reference--><strong><script>document.write(m53title);</script></strong></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>When you use <strong>%SYSRC</strong>, you can check the value of 
+          <code>_IORC_</code> by specifying one of the mnemonics listed in the 
+          table below.</p>
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Mnemonics and Meanings for SYSRC">
+          <tr bgcolor="#F7F7DE"> 
+            <th width="66" valign="top"> <font size="-1">Mnemonic</font></th>
+            <th width="341"><font size="-1">Meaning</font></th>
+          </tr>
+          <tr> 
+            <td width="66" valign="top"><em>_DSENMR</em></td>
+            <td width="341">The observation in the transaction data set does not 
+              exist in the master data set (used only with the MODIFY and BY statements).</td>
+          </tr>
+          <tr> 
+            <td width="66" valign="top"><em>_DSEMTR</em></td>
+            <td width="341">Multiple transaction data set observations do not 
+              exist on the master data set (used only with the MODIFY and BY statements).</td>
+          </tr>
+          <tr> 
+            <td width="66" valign="top"><em>_DSENOM</em></td>
+            <td width="341">No matching observation (used with the KEY= option).</td>
+          </tr>
+          <tr> 
+            <td width="66" valign="top"><em>_SOK</em></td>
+            <td width="341">The observation was located. <em>_SOK</em> has a value 
+              of <em>0</em>.</td>
+          </tr>
+        </table>
+        <p><br>
+        <h2> Example</h2>
+        <p>Suppose you are using the MODIFY statement with the KEY= option to 
+          update a SAS data set. In the program below, when <code>_IORC_</code> 
+          has the value <em>_SOK</em>, the observation is updated. When <code>_IORC_</code> 
+          has the value <em>_DSENOM</em>, no matching observation is found, so 
+          the observation is appended to the data set by the OUTPUT statement 
+          and <code>_ERROR_</code> is reset to <em>0</em> in the do loop.</p>
+        <pre>   <font color="#003399">  data master;
+        set transaction;
+        modify master key = id;
+        if _IORC_=%sysrc(_sok) then
+           do;
+              a = b;
+              replace;
+           end;
+        else
+           if _IORC_=%sysrc(_dsenom) then
+              do;
+                 output;
+                 _ERROR_ = 0;
+              end;
+     run;</font>
+</pre>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">For more information about the <code>_IORC_</code> 
+              automatic variable and <strong>%SYSRC</strong>, see information 
+              about error-checking tools in the <font size="-1" face="Arial, Helvetica, sans-serif"> 
+              <!--doc reference-->
+              </font>SAS documentation.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

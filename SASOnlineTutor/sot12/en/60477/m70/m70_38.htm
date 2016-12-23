@@ -1,0 +1,163 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      and Grouping Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Understanding Data Remerging</h2>
+        <p>Sometimes, when you use a summary function in a SELECT clause or a 
+          HAVING clause, PROC SQL must <strong>remerge</strong> data (make two 
+          passes through the table). Remerging requires additional processing 
+          time and is often unavoidable. However, there are some situations in 
+          which you may be able to modify your query to avoid remerging. Understanding 
+          how and when remerging occurs will increase your ability to write efficient 
+          queries.</p>
+        <p>Let's look at a PROC SQL query that requires remerging. This query 
+          calculates each navigator's salary as a percentage of all navigators' 
+          salaries:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        select empid, salary,
+               (salary/sum(salary)) as Percent
+               format=percent8.2
+           from sasuser.payrollmaster
+           where jobcode contains 'NA';</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>When you submit this query, the SAS log displays the following message.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center"> SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>NOTE: The query requires remerging summary 
+statistics back with the original data.</pre></td>
+      </tr>
+    </table>
+  </div>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Remerging occurs whenever any of the following conditions exist:</p>
+        <ul>
+          <li>The values returned by a summary function are used in a calculation.<br>
+            <br>
+          </li>
+          <li>The SELECT clause specifies a column that contains a summary function 
+            <strong>and other column(s)</strong> that are <strong>not</strong> 
+            listed in a GROUP BY clause.<br>
+            <br>
+          </li>
+          <li>The HAVING clause specifies one or more columns or column expressions 
+            that are <strong>not</strong> included in a subquery or a GROUP BY 
+            clause.</li>
+        </ul>
+        </td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>During remerging, PROC SQL makes two passes through the table:</p>
+        <ol>
+          <li>PROC SQL calculates and returns the value of summary functions. 
+            PROC SQL also groups data according to the GROUP BY clause.<br>
+            <br>
+          </li>
+          <li>PROC SQL retrieves any additional columns and rows that it needs 
+            to display in the output, and uses the result from the summary function 
+            to calculate any arithmetic expressions in which the summary function 
+            participates.</li>
+        </ol></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2><br>
+          Example</h2>
+        <p>Now let's see how PROC SQL remerges data when it processes the following 
+          query:<br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        <strong>select empid, salary,
+               (salary/sum(salary)) as Percent
+               format=percent8.2</strong>
+           from sasuser.payrollmaster
+           <strong>where jobcode contains 'NA'</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>In the <strong>first pass</strong>, PROC SQL calculates and returns 
+        the value of the SUM function (specified in the SELECT clause). 
+        <p>In the <strong>second pass</strong>, PROC SQL retrieves the additional 
+          columns and rows that it needs to display in output (<code>EmpID</code>, 
+          <code>Salary</code>) and the rows in which <code>JobCode</code> contains 
+          'NA'. PROC SQL also uses the result from the SUM function to calculate 
+          the arithmetic expression <code>(salary/sum(salary))</code>.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">Some implementations of SQL do not support remerging and 
+        would consider the preceding example to be in error.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">You can obtain the same results by using a subquery. Subqueries 
+        are discussed later in this lesson.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

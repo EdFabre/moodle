@@ -1,0 +1,129 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Another way to exclude variables from your data set is to use the <strong>DROP 
+        statement</strong> or the <strong>KEEP statement</strong>. Like the DROP= 
+        and KEEP= data set options, these statements drop or keep variables. However, 
+        the DROP statement differs from the DROP= data set option in the following 
+        ways: </p>
+      <ul>
+        <li>You cannot use the DROP statement in SAS procedure steps. <br>
+          <br>
+        <li>The DROP statement applies to all output data sets that are named 
+          in the DATA statement. To exclude variables from some data sets but 
+          not from others, use the DROP= data set option in the DATA statement. 
+      </ul>
+      The KEEP statement is similar to the DROP statement, except that the KEEP 
+      statement specifies a list of variables to write to output data sets. Use 
+      the KEEP statement instead of the DROP statement if the number of variables 
+      to keep is significantly smaller than the number to drop.</td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DROP and KEEP statements">
+    <tr> 
+      <td><strong>General form, DROP and KEEP statements:</strong> 
+        <blockquote><font color="#003399"><nobr><strong>DROP</strong> <em>variable(s)</em>;</nobr><br>
+          <strong>KEEP</strong> <em>variable(s)</em>;</font> </blockquote>
+        where <font color="#003399"><em>variable(s)</em></font> identifies the 
+        variables to drop or keep.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Example</strong> 
+        <p> The two programs below produce the same results. The first example 
+          uses the DROP= data set option; the second example uses the DROP statement.
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">    data clinic.stress<strong>(drop=timemin timesec)</strong>;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       if tolerance='D';</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       retain SumSec 5400;</font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">       length TestLength $ 6;</font>
+<font color="#003399">       if totaltime&gt;800 then testlength='Long';</font>
+<font color="#003399">       else if 750<=totaltime<=800 then testlength='Normal';</font>
+<font color="#003399">       else if totaltime&lt;750 then TestLength='Short';</font>
+<font color="#003399">    run;</font>
+</pre>
+      </td>
+    </tr>
+    <tr> 
+      <td align="left"> 
+        <p> 
+          <pre><font color="#003399">    data clinic.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       if tolerance='D';</font>
+<font color="#003399">       <strong>drop timemin timesec;</strong></font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       retain SumSec 5400;</font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">       length TestLength $ 6;</font>
+<font color="#003399">       if totaltime&gt;800 then testlength='Long';</font>
+<font color="#003399">       else if 750<=totaltime<=800 then testlength='Normal';</font>
+<font color="#003399">       else if totaltime&lt;750 then TestLength='Short';</font>
+<font color="#003399">    run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

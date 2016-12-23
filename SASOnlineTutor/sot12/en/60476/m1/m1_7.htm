@@ -1,0 +1,110 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->SAS 
+      Programs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>You've examined the general structure of our sample program. But 
+          what happens when you run the program? </p>
+        <p> <br>
+          <strong>Processing SAS Programs</strong> 
+        <p> When you submit a SAS program, SAS begins reading the statements and 
+          checking them for errors. 
+        <p> DATA and PROC statements signal the beginning of a new step. When 
+          SAS encounters a subsequent DATA, PROC, or RUN statement (for DATA steps 
+          and most procedures) or a QUIT statement (for some procedures), SAS 
+          stops reading statements and executes the previous step in the program. 
+          In our sample program, each step ends with a RUN statement:
+<pre><font color="#003399">     data clinic.admit2;
+        set clinic.admit;
+     <strong>run;</strong>
+     proc print data=clinic.admit2;
+     <strong>run;</strong></font></pre></td>
+    </tr>
+  </table>
+<center>
+    <table border="0" cellspacing="0" cellpadding="2" width="85%">
+      <tr valign="Top"> 
+        <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+        <td>The beginning of a new step (DATA or PROC) implies the end of the 
+          previous step. Though the RUN statement is not always required between 
+          steps in a SAS program, using it can make the SAS program easier to 
+          read and debug, and it makes the SAS log easier to read.</td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"><br>
+  <p align="center"> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><strong><a name="log">Log Messages</a></strong> <p> Each 
+            time a step is executed, SAS generates a log of the processing activities 
+            and the results of the processing. The SAS log collects messages about 
+            the processing of SAS programs and about any errors that occur. 
+          <p> When SAS processes our sample program, you see the log messages 
+            shown below. Notice that you get separate sets of messages for each 
+            step in the program. </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> SAS Log 
+  <center>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>1    data clinic.admit2;<br>2    set clinic.admit;<br>3    run;
+
+<font color="Blue">NOTE: There were 21 observations read from the data set CLINIC.ADMIT.
+NOTE: The data set CLINIC.ADMIT2 has 21 observations and 9 variables.
+NOTE: DATA statement used (Total process time):
+      real time 0.68 seconds
+      cpu time 0.12 seconds</font>
+
+4 proc print data=clinic.admit2;
+5 run;
+
+<font color="Blue">NOTE: There were 21 observations read from the data set CLINIC.ADMIT2.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time 0.92 seconds
+      cpu time 0.06 seconds</font></pre></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </center>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

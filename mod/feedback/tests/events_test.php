@@ -184,8 +184,7 @@ class mod_feedback_events_testcase extends advanced_testcase {
         try {
             \mod_feedback\event\response_submitted::create(array(
                 'context'  => $context,
-                'objectid' => $this->eventfeedbackcompleted->id,
-                'relateduserid' => 2,
+                'objectid' => $this->eventfeedbackcompleted->id
             ));
             $this->fail("Event validation should not allow \\mod_feedback\\event\\response_deleted to be triggered without
                     other['anonymous']");
@@ -290,7 +289,6 @@ class mod_feedback_events_testcase extends advanced_testcase {
             \mod_feedback\event\response_submitted::create(array(
                 'context'  => $context,
                 'objectid' => $this->eventfeedbackcompleted->id,
-                'relateduserid' => 2,
                 'anonymous' => 0,
                 'other'    => array('cmid' => $this->eventcm->id, 'anonymous' => 2)
             ));
@@ -305,7 +303,6 @@ class mod_feedback_events_testcase extends advanced_testcase {
             \mod_feedback\event\response_submitted::create(array(
                 'context'  => $context,
                 'objectid' => $this->eventfeedbackcompleted->id,
-                'relateduserid' => 2,
                 'anonymous' => 0,
                 'other'    => array('instanceid' => $this->eventfeedback->id, 'anonymous' => 2)
             ));
@@ -320,7 +317,6 @@ class mod_feedback_events_testcase extends advanced_testcase {
             \mod_feedback\event\response_submitted::create(array(
                  'context'  => $context,
                  'objectid' => $this->eventfeedbackcompleted->id,
-                 'relateduserid' => 2,
                  'other'    => array('cmid' => $this->eventcm->id, 'instanceid' => $this->eventfeedback->id)
             ));
             $this->fail("Event validation should not allow \\mod_feedback\\event\\response_deleted to be triggered without

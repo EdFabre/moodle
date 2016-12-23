@@ -1,0 +1,123 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      an INFILE Statement <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+      <h2>Assigning the Names of the Files to Be Read</h2>
+        <p>The next step is to assign the names of the three files to be read 
+          to the variable <code>nextfile</code>:</p>
+        <pre><font color="#003399">     data work.quarter;
+        infile temp filevar=<strong>nextfile</strong>;
+        input Flight $ Origin $ Dest $ 
+              Date : date9. RevCargo : comma15.2;</font></pre> 
+      <p>In this case, let's use the raw data files <strong>Month9.dat</strong>, 
+          <strong>Month10.dat</strong>, and <strong>Month11.dat</strong>. Notice 
+          that the titles of the raw data files are very similar. They each start 
+          with &quot;<strong>Month</strong>&quot; and are followed by numeric 
+          characters and the file extension <strong>.dat</strong>:</p>
+      <p>Month9.dat<br>
+        Month10.dat<br>
+        Month11.dat</p>
+        <p>You can use an <a href="JavaScript: openOther('../linklib/doloop.htm')">iterative 
+          DO loop</a> and the <a href="JavaScript: openOther('../linklib/putfunc.htm')">PUT 
+          function</a> to automatically change the values assigned to <code>nextfile</code>.</p></td>
+  </tr>
+</table>
+<p>
+<br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><p><strong>Example</strong></p>
+        <p>In the following code, the DO statement creates the index variable 
+          <code>i</code> and assigns it the values of <em>9</em>, <em>10</em>, 
+          and <em>11</em>. The assignment statement then assigns the name of the 
+          raw data file to <code>nextfile</code> using the current value of <code>i 
+          </code>and the PUT function.</p>
+        <p> <strong>Month9.dat</strong>, <strong>Month10.dat</strong>, and <strong>Month11.dat</strong> 
+          are stored in the <strong>C:\Sasuser </strong>directory in the Windows 
+          operating environment. On the right side of the assignment statement, 
+          the text string <em>c:\sasuser\month</em> is concatenated with the current 
+          value of <code>i </code>using the double exclamation point (!!) concatenation 
+          operator. <em>c:\sasuser\month<code>i</code></em> is then concatenated 
+          with the text string <em>.dat</em>.</p>
+        <pre><font color="#003399">     data work.quarter;
+        <strong>do i = 9, 10, 11;
+           nextfile=&quot;c:\sasuser\month&quot;
+                    !!put(i,2.)!!&quot;.dat&quot;;</strong>
+           infile temp filevar=nextfile;
+           input Flight $ Origin $ Dest $ 
+                 Date : date9. RevCargo : comma15.2;
+        end;</font></pre>
+        The following table shows the value of <code>nextfile</code> as the value 
+        of <code>i</code> changes.</td>
+  </tr>
+</table>
+<p><br>
+<table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF"  title="Corresponding Values of i and nextfile">
+  <tr bgcolor="#F7F7DE"> 
+      <th><font size="-1">When i=</font></th>
+    <th><font size="-1">nextfile=</font></th>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>9</em></div></td>
+      <td> <em>c:\sasuser\month 9.dat</em></td>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>10</em><em></em></div></td>
+      <td><em>c:\sasuser\month10.dat</em></td>
+  </tr>
+  <tr> 
+    <td><div align="center"><em>11</em></div></td>
+      <td><em>c:\sasuser\month11.dat</em></td>
+  </tr>
+</table>
+<p>
+<br>
+<table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+  <tr> 
+    <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">Depending on the characters available on your keyboard, 
+        the symbol you use as the concatenation operator can be a double vertical 
+        bar (||), a double broken vertical bar (&brvbar;&brvbar;), or a double 
+        exclamation point (!!).</td>
+  </tr>
+</table>
+<P>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

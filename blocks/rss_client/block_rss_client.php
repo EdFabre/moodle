@@ -142,7 +142,7 @@
             $feed->set_cache_duration($CFG->block_rss_client_timeout*60);
         }
 
-        if ($CFG->debugdeveloper && $feed->error()) {
+        if(debugging() && $feed->error()){
             return '<p>'. $feedrecord->url .' Failed with code: '.$feed->error().'</p>';
         }
 
@@ -314,7 +314,8 @@
             $feed->init();
 
             if ($feed->error()) {
-                mtrace('Error: could not load/find the RSS feed');
+                mtrace ('error');
+                mtrace ('SimplePie failed with error:'.$feed->error());
                 $status = false;
             } else {
                 mtrace ('ok');

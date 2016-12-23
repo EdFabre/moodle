@@ -1,0 +1,236 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Table That Has Integrity Constraints<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2>Creating a Constraint by Using a Constraint Specification</h2>
+        <p>Sometimes you might prefer to create integrity constraints outside 
+          of column specifications, by specifying individual constraint specifications 
+          in the CREATE TABLE statement:</p>
+        <blockquote> 
+          <p><font color="#003399"><strong>CREATE TABLE </strong> <em>table-name</em><br>
+            <nobr>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>(</strong><em>column-specification-1</em></nobr>&lt;<strong>,</strong> 
+            <nobr><br>
+            &nbsp; &nbsp; &nbsp;</nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nobr><strong>...</strong><em>column-specification-n</em>&gt;&lt;<strong>,</strong><br>
+            &nbsp; &nbsp; &nbsp;</nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nobr><em><strong>constraint-specification-1&gt;&lt;,</strong></em><strong><br>
+            &nbsp; &nbsp; &nbsp;</strong></nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nobr><strong>...</strong></nobr><strong><em>constraint-specification</em><nobr><em>-n</em>&gt;);</nobr></strong><nobr></nobr></font></p>
+        </blockquote>
+        <p>The first specification in the CREATE TABLE statement must be a column 
+          specification. However, following the initial column specification in 
+          the statement, you can include multiple additional column specifications, 
+          constraint specifications, or both. All specifications after the first 
+          specification can be listed in any order. The entire list of column 
+          specifications and constraint specifications follows the same guidelines 
+          that were presented earlier for column specifications: 
+        <ul>
+          <li>The entire set of column specifications and constraint specifications 
+            must be enclosed in parentheses. <br>
+            <br>
+          </li>
+          <li>Multiple column specifications and constraint specifications must 
+            be separated by commas. <br>
+          </li>
+        </ul>
+        <p>There are several important <strong>differences</strong> between specifying 
+          an integrity constraint within a column specification and specifying 
+          an integrity constraint by using a separate constraint specification. 
+          Using a constraint specification offers the following advantages:
+        <ul>
+          <li>You can specify a name for the constraint. In fact, you must specify 
+            a name, because SAS does not automatically assign one.<br>
+            <br>
+          </li>
+          <li>For certain constraint types, you can define a constraint for multiple 
+            columns in a single specification.<br>
+          </li>
+        </ul>
+        <p>The syntax of a <strong>constraint specification</strong> is shown 
+          below.</p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, constraint specification">
+    <tr> 
+      <td align="left"><p><strong>General form, constraint specification:</strong> 
+        </p>
+        <blockquote><font color="#003399"><strong>CONSTRAINT</strong> <em><nobr>constraint-name</nobr></em> 
+          <em>constraint</em> <nobr>&lt;<strong>MESSAGE=</strong><em>'message-string'</em> 
+          </nobr><nobr>&lt;<strong>MSGTYPE=</strong><em>message-type</em>&gt;&gt;</nobr></font></blockquote>
+          where 
+          <ul>
+            <li><em><font color="#003399">constraint-name</font></em> specifies 
+              a name for the constraint that is being specified. The name must 
+              be a valid SAS name. <br>
+              <br>
+              <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+                  <td valign="top">The names PRIMARY, FOREIGN, MESSAGE, UNIQUE, 
+                    DISTINCT, CHECK, and NOT <strong>cannot</strong> be used as 
+                    values for <font color="#003399"><em>constraint-name</em></font>.</td>
+                </tr>
+              </table>
+              <br>
+            </li>
+            <li> <font color="#003399"><em>constraint</em></font> is one of the 
+              following: <br>
+              <br>
+            </li>
+            <ul>
+              <li> <font color="#003399"><strong>CHECK</strong> <strong>(</strong><em>expression</em><strong>)</strong></font><br>
+                <br>
+                specifies that all rows in <font color="#003399"><em>table-name</em></font> 
+                (which is specified in the CREATE TABLE statement) satisfy the 
+                <font color="#003399"><em>expression</em></font>, which can be 
+                any valid where-expression.<br>
+                <br>
+              </li>
+              <li><font color="#003399"><strong>DISTINCT</strong> (<em>column-1&lt;, 
+                ... column-n&gt;</em>)</font><br>
+                <br>
+                specifies that the values of each <em><font color="#003399">column</font></em> 
+                must be unique within the table. This constraint is identical 
+                to UNIQUE. <br>
+                <br>
+              </li>
+              <li><font color="#003399"><strong>FOREIGN KEY</strong> (<em>column-1&lt;, 
+                ... column-n&gt;</em>) <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>REFERENCES</strong> 
+                <em>table-name</em> <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>ON 
+                DELETE</strong> <em>referential-action</em>&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>ON 
+                UPDATE</strong> <em>referential-action</em>&gt;</font><br>
+                <br>
+              specifies a FOREIGN KEY, that is, a set of <em><font color="#003399">columns</font></em> 
+              whose values are linked to the values of the PRIMARY KEY column 
+              in another table (the <em><font color="#003399">table-name</font></em> 
+              that is specified for <strong><font color="#003399">REFERENCES</font></strong>). 
+              The <font color="#003399"><em>referential-actions</em></font> are 
+              performed when the values of a PRIMARY KEY column that is referenced 
+              by the FOREIGN KEY are updated or deleted. The <font color="#003399"><em>referential-action</em></font> 
+              specifies the type of action to be performed on all matching FOREIGN 
+              KEY values, and is one of the following:<br>
+                <br>
+                <ul>
+                  <li><strong><font color="#003399">CASCADE</font></strong> <br>
+                    allows PRIMARY KEY data values to be updated, and updates 
+                    matching values in the FOREIGN KEY to the same values. Note: 
+                    This referential action is currently supported for updates 
+                    only. <br>
+                    <br>
+                  </li>
+                  <li><strong><font color="#003399">RESTRICT</font></strong> <br>
+                    occurs only if there are matching FOREIGN KEY values. This 
+                    referential action is the default. <br>
+                    <br>
+                  </li>
+                  <li><strong><font color="#003399">SET NULL</font></strong> <br>
+                    sets all matching FOREIGN KEY values to NULL.</li>
+                </ul>
+                <br>
+              </li>
+              <li><font color="#003399"><strong>NOT NULL</strong> (<em>column</em>)</font><br>
+                <br>
+                specifies that the <font color="#003399"><em>column</em></font> 
+                does not contain a null or missing value, including special missing 
+                values<br>
+                <br>
+              </li>
+              <li><font color="#003399"><strong>PRIMARY KEY</strong> (<em>column-1&lt;, 
+                ... column-n&gt;</em>)</font><br>
+                <br>
+                specifies one or more <font color="#003399"><em>columns</em></font> 
+                as PRIMARY KEY columns, that is, columns that do not contain missing 
+                values and whose values are unique. <br>
+                <br>
+              </li>
+              <li><font color="#003399"><strong>UNIQUE</strong> (<em>column-1&lt;, 
+                ... column-n&gt;</em>)</font><br>
+                <br>
+                specifies that the values of each <em><font color="#003399">column</font></em> 
+                must be unique within the table. This constraint is identical 
+                to DISTINCT. </li>
+            </ul></li>
+            
+          </ul>
+          <ul>
+            <li><strong><font color="#003399">MESSAGE=</font></strong> specifies 
+              a <font color="#003399"><em>message-string</em></font> that specifies 
+              the text of an error message that is written to the SAS log when 
+              the integrity constraint is not met. The maximum length of message-string 
+              is 250 characters. <br>
+              <br>
+            </li>
+            <li><strong><font color="#003399">MSGTYPE=</font></strong> specifies 
+              the <font color="#003399"><em>message-type</em></font>, which specifies 
+              how the error message is displayed in the SAS log when an integrity 
+              constraint is not met. The message-type is one of the following:<br>
+              <br>
+              <ul>
+                <li><strong><font color="#003399">NEWLINE</font></strong> <br>
+                  the text that is specified for <font color="#003399"><strong>MESSAGE=</strong></font> 
+                  is displayed in addition to the default error message for that 
+                  integrity constraint. <br>
+                  <br>
+                </li>
+                <li><strong><font color="#003399">USER</font></strong> <br>
+                  only the text that is specified for <font color="#003399"><strong>MESSAGE=</strong></font> 
+                  is displayed. </li>
+              </ul>
+            </li>
+          </ul>
+          <p>Elements within a constraint-specification must be separated by spaces.</p>
+        </blockquote></td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td height="18"><p>You might have noticed another difference between the 
+          two methods of creating an integrity constraint. When you use a column 
+          specification to create a FOREIGN KEY integrity constraint, you use 
+          the keyword FOREIGN KEY in addition to the keyword REFERENCES.</p>
+        <p>Now let's look at an example of a PROC SQL step that uses column specifications 
+          to create integrity constraints on a column.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

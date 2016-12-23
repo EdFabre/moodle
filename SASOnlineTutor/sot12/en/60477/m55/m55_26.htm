@@ -1,0 +1,387 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" -->
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+          <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">sample programs</A> 
+          <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>.
+      <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td>
+        <p><strong>Using a FILENAME Statement</strong> <br>
+          You can use a <a href="m55_2.htm" onClick="suggestBack()">FILENAME statement</a> 
+          to concatenate raw data files by assigning a single fileref to the raw 
+          data files that you want to combine. When the fileref is specified in 
+          an INFILE statement, each raw data file that has been referenced can 
+          be sequentially read into a data set using an INPUT statement.</p>
+        <p><strong>Using an INFILE Statement</strong> <br>
+          You can make the process of concatenating raw data files more flexible 
+          by using an <a href="m55_5.htm" onClick="suggestBack()">INFILE statement</a> 
+          with the FILEVAR= option. The FILEVAR= option enables you to <a href="m55_5.htm" onClick="suggestBack()">dynamically 
+          change</a> the currently opened input file to a new input file. When 
+          the INFILE statement executes, it reads from the file that the FILEVAR= 
+          variable specifies.</p>
+        <p>In some cases, you may need to use the <a href="m55_7.htm" onClick="suggestBack()">COMPRESS 
+          function</a> to eliminate spaces in the filenames you generate.</p>
+        <p>When you read the last record in a raw data file, the DATA step normally 
+          stops processing. When you are concatenating raw data files, you do 
+          not want to read past the last record until you reach the end of the 
+          last input file. You can determine if you are reading the last record 
+          in the last raw data file by using the <a href="m55_8.htm" onClick="suggestBack()">END= 
+          option</a> with the INFILE statement. You can then test the value of 
+          the END= variable to determine if the DATA step should continue processing.</p>
+        <p>If you are working with date-related data, you may be able to make 
+          your program more flexible by eliminating the need to include explicit 
+          month numbers in your SAS statements. To create a program that will 
+          always read the current month and the previous two months, you can use 
+          the <a href="m55_13.htm" onClick="suggestBack()">MONTH and TODAY functions</a> 
+          to obtain the month number of today's date to begin the quarter. In 
+          some cases, you may need to use the <a href="m55_14.htm" onClick="suggestBack()">INTNX 
+          function</a> with the TODAY and MONTH functions to correctly determine 
+          the month numbers.</p>
+        <p><strong>Appending SAS Data Sets</strong><br>
+          You can use <a href="m55_18.htm" onClick="suggestBack()">PROC APPEND</a> 
+          to concatenate two SAS data sets. PROC APPEND reads only the data in 
+          the DATA= SAS data set, not in the BASE= SAS data set. PROC APPEND concatenates 
+          data sets even though there may be variables in the BASE= data set that 
+          do not exist in the DATA= data set. </p>
+        <p>The <a href="m55_19.htm" onClick="suggestBack()">FORCE option</a> must 
+          be used if the DATA= data set contains variables that</p>
+        <ul>
+          <li> <a href="m55_19.htm#example" onClick="suggestBack()">are not in 
+            the BASE= data set</a> </li>
+          <li><a href="m55_20.htm" onClick="suggestBack()">are longer than the 
+            variables in the BASE= data set</a> </li>
+          <li><a href="m55_21.htm" onClick="suggestBack()">do not have the same 
+            type as the variables in the BASE= data set</a>.</li>
+        </ul>
+        <p>The FORCE option can cause loss of data due to truncation or dropping 
+          of variables. The following table summarizes the consequences of using 
+          the FORCE option.<br>
+        </p>
+        <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Consequences of Using the FORCE Option">
+          <tr bgcolor="#F7F7DE"> 
+            <td align="left"> <strong>DATA= data set contains variables that&nbsp;...</strong></td>
+            <td><strong>FORCE required?</strong></td>
+            <td><strong>Consequences of using the FORCE option</strong></td>
+          </tr>
+          <tr valign="top"> 
+            <td>are in the BASE=data set, but the BASE= data set has more variables<em></em></td>
+            <td><div align="center">no</div></td>
+            <td valign="top">Missing values are assigned to the extra BASE= data 
+              set variables.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>are not in the BASE= data set<em></em></td>
+            <td><div align="center">yes</div></td>
+            <td>Extra DATA= data set variables are dropped.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>are longer than the variables in the BASE= data set<em></em></td>
+            <td><div align="center">yes</div></td>
+            <td>DATA= data set variable values are truncated.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>do not have the same type as the variables in the BASE= data set<em></em></td>
+            <td><div align="center">yes</div></td>
+            <td> Missing values are assigned to the DATA= data set variables with 
+              the data type mismatch.</td>
+          </tr>
+        </table> 
+        <p> <br>
+          <strong>Additional Features</strong><br>
+          You can also append raw data files using a <a href="m55_25.htm" onClick="suggestBack()">SAS 
+          data set or an external file</a> that contains the names of the raw 
+          data files to be appended. </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+  <center>
+    <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+      <TR> 
+        <TD><h2><STRONG><A NAME="Syntax">Syntax</A></STRONG> </h2>
+          <P> <EM>To go to the page where a statement or option was presented, 
+            select a link.</EM> </TD>
+      </TR>
+    </TABLE>
+    <p>
+    
+    </center>
+  <P> 
+ 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Combining Raw Data Files Using a FILENAME Statement</strong>
+        <blockquote> 
+          <TABLE CELLPADDING="2" align="left">
+            <TR> 
+              <TD><FONT color="Teal"><A HREF="m55_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''"><STRONG>FILENAME</STRONG> <EM>fileref</EM> 
+                <STRONG>('</STRONG><EM>external-file1</EM><STRONG>' </STRONG><strong>'</strong><EM>external-file2</EM><strong>'</strong> 
+                <strong>'</strong><em>external-filen</em><STRONG>');</STRONG></A></FONT></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em><strong>;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>INFILE</strong> 
+                <em>file-specification</em><strong>;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>INPUT</strong> 
+                <em>variable</em> &lt;$&gt; &lt;&amp;|:&gt; &lt;<em>informat</em>&gt;<strong>;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399"><strong>RUN;</strong></font></TD>
+            </TR>
+          </TABLE>
+        </blockquote>
+      </td>
+    </tr>
+  </table>
+  
+  <p>  
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Combining Raw Data Files Using an INFILE Statement </strong>
+        <blockquote> 
+          <TABLE CELLPADDING="2" align="left">
+            <TR> 
+              <TD><font color="#003399"><strong>DATA</strong> <em>SAS-data=set</em><strong>;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><FONT color="Teal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m55_6.htm" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''"><STRONG>DO</STRONG> <EM>index-variable=variable1, 
+                variable2, variablen</EM><em></em><STRONG>;</STRONG></A><NOBR></NOBR></FONT></TD>
+            </TR>
+            <TR> 
+              <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m55_6.htm" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''"><em>variable</em> = <strong>&quot;</strong><em>text-string</em><strong>&quot;!!PUT(</strong><em>index-variable</em><strong>,</strong><em>format</em><strong>)!!&quot;</strong><em>text-string</em><strong>&quot;;</strong></a></TD>
+            </TR>
+            <TR> 
+              <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="m55_7.htm" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''"><em>variable</em> = <strong>COMPRESS</strong> 
+                <strong>(</strong><em>variable</em><strong>,' ');</strong></a></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><A HREF="m55_8.htm#dountil" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''">DO UNTIL (</a></strong><A HREF="m55_8.htm#dountil" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''"><em>variable</em></a><strong><A HREF="m55_8.htm#dountil" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''">);</a></strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><FONT color="Teal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="m55_6.htm"onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''">&nbsp;<STRONG>INFILE</STRONG> 
+                <EM>file-specification </EM><strong>FILEVAR</strong><EM>=variable</EM></a> 
+                <A HREF="m55_8.htm" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''"> <strong> END=</STRONG><em>variable</em><strong>;</STRONG></A><NOBR> 
+                </NOBR></FONT></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>INPUT</strong> 
+                <em>variable</em> &lt;$&gt; &lt;&amp;|:&gt; &lt;<em>informat</em>&gt;<strong>;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>OUTPUT;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>END;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;END;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>STOP;</strong></font></TD>
+            </TR>
+            <TR> 
+              <TD><font color="#003399"><strong>RUN;</strong></font></TD>
+            </TR>
+          </TABLE>
+        </blockquote>
+        </td>
+    </tr>
+  </table>
+
+  <p> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Combining SAS Data Sets Using PROC APPEND</strong>
+        <blockquote> 
+          <table cellpadding="2" align="left">
+            <tr> 
+              <td><font color="Teal"><a href="m55_18.htm" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''"><strong>PROC APPEND BASE=</strong><em>SAS-data-set</em><strong> 
+                DATA=</strong><em>SAS-data-set</em></a></font> <a href="m55_19.htm" onClick="suggestBack()" onMouseOver="window.status='Display details.'; "
+	      onMouseOut="window.status=''">&lt;<strong>FORCE</strong>&gt;<strong>;</strong></a></td>
+            </tr>
+            <tr> 
+              <td><font color="#003399"><strong>RUN;</strong></font><strong><font color="Teal"><nobr></nobr></font></strong><font color="Teal"><nobr></nobr></font></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+        </blockquote></td>
+    </tr>
+  </table>
+  <center>
+    <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+      <TR> 
+        <TD align="left"> <HR> </TD>
+      </TR>
+    </TABLE>
+    <br>
+  </center>
+  <!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Sample">Sample Programs</A></STRONG> 
+        </h2>
+        <blockquote>
+          <h2>Combining Raw Data Files Using a FILENAME Statement</h2>
+        </blockquote>
+        <pre><font color="#003399">     filename qtr1 ('c:\data\month1.dat''c:\data\month2.dat'
+                    'c:\data\month3.dat');
+     data work.firstqtr;
+        infile qtr1;
+        input Flight $ Origin $ Dest $
+              Date : date9. RevCargo : comma15.2;
+     run;</font><font color="#003399"></font></pre></TD>
+    </TR>
+  </TABLE>
+ 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><blockquote> 
+          <h2>Combining Raw Data Files Using an INFILE Statement</h2>
+        </blockquote>
+        <pre><font color="#003399">     data quarter (drop=monthnum midmon lastmon); <strong>
+</strong>        monthnum=month(today());
+        midmon=month(intnx('month',today(),-1));
+        lastmon=month(intnx('month',today(),-2));
+        do i = monthnum, midmon, lastmon;
+        <strong>   </strong>nextfile=&quot;c:\sasuser\month&quot;
+                    !!compress(put(i,2.)!!&quot;.dat&quot;,' ');
+           do until (lastobs); 
+              infile temp filevar=nextfile end=lastobs;
+              input Flight $ Origin $ Dest $ Date : date9.
+                    RevCargo : comma15.2;
+              output;
+           end;
+        end;
+        stop;
+     run;</font></pre></td>
+    </tr>
+  </table>
+<table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><blockquote> 
+          <h2>Combining SAS Data Sets Using PROC APPEND</h2>
+        </blockquote>
+        <pre><font color="#003399">     proc append base=work.acities 
+                 data=work.airports force;
+     run;</font></pre> 
+        <hr>
+      </td>
+    </tr>
+  </table>
+ 
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><h2><STRONG><A NAME="Points">Points to Remember</A></STRONG> 
+          <br>
+        </h2>
+        <UL>
+          <LI> When you use an INFILE statement with the FILEVAR= option, the 
+            file specification is just a placeholder, not an actual filename or 
+            a fileref that has been previously assigned to a file.<br>
+            <br>
+          <LI>Like automatic variables, the FILEVAR= variable and the END= variable 
+            are not written to the data set.<BR>
+            <BR>
+          <LI> Using the FORCE option with PROC APPEND can cause loss of data 
+            due to truncation or dropping of variables.<br>
+            <br>
+          <LI>When you use the FORCE option, the structure of the BASE= data set 
+            is used for the appended data set.</UL>
+      </TD>
+    </TR>
+  </TABLE>
+  <!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

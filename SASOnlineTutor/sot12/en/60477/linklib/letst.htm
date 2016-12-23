@@ -1,0 +1,138 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --><TITLE>The %LET Statement</TITLE><!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->The 
+      %LET Statement<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>The %LET statement enables you to define a macro variable and to assign 
+        a value to it. <P><BR>
+      <table border="1" cellspacing="0" cellpadding="10"  bgcolor="#F7F7DE" align="center" title="General form, %LET statement">
+        <tr> 
+          <td align="left"><strong>General form, %LET statement:</strong> <blockquote> 
+              <nobr><font color="#003399"><strong>%LET</strong> <em>variable</em> 
+              = <em>value</em><strong>;</strong></font></nobr> </blockquote>
+            <p> where 
+            <ul>
+              <li><font color="#003399"><em>variable</em></font> is any name that 
+                follows the SAS naming convention.</li>
+              <li><font color="#003399"><em>value</em></font> can be any string 
+                from 0 to 64K characters.</li>
+              <li>if either <font color="#003399"><em>variable</em></font> or 
+                <font color="#003399"><em>value</em></font> contains a reference 
+                to another macro variable, the reference is evaluated before the 
+                assignment is made.</li>
+            </ul>
+            <table cellpadding="2">
+              <tr valign="Top"> 
+                <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+                <td>If <font color="#003399"><em>variable</em></font> already 
+                  exists, <font color="#003399"><em>value</em></font> replaces 
+                  the current value.</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+      <P> <BR>For example, the following statement creates a macro variable named <code>Time</code> and assigns a value of <em>afternoon</em> to it.
+      <table width="85%" align="center">
+        <pre><font color="#003399">
+%let time=afternoon;</font></pre>
+      </table></td>
+  </tr>
+</table>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> When you use the %LET statement to define macro variables, you should 
+      keep in mind the following rules: 
+      <UL>
+        <LI>Numeric tokens are stored as <strong>character strings</strong>.</LI>
+        <LI>Mathematical expressions are <strong>not evaluated</strong>.</LI>
+        <LI>The <strong>case</strong> of <em>value</em> is preserved.</LI>
+        <LI><strong>Quotation marks</strong> bounding literals are stored as part 
+          of <em>value</em>.</LI>
+        <LI>Leading and trailing <strong>blanks</strong> are <strong>removed</strong> 
+          from <em>value</em> before the assignment is made.</LI>
+      </UL>
+      <p>The following table provides examples of macro variable assignment statements 
+        to illustrate these rules. </p>
+      <p>&nbsp;</p></td>
+  </tr>
+</table>
+<table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="%LET Statement Examples">
+  <tr bgcolor="#F7F7DE">
+    <td><strong>%LET Statement</strong></td>
+    <td><strong>Variable Name</strong></td>
+    <td><strong>Variable Value</strong></td>
+  </tr>
+  <tr>
+    <td><code>%let name= Ed Norton ;</code></td>
+    <td><code>Name</code></td>
+    <td><em>Ed Norton</em></td>
+  </tr>
+  <tr>
+    <td><code>%let name2=' Ed Norton ';</code></td>
+    <td><code>Name2</code></td>
+    <td><em>' Ed Norton '</em></td>
+  </tr>
+  <tr>
+    <td><code>%let title="Joan's Report"</code></td>
+    <td><code>Title</code></td>
+    <td><em>"Joan's Report"</em></td>
+  </tr>
+  <tr>
+    <td><code>%let start=;</code></td>
+    <td><code>Start</code></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>%let total=0;</code></td>
+    <td><code>Total</code></td>
+    <td><em>0</em></td>
+  </tr>
+  <tr>
+    <td><code>%let sum=4+3;</code></td>
+    <td><code>Sum</code></td>
+    <td><em>4+3</em></td>
+  </tr>
+  <tr>
+    <td><code>%let total=&total+&amp;sum;</code></td>
+    <td><code>Total</code></td>
+    <td><em>0+4+3</em></td>
+  </tr>
+  <tr>
+    <td><code>%let x=varlist;</code></td>
+    <td><code>X</code></td>
+    <td><em>varlist</em></td>
+  </tr>
+  <tr>
+    <td><code>%let &x=name age height;</code></td>
+    <td><code>Varlist</code></td>
+    <td><em>name age height</em></td>
+  </tr>
+</table>
+<!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

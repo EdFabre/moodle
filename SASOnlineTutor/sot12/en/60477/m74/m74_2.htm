@@ -1,0 +1,75 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Indexes<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Accessing Rows in a Table</h2>
+        <p>When you submit a query on a table that does <strong>not</strong> have 
+          an index, PROC SQL <strong>accesses rows sequentially</strong>, in the 
+          order in which they are stored in the table. For example, suppose you 
+          are working with a table that contains information about employees. 
+          You have written a PROC SQL query to select the rows in which the value 
+          of <code>Name</code> (the first column) is <em>Smith</em>. To access 
+          the rows that you want, PROC SQL begins with the first row and reads 
+          through all rows in the table, selecting the rows that satisfy the condition 
+          that is expressed in the WHERE clause.</p></td>
+    </tr>
+  </table>
+  <p> <img src="images/m74_2a.gif" alt="Sequential read of a table" width="242" height="169"> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>When you execute a program that retrieves a small subset of rows 
+          from a large table, it can be time-consuming for PROC SQL to read the 
+          rows sequentially. In some situations, using an index on a table allows 
+          PROC SQL to access a subset of rows more efficiently. </p>
+        <p>An index stores unique values for a <strong>specified column or columns</strong> 
+          in ascending value order, and includes information about the location 
+          of those values in the table. That is, an index is composed of <strong>value/identifier 
+          pairs</strong> that enable you to <strong>access a row directly</strong>, 
+          by value. For example, suppose you have created an index on your table 
+          that is based on the column <code>Name</code>. Using the index, PROC 
+          SQL will access the row(s) that you want directly, without having to 
+          read all the other rows.</p></td>
+    </tr>
+  </table>
+  <br>
+  <img src="images/m74_2b.gif" alt="Direct-access read of a table" width="242" height="160"> 
+  <br>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

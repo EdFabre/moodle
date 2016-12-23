@@ -1,0 +1,122 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Symbol Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>The %LOCAL Statement</strong> 
+
+        <p>The %LOCAL statement </p>
+<ul>
+          <li>can appear <strong>only </strong>inside a macro definition</li>
+          <li>creates one or more macro variables in the local symbol table and assigns 
+            null values to them</li>
+          <li>has no effect on variables that are already in the local symbol 
+            table.</li>
+</ul></td></tr></table>
+ <BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, %LOCAL statement">
+  <tr> 
+    <td align="left"><strong>General form, %LOCAL statement:</strong> 
+      <blockquote> <font color="#003399"><strong>%LOCAL</strong> <em>macro-variable-1 
+        &lt;...macro-variable-n</em>&gt;;</font> </blockquote>
+      <p> where 
+      <ul>
+              <li> <font color="#003399"><em>macro-variable</em></font> is either the name 
+                of a macro variable or a text expression that generates a macro 
+                variable name. 
+            </ul>
+    </td>
+  </tr>
+</table>
+
+<p><br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>A local symbol table is not created until a request is made to create a local variable. 
+  Macros that do not create local variables do not have a local table. The SYMPUT 
+  routine can create local variables only if the local table already exists. </p>
+<p>Since local symbol tables exist separately from the global symbol table, it 
+  is possible to have a local macro variable and a global macro variable that 
+  have the same name and different values.</p>
+<p><br><strong>Example</strong>
+        <P> In this example, the first %LET statement creates a global macro variable 
+          named <code>dsn</code> and assigns a value of <em>sasuser.courses</em> 
+          to it. 
+        <P>The <nobr>%LOCAL</nobr> statement within the macro definition creates a local macro 
+          variable named <code>dsn</code>, and the <nobr>%LET</nobr> statement within the macro 
+          definition assigns a value of <em>sasuser.register</em> to the local 
+          variable <code>dsn</code>. 
+        <P>The <nobr>%PUT</nobr> statement within the macro definition will write the value 
+          of the local variable <code>dsn</code> to the SAS log, whereas the <nobr>%PUT</nobr> 
+          statement that follows the macro definition will write the value of 
+          the global variable <code>dsn</code> to the SAS log:<font color="#003399"><pre>    %let dsn=sasuser.courses;
+
+    %macro printdsn;
+       <strong>%local dsn;
+       %let dsn=sasuser.register;</strong>
+       %put The value of DSN inside Printdsn is &dsn;
+    %mend;
+
+    %printdsn
+    %put The value of DSN outside Printdsn is &dsn;
+</pre></font>
+
+When you submit this code, the following statements are written to the SAS log.<P><BR>
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+199  %let dsn=sasuser.courses;
+200
+201  %macro printdsn;
+202     %local dsn;
+203     %let dsn=sasuser.register;
+204     %put The value of DSN inside Printdsn is &dsn;
+205  %mend;
+206
+207  %printdsn
+<strong>The value of DSN inside Printdsn is sasuser.register</strong>
+208  %put The value of DSN outside Printdsn is &dsn;
+<strong>The value of DSN outside Printdsn is sasuser.courses</strong>
+</pre></td></tr>
+</table> </div>
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

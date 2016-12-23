@@ -1,0 +1,84 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      a Table That Has Integrity Constraints<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2>Example</h2>
+        <p>In an example earlier in this lesson, the table <strong>Work.Discount</strong> 
+          was created to hold data about discounts that are offered by an airline. 
+          Suppose you now want to ensure that the table </p>
+        <ul>
+          <li>holds only discounts that are less than or equal to .5</li>
+          <li>does not allow missing values for <code>Destination</code>.</li>
+        </ul>
+        <p>Let's create a new version of the table <strong>Work.Discount</strong>, 
+          called <strong>Work.Discount3</strong>, that includes two integrity 
+          constraints. One integrity constraint limits the values that can be 
+          entered in the <code>Discount</code> column and the other prevents missing 
+          values from being entered in the <code>Destination</code> column. The 
+          following PROC SQL step creates <strong>Work.Discount3</strong> by specifying 
+          four columns and two integrity constraints:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td height="18"><pre><font color="#003399">     proc sql;
+        create table work.discount3 
+               (Destination char(3),
+               BeginDate num Format=date9.,
+               EndDate num format=date9.,
+               Discount num,
+               <strong>constraint ok_discount check (discount le .5),
+               constraint notnull_dest not null(destination)</strong>);</font></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td height="18"><p>The CHECK integrity constraint named <code>OK_Discount</code> 
+          uses the WHERE expression <code><font color="#003399">discount le .5</font></code> 
+          to limit the values that can be added to the <code>Discount</code> column. 
+        </p>
+        <p>The NOT NULL integrity constraint named <code>NotNull_Dest</code> prevents 
+          missing values from being entered in <code>Destination</code>.</p>
+        </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

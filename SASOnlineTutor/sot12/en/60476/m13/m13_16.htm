@@ -1,0 +1,145 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Processing 
+      SQL Statements<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>Although SAS can efficiently process DBMS data through the LIBNAME 
+          engine, sometimes you might want to have explicit control over the SQL 
+          statements that are passed to the DBMS. In some cases, the DBMS can 
+          process a query more efficiently. SAS/ACCESS software provides the <STRONG>SQL 
+          Procedure Pass-Through Facility</STRONG>, an extension to PROC SQL that 
+          enables you to send DBMS-specific SQL statements directly to a DBMS. 
+        <P> The SQL Procedure Pass-Through Facility provides the statements and 
+          component that are shown in the table below. </td>
+    </tr>
+  </table>
+  <P> <BR>
+  <TABLE border="1" cellspacing="0" cellpadding="10" align="center" width="450" bgcolor="#FFFFFF" title="SQL Procedure Pass-Through Facility">
+    <thead>
+      <TR bgcolor="#F7F7DE"> 
+        <TD><STRONG>Statement or Component</STRONG></TD>
+        <TD><STRONG>Function</STRONG></TD>
+      </TR>
+    </thead>
+    <TR VALIGN="Top"> 
+      <TD><STRONG>CONNECT</STRONG> statement</TD>
+      <TD>establishes a connection to the DBMS</TD>
+    </TR>
+    <TR VALIGN="Top"> 
+      <TD><STRONG>CONNECTION TO</STRONG> component<BR>
+        (in the FROM clause of the PROC SQL SELECT statement)</TD>
+      <TD>retrieves data directly from the DBMS</TD>
+    </TR>
+    <TR VALIGN="Top"> 
+      <TD><STRONG>EXECUTE</STRONG> statement</TD>
+      <TD>sends dynamic, non-query, SQL statements to the DBMS</TD>
+    </TR>
+    <TR VALIGN="Top"> 
+      <TD><STRONG>DISCONNECT</STRONG> statement</TD>
+      <TD>terminates the connection to the DBMS</TD>
+    </TR>
+  </TABLE>
+  <P> <BR>
+  <TABLE CELLPADDING="2" align="center" width="85%">
+    <TR VALIGN="Top"> 
+      <TD width="24"><IMG SRC="../navimages/note.gif" WIDTH="20" HEIGHT="20" ALT="Note:" BORDER="0"></TD>
+      <TD>You can embed Pass-Through statements in a PROC SQL query, or you can 
+        store them in a PROC SQL view. This tutorial focuses on embedding Pass-Through 
+        statements in a query.</TD>
+    </TR>
+  </TABLE>
+  <P> <BR>
+  <TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+    <TR> 
+      <TD><STRONG>Sample Program</STRONG> <P> Before we examine the SQL Procedure 
+          Pass-Through Facility in detail, let's look at a sample program. The 
+          PROC SQL step shown below does the following: 
+        <OL>
+          <LI> connects to an Oracle database and assigns the alias <STRONG>Dblink</STRONG> 
+            to it 
+          <LI> uses this connection to read data from an Oracle table named <STRONG>EMPLOYEES</STRONG> 
+          <LI> grants UPDATE and INSERT authority for the table to the user 
+          <LI> disconnects from the Oracle database. </OL></TD>
+    </TR>
+  </TABLE>
+  <pre></pre>
+  <table border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" title="PROC SQL program">
+    <tr valign="top"> 
+      <td><div align="center">&nbsp;</div></td>
+      <td><pre><font color="#003399">proc sql;</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td align="center"><span style="background-color: #003399;"><font color="#FFFFFF" size="3"><strong><font size="2">&nbsp;1&nbsp;</font></strong></font></span></td>
+      <td><pre><font color="#003399">   <strong>connect</strong> to oracle as dblink
+           (user=cestmoi pw=trustme path=orapath
+            connection=global);</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td align="center"><span style="background-color: #003399;"><font color="#FFFFFF" size="3"><strong><font size="2">&nbsp;2&nbsp;</font></strong></font></span></td>
+      <td><pre><font color="#003399">   select *
+      from <strong>connection to</strong> dblink
+         (select id, lastname, firstname,
+                 hiredate, salary
+             from employees
+             where hiredate&gt;='31-DEC-99');</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td align="center"><span style="background-color: #003399;"><font color="#FFFFFF" size="3"><strong><font size="2">&nbsp;3&nbsp;</font></strong></font></span></td>
+      <td><pre><font color="#003399">   <strong>execute</strong> (grant update, insert on employees
+            to cestmoi) by dblink;</font></pre></td>
+    </tr>
+    <tr valign="top">
+      <td align="center"><span style="background-color: #003399;"><font color="#FFFFFF" size="3"><strong><font size="2">&nbsp;4&nbsp;</font></strong></font></span></td>
+      <td><pre><font color="#003399">   <strong>disconnect</strong> from dblink;</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td> <div align="center">&nbsp;</div></td>
+      <td><pre><font color="#003399">quit;</font></pre></td>
+    </tr>
+  </table>
+  <P> 
+  <TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+    <TR> 
+      <TD>Let's start by seeing how you establish a connection to a DBMS by using 
+        the CONNECT statement.</TD>
+    </TR>
+  </TABLE>
+  <br>
+  <br>
+  <P> <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

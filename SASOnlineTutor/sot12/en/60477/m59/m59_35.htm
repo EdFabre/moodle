@@ -1,0 +1,133 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Initiating 
+      and Reading Audit Trails<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You initiate an audit trail using the DATASETS procedure with the 
+          <strong>AUDIT</strong> and <strong>INITIATE</strong> statements.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATASETS procedure to initiate an audit trail">
+    <tr> 
+      <td align="left"><strong>General form, DATASETS procedure to initiate an 
+        audit trail: </strong> <blockquote> <font color="#003399"><nobr><strong>PROC 
+          DATASETS LIB=</strong><em>libref </em>&lt;<strong>NOLIST</strong>&gt;<strong>;</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>AUDIT</strong> <em>SAS-data-set</em> 
+          &lt;<em>SAS-password</em>&gt;<strong>;</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>INITIATE;</strong><br>
+          <strong>RUN;</strong><br>
+          <strong>QUIT;</strong></nobr></font> </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>libref</em></font> is the name of the 
+            library where the data set to be audited resides 
+          <li><font color="#003399"><strong>NOLIST</strong></font> suppresses 
+            the directory listing 
+          <li><font color="#003399"><em>SAS-data-set </em></font>is the name of 
+            the SAS data set that you want to audit 
+          <li><font color="#003399"><em>SAS-password</em></font> is the SAS data 
+            set password, if one exists 
+          <li><font color="#003399"><strong>INITIATE</strong></font> begins the 
+            audit trail on the data set specified in the AUDIT statement. 
+        </ul> </td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>The following code initiates an audit trail on the data set <strong>Capinfo</strong>.</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If you choose to run this example, you must copy 
+              the data set <strong>Capinfo </strong>from the <strong>Sasuser</strong> 
+              library to the <strong>Work</strong> library.</td>
+          </tr>
+        </table>
+        <pre><font color="#003399">     proc datasets nolist;
+        audit capinfo;
+        initiate;
+     quit;</font></pre> </td>
+    </tr>
+  </table>
+  <p> </p>
+  SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre><font color="#000000">60   audit capinfo;
+61   initiate;
+WARNING: The audited data file WORK.CAPINFO.DATA is not 
+         password protected.  <br>         Apply an ALTER password to prevent accidental 
+         deletion or replacement of it and any associated 
+         audit files.
+62   run;
+<strong>NOTE: The data set WORK.CAPINFO.AUDIT has 0 observations 
+      and 13 variables.</strong></font></pre></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The audit trail file uses the SAS password that is assigned 
+        to the parent data set; therefore, it is recommended that you alter the 
+        password for the parent data set. Use the ALTER= data set option to assign 
+        an alter-password to a SAS data set or to access a read-, write-, or alter- 
+        protected SAS data set. If another password is used or no password is 
+        used, then the audit file is still created, but is not protected.</td>
+    </tr>
+  </table>
+  <p></p>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">For more information about audit trails, see the 
+        <!--doc reference-->
+        SAS documentation for  
+        the DATASETS procedure.</td>
+    </tr>
+  </table>
+  <p> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

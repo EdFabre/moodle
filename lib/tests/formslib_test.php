@@ -51,8 +51,6 @@ class core_formslib_testcase extends advanced_testcase {
         $this->assertTrue($rule->validate("Something\nmore"));
         $this->assertTrue($rule->validate("\nmore"));
         $this->assertTrue($rule->validate(" more "));
-        $this->assertTrue($rule->validate('ш'));
-        $this->assertTrue($rule->validate("の"));
         $this->assertTrue($rule->validate("0"));
         $this->assertTrue($rule->validate(0));
         $this->assertTrue($rule->validate(true));
@@ -90,8 +88,6 @@ class core_formslib_testcase extends advanced_testcase {
         $this->assertTrue($rule->validate("\nmore"));
         $this->assertTrue($rule->validate(" more "));
         $this->assertTrue($rule->validate("0"));
-        $this->assertTrue($rule->validate('ш'));
-        $this->assertTrue($rule->validate("の"));
         $this->assertTrue($rule->validate(0));
         $this->assertTrue($rule->validate(true));
         $this->assertTrue($rule->validate('<p>x</p>'));

@@ -207,10 +207,12 @@ class qtype_multianswer_question extends question_graded_automatically_with_coun
     }
 
     public function get_validation_error(array $response) {
-        if ($this->is_complete_response($response)) {
-            return '';
+        $errors = array();
+        foreach ($this->subquestions as $i => $subq) {
+            $substep = $this->get_substep(null, $i);
+            $errors[] = $subq->get_validation_error($substep->filter_array($response));
         }
-        return get_string('pleaseananswerallparts', 'qtype_multianswer');
+        return implode('<br />', $errors);
     }
 
     /**

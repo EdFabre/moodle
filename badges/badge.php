@@ -26,7 +26,6 @@
 
 require_once(dirname(dirname(__FILE__)) . '/config.php');
 require_once($CFG->libdir . '/badgeslib.php');
-require_once($CFG->libdir . '/filelib.php');
 
 $id = required_param('hash', PARAM_ALPHANUM);
 $bake = optional_param('bake', 0, PARAM_BOOL);
@@ -38,10 +37,12 @@ $badge = new issued_badge($id);
 
 if ($bake && ($badge->recipient->id == $USER->id)) {
     $name = str_replace(' ', '_', $badge->badgeclass['name']) . '.png';
-    $filehash = badges_bake($id, $badge->badgeid, $USER->id, true);
-    $fs = get_file_storage();
-    $file = $fs->get_file_by_hash($filehash);
-    send_stored_file($file, 0, 0, true, array('filename' => $name));
+    ob_start();
+    $file = badges_bake($id, $badge->badgeid);
+    header('Content-Type: image/png');
+    header('Content-Disposition: attachment; filename="'. $name .'"');
+    readfile($file);
+    ob_flush();
 }
 
 $PAGE->set_url('/badges/badge.php', array('hash' => $id));
@@ -51,16 +52,7 @@ $PAGE->set_title(get_string('issuedbadge', 'badges'));
 if (isloggedin()) {
     $PAGE->set_heading($badge->badgeclass['name']);
     $PAGE->navbar->add($badge->badgeclass['name']);
-    if ($badge->recipient->id == $USER->id) {
-        $url = new moodle_url('/badges/mybadges.php');
-    } else {
-        $url = new moodle_url($CFG->wwwroot);
-    }
-    navigation_node::override_active_url($url);
-} else {
-    $PAGE->set_heading($badge->badgeclass['name']);
-    $PAGE->navbar->add($badge->badgeclass['name']);
-    $url = new moodle_url($CFG->wwwroot);
+    $url = new moodle_url('/badges/mybadges.php');
     navigation_node::override_active_url($url);
 }
 

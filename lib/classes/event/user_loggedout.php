@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  * @property-read array $other {
  *      Extra information about event.
  *
- *      - string sessionid: (optional) session id.
+ *      - string sessionid: session id.
  * }
  *
  * @package    core

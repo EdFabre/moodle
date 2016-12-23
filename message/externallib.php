@@ -71,7 +71,7 @@ class core_message_external extends external_api {
         global $CFG, $USER, $DB;
         require_once($CFG->dirroot . "/message/lib.php");
 
-        // Check if messaging is enabled.
+        //check if messaging is enabled
         if (!$CFG->messaging) {
             throw new moodle_exception('disabled', 'message');
         }
@@ -210,13 +210,6 @@ class core_message_external extends external_api {
      * @since Moodle 2.5
      */
     public static function create_contacts($userids) {
-        global $CFG;
-
-        // Check if messaging is enabled.
-        if (!$CFG->messaging) {
-            throw new moodle_exception('disabled', 'message');
-        }
-
         $params = array('userids' => $userids);
         $params = self::validate_parameters(self::create_contacts_parameters(), $params);
 
@@ -269,13 +262,6 @@ class core_message_external extends external_api {
      * @since Moodle 2.5
      */
     public static function delete_contacts($userids) {
-        global $CFG;
-
-        // Check if messaging is enabled.
-        if (!$CFG->messaging) {
-            throw new moodle_exception('disabled', 'message');
-        }
-
         $params = array('userids' => $userids);
         $params = self::validate_parameters(self::delete_contacts_parameters(), $params);
 
@@ -321,13 +307,6 @@ class core_message_external extends external_api {
      * @since Moodle 2.5
      */
     public static function block_contacts($userids) {
-        global $CFG;
-
-        // Check if messaging is enabled.
-        if (!$CFG->messaging) {
-            throw new moodle_exception('disabled', 'message');
-        }
-
         $params = array('userids' => $userids);
         $params = self::validate_parameters(self::block_contacts_parameters(), $params);
 
@@ -380,13 +359,6 @@ class core_message_external extends external_api {
      * @since Moodle 2.5
      */
     public static function unblock_contacts($userids) {
-        global $CFG;
-
-        // Check if messaging is enabled.
-        if (!$CFG->messaging) {
-            throw new moodle_exception('disabled', 'message');
-        }
-
         $params = array('userids' => $userids);
         $params = self::validate_parameters(self::unblock_contacts_parameters(), $params);
 
@@ -426,12 +398,6 @@ class core_message_external extends external_api {
      */
     public static function get_contacts() {
         global $CFG;
-
-        // Check if messaging is enabled.
-        if (!$CFG->messaging) {
-            throw new moodle_exception('disabled', 'message');
-        }
-
         require_once($CFG->dirroot . '/user/lib.php');
 
         list($online, $offline, $strangers) = message_get_contacts();
@@ -532,13 +498,6 @@ class core_message_external extends external_api {
      */
     public static function search_contacts($searchtext, $onlymycourses = false) {
         global $CFG, $USER;
-        require_once($CFG->dirroot . '/user/lib.php');
-
-        // Check if messaging is enabled.
-        if (!$CFG->messaging) {
-            throw new moodle_exception('disabled', 'message');
-        }
-
         require_once($CFG->libdir . '/enrollib.php');
 
         $params = array('searchtext' => $searchtext, 'onlymycourses' => $onlymycourses);

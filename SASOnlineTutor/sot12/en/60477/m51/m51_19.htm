@@ -1,0 +1,96 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Referencing 
+      Macro Variables Indirectly<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+
+<h2>The Forward Re-scan rule</h2> 
+     
+The Forward Re-scan rule can be summarized as follows: 
+        <UL>
+          <LI>When multiple ampersands or percent signs precede a name token, 
+            the macro processor resolves two ampersands (<strong><code>&amp;&amp;</code></strong>) 
+            to one ampersand (<strong><code>&amp;</code></strong>), and re-scans 
+            the reference.</LI>
+          <LI>To re-scan a reference, the macro processor scans and resolves tokens 
+            from left to right from the point where multiple ampersands or percent 
+            signs are coded, until no more triggers can be resolved.</LI>
+
+        </UL>
+        <p>According to the Forward Re-scan rule, you need to use <strong>three 
+          ampersands</strong> in front of a macro variable name when its value 
+          matches the name of a second macro variable. This indirect reference 
+          resolves to the value of the second macro variable. 
+        <P><BR>
+<h2>Example</h2>
+        <P>Suppose you want to use the macro variable <code>crsid</code> to indirectly 
+          reference the macro variable <code>C002</code>.<P><BR>
+        <div align="center">
+<table border="1" cellspacing="0" cellpadding="4" bgcolor="#FFFFFF" title="Global Symbol Table">
+<tr bgcolor="#F7F7DE"><td colspan="2" align="center"><strong>Global Symbol Table</strong></td></tr>
+<tr><td><code>C001</code></td><td><em>Basic Telecommunications</em></td></tr>
+<tr><td><code><strong>C002</strong></code></td><td><em>Structured Query Language</em></td></tr>
+<tr><td><code>C003</code></td><td><em>Local Area Networks</em></td></tr>
+<tr><td><code>C004</code></td><td><em>Database Design</em></td></tr>
+<tr><td><code>C005</code></td><td><em>Artificial Intelligence</em></td></tr>
+<tr><td><code>C006</code></td><td><em>Computer Aided Design</em></td></tr>
+<tr><td><code>CRSID</code></td><td><em><strong>C002</strong></em></td></tr>
+</table></div>
+<P><BR>The following table shows several different references along with their resolved values.<P><BR>
+<table  cellspacing="1" cellpadding="1" width="85%" align="center">
+<tr><td><strong>Reference&nbsp;&nbsp;&nbsp;&nbsp;</strong></td><td><strong>Scan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></td><td><strong>Resolved Value&nbsp;&nbsp;&nbsp;&nbsp;</strong></td><td><strong>Re-scan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></td><td><strong>Resolved Value&nbsp;&nbsp;&nbsp;&nbsp;</strong></td></tr>
+<tr><td><font color="#003399"><code>&amp;crsid</code></font></td><td><strong>&rarr;</strong></td><td><font color="#003399"><code>C002</code></font></td><td>no re-scan</td><td>&nbsp;</td></tr>
+<tr><td><font color="#003399"><code>&amp;&amp;crsid</code></font></td><td><strong>&rarr;</strong></td><td><font color="#003399"><code>&amp;crsid</code></font></td><td><strong>&rarr;</strong></td><td><font color="#003399"><code>C002</code></font></td></tr>
+<tr><td><font color="#003399"><code>&amp;&amp;&amp;crsid</code></font></td><td><strong>&rarr;</strong></td>
+            <td><font color="#003399"><code>&amp;C002</code></font></td>
+            <td><strong>&rarr;</strong></td><td><font color="#003399"><code>Structured Query Language</code></font></td></tr>
+</table>
+        <P><BR>
+          By preceding a macro variable reference with two ampersands, you delay 
+          the resolution of the reference until the second scan. The first time 
+          the reference is scanned, only the double ampersands will be resolved 
+          (to one ampersand). In order to create an indirect reference (a reference 
+          whose value is a reference to a different macro variable), you must 
+          use three ampersands. Therefore, to use an indirect reference that resolves 
+          to <em>Structured Query Language</em>, the original reference must be 
+          <code>&amp;&amp;&amp;crsid</code>.</td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

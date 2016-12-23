@@ -7,7 +7,7 @@ Feature: View my courses in navigation block
   Background:
     Given the following "users" exist:
       | username | firstname | lastname | email |
-      | student1 | Student | 1 | student1@example.com |
+      | student1 | Student | 1 | student1@asd.com |
     And the following "categories" exist:
       | name  | category | idnumber |
       | cat1  | 0        | cat1     |
@@ -29,11 +29,13 @@ Feature: View my courses in navigation block
       | student1 | c1     | student |
       | student1 | c31    | student |
       | student1 | c331   | student |
+    And I log in as "admin"
 
   @javascript
   Scenario: The plain list of enrolled courses is shown
-    Given the following config values are set as admin:
-      | navshowmycoursecategories | 0 |
+    Given I set the following administration settings values:
+      | Show my course categories | 0 |
+    And I log out
     And I log in as "student1"
     When I follow "My home"
     Then I should not see "cat1" in the "Navigation" "block"
@@ -47,8 +49,9 @@ Feature: View my courses in navigation block
 
   @javascript
   Scenario: The nested list of enrolled courses is shown
-    Given the following config values are set as admin:
-      | navshowmycoursecategories | 1 |
+    Given I set the following administration settings values:
+      | Show my course categories | 1 |
+    And I log out
     And I log in as "student1"
     When I follow "My home"
     Then I should see "cat1" in the "Navigation" "block"
@@ -66,9 +69,10 @@ Feature: View my courses in navigation block
 
   @javascript
   Scenario: I can expand categories and courses as guest
-    Given the following config values are set as admin:
-      | navshowmycoursecategories | 1 |
-      | navshowallcourses         | 1 |
+    Given I set the following administration settings values:
+      | Show my course categories | 1 |
+      | Show all courses          | 1 |
+    And I log out
     And I expand "Courses" node
     And I should see "cat1" in the "Navigation" "block"
     And I should see "cat2" in the "Navigation" "block"
@@ -83,6 +87,8 @@ Feature: View my courses in navigation block
     When I expand "cat3" node
     And I expand "cat31" node
     And I expand "cat1" node
+    And I should see "c1" in the "Navigation" "block"
+    And I expand "c1" node
     Then I should see "cat1" in the "Navigation" "block"
     And I should see "cat2" in the "Navigation" "block"
     And I should see "cat3" in the "Navigation" "block"

@@ -1,0 +1,80 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Functions to Mask Special Characters<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The %NRSTR Function</h2>
+ 	Sometimes you might want to hide the normal meaning of an ampersand or a percent 
+        sign. The <nobr>%NRSTR</nobr> function performs the same quoting function 
+        as <nobr>%STR</nobr>, except it also masks macro triggers (& and %). The 
+        <strong>NR</strong> in the name <nobr>%NRSTR</nobr> stands for <strong>No 
+        Resolution</strong>. <nobr>%NRSTR</nobr> has the same syntax as <nobr>%STR</nobr>. 
+        <P><BR>
+		<h2>Example</h2>
+        Suppose you want to create a macro variable named <code>period</code> 
+          and to assign a value of <em>May&Jun</em> to it. If you attempt to use 
+          the <nobr>%STR</nobr> function in the assignment statement, SAS will interpret the 
+          ampersand as a macro trigger and generate a warning message. You need 
+          to use the <nobr>%NRSTR</nobr> function instead. <font color="#003399"><pre>    %let Period=%str(May&Jun);
+    %put Period resolves to: &period;
+    %let Period=%nrstr(May&Jun);
+    %put Period resolves to: &period;
+</pre></font>
+		The following portion of a SAS log shows the results 
+		of both the <nobr>%STR</nobr> and the <nobr>%NRSTR</nobr> functions for this example.
+    </td>
+  </tr>
+</table>
+<P><BR>
+SAS Log
+<table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+1    %let Period=%str(May&Jun);
+<strong>WARNING: Apparent symbolic reference JUN not resolved.</strong>
+2    %put Period resolves to: &period;
+<strong>WARNING: Apparent symbolic reference JUN not resolved.</strong>
+Period resolves to: May&Jun
+3
+4    %let Period=%nrstr(May&Jun);
+5    %put Period resolves to: &period;
+Period resolves to: May&Jun
+</pre></td></tr>
+</table> </div><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

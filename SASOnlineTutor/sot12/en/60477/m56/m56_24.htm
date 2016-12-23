@@ -1,0 +1,119 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      DATA Step Match-Merges and PROC SQL Joins<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td>In the last example, data from two data sets that have a many-to-many 
+        match was combined. The PROC SQL join produced the correct results, but 
+        the DATA step match-merge did not. However, you can produce the correct 
+        results in a DATA step. First, let's look at using multiple SET statements 
+        to combine data. 
+        <P><BR>        <h2>Using Multiple SET Statements</h2>
+        <p> You can use multiple SET statements to combine observations from several 
+          SAS data sets. </p>
+        For example, the following DATA step creates a new data set named <strong>Combine</strong>. 
+        Each observation in <strong>Combine</strong> contains data from one observation 
+        in <strong>Dataset1</strong> and data from one observation in <strong>Dataset2</strong>.<font color="#003399"> 
+        <pre>     data combine;
+        set dataset1;
+        set dataset2;
+     run;</pre>
+        </font> <p>When you use multiple SET statements, 
+        <ul>
+          <li>processing stops when SAS encounters the end-of-file (EOF) marker 
+            on <strong>either</strong> data set (even if there is more data in 
+            the other data set). Therefore, the output data set contains the same 
+            number of observations as the smallest input data set.<br>
+            <br>
+          <li>the variables in the program data vector (PDV) are <strong>not </strong>reinitialized 
+            when a second SET statement is executed. <br>
+            <br>
+          <li>for any variables that are common to both input data sets, the value 
+            or values from the data set in the second SET statement will overwrite 
+            the value or values from the data set in the first SET statement in 
+            the PDV. 
+        </ul>
+        <P>Keep in mind that using multiple SET statements to combine data from 
+          multiple input sources that do not have a one-to-one match can be complicated. 
+          By default, the first observation from each data set is combined, the 
+          second observation from each data set is combined, and so on until the 
+          first EOF marker is reached in one of the data sets. Therefore, if you 
+          are working with data sources that do not have a one-to-one match, or 
+          that contain nonmatching data, you will need to add additional DATA 
+          step syntax in order to produce the results that you want. 
+        <P><BR><h2>Example: Using Multiple SET Statements with a Many-to-Many Match</h2>
+		  
+        <p>Remember that in the previous example you wanted to combine <strong>Sasuser.Flightschedule</strong> 
+          with <strong>Sasuser.Flightattendants</strong>. Your resulting data 
+          set should contain all variables from the <strong>Sasuser.Flightschedule</strong> 
+          data set with the first and last names of each flight attendant who 
+          is scheduled to work on each flight. <strong>Sasuser.Flightschedule</strong> 
+          contains data for 45 flights, and three flight attendants are scheduled 
+          to be on each flight. Therefore, your output data set should contain 
+          135 observations (three for each flight).</p>
+        <p>You can use the following DATA step to perform this table lookup operation. 
+          In this program, the first SET statement reads an observation from the 
+          <strong>Sasuser.Flightschedule</strong> data set. Then the DO loop executes, 
+          and the second SET statement reads each observation in <strong>Sasuser.Flightattendants</strong>. 
+          The <code>EmpID</code> variable in <strong>Sasuser.Flightattendants</strong> 
+          is renamed so that it does not overwrite the value for <code>EmpID</code> 
+          that has been read from <strong>Sasuser.Flightschedule</strong>. Instead, 
+          these two values are used for comparison to control which observations 
+          from <strong>Sasuser.Flightattendants</strong> should be included in 
+          the output data set for each observation from <strong>Sasuser.Flightschedule</strong>. 
+          <font color="#003399"> </font></p>
+        <font color="#003399">
+        <pre>     data flightemps3(drop=empnum jobcode);
+        set sasuser.flightschedule;
+        do i=1 to num;
+           set sasuser.flightattendants
+               (rename=(empid=empnum))
+               nobs=num point=i;
+           if empid=empnum then output;
+        end;
+     run;</pre>
+        </font> The <a href="JavaScript: openOther('m56_24a.htm')">resulting <strong>Flightemps3</strong> data set</a> contains 135 
+        observations and no missing values. Keep in mind that although it is possible 
+        to use a DATA step to produce the same results that a PROC SQL join creates 
+        by default, the PROC SQL step might be much more efficient. </td>
+    </tr>
+  </table>
+ 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

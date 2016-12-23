@@ -1,0 +1,140 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      SAS DATA Step Views to Conserve Data Storage Space<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td>
+        <h2>DATA Step Views</h2>
+		  A DATA step view contains a partially compiled DATA step program that 
+        can read data from a variety of sources, including
+<ul>
+          <li>raw data files</li>
+          <li>SAS data files </li>
+          <li>PROC SQL views </li>
+          <li>SAS/ACCESS views </li>
+          <li>DB2, ORACLE, or other DBMS data.</li>
+        </ul>
+        <p>A DATA step view can be created only in a DATA step. A DATA step view 
+          cannot contain global statements, host-specific data set options, or 
+          most host-specific FILE and INFILE statements. Also, a DATA step view 
+          cannot be indexed or compressed. 
+        <p>You can use DATA step views to 
+        <ul>
+          <li>always access the most current data in changing files</li>
+          <li>avoid storing a copy of a large data file</li>
+          <li>combine data from multiple sources.</li>
+        </ul>
+        <p>The compiled code does not take up much room for storage, so you can 
+          create DATA step views to conserve disk space. On the other hand, use 
+          of DATA step views can increase CPU usage because SAS must execute the 
+          stored DATA step program each time you use the view.</p>
+   
+        <a name="compress"></a><p>To create a DATA step view, specify the VIEW= option after the final 
+          data set name in the DATA statement.
+      </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATA step to create a DATA step view">
+            
+  <tr> 
+      <td height="223" align="left"><strong>General form, DATA step to create 
+        a DATA step view:</strong> 
+        <blockquote> <font color="#003399"><strong>DATA</strong> <em>SAS-data-view 
+          &lt;SAS-data-file-1 ... SAS data-file-n&gt; </em><strong>/ <br>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIEW=</strong><em>SAS-data-view</em><strong>;</strong></font> 
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"> <em>&lt;SAS 
+          statements&gt;</em></font> <br>
+          <font color="#003399"><strong>RUN;</strong></font></blockquote>
+      where 
+      <ul>
+          <li><font color="#003399"><em>SAS-data-view</em></font> names the data 
+            view to be created 
+          <li><font color="#003399"><em>SAS-data-file-1 ... SAS-data-file-n</em></font> 
+            is an optional list that names any data files to be created 
+          <li><font color="#003399"><em>SAS statements</em></font> includes other 
+            DATA step syntax to create the data view and any data files that are 
+            listed in the DATA statement. 
+        </ul>
+	  </td>
+            </tr>
+          </table><p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The VIEW= option tells SAS to compile, but not to execute, the source 
+        program and to store the compiled code in the input DATA step view that 
+        is named in the option. 
+        <p><br><table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">If you specify additional data files in the DATA statement, 
+              SAS creates these data files when the view is processed in a subsequent 
+              DATA or PROC step. Therefore, you need to reference the data view 
+              before you attempt to reference the data file in later steps. </td>
+      </tr>
+    </table>
+        <p><br>
+<h2>Example</h2>
+	  The following program creates a DATA step view named <strong>Company.Newdata</strong> 
+          that reads from the file referenced by the fileref in the INFILE statement. 
+        <font color="#003399"> 
+        <pre>     data company.newdata / view=company.newdata;
+        infile &lt;<em>fileref</em>&gt;;
+        &lt;<em>DATA step statements</em>&gt;
+     run;</pre>
+        </font>
+	<P><BR><a name="describe"></a> <h2>The DESCRIBE Statement</h2>
+        <p>Beginning in SAS 8, DATA step views retain source statements. You can 
+          retrieve these statements by using the DESCRIBE statement. The following 
+          example uses the DESCRIBE statement in a DATA step to write a copy of 
+          the source code for the data view <strong>Company.Newdata</strong> to 
+          the SAS log:</p>
+<font color="#003399">
+        <pre>     data view=company.newdata;
+        describe;
+     run;</pre>
+        </font>
+        <P>Now let's look at using DATA step views.</td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,85 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Combining 
+      Summary and Detail Data</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Combining 
+      Summary and Detail Data<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <ol>
+        <li> This animation shows the compilation and execution of the DATA step 
+          below. This DATA step creates a new data set that combines summary data 
+          from one input data set (<strong>Sasuser.Summary</strong>) and detail 
+          data from a second input data set (<strong>Sasuser.Monthsum</strong>). 
+          <font color="#003399"> 
+          <pre>data sasuser.percent1(drop=cargosum);
+   if _N_=1 then set sasuser.summary(keep=cargosum);
+   set sasuser.monthsum(keep=salemon revcargo);
+   PctRev=revcargo/cargosum;
+run;</pre>
+          </font> 
+        <li>During the compilation phase, SAS reads the descriptor portion of 
+          the input data set and creates the PDV. <code>_N_</code> is a temporary 
+          variable that is included in the PDV although it will not be included 
+          in the output data set.<br>
+          <br>
+        <li> Execution begins. On the first iteration of the DATA step, <code>_N_</code> 
+          has a value of <em>1</em>. The IF statement evaluates as true, so the 
+          first SET statement executes and SAS reads the value of <code>Cargosum</code> 
+          from <strong>Sasuser.Summary</strong> and records it in the PDV.<br>
+          <br>
+        <li> Next, the second SET statement executes. SAS reads the first observation 
+          in <strong>Sasuser.Monthsum</strong> and records the values in the PDV.<br>
+          <br>
+        <li> SAS calculates the value of <code>PctRev</code> and records it in 
+          the PDV.<br>
+          <br>
+        <li> At the end of the DATA step, SAS write the values in the PDV to the 
+          output data set. <code>_N_</code> is not included in the output data 
+          set since it is a temporary variable. <code>CargoSum</code> is dropped 
+          from the output data set as well.<br>
+          <br>
+        <li> On the second iteration of the DATA step, the value of <code>_N_</code> 
+          is <em>2</em>, so the IF statement evaluates to false and the first 
+          SET statement does not execute. However, the value of <code>CargoSum</code> 
+          is retained in the PDV.<br>
+          <br>
+        <li> The second SET statement executes. SAS reads the second observation 
+          from <strong>Sasuser.Monthsum</strong> and records the values in the 
+          PDV.<br>
+          <br>
+        <li> The value for <code>PctRev</code> is calculated and recorded in the 
+          PDV. SAS will write the values in the PDV to the output data set (except 
+          for <code>_N_</code> and <code>CargoSum</code>). <br>
+          <br>
+        <li>The DATA step will continue to execute until all observations have 
+          been read from <strong>Sasuser.Monthsum</strong>. </ol>
+ </td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

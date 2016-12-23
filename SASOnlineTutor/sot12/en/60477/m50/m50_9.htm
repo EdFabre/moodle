@@ -1,0 +1,245 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Automatic Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>SAS creates and defines several <strong>automatic macro variables</strong> for you. 
+Automatic macro variables contain information about your computing environment, such as the date and time of the session,
+and the version of SAS you are running. These automatic macro variables
+<UL>
+<LI>are created when SAS is invoked</LI>
+<LI>are global (always available)</LI>
+<LI>are usually assigned values by SAS</LI>
+<LI>can be assigned values by the user in some cases.</LI>
+</UL>
+        <P> Some automatic macro variables have fixed values that are set when 
+          SAS is invoked.</td>
+  </tr>
+</table><P><BR>
+<div align="center">
+    <table border="1"width="85%"  cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Fixed-Value Automatic Macro Variables">
+      <tr bgcolor="#F7F7DE"><th><font size="-1">Name</font></th><th><font size="-1">Value</font></th></tr>
+      <tr valign="top"> 
+        <td><code>SYSDATE</code></td>
+        <td>the date of the SAS invocation (DATE7.)</td>
+      </tr>
+      <tr valign="top"> 
+        <td><code>SYSDATE9</code></td>
+        <td>the date of the SAS invocation (DATE9.)</td>
+      </tr>
+      <tr valign="top"> 
+        <td><code>SYSDAY</code></td>
+        <td>the day of the week of the SAS invocation</td>
+      </tr>
+      <tr valign="top"> 
+        <td><code>SYSTIME</code></td>
+        <td>the time of the SAS invocation</td>
+      </tr>
+      <tr valign="top"> 
+        <td><code>SYSENV</code></td>
+        <td>FORE (interactive execution) or BACK (noninteractive or batch execution)</td>
+      </tr>
+      <tr valign="top"> 
+        <td><code>SYSSCP</code></td>
+        <td>an abbreviation for the operating system that is 
+          being used, such as OpenVMS, WIN, HP 300</td></tr>	
+      <tr valign="top"> 
+        <td><code>SYSVER</code></td>
+        <td>the release of SAS that is being used</td>
+    </tr>
+      <tr valign="top"> 
+        <td><code>SYSJOBID</code></td>
+        <td>an identifier for the current SAS session or for the current batch 
+          job (the user ID or job name for mainframe systems, 
+          the process ID (PID) for other systems)</td>
+      </tr>
+</table></div><P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+      <p>Some automatic macro variables have values that automatically change 
+          based on submitted SAS statements.</td>
+  </tr>
+</table>
+<P><BR>
+<div align="center">
+    <table  border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Automatic Macro Variables with Non-Fixed Values">
+      <tr bgcolor="#F7F7DE"><th><font size="-1">Name</font></th><th><font size="-1">Value</font></th></tr>
+      <tr valign="top"> 
+        <td><code>SYSLAST</code></td>
+        <td>the name of the most recently created SAS data set, in the <BR>
+          form <code>LIBREF.NAME</code>. This value is always stored in 
+          all capital <BR>
+          letters. If no data set has been created, the value is _NULL_</td>
+      </tr>
+      <tr valign="top"> 
+        <td><code>SYSPARM</code></td>
+        <td>text that is specified when SAS is invoked</td>
+      </tr>
+      <tr valign="top"> 
+        <td><code>SYSERR</code></td>
+        <td>contains a return code status that is set by the DATA <br>
+          step and some SAS procedures to indicate if the step <br>or procedure executed successfully</td></tr>
+</table></div>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Example</h2>
+      You can substitute system information such as the time, day, and date your SAS session was invoked and the version of SAS you are running in footnotes for a report.
+<P>
+        <PRE><font color="#003399">
+     footnote1 &quot;Created <strong>&amp;systime</strong> <strong>&amp;sysday</strong>, <strong>&amp;sysdate9</strong>&quot;;
+     footnote2 &quot;on the <strong>&amp;sysscp</strong> system using Release <strong>&amp;sysver</strong>&quot;;
+     title &quot;REVENUES FOR DALLAS TRAINING CENTER&quot;;
+     proc tabulate data=sasuser.all(keep=location course_title fee);
+        where upcase(location)=&quot;DALLAS&quot;;
+              class course_title;
+              var fee;
+              table course_title=&quot; &quot; all=&quot;TOTALS&quot;,
+                    fee=&quot; &quot;*(n*f=3. sum*f=dollar10.)
+                    / rts=30 box=&quot;COURSE&quot;;
+     run;
+</font></PRE>
+    </td>
+  </tr>
+</table><P><BR>
+<TABLE border=0 width=100% cellpadding=1 cellspacing=1 rules=NONE frame=VOID
+  bgcolor="#FFFFF0">
+    <TR>
+      <TD ALIGN=CENTER bgcolor="#FFFFF0"><FONT face="Arial, Helvetica, Helv" size="4"
+	    color="#002288"><B><I>REVENUES FOR DALLAS TRAINING CENTER</I></B></FONT></TD>
+    </TR>
+  </TABLE><P>
+<table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+    bordercolor="#000000" title="PROC PRINT output" align="center">
+  <thead> 
+  <tr bgcolor="#CCCCCC"> 
+    <td align=CENTER bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Course</b></font></td>
+    <td align=CENTER bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>N</b></font></td>
+    <td align=CENTER bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="3" color="#0033AA"><b>Sum</b></font></td>
+  </tr>
+  </thead> <tbody> 
+  <tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Artificial Intelligence  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 25</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $10,000</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Basic Telecommunications  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 18</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $14,310</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Computer Aided Design  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 19</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $30,400</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Database Design  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 23</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $8,625</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Local Area Networks  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 24</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $15,600</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">Structured Query Language  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 24</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $27,600</font></td>
+  </tr>
+<tr> 
+    <td align=LEFT bgcolor="#CCCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#0033AA">TOTALS  </font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000"> 133</font></td>
+    <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		size="2" color="#000000">   $106,535</font></td>
+  </tr>
+</table><P>
+<TABLE border=0 width=100% cellpadding=1 cellspacing=1 rules=NONE frame=VOID
+  bgcolor="#FFFFF0">
+    <TR>
+      <TD ALIGN=CENTER bgcolor="#FFFFF0"><FONT face="Arial, Helvetica, Helv" size="4"
+	    color="#002288"><B><I>Created 11:16</I><font color="red"><sup>1</sup></font><I> Wednesday</I><font color="red"><sup>2</sup></font><I>, 05JUN2002</I><font color="red"><sup>3</sup></font></B></FONT></TD>
+    </TR>
+    <TR>
+      <TD ALIGN=CENTER bgcolor="#FFFFF0"><FONT face="Arial, Helvetica, Helv" size="4"
+	    color="#002288"><B><I>on the WIN</I><font color="red"><sup>4</sup></font><I> system using Release 9.00</I><font color="red"><sup>5</sup></font></B></FONT></TD>
+    </TR>
+  </TABLE>
+<P>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P><BR>
+<OL>
+<LI>time of day (<code>SYSTIME</code>)</LI>
+<LI>day of the week (<code>SYSDAY</code>)</LI>
+<LI>date (day, month, and year) (<code>SYSDATE9</code>)</LI>
+<LI>operating environment (<code>SYSSCP</code>)</LI>
+        <LI>release of SAS (<code>SYSVER</code>)</LI>
+</OL>
+</td></tr></table>
+<BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

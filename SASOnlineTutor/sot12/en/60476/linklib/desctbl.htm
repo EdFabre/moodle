@@ -1,0 +1,107 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>DESCRIBE TABLE Statement</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->DESCRIBE 
+      TABLE Statement<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> To display a list of columns and column attributes for one or more tables 
+      in the SAS log, regardless of whether the tables contain rows of data, you 
+      can use the DESCRIBE TABLE statement in PROC SQL.</td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, DESCRIBE TABLE statement">
+  <tr> 
+    <td align="left"><strong>General form, DESCRIBE TABLE statement:</strong> 
+      <blockquote> <font color="#003399"><nobr><strong>DESCRIBE TABLE </strong><em>table-name-1&lt;, 
+        ...table-name-n&gt;</em><strong>;</strong></nobr></font> </blockquote>
+      <p> where <font color="#003399"><em>table-name </em></font> specifies the 
+        table to be described as<font color="#003399"><em></em></font> </p>
+      <ul>
+        <li>a one-level name</li>
+        <li>a two-level <em>libref.table</em> name</li>
+        <li> a physical pathname that is enclosed in single quotation marks. </li>
+      </ul></td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><p>The DESCRIBE TABLE statement writes a CREATE TABLE statement that includes 
+        column definitions to the SAS log for the specified table, regardless 
+        of how the table was originally created. For example, if the DESCRIBE 
+        TABLE statement specifies a table that was created with the DATA step, 
+        a CREATE TABLE statement will still be displayed.</p></td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <pre><font color="#003399">     proc sql;
+        describe table marchflights;</font></pre></td>
+  </tr>
+</table>
+<br>
+<div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>NOTE: SQL table WORK.MARCHFLIGHTS was created like:
+
+
+create table WORK.MARCHFLIGHTS( bufsize=8192 )
+  (
+   Date num format=DATE9. informat=DATE9.,
+   DepartureTime num format=TIME5. informat=TIME5.,
+   FlightNumber char(3),
+   Origin char(3),
+   Destination char(3),
+   Distance num,
+   Mail num,
+   Freight num,
+   Boarded num,
+   Transferred num,
+   NonRevenue num,
+   Deplaned num,
+   PassengerCapacity num
+  );</pre></td>
+    </tr>
+  </table>
+  <br>
+</div>
+<br>
+<table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+  <tr> 
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+    <td valign="top">The DESCRIBE TABLE statement also displays information about 
+      any indexes that are defined on a table. </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

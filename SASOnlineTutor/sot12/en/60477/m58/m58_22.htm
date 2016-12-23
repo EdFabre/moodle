@@ -1,0 +1,150 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Be sure you have copied the data set from the <strong>Sasuser</strong> library to the <strong>Work</strong> library.<br><br> ';
+solutionText+='<li>Submit the following PROC FORMAT step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc format library=sasuser;<br>';
+solutionText+='   value $regions<br>';
+solutionText+="         '0000102'-'0000103'='Region1'<br>";
+solutionText+="         '0000104'-'0000105'='Region2'<br>";
+solutionText+="         '0000106'-'0000107'='Region3'<br>";
+solutionText+="                   '0000108'='Region4'<br>";
+solutionText+="                       other='Unknown';<br>";
+solutionText+='run;<br></pre></font>';
+solutionText+='<li>Submit the following OPTIONS statement and PROC PRINT step:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='options fmtsearch=(sasuser);<br>';
+solutionText+='proc print data=sasuser.dnunder;<br>';
+solutionText+='   format routeid $regions.;<br>';
+solutionText+='run;</pre></font>';
+solutionText+='<li>Submit the following PROC DATASETS step:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc datasets nolist;<br>';
+solutionText+='   modify dnunder;<br>';
+solutionText+='   format routeid $regions.;<br>';
+solutionText+='quit;</pre></font>';
+solutionText+='<li>Submit the following PROC PRINT step:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc print data=dnunder;<br>';
+solutionText+='run;</pre></font></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+            and document a custom format, and then apply it to the <a href="JavaScript: openOther('../linklib/dnunder.htm')">Sasuser.Dnunder</a> 
+            data set.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Submit the following PROC COPY code to copy the data set <strong>Dnunder</strong> 
+            from the <strong>Sasuser</strong> library to the <strong>Work</strong> 
+            library:<br>
+            <br>
+            <pre><font color="#003399">proc copy in=sasuser out=work;
+   select dnunder;
+run;</font></pre>
+          <li>Write and submit a PROC FORMAT step that creates a permanent character 
+            format named $REGIONS., whose values are listed below. Use a keyword 
+            to label all other values &quot;Unknown.&quot; Save the format in 
+            the <strong>Sasuser</strong> library. <br>
+            <br>
+            <br>
+            <table width="188" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Values for the $REGIONS Format ">
+              <tr bgcolor="#F7F7DE"> 
+                <th width="74" nowrap> <div align="left"><font size="-1">Value</font></div></th>
+                <th width="100" nowrap> <div align="left"><font size="-1">Label</font></div></th>
+              </tr>
+              <tr> 
+                <td width="74" nowrap>0000102<em></em></td>
+                <td width="100" nowrap>Region1</td>
+              </tr>
+              <tr> 
+                <td width="74" nowrap>0000103<em></em></td>
+                <td width="100" nowrap>Region1</td>
+              </tr>
+              <tr> 
+                <td width="74" nowrap>0000104<em></em></td>
+                <td width="100" nowrap>Region2</td>
+              </tr>
+              <tr> 
+                <td width="74" nowrap>0000105<em></em></td>
+                <td width="100" nowrap>Region2</td>
+              </tr>
+              <tr> 
+                <td width="74" nowrap>0000106<em></em></td>
+                <td width="100" nowrap>Region3</td>
+              </tr>
+              <tr> 
+                <td width="74" nowrap>0000107</td>
+                <td width="100" nowrap>Region3</td>
+              </tr>
+              <tr> 
+                <td width="74" nowrap>0000108</td>
+                <td width="100" nowrap>Region4</td>
+              </tr>
+            </table>
+            <br>
+            <br>
+          <li>Write and submit a PROC PRINT step that lists the <strong><font color="#FF0000">Sasuser</font>.Dnunder</strong> 
+            data set and formats the variable <code>RouteID</code> with the $REGIONS. 
+            format. Don't forget to set a SAS system option so that SAS can locate 
+            the format.<br>
+            <br>
+          <li>Write and submit a PROC DATASETS step that assigns the $REGIONS. 
+            format to the variable <code>RouteID</code> in the <strong><font color="#FF0000">Work</font>.Dnunder</strong> 
+            data set. <br>
+            <br>
+          <li>Write and submit a PROC PRINT step that lists the <strong><font color="#FF0000">Work</font>.Dnunder</strong> 
+            data set. View the results.<br>
+            <br>
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(8); 
+   answer[1] = "select state, city, count(*) as Employees"
+   answer[2] = "select state,city,count(*)as employees"
+   answer[3] = "select state,city,count(empid)as employees"
+   answer[4] = "select state,city,count(city)as employees"
+   answer[5] = "select state,city,count(lastname)as employees"
+   answer[6] = "select state,city,count(firstname)as employees"
+   answer[7] = "select state,city,count(state)as employees"
+   answer[8] = "select state,city,count(phonenumber)as employees"
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "Employees";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='Following the SELECT keyword, you specify the two existing columns. Then you ';
+   right2='define a third column, using the COUNT function with an asterisk (*) as an argument. Alternatively, you can specify a particular column as the argument of COUNT, such as <code>EmpID</code> or <code>City</code>. ';
+   right3='The alias for the new column is <code>Employees</code>.';
+   
+   wrong1='Remember to specify the SELECT keyword, followed by the two existing ';
+   wrong2='columns and then the definition of the third column. The COUNT function uses an ';
+   wrong3='argument in parentheses, and an alias is used to name the new column. Check your answer for misspellings and incorrect syntax.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="yes";
+   var checkSemicolon="no";
+   var useParens="yes";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Summarizing 
+      and Grouping Data<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->You are creating 
+          a PROC SQL query using the table <strong>Sasuser.Staffmaster</strong>, 
+          which lists all employees of an airline. Add a SELECT clause that specifies 
+          three columns. The first two columns are the existing columns <code>State</code> 
+          and <code>City</code>. The third column is a new column called <code>Employees,</code> 
+          which displays the number of people employed in each city. Use the COUNT 
+          summary function to define the new column. (There are no missing values 
+          in the table.)<!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" --> 
+            
+          <pre><font color="#003399">proc sql;
+title 'Number of Employees in Each City';
+   <INPUT TYPE="text" size="50" NAME="anstext">
+      from sasuser.staffmaster
+      group by state, city;</font></pre>
+           <!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

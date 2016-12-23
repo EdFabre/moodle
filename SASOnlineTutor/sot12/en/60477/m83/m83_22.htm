@@ -1,0 +1,85 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      and Writing Only Essential Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Best practices dictate that you should write programs that read 
+          and write only essential data. If you process fewer observations and 
+          variables, you conserve resources. This topic covers many different 
+          techniques that can improve performance when you</p>
+        <ul>
+          <li>select observations from SAS data sets</li>
+          <li>select observations from external files</li>
+          <li>keep or drop variables when creating or reporting on SAS data sets.</li>
+        </ul>
+        <p>Let's begin by looking at how two useful statements differ in how they 
+          select observations to subset.</p>
+        <p><br> 
+        <h2>Selecting Observations Using Subsetting IF versus WHERE Statements</h2>
+        <p>You can use WHERE statements or subsetting IF statements to subset 
+          data. Although both statements test a condition to determine whether 
+          SAS should process an observation, the WHERE statement is more efficient.</p>
+        <p>The following graphic illustrates differences in how these statements 
+          process data.</p>
+        <p><br>
+          <center>
+            <img src="images/m83_22g1.gif" width="439" height="279" alt="Differences in WHERE and subsetting IF processing"> 
+          </center>
+        <p><br>
+          I/O operations are measured as data moves between the disk that contains 
+          input SAS data and the buffer in memory, and when data moves from the 
+          output buffer to the disk that contains output data sets. Input data 
+          is not affected by the WHERE statement or subsetting IF statement. However, 
+          output data is affected by both. </p>
+        <p>CPU time is measured when data must be processed in the program data 
+          vector. CPU time can be saved if fewer observations are processed.</p>
+        <p>A WHERE statement and an IF statement make different use of the program 
+          data vector. The WHERE statement examines what is in the input page 
+          buffer and selects observations before they are loaded in the program 
+          data vector, which results in a savings in CPU operations. The subsetting 
+          IF statement loads all observations sequentially into the program data 
+          vector. If the statement finds a match and the statement is true, then 
+          the data is processed and is written to the output page buffer.</p>
+        <p>WHERE statements work on variables that are already in SAS data sets. 
+          IF statements can work on any variable in the program data vector, including 
+          new or old variables.</p></td>
+    </tr>
+  </table>
+  <p><br>  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

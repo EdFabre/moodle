@@ -1,0 +1,125 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Example: Viewing Resource Statistics for UNIX</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Example: 
+      Viewing Resource Statistics for UNIX<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>Suppose you submitted a PROC SORT step to sort the data set <strong>Work.A</strong>. 
+        The system option FULLSTIMER is in effect, so the SAS log displays all 
+        available resource usage statistics:</p>
+      <p><br>
+      <div align="center">SAS Log<br>
+        <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+          <tr> 
+            <td> <pre>NOTE: The data set WORK.A has 987792 observations 
+and 19 variables.<br>NOTE: PROCEDURE SORT used (Total process time):<br>      real time           11.26 seconds<br>      user cpu time       9.66 seconds<br>      system cpu time     6.44 seconds<br>      Memory                            18149k<br>      Page Faults                       0<br>      Page Reclaims                     0<br>      Page Swaps                        0<br>      Voluntary Context Switches        23448<br>      Involuntary Context Switches      619<br>      Block Input Operations            1<br>      Block Output Operations           566</pre></td>
+          </tr>
+        </table>
+      </div>
+	  <p><br>
+        The SAS log displays a variety of resource usage statistics, including 
+        the following:
+<p><br>
+      <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Resource usage statistics displayed in SAS log">
+        <tr valign="top" bgcolor="#F7F7DE"> 
+          <th width="23%"><font size="-1">Statistic</font></th>
+          <th width="77%"><font size="-1">Description</font></th>
+        </tr>
+        <tr valign="top"> 
+          <td>real time</td>
+          <td><p>the amount of time spent to process the SAS job. Real time is 
+              also referred to as elapsed time.</p>
+            <table border="0" cellpadding="2" cellspacing="0">
+              <tr> 
+                <td width="24" height="39" valign="top"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                <td valign="top">Unless you are running SAS 9.1 with <a href="JavaScript: openOther('../linklib/threadin.htm')">threading</a> enabled, real time might be a less 
+                  useful measure of program efficiency than CPU time.</td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr valign="top"> 
+          <td>user CPU time</td>
+          <td><p>the CPU time spent to execute your SAS code</p></td>
+        </tr>
+        <tr valign="top"> 
+          <td>system CPU time</td>
+          <td><p>the CPU time spent to perform operating system tasks (system 
+              overhead tasks) that support the execution of your SAS code</p></td>
+        </tr>
+        <tr valign="top"> 
+          <td>memory</td>
+          <td>the amount of memory required for running a step</td>
+        </tr>
+        <tr valign="top"> 
+          <td>page faults</td>
+          <td>the number of pages that SAS tried to access but which were not 
+            in main memory and required I/O activity</td>
+        </tr>
+        <tr valign="top"> 
+          <td>page reclaims</td>
+          <td>the number of pages that can be accessed without I/O activity</td>
+        </tr>
+        <tr valign="top"> 
+          <td>page swaps</td>
+          <td>the number of times a process was swapped out of main memory</td>
+        </tr>
+        <tr valign="top"> 
+          <td>voluntary context switches</td>
+          <td>the number of times that the SAS process had to give up on the CPU 
+            because of a resource constraint such as a disk drive</td>
+        </tr>
+        <tr valign="top"> 
+          <td><p>involuntary context switches</p></td>
+          <td>the number of times that the operating system forced the SAS session 
+            to pause processing to allow other processes to run</td>
+        </tr>
+        <tr valign="top"> 
+          <td>block input operations</td>
+          <td>the number of I/O operations that were performed to read the data 
+            into memory</td>
+        </tr>
+        <tr valign="top">
+          <td>block output operations</td>
+          <td>the number of I/O operations that were performed to write the data 
+            to a file</td>
+        </tr>
+      </table>
+<p><br>
+      <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">Different implementations of UNIX might provide different 
+            statistics.</td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

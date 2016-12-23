@@ -1,0 +1,134 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+<!--STEP 1-->
+solutionText='<ol><li>Write and submit the following PROC SQL step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   create table work.staffmaster as<br>';
+solutionText+='      select *<br>';
+solutionText+='      from sasuser.staffmaster;<br>';
+solutionText+='quit;</pre></font>';
+solutionText+='The SAS log displays the following message:<br>';
+solutionText+='<pre>NOTE: Table WORK.STAFFMASTER created, with <br>'; 
+solutionText+='148 rows and 6 columns.</pre>';
+<!--STEP 2-->
+solutionText+='<li>Write and submit the following PROC SQL step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   create unique index LastName<br>';
+solutionText+='      on work.staffmaster(lastname);<br>';
+solutionText+='quit;</pre></font>';
+solutionText+='The SAS log displays the following message:<br>';
+solutionText+='<pre>ERROR: Duplicate values not allowed on <br>'; 
+solutionText+='index LastName for file STAFFMASTER.</pre>';
+solutionText+='You cannot define a unique index on the column <code>LastName</code><br> ';
+solutionText+='because <code>LastName</code> contains duplicate values.</pre>';
+<!--STEP 3-->
+solutionText+='<li>Write and submit the following PROC SQL step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   create index LastName<br>';
+solutionText+='      on work.staffmaster(lastname);<br>';
+solutionText+='quit;</pre></font>';
+solutionText+='The SAS log displays the following message:<br>';
+solutionText+='<pre>NOTE: Simple index LastName has been defined.</pre>';
+<!--STEP 4-->
+solutionText+='<li>Write and submit the following PROC SQL step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   describe table work.staffmaster;<br>';
+solutionText+='quit;</pre></font>';
+solutionText+='The SAS log displays a CREATE TABLE statement and ';
+solutionText+='the following CREATE INDEX statement: ';
+solutionText+='<pre>create index LastName on WORK.STAFFMASTER(LastName);</pre></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+            an index on the temporary table Work.Staffmaster (which is a copy 
+            of <a href="JavaScript: openOther('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a>) 
+            and display index specifications.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><table cellpadding="2" border="0" align="center" width="85%" cellspacing="0">
+  <tr valign="top"> 
+    <td width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution:"
+            border="0"></td>
+      <td>Be sure to complete this practice. You'll use the temporary table <strong>Work.Staffmaster</strong> 
+        and the index <strong>LastName</strong> in later practices.</td>
+  </tr>
+</table>
+
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write a PROC SQL step to create the temporary table <strong>Work.Staffmaster</strong> 
+            by copying the table (all columns and rows) from the table <strong>Sasuser.Staffmaster</strong>. 
+            Add a QUIT statement to the step. Submit the step and view the SAS 
+            log to verify that the table was created.<br>
+            <br>
+          <li>Write a PROC SQL step to create a simple, unique index on the column 
+            <code>LastName</code> in <strong>Work.Staffmaster</strong>. Add a 
+            QUIT statement to the step. Submit the step and view the SAS log to 
+            see whether the index was created. (Are there duplicate values for 
+            <code>LastName</code> in <strong>Work.Staffmaster</strong>?)<br>
+            <br>
+          <li> Write a PROC SQL step to create a simple non-unique index on the 
+            column <code>LastName</code> in <strong>Work.Staffmaster</strong>. 
+            Add a QUIT statement to the step. Submit the step and view the SAS 
+            log to see whether the index was created.<br>
+            <br>
+          <li>Write a PROC SQL step to display index specifications (and other 
+            information) for the table <strong>Work.Staffmaster</strong> in the 
+            SAS log. Add a QUIT statement to the step. Submit the step and view 
+            the SAS log to see the CREATE INDEX statement for the index <strong>LastName</strong>.<br>
+          
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

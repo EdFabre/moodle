@@ -1,0 +1,164 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Converting 
+      Data with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><STRONG>Explicit Numeric-to-Character Conversion</STRONG> 
+      </p>
+      <P> You can use the <strong>PUT </strong>function to explicitly convert 
+        numeric data values to character data values. 
+      <P> Let's use this function to complete one of the modifications needed 
+        for the data set <STRONG>Hrd.Temp</STRONG>. Suppose you are asked to create 
+        a new character variable named <CODE>Assignment</CODE> that concatenates 
+        the values of the numeric variable <CODE>Site</CODE> and the character 
+        variable <CODE>Dept</CODE>. The new variable values must contain the value 
+        of <CODE>Site</CODE> followed by a slash (/) and then the value of <CODE>Dept</CODE>&#151; 
+        for example, <EM>26/DP</EM>. </td>
+  </tr>
+</table>
+<P align="center"><BR>
+  SAS Data Set Hrd.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Overtime</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Job</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Contact</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Dept</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+<TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">4</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Word Processor</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>DP</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>26</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Filing, administrative duties</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Admin. Asst.</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>PURH</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>57</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Organizational dev. specialist</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Consultant</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>PERS</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>34</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">.</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Bookkeeping, word processing</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Bookkeeper Asst.</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>BK</STRONG></font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>57</STRONG></font></TD>
+</TR>
+</tbody>
+</table></center>
+<P align="center"> <BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>You write an assignment statement that contains the concatenation operator 
+        (||) to indicate that <CODE>Site</CODE> should be concatenated with <CODE>Dept,</CODE>using 
+        a slash as a separator. Note that the slash is enclosed in quotation marks. 
+        All character constants must be enclosed in quotation marks. 
+        <PRE><FONT color="#003399">     data hrd.newtemp;</FONT>
+        <FONT color="#003399">set hrd.temp;</FONT>
+        <FONT color="#003399">Assignment=site||'/'||dept;</FONT>
+     <FONT color="#003399">run;</FONT>
+</PRE>
+        <P> You know that submitting this DATA step will cause SAS to 
+          automatically convert the numeric values of <CODE>Site</CODE> to character 
+          values, because <CODE>Site</CODE> is used in a character context. The 
+          variable <CODE>Site</CODE> appears with the concatenation operator, 
+          which requires character values. To explicitly convert the numeric values 
+          of <CODE>Site</CODE> to character values, you must add the <STRONG>PUT 
+          function</STRONG> to your assignment statement. </TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> <BR>
+<center>
+  <TABLE width="85%" BORDER="1" CELLPADDING="10" CELLSPACING="0" bgcolor="#F7F7DE" title="General form, PUT function">
+    <TR> 
+      <TD><STRONG>General form, PUT function:</STRONG> <BLOCKQUOTE> <FONT color="#003399"><nobr><STRONG>PUT(</STRONG><EM>source,format</EM><strong>)</strong></nobr></FONT> 
+        </BLOCKQUOTE>
+        <P> where 
+        <UL>
+          <LI> <FONT color="#003399"><EM>source </EM></FONT>indicates the numeric 
+            variable, constant, or expression to be converted to a character value 
+          <LI> a <FONT color="#003399"><EM>format</EM></FONT> matching the data 
+            type of the source must also be specified, as in this example:&nbsp; 
+            <PRE><FONT color="#003399">put(site,2.)</FONT></PRE>
+        </UL>
+        <TABLE border="0" cellpadding="2" cellspacing="0" width="100%">
+          <TR valign="top"> 
+            <TD width="22"><IMG src="../navimages/note.gif" border="0" width="20" height="20" alt="Note:"></TD>
+            <TD><UL>
+                <LI>The PUT function always returns a character string. 
+                <LI>The PUT function returns the <FONT color="#003399"><EM>source</EM></FONT> 
+                  written with a <FONT color="#003399"><EM>format</EM></FONT>. 
+                <LI>The <FONT color="#003399"><EM>format</EM></FONT> must agree 
+                  with the <FONT color="#003399"><EM>source</EM></FONT> in type. 
+                <LI>Numeric formats right-align the result; character formats 
+                  left-align the result. 
+                <LI>If you use the PUT function to create a variable that has 
+                  not been previously identified, it creates a character variable 
+                  whose length is equal to the format width. </UL></TD>
+          </TR>
+        </TABLE></TD>
+    </TR>
+  </table>
+</center>
+<P align="center">&nbsp;
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>Because you are listing a numeric variable as the source, you must specify 
+        a numeric format.</TD>
+    </TR>
+  </TABLE>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

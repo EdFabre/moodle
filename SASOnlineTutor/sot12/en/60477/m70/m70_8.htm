@@ -1,0 +1,211 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Rows by Using Conditional Operators<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> 
+        <p>In the WHERE clause of a PROC SQL query, you can specify 
+          any valid SAS expression to subset or restrict the data that is displayed 
+          in output. The expression may contain any of various types of operators, 
+          such as the following.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="1" cellspacing="0" cellpadding="5" bgcolor="#FFFFFF" title="Types of Operators">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th><font size="-1">Type of Operator</font></th>
+      <th><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>comparison</strong><em></em></td>
+      <td><font color="#003399"> 
+        <pre>where membertype<font color="red"><strong>=</strong></font>'GOLD'</pre>
+        </font></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>logical</strong><em></em></td>
+      <td><font color="#003399"> 
+        <pre>where visits&lt;=3 <strong><font color="red">or</font></strong> status='new'</pre>
+        </font></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>concatenation</strong><em></em></td>
+      <td><font color="#003399"> 
+        <pre>where name=trim(last)<font color="red"><strong>||</strong></font>', '<font color="red"><strong>||</strong></font>first</pre>
+        </font></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td width="24" valign="top"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">For a complete list of operators that can be used in SAS 
+        expressions, see the 
+        <!--doc reference-->
+        SAS documentation.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Using Operators in PROC SQL</h2>
+        <p>Comparison, logical, and concatenation operators are used in PROC SQL 
+          as they are used in other SAS procedures. For example, the following 
+          WHERE clause contains 
+        <ul>
+          <li> the logical operator <strong>AND</strong>, which joins multiple 
+            conditions </li>
+          <li>two comparison operators: an equal sign (<strong>=</strong>) and 
+            a greater than symbol (<strong>&gt;</strong>).</li>
+        </ul>
+        <p></p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <pre><font color="#003399">     proc sql;
+        select ffid, name, state, pointsused
+           from sasuser.frequentflyers
+           <strong>where membertype<font color="red">=</font>'GOLD' <font color="red">and</font> pointsused<font color="red">&gt;</font>0</strong>
+           order by pointsused;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>In PROC SQL queries, you can also use the following <strong>conditional 
+          operators</strong>. All of these operators except for ANY, ALL, and 
+          EXISTS, can also be used in other SAS procedures.</p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="1" align="center" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Conditional Operators">
+    <tr align="left" valign="top"> 
+      <th bgcolor="#F7F7DE"><font size="-1">Conditional Operator</font></th>
+      <th bgcolor="#F7F7DE"><font size="-1">Tests for ...</font></th>
+      <th bgcolor="#F7F7DE"><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>BETWEEN-AND</strong></td>
+      <td> values that occur within an inclusive range</td>
+      <td><font color="#003399"> 
+        <pre>where salary <strong>between</strong> 70000 <br>             <strong>and</strong> 80000</pre>
+        </font></td>
+    </tr>
+    <tr valign="top"> 
+      <td height="46"><strong>CONTAINS</strong> or <strong>?</strong></td>
+      <td> values that contain a specified string</td>
+      <td><font color="#003399"> 
+        <pre>where name <strong>contains</strong> 'ER'</pre>
+        <pre>where name <strong>?</strong> 'ER'</pre>
+        </font></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>IN</strong></td>
+      <td> values that match one of a list of values</td>
+      <td> <pre><font color="#003399">where code <strong>in</strong> ('PT','NA','FA')</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>IS MISSING</strong> or <strong>IS NULL</strong></td>
+      <td> missing values</td>
+      <td><font color="#003399"> 
+        <pre>where dateofbirth <strong>is missing</strong></pre>
+        <pre>where dateofbirth <strong>is null</strong></pre>
+        </font></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>LIKE</strong> (with<strong>&nbsp;%</strong>,<strong>&nbsp;_</strong>)</td>
+      <td> values that match a specified pattern</td>
+      <td> <pre><font color="#003399">where address <strong>like '% P%PLACE'</strong></font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>=*</strong></td>
+      <td> values that &quot;sound like&quot; a specified value</td>
+      <td> <pre><font color="#003399">where lastname<strong>=*</strong> 'Smith'</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>ANY</strong></td>
+      <td>values that meet a specified condition with respect to <strong>any one</strong> 
+        of the values returned by a subquery</td>
+      <td> <pre><font color="#003399">where dateofbirth &lt; <strong>any</strong>
+   (select dateofbirth
+      from sasuser.payrollmaster
+      where jobcode='FA3')</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>ALL</strong></td>
+      <td>values that meet a specified condition with respect to <strong>all</strong> 
+        the values returned by a subquery</td>
+      <td> <pre><font color="#003399">where dateofbirth &lt; <strong>all
+</strong>   (select dateofbirth
+      from sasuser.payrollmaster
+      where jobcode='FA3')</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>EXISTS</strong></td>
+      <td>the existence of values returned by a subquery</td>
+      <td> <pre><font color="#003399">where <strong>exists</strong>
+   (select * 
+      from sasuser.flightschedule
+      where fa.empid=
+            flightschedule.empid)</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">To create a negative condition, you can precede any of 
+        these conditional operators, except for ANY and ALL, with the <strong>NOT</strong> 
+        operator.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Most of these conditional operators, and their uses, are covered 
+          on the next several pages. ANY, ALL, and EXISTS are discussed later 
+          in the lesson.</p>
+        </td>
+    </tr>
+  </table>
+  <p> <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

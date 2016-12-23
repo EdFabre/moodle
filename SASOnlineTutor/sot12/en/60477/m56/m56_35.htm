@@ -1,0 +1,98 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit the following program: ';
+solutionText+='<font color="#003399"><pre>data work.diff2(drop=totcont n);<br>';
+solutionText+='   retain avgamt;<br>   if _n_=1 then do until(last);<br>';
+solutionText+='      set sasuser.contrib end=last;<br>';
+solutionText+='      totcont+amount;<br>      if amount ne . then N+1;<br>';
+solutionText+='      if last then AvgAmt=totcont/n;<br>';
+solutionText+='   end;<br>   set sasuser.contrib;<br>';
+solutionText+='   if amount ne .;<br>';
+solutionText+='   DiffAvg=round(amount-avgamt, .01);<br>';
+solutionText+='run;</pre></font>';
+solutionText+='<li>Submit the following step:';
+solutionText+='<font color="#003399"><pre>proc print data=work.diff2;<br>run;</pre></font>';
+solutionText+='Examine the output. <strong>Work.Diff2</strong> should contain 48 observations and 5 variables.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+            a summary data set, and combine it with detail data from the <a href="JavaScript: openOther('../linklib/contrib.htm')">Sasuser.Contrib</a> data set  
+            in one DATA step.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write a DATA step to create a new data set named <strong>Work.Diff2</strong> 
+            that contains the overall average employee contribution as stored 
+            in <strong>Sasuser.Contrib</strong>. <strong>Diff2</strong> should 
+            contain all information from <strong>Sasuser.Contrib</strong>, as 
+            well as a new variable named <code>DiffAvg</code> that is the difference 
+            between an individual contribution and the average employee contribution.<br>
+            <br>
+            In your DATA step, you will need to calculate the overall average 
+            employee contribution. Create a variable named <code>AvgAmt</code> to contain this 
+            average. Use the following RETAIN statement at the beginning of your 
+            DATA step to initialize the variable AvgAmt and retain its value 
+            as the DATA step iterates. 
+			<font color="#003399"><pre>     retain AvgAmt;</pre></font>
+			Do not include missing values in <code>AvgAmt</code>. 
+            You will also need to find the difference between <code>AvgAmt</code> 
+            and each individual contribution. Also, do not include observations 
+            with a missing value for the contribution in <strong>Work.Diff2</strong>. 
+            Submit the program.<br>
+            <br>
+          <li>Write a step to print the <strong>Work.Diff2</strong> data set. 
+            Submit the program and examine the output.
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

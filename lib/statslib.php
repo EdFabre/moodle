@@ -126,7 +126,6 @@ function stats_run_query($sql, $parameters = array()) {
  */
 function stats_cron_daily($maxdays=1) {
     global $CFG, $DB;
-    require_once($CFG->libdir.'/adminlib.php');
 
     $now = time();
 
@@ -653,7 +652,6 @@ function stats_cron_daily($maxdays=1) {
  */
 function stats_cron_weekly() {
     global $CFG, $DB;
-    require_once($CFG->libdir.'/adminlib.php');
 
     $now = time();
 
@@ -703,7 +701,7 @@ function stats_cron_weekly() {
 
                 SELECT 'logins', timeend, courseid, userid, SUM(statsreads)
                   FROM (
-                           SELECT $nextstartweek AS timeend, courseid, userid, statsreads
+                           SELECT $nextstartweek AS timeend, courseid, statsreads
                              FROM {stats_user_daily} sd
                             WHERE stattype = 'logins' AND $stattimesql
                        ) inline_view
@@ -793,7 +791,6 @@ function stats_cron_weekly() {
  */
 function stats_cron_monthly() {
     global $CFG, $DB;
-    require_once($CFG->libdir.'/adminlib.php');
 
     $now = time();
 
@@ -846,7 +843,7 @@ function stats_cron_monthly() {
 
                 SELECT 'logins', timeend, courseid, userid, SUM(statsreads)
                   FROM (
-                           SELECT $nextstartmonth AS timeend, courseid, userid, statsreads
+                           SELECT $nextstartmonth AS timeend, courseid, statsreads
                              FROM {stats_user_daily} sd
                             WHERE stattype = 'logins' AND $stattimesql
                        ) inline_view
@@ -1242,7 +1239,7 @@ function stats_get_parameters($time,$report,$courseid,$mode,$roleid=0) {
         $param->fields = 'sum(stat1+stat2) AS line1';
         $param->stattype = 'activity';
         $param->orderby = 'line1 DESC';
-        $param->line1 = get_string('useractivity');
+        $param->line1 = get_string('activity');
         $param->graphline = 'line1';
         break;
 
@@ -1268,7 +1265,7 @@ function stats_get_parameters($time,$report,$courseid,$mode,$roleid=0) {
                       ) enrolments
                       ON (activity.courseid = enrolments.courseid)
                       ORDER BY line3 DESC';
-        $param->line1 = get_string('useractivity');
+        $param->line1 = get_string('activity');
         $param->line2 = get_string('users');
         $param->line3 = get_string('activityweighted');
         $param->graphline = 'line3';

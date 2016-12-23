@@ -335,11 +335,11 @@ class mod_quiz_renderer extends plugin_renderer_base {
      */
     protected function render_quiz_nav_question_button(quiz_nav_question_button $button) {
         $classes = array('qnbutton', $button->stateclass, $button->navmethod);
-        $extrainfo = array();
+        $attributes = array();
 
         if ($button->currentpage) {
             $classes[] = 'thispage';
-            $extrainfo[] = get_string('onthispage', 'quiz');
+            $attributes[] = get_string('onthispage', 'quiz');
         }
 
         // Flagged?
@@ -349,7 +349,7 @@ class mod_quiz_renderer extends plugin_renderer_base {
         } else {
             $flaglabel = '';
         }
-        $extrainfo[] = html_writer::tag('span', $flaglabel, array('class' => 'flagstate'));
+        $attributes[] = html_writer::tag('span', $flaglabel, array('class' => 'flagstate'));
 
         if (is_numeric($button->number)) {
             $qnostring = 'questionnonav';
@@ -359,12 +359,12 @@ class mod_quiz_renderer extends plugin_renderer_base {
 
         $a = new stdClass();
         $a->number = $button->number;
-        $a->attributes = implode(' ', $extrainfo);
+        $a->attributes = implode(' ', $attributes);
         $tagcontents = html_writer::tag('span', '', array('class' => 'thispageholder')) .
                         html_writer::tag('span', '', array('class' => 'trafficlight')) .
                         get_string($qnostring, 'quiz', $a);
         $tagattributes = array('class' => implode(' ', $classes), 'id' => $button->id,
-                                  'title' => $button->statestring, 'data-quiz-page' => $button->page);
+                                  'title' => $button->statestring);
 
         if ($button->url) {
             return html_writer::link($button->url, $tagcontents, $tagattributes);
@@ -614,7 +614,7 @@ class mod_quiz_renderer extends plugin_renderer_base {
                 $row[] = $attemptobj->get_question_mark($slot);
             }
             $table->data[] = $row;
-            $table->rowclasses[] = 'quizsummary' . $slot . ' ' . $attemptobj->get_question_state_class(
+            $table->rowclasses[] = $attemptobj->get_question_state_class(
                     $slot, $displayoptions->correctness);
         }
 
@@ -808,8 +808,8 @@ class mod_quiz_renderer extends plugin_renderer_base {
         $output .= $this->view_information($quiz, $cm, $context, $messages);
         $guestno = html_writer::tag('p', get_string('guestsno', 'quiz'));
         $liketologin = html_writer::tag('p', get_string('liketologin'));
-        $referer = clean_param(get_referer(false), PARAM_LOCALURL);
-        $output .= $this->confirm($guestno."\n\n".$liketologin."\n", get_login_url(), $referer);
+        $output .= $this->confirm($guestno."\n\n".$liketologin."\n", get_login_url(),
+                get_referer(false));
         return $output;
     }
 
@@ -972,7 +972,6 @@ class mod_quiz_renderer extends plugin_renderer_base {
                     // Highlight the highest grade if appropriate.
                     if ($viewobj->overallstats && !$attemptobj->is_preview()
                             && $viewobj->numattempts > 1 && !is_null($viewobj->mygrade)
-                            && $attemptobj->get_state() == quiz_attempt::FINISHED
                             && $attemptgrade == $viewobj->mygrade
                             && $quiz->grademethod == QUIZ_GRADEHIGHEST) {
                         $table->rowclasses[$attemptobj->get_attempt_number()] = 'bestrow';

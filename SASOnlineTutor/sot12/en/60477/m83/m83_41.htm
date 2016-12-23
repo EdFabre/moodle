@@ -1,0 +1,110 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Procedure Invocation<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2> RUN-Group Processing</h2>
+        <p>If you can take advantage of RUN-group processing, you can avoid unnecessary 
+          procedure invocation. For best programming practices, you need to understand 
+          how RUN-group processing affects the execution of SAS statements. The 
+          procedures that support RUN-group processing include</p>
+        <ul>
+          <li>CHART, GCHART</li>
+          <li>PLOT, GPLOT</li>
+          <li>GLM</li>
+          <li>REG</li>
+          <li>DATASETS.</li>
+        </ul>
+      <P><BR>  <h2>Using Different Types of RUN Groups with PROC DATASETS</h2>
+        <p>To illustrate how RUN-group processing works, this discussion focuses 
+          on the DATASETS procedure. The comparative example that follows includes 
+          programs that use PROC DATASETS to modify the descriptor portion of 
+          data sets. Before you examine the code to consider efficient programming 
+          techniques, review how the principles associated with RUN-group processing 
+          apply to PROC DATASETS.</p>
+        <p>The DATASETS procedure supports four types of RUN groups. Each RUN 
+          group is defined by the statements that compose it and by what causes 
+          it to execute.</p>
+        <p>Some statements in PROC DATASETS act as implied RUN statements because 
+          they cause the RUN group that precedes them to execute.</p>
+        <p>The following list identifies which statements compose a RUN group 
+          and what causes each RUN group to execute:</p>
+        <ul>
+          <li>The PROC DATASETS statement always executes immediately. No other 
+            statement is necessary to cause the PROC DATASETS statement to execute. 
+            Therefore, the PROC DATASETS statement alone is a RUN group.</li><br><br>
+          <li>The MODIFY statement and any of its subordinate statements form 
+            a RUN group. These RUN groups always execute immediately. No other 
+            statement is necessary to cause a MODIFY RUN group to execute.</li>
+          <br><br>
+          <li>The APPEND, CONTENTS, and COPY statements (including EXCLUDE and 
+            SELECT, if present) form their own separate RUN groups. Every APPEND 
+            statement forms a single-statement RUN group; every CONTENTS statement 
+            forms a single-statement RUN group; and every COPY step forms a RUN 
+            group. Any other statement in the procedure, except those that are 
+            subordinate to either the COPY or MODIFY statement, causes the RUN 
+            group to execute.</li>
+        </ul>
+        <p>Additionally, one or more of the following statements form a RUN group: 
+        <ul>
+          <li>AGE </li>
+          <li>EXCHANGE </li>
+          <li>CHANGE </li>
+          <li>REPAIR. </li>
+        </ul>
+        <p>If any of these statements appear in sequence in the PROC step, the 
+          sequence forms a RUN group. For example, if a REPAIR statement appears 
+          immediately after a SAVE statement, the REPAIR statement does not force 
+          the SAVE statement to execute; it becomes part of the same RUN group. 
+          To execute the RUN group, submit one of the following statements:</p>
+        <ul>
+          <li>PROC DATASETS </li>
+          <li>MODIFY </li>
+          <li>APPEND </li>
+          <li>QUIT </li>
+          <li>CONTENTS </li>
+          <li>RUN </li>
+          <li>COPY </li>
+          <li>another DATA or PROC step. </p> </li>
+        </ul>
+         </td>
+    </tr>
+  </table><p>
+   
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

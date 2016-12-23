@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Symbol Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><h2>The MLOGICNEST Option</h2>
+        <p>The MLOGICNEST option is available beginning in SAS 9. MLOGICNEST allows 
+          the macro nesting information to be displayed in the MLOGIC output in 
+          the SAS log. The setting of MLOGICNEST does not affect the output of 
+          any currently executing macro. </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, MLOGICNEST option">
+            <tr> 
+              
+      <td align="left"><strong>General form, MLOGICNEST option</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>OPTIONS MLOGICNEST | 
+          NOMLOGICNEST;</strong></nobr></font> </blockquote>
+		  where <ul> 
+		  <li><font color="#003399"><strong>MLOGICNEST</strong></font> specifies that macro nesting information is written in the MLOGIC output in the SAS log
+		  <li><font color="#003399"><strong>NOMLOGICNEST</strong></font> specifies that macro nesting information is not written in the MLOGIC output in the SAS log.
+		  </ul>
+                </td>
+            </tr>
+          </table><p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The setting of MLOGICNEST does not imply the setting of MLOGIC. You must 
+        set both MLOGIC and MLOGICNEST in order for output with nesting information 
+        to be written to the SAS log. 
+        <p><br>
+        <h2>Example</h2>
+        Suppose that you have defined three nested macros, as follows: <font color="#003399">
+        <pre>     %macro outer;
+        %put THIS IS OUTER;
+        %inner
+     %mend outer;
+	 
+     %macro inner;
+        %put THIS IS INNER;
+        %inrmost
+     %mend inner;
+	 
+     %macro inrmost;
+        %put THIS IS INRMOST;
+     %mend inrmost;</pre>
+        </font>The SAS log below shows the messages that are written when you 
+        set both the MLOGIC and MLOGICNEST options and submit a call to the <strong>Outer</strong> 
+        macro, as follows: <font color="#003399"> 
+        <pre>     options mlogic mlogicnest;
+     %outer</pre>
+        </font> 
+		<div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>MLOGIC(OUTER):  Beginning execution.
+MLOGIC(OUTER):  %PUT THIS IS OUTER
+THIS IS OUTER
+MLOGIC(OUTER.INNER):  Beginning execution.
+MLOGIC(OUTER.INNER):  %PUT THIS IS INNER
+THIS IS INNER
+MLOGIC(OUTER.INNER.INRMOST):  Beginning execution.
+MLOGIC(OUTER.INNER.INRMOST):  %PUT THIS IS INRMOST
+THIS IS INRMOST
+MLOGIC(OUTER.INNER.INRMOST):  Ending execution.
+MLOGIC(OUTER.INNER):  Ending execution.
+MLOGIC(OUTER):  Ending execution.</pre> 
+      </td>
+    </tr>
+  </table>
+</div></td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

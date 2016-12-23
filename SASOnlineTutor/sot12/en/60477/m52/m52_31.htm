@@ -1,0 +1,163 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Symbol Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Rules for Creating and Updating Variables</h2> 
+<p> When the macro processor receives a request to create or update a macro variable 
+  during macro execution, the macro processor follows certain rules. Let's look at those rules.
+        <p> Suppose the macro processor receives a <nobr>%LET</nobr> statement 
+          during a macro call, as follows: 
+        <P>
+<font color="#003399"><pre>    %let macvar=value;</pre>
+        </font> The macro processor will take the following steps: 
+        <ol>
+          <li>The macro processor checks to see whether the macro variable <code>macvar</code> 
+            already exists in the local symbol table. If so, the macro processor 
+            updates <code>macvar</code> in the local symbol table with the value 
+            <em>value</em>. If <code>macvar</code> does not exist in the local 
+            table, the macro processor goes on to step 2.<br>
+            <br>
+          <li>The macro processor checks to see whether the macro variable <code>macvar</code> 
+            already exists in the global symbol table. If so, the macro processor 
+            updates <code>macvar</code> in the global symbol table with the value 
+            <em>value</em>. If <code>macvar</code> does not exist in the global 
+            symbol table, the macro processor goes on to step 3.<br>
+            <br>
+          <li>The macro processor creates a macro variable named <code>macvar</code> 
+            in the local symbol table and assigns a value of <em>value</em> to 
+            it. 
+        </ol>
+<p><br>
+<center><table border="1" width="85%"><tr><td>
+<TABLE cellpadding="3" cellspacing="5" title="Updating and Creating Macro Variables">
+<TR>
+                    <TD bgcolor="#f7f7de">Does <code>macvar</code> already exist in the local symbol 
+                      table?</TD>
+                    <TD style="text-align:center;vertical-align:middle"><B>Yes<BR>
+                      <img src="../navimages/arrowrt.gif" width="20" height="20" alt="&gt;"></B></TD>
+                    <TD bgcolor="#f7f7de">Update <code>macvar</code> in the local symbol table with 
+                      the value <em>value</em>.</TD>
+</TR><TR>
+                    <TD style="text-align:center"><B>No<BR>
+                      <img src="../navimages/arrowdn.gif" width="20" height="20" alt="then"> 
+                      </B></TD>
+<TD colspan="2">&nbsp;</TD>
+</TR><TR>
+                    <TD bgcolor="#f7f7de">Does <code>macvar</code> already exist in the global symbol 
+                      table?</TD>
+                    <TD style="text-align:center;vertical-align:middle"><B>Yes<BR>
+                      <img src="../navimages/arrowrt.gif" width="20" height="20" alt="&gt;"> 
+                      </B></TD>
+                    <TD bgcolor="#f7f7de">Update <code>macvar</code> in the global symbol table with 
+                      the value <em>value</em>.</TD>
+</TR><TR>
+                    <TD style="text-align:center;vertical-align:middle"><B>No<BR>
+                      <img src="../navimages/arrowdn.gif" width="20" height="20"alt="then"></B></TD>
+<TD colspan="2">&nbsp;</TD>
+</TR><TR>
+                    <TD bgcolor="#f7f7de">Create <code>macvar</code> in the local symbol table and 
+                      assign a value of <em>value</em> to it.</TD>
+<TD colspan="2">&nbsp;</TD>
+</TR></TABLE> </td></tr></table></center>
+<P><BR>
+          Similarly, suppose the macro processor receives the following reference 
+          during a macro call:<font color="#003399">
+        <pre>    &macvar</pre>
+        </font> The macro processor will take the following steps: 
+        <ol>
+          <li>The macro processor checks to see whether the macro variable <code>macvar</code> 
+            exists in the local symbol table. If so, the macro processor retrieves 
+            the value of <code>macvar</code> from the local symbol table. If <code>macvar</code> 
+            does not exist in the local table, the macro processor goes on to 
+            step 2.<br>
+            <br>
+          <li>The macro processor checks to see whether the macro variable <code>macvar</code> 
+            exists in the global symbol table. If so, the macro processor retrieves 
+            the value of <code>macvar</code> from the global symbol table. If 
+            <code>macvar</code> does not exist in the global symbol table, the 
+            macro processor goes on to step 3.<br>
+            <br>
+          <li>The macro processor returns the tokens to the word scanner. A warning message 
+            is written to the SAS log to indicate that the reference was not resolved. 
+        </ol>
+<P><BR>
+<center><table border="1" width="85%"><tr><td>
+<TABLE cellpadding="3" cellspacing="5" title="Resolving Macro Variables References">
+<TR>
+                    <TD bgcolor="#f7f7de">Does <code>macvar</code> exist in the local symbol table?</TD>
+<TD style="text-align:center;vertical-align:middle"><B>Yes<BR>
+                      <img src="../navimages/arrowrt.gif" width="20" height="20" alt="&gt;"></B></TD>
+                    <TD bgcolor="#f7f7de">Retrieve the value of <code>macvar</code> from the local 
+                      symbol table.</TD>
+</TR><TR>
+                    <TD style="text-align:center"><B>No<BR>
+                      <img src="../navimages/arrowdn.gif" width="20" height="20" alt="then"></B></TD>
+<TD colspan="2">&nbsp;</TD>
+</TR><TR>
+                    <TD bgcolor="#f7f7de">Does <code>macvar</code> exist in the global symbol table?</TD>
+<TD style="text-align:center;vertical-align:middle"><B>Yes<BR>
+                      <img src="../navimages/arrowrt.gif" width="20" height="20" alt="&gt;"></B></TD>
+                    <TD bgcolor="#f7f7de">Retrieve the value of <code>macvar</code> from the global 
+                      symbol table.</TD>
+</TR><TR>
+<TD style="text-align:center;vertical-align:middle"><B>No<BR>
+                      <img src="../navimages/arrowdn.gif" alt="then" width="20" height="20"></B></TD>
+<TD colspan="2">&nbsp;</TD>
+</TR><TR>
+<TD bgcolor="#f7f7de">Return the tokens to the word scanner. Issue a warning message to the SAS log to indicate that the reference was not resolved.</TD>
+<TD colspan="2">&nbsp;</TD>
+</TR></TABLE> </td></tr></table></center>
+<P>
+ <table cellpadding="2">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+            <td>Remember that if the macro processor receives either a <nobr>%LET</nobr> 
+              statement or a macro variable reference (<code>&macvar</code>) in 
+              open code, it will check<strong> only</strong> the <strong>global</strong> 
+              symbol table for existence of the macro variable. If a macro program 
+              is not currently executing, a local symbol table does not currently 
+              exist.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

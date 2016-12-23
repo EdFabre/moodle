@@ -1,0 +1,98 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Avoiding 
+      Unnecessary Procedure Invocation<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Best practices dictate that you avoid unnecessary procedure invocation. 
+          One way to do this is to take advantage of procedures that accomplish 
+          multiple tasks with one invocation.</p>
+        <p>Several procedures enable you to create multiple reports by invoking 
+          the procedure only once. These include</p>
+             <ul>
+          <li>the SQL procedure</li>
+          <li>the DATASETS procedure</li>
+          <li>the FREQ procedure</li>
+          <li>the TABULATE procedure.</li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">BY-group processing can also minimize unnecessary 
+              invocations of procedures.</td>
+          </tr>
+        </table> 
+        <p>To illustrate this principle, let's examine features of the DATASETS 
+          procedure.</pr><br>
+       <p><br> <h2>Executing the DATASETS Procedure</h2>
+        <p>The DATASETS procedure can use RUN-group processing to process multiple 
+          sets of statements. RUN-group processing enables you to submit groups 
+          of statements without ending the procedure.</p>
+          
+        <p>When the DATASETS procedure executes,</p>
+        <ul>
+          <li>SAS reads the program statements that are associated with one task 
+            until it reaches a RUN statement or an implied RUN statement.</li>
+          <li>SAS executes all of the preceding statements immediately, and then 
+            continues reading until it reaches another RUN statement or an implied 
+            RUN statement.</li>
+        </ul>
+        <p>To execute the last task, you must use a RUN statement or a QUIT statement.</p>
+        <pre><font color="#003399">     proc datasets lib=company;
+        modify orders;
+           rename quantity=Units_Ordered;
+           format costprice_per_unit dollar13.2;
+           label delivery_date='Date of Delivery';
+        run;
+        modify customers;
+           format customer_birthdate mmddyy10.
+        run;
+     quit;</font></pre> 
+                      <p>You can terminate the PROC DATASETS execution by submitting</p>
+        <ul>
+          <li>a DATA statement</li>
+          <li>a PROC statement</li>
+          <li>a QUIT statement.</li>
+        </ul>
+              </td>
+    </tr>
+    <tr valign="top"> 
+    </tr>
+  </table>
+    <p>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

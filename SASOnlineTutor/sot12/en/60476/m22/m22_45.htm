@@ -1,0 +1,231 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" --> 
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+        <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">sample programs</A>
+        <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>. 
+        <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>How SAS Processes Programs</strong><br>
+        A SAS DATA step is processed in <a href="m22_3.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on DATA step phases.'; "
+	    onMouseOut="window.status=''">two distinct phases</a>. During the <strong>compilation 
+        phase</strong>, each statement is scanned for syntax errors. During the 
+        <strong>execution phase</strong>, the DATA step writes observations to 
+        the new data set. </p>
+      <p> <strong>Compilation Phase</strong><br>
+        At the beginning of the compilation phase, the input buffer and the <a href="m22_4.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the program data vector.'; "
+	    onMouseOut="window.status=''">program data vector</a> are created. The 
+        program data vector is the area of memory where data sets are built, one 
+        observation at a time. Two automatic variables are also created: <code>_N_</code> 
+        counts the number of DATA step executions, and <code>_ERROR_</code> signals 
+        the occurrence of an error. DATA step statements are checked for syntax 
+        errors, such as invalid options or misspellings. 
+      <p> <strong>Execution Phase</strong><br>
+        During the execution phase, each record in the input file is processed, 
+        stored in the program data vector, and then <a href="m22_8.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the execution phase.'; "
+	    onMouseOut="window.status=''">written to the new data set</a> as an observation. 
+        The DATA step executes once for each record in the input file, unless 
+        otherwise directed. 
+      <p> <strong>Diagnosing Errors in the Compilation Phase</strong><br>
+        Missing semicolons, misspelled keywords, and invalid options will cause 
+        <a href="m22_30.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on syntax errors.'; "
+	    onMouseOut="window.status=''">syntax errors</a> in the compilation phase. 
+        Detected errors are underlined and are identified with a number and message 
+        in the log. If SAS can interpret a syntax error, the DATA step 
+        compiles and executes; if SAS cannot interpret the error, the 
+        DATA step compiles but doesn't execute. 
+      <p> <strong>Diagnosing Errors</strong><strong> in the Execution Phase</strong><br>
+        Illegal mathematical operations or processing a character variable as 
+        numeric will cause <a href="m22_31.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on execution-time errors.'; "
+	    onMouseOut="window.status=''">errors in the execution phase</a>. Depending 
+        on the type of error, the log might show a warning and might include invalid 
+        data from the program data vector, and the DATA step either stops or continues. 
+      <p> <strong>Testing Your Programs</strong><br>
+        To detect common errors and save development time, compile and execute 
+        your program without creating observations. Specify the <a href="m22_37.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the keyword _NULL_.'" onMouseOut="window.status=''">keyword 
+        _NULL_</a> as the data set name to view compilation or execution errors 
+        without creating a data set. Or use the OBS= option in the INFILE statement 
+        to limit the number of observations that are read or created during the 
+        DATA step. You can also use the <a href="m22_40.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the PUT statement.'" onMouseOut="window.status=''">PUT 
+        statement</a> to examine variable values and to generate your own message 
+        in the log. 
+    </td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD><STRONG><A NAME="Syntax">Syntax</A></STRONG> 
+        <P> <EM>To go to the page where a statement or option was presented, select 
+          a link.</EM> 
+        <p> 
+        <blockquote> 
+          <dl> 
+            <dt><font color="#003399"><a href="m22_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the DATA statement.'" onMouseOut="window.status=''"><strong>DATA</strong></a><a href="m22_37.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the keyword _NULL_.'" onMouseOut="window.status=''"> 
+              &lt;_NULL_|</a><a href="m22_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the DATA statement.';" onMouseOut="window.status=''"><em>SAS-data-set</em>&gt;<strong>;</strong></a></font> 
+            <dd><font color="#003399"><strong> <a href="m22_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the INFILE statement.'; "
+		  onMouseOut="window.status=''">INFILE</a></strong><a href="m22_2.htm" onClick="suggestBack()"
+		  onMouseOver="window.status='Display information on the INFILE statement.'; "
+		  onMouseOut="window.status=''"> <em>file-specification </em></a><a href="m22_37.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the OBS= system option.'" onMouseOut="window.status=''"><strong>OBS=</strong><em>n</em></a><a href="m22_2.htm" onClick="suggestBack()"
+		  onMouseOver="window.status='Display information on the INFILE statement.'; "
+		  onMouseOut="window.status=''"><strong>;</strong></a></font> 
+            <dd> <font color="#003399"><nobr> <a href="m22_5.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the INPUT statement.'; "
+		  onMouseOut="window.status=''"> <strong>INPUT</strong><em> variable-1 
+              informat-1 input-pointer-control-1</em></a></nobr></font> 
+            <dd> <nobr>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<font color="#003399"> 
+              <a href="m22_5.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the INPUT statement.'; "
+		  onMouseOut="window.status=''"> <em>&lt; . . .variable-n informat-n <br>
+              </em></a></font>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<font color="#003399"> 
+              <a href="m22_5.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the INPUT statement.'; "
+		  onMouseOut="window.status=''"> <em>input-pointer-control-n&gt;</em><strong>;</strong></a></font></nobr> 
+            <dd> <font color="#003399"> </font> 
+            <dd><font color="#003399"><a href="m22_40.htm" onClick="suggestBack()" onMouseOver="window.status='Display information on the PUT statement.'" onMouseOut="window.status=''"><strong>PUT</strong> 
+              <em>specification(s)</em><strong>;</strong></a></font> 
+            <dt><font color="#003399"><strong>RUN</strong>;</font> 
+          </dl>
+        </blockquote>
+</TD>
+    </TR>
+  </TABLE>
+
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"> 
+        <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+<!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Sample">Sample Programs</A></STRONG> 
+        <pre><font color="#003399">     data perm.update;</font>
+<font color="#003399">        infile invent;</font>
+<font color="#003399">        input Item $ 1-13 IDnum $ 15-19</font>
+<font color="#003399">              InStock 21-22 BackOrd 24-25;</font>
+<font color="#003399">        Total=instock+backord;</font>
+<font color="#003399">     run;</font>
+
+     <font color="#003399">data work.test;</font>
+        <font color="#003399">infile loan;</font>
+        <font color="#003399">input Code $ 1 Amount 3-10;</font>
+        <font color="#003399">if code='1' then type='variable';</font>
+        <font color="#003399">else if code='2' then type='fixed';</font>
+        <font color="#003399">else put 'MY NOTE: invalid value: '</font>
+             <font color="#003399">code=;</font>
+     <font color="#003399">run;</font></pre><HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Points">Points to Remember</A></STRONG><br>
+        <ul>
+          <li> Making, diagnosing, and resolving errors is part of the process 
+            of writing programs. However, checking for common errors will save 
+            you time and trouble. Make sure that<br>
+            <br>
+            <ul>
+              <li> each SAS statement ends with a semicolon 
+              <li> filenames are spelled correctly 
+              <li> keywords are spelled correctly.<br>
+                <br>
+            </ul>
+          <li> In SAS output, missing numeric values are represented by periods, 
+            and missing character values are left blank.<br>
+            <br>
+          <li> The order in which variables are defined in the DATA step determines 
+            the order in which the variables are stored in the data set.<br>
+            <br>
+          <li> Standard character values can include numbers, but numeric values 
+            cannot include characters.
+        </ul>
+        </TD>
+    </TR>
+  </TABLE>
+  <!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

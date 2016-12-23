@@ -1,0 +1,211 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --> 
+<TITLE>Selecting Observations Using WHERE Statements</TITLE>
+<!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Selecting 
+      Observations Using WHERE Statements<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<p> 
+<center>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">By default, many SAS procedures process all the observations 
+          in a data set. You can subset observations for processing by adding 
+          a <strong>WHERE statement </strong>to your PROC step. The WHERE statement 
+          remains in effect only for the PROC step in which it appears.</td>
+      </tr>
+    </table>
+    <p> <br>
+    <table border="2" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, WHERE statement">
+      <tr> 
+        <td align="left"><strong>General form, WHERE statement:</strong> 
+          <blockquote> <font color="#003399"><strong>WHERE</strong> <em>where-expression</em><strong>;</strong></font> 
+          </blockquote>
+          <p> where <font color="#003399"><em>where-expression</em></font> specifies 
+            a condition for selecting observations. The <font color="#003399"><em>where-expression</em></font> 
+            can be any valid SAS expression.
+        </td>
+      </tr>
+    </table>
+    <p> <br>
+    <center>
+      <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td align="left">For example, the WHERE statement in the PROC PRINT 
+            step below selects only observations where the value of <code>Age</code> 
+            is greater than 30. 
+            <pre><font color="#003399">     proc print data=sasuser.admit;</font>
+<font color="#003399">        var age height weight fee;</font>
+<font color="#003399"><strong>        where age&gt;30;</strong></font>
+<font color="#003399">     run;</font>
+</pre>
+          </td>
+        </tr>
+      </table>
+      <p> 
+      <table cellspacing="0" cellpadding="0" width="85%">
+        <tr> 
+          <td><strong>Specifying WHERE Expressions</strong> 
+            <p> A variable specified in the WHERE statement can be any variable 
+              in the SAS data set, not necessarily one of the variables specified 
+              in the PROC step. The WHERE statement works for both character and 
+              numeric variables. To specify a condition based on the value of 
+              a character variable, you must 
+            <ul>
+              <li> enclose the value in quotes &nbsp; &nbsp; &nbsp; &nbsp; 
+              <li> write the value with lower and uppercase letters exactly as 
+                it appears in the data set. 
+            </ul>
+            <p> <a name="compoper">
+              <!-- -->
+              </a>You use the following <strong>comparison operators</strong> 
+              to express a condition in the WHERE statement.
+          </td>
+        </tr>
+      </table>
+      <p> 
+      <center>
+        <table cellpadding="3" border="1" width="85%" bgcolor="#FFFFFF" cellspacing="0" title="comparison operators">
+          <tr> 
+            <th bgcolor="#F7F7DE"><font size="-1">Symbol</font></th>
+            <th bgcolor="#F7F7DE"><font size="-1">Meaning</font></th>
+            <th bgcolor="#F7F7DE"><font size="-1">Example</font></th>
+          </tr>
+          <tr> 
+            <td nowrap><strong>=</strong> or <strong>eq</strong></td>
+            <td>equal to</td>
+            <td><code><font color="#003399">where name='Jones, C.';</font></code> 
+            </td>
+          </tr>
+          <tr> 
+            <td nowrap> <strong>^=</strong> or <strong>ne</strong></td>
+            <td>not equal to</td>
+            <td><code><font color="#003399">where temp ne 212;</font> </code> </td>
+          </tr>
+          <tr> 
+            <td> <strong>&gt;</strong> or <strong>gt</strong></td>
+            <td>greater than</td>
+            <td><code><font color="#003399">where income&gt;20000;</font> </code> 
+            </td>
+          </tr>
+          <tr> 
+            <td> <strong>&lt;</strong> or <strong>lt</strong></td>
+            <td>less than</td>
+            <td nowrap><code><font color="#003399">where partno lt "BG05";</font> 
+              </code> </td>
+          </tr>
+          <tr> 
+            <td> <nobr><strong>&gt;=</strong> or <strong>ge</strong></nobr></td>
+            <td nowrap>greater than or equal to</td>
+            <td><code><font color="#003399">where id&gt;='1543';</font> </code> </td>
+          </tr>
+          <tr> 
+            <td> <strong>&lt;=</strong> or <strong>le</strong></td>
+            <td>less than or equal to</td>
+            <td><code><font color="#003399">where pulse le 85;</font> </code> </td>
+          </tr>
+        </table>
+      </center>
+      <p> <br>
+      <center>
+        <table cellpadding=0 cellspacing=0 border=0 width="85%">
+          <tr> 
+            <td align="left"><strong>Specifying Compound WHERE Expressions</strong> 
+              <p> <a name="logoper">
+                <!-- -->
+                </a>You can also use WHERE statements to select a subset of observations 
+                based on multiple conditions. To link a sequence of expressions 
+                into compound expressions, you use <strong>logical operators</strong>, 
+                including the following:
+            </td>
+          </tr>
+        </table>
+        <p> <br>
+        <table cellpadding="4" border="1" width="450" bgcolor="#FFFFFF" cellspacing="0" title="logical operators">
+          <tr> 
+            <th bgcolor="#F7F7DE" width="100"><font size="-1">Operator</font></th>
+            <th bgcolor="#F7F7DE" width="350"><font size="-1">Meaning</font></th>
+          </tr>
+          <tr> 
+            <td><strong>AND</strong> ( &amp; )</td>
+            <td>and, both. If both expressions are true, then the compound expression 
+              is true.</td>
+          </tr>
+          <tr valign="Top"> 
+            <td><strong>OR</strong> ( | )</td>
+            <td>or, either. If either expression is true, then the compound expression 
+              is true.</td>
+          </tr>
+        </table>
+        <p> <br>
+        <table cellpadding=0 cellspacing=0 border=0 width="85%">
+          <tr> 
+            <td align="left"><strong>Examples of WHERE Statements</strong> 
+              <ul>
+                <li> You can use <strong>compound expressions</strong> like these 
+                  in your WHERE statements : 
+              </ul>
+              <pre><font color="#003399"><strong>   </strong>   where age&lt;=55 and pulse&gt;75;</font>
+<font color="#003399">      where area='A' or region='S'; </font>
+<font color="#003399">      where empnum&gt;1050 and state='NC';</font>
+</pre>
+              <ul>
+                <li> When you test for <strong>multiple values of the same variable</strong>, 
+                  you specify the variable name in each expression: 
+              </ul>
+              <pre><font color="#003399"><strong>    </strong>  where <strong>actlevel</strong>='LOW' or <strong>actlevel</strong>='MOD';</font>
+<font color="#003399">      where <strong>fee</strong>=124.80 or <strong>fee</strong>=178.20; </font>
+</pre>
+              <ul>
+                <li> <a name="inoper">
+                  <!-- -->
+                  </a>You can use the <strong>IN operator</strong> as a convenient 
+                  alternative: 
+              </ul>
+              <pre><font color="#003399"><strong>     </strong> where actlevel <strong>in ('LOW','MOD')</strong>; </font>
+<font color="#003399"><strong>     </strong> where fee <strong>in (124.80,178.20)</strong>; </font>
+</pre>
+              <ul>
+                <li> <a name="parens">
+                  <!-- -->
+                  </a>To control the way compound expressions are evaluated, you 
+                  can use <strong>parentheses</strong>: 
+              </ul>
+              <pre><font color="#003399"><strong>     </strong> where <strong>(age&lt;=55 and pulse&gt;75)</strong> or area='A';</font>
+<font color="#003399">      where age&lt;=55 and <strong>(pulse&gt;75 or area='A')</strong>;</font>
+</pre>
+            </td>
+          </tr>
+        </table>
+        <p> 
+      </center>
+    </center>
+  </center>
+</center>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

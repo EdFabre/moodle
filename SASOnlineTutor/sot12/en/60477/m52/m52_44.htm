@@ -1,0 +1,156 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Copy the program into the code editing window and submit it.<br><br>';
+solutionText+='<li>Convert the program to a macro as follows: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='%macro reports;<br>';
+solutionText+='   proc sort data=work.current out=thisweek;<br>';
+solutionText+='      where put(begin_date, monyy7.)=<br>';
+solutionText+='            "%substr(&sysdate9,3,7)"<br>';
+solutionText+='            and begin_date ge "&sysdate9"d;<br>';
+solutionText+='      by begin_date location course_title;<br>';
+solutionText+='   run;<br>';
+solutionText+='   proc print data=thisweek noobs n;<br>';
+solutionText+='      by begin_date location course_title;<br>';
+solutionText+='      var student_name student_company paid;<br>';
+solutionText+='      title "Course Registration as of &sysdate";<br>';
+solutionText+='   run;<br>';
+solutionText+='%mend;<br></pre></font>';
+solutionText+='<li>Add the following steps to the macro after the PROC PRINT step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='%if &sysday=Friday %then %do;<br>';
+solutionText+='   proc sort data=work.current out=thisweek;<br>';
+solutionText+='      where put(begin_date,monyy7.)=<br>';
+solutionText+='            "%substr(&sysdate9,3,7)"<br>';
+solutionText+='            and begin_date le "&sysdate9"d;<br>';
+solutionText+='      by begin_date location course_title;<br>';
+solutionText+='   run;<br>';
+solutionText+='   proc means data=thisweek maxdec=0 sum;<br>';
+solutionText+='      by begin_date location course_title;<br>';
+solutionText+='      var fee;<br>';
+solutionText+='      class paid;<br>';
+solutionText+='      title "Revenue for Courses as of &sysdate9";<br>';
+solutionText+='   run;<br>';
+solutionText+='%end;</pre></font>';
+solutionText+='Submit the macro for compilation.<br><br>';
+solutionText+='<li>Submit the following code:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='options mlogic mprint;<br>';
+solutionText+='%reports<br></pre></font>';
+solutionText+='Examine the output. If you run this practice on a Friday, you should see two reports. ';
+solutionText+='Otherwise, you should see one report. If no report is generated, there are probably no classes ';
+solutionText+='offered in the current week and your <strong>Work.Thisweek</strong> data set contains no data. ';
+solutionText+='Submit the following DATA step to verify that <strong>Work.Thisweek</strong> has no observations:';
+solutionText+='<font color="#003399"><pre>data _null_;<br>   if attrn(open("thisweek"),"any")=0 then<br>';
+solutionText+='   put \'There are no classes offered this week.\';<br>';
+solutionText+='   else put \'Check your program for other errors.\';<br>';
+solutionText+='run;</pre></font>'; 
+solutionText+='Examine any messages that are written to the SAS log.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Define 
+      and execute a macro in order to conditionally process SAS language steps.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy the program below and paste it into the code editing window. 
+            This program takes all observations from the <strong>Sasuser.All</strong> 
+            data set that have a <code>Begin_date</code> in 2001 and writes them 
+            to a temporary data set with a <code>Begin_date</code> in the current 
+            year. <font color="#003399"> 
+            <pre>data current(drop=diff);
+   set sasuser.all;
+   if year(begin_date)=2001;
+      diff=year(today())-year(begin_date);
+      begin_date=begin_date+(365*diff);
+run; </pre></font>Submit the program. <br><br>
+	      <li>Copy the program below and paste it into the code editing window:<font color="#003399"> 
+            <PRE>
+proc sort data=work.current out=thisweek;
+   where put(begin_date,monyy7.)=
+         &quot;%substr(&amp;sysdate9,3,7)&quot;
+         and begin_date ge &quot;&amp;sysdate9&quot;d;
+   by begin_date location course_title;
+run;
+proc print data=thisweek noobs n;
+   by begin_date location course_title;
+   var student_name student_company paid;
+   title &quot;Course Registration as of &amp;sysdate&quot;;
+run;
+</pre>
+            </font>Convert this program to a macro named <strong>Reports</strong>. <br><br>
+<li>Add the following steps to the macro so that they will be processed only if the macro is executed on a Friday. <em>Hint: Use the automatic macro variable <code>SYSDAY</code></em>.<P>
+<font color="#003399">
+            <PRE>
+proc sort data=work.current out=thisweek;
+   where put(begin_date,monyy7.)=
+         &quot;%substr(&amp;sysdate9,3,7)&quot;
+         and begin_date le &quot;&amp;sysdate9&quot;d;
+   by begin_date location course_title;
+run;
+proc means data=thisweek maxdec=0 sum;
+   by begin_date location course_title;
+   var fee;
+   class paid;
+   title &quot;Revenue for Courses as of &amp;sysdate9&quot;;
+run;
+</pre>
+            </font>Submit the macro to compile it.<br><br>
+          <li>Activate the appropriate system options to display the source code 
+            that is received by the SAS compiler and to track the macro's execution. 
+            Submit a call to invoke <strong>Reports</strong>. Examine the output 
+            as well as any messages that are written to the SAS log. <BR>
+
+		
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

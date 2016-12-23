@@ -1,0 +1,119 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Eliminating 
+      Unnecessary Passes through the Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif"></font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Best practices dictate that you should eliminate unnecessary passes 
+          through the data. To minimize I/O operations and CPU time, avoid reading 
+          or writing data more than necessary. Accomplish this by taking advantage 
+          of one-step processing, which can lead to efficiencies.</p> 
+        <p><br><h2>Using a Single DATA or PROC Step to Enhance Efficiency</h2>
+        <p>Whenever possible, use a single DATA or PROC step to enhance efficiency. 
+          Techniques that minimize passes through the data include </p>
+        <ul>
+          <li>using a single DATA step to create multiple output data sets </li>
+          <li>using the SORT procedure with a WHERE statement to create sorted 
+            subsets</li>
+          <li>using the DATASETS procedure to modify variable attributes.</li>
+        </ul>
+        <p>Before viewing comparative examples that address these techniques, 
+          it might be helpful to review the following information about these 
+          practices.
+        </p><p><br>
+               <h2>Using a Single DATA Step to Create Multiple Output Data Sets</h2>            
+        <p>It is good programming practice to take advantage of the DATA step's 
+          ability to create multiple output data sets at the same time. This is 
+          more efficient than using a series of individual DATA steps. Using a 
+          single DATA step saves resources because input data is read only once. 
+        </p>
+              
+        <p>The following program demonstrates how to use a single DATA step to 
+          read data once and create three subsets of data.</p>
+               
+        <pre><font color="#003399">     data Sales_managers Account_managers Finance_managers;
+        set company.organization;
+        if job_title='Sales Manager' then 
+		   output Sales_managers;
+        else if job_title='Account Manager' then 
+		   output Account_managers;
+        else if job_title='Finance Manager' then 
+		   output Finance_managers;
+     run;</font></pre>
+              <p><br>                
+        <h2>Using the SORT Procedure with a WHERE Statement to Create Sorted Subsets</h2>
+        <p>It is good programming practice to take advantage of the SORT procedure's 
+          ability to sort and subset in the same PROC step. This is more efficient 
+          than using two separate steps to accomplish this&#8212;a DATA step to 
+          subset followed by a procedure step that sorts.</p>
+        <p>The following program demonstrates how you can sort data and select 
+          only those observations that meet the conditions of the WHERE statement&#8212;in 
+          one step. Processing a data set only once saves I/O and CPU resources.</p>
+                            <pre><font color="#003399">     proc sort data=company.organization
+               out=company.managers;
+        by job_title;
+        where job_title in('Sales Manager',
+                           'Account Manager',
+                           'Finance Manager');
+     run;</font></pre>
+               <p><br>
+		          <h2>Using the DATASETS Procedure to Modify Variable Attributes</strong></h2>
+        <p>Use PROC DATASETS instead of a DATA step to modify data attributes. 
+          The DATASETS procedure uses fewer resources than the DATA step because 
+          it processes only the descriptor portion of the data set, not the data 
+          portion. PROC DATASETS retains the sort flag, as well as indexes.</p>
+                <pre><font color="#003399">     proc datasets lib=company;
+        modify organization;
+        rename Job_title=Title;
+     quit;</font></pre>
+                    <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You cannot use the DATASETS procedure to modify the 
+              type, length, or position of variables because these attributes 
+              directly affect the data portion of the data set. To perform these 
+              operations, use the DATA step. </td>
+          </tr>
+        </table> 
+                     </td>
+    </tr>
+  </table>
+   <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

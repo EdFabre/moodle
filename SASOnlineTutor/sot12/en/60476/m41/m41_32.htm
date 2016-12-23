@@ -1,0 +1,364 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      <em>N</em>-Way Tables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P> For a frequency analysis of more than two variables, use PROC FREQ to 
+        create <STRONG><EM>n</EM>-way</STRONG> crosstabulations. A series of two-way 
+        tables is produced, with a table for each level of the other variables. 
+      <P> For example, suppose you want to add the variable <CODE>Sex</CODE> to 
+        your crosstabulation of <CODE>Weight</CODE> and <CODE>Height</CODE> in 
+        the data set <STRONG>Clinic.Diabetes</STRONG>. Add <CODE>Sex</CODE> to 
+        the TABLES statement, joined to the other variables with an asterisk (<FONT COLOR="Red"><STRONG>*</STRONG></FONT>). 
+      <PRE>     <FONT color="#003399">tables <STRONG>sex*</STRONG>weight*height;</FONT>
+</PRE>
+      <P> <BR>
+        <STRONG>Determining the Table Layout</STRONG> 
+      <P> The order of the variables is important. In <EM>n</EM>-way tables, the 
+        last two variables of the TABLES statement become the two-way rows and 
+        columns. Variables that precede the last two variables in the TABLES statement 
+        stratify the crosstabulation tables. 
+      <PRE>            <FONT color="blue"><STRONG>levels</STRONG></FONT>
+            <FONT color="blue"><STRONG>v</STRONG></FONT>
+     <FONT color="#003399">tables <STRONG>sex*weight*height</STRONG>;</FONT>
+                <FONT color="blue"><STRONG>^</STRONG>      <STRONG>^</STRONG></FONT>
+                <FONT color="blue"><STRONG>rows + columns = two-way tables</STRONG></FONT>
+</PRE>
+      <P> Notice the structure of the output that is produced by the program shown 
+        below. 
+      <PRE><FONT color="#003399">     proc format;</FONT>
+<FONT color="#003399">        value wtfmt low-139='&lt; 140'</FONT>
+<FONT color="#003399">                    140-180='140-180'</FONT>
+<FONT color="#003399">                    181-high='&gt; 180';</FONT>
+<FONT color="#003399">        value htfmt low-64='&lt; 5''5"'</FONT>
+<FONT color="#003399">                    65-70='5''5-10"'</FONT>
+<FONT color="#003399">                    71-high='&gt; 5''10"';</FONT>
+<FONT color="#003399">     run;</FONT>
+<FONT color="#003399">     proc freq data=clinic.diabetes;</FONT>
+<FONT color="#003399">        tables <STRONG>sex*weight*height</STRONG>;</FONT>
+<FONT color="#003399">        format weight wtfmt. height htfmt.;</FONT>
+<FONT color="#003399">     run;</FONT>
+</PRE>
+    </td>
+  </tr>
+</table>
+<p> 
+<center>
+  <table rules=none frame=void title="PROC FREQ Output">
+    <tr> 
+      <td valign=TOP> 
+        <table cellspacing=1 rules=GROUPS frame=BOX border=1 cellpadding="2"
+	bgcolor="#FFFFF0" bordercolor="#000000">
+          <tr> 
+            <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>Frequency <br>
+              Percent <br>
+              Row Pct <br>
+              Col Pct </b></font></td>
+          </tr>
+        </table>
+      </td>
+      <td> 
+        <center>
+          <table cellspacing=1 rules=GROUPS frame=BOX border=1 cellpadding="2" bgcolor="#FFFFF0"
+	  bordercolor="#000000">
+            <tbody> </tbody> <thead> 
+            <tr> 
+              <td colspan=5 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Table 1 of Weight by Height</b></font></td>
+            </tr>
+            <tr> 
+              <td colspan=5 align=CENTER bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Controlling for Sex=F</b></font></td>
+            </tr>
+            <tr> 
+              <td rowspan=2 align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Weight</b></font></td>
+              <td colspan=3 align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Height</b></font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Total</b></font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>&lt; 5'5" </nobr></b></font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>5'5-10"</nobr></b></font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>&gt; 5'10"</nobr></b></font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>&lt; 140 </b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 2<br>
+                18.18<br>
+                100.00<br>
+                28.57</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                0.00<br>
+                0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                0.00<br>
+                . </font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 2<br>
+                18.18<br>
+                &nbsp;<br>
+                &nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>140-180</b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 5<br>
+                45.45<br>
+                55.56<br>
+                71.43</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 4<br>
+                36.36<br>
+                44.44<br>
+                100.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                0.00<br>
+                . </font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 9<br>
+                81.82<br>
+                &nbsp;<br>
+                &nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>&gt; 180 </b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                . <br>
+                0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                . <br>
+                0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                . <br>
+                . </font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                &nbsp;<br>
+                &nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Total </b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 7<br>
+                63.64</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 4<br>
+                36.36</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 11<br>
+                100.00</font></td>
+            </tr>
+            </thead> 
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> 
+<center>
+  <table rules=none frame=void title="PROC FREQ Output">
+    <tr> 
+      <td valign=TOP> 
+        <table cellspacing=1 rules=GROUPS frame=BOX border=1 cellpadding="2"
+	bgcolor="#FFFFF0" bordercolor="#000000">
+          <tr> 
+            <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>Frequency <br>
+              Percent <br>
+              Row Pct <br>
+              Col Pct </b></font></td>
+          </tr>
+        </table>
+      </td>
+      <td> 
+        <center>
+          <table cellspacing=1 rules=GROUPS frame=BOX border=1 cellpadding="2" bgcolor="#FFFFF0"
+	  bordercolor="#000000">
+            <tbody> </tbody> <thead> 
+            <tr> 
+              <td colspan=5 align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Table 2 of Weight by Height</b></font></td>
+            </tr>
+            <tr> 
+              <td colspan=5 align=CENTER bgcolor="#FFFF9C"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Controlling for Sex=M</b></font></td>
+            </tr>
+            <tr> 
+              <td rowspan=2 align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Weight</b></font></td>
+              <td colspan=3 align=CENTER valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Height</b></font></td>
+              <td rowspan=2 align=RIGHT valign=BOTTOM bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Total</b></font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>&lt; 5'5" </nobr></b></font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>5'5-10"</nobr></b></font></td>
+              <td align=RIGHT bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3"
+		      color="#0033AA"><b><nobr>&gt; 5'10"</nobr></b></font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>&lt; 140 </b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                . <br>
+                . </font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                . <br>
+                0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                . <br>
+                0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                &nbsp;<br>
+                &nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>140-180</b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                0.00<br>
+                . </font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 1<br>
+                11.11<br>
+                100.00<br>
+                25.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                0.00<br>
+                0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 1<br>
+                11.11<br>
+                &nbsp;<br>
+                &nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=RIGHT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>&gt; 180 </b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00<br>
+                0.00<br>
+                . </font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 3<br>
+                33.33<br>
+                37.50<br>
+                75.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 5<br>
+                55.56<br>
+                62.50<br>
+                100.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 8<br>
+                88.89<br>
+                &nbsp;<br>
+                &nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT valign=TOP bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv"
+		      size="3" color="#0033AA"><b>Total </b></font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 0<br>
+                0.00</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 4<br>
+                44.44</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 5<br>
+                55.56</font></td>
+              <td align=RIGHT valign=TOP bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv"
+		      size="2" color="#000000"> 9<br>
+                100.00</font></td>
+            </tr>
+            </thead> 
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

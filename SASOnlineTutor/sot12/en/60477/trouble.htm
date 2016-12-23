@@ -1,0 +1,600 @@
+<html>
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="tut.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="nav.js"></SCRIPT>
+
+<link rel="stylesheet" href="tut.css">
+<TITLE>Troubleshooting Tips</TITLE>
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+  <script language="JavaScript1.2">
+NS4 = (document.layers) ? 1 : 0;
+IE4 = (document.all) ? 1 : 0;
+ver4 = (NS4 || IE4) ? 1 : 0;
+
+if (ver4) {
+    with (document) {
+        write("<STYLE TYPE='text/css'>");
+        if (NS4) {
+            write(".parent {position:absolute; visibility:visible}");
+            write(".child {position:absolute; visibility:visible}");
+            write(".regular {position:absolute; visibility:visible}")
+        }
+        else {
+            write(".child {display:none}")
+        }
+            write(" CODE {font-family: monospace;font-size : 100%;}");
+            write(" PRE {font-family: monospace;	font-size : 100%;}");
+            write(" TD {font-family : Arial, Helvetica, sans-serif;font-size : smaller;}");
+            write(" BODY {font-family : Arial, Helvetica, sans-serif;	font-size : smaller;}");  
+            write("</STYLE>");
+    }
+}
+
+function getIndex(el) {
+    ind = null;
+    for (i=0; i<document.layers.length; i++) {
+        whichEl = document.layers[i];
+        if (whichEl.id == el) {
+            ind = i;
+            break;
+        }
+    }
+    return ind;
+}
+
+function arrange() {
+    nextY = document.layers[firstInd].pageY +document.layers[firstInd].document.height;
+    for (i=firstInd+1; i<document.layers.length; i++) {
+        whichEl = document.layers[i];
+        if (whichEl.visibility != "hide") {
+            whichEl.pageY = nextY;
+            nextY += whichEl.document.height;
+        }
+    }
+}
+
+function initIt(){
+    if (!ver4) return;
+    if (NS4) {
+        for (i=0; i<document.layers.length; i++) {
+            whichEl = document.layers[i];
+            if (whichEl.id.indexOf("Child") != -1) whichEl.visibility = "hide";
+       }
+        arrange();
+    }
+    else {
+        divColl = document.all.tags("DIV");
+        for (i=0; i<divColl.length; i++) {
+            whichEl = divColl(i);
+            if (whichEl.className == "child") whichEl.style.display = "none";
+        }
+    }
+}
+
+function expandIt(el) {
+    if (!ver4) return;
+    if (IE4) {
+        whichEl = eval(el + "Child");
+        if (whichEl.style.display == "none") {
+            whichEl.style.display = "block";
+        }
+        else {
+            whichEl.style.display = "none";
+        }
+    }
+    else {
+        whichEl = eval("document." + el + "Child");
+        if (whichEl.visibility == "hide") {
+            whichEl.visibility = "show";
+        }
+        else {
+            whichEl.visibility = "hide";
+        }
+        arrange();
+    }
+}
+
+onload = initIt;
+
+</script>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399">Troubleshooting Tips</font></strong> 
+    </td>
+  </tr>
+</table>
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>If you have questions about using these SAS programming lessons, courses, 
+        or libraries, check out these common solutions. </p>
+      <p><i> Click a link below to open a tip, and click the link again to close 
+        it.</i></p>
+<p>
+<!-- Item 1 -->
+<div id="KB1Parent" class="parent">
+<!--Category Heading-->
+        <table width="100%" cellpadding="3">
+          <tr valign="top"> 
+            <td bgcolor="#F7F7DE"><p><strong>Guided Practices and Examples</strong></p></td>
+          </tr>
+        </table>
+		<br>
+<!--End Category Heading-->
+        <table width="100%">        
+        <tr valign="top"> 
+            <td width="18" align="right">1.</td>
+            <td>
+              <p><strong><a href="#" onClick="expandIt('KB1'); return false">Guided 
+                practice data sets do not exist</a></strong></td>
+          </tr>
+        </table>
+		</div>
+		<p>
+      <div id="KB1Child" class="child">
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong>&nbsp;</p>
+              <p> If SAS cannot find a data set that you referenced in a submitted 
+                SAS program, the SAS log displays a message indicating that the 
+                data set does not exist. Make sure that you have set up the sample 
+                data sets on your computer before you complete the guided practices. 
+                (You can identify guided practices by the words <em>Try It!</em> 
+                in the upper left corner.) To see the data setup instructions, 
+                do one of the following: 
+              <ul>
+                <li>Select the link to <strong>Before You Begin</strong> on the 
+                  home page for the lesson, course, or library. (To find out how 
+                  to return to the home page, see tip 8 below.)<br>
+                  <br>
+                </li>
+                <li>From any page within a lesson, select <strong>Help</strong> 
+                  <img src="navimages/arrow.gif" alt="then" width="14" height="10"> 
+                  <strong>Before You Begin</strong>. </li>
+              </ul>
+              <p>In addition, the first time that you open a guided practice page 
+                in a particular lesson, a Reminder pop-up window provides instructions 
+                for creating the sample data. You only need to create sample data 
+                once as long as you use the same computer and do not reinstall 
+                SAS (either the same version or another version).<br>
+                &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 2 -->
+<div id="KB2Parent" class="parent">
+      <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">2.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB2'); return false">Guided 
+                practice filerefs are not assigned</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  <p>
+      <div id="KB2Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp;
+			</td>
+            <td><p><strong>Solution:</strong></p>
+              <p>If SAS does not recognize a fileref that you referenced in a 
+                submitted SAS program, the SAS log displays a message indicating 
+                that the fileref is not assigned. In most lessons, the guided 
+                practices use only SAS data sets that are created when you first 
+                set up your sample data (see tip 1 above). These data sets are 
+                stored in the <strong>Sasuser</strong> and <strong>Work</strong> 
+                libraries, which SAS assigns by default. 
+              <p>However, in some lessons, the guided practices use raw data files. 
+                In each lesson that uses raw data files, the Overview page links 
+                to a SAS program that you must submit to set up the required filerefs 
+                in your operating environment. You must submit this program in 
+                each SAS session. In addition, the first time that you open a 
+                guided practice page in one of these lessons, a Reminder pop-up 
+                window provides instructions for setting up filerefs.<br>
+                &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 3 -->
+<div id="KB3Parent" class="parent">
+      <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">3.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB3'); return false">Guided 
+                practice solution code generates unexpected results or errors</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB3Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>If running the solution code does not give the expected results, 
+                check to make sure that<br>
+                 <br> 
+              <ul>
+                <li> you typed or copied the solution code correctly.<br>
+                  <br>
+                </li>
+                <li>you set up the required data sets (see tip 1 above).<br>
+                  <br>
+                </li>
+                <li>in a guided practice that uses raw data files, you set up 
+                  the required filerefs (see tip 2 above).<br>
+                  <br>
+                </li>
+                <li>you completed any previous guided practices that must be completed 
+                  before the current guided practice. When you must complete a 
+                  previous guided practice, a note above the practice steps links 
+                  back to the previous guided practice. When the previous and 
+                  current guided practices use the same temporary data set, you 
+                  must complete both guided practices in the same SAS session. 
+                </li>
+              </ul></td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 4 -->
+<div id="KB4Parent" class="parent">
+      <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">4.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB4'); return false">Copied 
+                solution code looks different</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB4Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>When you copy and paste code from a guided practice solution 
+                into SAS, the code indention may look different. In SAS, code 
+                indention is optional. The code executes correctly whether or 
+                not the lines are indented. <br>
+              &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 5 -->
+<div id="KB5Parent" class="parent">
+      <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">5.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB5'); return false">Need 
+                to view the contents of a data set</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB5Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>Sometimes, you need to view information about a data set in order 
+                to complete a guided practice. At the top of each guided practice 
+                that uses data sets, the practice description links to a descriptive 
+                pop-up page for each data set. Data set pop-up pages list the 
+                data set's variables and attributes and show representative sample 
+                data. <br>
+                &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 6 -->
+<div id="KB6Parent" class="parent">
+      <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">6.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB6'); return false">Example 
+                data sets do not exist and/or filerefs are not assigned</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB6Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>The SAS program code that is shown in examples (on lesson pages 
+                other than guided practice pages) is for illustrative purposes 
+                only. Much of the example code is based on fictitious data sets 
+                and is not intended to be executed. However, data sets are provided 
+                for all of the guided practices (see tip 1 above). For guided 
+                practices in lessons that require the use of raw data files, a 
+                program is provided to set up filerefs for the current session 
+                (see tip 2 above).<br>
+                &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 7 -->
+<!--Category Heading-->
+        <table width="100%" cellpadding="3">
+          <tr valign="top"> 
+            <td bgcolor="#F7F7DE"><p><strong>Navigation</strong></p></td>
+          </tr>
+        </table>
+		<br>
+<!--End Category Heading-->
+<div id="KB7Parent" class="parent">
+      <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">7.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB7'); return false">Moving 
+                to a different lesson in the current course or library</a>  </strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB7Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>To choose a different lesson at any time, select <strong>Path</strong> 
+                at the top of the page to return to the Learning Path page. The 
+                content of the Learning Path page varies, depending on whether 
+                you have licensed a single lesson, a course, or a library. </p>
+              <p>If you have licensed</p>
+              <ul>
+                <li>a single <strong>lesson</strong>, the Learning Path page displays 
+                  a list of lesson topics. (These lesson topics are also listed 
+                  in the Lesson Contents drop-down menu at the top of each lesson 
+                  page.) You will need to license any additional lessons that 
+                  you want to access (see tip 11 below).<br>
+                  <br>
+                </li>
+                <li>a <strong>course</strong> or a <strong>library</strong>, the 
+                  Learning Path page displays all the lessons in the current course 
+                  or library. From the list of lessons, select the lesson that 
+                  you want.</li>
+              </ul>
+              <p>Note: Use the <img src="navimages/back2.gif" alt="back" width="30" height="19">(back) 
+                and <img src="navimages/next2.gif" alt="next" width="30" height="19">(next) 
+                arrows at the top and bottom of each lesson page to navigate within 
+                the current lesson. These arrows cannot be used to exit the current 
+                lesson or to move to another lesson. In each lesson, the <img src="navimages/back2.gif" alt="back" width="30" height="19"> 
+                arrows are disabled on the first page and the <img src="navimages/next2.gif" alt="next" width="30" height="19"> 
+                arrows are disabled on the last page.<br>
+                &nbsp; </p></td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 8 -->
+<div id="KB8Parent" class="parent">
+	  <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">8.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB8'); return false">Returning 
+                to the home page</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB8Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>The home page is the first page that displays when you open the 
+                lesson, course, or library that you licensed. You must return 
+                to the home page if you want to reset your SAS version or to use 
+                the pop-up table of contents and index. To return to the home 
+                page from any lesson page, follow these steps: <br>
+                <br>
+              <ol>
+                <li>Select <strong>Path</strong> at the top of the page to return 
+                  to the Learning Path page.<br>
+                  <br>
+                </li>
+                <li>Select <strong>Home</strong> at the top of the Learning Path 
+                  page to return to the home page. </li>
+              </ol></td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 9 -->
+<div id="KB9Parent" class="parent">
+	  <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">9.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB9'); return false">Exiting 
+                a lesson, course, or library</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB9Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>To exit a lesson, course, or library at any time, you can move 
+                to a different Web page in the same browser window, or you can 
+                close your browser. You don't have to do anything special to exit. 
+                When you return to the home page for the lesson, course, or library, 
+                you can click <strong>Resume</strong> to return to your previous 
+                place.<br>
+                &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 10 -->
+<!--Category Heading-->
+        <table width="100%" cellpadding="3">
+          <tr valign="top"> 
+            <td bgcolor="#F7F7DE"><p><strong>Miscellaneous</strong></p></td>
+          </tr>
+        </table>
+		<br>
+<!--End Category Heading-->
+<div id="KB10Parent" class="parent">
+      <table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">10.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB10'); return false"> 
+                Lesson does not match my version of SAS</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB10Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>It is important to specify the version of SAS that you are using, 
+                because instructions and lesson content are tailored to a specific 
+                version of SAS. The first time you visit the home page, it prompts 
+                you to specify your SAS version. You can reset your SAS version 
+                at any time by returning to the home page (see tip 8 above) and 
+                clicking <strong>Reset your SAS version</strong>.<br>
+              &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 11 -->
+<div id="KB11Parent" class="parent">
+<table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">11.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB11'); return false">Lessons 
+                referenced in training do not appear on the Learning Path page</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB11Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>Some lesson pages contain references to related lessons that 
+                might be useful to you, even though they don't appear in the same 
+                course or library as the current lesson. To license additional 
+                lessons, courses, or libraries, or to view information about their 
+                contents, visit <a href="http://support.sas.com/selfpaced" target="_blank">support.sas.com/selfpaced</a>.<br>
+                &nbsp;</td>
+          </tr>
+        </table>
+      </div>
+<!-- Item 12 -->
+<div id="KB12Parent" class="parent">
+<table width="100%">
+        <tr valign="top"> 
+            <td width="18" align="right">12.</td>
+          <td> 
+              <p><strong><a href="#" onClick="expandIt('KB12'); return false">Check mark does 
+                not appear on the Learning Path page</a></strong></td>
+        </tr>
+      </table>
+	  </div>
+	  	  <p>
+      <div id="KB12Child" class="child"> 
+        <table width="100%">
+          <tr valign="top"> 
+            <td><img src="navimages/cleardot.gif" width="14" height="1" alt="non-content image"></td>
+            <td nowrap><img src="navimages/block_2.gif" alt="decorative image" width="13" height="13">&nbsp; 
+            </td>
+            <td><p><strong>Solution:</strong></p>
+              <p>This training keeps track of your progress by storing your progress 
+                information in a small text file (called a cookie). The cookie 
+                is created on your computer the first time you access the training. 
+                When you score 80% or higher on a quiz, your successful completion 
+                of the lesson is recorded in the cookie and a checkmark appears 
+                next to the lesson name on the Learning Path page. 
+              <p>To track your progress across multiple sessions, you must do 
+                both of the following: 
+              <ul>
+                <li>Make sure that cookies are enabled in your browser. <br>
+                  <br>
+                </li>
+                <li>Use the same computer to complete all of the lessons, courses, 
+                  or libraries so that the cookie contains all of your progress 
+                  information. If you switch to a different computer (or if the 
+                  cookie is deleted), a new cookie will be created and your progress 
+                  information will not be accessible in a single location.</li>
+              </ul>
+              </td>
+          </tr>
+        </table>
+      </div>
+<!-- end of displayed list -->
+      </td>
+  </tr>
+</table>
+<center>
+<!-- Item 13 - REQUIRED FOR PAGE TO WORK BUT NOT PART OF THE LIST -->
+	  <div id="KB13Parent" class="parent"><a href="#" onClick="expandIt('KB13'); return false"></a>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p><br>
+        <center>
+          <form name="form1" method="post" action="">
+            <input type="button" name="Button" value="Close" onClick="JavaScript: self.close()">
+          </form>
+        </center></td>
+    </tr>
+  </table>
+  </div><div id="KB13Child" class="child"></div>
+  <!-- Item 14 - REQUIRED FOR PAGE TO WORK BUT NOT PART OF THE LIST -->
+   	  
+  <div id="KB14Parent" class="parent"><a href="#" onClick="expandIt('KB14'); return false"></a> 
+    <script>document.write(nav_popup_bottom_highlevel);</script>
+</div>
+  <div id="KB14Child" class="child"></div>
+<!-- end of list tags on the page -->
+</center>
+  <script language='JavaScript'>
+    if (NS4) {
+        firstEl = "KB1Parent";
+        firstInd = getIndex(firstEl);
+        arrange();
+    }
+</script>
+</body>
+</html>

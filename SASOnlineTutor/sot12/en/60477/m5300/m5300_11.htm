@@ -1,0 +1,93 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the Autocall Facility<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Default Autocall Library</h2>
+	  <P>SAS provides several macros in a default autocall library for you. Some of the macros in the autocall library that SAS provides are listed here.<P><BR>
+	  <table border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="SAS-Supplied Macros">
+	  <tr bgcolor="#f7f7de"><td><strong>Macro Syntax</strong></td><td><strong>Purpose</strong></td></tr>
+	  <tr valign="top"><td><nobr><font color="#003399"><strong>%LOWCASE</strong>(<em>argument</em>)</font></nobr></td><td>converts letters in its argument from uppercase to lowercase</td></tr> 
+	  <tr valign="top"><td><nobr><font color="#003399"><strong>%QLOWCASE</strong>(<em>argument</em>)</font></nobr></td><td>converts letters in its argument from uppercase to lowercase, and encloses the returned string in quotation marks</td></tr>
+	  <tr valign="top"><td><nobr><font color="#003399"><strong>%LEFT</strong>(<em>argument</em>)</font></nobr></td><td>removes leading blanks from the argument</td></tr>
+	  <tr valign="top"><td><nobr><font color="#003399"><strong>%TRIM</strong>(<em>argument</em>)</font></nobr></td><td>removes trailing blanks from the argument</td></tr>
+	  <tr valign="top"><td><nobr><font color="#003399"><strong>%CMPRES</strong>(<em>argument</em>)</font></nobr></td><td>removes multiple blanks from the argument</td></tr>
+	  <tr valign="top"><td><nobr><font color="#003399"><strong>%DATATYP</strong>(<em>argument</em>)</font></nobr></td><td>returns the string NUMERIC or CHAR, depending on whether the argument is an integer or a character string</td></tr>
+	  </table>  
+	  <P><BR>You might be familiar with SAS functions such as TRIM and LEFT. 
+	  The macros that SAS supplies look like macro functions, but they are in fact macros. One of the useful things about 
+	  these macros is that in addition to using them in your SAS programs, you can see their source code. <P><BR>
+	  <strong>Example</strong>
+	    <P>The macro definition for the <strong>Lowcase</strong> macro is shown 
+          below. Notice that the comments that are included in this macro provide 
+          information about using the macro. All of the macros that SAS provides 
+          in the autocall library include explanatory comments so that they will 
+          be easy for you to understand and use. <font color="#003399">
+        <pre>   %macro lowcase(string);
+   %******************************************************;
+   %*                                                    *;
+   %*  MACRO: LOWCASE                                    *;
+   %*                                                    *;
+   %*  USAGE: 1) %lowcase(argument)                      *;
+   %*                                                    *;
+   %*  DESCRIPTION:                                      *;
+   %*    This macro returns the argument passed to       *;
+   %*    it unchanged except that all upper-case         *;
+   %*    alphabetic characters are changed to their      *;
+   %*    lower-case equivalents.                         *;
+   %*                                                    *;
+   %*  E.g.:  %let macvar=%lowcase(SAS Institute Inc.);  *;
+   %*  The variable macvar gets the value                *;
+   %*   "sas institute inc."                             *;
+   %*  NOTES:                                            *;
+   %*    Although the argument to the %UPCASE macro      *;
+   %*    function may contain commas, the argument to    *;
+   %*    %LOWCASE may not, unless they are quoted.       *;
+   %*    Because %LOWCASE is a macro, not a function,    *;
+   %*    it interprets a comma as the end of a parameter.*;
+   %******************************************************;
+   %sysfunc(lowcase(%nrbquote(&string)))
+   %mend;</pre>
+        </font>                                                                  
+      </td>
+  </tr>
+</table>
+<P>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

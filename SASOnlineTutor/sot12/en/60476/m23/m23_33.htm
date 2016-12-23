@@ -1,0 +1,150 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_3.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+salute  = "<strong>Correct.</strong><p>";
+// "<strong>Incorrect.</strong><p>"+
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 3;
+
+salute  = "<strong>Correct.</strong><p>";
+correct = "\n The DSD option in the INFILE statement removes the quotation" +
+          "\n marks from the values in the third field. Because the DSD option" + 
+          "\n sets the default delimiter to a comma, it is also necessary to" + 
+          "\n use the DLM= option in the INFILE statement.";
+
+choice1 =   "<strong>Incorrect.</strong><p>"+
+          "\n The DSD option in the INFILE statement removes the quotation " +
+          "\n marks from the values in the third field. However, because the " +
+          "\n DSD option sets the default delimiter to a comma, it is also  "+
+          "\n necessary to use the DLM= option.";
+
+choice2 =   "<strong>Incorrect.</strong><p>"+
+          "\n  Remember that the DSD option removes quotation marks from" +
+          "\n  character strings and sets the default delimiter to a comma.";
+
+choice3 = salute + correct;
+
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Free-Format Data<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center> <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->Which program correctly 
+          reads the values in the following raw data file and removes the quotation 
+          marks from the values in the third field? 
+          <p>&nbsp; 
+          <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+            <thead> 
+            <tr> 
+              <td align=CENTER bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000">1---+----10---+----20---+----30---+</font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Courier New, Courier" size="2" color="#000000">1409 
+                Adams &quot;1,583.84&quot; </font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Courier New, Courier" size="2" color="#000000">2122 
+                Carling &quot;2,087.77&quot; </font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Courier New, Courier" size="2" color="#000000">1167 
+                Diaz &quot;2,484.36&quot;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Courier New, Courier" size="2" color="#000000">1248 
+                Locklear &quot;1,498.12&quot; &nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF" nowrap><font face="Courier New, Courier" size="2" color="#000000">2937 
+                Ruggerio &quot;1,703.65&quot; </font></td>
+            </tr>
+            </tbody> 
+          </table>
+          <p> 
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" --><pre><font color="#003399">data work.sales;
+   infile salesdat dsd; 
+   input Ext $ Name $ Sales : comma.;            
+run;</font></pre><!-- InstanceEndEditable --></td>
+        <td rowspan="3"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" --><pre><font color="#003399">data work.sales; 
+   infile salesdat dlm=' '; 
+   input Ext $ Name $ Sales : comma.; 
+run;</font></pre><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" --><pre><font color="#003399">data work.sales; 
+   infile salesdat dlm=' ' dsd; 
+   input Ext $ Name $ Sales : comma.; 
+run;</font></pre><!-- InstanceEndEditable --></td>
+      </tr>
+      
+      <tr> 
+        <td colspan="3"> 
+          <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

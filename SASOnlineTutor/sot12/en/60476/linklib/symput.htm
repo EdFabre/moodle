@@ -1,0 +1,96 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --><TITLE>The SYMPUT Routine</TITLE><!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->The 
+      SYMPUT Routine<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <P> You can use the <strong>SYMPUT routine</strong> to create a macro 
+        variable <strong>during execution of the DATA step</strong> and to assign to that variable any value that is available in 
+        the DATA step. 
+      <P><BR>
+      <table border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" align="center" title="General form, SYMPUT routine">
+        <tr> 
+          <td align="left"><STRONG>General form, SYMPUT routine:</STRONG> <BLOCKQUOTE> 
+              <FONT COLOR="#003399"><STRONG>CALL SYMPUT</STRONG> (<em>macro-variable</em>, 
+              <em>text</em>);</FONT> </BLOCKQUOTE>
+            <P> where 
+            <UL>
+              <LI> <FONT COLOR="#003399"><em>macro-variable</em></FONT> is assigned 
+                the character value of <FONT COLOR="#003399"><em>text</em></FONT>.<BR>
+              <LI><font color="#003399"><em>macro-variable</em></font> and <font color="#003399"><em>text</em></font> 
+                can each be specified as 
+                <UL>
+                  <LI>a literal, enclosed in quotation marks</LI>
+                  <LI>a DATA step variable</LI>
+                  <LI>a DATA step expression.</LI>
+                </UL>
+              </LI>
+            </UL>
+            <table cellpadding="2">
+              <tr valign="Top"> 
+                <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+                <td>If <font color="#003399"><em>macro-variable</em></font> already 
+                  exists, the value of <font color="#003399"><em>text</em></font> 
+                  replaces the former value.</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+      <P><BR>
+        For example, the following statement creates a macro variable named <code>time</code> 
+        and assigns a value of <em>afternoon</em> to it. <font color="#003399"><pre>    data example1;
+      set work.sample;
+      <strong>call symput('time','afternoon');</strong>
+    run;</pre>
+      </font> The following statement creates a macro variable named <code>time</code> 
+      and assigns to it the value of the DATA step variable <code>Start</code>. 
+      <font color="#003399">
+<pre>    data example2;
+      set work.sample;
+      <strong>call symput('time',start);</strong>
+    run;</pre>
+      </font> The following statement creates a macro variable named <code>time</code> 
+      and assigns to it a value that is determined by adding the value of the 
+      DATA step variable <code>MinLength</code> to the value of the DATA step 
+      variable <code>Start</code>. <font color="#003399">
+<pre>    data example3;
+      set work.sample;
+      <strong>call symput('time',start+minlength);</strong>
+    run;</pre></font>
+
+  
+      <P>When you use the SYMPUT routine to create a macro variable in a DATA 
+        step, the macro variable is not actually <strong>created</strong> and 
+        <strong>assigned a value</strong> until the DATA step is <strong>executed</strong>. 
+        Therefore, you cannot successfully reference a macro variable that is 
+        created with the SYMPUT routine within the same DATA step in which it 
+        is created. </td><P>
+  </tr>
+  </table>
+   <!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

@@ -1,0 +1,249 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Multidimensional Arrays<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Referencing Elements of a Two-Dimensional Array</strong> </p>
+      <p> Multidimensional arrays are typically used with <strong>nested DO loops</strong>. 
+        The next example uses a one-dimensional array, a two-dimensional array, 
+        and a nested DO loop to re-structure a set of variables. 
+      <p> Your company's sales figures are stored by month in the SAS data set 
+        <strong>Finance.Monthly</strong>. Your task is to generate a new data 
+        set of quarterly sales rather than monthly sales. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+  Description of Finance.Monthly 
+<center>
+  <table border="1" cellspacing="0" cellpadding="5" title="Data Set Description" bgcolor="#FFFFFF">
+    <tr> 
+      <td> 
+        <table border=0 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#FFFFFF">
+          <thead> 
+          <TR> 
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Variable</b></font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Type</b></font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Length</b></font></TD>
+          </TR>
+          </thead> <tbody> 
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Year</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month1</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month2</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month3</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month4</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month5</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month6</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month7</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month8</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month9</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month10</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month11</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">Month12</font></TD>
+            <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">num</font></TD>
+            <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">8</font></TD>
+          </TR>
+          </tbody> 
+        </TABLE>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Defining the array <code>m{4,3}</code> puts the variables <code>Month1</code> 
+        through <code>Month12</code> into four groups of three months (yearly 
+        quarters).</td>
+    </tr>
+  </table>
+</center>
+<p align="center">Table Representation of <code>m</code> Array
+<table align="center" width="100" bgcolor="white" border="1" cellpadding="5" cellspacing="0" title="Array">
+  <tr bgcolor="#FFFFFF"> 
+    <td align="center"><font color="#003399">Month1&nbsp;</font></td>
+    <td align="center"><font color="#003399">Month2</font></td>
+    <td align="center"><font color="#003399">Month3</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#003399">Month4</font></td>
+    <td align="center"><font color="#003399">Month5</font></td>
+    <td align="center"><font color="#003399">Month6</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="#003399">Month7</font></td>
+    <td align="center"><font color="#003399">Month8</font></td>
+    <td align="center"><font color="#003399">Month9</font></td>
+  </tr>
+  <tr> 
+    <td align="center"><font color="003399">Month10</font></td>
+    <td align="center"><font color="003399">Month11</font></td>
+    <td align="center"><font color="003399">Month12</font></td>
+  </tr>
+</table>
+<p align="center">&nbsp; 
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <pre><font color="#003399">     data finance.quarters;</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        <strong>array m{4,3} month1-month12;</strong></font></pre>
+        Defining the array <code>Qtr{4}</code> creates the numeric variables <code>Qtr1</code>, 
+        <code>Qtr2</code>, <code>Qtr3</code>, <code>Qtr4</code>, which will be 
+        used to sum the sales for each quarter. 
+        <pre><font color="#003399">     data finance.quarters;</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        <strong>array Qtr{4};</strong></font></pre>
+          A nested DO loop is used to reference the values of the variables <code>Month1</code> 
+          through <code>Month12</code> and to calculate the values of <code>Qtr1</code> 
+          through <code>Qtr4</code>. Because the variables <code>i </code>and 
+          <code>j</code> are used only for loop processing, the DROP= option is 
+          used to exclude them from the <strong>Finance.Quarters</strong> data 
+          set. 
+          <pre><font color="#003399">     data finance.quarters<strong>(drop=i j)</strong>;</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+        <font color="blue"><strong>do i=1 to 4;
+          </strong></font><font color="#003399">qtr{i}=0;</font>
+           <font color="red"><strong>do j=1 to 3;</strong></font>
+              <font color="#003399">qtr{i}+m{i,j};</font>
+           <font color="red"><strong>end;</strong></font>
+        <font color="blue"><strong>end;</strong></font>
+<font color="#003399">     run;</font></pre> 
+          <p>Each element in the <code>Qtr</code> array represents the sum of one 
+          row in the <code>m</code> array. The number of elements in the <code>Qtr</code> 
+          array should match the first dimension of the <code>m</code> array (that 
+          is, the number of rows in the <code>m</code> array). The first DO loop 
+          executes once for each of the four elements of the <code>Qtr</code> 
+          array. </p>
+          <p>The assignment statement, <font color="#003399"><code>qtr{i}=0</code></font>, 
+            sets the value of <CODE>qtr{i}</CODE> to zero after each iteration 
+            of the first DO loop. Without the assignment statement, the values 
+            of <CODE>Qtr1</CODE>, <CODE>Qtr2</CODE>, <CODE>Qtr3</CODE>, <CODE> 
+            and Qtr4</CODE> would accumulate across iterations of the data step 
+            due to the <code><font color="#003399">qtr<code>{i}</code>+m<code>{i,j}</code></font></code> 
+            sum statement within the DO loop. </p>
+          <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{</font><font color="blue"><strong>4</strong></font><font color="#003399">,3} month1-month12;</font>
+<font color="#003399">        array Qtr{</font><font color="blue"><strong>4</strong></font><font color="#003399">};</font>
+        <font color="blue"><strong>do i=1 to 4;</strong></font>
+<font color="blue"><strong>          </strong></font><font color="#003399"><strong>qtr</strong><code><strong>{i}</strong></code><strong>=0;</strong></font>
+           <font color="#003399">do j=1 to 3;</font>
+              <font color="#003399">qtr<code>{i}</code>+m<code>{i,j}</code>;</font>
+           <font color="#003399">end;</font>
+        <font color="blue"><strong>end;</strong></font>
+<font color="#003399">     run;</font></pre>
+          The second DO loop executes the same number of times as the second dimension 
+          of the <code>m</code> array (that is, the number of columns in each 
+          row of the <code>m</code> array). 
+          <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,</font><font color="red"><strong>3</strong></font><font color="#003399">} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+        <font color="#003399">do i=1 to 4;</font>
+<font color="blue"><strong>          </strong></font><font color="#003399">qtr<code>{i}</code>=0;</font>
+           <font color="red"><strong>do j=1 to 3;</strong></font>
+              <font color="#003399">qtr<code>{i}</code>+m<code>{i,j}</code>;</font>
+           <font color="red"><strong>end;</strong></font>
+        <font color="#003399">end;</font>
+<font color="#003399">     run;</font></pre>
+          To see how the nested DO loop processes these arrays, let's examine 
+          the execution of this DATA step.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

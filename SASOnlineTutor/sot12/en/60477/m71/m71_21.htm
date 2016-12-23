@@ -1,0 +1,321 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Outer Joins<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: Outer Join</h2>
+        <p> Now that you have seen how the three types of outer joins work, let&#8217;s 
+          look at a realistic situation requiring the use of an outer join.</p>
+        <p> Suppose you want to list all of an airline&#8217;s flights that were 
+          scheduled for March, along with corresponding delay information (if 
+          it exists). Each flight is identified by both a flight date and a flight 
+          number. Your output should display the following data: flight date, 
+          flight number, destination, and length of delay in minutes.</p>
+        <p> The data that you need is stored in the two tables shown below. The 
+          applicable columns from each table are identified. <br>
+        </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="code" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Data Needed for Query">
+    <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+      <th width="62"><font size="-1">Table</font></th>
+      <th width="289"><font size="-1">Relevant Columns</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td width="62"><strong><a href="JavaScript: openOther('../linklib/marchflt.htm')">Sasuser.Marchflights</a></strong></td>
+      <td width="289"><code>Date, FlightNumber, Destination</code></td>
+    </tr>
+    <tr valign="top"> 
+      <td width="62"><strong><a href="JavaScript: openOther2('../linklib/fltdelay.htm')">Sasuser.Flightdelays</a></strong></td>
+      <td width="289"><code>Date, FlightNumber, Destination, Delay</code></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>Your output should include the columns that are listed above and 
+          all of the following rows:</p>
+        <ul>
+          <li> rows that have matching values of Date and FlightNumber across 
+            the two tables </li>
+          <li> rows from <strong>Sasuser.Marchflights</strong> that have no matching 
+            row in <strong>Sasuser.Flightdelays</strong>.</li>
+        </ul>
+        <p> To generate the output that you want, the following PROC SQL query 
+          uses a <strong>left outer join</strong>, with <strong>Sasuser.Marchflights</strong> 
+          specified as the <strong>left</strong> (first) table. </p> </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     proc sql outobs=20;
+     title 'All March Flights';
+        select m.date,
+               m.flightnumber 
+	           label='Flight Number',
+               m.destination
+               label='Left',
+               f.destination
+               label='Right',
+               delay
+               label='Delay in Minutes'
+           from sasuser.marchflights as m 
+                left join 
+                sasuser.flightdelays as f
+           on m.date=f.date
+              and m.flightnumber=
+                  f.flightnumber
+           order by delay;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>Notice the following:</p>
+        <ul>
+          <li> The SELECT clause eliminates the duplicate <code>Date</code> and 
+            <code>FlightNumber</code> columns by specifying their source as <strong>Sasuser.Marchflights</strong>. 
+            However, the SELECT clause list specifies the <code>Destination</code> 
+            columns from both tables and assigns a table alias to each to distinguish 
+            between them. <br>
+            <br>
+          </li>
+          <li> The ON clause contains two join conditions, which match the tables 
+            on the two columns <code>Date</code> and <code>FlightNumber</code>.</li>
+        </ul>
+        <p>The query output is shown below.</p></td>
+    </tr>
+  </table>
+  <p>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+    <CENTER>
+      <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+      <TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% title="PROC SQL output title">
+        <TR> 
+          <TD ALIGN=CENTER><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>All 
+            March Flights</i></b></font></TD>
+        </TR>
+      </TABLE>
+      </font> 
+    </CENTER>
+    <br>
+    <CENTER>
+      <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+      <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL output">
+        <thead>
+          <TR> 
+            <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Date</b></font></TD>
+            <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Flight 
+              Number</b></font></TD>
+            <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Left</b></font></TD>
+            <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Right</b></font></TD>
+            <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Delay 
+              in Minutes</b></font></TD>
+          </TR>
+        </thead>
+        <tbody>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">16MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">622</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">FRA</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">03MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">416</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">17MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">182</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">YYZ</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">271</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CDG</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">290</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">08MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">182</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">YYZ</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">132</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">YYZ</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">11MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">202</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ORD</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">29MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">829</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">872</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LAX</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">183</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">27MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">982</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">DFW</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><strong><font  face="Arial, Helvetica, Helv" size="2" color="#000000">.</font></strong></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">25MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">829</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF" nowrap><font  face="Arial, Helvetica, Helv" size="2" color="#000000">-10</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">18MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">219</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF" nowrap><font  face="Arial, Helvetica, Helv" size="2" color="#000000">-10</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">09MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">821</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF" nowrap><font  face="Arial, Helvetica, Helv" size="2" color="#000000">-10</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">02MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">387</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CPH</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">CPH</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF" nowrap><font  face="Arial, Helvetica, Helv" size="2" color="#000000">-10</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">14MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">829</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">WAS</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF" nowrap><font  face="Arial, Helvetica, Helv" size="2" color="#000000">-10</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">07MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">523</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ORD</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ORD</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF" nowrap><font  face="Arial, Helvetica, Helv" size="2" color="#000000">-10</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">10MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">523</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ORD</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ORD</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF" nowrap><font  face="Arial, Helvetica, Helv" size="2" color="#000000">-10</font></TD>
+          </TR>
+          <TR> 
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">15MAR2000</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">219</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+            <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LHR</font></TD>
+            <TD ALIGN=RIGHT bgcolor="#EFEFEF" nowrap><font  face="Arial, Helvetica, Helv" size="2" color="#000000">-9</font></TD>
+          </TR>
+        </tbody>
+      </TABLE>
+      </font> 
+	  <p>
+      <br>
+    </CENTER>
+    </font> 
+
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>The first 12 rows of output display rows from <strong>Sasuser.Marchflights</strong> 
+          (the left table) that have no matching rows in <strong>Sasuser.Flightdelays</strong>. 
+          Therefore, in these 12 rows, the last 2 columns are set to missing values.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The same results could be generated by using a <strong>right</strong> 
+        outer join, with <strong>Sasuser.Marchflights</strong> specified as the 
+        <strong>right</strong> (second) table.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

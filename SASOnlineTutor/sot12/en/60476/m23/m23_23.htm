@@ -1,0 +1,199 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      List Input<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Reading Values That Contain Embedded Blanks</strong> </p>
+      <p> The ampersand (&amp;) modifier enables you to read character values 
+        that contain single embedded blanks. The &amp; indicates that a character 
+        value that is being read with list input might contain one or more single 
+        embedded blanks. The value is read until <strong>two or more consecutive 
+        blanks</strong> are encountered. The &amp; modifier precedes a specified 
+        informat if one is used. 
+        <pre>     <font color="#003399">input Rank <strong>City &amp;</strong>;</font></pre>
+      <p> In the raw data file shown below, each value of <code>City</code> is 
+        followed by two consecutive blanks. There are two ways that you can use 
+        list input to read the values of <code>City</code>. 
+    </td>
+  </tr>
+</table>
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Using the &amp; Modifier with a LENGTH Statement</strong> 
+        <p> As shown below, you can use a LENGTH statement to define the length 
+          of <code>City</code>, and then add an &amp; modifier to the INPUT statement 
+          to indicate that the values contain embedded blanks. 
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <table border="0" cellpadding="2" width="85%">
+    <tr> 
+      <td> 
+        <pre>
+<font color="#003399">data perm.cityrank;</font>
+<font color="#003399">   infile topten;</font>
+<font color="#003399">   <strong>length City $ 12;</strong></font>
+<strong><font color="#003399">   input Rank city &amp;</font></strong>;    </pre>
+      </td>
+      <td align="center">Raw Data File Topten <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+        <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+          <thead> 
+          <tr> 
+            <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+----20---+--</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+          </tr>
+          </thead> <tbody> 
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;1&nbsp;<font color="#003399"><strong>NEW&nbsp;YORK</strong></font>&nbsp;&nbsp;7,262,700&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;2&nbsp;<font color="#003399"><strong>LOS&nbsp;ANGELES</strong></font>&nbsp;&nbsp;3,259,340&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;3&nbsp;CHICAGO&nbsp;&nbsp;3,009,530&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;4&nbsp;HOUSTON&nbsp;&nbsp;1,728,910&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;5&nbsp;<font color="#003399"><strong>PHILADELPHIA</strong></font>&nbsp;&nbsp;1,642,900&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;6&nbsp;DETROIT&nbsp;&nbsp;1,086,220&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;7&nbsp;<font color="#003399"><strong>SAN&nbsp;DIEGO</strong></font>&nbsp;&nbsp;1,015,190&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;8&nbsp;DALLAS&nbsp;&nbsp;1,003,520&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;9&nbsp;<font color="#003399"><strong>SAN&nbsp;ANTONIO</strong></font>&nbsp;&nbsp;914,350&nbsp;</font></td>
+          </tr>
+          <tr> 
+            <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">10&nbsp;PHOENIX&nbsp;&nbsp;894,070&nbsp;</font></td>
+          </tr>
+          </tbody> 
+        </table>
+        </font></font></td>
+    </tr>
+  </table>
+  <p> <br>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"><strong>Using the &amp; Modifier with an Informat</strong> 
+          <p> You can also read the values for <code>City</code> with the &amp; 
+            modifier followed by the $<em>w</em>. informat, which reads standard 
+            character values, as shown below. When you do this, the <em>w</em> 
+            value in the informat determines the variable's length and should 
+            be large enough to accommodate the longest value. 
+        </td>
+      </tr>
+    </table>
+    <p> 
+    <table border="0" cellpadding="2" width="85%">
+      <tr> 
+        <td width="49%"> 
+          <pre>
+<font color="#003399">data perm.cityrank;</font>
+<font color="#003399">   infile topten;</font>
+<font color="#003399">   <strong>input Rank City &amp; $12.; </strong></font>    </pre>
+        </td>
+        <td align="center" width="51%">Raw Data File Topten <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+          <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+            <thead> 
+            <tr> 
+              <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+----20---+--</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+            </tr>
+            </thead> <tbody> 
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;1&nbsp;<font color="#003399"><strong>NEW&nbsp;YORK</strong></font>&nbsp;&nbsp;7,262,700&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;2&nbsp;<font color="#003399"><strong>LOS&nbsp;ANGELES</strong></font>&nbsp;&nbsp;3,259,340&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;3&nbsp;CHICAGO&nbsp;&nbsp;3,009,530&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;4&nbsp;HOUSTON&nbsp;&nbsp;1,728,910&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;5&nbsp;<font color="#003399"><strong>PHILADELPHIA</strong></font>&nbsp;&nbsp;1,642,900&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;6&nbsp;DETROIT&nbsp;&nbsp;1,086,220&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;7&nbsp;<font color="#003399"><strong>SAN&nbsp;DIEGO</strong></font>&nbsp;&nbsp;1,015,190&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;8&nbsp;DALLAS&nbsp;&nbsp;1,003,520&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">&nbsp;9&nbsp;<font color="#003399"><strong>SAN&nbsp;ANTONIO</strong></font>&nbsp;&nbsp;914,350&nbsp;</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">10&nbsp;PHOENIX&nbsp;&nbsp;894,070&nbsp;</font></td>
+            </tr>
+            </tbody> 
+          </table>
+          </font></font></td>
+      </tr>
+    </table>
+    <p> <br>
+    <table border="0" cellpadding="2" cellspacing="0" width="85%">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">Remember that you must use <strong>two consecutive blanks</strong> 
+          as delimiters when you use the &amp; modifier. You cannot use any other 
+          delimiter to indicate the end of each field.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <center>
+    </center>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

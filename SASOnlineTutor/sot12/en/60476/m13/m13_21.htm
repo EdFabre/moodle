@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Sending 
+      SQL Statements to the DBMS<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p>Suppose you want to send dynamic, non-query, DBMS-specific SQL statements 
+          to the DBMS for processing. To do so, use the EXECUTE statement. 
+        </td>
+  </tr>
+</table>
+<P><BR>
+<TABLE border="1" cellspacing="0" cellpadding="10" align="center" width="85%" bgcolor="#F7F7DE" title="General form, EXECUTE statement">
+  <TR>
+      <TD><STRONG>General form, EXECUTE statement:</STRONG>
+        <BLOCKQUOTE> <NOBR><FONT color="#003399"><STRONG>EXECUTE (</STRONG><EM>DBMS-specific-SQL-statement</EM><strong>)</strong></FONT></NOBR><BR>
+          <NOBR><FONT color="#003399"><STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BY</STRONG>
+          <EM>dbms-name </EM>|<EM> alias</EM><strong>;</strong></FONT></NOBR>
+        </BLOCKQUOTE>
+        <P>
+        where
+        <UL>
+          <LI>
+            <NOBR><FONT color="#003399"><EM>DBMS-specific-SQL-statement</EM></FONT></NOBR>
+            is a dynamic, non-query SQL statement enclosed in parentheses. The statement
+            may be case-sensitive and is passed to the DBMS exactly as you type it.<BR>
+            <BR>
+          <LI>
+            <FONT COLOR="#003399"><EM>dbms-name </EM>|<EM> alias</EM></FONT> identifies
+            the DBMS or its alias. You cannot use an alias if you omitted the CONNECT
+            statement.
+        </UL>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+  <BR>
+  <TABLE cellpadding="0" cellspacing="0" border="0" align="center" width="85%">
+    <TR>
+      <TD>Typically, the DBMS-specific SQL statements in an EXECUTE statement include
+        one or more of the following:
+        <UL>
+          <LI>
+            <STRONG>CREATE</STRONG> a DBMS table, view, index, or other object
+          
+        <LI> <STRONG>INSERT</STRONG> rows in a DBMS table 
+        <LI>
+            <STRONG>DELETE</STRONG> rows from a DBMS table
+          <LI>
+            <STRONG>UPDATE</STRONG> the data in a DBMS table
+          <LI>
+            <STRONG>DROP</STRONG> or delete a DBMS table, view, or other object
+          <LI>
+            <STRONG>GRANT</STRONG> authority to access or modify objects
+          <LI>
+            <STRONG>REVOKE</STRONG> the access or modification privileges that were given
+            by the GRANT statement.
+        </UL>
+        <P>
+        <BR>
+        <STRONG>Example</STRONG>
+        <P>
+        In the following program, the EXECUTE statement grants UPDATE and INSERT
+        authority to user CESTMOI for the DBMS table <STRONG>Orders</STRONG>.
+        <PRE>
+     <FONT color="#003399">proc sql;</FONT>
+        <FONT color="#003399">connect to oracle as dblink</FONT>
+                <FONT color="#003399">(user=cestmoi pw=trustme </FONT>
+                 <FONT color="#003399">path=oracpath connection=global);</FONT>
+        <FONT color="#003399"><STRONG>execute (grant update, insert on orders</STRONG></FONT>
+                 <FONT color="#003399"><STRONG>to cestmoi) by dblink</STRONG>;</FONT>
+<FONT color="#003399">        disconnect from dblink;</FONT>
+<FONT color="#003399">     quit;</FONT>
+</PRE>
+      </TD>
+    </TR>
+  </TABLE><P>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

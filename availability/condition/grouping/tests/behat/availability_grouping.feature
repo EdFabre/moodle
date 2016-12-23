@@ -22,8 +22,10 @@ Feature: availability_grouping
     And the following "group members" exist:
       | user     | group |
       | student1 | GI1   |
-    And the following config values are set as admin:
-      | enableavailability  | 1 |
+    And I log in as "admin"
+    And I set the following administration settings values:
+      | Enable conditional access  | 1 |
+    And I log out
 
   @javascript
   Scenario: Test condition

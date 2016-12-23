@@ -1,0 +1,117 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit the following program: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='%macro attend2(opts=,start=01jan2001,stop=31dec2001);<br>';
+solutionText+='%let start=%upcase(&start);<br>';
+solutionText+='%let stop=%upcase(&stop);<br>';
+solutionText+='proc freq data=sasuser.all;<br>';
+solutionText+=' where begin_date between "&start"d and "&stop"d;<br>';
+solutionText+=' tables location / &opts;<br>';
+solutionText+=' title1 "Enrollment from &start to &stop";<br>';
+solutionText+='run;<br>';
+solutionText+='%mend;</pre></font>';
+solutionText+='<li>Submit the following code:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='options mprint mlogic;<br>';
+solutionText+='%attend2(opts=nocum)<br></pre></font>';
+solutionText+='Examine the output. You should see a frequency report on the <code>Location</code> variable, with ';
+solutionText+='no cumulative frequencies or cumulative percentages. In the SAS log, you should see MLOGIC messages indicating ';
+solutionText+='the beginning and ending of macro execution, as well as listing the resolved  values of macro variables defined in the %LET statements  ';
+solutionText+='and  in the macro parameters.<br><br>';
+solutionText+='<li>Submit the following call:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='%attend2(opts=nocum nopercent,stop=30jun2001)</pre></font>';
+solutionText+='Examine the output. This time you should see a frequency report on the <code>Location</code> ';
+solutionText+=' variable that shows only the frequency for each value. </ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Define 
+      and execute a macro that includes keyword parameters.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy the program below and paste it into the code editing window: 
+            <P>
+<table width="85%" align="center"><font color="#003399"><PRE>
+%let start=%upcase(&start);
+%let stop=%upcase(&stop);
+proc freq data=sasuser.all;
+   where begin_date between "&start"d and "&stop"d;
+   table location / &opts;
+   title1 "Enrollment from &start to &stop";
+run;
+</pre></font></table>
+            Convert this program to a macro named <strong>Attend2</strong>. Use 
+            keyword parameters in your macro definition to define values for the 
+            macro variables <code>opts</code>, <code>start</code>, and <code>stop</code>. 
+            Use a null value as the default value for <code>opts</code>, <em>01jan2001</em> 
+            as the default value for <code>start</code>, and <em>31dec2001</em> 
+            as the default value for <code>stop</code>. Submit the macro definition 
+            to compile the macro.<br>
+            <br>
+          <li>If you have not already done so, specify the appropriate system 
+            options to display the source code that is received by the SAS compiler 
+            and to track the macro's execution. <br>
+            <BR>
+            Submit a call to <strong>Attend2</strong> that specifies <em>nocum</em> 
+            as a value for <code>opts</code> and that specifies default values 
+            for both <code>start</code> and <code>stop</code>. Examine the output 
+            as well as any messages that are written to the SAS log.<br>
+          <BR>
+          <li>Submit another call to <strong>Attend2</strong> that specifies <em>nocum 
+            nopercent</em> as a value for <code>opts</code>, <em>30jun2001</em> 
+            as a value for <code>stop</code>, and the default value for <code>start</code>. 
+            Examine the output as well as any messages that are written to the 
+            SAS log. <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

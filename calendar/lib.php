@@ -318,9 +318,9 @@ function calendar_get_mini($courses, $groups, $users, $calmonth = false, $calyea
     }
 
     // Now display all the calendar
-    $daytime = strtotime('-1 day', $display->tstart);
+    $daytime = $display->tstart - DAYSECS;
     for($day = 1; $day <= $display->maxdays; ++$day, ++$dayweek) {
-        $daytime = strtotime('+1 day', $daytime);
+        $daytime += DAYSECS;
         if($dayweek > $display->maxwday) {
             // We need to change week (table row)
             $content .= '</tr><tr>';
@@ -683,18 +683,19 @@ function calendar_get_events($tstart, $tend, $users, $groups, $courses, $withdur
     global $DB;
 
     $whereclause = '';
-    $params = array();
     // Quick test
     if(is_bool($users) && is_bool($groups) && is_bool($courses)) {
         return array();
     }
 
-    if ((is_array($users) && !empty($users)) or is_numeric($users)) {
+    if(is_array($users) && !empty($users)) {
         // Events from a number of users
         if(!empty($whereclause)) $whereclause .= ' OR';
-        list($insqlusers, $inparamsusers) = $DB->get_in_or_equal($users, SQL_PARAMS_NAMED);
-        $whereclause .= " (userid $insqlusers AND courseid = 0 AND groupid = 0)";
-        $params = array_merge($params, $inparamsusers);
+        $whereclause .= ' (userid IN ('.implode(',', $users).') AND courseid = 0 AND groupid = 0)';
+    } else if(is_numeric($users)) {
+        // Events from one user
+        if(!empty($whereclause)) $whereclause .= ' OR';
+        $whereclause .= ' (userid = '.$users.' AND courseid = 0 AND groupid = 0)';
     } else if($users === true) {
         // Events from ALL users
         if(!empty($whereclause)) $whereclause .= ' OR';
@@ -703,12 +704,14 @@ function calendar_get_events($tstart, $tend, $users, $groups, $courses, $withdur
         // No user at all, do nothing
     }
 
-    if ((is_array($groups) && !empty($groups)) or is_numeric($groups)) {
+    if(is_array($groups) && !empty($groups)) {
         // Events from a number of groups
         if(!empty($whereclause)) $whereclause .= ' OR';
-        list($insqlgroups, $inparamsgroups) = $DB->get_in_or_equal($groups, SQL_PARAMS_NAMED);
-        $whereclause .= " groupid $insqlgroups ";
-        $params = array_merge($params, $inparamsgroups);
+        $whereclause .= ' groupid IN ('.implode(',', $groups).')';
+    } else if(is_numeric($groups)) {
+        // Events from one group
+        if(!empty($whereclause)) $whereclause .= ' OR ';
+        $whereclause .= ' groupid = '.$groups;
     } else if($groups === true) {
         // Events from ALL groups
         if(!empty($whereclause)) $whereclause .= ' OR ';
@@ -716,11 +719,15 @@ function calendar_get_events($tstart, $tend, $users, $groups, $courses, $withdur
     }
     // boolean false (no groups at all): we don't need to do anything
 
-    if ((is_array($courses) && !empty($courses)) or is_numeric($courses)) {
+    if(is_array($courses) && !empty($courses)) {
+        if(!empty($whereclause)) {
+            $whereclause .= ' OR';
+        }
+        $whereclause .= ' (groupid = 0 AND courseid IN ('.implode(',', $courses).'))';
+    } else if(is_numeric($courses)) {
+        // One course
         if(!empty($whereclause)) $whereclause .= ' OR';
-        list($insqlcourses, $inparamscourses) = $DB->get_in_or_equal($courses, SQL_PARAMS_NAMED);
-        $whereclause .= " (groupid = 0 AND courseid $insqlcourses)";
-        $params = array_merge($params, $inparamscourses);
+        $whereclause .= ' (groupid = 0 AND courseid = '.$courses.')';
     } else if ($courses === true) {
         // Events from ALL courses
         if(!empty($whereclause)) $whereclause .= ' OR';
@@ -754,7 +761,7 @@ function calendar_get_events($tstart, $tend, $users, $groups, $courses, $withdur
         $whereclause .= ' AND visible = 1';
     }
 
-    $events = $DB->get_records_select('event', $whereclause, $params, 'timestart');
+    $events = $DB->get_records_select('event', $whereclause, null, 'timestart');
     if ($events === false) {
         $events = array();
     }
@@ -788,7 +795,7 @@ function calendar_get_events_by_id($eventids) {
  * @return string $content return available control for the calender in html
  */
 function calendar_top_controls($type, $data) {
-    global $PAGE, $OUTPUT;
+    global $PAGE;
 
     // Get the calendar type we are using.
     $calendartype = \core_calendar\type_factory::get_calendar_instance();
@@ -916,8 +923,7 @@ function calendar_top_controls($type, $data) {
             }
 
             $content .= html_writer::start_tag('div', array('class'=>'calendar-controls'));
-            $content .= $left . '<span class="hide"> | </span>';
-            $content .= $OUTPUT->heading(userdate($time, get_string('strftimemonthyear')), 2, 'current');
+            $content .= $left . '<span class="hide"> | </span><h1 class="current">'.userdate($time, get_string('strftimemonthyear'))."</h1>";
             $content .= '<span class="hide"> | </span>' . $right;
             $content .= '<span class="clearer"><!-- --></span>';
             $content .= html_writer::end_tag('div')."\n";
@@ -925,8 +931,8 @@ function calendar_top_controls($type, $data) {
         case 'day':
             $days = calendar_get_days();
 
-            $prevtimestamp = strtotime('-1 day', $time);
-            $nexttimestamp = strtotime('+1 day', $time);
+            $prevtimestamp = $time - DAYSECS;
+            $nexttimestamp = $time + DAYSECS;
 
             $prevdate = $calendartype->timestamp_to_date_array($prevtimestamp);
             $nextdate = $calendartype->timestamp_to_date_array($nexttimestamp);
@@ -991,7 +997,7 @@ function calendar_filter_controls_element(moodle_url $url, $type) {
         $str = get_string('show'.$typeforhumans.'events', 'calendar');
     }
     $content = html_writer::start_tag('li', array('class' => 'calendar_event'));
-    $content .= html_writer::start_tag('a', array('href' => $url, 'rel' => 'nofollow'));
+    $content .= html_writer::start_tag('a', array('href' => $url));
     $content .= html_writer::tag('span', $icon, array('class' => $class));
     $content .= html_writer::tag('span', $str, array('class' => 'eventname'));
     $content .= html_writer::end_tag('a');
@@ -1012,7 +1018,7 @@ function calendar_filter_controls(moodle_url $returnurl) {
 
     $groupevents = true;
     $id = optional_param( 'id',0,PARAM_INT );
-    $seturl = new moodle_url('/calendar/set.php', array('return' => base64_encode($returnurl->out_as_local_url(false)), 'sesskey'=>sesskey()));
+    $seturl = new moodle_url('/calendar/set.php', array('return' => base64_encode($returnurl->out(false)), 'sesskey'=>sesskey()));
     $content = html_writer::start_tag('ul');
 
     $seturl->param('var', 'showglobal');
@@ -1672,7 +1678,7 @@ function calendar_format_event_time($event, $now, $linkparams = null, $usecommon
             $timeend = calendar_time_representation($event->timestart + $event->timeduration);
 
             // Set printable representation.
-            if ($now >= $usermidnightstart && $now < strtotime('+1 day', $usermidnightstart)) {
+            if ($now >= $usermidnightstart && $now < ($usermidnightstart + DAYSECS)) {
                 $url = calendar_get_link_href(new moodle_url(CALENDAR_URL . 'view.php', $linkparams), 0, 0, 0, $endtime);
                 $eventtime = $timestart . ' <strong>&raquo;</strong> ' . html_writer::link($url, $dayend) . $timeend;
             } else {
@@ -1888,54 +1894,6 @@ function calendar_add_event_allowed($event) {
         default:
             return has_capability('moodle/calendar:manageentries', $event->context);
     }
-}
-
-/**
- * Convert region timezone to php supported timezone
- *
- * @param string $tz value from ical file
- * @return string $tz php supported timezone
- */
-function calendar_normalize_tz($tz) {
-    switch ($tz) {
-        case('CST'):
-        case('Central Time'):
-        case('Central Standard Time'):
-            $tz = 'America/Chicago';
-            break;
-        case('CET'):
-        case('Central European Time'):
-            $tz = 'Europe/Berlin';
-            break;
-        case('EST'):
-        case('Eastern Time'):
-        case('Eastern Standard Time'):
-            $tz = 'America/New_York';
-            break;
-        case('PST'):
-        case('Pacific Time'):
-        case('Pacific Standard Time'):
-            $tz = 'America/Los_Angeles';
-            break;
-        case('China Time'):
-        case('China Standard Time'):
-            $tz = 'Asia/Beijing';
-            break;
-        case('IST'):
-        case('India Time'):
-        case('India Standard Time'):
-            $tz = 'Asia/New_Delhi';
-            break;
-        case('JST');
-        case('Japan Time'):
-        case('Japan Standard Time'):
-            $tz = 'Asia/Tokyo';
-            break;
-        case('Romance Standard Time'):
-            $tz = 'Europe/Brussels';
-            break;
-    }
-    return $tz;
 }
 
 /**
@@ -2816,7 +2774,7 @@ class calendar_information {
      * @return int tomorrow timestamp
      */
     public function timestamp_tomorrow() {
-        return strtotime('+1 day', $this->time);
+        return $this->time + DAYSECS;
     }
     /**
      * Adds the pretend blocks for the calendar
@@ -2929,11 +2887,10 @@ function calendar_add_subscription($sub) {
  * @param stdClass $event The RFC-2445 iCalendar event
  * @param int $courseid The course ID
  * @param int $subscriptionid The iCalendar subscription ID
- * @param string $timezone The X-WR-TIMEZONE iCalendar property if provided
  * @throws dml_exception A DML specific exception is thrown for invalid subscriptionids.
  * @return int Code: CALENDAR_IMPORT_EVENT_UPDATED = updated,  CALENDAR_IMPORT_EVENT_INSERTED = inserted, 0 = error
  */
-function calendar_add_icalendar_event($event, $courseid, $subscriptionid, $timezone='UTC') {
+function calendar_add_icalendar_event($event, $courseid, $subscriptionid) {
     global $DB;
 
     // Probably an unsupported X-MICROSOFT-CDO-BUSYSTATUS event.
@@ -2944,7 +2901,7 @@ function calendar_add_icalendar_event($event, $courseid, $subscriptionid, $timez
     $name = $event->properties['SUMMARY'][0]->value;
     $name = str_replace('\n', '<br />', $name);
     $name = str_replace('\\', '', $name);
-    $name = preg_replace('/\s+/u', ' ', $name);
+    $name = preg_replace('/\s+/', ' ', $name);
 
     $eventrecord = new stdClass;
     $eventrecord->name = clean_param($name, PARAM_NOTAGS);
@@ -2953,12 +2910,11 @@ function calendar_add_icalendar_event($event, $courseid, $subscriptionid, $timez
         $description = '';
     } else {
         $description = $event->properties['DESCRIPTION'][0]->value;
-        $description = clean_param($description, PARAM_NOTAGS);
         $description = str_replace('\n', '<br />', $description);
         $description = str_replace('\\', '', $description);
-        $description = preg_replace('/\s+/u', ' ', $description);
+        $description = preg_replace('/\s+/', ' ', $description);
     }
-    $eventrecord->description = $description;
+    $eventrecord->description = clean_param($description, PARAM_NOTAGS);
 
     // Probably a repeating event with RRULE etc. TODO: skip for now.
     if (empty($event->properties['DTSTART'][0]->value)) {
@@ -2967,29 +2923,15 @@ function calendar_add_icalendar_event($event, $courseid, $subscriptionid, $timez
 
     $defaulttz = date_default_timezone_get();
     $tz = isset($event->properties['DTSTART'][0]->parameters['TZID']) ? $event->properties['DTSTART'][0]->parameters['TZID'] :
-            $timezone;
-    $tz = calendar_normalize_tz($tz);
+            'UTC';
     $eventrecord->timestart = strtotime($event->properties['DTSTART'][0]->value . ' ' . $tz);
     if (empty($event->properties['DTEND'])) {
-        $eventrecord->timeduration = 0; // no duration if no end time specified
+        $eventrecord->timeduration = 3600; // one hour if no end time specified
     } else {
         $endtz = isset($event->properties['DTEND'][0]->parameters['TZID']) ? $event->properties['DTEND'][0]->parameters['TZID'] :
-                $timezone;
-        $endtz = calendar_normalize_tz($endtz);
+                'UTC';
         $eventrecord->timeduration = strtotime($event->properties['DTEND'][0]->value . ' ' . $endtz) - $eventrecord->timestart;
     }
-
-    // Check to see if it should be treated as an all day event.
-    if ($eventrecord->timeduration == DAYSECS) {
-        // Check to see if the event started at Midnight on the imported calendar.
-        date_default_timezone_set($timezone);
-        if (date('H:i:s', $eventrecord->timestart) === "00:00:00") {
-            // This event should be an all day event.
-            $eventrecord->timeduration = 0;
-        }
-        date_default_timezone_set($defaulttz);
-    }
-
     $eventrecord->uuid = $event->properties['UID'][0]->value;
     $eventrecord->timemodified = time();
 
@@ -3116,23 +3058,15 @@ function calendar_import_icalendar_events($ical, $courseid, $subscriptionid = nu
     $updatecount = 0;
 
     // Large calendars take a while...
-    if (!CLI_SCRIPT) {
-        core_php_time_limit::raise(300);
-    }
+    core_php_time_limit::raise(300);
 
     // Mark all events in a subscription with a zero timestamp.
     if (!empty($subscriptionid)) {
         $sql = "UPDATE {event} SET timemodified = :time WHERE subscriptionid = :id";
         $DB->execute($sql, array('time' => 0, 'id' => $subscriptionid));
     }
-    // Grab the timezone from the iCalendar file to be used later.
-    if (isset($ical->properties['X-WR-TIMEZONE'][0]->value)) {
-        $timezone = $ical->properties['X-WR-TIMEZONE'][0]->value;
-    } else {
-        $timezone = 'UTC';
-    }
     foreach ($ical->components['VEVENT'] as $event) {
-        $res = calendar_add_icalendar_event($event, $courseid, $subscriptionid, $timezone);
+        $res = calendar_add_icalendar_event($event, $courseid, $subscriptionid);
         switch ($res) {
           case CALENDAR_IMPORT_EVENT_UPDATED:
             $updatecount++;
@@ -3267,10 +3201,10 @@ function calendar_cron() {
         mtrace("Updating calendar subscription {$sub->name} in course {$sub->courseid}");
         try {
             $log = calendar_update_subscription_events($sub->id);
-            mtrace(trim(strip_tags($log)));
         } catch (moodle_exception $ex) {
-            mtrace('Error updating calendar subscription: ' . $ex->getMessage());
+
         }
+        mtrace(trim(strip_tags($log)));
     }
 
     mtrace('Finished updating calendar subscriptions.');

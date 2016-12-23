@@ -17,14 +17,10 @@ class html_parser extends nwiki_parser {
 
     public function __construct() {
         parent::__construct();
-        // The order is important, headers should be parsed before links.
-        $this->tagrules = array(
-            // Headers are considered tags here.
-            'header' => array(
-                'expression' => "/<\s*h([1-$this->maxheaderdepth])\s*>(.+?)<\/h[1-$this->maxheaderdepth]>/is"
-            ),
-            'link' => $this->tagrules['link'],
-            'url' => $this->tagrules['url']
+        $this->tagrules = array('link' => $this->tagrules['link'], 'url' => $this->tagrules['url']);
+
+        // Headers are considered tags here.
+        $this->tagrules['header'] = array('expression' => "/<\s*h([1-$this->maxheaderdepth])\s*>(.+?)<\/h[1-$this->maxheaderdepth]>/is"
         );
     }
 
@@ -56,8 +52,7 @@ class html_parser extends nwiki_parser {
 
         $h1 = array("<\s*h1\s*>", "<\/h1>");
 
-        $regex = "/(.*?)({$h1[0]}\s*".preg_quote($header, '/')."\s*{$h1[1]}.*?)((?:\n{$h1[0]}.*)|$)/is";
-        preg_match($regex, $text, $match);
+        preg_match("/(.*?)({$h1[0]}\s*\Q$header\E\s*{$h1[1]}.*?)((?:\n{$h1[0]}.*)|$)/is", $text, $match);
 
         if (!empty($match)) {
             return array($match[1], $match[2], $match[3]);

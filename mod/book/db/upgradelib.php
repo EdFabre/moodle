@@ -108,16 +108,12 @@ function mod_book_migrate_moddata_dir_to_legacy($book, $context, $path) {
  * @return void
  */
 function mod_book_migrate_all_areas() {
-    global $DB, $OUTPUT;
+    global $DB;
 
     $rsbooks = $DB->get_recordset('book');
     foreach($rsbooks as $book) {
         upgrade_set_timeout(360); // set up timeout, may also abort execution
         $cm = get_coursemodule_from_instance('book', $book->id);
-        if (empty($cm) || empty($cm->id)) {
-             echo $OUTPUT->notification("Course module not found, skipping: {$book->name}");
-             continue;
-        }
         $context = context_module::instance($cm->id);
         mod_book_migrate_area($book, 'intro', 'book', $book->course, $context, 'mod_book', 'intro', 0);
 

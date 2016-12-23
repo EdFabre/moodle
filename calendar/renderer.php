@@ -259,7 +259,8 @@ class core_calendar_renderer extends plugin_renderer_base {
         if (calendar_user_can_add_event($calendar->course)) {
             $output .= $this->add_event_button($calendar->course->id, 0, 0, 0, $calendar->time);
         }
-        $output .= $this->course_filter_selector($returnurl, get_string('dayviewfor', 'calendar'));
+        //$output .= html_writer::tag('label', get_string('dayview', 'calendar'), array('for'=>'cal_course_flt_jump'));
+        $output .= $this->course_filter_selector($returnurl, get_string('dayview', 'calendar'));
         $output .= html_writer::end_tag('div');
         // Controls
         $output .= html_writer::tag('div', calendar_top_controls('day', array('id' => $calendar->courseid, 'time' => $calendar->time)), array('class'=>'controls'));
@@ -467,7 +468,7 @@ class core_calendar_renderer extends plugin_renderer_base {
         if (calendar_user_can_add_event($calendar->course)) {
             $output .= $this->add_event_button($calendar->course->id, 0, 0, 0, $calendar->time);
         }
-        $output .= $this->course_filter_selector($returnurl, get_string('detailedmonthviewfor', 'calendar'));
+        $output .= get_string('detailedmonthview', 'calendar').': '.$this->course_filter_selector($returnurl);
         $output .= html_writer::end_tag('div', array('class'=>'header'));
         // Controls
         $output .= html_writer::tag('div', calendar_top_controls('month', array('id' => $calendar->courseid, 'time' => $calendar->time)), array('class' => 'controls'));
@@ -503,9 +504,9 @@ class core_calendar_renderer extends plugin_renderer_base {
             $weekend = intval($CFG->calendar_weekend);
         }
 
-        $daytime = strtotime('-1 day', $display->tstart);
+        $daytime = $display->tstart - DAYSECS;
         for ($day = 1; $day <= $display->maxdays; ++$day, ++$dayweek) {
-            $daytime = strtotime('+1 day', $daytime);
+            $daytime = $daytime + DAYSECS;
             if($dayweek > $display->maxwday) {
                 // We need to change week (table row)
                 $table->data[] = $row;
@@ -617,7 +618,8 @@ class core_calendar_renderer extends plugin_renderer_base {
         if (calendar_user_can_add_event($calendar->course)) {
             $output .= $this->add_event_button($calendar->course->id);
         }
-        $output .= $this->course_filter_selector($returnurl, get_string('upcomingeventsfor', 'calendar'));
+        $output .= html_writer::tag('label', get_string('upcomingevents', 'calendar'), array('for'=>'cal_course_flt_jump'));
+        $output .= $this->course_filter_selector($returnurl);
         $output .= html_writer::end_tag('div');
 
         if ($events) {

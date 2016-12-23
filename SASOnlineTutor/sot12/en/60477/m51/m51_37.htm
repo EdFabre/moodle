@@ -1,0 +1,135 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using Macro Variables in SCL Programs<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td>You have already learned how to use the SYMPUT routine and the SYMGET 
+        function in a DATA step. Both the SYMPUT routine and the SYMGET function 
+        can be used in SCL programs. The syntax for each is exactly the same as 
+        it is in the DATA step. 
+        <P> Additionally, both the SYMPUT routine and the SYMGET function have 
+          numeric equivalents for use in SCL programs. <P><BR>
+        <h2>The SYMPUTN Routine</h2>
+	  The SYMPUTN routine enables you to create a macro variable during execution 
+        of an SCL program and to assign a numeric value to it. 
+        <P><BR>
+		    <table border="1" cellspacing="0" cellpadding="10"  bgcolor="#F7F7DE" title="General form, SYMPUTN routine">
+            <tr> 
+              <td align="left"><strong>General form, SYMPUTN routine:</strong> 
+			  <blockquote> <font color="#003399"><nobr><strong>CALL SYMPUTN 
+                  </strong>(<em>'macro-variable'</em>, <em>value</em>)<strong>;</strong></nobr></font> 
+                </blockquote>
+               where
+			    <ul>
+                  
+                <li> <font color="#003399"><em>macro-variable</em></font> is the 
+                  name of a global macro variable enclosed in single quotation 
+                  marks with no ampersand. Alternatively, it is the name of an 
+                  SCL variable (<strong>not</strong> enclosed in quotation marks) 
+                  whose value is the name of a global macro variable. 
+                <li> <font color="#003399"><em>value</em></font> 
+                    is the numeric value that is assigned to <font color="#003399"><em>macro-variable</em></font>, which can be a number of the name of a numeric SCL variable. 
+                   </ul></td>
+            </tr>
+          </table>
+		    <p><br>
+<h2>Example</h2>
+	Suppose the SCL variable <code>unitvar</code> has a value of <em>unit</em> 
+        and the SCL variable <code>unitnum</code> has a numeric value of <em>200</em>. 
+        To create a macro variable whose name is the value of <code>unitvar</code> 
+        (in this case, <em>unit</em>) and assign a value equal to the value of 
+        the SCL variable <code>unitnum</code> (in this case, <em>200</em>) you 
+        submit the following statement within a SUBMIT block: <font color="#003399"> 
+        <pre>     call symputn(unitvar, unitnum);</pre></font>
+	Similarly, to create a macro variable named <code>unitvar</code> and assign a numeric value of 500 to it, you submit the following statement within a SUBMIT block.
+	<font color="#003399"><pre>     call symputn('unitvar', 500);</pre>
+        </font> 
+	  </td>
+    </tr>
+  </table>
+  <p> <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><h2>The SYMGETN Function</h2>
+		  The SYMGETN function enables you to obtain the numeric value of a macro 
+        variable during execution of an SCL program. 
+        <P><BR>
+		   <table border="1" cellspacing="0" cellpadding="10"  bgcolor="#F7F7DE" title="General form, SYMGETN function">
+            <tr> 
+              <td align="left"><strong>General form, SYMGETN function:</strong> 
+			  <blockquote> <font color="#003399"><nobr><strong>SYMGETN 
+                  </strong>(<em>'macro-variable'</em>)<strong>;</strong></nobr></font> 
+                </blockquote>
+               where
+			    <ul>
+				<li><font color="#003399"><em>SCL-variable</em></font> is the name of a numeric SCL variable to which the value of <font color="#003399"><em>macro-variable</em></font> is assigned.
+                  
+                <li> <font color="#003399"><em>macro-variable</em></font> is the 
+                  name of a global macro variable enclosed in single quotation 
+                  marks with no ampersand. Alternatively, it is the name of an 
+                  SCL variable (<strong>not</strong> enclosed in quotation marks) 
+                  whose value is the name of a global macro variable. 
+              </ul></td>
+            </tr>
+          </table>
+		  <P><BR>
+		 
+		      <h2>Example</h2>
+			  Suppose the SCL variable <code>unitvar</code> has a value of <em>unit</em>, 
+        the macro variable <code>unit</code> has a value of <em>200</em>, and 
+        the macro variable <code>unitvar</code> has a value of <em>500</em>. The 
+        first statement below creates an SCL variable named <code>unitnum</code> 
+        and assigns to it a value of <em>200</em>. The second statement creates 
+        an SCL variable named <code>unit</code> and assigns it a value of <em>500</em>.<font color="#003399"> 
+        <pre>     unitnum=symgetn(unitvar);
+     unit=symgetn('unitvar');</pre>
+        </font>
+        <P><table cellpadding="2">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+            <td>For more information about using macro variables in SCL, see the 
+              <font size="-1" face="Arial, Helvetica, sans-serif"> 
+              <!--doc reference-->
+              </font>SAS documentation for the macro language.<font size="-1" face="Arial, Helvetica, sans-serif">&nbsp;</font> 
+            </td>
+        </tr>
+      </table> </td>
+    </tr>
+  </table>
+ <P><BR>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

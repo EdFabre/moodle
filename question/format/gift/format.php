@@ -175,7 +175,7 @@ class qformat_gift extends qformat_default {
             }
         }
 
-        $text = trim(implode("\n", $lines));
+        $text = trim(implode(' ', $lines));
 
         if ($text == '') {
             return false;

@@ -1,0 +1,322 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Formats from SAS Data Sets<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>Suppose you want to create a format that labels a three-letter airport 
+          code with the name of the city where the airport is located. You have 
+          a data set, <strong>Sasuser.Acities</strong>, that contains airport 
+          codes and airport cities. However, the data does not have the required 
+          variables for the CNTLIN= option.</p>
+        <p></p>
+        <br> 
+        <p align="center">SAS Data Set Sasuser.Acities (Partial Listing)
+        <table  border=1 align="center" cellpadding=3 cellspacing=0 bgcolor="#CCCCCC" frame=BOX title="SAS Data Set">
+          <thead>
+            <tr valign="top"> 
+              <td width="151" align=Center bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City 
+                Where Airport is Located</b></font></td>
+              <td width="74" align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Start 
+                Point</b></font></td>
+              <td width="235" align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Airport 
+                Name </b></font></td>
+              <td width="134" align=CENTER bgcolor="#F7F7DE"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+                Country Where Airport is Located</b></font></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">Auckland</font></td>
+              <td align=Left bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">AKL</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">International</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">New 
+                Zealand </font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Amsterdam</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">AMS</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Schiphol</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Netherlands</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Anchorage, 
+                AK</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">ANC</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Anchorage 
+                International Airport</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">USA</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Stockholm</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">ARN</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Arlanda</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">Sweden</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Athens 
+                (Athinai) </font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">ATH</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Hellinikon 
+                International Airport</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Greece</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Birmingham, 
+                AL </font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BHM</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Birmingham 
+                International Airport</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">USA</font></td>
+            </tr>
+            <tr> 
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Bangkok</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">BKK</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Don 
+                Muang International Airport</font></td>
+              <td align=LEFT bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Thailand</font></td>
+            </tr>
+          </tbody>
+        </table>
+        <p><br>
+          To create a format from this data set, you need to</p>
+        <ol>
+          <li>List data set variables</li>
+          <li>Restructure the data</li>
+        </ol>
+        <p><br></p>
+        <h2>Step 1: List Data Set Variables</h2>
+        <p>Remember that you need to have the variables <code>FmtName</code>, 
+          <code>Start</code>, and <code>Label</code>. You can submit a PROC CONTENTS 
+          step to get a listing of the variables in the <strong>Sasuser.Acities</strong> 
+          data set.</p>
+        <pre><font color="#003399">     proc contents data=sasuser.acities; 
+     run;</font> </pre> <div align="center"><font face="Arial, Helvetica, Helv" size="2"><font  face="Arial, Helvetica, Helv" size="2"> 
+          Partial Output</font></font> 
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC CONTENTS Output">
+            <thead>
+              <TR> 
+                <TD COLSPAN=5 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Alphabetic 
+                  List of Variables and Attributes</b></font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>#</b></font></TD>
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Variable</b></font></TD>
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Type</b></font></TD>
+                <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Len</b></font></TD>
+                <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>Label</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>1</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">City</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">City 
+                  Where Airport is Located</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>2</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Code</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">3</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Start 
+                  Point</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>4</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Country</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Country 
+                  Where Airport is Located</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#002288"><b>3</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Name</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Char</font></TD>
+                <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">50</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Airport 
+                  Name</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+        </div>
+        <p></p>
+        <br> 
+		<div id="v89_v91" class="eg_div">
+		<table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More information"></td>
+            <td valign="top">You can also get a list of variable names by using 
+              PROC DATASETS with a CONTENTS statement 
+              or by viewing the properties of the SAS data set in the SAS Explorer window.</td>
+          </tr>
+        </table>
+		</div>
+		
+		<div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+		<table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More information"></td>
+            <td valign="top">You can also get a list of variable names by using 
+              PROC DATASETS with a CONTENTS statement. 
+           </td>
+          </tr>
+        </table>
+		</div>
+		
+        <div align="left"></div>
+        <h2> <br>
+          Step 2: Restructure the Data</h2>
+        <p>Once you have looked at the data and know the variable names, you are 
+          ready to write a DATA step to manipulate the data. The variable <code>Code</code> 
+          is the three-letter airport code and the variable <code>City</code> 
+          is the city where the airport is located. You can rename the variable 
+          <code>Code</code> to <code>Start</code> and the variable <code>City</code> 
+          to <code>Label</code>, but you also need to create the variable <code>FmtName</code>. 
+        <p>The code below is an efficient way to get your data ready to use. The 
+          DATA step uses 
+        <ul>
+          <li>the KEEP statement to write only the specified variables to the 
+            ouput data set</li>
+          <li> the RETAIN statement to create the variable <code>FmtName</code> 
+            and set the value to '$airport'</li>
+          <li>the RENAME statement to rename the variable <code>Code</code> to 
+            <code>Start</code> (you do not need a variable named <code>End</code> 
+            because you are labeling discrete values rather than ranges) and to 
+            rename the variable <code>City</code> to <code>Label</code><font color="#003399">.</font></li>
+        </ul>
+        <pre><font color="#003399">     data sasuser.aports;
+        keep Start Label FmtName;
+        retain FmtName '$airport';
+        set sasuser.acities (rename=(Code=Start 
+            City= Label));
+     run;
+
+     proc print data=sasuser.aports(obs=10) noobs;
+     run;</font></pre> <div align="center"> 
+          <p align="left">Below is the listing of the first ten observations in 
+            the new data set <strong>Sasuser.Aports</strong>.<br>
+            <br>
+            <br>
+          </p>
+          <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+            <thead>
+              <TR> 
+                <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FmtName</b></font></TD>
+                <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Label</b></font></TD>
+                <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Start</b></font></TD>
+              </TR>
+            </thead>
+            <tbody>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Auckland</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AKL</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Amsterdam</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AMS</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage, 
+                  AK</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANC</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Stockholm</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ARN</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Athens 
+                  (Athinai)</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ATH</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Birmingham, 
+                  AL</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BHM</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Bangkok</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BKK</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Nashville, 
+                  TN</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BNA</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Boston, 
+                  MA</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BOS</font></TD>
+              </TR>
+              <TR> 
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$airport</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Brussels 
+                  (Bruxelles)</font></TD>
+                <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">BRU</font></TD>
+              </TR>
+            </tbody>
+          </TABLE>
+          <br>
+          <br>
+          <p align="left">This data set is now in the proper format to be used 
+            to create a format using the CNTLIN= option. Next, let's look again 
+            at the code that creates the format from this data set.</p>
+        </div></td>
+    </tr>
+  </table>
+  <p><p><br>
+ 
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

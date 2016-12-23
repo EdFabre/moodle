@@ -1,0 +1,214 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      an INFILE Statement
+      <!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <p>You can make the process of concatenating raw data files more flexible 
+          by using an INFILE statement with the FILEVAR= option. The FILEVAR= 
+          option enables you to dynamically change the currently opened input 
+          file to a new input file. </p></td>
+    </tr>
+  </table>
+  <p> <BR>
+  <table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, INFILE statement with the FILEVAR= option">
+    <tr> 
+      <td align="left"><strong>General form, INFILE statement with the FILEVAR= 
+        option:</strong> <blockquote> <font color="#003399"><nobr><strong>INFILE 
+          </strong><em>file-specification </em></nobr><strong>FILEVAR=</strong><nobr><em> 
+          variable</em><strong>;</strong></nobr></font> 
+          </blockquote>where 
+		  <ul>
+		  <li><font color="#003399"><strong>FILEVAR=<em> </em></strong><nobr><em>variable</em></nobr><em> 
+            </em></font>names a variable whose change in value causes the INFILE 
+            statement to close the current input file and open a new input file. <br><br>
+            <li><font color="#003399"><em>variable</em></font> contains a character string that is a physical filename. </ul>
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>When you use an INFILE statement with the FILEVAR= option, the file 
+        specification is a placeholder, not an actual filename or a fileref that 
+        had been assigned previously to a file. SAS uses this placeholder for 
+        reporting processing information to the SAS log. The file specification 
+        must conform to the same rules as a fileref. 
+        <p>When the INFILE statement executes, it reads from the file that the 
+          FILEVAR= variable specifies. Like automatic variables, this variable 
+          is not written to the data set.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>Suppose you want to create a SAS data set that contains three months 
+          of data stored in three raw data files. The three months are the current 
+          month and the previous two months.</p></td>
+    </tr>
+  </table>
+ 
+  <br>
+  <img src="images/m55_8g1.gif" alt="Months 9-12" width="425" height="143"><br>
+  <br>
+
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>In the following INFILE statement, <code>temp</code> is an arbitrarily 
+        named placeholder, not an actual filename or a fileref that had been assigned 
+        to a file previously. The FILEVAR= variable, <code>nextfile,</code> contains 
+        the name of the raw data file to be read, for example, <strong>Month9.dat</strong>, 
+        <strong>Month10.dat</strong>, or <strong>Month11.dat</strong>. A RUN statement 
+        is not included because the program is not complete.</h2> 
+        <pre><font color="#003399">     data work.quarter
+        <strong>infile temp filevar=nextfile;</strong>
+        input Flight $ Origin $ Dest $ 
+              Date : date9. RevCargo : comma15.2;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <div align="center"> Raw Data File Month9.dat (first five records) 
+    <TABLE  Border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <thead>
+        <TR> 
+          <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>----+----10---+----20---+----30---+----40</nobr></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10200 
+            SYD HKG 01SEP2000 $189,441.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10201 
+            SYD HKG 01SEP2000 $175,473.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10300 
+            SYD CBR 01SEP2000 $1,370.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10301 
+            SYD CBR 01SEP2000 $710.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10302 
+            SYD CBR 01SEP2000 $1,210.00</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <p> <br>
+      Raw Data File Month10.dat (first five records) 
+    <TABLE  Border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <thead>
+        <TR> 
+          <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>----+----10---+----20---+----30---+----40</nobr></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10200 
+            SYD HKG 01OCT2000 $182,457.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10201 
+            SYD HKG 01OCT2000 $160,923.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10300 
+            SYD CBR 01OCT2000 $1,030.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10301 
+            SYD CBR 01OCT2000 $870.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10302 
+            SYD CBR 01OCT2000 $770.00</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <p> <br>
+      Raw Data File Month11.dat (first five records) 
+    <TABLE  Border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <thead>
+        <TR> 
+          <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>----+----10---+----20---+----30---+----40</nobr></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10200 
+            SYD HKG 01NOV2000 $176,637.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10201 
+            SYD HKG 01NOV2000 $164,997.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10300 
+            SYD CBR 01NOV2000 $1,230.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10301 
+            SYD CBR 01NOV2000 $1,230.00</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">IA10302 
+            SYD CBR 01NOV2000 $790.00</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <br>
+    <br>
+    <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">You can also use multiple INFILE statements or operating 
+          system techniques to combine raw data files. However, this lesson discusses 
+          only the FILENAME statement and the INFILE statement with the FILEVAR= 
+          option.</td>
+      </tr>
+    </table>
+    
+  </div><P>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

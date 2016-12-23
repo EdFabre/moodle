@@ -1,0 +1,296 @@
+<html><!-- #BeginTemplate "/Templates/popup.dwt" --><!-- DW6 -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- #BeginEditable "title" --> 
+<TITLE>Creating Drill-Down Graphs in HTML - Annotated Sample Program - Complete Version</TITLE>
+<!-- #EndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- #BeginEditable "popup_title" -->Creating 
+      Drill-Down Graphs in HTML<!-- #EndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- #BeginEditable "contents" -->
+<p> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Annotated Sample Program - Complete Version</strong> 
+        <p> You can use this program as a model. Be sure to edit the ODS HTML 
+          PATH= string (shown in <font color="red">red</font>) to conform to your 
+          system's file structure, and add any options, suboptions, or statements 
+          necessary in your operating environment.
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>
+        <pre><font color="#003399">     data work.saletrnd;</font>
+<font color="#003399">        set sasuser.prdsal2;</font>
+
+  /* <font color="blue">create variables to hold HREF address strings</font> */
+
+     <font color="#003399">length PriDrill $ 40 SecDrill $ 40;</font>
+  
+  /* <font color="blue">define the HTML links for the primary chart</font> */
+
+<font color="#003399">     if year=1995 then pridrill='HREF="sales95.html"';</font>
+<font color="#003399">     if year=1996 then pridrill='HREF="sales96.html"';</font>
+<font color="#003399">     if year=1997 then pridrill='HREF="sales97.html"';</font>
+<font color="#003399">     if year=1998 then pridrill='HREF="sales98.html"';</font>
+
+  /* <font color="blue">define the HTML links for the secondary charts</font> */
+
+<font color="#003399">     if quarter=1 then secdrill='HREF="#salesq1"';</font>
+<font color="#003399">     if quarter=2 then secdrill='HREF="#salesq2"';</font>
+<font color="#003399">     if quarter=3 then secdrill='HREF="#salesq3"';</font>
+<font color="#003399">     if quarter=4 then secdrill='HREF="#salesq4"';</font>
+
+  /* <font color="blue">fix the format of the chart variable ACTUAL</font> */
+
+<font color="#003399">        format actual dollar10.0;</font>
+
+  /* <font color="blue">switch to HTML output...set the directory for GIF &amp;</font> */
+  /* <font color="blue">HTML output and specify the name of the HTML file</font> */
+
+<font color="#003399">     run;</font>
+<font color="#003399">     ods listing close;</font>
+<font color="#003399">     ods html path='</font><font color="Red">c:\data\sales\reports</font><font color="#003399">'</font>
+<font color="#003399">         body='totalsales.html';</font>
+
+  /* <font color="blue">switch to GIF output for images...set image size</font> */
+
+<font color="#003399">     goptions device=gif xpixels=480 ypixels=360;</font>
+
+  /* <font color="blue">title of the primary chart</font> */
+
+<font color="#003399">     title 'Total Sales by Year';</font>
+
+  /* <font color="blue">create a bar chart of sales by year...</font> */
+  /* <font color="blue">assign the HTML links held by PriDrill</font> */
+
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar year / subgroup=prodtype discrete</font>
+<font color="#003399">             sumvar=actual html=pridrill;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">specify the HTML file name of the secondary chart...</font> */
+  /* <font color="blue">set the title and create a bar chart where YEAR=1995</font> */
+
+<font color="#003399">     ods html body='sales95.html';</font>
+<font color="#003399">     title 'Sales for 1995 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual subgroup=product discrete</font>
+<font color="#003399">             html=secdrill;</font>
+<font color="#003399">        where year=1995;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">create a named anchor in the current HTML page...set a</font> */
+  /* <font color="blue">title and create a table where YEAR=1995 &amp; QUARTER=1-4</font> */
+
+<font color="#003399">     ods html anchor='salesq1';</font>
+<font color="#003399">     title '1st Quarter 1995 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1995 and quarter=1;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq2';</font>
+<font color="#003399">     title '2nd Quarter 1995 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1995 and quarter=2;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq3';</font>
+<font color="#003399">     title '3rd Quarter 1995 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1995 and quarter=3;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq4';</font>
+<font color="#003399">     title '4th Quarter 1995 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1995 and quarter=4;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">specify the HTML file name of the secondary chart...</font> */
+  /* <font color="blue">set the title and create a bar chart where YEAR=1996</font> */
+
+<font color="#003399">     ods html body='sales96.html';</font>
+<font color="#003399">     title 'Sales for 1996 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual subgroup=product discrete</font>
+<font color="#003399">             html=secdrill;</font>
+<font color="#003399">        where year=1996;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">create a named anchor in the current HTML page...set a</font> */
+  /* <font color="blue">title and create a table where YEAR=1996 &amp; QUARTER=1-4</font> */
+
+<font color="#003399">     ods html anchor='salesq1';</font>
+<font color="#003399">     title '1st Quarter 1996 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1996 and quarter=1;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq2';</font>
+<font color="#003399">     title '2nd Quarter 1996 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1996 and quarter=2;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq3';</font>
+<font color="#003399">     title '3rd Quarter 1996 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1996 and quarter=3;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq4';</font>
+<font color="#003399">     title '4th Quarter 1996 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1996 and quarter=4;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">specify the HTML file name of the secondary chart...</font> */
+  /* <font color="blue">set the title and create a bar chart where YEAR=1997</font> */
+
+<font color="#003399">     ods html body='sales97.html';</font>
+<font color="#003399">     title 'Sales for 1997 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual subgroup=product discrete</font>
+<font color="#003399">             html=secdrill;</font>
+<font color="#003399">        where year=1997;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">create a named anchor in the current HTML page...set a</font> */
+  /* <font color="blue">title and create a table where YEAR=1997 &amp; QUARTER=1-4</font> */
+
+<font color="#003399">     ods html anchor='salesq1';</font>
+<font color="#003399">     title '1st Quarter 1997 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1997 and quarter=1;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq2';</font>
+<font color="#003399">     title '2nd Quarter 1997 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1997 and quarter=2;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq3';</font>
+<font color="#003399">     title '3rd Quarter 1997 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1997 and quarter=3;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq4';</font>
+<font color="#003399">     title '4th Quarter 1997 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1997 and quarter=4;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">specify the HTML file name of the secondary chart...</font> */
+  /* <font color="blue">set the title and create a bar chart where YEAR=1998</font> */
+
+<font color="#003399">     ods html body='sales98.html';</font>
+<font color="#003399">     title 'Sales for 1998 by Quarter';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar quarter / sumvar=actual subgroup=product discrete</font>
+<font color="#003399">             html=secdrill;</font>
+<font color="#003399">        where year=1998;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">create a named anchor in the current HTML page...set a</font> */
+  /* <font color="blue">title and create a table where YEAR=1998 &amp; QUARTER=1-4</font> */
+
+<font color="#003399">     ods html anchor='salesq1';</font>
+<font color="#003399">     title '1st Quarter 1998 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1998 and quarter=1;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq2';</font>
+<font color="#003399">     title '2nd Quarter 1998 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1998 and quarter=2;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq3';</font>
+<font color="#003399">     title '3rd Quarter 1998 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1998 and quarter=3;</font>
+<font color="#003399">     run;</font>
+<font color="#003399">     ods html anchor='salesq4';</font>
+<font color="#003399">     title '4th Quarter 1998 Sales by Country';</font>
+<font color="#003399">     proc tabulate data=work.saletrnd format=dollar10.0;</font>
+<font color="#003399">        class country product;</font>
+<font color="#003399">        var actual;</font>
+<font color="#003399">        table (country all)*(product all), sum*actual;</font>
+<font color="#003399">        where year=1998 and quarter=4;</font>
+<font color="#003399">     run;</font>
+
+  /* <font color="blue">switch back to listing output</font> */
+
+<font color="#003399">     quit;</font>
+<font color="#003399">     ods html close;</font>
+<font color="#003399">     ods listing;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- #EndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- #EndTemplate --></html>

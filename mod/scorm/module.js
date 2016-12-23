@@ -60,16 +60,25 @@ M.mod_scorm.init = function(Y, nav_display, navposition_left, navposition_top, h
         };
 
         Y.TreeView.prototype.openAll = function () {
-            this.get('container').all('.yui3-treeview-can-have-children').each(function(target) {
-                this.getNodeById(target.get('id')).open();
-            }, this);
+            var tree = this;
+            Y.all('.yui3-treeview-can-have-children').each(function() {
+                var node = tree.getNodeById(this.get('id'));
+                node.open();
+            });
         };
 
-        Y.TreeView.prototype.closeAll = function () {
-            this.get('container').all('.yui3-treeview-can-have-children').each(function(target) {
-                this.getNodeById(target.get('id')).close();
-            }, this);
-        }
+        // TODO: Remove next(), previous() prototype functions after YUI has been updated to 3.11.0 - MDL-41208.
+        Y.Tree.Node.prototype.next = function () {
+            if (this.parent) {
+                return this.parent.children[this.index() + 1];
+            }
+        };
+
+        Y.Tree.Node.prototype.previous = function () {
+            if (this.parent) {
+                return this.parent.children[this.index() - 1];
+            }
+        };
 
         var scorm_parse_toc_tree = function(srcNode) {
             var SELECTORS = {
@@ -132,7 +141,6 @@ M.mod_scorm.init = function(Y, nav_display, navposition_left, navposition_top, h
                 scorm_current_node.select();
             }
 
-            scorm_tree_node.closeAll();
             // remove any reference to the old API
             if (window.API) {
                 window.API = null;
@@ -194,7 +202,6 @@ M.mod_scorm.init = function(Y, nav_display, navposition_left, navposition_top, h
                 }
                 scorm_fixnav();
             }
-            scorm_tree_node.openAll();
         };
 
         mod_scorm_activate_item = scorm_activate_item;
@@ -742,15 +749,13 @@ M.mod_scorm.init = function(Y, nav_display, navposition_left, navposition_top, h
 
         // finally activate the chosen item
         var scorm_first_url = null;
-        if (typeof tree.rootNode.children[0] !== 'undefined') {
-            if (tree.rootNode.children[0].title !== scoes_nav[launch_sco].url) {
-                var node = tree.getNodeByAttribute('title', scoes_nav[launch_sco].url);
-                if (node !== null) {
-                    scorm_first_url = node;
-                }
-            } else {
-                scorm_first_url = tree.rootNode.children[0];
+        if (tree.rootNode.children[0].title !== scoes_nav[launch_sco].url) {
+            var node = tree.getNodeByAttribute('title', scoes_nav[launch_sco].url);
+            if (node !== null) {
+                scorm_first_url = node;
             }
+        } else {
+            scorm_first_url = tree.rootNode.children[0];
         }
 
         if (scorm_first_url == null) { // This is probably a single sco with no children (AICC Direct uses this).
@@ -807,9 +812,6 @@ M.mod_scorm.connectPrereqCallback = {
             }
             var el_new_tree = document.createElement('div');
             var pagecontent = document.getElementById("page-content");
-            if (!pagecontent) {
-                pagecontent = document.getElementById("content");
-            }
             el_new_tree.setAttribute('id','scormtree123');
             el_new_tree.innerHTML = o.responseText;
             // Make sure it does not show.

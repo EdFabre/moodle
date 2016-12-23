@@ -1,0 +1,121 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit the first program to create the <strong>Work.Sorted</strong> data set. ';
+solutionText+='You will use this data set later in this practice. <br><br>';
+solutionText+='<li>Submit the second program. (If you do not copy and paste ';
+solutionText+='this program, be sure to type it exactly as shown. Case is important ';
+solutionText+='for the WHERE statement.) Examine the output to see how the report looks. <br><br>';
+solutionText+='<li>Add the following %LET statement to the beginning of the program:';
+solutionText+='<pre><font color="#003399">%let dsn=SASUSER.SCHEDULE;</font></pre>';
+solutionText+='Change the TITLE statement so that it references the new macro variable.';
+solutionText+='<pre><font color="#003399">title "Variables in &dsn";</font></pre>';
+solutionText+='<li>Modify the program to use the new macro variable. There ';
+solutionText+='are several ways to accomplish this. Here is one example:';
+solutionText+='<pre><font color="#003399">proc sql;<br>';
+solutionText+='   select name, type, length<br>';
+solutionText+='      from dictionary.columns<br>';
+solutionText+='      where libname="%upcase(%scan(&dsn,1,.))" and<br>';
+solutionText+='            memname="%upcase(%scan(&dsn,2,.))";<br>';
+solutionText+='quit;<br></font></pre>';
+solutionText+='Submit the modified program and examine the output. The report should look ';
+solutionText+='exactly the same as the last one.<br><br> ';
+solutionText+='<li>Modify the %LET statement so that it reads:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='%let dsn=&syslast;</pre></font>';
+solutionText+='Submit the program again, and examine the output. This time the <strong>Work.Sorted</strong> ';
+solutionText+='data set is analyzed, since that is the last data set you created. </ol>';
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use macro character 
+	functions with the <a href="JavaScript: openOther('../linklib/schedule.htm')">Sasuser.Schedule</a> data set.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy and paste this program into the code editing window: 
+            <PRE><font color="#003399">title;
+proc sort data=sasuser.schedule out=work.sorted;
+   by course_number begin_date;
+run;
+</font></PRE>
+            Submit the program to create a data set named <strong>Work.Sorted</strong>.<BR>
+            <BR>
+          <li>Copy and paste the program below into the code editing window and 
+            submit it. This program uses a PROC SQL dictionary table to display 
+            the variables in the <strong>Sasuser.Schedule</strong> data set. 
+            <PRE><font color="#003399">title &quot;Variables in SASUSER.SCHEDULE&quot;;
+proc sql;
+   select name, type, length
+      from dictionary.columns
+      where libname=&quot;SASUSER&quot; and
+            memname=&quot;SCHEDULE&quot;;
+quit;
+</font></PRE>
+Examine the output.<br><br>
+          <li>Add a <strong><nobr>%LET</nobr> statement</strong> to assign the value <em>SASUSER.SCHEDULE</em> 
+            to a macro variable named <code>dsn</code>. Use the new macro variable 
+            in the TITLE statement. <br>
+            <br>
+          <li>Use one or more <strong>macro functions</strong> to separate the 
+            value of <code>dsn</code> into the library reference and the data 
+            set name for substitution into the WHERE clause. Submit the modified 
+            program. <br>
+            <br>
+
+          <li>Change the <nobr>%LET</nobr> statement to assign the value of the <code>SYSLAST</code> 
+            automatic macro variable to the <code>dsn</code> macro variable. Submit 
+            the modified program to see the new report.</LI>
+
+
+        <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

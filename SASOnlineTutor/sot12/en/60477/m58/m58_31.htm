@@ -1,0 +1,304 @@
+<html><!-- InstanceBegin template="/Templates/eg_informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeeg_informationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      SAS Data Sets from Custom Formats<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeeg_informationObjectTopNav2();</script>
+
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>In the last example, you created the $AIRPORT. format. Suppose you 
+          want to add the following airport codes to the format:<br>
+          <br>
+          <br>
+        </p>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Values to add to the $AIRPORT. format">
+          <tr bgcolor="#F7F7DE"> 
+            <th width="62"><div align="left"><font size="-1">Value</font></div></th>
+            <th width="153"><div align="left"><font size="-1">Label</font></div></th>
+          </tr>
+          <tr> 
+            <td width="62">YYC<em></em></td>
+            <td width="153">Calgary, AB</td>
+          </tr>
+          <tr> 
+            <td width="62">YYZ<em></em></td>
+            <td width="153">Toronto, ON</td>
+          </tr>
+          <tr> 
+            <td width="62">YQB<em></em></td>
+            <td width="153">Quebec, QC</td>
+          </tr>
+          <tr> 
+            <td width="62">YUL<em></em></td>
+            <td width="153">Montreal, QC</td>
+          </tr>
+        </table>
+        <br>
+        <br>
+        <h2>Step 1: Create a SAS Data Set from the Format</h2>
+        <p>First, you write the $AIRPORT. format out as a SAS data set. In the 
+          code below, the output data set is named <strong>Sasuser.Fmtdata</strong>. 
+          The SELECT statement is used so that the resulting data set has only 
+          the data for the $AIRPORT. format. Without the SELECT statement, the 
+          data would have values for all the formats in the <strong>Sasuser.Formats</strong> 
+          catalog.</p>
+        <pre>    <font color="#003399"> proc format lib=sasuser cntlout=sasuser.fmtdata;
+        select $airport;
+     run;</font></pre> 
+    
+        <p>When you use the CNTLOUT= option, SAS creates an output data set that 
+          has many variables for storing information about the format. The output 
+          data set <strong>Sasuser.Fmtdata</strong> has 50 rows and 21 columns. 
+          In the PRINT procedure below, the VAR statement specifies only a few 
+          of the variables to print:</p>
+        <pre>    <font color="#003399"> proc print data=sasuser.fmtdata (obs=5) noobs;
+        var fmtname start end label min max 
+            default length fuzz;
+     run;</font></pre></td>
+  </tr>
+</table>
+<CENTER>
+    <font  face="Arial, Helvetica, Helv" size="2" color="#002288"> <br>
+    <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+      <thead>
+        <TR> 
+          <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FMTNAME</b></font></TD>
+          <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>START</b></font></TD>
+          <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>END</b></font></TD>
+          <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LABEL</b></font></TD>
+          <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>MIN</b></font></TD>
+          <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>MAX</b></font></TD>
+          <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>DEFAULT</b></font></TD>
+          <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LENGTH</b></font></TD>
+          <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FUZZ</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AIRPORT</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AKL</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AKL</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Auckland</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AIRPORT</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AMS</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AMS</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Amsterdam</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AIRPORT</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANC</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ANC</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Anchorage, 
+            AK</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AIRPORT</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ARN</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ARN</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Stockholm</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+        </TR>
+        <TR> 
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">AIRPORT</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ATH</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">ATH</font></TD>
+          <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Athens 
+            (Athinai)</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">1</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">40</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">22</font></TD>
+          <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+        </TR>
+      </tbody>
+    </TABLE>
+    <br>
+    <br>
+    </font> 
+    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td><p>As you can see, the data set contains <code>End</code> and other 
+            variables that were not in the original data. When you use the CNTLIN= 
+            option, if there is no <code>End</code> variable in the data set, 
+            SAS assumes that the <code>Start</code> and <code>End</code> variables 
+            have the same value. When you write the format out as a data set using 
+            the CNTLOUT= option, both variables are in the data set. </p>
+          <div id="v89_v91" class="eg_div"><h2><br>
+            Step 2: Edit the Data Set</h2>
+          <p>The next step in updating the format is to edit the data set. You 
+            could use PROC SQL or a DATA step to add lines to the data set, or 
+            you could add rows using VIEWTABLE. Whatever method you 
+            choose, you <strong>must</strong> add values for the <code>FmtName</code>, 
+            <code>Start</code>, <code>End</code>, and <code>Label</code> variables. 
+            If the values for <code>Start</code> and <code>End</code> are the 
+            same, you must enter values for both variables or SAS will return 
+            an error. You do not have to add values for the other variables in 
+            the data set.</p>
+			</div>
+			  <div id="le1_le2_eg1_eg2_eg3" class="eg_div"><h2><br>
+            Step 2: Edit the Data Set</h2>
+          <p>The next step in updating the format is to edit the data set. You 
+            could use PROC SQL or a DATA step to add lines to the data set, or 
+            you could add rows using the data grid. Whatever method you 
+            choose, you <strong>must</strong> add values for the <code>FmtName</code>, 
+            <code>Start</code>, <code>End</code>, and <code>Label</code> variables. 
+            If the values for <code>Start</code> and <code>End</code> are the 
+            same, you must enter values for both variables or SAS will return 
+            an error. You do not have to add values for the other variables in 
+            the data set.</p>
+			</div>
+          <h2><br>
+            Step 3: Create a Format from the SAS Data Set</h2>
+          <p>Once the data set is edited and saved, you can create a format from 
+            the data set using the CNTLIN= option. The following code creates 
+            the $AIRPORT. format and then uses FMTLIB to document it:</p>
+          
+
+          <pre><font color="#003399">     proc format library=sasuser <strong>cntlin=</strong>sasuser.fmtdata;
+     run;
+
+     proc format lib=sasuser fmtlib;
+        select $airport;
+     run;</font>
+</pre>
+          <p>The partial output shown below includes the new values in the format.<br>
+            <br>
+            <br>
+          </p>
+          <div align="center">Partial SAS Output 
+            <table border="1" align="center" cellpadding="4" cellspacing="0" bgcolor="#FFFFE0" title="Partial SAS Output">
+              <tr colspan="3" bgcolor="#F7F7DE"> 
+                <td colspan="3"> <div align="center"><font face="Arial, Helvetica, sans-serif" size="-1">FORMAT 
+                    NAME : $AIRPORT LENGTH: 22 NUMBER OF VALUES: 56<br>
+                    MIN LENGTH: 1 MAX LENGTH: 40 DEFAULT LENGTH: 22 FUZZ: 0</font> 
+                  </div></td>
+              </tr>
+              <tr bgcolor="#F7F7DE"> 
+                <td width="74" height="37"> <font face="Arial, Helvetica, sans-serif" size="-1"> 
+                  START</font></td>
+                <td width="78" height="37"><font face="Arial, Helvetica, sans-serif" size="-1">END</font></td>
+                <td width="312" height="37"><font face="Arial, Helvetica, sans-serif" size="-1">LABEL 
+                  &nbsp;&nbsp;&nbsp;&nbsp; (CONT'D)</font></td>
+              </tr>
+              <tr bgcolor="#F7F7DE"> 
+                <td width="74" valign="top"> <div align="left"><font face="Arial, Helvetica, sans-serif">SYD</font></div></td>
+                <td width="78" valign="top"> <div align="left"><font face="Arial, Helvetica, sans-serif">SYD</font></div></td>
+                <td width="312" valign="top"><font size="-1" face="Arial, Helvetica, sans-serif">Sydney, 
+                  New South Wales</font></td>
+              </tr>
+              <tr bgcolor="#F7F7DE"> 
+                <td width="74" valign="top"> <div align="left"><font face="Arial, Helvetica, sans-serif"><font size="-1">VIE</font></font></div></td>
+                <td width="78" valign="top"> <div align="left"><font face="Arial, Helvetica, sans-serif"><font size="-1">VIE</font></font></div></td>
+                <td width="312" valign="top"><font face="Arial, Helvetica, sans-serif"><font size="-1">Wien 
+                  (Vienna)</font></font></td>
+              </tr>
+              <tr bgcolor="#F7F7DE"> 
+                <td width="74" valign="top"> <div align="left"><font face="Arial, Helvetica, sans-serif"><font size="-1">WLG</font></font></div></td>
+                <td width="78" valign="top"> <div align="left"><font face="Arial, Helvetica, sans-serif"><font size="-1">WLG</font></font></div></td>
+                <td width="312" valign="top"><font face="Arial, Helvetica, sans-serif"><font size="-1">Wellington</font></font></td>
+              </tr>
+              <tr bgcolor="#CCCC99"> 
+                <td width="74" valign="top"> 
+                  <div align="left"><font face="Arial, Helvetica, sans-serif"><font size="-1">YQB</font></font></div></td>
+                <td width="78" valign="top"> 
+                  <div align="left"><font size="-1" face="Arial, Helvetica, sans-serif">YQB</font></div></td>
+                <td width="312" valign="top"><font face="Arial, Helvetica, sans-serif"><font size="-1">Quebec, 
+                  QC </font></font></td>
+              </tr>
+              <tr bgcolor="#CCCC99"> 
+                <td width="74" valign="top"> 
+                  <div align="left"><font face="Arial, Helvetica, sans-serif"><font size="-1">YUL</font></font></div></td>
+                <td width="78" valign="top"> 
+                  <div align="left"><font face="Arial, Helvetica, sans-serif"><font size="-1">YUL</font></font></div></td>
+                <td width="312" valign="top"><font face="Arial, Helvetica, sans-serif"><font size="-1">Montreal, 
+                  QC </font></font></td>
+              </tr>
+              <tr bgcolor="#CCCC99"> 
+                <td valign="top">YYC</td>
+                <td valign="top">YYC</td>
+                <td valign="top">Calgary, AB</td>
+              </tr>
+              <tr bgcolor="#CCCC99"> 
+                <td valign="top">YYZ</td>
+                <td valign="top">YYZ</td>
+                <td valign="top">Toronto, ON</td>
+              </tr>
+            </table>
+            <br>
+          </div>
+          <br>
+          <table border="0" align="left" cellpadding="2" cellspacing="0">
+            <tr> 
+              <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="Note"></td>
+              <td valign="top">For more information about using the CNTLOUT= option, 
+                see the 
+                <!--doc reference-->
+                SAS documentation for the FORMAT procedure.</td>
+            </tr>
+          </table> 
+         
+        </td>
+      </tr>
+    </table>
+    <p><br>
+   
+  </CENTER>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

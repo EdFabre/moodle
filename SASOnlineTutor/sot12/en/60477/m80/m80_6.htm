@@ -1,0 +1,183 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      SAS System Options to Track Resources<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You can specify one or more of the SAS system options <strong>STIMER</strong>, 
+          <strong>MEMRPT</strong>, <strong>FULLSTIMER</strong>, and <strong>STATS</strong> 
+          to track and report on resource utilization. The availability, usage, 
+          and functionality of these options vary by operating environment, as 
+          described below: </p>
+        <p><br>
+        <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="SAS system options that track and report on resource utilization">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th width="16%"><font size="-1">Option</font></th>
+            <th width="42%"><font size="-1">z/OS</font></th>
+            <th width="42%"><font size="-1">UNIX and Windows</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td height="169"><strong>STIMER</strong></td>
+            <td><p>Specifies that the <strong>CPU time </strong> is to be <strong>tracked</strong> 
+                throughout the SAS session.</p>
+              <p>Can be set at <strong>invocation only.</strong></p>
+              <p>Is the <strong>default</strong> setting.</p></td>
+            <td><p>Specifies that <strong>CPU time and real-time statistics</strong> 
+                are to be <strong>tracked and written</strong> to the SAS log 
+                throughout the SAS session.</p>
+              <p>Can be set <strong>either</strong> at invocation or by using 
+                an OPTIONS statement.</p>
+              <p>Is the <strong>default</strong> setting.</p></td>
+          </tr>
+          <tr valign="top"> 
+            <td><strong>MEMRPT</strong></td>
+            <td><p>Specifies that <strong>memory usage statistics</strong> are 
+                to be <strong>tracked</strong> throughout the SAS session.</p>
+              <p> Can be set <strong>either</strong> at invocation or by using 
+                an OPTIONS statement.</p>
+              <p>Is the <strong>default</strong> setting.</p></td>
+            <td><strong>Not available</strong> as a separate option; this functionality 
+              is part of the FULLSTIMER option.</td>
+          </tr>
+          <tr valign="top"> 
+            <td><strong>FULLSTIMER</strong></td>
+            <td><p>Specifies that <strong>all available resource usage statistics</strong> 
+                are to be <strong>tracked and written</strong> to the SAS log 
+                throughout the SAS session.</p>
+              <p>Can be set <strong>either</strong> at invocation or by using 
+                an OPTIONS statement.</p>
+              <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                  <td valign="top">In the z/OS operating environment, FULLSTIMER 
+                    is an alias for the FULLSTATS option.</td>
+                </tr>
+              </table> 
+              <br>
+              <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+                  <td valign="top">This option is ignored unless STIMER or MEMRPT 
+                    is in effect.</td>
+                </tr>
+              </table></td>
+            <td><p>Specifies that <strong>all available resource usage statistics 
+                </strong>are to be<strong> tracked and written </strong>to the 
+                SAS log throughout the SAS session.</p>
+              <p>Can be set <strong>either</strong> at invocation or by using 
+                an OPTIONS statement.</p>
+              <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+                  <td valign="top">In Windows operating environments, some statistics 
+                    will not be calculated accurately unless FULLSTIMER is specified 
+                    at invocation.</td>
+                </tr>
+              </table>
+              
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td><strong>STATS</strong></td>
+            <td><p>Tells SAS to <strong>write</strong> statistics that are tracked 
+                by any combination of the preceding options to the SAS log.</p>
+              <p>Can be set <strong>either</strong> at invocation or by using 
+                an OPTIONS statement.</p>
+              <p>Is the <strong>default</strong> setting.</p></td>
+            <td><strong>Not available</strong> as a separate option.</td>
+          </tr>
+        </table>
+        <p><br>
+        <p>SAS system options are initialized with default settings when SAS is 
+          invoked. However, the default settings for some SAS system options vary 
+          both by operating environment and by site. For details, see the SAS 
+          documentation<!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --> 
+          for your operating environment. </p>
+        <p>You can turn off any of these system options by using the options below<font color="#FF0000"></font>: 
+        <ul>
+          <li><strong>NOSTIMER</strong></li>
+          <li><strong>NOMEMRPT</strong></li>
+          <li><strong>NOFULLSTIMER</strong></li>
+          <li><strong>NOSTATS</strong></li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">In the z/OS operating environment, NOFULLSTIMER is 
+              an alias for the NOFULLSTATS option.</td>
+          </tr>
+        </table>
+        <p><br>
+        <h2>Viewing Resource Statistics</h2>
+        <p>To see examples of the resource usage statistics that are written to 
+          the SAS log in each operating environment, select the links below. </p>
+        <ul>
+          <li><a href="JavaScript: openOther('m80_6z.htm')">z/OS</a> </li>
+          <li><a href="JavaScript: openOther2('m80_6u.htm')">UNIX</a></li>
+          <li><a href="JavaScript: openOther3('m80_6w.htm')">Windows</a></li>
+        </ul>
+		<p><br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For more information about using these system options 
+              to track resource usage in your operating environment, see the SAS 
+              documentation<!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --> 
+              for your operating environment. Guidelines for interpreting the 
+              statistics that are generated by the <a href="JavaScript: openOther('http://support.sas.com/rnd/scalability/tools/fullstim/fullstim.html')">FULLSTIMER 
+              SAS option</a> are also available at support.sas.com. </td>
+          </tr>
+        </table>
+		<p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You can also use SAS Application Response Measurement 
+              (ARM) macros to monitor the performance of your applications. ARM 
+              macros are not covered in this course. To learn more about ARM macros, 
+              see the SAS documentation<!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --> 
+              and detailed information about <a href="JavaScript: openOther('http://support.sas.com/rnd/scalability/tools/arm/arm.html')">ARM 
+              macros</a> at support.sas.com.</td>
+          </tr>
+        </table>
+        
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

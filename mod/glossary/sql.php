@@ -267,13 +267,7 @@
         }
     break;
     }
-
-    $count = 0;
-    if ($tab == GLOSSARY_CATEGORY_VIEW && $hook == GLOSSARY_SHOW_ALL_CATEGORIES) {
-        $count = $DB->count_records_sql("SELECT COUNT(ge.id) $sqlfrom $sqlwhere", $params);
-    } else {
-        $count = $DB->count_records_sql("SELECT COUNT(DISTINCT(ge.id)) $sqlfrom $sqlwhere", $params);
-    }
+    $count = $DB->count_records_sql("SELECT COUNT(DISTINCT(ge.id)) $sqlfrom $sqlwhere", $params);
 
     $limitfrom = $offset;
     $limitnum = 0;

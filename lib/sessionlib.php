@@ -37,10 +37,7 @@ function sesskey() {
     // note: do not use $USER because it may not be initialised yet
     if (empty($_SESSION['USER']->sesskey)) {
         if (!isset($_SESSION['USER'])) {
-            // This should never happen,
-            // do not mess with session and globals here,
-            // let any checks fail instead!
-            return false;
+            $_SESSION['USER'] = new stdClass;
         }
         $_SESSION['USER']->sesskey = random_string(10);
     }
@@ -154,27 +151,15 @@ function get_moodle_cookie() {
  * Sets up current user and course environment (lang, etc.) in cron.
  * Do not use outside of cron script!
  *
- * @param stdClass $user full user object, null means default cron user (admin),
- *                 value 'reset' means reset internal static caches.
- * @param stdClass $course full course record, null means $SITE
+ * @param stdClass $user full user object, null means default cron user (admin)
+ * @param $course full course record, null means $SITE
  * @return void
  */
 function cron_setup_user($user = NULL, $course = NULL) {
     global $CFG, $SITE, $PAGE;
 
-    if (!CLI_SCRIPT) {
-        throw new coding_exception('Function cron_setup_user() cannot be used in normal requests!');
-    }
-
     static $cronuser    = NULL;
     static $cronsession = NULL;
-
-    if ($user === 'reset') {
-        $cronuser = null;
-        $cronsession = null;
-        \core\session\manager::init_empty_session();
-        return;
-    }
 
     if (empty($cronuser)) {
         /// ignore admins timezone, language and locale - use site default instead!
@@ -188,16 +173,15 @@ function cron_setup_user($user = NULL, $course = NULL) {
     }
 
     if (!$user) {
-        // Cached default cron user (==modified admin for now).
-        \core\session\manager::init_empty_session();
+        // cached default cron user (==modified admin for now)
         \core\session\manager::set_user($cronuser);
-        $GLOBALS['SESSION'] = $cronsession;
+        $_SESSION['SESSION'] = $cronsession;
 
     } else {
-        // Emulate real user session - needed for caps in cron.
-        if ($GLOBALS['USER']->id != $user->id) {
-            \core\session\manager::init_empty_session();
+        // emulate real user session - needed for caps in cron
+        if ($_SESSION['USER']->id != $user->id) {
             \core\session\manager::set_user($user);
+            $_SESSION['SESSION'] = new stdClass();
         }
     }
 

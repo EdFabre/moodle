@@ -1,0 +1,174 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      SAS DATA Step Views to Conserve Data Storage Space<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Creating and Reading a SAS Data View</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Suppose you have two SAS data sets, <strong>Retail.Custview</strong> 
+        and <strong>Retail.Custdata</strong>, that have been created from the 
+        same raw data file. <strong>Retail.Custview</strong> is a DATA step view, 
+        and <strong>Retail.Custdata</strong> is a data file. You can use these 
+        two data sets to compare the disk space that is required for each as well 
+        as the resources that are used to read from each: 
+      <ol>
+        <li><a href="#1">Data View</a></li>
+        <li><a href="#2">Data File</a></li>
+              </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results might vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for using SAS DATA step views. 
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        Data View</strong></p>
+      <blockquote> 
+        <p>This program reads data from a raw data file and creates a SAS DATA 
+          step view named <strong>Retail.Custview</strong>, then reads from the 
+          new DATA step view. The first DATA step creates the data view <strong>Retail.Custview</strong>. 
+          The second DATA step reads from the DATA step view. </p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     data retail.custview / view = retail.custview;
+        infile flat1;
+        input @1   Customer_ID         12.
+              @13  Country             $2.
+              @15  Gender              $1.
+              @16  Personal_ID        $15.
+              @31  Customer_Name      $40.
+              @71  Customer_FirstName $20.
+              @91  Customer_LastName  $30.
+              @121 Birth_Date       date9.
+              @130 Customer_Address   $45.
+              @175 Street_ID           12.
+              @199 Street_Number       $8.
+              @207 Customer_Type_ID     8.;
+     run;
+	 
+     data _null_;
+        set retail.custview;
+     run;</font></pre>
+        
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Data File</strong></p>
+      <blockquote> 
+        <p>This program reads data from a raw data file and creates a SAS data 
+          file named <strong>Retail.Custdata</strong>, then reads from the new 
+          SAS data file. The first DATA step creates the data file <strong>Retail.Custdata</strong>. 
+          The second DATA step reads from the data file.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">     data retail.custdata;
+        infile flat1;
+        input @1   Customer_ID         12.
+              @13  Country             $2.
+              @15  Gender              $1.
+              @16  Personal_ID        $15.
+              @31  Customer_Name      $40. 
+              @71  Customer_FirstName $20.
+              @91  Customer_LastName  $30.
+              @121 Birth_Date       date9.
+              @130 Customer_Address   $45.
+              @175 Street_ID           12.
+              @199 Street_Number       $8.
+              @207 Customer_Type_ID     8.;
+     run;   
+	 
+     data _null_;
+        set retail.custdata;
+     run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <ul>
+        <li>Create a SAS DATA step view to avoid storing a raw data file and a 
+          copy of that data in a SAS data file. </li>
+        <br>
+        <br>
+        <li>Use a SAS DATA step view if the content, but not the structure, of 
+          the flat file is dynamic.</li>
+      </ul></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

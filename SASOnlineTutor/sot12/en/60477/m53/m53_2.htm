@@ -1,0 +1,76 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Session-Compiled Macros<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<P> If you completed the lesson 
+          <!--lesson reference-->
+          <strong><script>document.write(m52title);</script></strong>, you learned that you can submit a macro definition in order 
+          to compile a macro. For example, when you submit the macro definition 
+          shown here, the macro processor compiles the macro <strong>Prtlast</strong>:<font color="#003399">
+        <pre>    %macro prtlast;
+       %if &syslast ne _NULL_ %then %do;
+          proc print data=&syslast(obs=5);
+             title "Listing of &syslast data set";
+          run;
+       %end;
+       %else
+          %put No data set has been created yet.;
+    %mend;</pre>
+        </font>
+<P>By default, the <strong>Prtlast</strong> macro is stored in a temporary SAS 
+          catalog as <strong>Work.Sasmacr.Prtlast.Macro</strong>. Macros that 
+          are stored in this temporary SAS catalog are known as <strong>session-compiled 
+          macros</strong>. Once a macro has been compiled, it can be invoked from 
+          a SAS program as shown here:<font color="#003399">
+        <pre>    proc sort data=sasuser.courses out=bydays;
+       by days;
+    run;
+
+    <strong>%prtlast</strong></pre>
+      </font>
+<P>Session-compiled macros are available for execution during the SAS session 
+          in which they are compiled. They are deleted at the end of the session. 
+          But suppose you want to save your macros so that they are not deleted 
+          at the end of the SAS session. The rest of this lesson looks at methods 
+          of storing macros permanently.</td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,218 @@
+<html><!-- InstanceBegin template="/Templates/opt_example.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"><title>Example</title></head>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reducing 
+      Data Storage Space for Numeric Variables<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<img src="../navimages/cleardot.gif" width="411" height="1" alt=" "><br>
+<p>
+<!-- InstanceBeginEditable name="Example Title" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><img src="../navimages/opt_ex.gif" alt="Bar chart icon" width="32" height="32" align="absmiddle">Comparative 
+        Example: Creating a SAS Data Set That Contains Reduced-Length Numeric 
+        Variables</h2></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable --><!-- InstanceBeginEditable name="Introduction" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p>Suppose you want to create a SAS data set in which to store retail 
+        data about a group of orders. Suppose that the data you want to include 
+        in your data set is all numeric data and that it is currently stored in 
+        a raw data file. You can create the data set using
+      <ol>
+        <li><a href="#1">Default-Length Numeric Variables</a></li>
+        <li><a href="#2">Reduced-Length Numeric Variables</a></li>
+      </ol>
+      <p>The following sample programs show each of these techniques. You can 
+        use these samples as models for creating benchmark programs in your own 
+        environment. Your results might vary depending on the structure of your 
+        data, your operating environment, and the resources that are available 
+        at your site. You can also view <a href="#recommendations">general recommendations</a> 
+        for creating reduced-length numeric variables. 
+      <P><BR><table width="100%" border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">Throughout this course, the keyword _NULL_ is often 
+            used as the data set name in sample programs. Using _NULL_ causes 
+            SAS to execute the DATA step as if it were creating a new data set. 
+            However, no observations or variables are written to an output data 
+            set. Using _NULL_ when benchmarking enables you to determine what 
+            resources are used to read a SAS data set.</td>
+        </tr>
+      </table> <P>
+      <hr size="1" noshade></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<p> 
+  
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+      <td> <h2><!-- InstanceBeginEditable name="Technique Title" --><a name="techniques"></a>Programming 
+        Techniques<!-- InstanceEndEditable --></h2></td>
+    </tr>
+  </table>
+<!-- InstanceBeginEditable name="Techniques" --> 
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="1"></a><img src="../navimages/opt_1.gif" alt="1." width="20" height="20" align="absmiddle"> 
+        Default-Length Numeric Variables</strong></p>
+      <blockquote> 
+        <p>This program reads the external data file that is referenced by the 
+          fileref <strong>flat1</strong> and creates a new data set called <strong>Retail.Longnums</strong> 
+          that contains 12 numeric variables. Each of the variables in <strong>Retail.Longnums</strong> 
+          has the default storage length of 8 bytes. The second DATA step in this 
+          program reads the numeric variables from<strong> Retail.Longnums</strong>.</p>
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">data retail.longnums;
+   infile flat1;
+   input  Customer_ID          12.
+          Employee_ID          12.
+          Street_ID            12.
+          Order_Date           date9.
+          Delivery_Date        date9.
+          Order_ID             12. 
+          Order_Type           comma16.
+          Product_ID           12.     
+          Quantity             4.     
+          Total_Retail_Price   dollar13.2
+          CostPrice_Per_Unit   dollar13.2
+          Discount             5.2       ;
+run;
+
+data _null_;
+  set retail.longnums;
+run;</font></pre>
+      </blockquote></td>
+  </tr>
+</table>
+<p><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+  <tr> 
+    <td bgcolor="#F7F7DE"> <p><strong><a name="2" id="2"></a><img src="../navimages/opt_2.gif" alt="2." width="20" height="20" align="absmiddle"> 
+        Reduced-Length Numeric Variables</strong></p>
+      <blockquote> 
+        <p>This program reads the external data file that is referenced by the 
+          fileref <strong>flat1</strong> and creates a new SAS data set called 
+          <strong>Retail.Shortnums</strong> that contains 12 numeric variables. 
+          A LENGTH statement is used to reduce the storage length of most of the 
+          numeric variables in <strong>Retail.Shortnums</strong>, as follows: 
+        <ul>
+          <li><code>Total_Retail_Price</code> and <code>CostPrice_Per_Unit</code> 
+            have a storage length of 8 bytes. 
+          <li><code>Product_ID</code> has a storage length of 7 bytes. 
+          <li><code>Street_ID</code> and <code>Order_ID</code> have a storage 
+            length of 6 bytes. 
+          <li><code>Employee_ID</code> has a storage length of 5 bytes. 
+          <li><code>Customer_ID</code>, <code>Order_Date</code>, <code>Delivery_Date</code> 
+            and <code>Discount</code> have a storage length of 4 bytes. 
+          <li><code>Order_Type</code> and <code>Quantity</code> have a storage 
+            length of 3 bytes.
+</ul>
+        The second DATA step reads the reduced-length numeric variables from <strong>Retail.Shortnums</strong>.</p> 
+      </blockquote>
+      <p> 
+      <blockquote> 
+        <pre><font color="#003399">data retail.shortnums;
+   infile flat1;
+   <strong>length Quantity                  3
+          Customer_ID Order_Date 
+             Delivery_Date Discount 4
+          Employee_ID               5
+          Street_ID Order_ID        6
+          Product_ID                7
+          Total_Retail_Price   
+             CostPrice_Per_Unit     8;</strong>
+   input  Customer_ID          12.
+          Employee_ID          12.
+          Street_ID            12.
+          Order_Date           date9.
+          Delivery_Date        date9.
+          Order_ID             12. 
+          Order_Type           comma16.
+          Product_ID           12.     
+          Quantity             4.     
+          Total_Retail_Price   dollar13.2
+          CostPrice_Per_Unit   dollar13.2
+          Discount             5.2       ;
+run;
+
+data _null_;
+   set retail.shortnums;
+run;</font></pre>
+      </blockquote>
+	  <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">Remember that when you reduce the storage length of 
+            numeric variables, you risk losing precision in their values. You 
+            can use PROC COMPARE to verify the precision of shortened numeric 
+            variables. <font color="#003399"> 
+            <pre>     proc compare data=retail.longnums;
+                  compare=retail.shortnums;
+     run;</pre></font>
+       </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+<!-- InstanceEndEditable --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+      <td> <hr size="1" noshade> </td>
+    </tr>
+  </table>
+<p>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr valign="top"> 
+    <td> <h2><a name="recommendations"></a><script>document.write(generalRecommendationsTitle);</script></h2></td>
+  </tr>
+</table>
+<!-- InstanceBeginEditable name="Recommendations" -->
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td> <ul>
+        <li>Create reduced-length numeric variables for integer values when you 
+          need to conserve data storage space.<br>
+          <br>
+        </li>
+	
+      </ul></td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

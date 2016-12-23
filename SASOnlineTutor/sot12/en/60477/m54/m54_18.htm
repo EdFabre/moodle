@@ -1,0 +1,90 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Write the following DATA step: ';
+solutionText+='<font color="#003399"><pre>data rsamp2 (drop=sampsize obsleft);<br>';
+solutionText+='   sampsize=25;<br>';
+solutionText+='   obsleft=totobs;<br>';
+solutionText+='   do while(sampsize>0);<br>';
+solutionText+='      pickit+1;<br>';
+solutionText+='      if ranuni(0)&lt;sampsize/obsleft then do;<br>';
+solutionText+='         set sasuser.salcomps<br>';
+solutionText+='             point=pickit nobs=totobs;<br>';
+solutionText+='         output;<br>';
+solutionText+='         sampsize=sampsize-1;<br>';
+solutionText+='      end;<br>';
+solutionText+='      obsleft=obsleft-1;<br>';
+solutionText+='   end;<br>';
+solutionText+='   stop;<br>';
+solutionText+='run;</pre></font>';
+solutionText+='<li>Add the following PROC PRINT step to the program:';
+solutionText+='<font color="#003399"><pre>proc print data=rsamp2;<br>';
+solutionText+='run;</pre></font>';
+solutionText+='Submit the program and examine the output.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+      a random sample of the  <a href="JavaScript: openOther('../linklib/salcomps.htm')">Sasuser.Salcomps</a> data set, without replacement.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write another program to create a random sample of 25 observations 
+            from the <strong>Sasuser.Salcomps</strong> data set. This time, include 
+            a statement in your program that will ensure that no observation from 
+            <strong>Sasuser.Salcomps</strong> can be included in the sample more 
+            than once, and output the sample to a temporary data set named <strong>Rsamp2</strong>. 
+            <br>
+            <br>
+          <li>Add a step to print the new <strong>Work.Rsamp2</strong> data set. 
+            Submit the program and examine the output.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,162 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Identifying 
+      Conditions That Can Be Optimized<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" -->
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>In addition to containing key variables, WHERE conditions must meet 
+          other requirements in order to be candidates for optimization. SAS considers 
+          using an index only for WHERE conditions that contain <strong>certain 
+          operators and functions</strong>. Therefore, the next step for SAS is 
+          to consider the operators and functions in the conditions that contain 
+          key variables. 
+        <p><br>
+        
+        <h2>Requirements for Optimizing a Single WHERE Condition</h2>
+        <p>SAS considers using an index for a WHERE condition that contains any 
+          of the following operators and functions:</p>
+        <p><br>
+        <table border="0" align="center" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">For all of the following examples, assume that the 
+              data set has simple indexes on the variables <code>Quarter</code>, 
+              <code>Date_ID</code>, and <code>Region</code>.</td>
+          </tr>
+        </table>
+        <p><br> 
+        <table width="100%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE conditions that can be optimized: operators">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Operator</font></th>
+            <th><font size="-1">Example</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td>comparison operators and the IN operator</td>
+            <td><pre><font color="#003399">where quarter<strong><font color="#FF0000"> =</font></strong> '1998Q1';</font></pre>
+              <pre><font color="#003399">where date_id<strong><font color="#FF0000"> &lt;</font></strong> '03JUL2000'd;</font></pre>
+              <pre><font color="#003399">where quarter <strong><font color="#FF0000">in</font></strong> ('1998Q2','1998Q3');</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>comparison operators with NOT</td>
+            <td><pre><font color="#003399">where quarter <strong><font color="#FF0000">ne</font></strong> '1999Q1';</font></pre>
+              <pre><font color="#003399">where quarter <strong><font color="#FF0000">not in</font></strong> ('1999Q1','1999Q4');</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td><p>comparison operators with the colon modifier</p>
+              <table border="0" align="center" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                  <td valign="top">You can add a colon modifier (<strong>:</strong>) 
+                    to any comparison operator to compare only a specified prefix 
+                    of a character string.</td>
+                </tr>
+              </table>
+              <br> <table border="0" cellpadding="2" cellspacing="0">
+                <tr> 
+                  <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+                  <td valign="top">The colon modifier cannot be used with PROC 
+                    SQL; use the LIKE operator instead.</td>
+                </tr>
+              </table></td>
+            <td> <pre><font color="#003399">where quarter <strong><font color="#FF0000">=:</font></strong> '1998';</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>CONTAINS operator</td>
+            <td> <pre><font color="#003399">where quarter <strong><font color="#FF0000">contains</font></strong> 'Q4';</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>fully-bounded range conditions that specify both an upper and 
+              lower limit, which includes the BETWEEN-AND operator</td>
+            <td> <pre><font color="#003399">where '01Jan1999'd <strong><font color="#FF0000">&lt;</font></strong> date_id
+      <strong><font color="#FF0000">&lt;</font></strong> '31Dec1999'd;
+
+where date_id <font color="#FF0000"><strong>between</strong></font> '01Jan1999'd 
+              <font color="#FF0000"><strong>and</strong></font> '31Dec1999'd</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>pattern-matching operator LIKE</td>
+            <td><pre><font color="#003399">where quarter <strong><font color="#FF0000">like</font></strong> '%Q%';</font> </pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td>IS NULL or IS MISSING operator</td>
+            <td><pre><font color="#003399">where quarter <strong><font color="#FF0000">is null</font></strong>;</font> 
+
+<font color="#003399">where quarter <strong><font color="#FF0000">is missing</font></strong>;</font></pre></td>
+          </tr>
+        </table>
+        <p><br>
+        <table width="100%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="WHERE conditions that can be optimized: functions">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Function</font></th>
+            <th><font size="-1">Example</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td>TRIM function</td>
+            <td><pre><font color="#003399">where <font color="#FF0000"><strong>trim</strong></font>(region) = 'Queensland';</font> </pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td><p>SUBSTR function in the form of</p>
+              <blockquote> 
+                <p><font color="#003399"><strong>WHERE</strong> SUBSTR(<em>variable</em>,<em>position</em>,<em>length</em>)='<em>string</em>';</font></p>
+              </blockquote>
+              <p>with these conditions:</p>
+              <ul>
+                <li> <font color="#003399"><em>position</em></font> = 1</li>
+                <li><em><font color="#003399">length</font></em> is less than 
+                  or equal to the length of <font color="#003399"><em>variable</em></font></li>
+                <li><em><font color="#003399">length</font></em> is equal to the 
+                  length of the string</li>
+              </ul></td>
+            <td><pre><font color="#003399">where <font color="#FF0000"><strong>substr</strong></font>(quarter,<strong><font color="#FF0000">1</font></strong>,<strong><font color="#FF0000">4</font></strong>) = '1998';</font></pre></td>
+          </tr>
+        </table>
+<p><br>
+		<table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+            <td valign="top"><p>Most but not all of the requirements listed above 
+                also apply to compound optimization. Requirements for compound 
+                optimization are covered later in this topic.</p>
+              </td>
+          </tr>
+        </table> 
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

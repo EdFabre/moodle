@@ -1,0 +1,151 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --> 
+<TITLE>LIBNAME Options</TITLE>
+<!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->LIBNAME 
+      Options<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" -->
+<table bgcolor="#FFFFFF" border="1" cellpadding="2" cellspacing="0" align="center" width="85%" title="LIBNAME options">
+  <tr  valign="top" bgcolor="#F7F7DE"> 
+    <td  width="16%"><strong>Option Name</strong></td>
+    <td  width="25%"><strong>Possible Values</strong></td>
+    <td  width="44%"><strong>Description</strong></td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>ACCESS=</strong></td>
+    <td width="25%">READONLY </td>
+    <td width="44%">determines the access level with which a libref connection 
+      is opened. Using this option prevents writing to the DBMS. If you specify 
+      ACCESS=READONLY, tables and views can be read but not updated. If ACCESS= 
+      is omitted, tables and views can be read and updated if you have the necessary 
+      DBMS privileges. </td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>CONNECTION=</strong></td>
+    <td width="25%">SHAREDREAD <br>
+      GLOBALREAD <br>
+      UNIQUE </td>
+    <td width="44%">indicates whether multiple table opens in a DBMS can use the 
+      same connection. Your DBMS might have different arguments for this option; 
+      for details, see the SAS/ACCESS documentation for your 
+      <!--doc reference-->
+      specific DBMS.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>CONNECTION_GROUP=</strong></td>
+    <td width="25%">connection_group_name </td>
+    <td width="44%">specifies a connection that can be shared among several LIBNAME 
+      statements (or librefs) or by connections that are made with the SQL Procedure 
+      Pass-Through Facility CONNECT statement.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>DBCONINIT=</strong></td>
+    <td width="25%"><'>DBMS-user-command<'></td>
+    <td width="44%">specifies a user-defined initialization command to be executed 
+      immediately after every connection to the DBMS that is within the scope 
+      of the LIBNAME statement or libref.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>DBCONTERM=</strong></td>
+    <td width="25%"><'>DBMS-user-command<'></td>
+    <td width="44%">specifies a user-defined termination command to be executed 
+      before every disconnect from the DBMS that is within the scope of the LIBNAME 
+      statement or libref.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>DBINDEX=</strong></td>
+    <td width="25%"> 
+      <p>NO | YES <br>
+    </td>
+    <td width="44%">indicates whether SAS applications attempt to use any indexes 
+      on DBMS tables that are referenced by the specified libref.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>DBLIBINIT=</strong></td>
+    <td width="25%"><'>DBMS-user-command<'> </td>
+    <td width="44%">specifies a user-defined initialization command to be executed 
+      once within the scope of the LIBNAME statement or libref that established 
+      the first connection to the DBMS.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>DBLIBTERM= </strong></td>
+    <td width="25%"><'>DBMS-user-command<'></td>
+    <td width="44%">specifies a user-defined termination command to be executed 
+      once before the DBMS disconnect that is associated with the first connection 
+      made by the LIBNAME statement or libref.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>DBPROMPT=</strong></td>
+    <td width="25%">NO | YES</td>
+    <td width="44%">specifies whether SAS displays a window that prompts the user 
+      to enter DBMS connection information before connecting to the DBMS in interactive 
+      mode. </td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>DEFER=</strong></td>
+    <td width="25%">NO | YES </td>
+    <td width="44%">determines when the connection to the DBMS occurs.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>PRESERVE_COL_NAMES=</strong></td>
+    <td width="25%">NO | YES </td>
+    <td width="44%">preserves spaces, special characters, and case sensitivity 
+      in DBMS column names.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>PRESERVE_TAB_NAMES=</strong></td>
+    <td width="25%">NO | YES </td>
+    <td width="44%">preserves spaces, special characters, and case-sensitivity 
+      in DBMS table names.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>READ_LOCK_TYPE=</strong></td>
+    <td width="25%">ROW | PAGE | TABLE | NOLOCK</td>
+    <td width="44%">specifies how data in a DBMS table is locked when data is 
+      read.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>REREAD_EXPOSURE=</strong></td>
+    <td width="25%">NO | YES</td>
+    <td width="44%">specifies whether the SAS/ACCESS engine acts as a random access 
+      engine for the scope of the LIBNAME statement. </td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>SPOOL=</strong></td>
+    <td width="25%">YES | NO | DBMS </td>
+    <td width="44%">specifies whether SAS creates a utility spool file during 
+      read transactions that read data more than once.</td>
+  </tr>
+  <tr valign="top"> 
+    <td width="16%"><strong>UPDATE_LOCK_TYPE=</strong></td>
+    <td width="25%">ROW | PAGE | TABLE | NOLOCK</td>
+    <td width="44%">specifies how data in a DBMS table is locked during an update 
+      transaction.</td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

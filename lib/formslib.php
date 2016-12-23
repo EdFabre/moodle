@@ -188,10 +188,6 @@ abstract class moodleform {
             $this->_form->hardFreeze();
         }
 
-        // HACK to prevent browsers from automatically inserting the user's password into the wrong fields.
-        $element = $this->_form->addElement('hidden');
-        $element->setType('password');
-
         $this->definition();
 
         $this->_form->addElement('hidden', 'sesskey', null); // automatic sesskey protection
@@ -215,9 +211,7 @@ abstract class moodleform {
      * @return string form identifier.
      */
     protected function get_form_identifier() {
-        $class = get_class($this);
-
-        return preg_replace('/[^a-z0-9_]/i', '_', $class);
+        return get_class($this);
     }
 
     /**
@@ -2233,11 +2227,7 @@ function validate_' . $this->_formName . '_' . $escapedElementName . '(element) 
   ret = validate_' . $this->_formName . '_' . $escapedElementName.'(frm.elements[\''.$elementName.'\']) && ret;
   if (!ret && !first_focus) {
     first_focus = true;
-    Y.use(\'moodle-core-event\', function() {
-        Y.Global.fire(M.core.globalEvents.FORM_ERROR, {formid: \''. $this->_attributes['id'] .'\',
-                                                       elementid: \'id_error_'.$elementName.'\'});
-        document.getElementById(\'id_error_'.$elementName.'\').focus();
-    });
+    document.getElementById(\'id_error_'.$elementName.'\').focus();
   }
 ';
 
@@ -2891,7 +2881,7 @@ class MoodleQuickForm_Rule_Required extends HTML_QuickForm_Rule {
         }
         $stripvalues = array(
             '#</?(?!img|canvas|hr).*?>#im', // all tags except img, canvas and hr
-            '#(\xc2\xa0|\s|&nbsp;)#', // Any whitespaces actually.
+            '#(\xc2|\xa0|\s|&nbsp;)#', //any whitespaces actually
         );
         if (!empty($CFG->strictformsrequired)) {
             $value = preg_replace($stripvalues, '', (string)$value);
@@ -2913,7 +2903,7 @@ class MoodleQuickForm_Rule_Required extends HTML_QuickForm_Rule {
         global $CFG;
         if (!empty($CFG->strictformsrequired)) {
             if (!empty($format) && $format == FORMAT_HTML) {
-                return array('', "{jsVar}.replace(/(<(?!img|hr|canvas)[^>]*>)|&nbsp;|\s+/ig, '') == ''");
+                return array('', "{jsVar}.replace(/(<[^img|hr|canvas]+>)|&nbsp;|\s+/ig, '') == ''");
             } else {
                 return array('', "{jsVar}.replace(/^\s+$/g, '') == ''");
             }

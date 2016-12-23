@@ -1,0 +1,143 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      and Using PROC SQL Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Creating PROC SQL Views</h2>
+        <p>You use the CREATE VIEW statement to create a view.<font color="#FF0000"></font></p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, CREATE VIEW statement">
+    <tr> 
+      <td align="left"><strong>General form, CREATE VIEW statement:</strong> <blockquote> 
+          <p><font color="#003399"><nobr><strong>CREATE VIEW </strong><em>proc-sql-view 
+            </em><strong>AS<br>
+            </strong></nobr>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#003399"><strong>SELECT</strong> 
+            <em>column-1&lt;, ... column-n</em>&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>FROM</strong> 
+            <em>table-1 | view-1&lt;, ... table-n | view-n&gt;</em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<em>optional 
+            query clauses&gt;</em><strong>;</strong> </font> <font color="#003399"><nobr><strong> 
+            </strong></nobr></font></p>
+        </blockquote>
+        <p>where 
+        <ul>
+          <li><font color="#003399"><em>proc-sql-view</em></font> specifies the 
+            name of the PROC SQL view that you are creating</li>
+          <li><strong><font color="#003399">SELECT</font></strong> specifies the 
+            column(s) that will appear in the table</li>
+          <li><strong><font color="#003399">FROM</font></strong> specifies the 
+            table(s) or view(s) to be queried </li>
+          <li><em><font color="#003399">optional query clauses</font></em> are 
+            used to refine the query further and include the WHERE, GROUP BY, 
+            HAVING, and ORDER BY clauses.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>A PROC SQL view derives its data from the tables or views that are listed 
+        in the FROM clause. The data that is accessed by a view is a subset or 
+        superset of the data that is in its underlying table(s) or view(s). When 
+        a view is referenced by a SAS procedure or in a DATA step, it is executed 
+        and, conceptually, an internal table is built. PROC SQL processes this 
+        internal table as if it were any other table.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example</h2>
+        <p>The following PROC SQL step creates a view that contains information 
+          for flight attendants. The view always returns the employee's age as 
+          of the current date. </p>
+        <p>The view <strong>Sasuser.Faview</strong> creates a virtual table from 
+          the accompanying SELECT statement. Although the underlying tables, <strong>Sasuser.Payrollmaster</strong> 
+          and <strong>Sasuser.Staffmaster</strong>, can change, the instructions 
+          that comprise the view stay constant. The libref specified in the FROM 
+          clause is optional. It is assumed that the contributing tables are stored 
+          in the same library as the view itself, unless otherwise specified. 
+        </p>
+        <pre><font color="#003399">     proc sql;
+        <strong>create view sasuser.faview as</strong>
+           select lastname, firstname, gender,
+                  int((today()-dateofbirth)/365.25) as Age,
+                  substr(jobcode,3,1) as Level,
+                  salary
+              from sasuser.payrollmaster,
+                   sasuser.staffmaster
+              where jobcode contains 'FA' and 
+                    staffmaster.empid=
+                    payrollmaster.empid;</font></pre>
+        <p>When this PROC SQL step is submitted, SAS does not actually execute 
+          the SELECT statement that follows the AS keyword, but partially compiles 
+          and stores the SELECT statement in a data file with a member type of 
+          VIEW. A message in the SAS log confirms that the view has been defined. 
+        </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>1    proc sql;<br>2            create view sasuser.faview as<br>3              select lastname, firstname, gender,<br>4                     int((today()-dateofbirth)/365.25)<br>5                        as Age,<br>6                     substr(jobcode,3,1) as Level,<br>7                     salary<br>8                 from sasuser.payrollmaster,<br>9                      sasuser.staffmaster<br>10                where jobcode contains 'FA' and<br>11                      staffmaster.empid=<br>12                      payrollmaster.empid;<br><strong>NOTE: SQL view SASUSER.FAVIEW has been defined.</strong></pre> 
+        </td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+      <td valign="top">It is helpful to give a PROC SQL view a name that easily 
+        identifies it as a view. For example,<strong> Faview</strong> or <strong>Fav</strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In the Windows and UNIX operating environments, the default 
+        extension for PROC SQL views (and DATA step views) is <strong>.sas7bvew</strong>.</td>
+    </tr>
+  </table>
+  <p><br><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

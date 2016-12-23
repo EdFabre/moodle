@@ -1,0 +1,121 @@
+<html><!-- InstanceBegin template="/Templates/fillinQuestion.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set correct answers ------------------------------------------------
+
+   answer = new Array(3); 
+   answer[1] = "else 'NO ANSWER'"
+   answer[2] = "else 'no answer'"
+   answer[3] = 'else "no answer"'
+   
+// Specify text that must match case; don't delete these lines --------
+   
+   quotedString = new Array(4); 
+   quotedString[1] = "NO ANSWER";
+   quotedString[2] = "";
+   quotedString[3] = "";
+   quotedString[4] = "";
+  
+// Set feedback -------------------------------------------------------
+
+   right1='The last clause of the CASE expression is an ELSE clause. The ELSE clause  ';
+   right2='specifies that when the value of <code>Q1</code> is anything other than <em>a1</em> ';
+   right3='or <em>a2</em>, the value should be changed to <em>NO ANSWER</em>.';
+   
+   wrong1='You need to add an ELSE clause that specifies what happens when ';
+   wrong2='the value of <code>Q1</code> is anything other than the value stated ';
+   wrong3='in the two WHEN-THEN clauses. Do not include a semicolon.';
+   
+// Set answer checking options ----------------------------------------
+
+   var checkKeyword="yes";
+   var checkSemicolon="no";
+   var useParens="no";
+  
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="JavaScript: document.form1.anstext.focus()">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Updating 
+      Values in Existing Table Rows<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<br>
+<center> <FORM NAME="form1" onSubmit="setFeedback(checkKeyword,checkSemicolon,useParens);return false">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="question"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" -->
+          <p>In the table <strong>Survey</strong>, you want to change the values 
+            of the column <code>Q1</code> as follows:</p>
+          <ul>
+            <li>If the value of <code>Q1</code> is <em>a1</em>, then change the 
+              value to <em>YES</em>.</li>
+            <li>If the value of <code>Q1</code> is <em>a2</em>, then change the 
+              value to <em>NO</em>.</li>
+            <li>If <code>Q1</code> has any other value, then change the value 
+              to <em>NO ANSWER</em>.</li>
+          </ul>
+          <p>To update the rows as specified, complete the CASE expression in 
+            the following PROC SQL step:</p>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+  
+  <TABLE cellpadding=5 cellspacing=0 border="0">
+      <TR>
+	    <TD colspan="2"> 
+          <P ALIGN=Center><!-- InstanceBeginEditable name="extraques" --> 
+          <pre><font color="#003399">proc sql;
+   update survey 
+      set q1=
+         case q1
+            when 'a1' then 'YES'
+            when 'a2' then 'NO'
+            <INPUT TYPE="text" size="50" NAME="anstext">
+         end;</font></pre>
+          <!-- InstanceEndEditable -->
+          </TD>
+      </TR>
+      <TR>
+	<TD colspan="2">
+	<script>writefillInQuestionForm();</script>
+	</TD>
+      </TR>
+    </TABLE>
+  
+    
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

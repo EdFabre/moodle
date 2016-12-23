@@ -1,0 +1,163 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Modifying 
+      Character Values with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><STRONG>TRANWRD Function</STRONG> </p>
+      <P> The <STRONG>TRANWRD</STRONG> function replaces or removes all occurrences 
+        of a pattern of characters within a character string. The translated characters 
+        can be located anywhere in the string.</td>
+  </tr>
+</table>
+<P align="center"><BR>
+<center>
+  <TABLE width="85%" BORDER="1" CELLPADDING="10" CELLSPACING="0" bgcolor="#F7F7DE" title="General form, TRANWRD function">
+    <TR> 
+      <TD><STRONG>General form, TRANWRD function:</STRONG> <BLOCKQUOTE> <FONT color="#003399"><NOBR><STRONG>TRANWRD(</STRONG><EM>source</EM>,<EM>target</EM>,<EM>replacement</EM><STRONG>)</STRONG></NOBR></FONT> 
+        </BLOCKQUOTE>
+        where 
+        <UL>
+          <LI><FONT color="#003399"><EM>source</EM></FONT> specifies the source 
+            string that you want to translate 
+          <LI><FONT color="#003399"><EM>target</EM></FONT> specifies the string 
+            that SAS searches for in <FONT color="#003399"><EM>source</EM></FONT> 
+          <LI><FONT color="#003399"><EM>replacement</EM></FONT> specifies the 
+            string that replaces <FONT color="#003399"><EM>target</EM></FONT>. 
+        </UL>
+        <TABLE border="0" cellpadding="2" cellspacing="0" width="100%">
+          <TR valign="top"> 
+            <TD width="24"><IMG src="../navimages/note.gif" border="0" alt="Note:" width="20" height="20"></TD>
+            <TD><FONT color="#003399"><EM>target</EM></FONT> and <FONT color="#003399"><EM>replacement</EM></FONT> 
+              can be specified as variables or as character strings. If you specify 
+              character strings, be sure to enclose the strings in quotation marks 
+              (<FONT color="#003399"><STRONG>'&nbsp;'</STRONG></FONT> or <FONT color="#003399"><STRONG>&quot;&nbsp;&quot;</STRONG></FONT>).</TD>
+          </TR>
+        </TABLE></TD>
+    </TR>
+  </table>
+</center>
+<P align="center"><BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD>You can use TRANWRD function to update variables in place. In this example, 
+        the function updates the values of <CODE>Name</CODE> by changing every 
+        occurrence of the string <EM>Monroe</EM> to <EM>Manson</EM>. 
+        <PRE>     <FONT color="#003399">name=tranwrd(name,'Monroe','Manson')</FONT></PRE>
+        Another example of the TRANWRD function is shown below. In this case, 
+        two assignment statements use the TRANWRD function to change all occurrences 
+        of <EM>Miss</EM> or <EM>Mrs.</EM> to <EM>Ms.</EM>.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"> SAS Data Set Work.Before 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center" bgcolor="#F7F7DE"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></div></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"> <font face="Verdana, Arial, Helvetica" size="2" color="#000000">Mrs. Millicent Garrett Fawcett</font> 
+        </TD>
+      </TR>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Miss 
+          Charlotte Despard</font></TD>
+      </TR>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Mrs. 
+          Emmeline Pankhurst</font></TD>
+      </TR>
+      <TR valign="top"> 
+        <TD height="24" align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Miss 
+          Sylvia Pankhurst</font></TD>
+      </TR>
+    </tbody>
+  </table>
+</center>
+<P align="center"><BR>
+<center>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD><PRE>     <FONT color="#003399">data work.after;</FONT>
+        <FONT color="#003399">set work.before;</FONT>
+        <FONT color="#003399">name=tranwrd(name,'Miss','Ms.');</FONT>
+        <FONT color="#003399">name=tranwrd(name,'Mrs.','Ms.');</FONT>
+     <FONT color="#003399">run;</FONT></PRE>
+        After this DATA step is executed, the new data set is created. Notice 
+        the changed strings within the variable <CODE>Name</CODE>.</TD>
+    </TR>
+  </TABLE>
+</center>
+<P align="center"><BR>
+  SAS Data Set Work.After 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center" bgcolor="#F7F7DE"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Name</b></font></div></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"> <font face="Verdana, Arial, Helvetica" size="2" color="#000000">Ms. 
+          Millicent Garrett Fawcett</font> </TD>
+      </TR>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Ms. 
+          Charlotte Despard</font></TD>
+      </TR>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Ms. 
+          Emmeline Pankhurst</font></TD>
+      </TR>
+      <TR valign="top"> 
+        <TD height="24" align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">Ms. 
+          Sylvia Pankhurst</font></TD>
+      </TR>
+    </tbody>
+  </table>
+  <br>
+  <br>
+</center>
+<P><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

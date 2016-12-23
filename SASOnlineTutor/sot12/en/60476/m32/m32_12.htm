@@ -1,0 +1,81 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Automatic Macro Variables<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p>Although the examples in this section show macro variable references 
+        in a FOOTNOTE statement, macro variables can be referenced wherever the 
+        information that they supply is needed. </p>
+      <p> Remember, macro variables can appear anywhere in a SAS program except 
+        within data lines. 
+      <pre><font color="#003399">     title 'Temporary Employees Hired in November';</font>
+     <font color="#003399"> footnote </font><font color="Red">"</font><font color="#003399">Report Run on <strong>&amp;sysday</strong>, &amp;sysdate</font><font color="Red">"</font><font color="#003399">;</font>
+<font color="#003399">     data hrd.tempnov;</font>
+<font color="#003399">        set hrd.temp;</font>
+<font color="#003399">        if month(begindate)=11;</font>
+     <font color="#003399">run;</font>
+<font color="#003399">     proc print data=hrd.tempnov;</font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> For example, this program uses the <code>SYSDAY</code> macro variable to execute 
+        a section of the program only on a specified day of the week. 
+      <pre><font color="#003399">     data hrd.temppay(drop=day);</font>
+<font color="#003399">        set hrd.newtemp(keep=name payrate hours1 hours2);</font>
+<font color="#003399">        total=hours1+hours2;</font>
+        <font color="#003399"><strong>Day=</strong></font><font color="Red"><strong>"</strong></font><font color="#003399"><strong>&amp;sysday</strong></font><font color="Red"><strong>"</strong></font><font color="#003399"><strong>;</strong></font>
+<font color="#003399">        if day='Friday' then</font>
+<font color="#003399">           do;</font>
+<font color="#003399">              gross=input(payrate,2.)*total;</font>
+<font color="#003399">              tempfee=gross*.05;</font>
+<font color="#003399">           end;</font>
+     <font color="#003399">run;</font>
+<font color="#003399">     proc print data=hrd.temppay;</font>
+<font color="#003399">     run;</font>
+</pre>
+      <p> Note that the &amp;SYSDAY reference in enclosed in quotation marks. 
+        The quotation marks are needed in order to correctly assign the text string 
+        that is contained in the macro variable <code>SYSDAY</code> to the character variable 
+        <code>Day</code>. 
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

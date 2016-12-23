@@ -1,0 +1,148 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Controlling 
+      Page Size and the Number of Buffers<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <h2>Reporting Page Size</h2>
+        <p>You can use the CONTENTS procedure or the CONTENTS statement in the 
+          DATASETS procedure to report the page size and the number of pages. 
+        </p>
+        <pre><font color="#003399">    proc contents data=company.order_fact;
+    run;</font></pre></td>
+    </tr>
+  </table>
+  Partial PROC CONTENTS Output 
+  <CENTER>
+    <TABLE borderColor=#000000 cellSpacing=1 cellPadding=7 rules=groups 
+bgColor=#f0f0f0 border=1 frame=box title="Partial PROC CONTENTS Output">
+      <THEAD>
+        <TR> 
+          <TD vAlign=bottom align=middle bgColor=#b0b0b0 colSpan=2><FONT 
+      face="Verdana, Helvetica, Helv" color=#002288 size=2><B>Engine/Host Dependent 
+            Information</B></FONT></TD>
+        </TR>
+      </THEAD>
+      <TBODY>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>Data Set Page Size</B></FONT></TD>
+          <TD align=left bgColor=#FFFF99><FONT face="Verdana, Helvetica, Helv" size=2>8192</FONT></TD>
+        </TR>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>Number of Data Set Pages</B></FONT></TD>
+          <TD align=left bgColor=#FFFF99><FONT face="Verdana, Helvetica, Helv" size=2>9423</FONT></TD>
+        </TR>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>First Data Page</B></FONT></TD>
+          <TD align=left bgColor=#d3d3d3><FONT face="Verdana, Helvetica, Helv" size=2>1</FONT></TD>
+        </TR>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>Max Obs per Page</B></FONT></TD>
+          <TD align=left bgColor=#d3d3d3><FONT face="Verdana, Helvetica, Helv" size=2>101</FONT></TD>
+        </TR>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>Obs in First Data Page</B></FONT></TD>
+          <TD align=left bgColor=#d3d3d3><FONT face="Verdana, Helvetica, Helv" size=2>70</FONT></TD>
+        </TR>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>Number of Data Set Repairs</B></FONT></TD>
+          <TD align=left bgColor=#d3d3d3><FONT face="Verdana, Helvetica, Helv" size=2>0</FONT></TD>
+        </TR>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>File Name</B></FONT></TD>
+          <TD align=left bgColor=#d3d3d3><FONT size=2 face="Verdana, Helvetica, Helv">c:\order_fact.sas7bdat</FONT></TD>
+        </TR>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>Release Created</B></FONT></TD>
+          <TD align=left bgColor=#d3d3d3><FONT face="Verdana, Helvetica, Helv" size=2>9.0101B0</FONT></TD>
+        </TR>
+        <TR> 
+          <TD align=left bgColor=#b0b0b0><FONT face="Verdana, Helvetica, Helv" 
+      color=#002288 size=2><B>Host Created</B></FONT></TD>
+          <TD align=left bgColor=#d3d3d3><FONT face="Verdana, Helvetica, Helv" size=2>XP_PRO</FONT></TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+    <p><br>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td><p>The total number of bytes that a data file occupies equals the 
+            page size multiplied by the number of pages. For example, the page 
+            size for <strong>Company.Order_fact</strong> is <em>8192</em> and 
+            the number of pages is <em>9423</em>. Therefore, the data file occupies<em> 
+            77,193,216</em><font color="#FF0000"> </font>bytes.</p></td>
+      </tr>
+    </table>
+	<p>
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">Note that the information that is available from PROC 
+          CONTENTS depends on the operating environment.</td>
+      </tr>
+    </table>
+    <p> 
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">Page size is analogous to buffer size for SAS data sets.</td>
+      </tr>
+    </table>
+    <p> 
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top"> <p>In uncompressed data files, there is a 16-byte overhead 
+            at the beginning of each page and a 1-bit per observation overhead 
+            (rounded up to the nearest byte), used to denote an observation's 
+            status as deleted or not deleted, at the end of each page. </p>
+          <p>You can learn about the structure of uncompressed and compressed 
+            data files in the lesson <!-- #BeginLibraryItem "/Library/lesson reference.lbi" --><!--lesson reference--><strong><script>document.write(m82title);</script></strong><!-- #EndLibraryItem -->.</p></td>
+      </tr>
+    </table>
+  </CENTER>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

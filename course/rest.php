@@ -108,9 +108,9 @@ switch($requestmethod) {
                         break;
 
                     case 'duplicate':
-                        require_capability('moodle/course:manageactivities', $coursecontext);
-                        require_capability('moodle/backup:backuptargetimport', $coursecontext);
-                        require_capability('moodle/restore:restoretargetimport', $coursecontext);
+                        require_capability('moodle/course:manageactivities', $modcontext);
+                        require_capability('moodle/backup:backuptargetimport', $modcontext);
+                        require_capability('moodle/restore:restoretargetimport', $modcontext);
                         if (!course_allowed_module($course, $cm->modname)) {
                             throw new moodle_exception('No permission to create that activity');
                         }

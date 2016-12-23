@@ -36,11 +36,7 @@ if (isset($info->url)) {
 }
 
 $filename = '';
-// Use $info->filename if exists, $info->name is a display name,
-// it may not have extension
-if (isset($info->filename)) {
-    $filename  = s(clean_param($info->filename, PARAM_FILE));
-} else if (isset($info->name)) {
+if (isset($info->name)) {
     $filename  = s(clean_param($info->name, PARAM_FILE));
 }
 
@@ -59,7 +55,7 @@ if (isset($info->license)) {
     $license = s(clean_param($info->license, PARAM_ALPHAEXT));
 }
 
-$source = base64_encode(json_encode(array('url'=>$url,'filename'=>$filename)));
+$source = base64_encode(serialize((object)array('url'=>$url,'filename'=>$filename)));
 
 $js =<<<EOD
 <html>

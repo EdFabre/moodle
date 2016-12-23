@@ -94,18 +94,4 @@ class group_member_removed extends base {
         $this->data['edulevel'] = self::LEVEL_OTHER;
         $this->data['objecttable'] = 'groups';
     }
-
-    /**
-     * Custom validation.
-     *
-     * @throws \coding_exception
-     * @return void
-     */
-    protected function validate_data() {
-        parent::validate_data();
-
-        if (!isset($this->relateduserid)) {
-            throw new \coding_exception('The \'relateduserid\' must be set.');
-        }
-    }
 }

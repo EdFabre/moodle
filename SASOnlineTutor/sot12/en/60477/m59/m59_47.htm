@@ -1,0 +1,120 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Submit the following PROC DATASETS step to suspend the audit trail: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc datasets nolist;<br>';
+solutionText+='   audit pilotemp;<br>';
+solutionText+='   suspend;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='<li>Submit the DATA step to modify the <strong>Work.Pilotemp</strong> data set.<br><br> ';
+solutionText+='<li>Submit the following PROC DATASETS step to resume the audit trail: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc datasets nolist;<br>';
+solutionText+='   audit pilotemp;<br>';
+solutionText+='   resume;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='<li>Submit the DATA step to modify the <strong>Work.Pilotemp</strong> data set.<br><br> ';
+solutionText+='<li>Submit the following PROC PRINT step to view the audit file:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc print data=pilotemp(type=audit);<br>';
+solutionText+='run;</pre></font>';
+solutionText+='Notice that no records were written when the location changed to <em>Honolulu</em>, but records were written in the last modification.<br><br>';
+solutionText+='<li>Submit the following PROC DATASETS step to terminate the audit trail:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc datasets nolist;<br>';
+solutionText+='   audit pilotemp;<br>';
+solutionText+='   terminate;<br>';
+solutionText+='quit;</pre></font></ol>';
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Suspend, 
+            resume, and terminate the audit trail for <a href="JavaScript: openOther('../linklib/pilotemp.htm')">Work.Pilotemp</a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">You must complete the <a href="m59_45.htm" onClick="suggestBack()">previous 
+        practice</a> before you do this one.</td>
+    </tr>
+  </table>
+  <!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write and submit a PROC DATASETS step to <strong>temporarily</strong> 
+            stop auditing the <strong>Work.Pilotemp</strong> data set.<br>
+            <br>
+            <font color="#003399"></font> 
+          <li> Submit the following DATA step to modify <strong>Work.Pilotemp</strong>: 
+            <pre><font color="#003399">data pilotemp;
+   modify pilotemp;
+   location='Honolulu';
+run;</font></pre>
+          <li>Write and submit a PROC DATASETS step to <strong>resume</strong> 
+            auditing the <strong>Work.Pilotemp</strong> data set.<br>
+            <br>
+          <li>Submit the following DATA step to modify <strong>Work.Pilotemp</strong>. This is 
+            the same code you submitted in the last practice, except the value 
+            of <code>Reason</code> is different. 
+            <pre><font color="#003399">data pilotemp; 
+   modify pilotemp promotion;
+   by empid; 
+   salary=salary+increase;
+   user=&quot;My Name&quot;;
+   reason=&quot;Year 2 Raise&quot;;
+run; </font></pre>
+          <li>Write and submit a PROC PRINT step to view the audit trail.<br>
+            <br>
+          <li>Write and submit a PROC DATASETS step to <strong>end</strong> the 
+            audit trail.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

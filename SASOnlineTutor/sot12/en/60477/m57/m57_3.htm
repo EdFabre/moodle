@@ -1,0 +1,474 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Multidimensional Arrays<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Example</h2>
+        <p>Suppose you need to determine the wind chill values for the flights 
+          represented in the SAS data set <strong>Sasuser.Flights</strong>. The 
+          data set contains three variables: <code>Flight</code> (the flight number), 
+          <code>Temp</code> (the average outdoor temperature during the flight), 
+          and <code>Wspeed</code> (the average wind speed during the flight). 
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  SAS Data Set Sasuser.Flights<br>
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead>
+      <tr> 
+        <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Obs</b></font></TD>
+        <td align=CENTER bgcolor="#F7F7DE"><div align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Flight</b></font></div></td>
+        <td align=LEFT bgcolor="#F7F7DE"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Temp</b></font></div></td>
+        <td align=CENTER bgcolor="#F7F7DE"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Wspeed</b></font></div></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          1</b></font></TD>
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">IA2736</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">-8</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><div align="right"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">9</font></div></td>
+      </tr>
+      <tr> 
+        <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b> 
+          2</b></font></TD>
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="left"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">IA6352</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><div align="right"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">-4</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><div align="right"><font color="#000000" size="2" face="Verdana, Arial, Helvetica">16</font></div></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>Wind chill values are derived from the air temperature and wind speed 
+        as shown in the following wind chill lookup table. To determine the wind 
+        chill for each flight, you can create a multidimensional array that stores 
+        the wind chill values shown in the table. You can then match the values 
+        of <code>Temp</code> and <code>Wspeed</code> with the wind chill values 
+        stored in the array.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table border="0" title="Wind Chill Values">
+    <tr> 
+      <td valign="middle"> <p align="center">Wind Speed<br>
+          (in miles per hour)</p></td>
+      <td><div align="center">Temperature (in degrees Fahrenheit)</div>
+        <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC">
+          <thead>
+            <TR> 
+              <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>-10</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>-5</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>0</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>5</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>10</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>15</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>20</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>25</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>30</b></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>5</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-16</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-11</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -5</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                1</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                7</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                13</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">19</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">25</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>10</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-28</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-16</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-10</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -4</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                3</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                9</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">15</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">21</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>15</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-32</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-26</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-19</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-13</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -7</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                0</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                6</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">13</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">19</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>20</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-35</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-29</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-15</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -9</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-2</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                4</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">11</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">17</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>25</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-37</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-31</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-24</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-17</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-11</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-4</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                3</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                9</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">16</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>30</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-39</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-33</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-26</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-19</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-12</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-5</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                1</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">15</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>35</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-41</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-34</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-27</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-21</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-7</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                0</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                7</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">14</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>40</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-43</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-36</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-29</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-15</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -1</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                6</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">13</font></TD>
+            </TR>
+          </tbody>
+        </TABLE></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>In the following program, the ARRAY statement creates the two-dimensional 
+          array <code>WC</code> and specifies the dimensions of the array: four 
+          rows and two columns. No variables are created from the array because 
+          the keyword <strong>_TEMPORARY_</strong> is used. The initial values specified correspond 
+          to the values in the wind chill lookup table. For this example, only 
+          the values in the first two columns and four rows in the wind chill 
+          lookup table are included in the array. </p>
+        <pre><font color="#003399">     data work.wndchill (drop = column row);
+       <strong>array WC{4,2} _temporary_ 
+             (-22,-16,-28,-22,-32,-26,-35,-29);</strong>
+       set sasuser.flights;
+       row = round(wspeed,5)/5;
+       column = (round(temp,5)/5)+3;
+       WindChill= wc{row,column};
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <table border="0" title="Wind Chill Values">
+    <tr> 
+      <td valign="middle"> <p align="center">Wind Speed<br>
+          (in miles per hour)</p></td>
+      <td><div align="center">Temperature (in degrees Fahrenheit)</div>
+        <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC">
+          <thead>
+            <TR> 
+              <TD ALIGN=CENTER bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>-10</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>-5</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>0</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>5</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>10</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>15</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>20</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>25</b></font></TD>
+              <TD ALIGN=CENTER bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>30</b></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>5</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCC99" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCC99" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-16</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-11</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -5</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                1</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                7</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                13</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">19</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">25</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>10</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCC99" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-28</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCC99" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-16</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-10</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -4</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                3</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                9</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">15</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">21</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>15</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCC99" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-32</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCC99" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-26</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-19</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-13</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -7</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                0</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                6</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">13</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">19</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>20</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCC99" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-35</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#CCCC99" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-29</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-15</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -9</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-2</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                4</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">11</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">17</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>25</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-37</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-31</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-24</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-17</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-11</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-4</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                3</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                9</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">16</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>30</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-39</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-33</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-26</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-19</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-12</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-5</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                1</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">15</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>35</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-41</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-34</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-27</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-21</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-14</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-7</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                0</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                7</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">14</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#F7F7DE"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>40</b></font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-43</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-36</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-29</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-15</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">-8</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF" nowrap><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                -1</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+                6</font></TD>
+              <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#003399">13</font></TD>
+            </TR>
+          </tbody>
+        </TABLE></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td> <p><a name="set"></a>The value of <code>WindChill</code> for each flight 
+          is determined by referencing the array based on the values of <code>Wspeed</code> 
+          and <code>Temp</code> in the <strong>Sasuser.Flights</strong> data set. 
+          The row number for the array reference is determined by the value of 
+          <code>Wspeed</code>. The column number for the array reference is determined 
+          by the value of <code>Temp</code>. </p>
+        <pre><font color="#003399">     data work.wndchill (drop = column row);
+       array WC{4,2} _temporary_ 
+             (-22,-16,-28,-22,-32,-26,-35,-29);
+       <strong>set sasuser.flights;</strong>
+       row = round(wspeed,5)/5;
+       column = (round(temp,5)/5)+3;
+       <strong>WindChill= wc{row,column};</strong>
+     run;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  Table Representation of the WC Array 
+  <table  border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="Table Representation of the WC Array ">
+  
+    <tbody>
+      <tr> 
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#003399">-16</font></div></td>
+        </tr>
+		<tr>
+		<td align=LEFT bgcolor="#FFFFFF"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#003399">-28</font></div></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#003399">-22</font></div></td>
+        </tr>
+		<tr>
+		<td align=RIGHT bgcolor="#FFFFFF"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#003399"> 
+            -32</font></div></td>
+        <td align=RIGHT bgcolor="#FFFFFF"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#003399">-26</font></div></td>
+        </tr>
+		<tr>
+		<td align=RIGHT bgcolor="#FFFFFF"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#003399">-35</font></div></td>
+        <td align=LEFT bgcolor="#FFFFFF"><div align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#003399">-29</font></div></td>
+      </tr>
+    </tbody>
+  </table>
+ 
+  <p><br>
+
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p><a name="assign"></a>The rounding unit for the value of <code>Wspeed</code> 
+          is 5 because the values for wind speed in the wind chill table are rounded 
+          to every 5 miles-per-hour. <code>Wspeed</code> is then divided by 5 to derive the 
+          row number for the array reference.</p>
+        <p>Like the value for <code>Wspeed</code>, the value of <code>Temp</code> 
+          is rounded to the nearest five, then divided by 5. The offset of 3 is 
+          added to the value because the third column in the wind chill lookup 
+          table represents 0 degrees.</p></td>
+    </tr>
+  </table>
+ 
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     data work.wndchill (drop = column row);
+       array WC{4,2} _temporary_ 
+             (-22,-16,-28,-22,-32,-26,-35,-29);
+       set sasuser.flights;
+       <strong>row = round(wspeed,5)/5;</strong>
+       <strong>column = (round(temp,5)/5)+3;</strong>
+       WindChill= wc{row,column};
+     run;</font></pre>
+	The following page illustrates how the program is processed, step by 
+        step.</td>
+    </tr>
+  </table>
+  
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

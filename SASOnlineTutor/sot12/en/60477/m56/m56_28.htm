@@ -1,0 +1,133 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Combining 
+      Summary Data and Detail Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>The MEANS Procedure</h2>
+	  You should already know how to use the <a href="JavaScript: openOther('../linklib/meanproc.htm')"> 
+        MEANS procedure</a> for producing summary statistics. By default, PROC 
+        MEANS generates a report that contains descriptive statistics. The descriptive 
+        statistics can be routed to a SAS data set by using an <strong>OUTPUT 
+        statement</strong>, and the default report can be suppressed by using 
+        the <strong>NOPRINT option</strong>. </td>
+    </tr>
+  </table>
+  <p> <br><table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC MEANS with OUTPUT statement">
+            <tr> 
+              
+      <td align="left"><strong>General form, PROC MEANS with OUTPUT statement:</strong> 
+        <blockquote> <font color="#003399"><dl>
+            <dt><strong>PROC MEANS DATA=</strong><em>original-SAS-data-set</em> 
+              <strong>NOPRINT;</strong></dt>
+		<dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<strong>VAR</strong> <em>variable(s)</em><strong>;</strong>&gt;</dt>
+		    <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>OUTPUT OUT=</strong> <em>output-SAS-data-set</em></dt>
+		    <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>statistic=output-variable(s)</em>;</dt>
+		<dt><strong>RUN;</strong></dt></dl></font> 
+        </blockquote>where
+                
+        <ul>
+          <li><font color="#003399"><em>original-SAS-data-set</em></font> identifies 
+            the data set on which the summary statistic is generated
+          <li> <font color="#003399"><em>variable(s)</em></font> is the name(s) 
+            of the variable(s) that is being analyzed 
+          <li> <font color="#003399"><em>output-SAS-data-set</em></font> names 
+            the data set where the descriptive statistics will be stored
+          <li><font color="#003399"><em>statistic</em></font> is one of the summary statistics generated
+          <li><font color="#003399"><em>output-variable(s)</em></font> names the 
+            variable(s) in which to store the value(s) of <font color="#003399"><em>statistic</em></font> 
+            in the output data set. 
+        </ul></td>
+            </tr>
+          </table>
+  <P><BR>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> 
+        <P>The output data set that a PROC MEANS step creates contains the requested 
+          statistics as values for <nobr><font color="#003399"><em>output-variable(s)</em></font></nobr>, as well as two additional 
+          variables that are automatically included, as follows: 
+        <ul>
+	      <li><strong><code>_TYPE_</code> </strong>contains information about 
+            the class variables 
+          <li><strong><code>_FREQ_</code></strong> contains the number of observations 
+            that an output level represents. 
+        </ul>
+	    <p><BR>
+        <h2>Example</h2>
+		The following program creates a summary data set named <strong>Sasuser.Summary</strong>. 
+        <strong>Summary</strong> contains the sum of the values of <code>Revcargo</code> 
+        from <strong>Sasuser.Monthsum</strong>, stored in the variable <code>Cargosum</code>.<font color="#003399"> 
+        <pre>     proc means data=sasuser.monthsum noprint;
+        var revcargo;
+        output out=sasuser.summary sum=Cargosum;
+     run;
+
+     proc print data=sasuser.summary;
+     run;</pre>
+        </font> Because of the NOPRINT option, the PROC MEANS step does not produce 
+        any output. Printing the <strong>Sasuser.Summary</strong> data set produces 
+        the following output. 
+        <P><BR>
+		<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+<thead>
+<TR>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Obs</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>_TYPE_</b></font></TD>
+ <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>_FREQ_</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Cargosum</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1</b></font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">0</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">36</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> $8593432002.35</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER></td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

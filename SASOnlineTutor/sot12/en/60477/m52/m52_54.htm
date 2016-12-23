@@ -1,0 +1,134 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Arithmetic and Logical Expressions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Examples</h2>
+	  The following table shows several examples of arithmetic and logical expressions, as well as the results that <nobr>%EVAL</nobr> produces when it evaluates these expressions.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="%EVAL examples">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th align="left"><font size="-1">If you submit these statements...</font></th>
+            
+      <th align="left"><font size="-1">These messages are <br>
+        written to the log...</font></th>
+          </tr>
+          
+    <tr> 
+      <td><code><font color="#003399">%put value=%eval(10 lt 2);</font></code></td>
+            
+      <td><code>value=0</code></td>
+          </tr>
+          <tr> 
+            
+      <td><code><font color="#003399">%put value=10+2;<br>
+        %put value=%eval(10+2); </font></code> </td>
+            
+      <td><code>value=10+2<br>
+        value=12 </code></td>
+          </tr>
+          <tr> 
+            
+      <td><code><font color="#003399">%let counter=2;<br>
+          %let counter=%eval(&amp;counter+1);<br>
+        %put counter=&amp;counter;</font></code> </td>
+            
+      <td valign="top"><code>counter=3</code></td>
+          </tr>
+          <tr> 
+            
+      <td><code><font color="#003399">%let numer=2;<br>
+        %let denom=8;<br>
+        %put value=%eval(&amp;numer/&amp;denom);</font></code><em></em></td>
+            
+      <td valign="top"><code>value=0</code></td>
+          </tr>
+          <tr> 
+            
+      <td><code><font color="#003399">%let numer=2;<br>
+        %let demon=8;<br>
+        %put value=%eval(&amp;numer/&amp;denom*&amp;denom);<br>
+        %put value=%eval(&amp;denom*&amp;numer/&amp;denom);</font></code></td>
+            
+      <td valign="top"><code>value=0<br>
+        value=2 </code></td>
+          </tr>
+          <tr> 
+            
+      <td><code><font color="#003399">%let real=2.4;<br>
+        %let int=8;<br>
+        %put value=%eval(&amp;real+&amp;int);</font></code></td>
+            
+      <td valign="top"><code>value=</code></td>
+          </tr>
+          
+        </table><p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>In the last example above, the decimal value of the <code>real</code> 
+        variable causes an error message to be written to the SAS log, as shown 
+        here.</td>
+    </tr>
+  </table>
+  <p><br>
+<div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>1    %let real=2.4;
+2    %let int=8;
+3    %put value=%eval(&real+&int);
+<strong>ERROR: A character operand was found in the %EVAL function 
+       or %IF condition where a numeric operand is required. 
+       The condition was: 2.4+8</strong>
+value=
+</pre> 
+      </td>
+    </tr>
+  </table>
+</div><P><BR>
+<table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Because <nobr>%EVAL</nobr> does not convert a value that contains a period to a number, 
+        the operands are evaluated as character operands.</td>
+    </tr>
+  </table>
+  <P><BR>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

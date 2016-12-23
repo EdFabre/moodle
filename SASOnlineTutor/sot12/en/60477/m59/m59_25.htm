@@ -1,0 +1,147 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Integrity Constraints<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Now that you know how to modify data in place, you may be wondering 
+          how you can protect or insure the integrity of your data when it is 
+          modified. Integrity constraints are rules that you can specify in order 
+          to restrict the data values that can be stored for a variable in a data 
+          set. SAS enforces integrity constraints when values associated with 
+          a variable are added, updated, or deleted using techniques that modify 
+          data in place, such as </p>
+        <ul>
+          <li>a DATA step with the MODIFY statement</li>
+          <li>an interactive data editing window</li>
+          <li>PROC SQL with the INSERT INTO, SET, or UPDATE statements</li>
+          <li>PROC APPEND.</li>
+        </ul>
+        <p>When you place integrity constraints on a SAS data set, you specify 
+          the type of constraint that you want to create. Each constraint has 
+          a different action.</p>
+        <br>
+        <p></p>
+        <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="General Integrity Constraints">
+          <tr bgcolor="#F7F7DE"> 
+            <th width="135" valign="top"> <font size="-1">Type</font></th>
+            <th width="387"><font size="-1">Action</font></th>
+          </tr>
+          <tr> 
+            <td width="135" valign="top">CHECK<em></em></td>
+            <td width="387">ensures that a specific set or range of values are 
+              the only values in a column. It can also check the validity of a 
+              value in one column based on a value in another column within the 
+              same row.</td>
+          </tr>
+          <tr> 
+            <td width="135" valign="top">NOT NULL</td>
+            <td width="387">guarantees that a column has non-missing values in 
+              each row.</td>
+          </tr>
+          <tr> 
+            <td width="135" valign="top">UNIQUE</td>
+            <td width="387">enforces uniqueness for the values of a column.</td>
+          </tr>
+          <tr> 
+            <td valign="top">PRIMARY KEY</td>
+            <td>uniquely defines a row within a table, which can be a single column 
+              or a set of columns. A table can have only one primary key. The 
+              PRIMARY KEY constraint includes the attributes of the NOT NULL and 
+              UNIQUE constraints. </td>
+          </tr>
+          <tr> 
+            <td valign="top">FOREIGN KEY</td>
+            <td>links one or more rows in a table to a specific row in another 
+              table by matching a column or set of columns in one table with the 
+              PRIMARY KEY defined in another table. This parent/child relationship 
+              limits modifications made to both tables. The only acceptable values 
+              for a FOREIGN KEY are values of the PRIMARY KEY or missing values.</td>
+          </tr>
+        </table>
+        <br> <br> <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">When you add an integrity constraint to a table that 
+              contains data, SAS checks all data values to determine whether they 
+              satisfy the constraint before the constraint is added.</td>
+          </tr>
+        </table>
+        <p>You can use integrity constraints in two ways, <strong>general</strong> 
+          and <strong>referential</strong>. General constraints operate within 
+          a data set, and referential constraints operate between data sets. </p>
+        <h2><br>
+          General Integrity Constraints</h2>
+        <p>General integrity constraints enable you to restrict the values of 
+          variables within a single data set. The following four integrity constraints 
+          can be used as general integrity constraints:</p>
+        <ul>
+          <li>CHECK</li>
+          <li>NOT NULL</li>
+          <li>UNIQUE</li>
+          <li>PRIMARY KEY.</li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">A PRIMARY KEY constraint is a general integrity constraint 
+              as long as it does not have any FOREIGN KEY constraints referencing 
+              it. When PRIMARY KEY is used as a general constraint it is simply 
+              a shortcut for assigning the NOT NULL and UNIQUE constraints.</td>
+          </tr>
+        </table>
+        <h2><br>
+          Referential Integrity Constraints</h2>
+        <p>Referential constraints enable you to link the data values of a column 
+          in one data set to the data values of columns in another data set. You 
+          create a referential integrity constraint when a FOREIGN KEY integrity 
+          constraint in one data set references a PRIMARY KEY<strong> </strong> 
+          integrity constraint in another data set. To create a referential integrity 
+          constraint, you must follow two steps:</p>
+        <ol>
+          <li>Define a<strong> </strong>PRIMARY KEY constraint on the first data 
+            set. <br>
+            <br>
+          </li>
+          <li>Define a FOREIGN KEY constraint on other data sets.</li>
+        </ol></td>
+    </tr>
+  </table>
+  <p>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

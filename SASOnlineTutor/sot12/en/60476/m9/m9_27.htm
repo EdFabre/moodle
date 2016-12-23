@@ -1,0 +1,290 @@
+<html><!-- InstanceBegin template="/Templates/summary.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript1.2" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+ 
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(summaryTitle)</script></strong></font>
+ 
+ 
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center><TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+      <TD align="left">
+      
+      <p><script>document.write(summaryPageContains)</script></p>
+     <ul><!-- InstanceBeginEditable name="links" --> 
+        <LI> <A HREF="#Text" onMouseOver="window.status='Go to the text summary section.'; "
+		onMouseOut="window.status=''">a text summary of the material taught in 
+          the lesson</A> 
+        <LI> <A HREF="#Syntax" onMouseOver="window.status='Go to the syntax section.'; "
+		onMouseOut="window.status=''">syntax for&nbsp;statements and options</A> 
+        <LI> <A HREF="#Sample" onMouseOver="window.status='Go to the sample program section.'; "
+		onMouseOut="window.status=''">a&nbsp;sample program</A> 
+        <LI> <A HREF="#Points" onMouseOver="window.status='Go to the points to remember section.'; "
+		onMouseOut="window.status=''">points to remember</A>. 
+        <!-- InstanceEndEditable --></ul>
+<P>
+	  <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <P>
+
+<!-- InstanceBeginEditable name="textsummaryintro" -->     
+<TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <TR>
+	<TD align="left"><h2><STRONG><A NAME="Text"><script>document.write(summaryPageTextSummaryTitle);</script></A></STRONG> </h2>
+      <P>
+	  <EM><script>document.write(summaryPageDirections);</script></EM></TD>
+      </TR>
+    </TABLE>
+<!-- InstanceEndEditable -->
+  <br>
+<!-- InstanceBeginEditable name="textsummary" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>Tasks in Creating Drill-Down Graphs</strong><br>
+        To convey the information that is contained in complex data more completely, 
+        use ODS HTML with PROC GCHART to generate a <a href="m9_2.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the purpose of drill-down graphs.'; "
+	    onMouseOut="window.status=''">drill-down graph</a>. The elements of the 
+        graph will be linked so that a click will load another, more detailed 
+        chart or table in the user's browser. To create a drill-down graph, you 
+        write a SAS program to do the following: </p>
+      <ol>
+        <li> Create the initial chart that you want to use as the primary chart. 
+        <li> Create a variable to hold HREF addresses for the linked HTML files. 
+        <li> Define values for the new variable. 
+        <li> Set the output format to HTML by using the ODS HTML statement.
+        <li> Attach links to the primary chart by identifying the HREF variable 
+          in the SAS/GRAPH procedure. 
+        <li> Create the secondary, linked charts and tables. 
+      </ol>
+      <p><strong>Creating a Variable for Link Locations</strong><br>
+        After you have decided on the graph you want to use, you should <a href="m9_4.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on creating an HREF variable.'; "
+	    onMouseOut="window.status=''">create a variable</a> for storing the graph's 
+        HREF links. Because HREF links are long text strings, begin by using a 
+        LENGTH statement to define the new character variable. </p>
+      <p> <strong>Defining Values for Link Locations</strong><br>
+        After you've created the link-location variable, you need to specify values 
+        for the variable. These values are <a href="m9_6.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on assigning HREF addresses.'; "
+	    onMouseOut="window.status=''">HREF addresses</a> that will determine which 
+        pages are loaded when users click the bars of the chart. Assign the addresses 
+        according to the chart's axis values, beginning each string with HREF=. 
+      <p> <strong>Setting ODS HTML Options</strong><br>
+        Use the <a href="m9_9.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the ODS HTML statement.'; "
+	    onMouseOut="window.status=''">ODS HTML statement</a> to change your output 
+        format to HTML. Add the PATH= option to specify a directory in which to 
+        store HTML and GIF files. Add the BODY= option to specify a name for the 
+        page that contains the drill-down chart. In some <a href="m9_10.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on platform-specific requirements.'; "
+	    onMouseOut="window.status=''">operating environments</a>, you might need 
+        to specify additional statements or options. 
+      <p> <strong>Attaching Links to the Primary Chart</strong><br>
+        To save your charts as GIF files, write a <a href="m9_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on GOPTIONS statement.'; "
+	    onMouseOut="window.status=''">GOPTIONS statement</a> and specify DEVICE=GIF. 
+        Use the GCHART procedure as you normally would, but associate the link-location 
+        variable with the chart by adding the <a href="m9_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on the HTML= option.'; "
+	    onMouseOut="window.status=''">HTML=</a> option and specifying the variable. 
+        Chart elements will become links that will load the HREF addresses that 
+        are defined by the variable's values. 
+      <p> <strong>Creating the Secondary Charts and Tables</strong><br>
+        For every HREF address that is assigned to the chart, you need a matching 
+        HTML file or page location. Create these secondary charts and tables with 
+        SAS procedures, subsetting data with <a href="m9_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on use of the WHERE statement.'; "
+	    onMouseOut="window.status=''">WHERE statements</a>. To link to anchors 
+        within the same page, use a <a href="m9_17.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on links to named anchors.'; "
+	    onMouseOut="window.status=''">pound sign (<strong>#</strong>)</a> when 
+        you assign location values. Then assign the anchors to procedure output 
+        by using the <a href="m9_20.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on assigning named anchors.'; "
+	    onMouseOut="window.status=''">ANCHOR= option</a> in the ODS HTML statement. 
+    </td>
+  </tr>
+</table>
+<br>
+<!-- InstanceEndEditable --> <br>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left"> 
+      <hr>
+    </td>
+  </tr>
+</table>
+
+<P><!-- InstanceBeginEditable name="syntax" --> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD><STRONG><A NAME="Syntax">Syntax</A></STRONG> 
+        <P> <EM>To go to the page where a statement or option was presented, select 
+          a link.</EM> 
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+<P align="center"> 
+<table cellspacing="0" cellpadding="2" align="center">
+  <tr> 
+    <td><font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em><strong>;</strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SET</strong> 
+      <em>SAS-data-set</em><strong>;</strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a
+	    href="m9_4.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on LENGTH statement.'; "
+	    onMouseOut="window.status=''"><strong>LENGTH</strong> <em>variable-1 &lt;...variable-n&gt;</em> 
+      &lt;<strong>$</strong>&gt; <em>length</em><strong>;</strong></a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></font><nobr><a
+	    href="m9_6.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on IF-THEN/ELSE statement.'; "
+	    onMouseOut="window.status=''"><font color="#003399"><strong>IF</strong> 
+      <em>expression</em> <strong>THEN</strong> <em>statement</em><strong>;</strong></font></a></nobr></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><strong>RUN;</strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><a href="m9_9.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on ODS HTML statement.'; "
+	    onMouseOut="window.status=''"><strong>ODS LISTING CLOSE</strong></a><strong>;</strong></font></td>
+  </tr>
+  <tr> 
+    <td><nobr><font color="#003399"><a href="m9_9.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on ODS HTML statement.'; "
+	    onMouseOut="window.status=''"><strong>ODS HTML</strong> &lt;<strong>PATH='</strong><em>html-file-path</em><strong>'</strong>&gt;</a></font> 
+      <font color="#003399"><br>
+      </font></nobr><font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></font><nobr><font color="#003399"><a href="m9_9.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on ODS HTML statement.'; "
+	    onMouseOut="window.status=''">&lt;<strong>BODY='</strong><em>html-file-name</em><strong>'</strong>&gt;</a></font></nobr> 
+      <font color="#003399"><strong><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a href="m9_20.htm"
+	    onClick="suggestBack()" onMouseOver="window.status='Display details on ODS ANCHOR= option.'; "
+	    onMouseOut="window.status=''">&lt;<strong>ANCHOR='</strong><em>html-anchor-name</em><strong>'</strong>&gt;<strong>;</strong></a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><a href="m9_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on GOPTIONS statement.'; "
+	    onMouseOut="window.status=''"><strong>GOPTIONS</strong> &lt;<strong>DEVICE=</strong>GIF&gt; 
+      &lt;<strong>XPIXELS=</strong><em>value</em>&gt;</a></font><br>
+      <font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong><a
+	    href="m9_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on GOPTIONS statement.'; "
+	    onMouseOut="window.status=''">&lt;<strong>YPIXELS=</strong><em>value</em>&gt;<strong>;</strong></a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><a href="m9_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on TITLE statement.'; "
+	    onMouseOut="window.status=''"><strong>TITLE</strong>&lt;<em>n</em>&gt; 
+      &lt;'<em>text</em>' | "<em>text</em>"&gt;<strong>;</strong></a></font></td>
+  </tr>
+  <tr> 
+    <td><nobr><font color="#003399"><a href="m9_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on GCHART procedure.'; "
+	    onMouseOut="window.status=''"><strong>PROC GCHART</strong> &lt;<strong>DATA=</strong><em>SAS-data-set&gt;</em><strong>;</strong></a></font></nobr></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></font><nobr><font color="#003399"><a href="m9_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on GCHART procedure.'; "
+	    onMouseOut="window.status=''"><strong>VBAR</strong><wbr> <em>chart-variable(s) 
+      &lt;/ option(s)&gt;</em></a></font> <font color="#003399"><br>
+     </font></nobr><font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></font><nobr><font color="#003399"><a href="m9_12.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on HTML= option.'; "
+	    onMouseOut="window.status=''"><strong>HTML=</strong><em>chart-drill-down-variable</em><strong>;</strong></a></font></nobr></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></font><nobr><font color="#003399"><a href="m9_16.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on WHERE statement.'; "
+	    onMouseOut="window.status=''"><strong>WHERE</strong> <em>where-expression</em><strong>;</strong></a></font></nobr></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><strong>RUN;</strong></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><a href="m9_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on QUIT statement.'; "
+	    onMouseOut="window.status=''"><strong>QUIT;</strong></a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><a href="m9_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on ODS HTML CLOSE statement.'; "
+	    onMouseOut="window.status=''"><strong>ODS HTML CLOSE;</strong></a></font></td>
+  </tr>
+  <tr> 
+    <td><font color="#003399"><a href="m9_13.htm" onClick="suggestBack()" onMouseOver="window.status='Display details on ODS LISTING statement.'; "
+	    onMouseOut="window.status=''"><strong>ODS LISTING;</strong></a></font></td>
+  </tr>
+  <tr> 
+    <td> 
+      <hr>
+    </td>
+  </tr>
+</table>
+<P align="center"> 
+<center>
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"> 
+        <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+</center>
+<!-- InstanceEndEditable -->
+<P> 
+  <!-- InstanceBeginEditable name="sampleprogram" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Sample">Sample Program</A></STRONG> 
+        <p> Here you can view the <a href="JavaScript: openOther('../linklib/drilldgb.htm')" onMouseOver="window.status='Display the complete sample program.'; "
+	    onMouseOut="window.status=''">final, annotated version</a> of the program 
+          you developed.
+        <P> 
+        <HR>
+      </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <!-- InstanceEndEditable --> 
+<P>
+  <!-- InstanceBeginEditable name="pointstoremember" --> 
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%">
+    <TR> 
+      <TD align="left"><STRONG><A NAME="Points">Points to Remember</A></STRONG>
+<p>
+        <ul>
+          <li> 
+            <p>The directory specified by PATH= must exist on your system; ODS 
+              does not create it for you.<br>
+              <br>
+          <li>If you transfer your files to a different operating environment, 
+            you also need to consider case in links in your HTML files.<br>
+            <br>
+          <li> When you link a graph to anchors that are on the same page, insert 
+            the code that produces the anchored output right after the code that 
+            creates the graph and page.
+        </ul>
+        </TD>
+    </TR>
+  </TABLE>
+  <!-- InstanceEndEditable --></center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

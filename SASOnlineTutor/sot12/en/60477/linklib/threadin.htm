@@ -1,0 +1,135 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Threaded Processing</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" --> 
+      Threaded Processing<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>If your site has installed SAS 9.1 or later, then you should consider 
+        whether you can optimize the performance of your SAS programs by taking 
+        advantage of the new SAS threaded technology. This technology enables 
+        you to work with virtually any volume of data efficiently and to exploit 
+        your hardware's capabilities to the maximum. <strong>Threading</strong> 
+        improves performance by enabling a single SAS session to use <strong>multiple 
+        I/O channels</strong> and to take advantage of hardware that has <strong>multiple 
+        CPUs</strong>, called symmetric multiprocessor (SMP) machines. SMP machines 
+        can spawn and manage multiple pieces of executable code, called threads. 
+      </p>
+      <p>Each <strong>thread</strong> is a single, independent flow of control 
+        through a program or within a process. <strong>Threaded processing</strong> 
+        takes advantage of multiple CPUs by executing multiple threads in parallel 
+        (parallel processing). Threaded jobs are completed in substantially less 
+        real time than if each task were handled sequentially. (CPU time for threaded 
+        jobs is generally increased because of the overhead that is required for 
+        managing the threads, separating the data into streams for processing 
+        in separate threads, and combining the data from the threads into a single 
+        file.)</p>
+      <p>Threaded processing is an important part of the solution to two common 
+        constraints on application performance: constraints on I/O and constraints 
+        on the CPU. SAS 9.1 threaded technology addresses these constraints on 
+        SAS performance as described below:</p>
+      <p><br>
+      <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Constraints on application performance and SAS 9.1 threaded technology">
+        <tr valign="top" bgcolor="#F7F7DE"> 
+          <th><font size="-1">Constraint</font></th>
+          <th><font size="-1">Solution</font></th>
+          <th><font size="-1">Type of SAS Processing Supported</font></th>
+        </tr>
+        <tr valign="top"> 
+          <td><strong>I/O-bound - </strong>the application can process data faster 
+            than the data can be delivered to the application for processing or 
+            for output from the application </td>
+          <td><ul>
+              <li>multiple CPUs</li>
+              <li>partitioned I/O</li>
+              <li>threaded technology:<strong> SAS Scalable Performance Data Engine 
+                (SPD Engine) </strong></li>
+              <li>RAID (redundant arrays of inexpensive disks) technology</li>
+            </ul></td>
+          <td><p><strong>threaded I/O</strong> </p></td>
+        </tr>
+        <tr valign="top"> 
+          <td><strong>CPU-bound - </strong>the application can receive data faster 
+            than it can perform the necessary processing on that data. </td>
+          <td><ul>
+              <li>multiple CPUs</li>
+              <li>threaded technology: <strong>thread-enabled SAS procedures</strong></li>
+            </ul></td>
+          <td><strong>threaded application processing</strong></td>
+        </tr>
+      </table>
+      <p><br>
+        Let's take a closer look at how SAS threaded technology improves performance.
+<p><br>
+      <h2>SAS <strong>Scalable Performance Data </strong>Engine </h2>
+      <p>The SAS Scalable Performance Data Engine (SPD Engine) supports threaded 
+        I/O, which can boost the performance of SAS applications that are I/O 
+        bound. The SPD Engine supports threaded I/O by physically partitioning 
+        each data set into smaller pieces that can each be distributed across 
+        a number of different disks or disk arrays. Partitioned data sets can 
+        span disk drives but can still be referenced as a single data set. When 
+        an SPD Engine data set is read, the data from these partitions can be 
+        delivered simultaneously (in parallel). In this way, the SPD Engine can 
+        read many millions of observations into SAS applications very rapidly 
+        by spawning a thread for each data partition and evaluating WHERE expressions 
+        on multiple CPUs. For large data sets, the performance gain from threaded 
+        I/O is significant.</p>
+      <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">The SPD Engine has additional capabilities that are 
+            not covered here. For more information about the SPD Engine, see the 
+            documentation<!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem --> 
+            for the SAS Scalable Performance Data Engine.</td>
+        </tr>
+      </table>
+      <p><br>
+      <h2>Thread-enabled SAS Procedures</h2>
+      <p>For CPU-bound applications, the solution is to divide the job of computation 
+        across multiple simultaneous threads. These threads can run on one CPU 
+        or on multiple CPUs. Even if your application is not currently CPU-bound, 
+        if you increase the amount of data that can be delivered to an application, 
+        you will naturally increase the need for faster processing of that data. 
+        Thread-enabled SAS procedures can solve this problem. 
+      <p>In Base SAS 9.1, the following procedures have been thread-enabled (modified 
+        so that multiple threads can be performed in parallel if the hardware 
+        supports threaded processing): PROC SORT, PROC SQL, PROC MEANS, PROC SUMMARY, 
+        PROC REPORT, and PROC TABULATE. In addition, threaded processing is being 
+        integrated into a variety of other SAS features in order to improve performance. 
+        For example, when you create an index, if sorting is required, SAS attempts 
+        to use the thread-enabled sort to sort the data.</p>
+      <table border="0" align="left" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">To learn about thread-enabled procedures in products 
+            other than Base SAS 9.1, see the SAS documentation<!-- #BeginLibraryItem "/Library/doc_reference.lbi" --><!--doc reference--><!-- #EndLibraryItem -->.</td>
+        </tr>
+      </table></td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

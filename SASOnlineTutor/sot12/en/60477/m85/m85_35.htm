@@ -1,0 +1,106 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      Tools for Summarizing Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using a Basic PROC MEANS Step to Combine All Class Variables</h2>
+        <p>By default, PROC MEANS (or PROC SUMMARY) creates the following:</p>
+        <ul>
+          <li>an output <strong>report</strong> that groups data and displays 
+            summary statistics for the combination of <strong>all the class variables</strong><br>
+            <br>
+          </li>
+          <li>an output <strong> data set</strong> that groups data and displays 
+            summary statistics for <strong>all possible combinations </strong>of 
+            the <em>n</em> class variables<strong> </strong>(from 1-way to <em>n</em>-way), 
+            as well as for the entire data set. </li>
+        </ul>
+		<br>
+        <h2>Example: Displaying Summary Statistics for All Combinations of the 
+          Class Variables</h2>
+        <p>Suppose you want to calculate average employee salaries and to group 
+          results for the combination of the three class variables <code>Employee_Country</code>, 
+          <code>Department</code>, and <code>Employee_Gender</code>. </p>
+        <p>The following PROC MEANS program creates both a report and a SAS data 
+          set:</p>
+        <pre>     <font color="#003399">proc means data=company.organization mean;
+        class <strong>employee_country department 
+              employee_gender</strong>;
+        var salary;
+        output out=summary mean=average;
+     run;</font></pre>
+        <p>The report groups data and displays summary statistics for the combination 
+          of the three class variables. A partial view of the output report is 
+          shown below:</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <div align="center"> <a href="JavaScript: openOther('m85_35a.htm')"><img src="images/m85_35a.gif" alt="Partial PROC MEANS output report" width="443" height="288" border="0"></a> 
+    <br>
+    <em><font color="#003399">Click to view the full output report.</font></em> 
+  </div>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>The output data set groups data and displays summary statistics for 
+          both of the following: 
+        <ul>
+          <li>all possible combinations (1-way, 2-way, and 3-way) of the three 
+            class variables:<br>
+            <br>
+            <code>Employee_Gender<br>
+            </code><code>Department</code><code><br>
+            Department</code> and <code>Employee_Gender<br>
+            </code><code>Employee_Country</code><code><br>
+            Employee_Country</code> and <code>Employee_Gender</code><code><br>
+            Employee_Country</code> and <code>Department</code><code><br>
+            Employee_Country</code> and <code>Department</code> and <code>Employee_Gender<br>
+            <br>
+            </code></li>
+          <li>the entire data set.</li>
+        </ul>
+        <p>A partial view of the output data set is shown below:</p></td>
+    </tr>
+  </table>
+  <p><br>
+    <a href="JavaScript: openOther2('m85_35b.htm')"><img src="images/m85_35b.gif" alt="Partial PROC MEANS output data set" width="450" height="174" border="0"></a> 
+    <br>
+    <em><font color="#003399">Click to view the full output data set.</font></em> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

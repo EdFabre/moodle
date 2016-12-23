@@ -1,0 +1,170 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Understanding 
+      Set Operations<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Introducing Set Operators</h2>
+        <p>Each of the four set operators EXCEPT, INTERSECT, UNION, and OUTER 
+          UNION selects rows and handles columns in a different way, as described 
+          below. <br>
+        </p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In the following chart, Table 1 is the table that is referenced 
+        in the first query and Table 2 is the table that is referenced in the 
+        second query.</td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Set Operators">
+    <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+      <th><font size="-1">Set Operator</font></th>
+      <th><font size="-1">Treatment of Rows</font></th>
+      <th><font size="-1">Treatment of Columns</font></th>
+      <th><font size="-1">Example</font></th>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td><strong>EXCEPT</strong></td>
+      <td> <p>Selects <strong>unique</strong> rows from the <strong>first</strong> 
+          table that are <strong>not</strong> <strong>found</strong> in the <strong>second</strong> 
+          table.<br>
+        </p>
+        <table border="0" align="center">
+          <tr> 
+            <td valign="top">Table 1</td>
+            <td align="center"> <p><img src="images/m72_2g1.gif" alt="Diagram of 2 vertical intersecting circles with non-overlapping portion of top circle highlighted" width="61" height="92"></p></td>
+            <td valign="bottom">Table 2</td>
+          </tr>
+        </table>
+        <br> </td>
+      <td> <p><strong>Overlays</strong> columns based on their <strong>position</strong> 
+          in the SELECT clause without regard to the individual column names.</p></td>
+      <td><pre><font color="#003399">proc sql;
+   select *
+      from table1
+   <strong>except</strong>
+   select *
+      from table2;</font></pre></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td><strong>INTERSECT</strong></td>
+      <td> <p>Selects <strong>unique</strong> rows that are <strong>common</strong> 
+          to <strong>both</strong> tables.<br>
+        </p>
+        <table border="0" align="center">
+          <tr> 
+            <td valign="top">Table 1</td>
+            <td align="center"> <p><img src="images/m72_2g2.gif" alt="Diagram of 2 vertical intersecting circles with intersecting portion highlighted" width="61" height="92"></p></td>
+            <td valign="bottom">Table 2</td>
+          </tr>
+        </table>
+        <br> </td>
+      <td><strong>Overlays</strong> columns based on their <strong>position</strong> 
+        in the SELECT clause without regard to the individual column names.</td>
+      <td> <pre><font color="#003399">proc sql;
+   select *
+      from table1
+   <strong>intersect</strong>
+   select *
+      from table2;</font></pre></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td><strong>UNION</strong></td>
+      <td> <p>Selects <strong>unique</strong> rows from <strong>one or both</strong> 
+          tables.<br>
+        </p>
+        <table border="0" align="center">
+          <tr> 
+            <td valign="top">Table 1</td>
+            <td align="center"> <p><img src="images/m72_2g3.gif" alt="Diagram of 2 vertical intersecting circles with all portions highlighted" width="61" height="92"></p></td>
+            <td valign="bottom">Table 2</td>
+          </tr>
+        </table>
+        <br> </td>
+      <td><strong>Overlays</strong> columns based on their <strong>position</strong> 
+        in the SELECT clause without regard to the individual column names.</td>
+      <td> <pre><font color="#003399">proc sql;
+   select *
+      from table1
+   <strong>union</strong>
+   select *
+      from table2;</font></pre></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td><strong>OUTER UNION</strong></td>
+      <td><p>Selects <strong>all</strong> rows from <strong>both</strong> tables.<br>
+        </p>
+        <table border="0" align="center">
+          <tr> 
+            <td valign="top">Table 1</td>
+            <td align="center"> <p><img src="images/m72_2g4.gif" alt="Diagram of 2 non-intersecting circles stacked vertically, with both circles highlighted" width="61" height="122"></p></td>
+            <td valign="bottom">Table 2</td>
+          </tr>
+        </table>
+        <br> <br> <table width="85%" border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The OUTER UNION operator <strong>concatenates</strong> 
+              the results of the queries.</td>
+          </tr>
+        </table></td>
+      <td>Does <strong>not</strong> overlay columns.</td>
+      <td><pre><font color="#003399">proc sql;
+   select *
+      from table1
+   <strong>outer union</strong>
+   select *
+      from table2;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">A set operator that selects only <strong>unique</strong> 
+        rows will display <strong>one occurrence</strong> of a given row in output.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

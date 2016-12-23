@@ -1,0 +1,257 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Multidimensional Arrays<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>When this DATA step is compiled, the program data vector is created. 
+        The PDV contains the variables <code>Year</code>, <code>Month1</code> 
+        through <code>Month12</code>, and the new variables <code>Qtr1</code> 
+        through <code>Qtr4</code>. (Only the beginning and ending portions of 
+        the program data vector are represented here.) </p>
+        <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+<font color="#003399">        do i=1 to 4;</font>
+<font color="blue"><strong>          </strong></font><font color="#003399">qtr<code>{i}</code>=0;</font>
+<font color="#003399">           do j=1 to 3;</font>
+<font color="#003399">              qtr<code>{i}</code>+m<code>{i,j}</code>;</font>
+<font color="#003399">           end;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre> 
+      </td>
+  </tr>
+</table>
+<center>
+  <img src="images/m35d4g1.gif" border="0" height="84" width="495" alt="Program Data Vector"> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>During the first execution of the DATA step, the values of the first 
+          observation of <strong>Finance.Monthly</strong> are read into the program 
+          data vector. When the first DO loop executes the first time, the index 
+          variable <code>i</code> is set to <em>1</em>. 
+          <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+      <font color="Red"><strong>&gt;</strong></font><font color="#003399"> do <strong>i</strong>=1 to 4;</font>          <font color="Red"><strong>i=1</strong></font>
+<font color="blue"><strong>          </strong></font><font color="#003399">qtr<code>{i}</code>=0;</font>
+<font color="#003399">           do j=1 to 3;</font>
+<font color="#003399">              qtr<code>{<strong>i</strong>}</code>+m<code>{<strong>i</strong>,j}</code>;</font>
+<font color="#003399">           end;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font>
+</pre> 
+        </td>
+    </tr>
+  </table>
+  <img src="images/m35d4g2.gif" border="0" height="84" width="495" alt="Program Data Vector"> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>During the first iteration of the nested DO loop, the value of <code>Month1</code>, 
+        which is referenced by <code>m(<em>i</em>,<em>j</em>)</code>, is added 
+        to <code>Qtr1</code>. 
+          <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+<font color="#003399">        do i=1 to 4;</font>          <font color="Red"><strong>i=1</strong></font>
+<font color="blue"><strong>          </strong></font><font color="#003399">qtr{i}=0;</font>
+         <font color="Red"><strong>&gt;</strong></font><font color="#003399"> do j=1 to 3;</font>       <font color="Red"><strong>j=1</strong></font>
+<font color="#003399">              qtr(<strong>1</strong>)+m(<strong>1</strong>,<strong>1</strong>);</font>
+<font color="#003399">           end;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <img src="images/m35d4g3.gif" border="0" height="84" width="495" alt="Program Data Vector"> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>During the second iteration of the nested DO loop, the value of <code>Month2</code>, 
+          which is referenced by <code>m</code> (<em><code>i,j</code></em>), is 
+          added to <code>Qtr1</code>. 
+          <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+<font color="#003399">        do i=1 to 4;</font>         <font color="Red"> <strong>i=1</strong></font>
+<font color="blue"><strong>          </strong></font><font color="#003399">qtr<code>{i}</code>=0;</font>
+         <font color="Red"><strong>&gt;</strong></font><font color="#003399"> do j=1 to 3;</font>      <font color="Red"> <strong>j=2</strong></font>
+<font color="#003399">              qtr{<strong>1</strong>}+m{<strong>1</strong>,<strong>2</strong>};</font>
+<font color="#003399">           end;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre> 
+        </td>
+    </tr>
+  </table>
+  <img src="images/m35d4g4.gif" border="0" height="84" width="495" alt="Program Data Vector"> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>The nested DO loop continues to execute until the index variable <code>j</code> 
+          <strong>exceeds</strong> the stop value, <em>3</em>. When the nested 
+          DO loop completes execution, the total sales for the first quarter, 
+          <code>Qtr1</code>, have been computed. 
+          <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+<font color="#003399">        do i=1 to 4;</font>         <font color="Red"> <strong>i=1</strong></font>
+<font color="blue"><strong>          </strong></font><font color="#003399">qtr<code>{i}</code>=0;</font>
+         <font color="Red"><strong>&gt;</strong></font><font color="#003399"> do j=1 to 3;</font>       <font color="Red"><strong>j=3</strong></font>
+<font color="#003399">              qtr{<strong>1</strong>}+m{<strong>1</strong>,<strong>3</strong>};</font>
+<font color="#003399">           end;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre> 
+        </td>
+    </tr>
+  </table>
+  <img src="images/m35d4g5.gif" border="0" height="84" width="495" alt="Program Data Vector"> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>The outer DO loop increments <code>i</code> to <em>2</em>, and the process 
+          continues for the array element <code>Qtr2</code> and the <code>m</code> 
+          array elements <code>Month4</code> through <code>Month6</code>. 
+          <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+     <font color="Red"> <strong>&gt;</strong></font><font color="#003399"> do i=1 to 4;</font>         <font color="Red"> <strong>i=2</strong></font>
+<font color="blue"><strong>          </strong></font><font color="#003399">qtr<code>{i}</code>=0;</font>
+<font color="#003399">           do j=1 to 3;</font>      <font color="Red"> <strong>j=1</strong></font>
+<font color="#003399">              qtr{i}+m{i,j};</font>
+<font color="#003399">           end;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre> 
+        </td>
+    </tr>
+  </table>
+  <img src="images/m35d4g6.gif" border="0" height="84" width="495" alt="Program Data Vector"> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>After the outer DO loop completes execution, the end of the DATA step 
+          is reached, and the variable values for the first observation are written 
+          to the data set <strong>Finance.Quarters</strong>. 
+          <pre><font color="#003399">     data finance.quarters(drop=i j);</font>
+<font color="#003399">        set finance.monthly;</font>
+<font color="#003399">        array m{4,3} month1-month12;</font>
+<font color="#003399">        array Qtr{4};</font>
+     <font color="Red"> <strong>&gt;</strong></font><font color="#003399"> do i=1 to <strong>4</strong>;</font>         <font color="Red"> <strong>i=5 (loop ends)
+</strong></font><font color="blue"><strong>          </strong></font><font color="#003399">qtr<code>{i}</code>=0;</font>
+<font color="#003399">           do j=1 to 3;</font>
+<font color="#003399">              qtr<code>{i}</code>+m{i,j};</font>
+<font color="#003399">           end;</font>
+<font color="#003399">        end;</font>
+<font color="#003399">     run;</font></pre> 
+        </td>
+    </tr>
+  </table>
+  <img src="images/m35d4g7.gif" border="0" height="84" width="495" alt="Program Data Vector"> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>What you have seen so far represents the first iteration of the DATA 
+        step. All observations in the data set <strong>Finance.Monthly</strong> 
+        are processed in the same manner. Below is a portion of the resulting 
+        data set, which contains the sales figures grouped by quarters.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+  SAS Data Set Finance.Quarters (Partial Listing) 
+<center>
+  <TABLE  Border=1 cellspacing=0 cellpadding=3 frame=BOX bgcolor="#CCCCCC" title="SAS Data Set">
+    <thead> 
+    <TR bgcolor="#F7F7DE"> 
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Year</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Qtr1</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Qtr2</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Qtr3</b></font></TD>
+      <TD ALIGN=CENTER><font  face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Qtr4</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1989</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">69100</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">64400</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">69200</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">71800</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1990</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">73100</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">72000</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">83200</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">82800</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">1991</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">73400</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">81800</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">85200</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#FFFFFF"><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">87800</font></TD>
+</TR>
+</tbody>
+</TABLE>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

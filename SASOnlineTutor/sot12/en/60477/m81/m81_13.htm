@@ -1,0 +1,112 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      the SASFILE Statement<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td height="16"> <p>Another way of improving performance is to use the SASFILE 
+          statement to hold a SAS data file in memory so that the data is available 
+          to multiple program steps. Keeping the data file open reduces open/close 
+          operations, including the allocation and freeing of memory for buffers.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, SASFILE statement">
+    <tr> 
+      <td align="left"><strong>General form, SASFILE statement</strong> <blockquote> 
+          <p><font color="#003399"><strong>SASFILE</strong> <em>SAS-data-file 
+            &lt;(password-option(s))&gt;<strong> </strong></em><strong>OPEN | 
+            LOAD</strong> <strong>| CLOSE;</strong></font></p>
+        </blockquote>
+        where 
+        <ul>
+          <li><font color="#003399"><em>SAS-data-file</em></font> is a valid SAS 
+            data file (a SAS data set with the member type DATA) 
+          <li><font color="#003399"><em>password-option(s)</em></font> specifies 
+            one or more password options 
+          <li><strong><font color="#003399">OPEN</font></strong> opens the file 
+            and allocates the buffers, but defers reading the data into memory 
+            until a procedure or statement is executed 
+          <li><strong><font color="#003399">LOAD</font></strong> opens the file, 
+            allocates the buffers, and reads the data into memory 
+          <li><strong><font color="#003399">CLOSE </font></strong> closes the 
+            file and frees the buffers. </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <p> The SASFILE statement opens a SAS data file and allocates enough 
+          buffers to hold the entire file in memory. Once the data file is read, 
+          the data is held in memory, and it is available to subsequent DATA and 
+          PROC steps or applications until either</p>
+        <ul>
+          <li>a SASFILE CLOSE statement frees the buffers and closes the file</li>
+          <li>the program ends, which automatically frees the buffers and closes 
+            the file. </li>
+        </ul>
+        <p>In the following program, the SASFILE statement opens the SAS data 
+          file <strong>Company.Sales</strong>, allocates the buffers, and reads 
+          the data into memory.</p>
+        <pre><font color="#003399"><strong>     sasfile company.sales load;</strong>
+     proc print data=company.sales;<br>        var Customer_Age_Group;<br>     run;<br>     proc tabulate data=company.sales;<br>        class Customer_Age_Group;<br>        var Customer_BirthDate;<br>        table Customer_Age_Group,Customer_BirthDate*(mean median);<br>     run;<br>     <strong>sasfile company.sales close;</strong></font><br></pre> 
+      </td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The SASFILE statement can also be used to reduce CPU time 
+        and I/O in SAS programs that repeatedly read one or more SAS data views. 
+        Use a DATA step to create a SAS data file in the <strong>Work</strong> 
+        library that contains the view's result set. Then use the SASFILE statement 
+        to load that data file into memory.</td>
+    </tr>
+  </table>
+  <p>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">Though a file that is opened with the SASFILE statement 
+        can be used for subsequent input or update processing, it cannot be used 
+        for subsequent utility or output processing. For example, you cannot replace 
+        the file or rename its variables.</td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

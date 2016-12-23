@@ -33,7 +33,6 @@ $string['clientshowchannellinklabel'] = 'Should a link to the original site (cha
 $string['clientshowimagelabel'] = 'Show channel image if available :';
 $string['configblock'] = 'Configure this block';
 $string['couldnotfindfeed'] = 'Could not find feed with id';
-$string['couldnotfindloadrssfeed'] = 'Could not find or load the RSS feed.';
 $string['customtitlelabel'] = 'Custom title (leave blank to use title supplied by feed):';
 $string['deletefeedconfirm'] = 'Are you sure you want to delete this feed?';
 $string['disabledrssfeeds'] = 'RSS feeds are disabled';

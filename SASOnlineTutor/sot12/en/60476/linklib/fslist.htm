@@ -1,0 +1,119 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Viewing Raw Data Files Using PROC FSLIST</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Viewing 
+      Raw Data Files Using PROC FSLIST<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td>The FSLIST procedure enables you to browse external files that are not 
+      SAS data sets from within a SAS session. Because the files are displayed 
+      in an interactive window, the procedure provides a convenient method for 
+      examining the structure of a raw data file.</td>
+  </tr>
+</table>
+<P><br>
+<table width="85%" border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, PROC FSLIST">
+  <tr> 
+    <td align="left"><strong>General form, PROC FSLIST:</strong> <blockquote> 
+        <font color="#003399"><nobr><strong>PROC FSLIST FILE=</strong><em>file-specification</em><strong>;<br>
+        RUN;</strong></nobr></font></blockquote>
+      <p>where </p>
+      <blockquote> 
+        <p><em><font color="#003399"><font color="#003399"><em>file-specification</em></font> 
+          </font></em>is either<em><font color="#003399"> '<em><font color="#003399">external 
+          file</font></em>' </font></em>or<em><font color="#003399"> <em><font color="#003399">fileref</font></em></font></em>:</p>
+        <ul>
+          <li><em><font color="#003399">'<em><font color="#003399">external file</font></em>' 
+            </font></em>is the complete operating environment file specification 
+            for the external file. You must enclose the name in quotation marks<em><font color="#003399">. 
+            <br>
+            <br>
+            </font></em></li>
+          <li> <em><font color="#003399">fileref</font></em> is a fileref that 
+            has been previously assigned to the external file.</li>
+        </ul>
+      </blockquote></td>
+  </tr>
+</table>
+<br>
+<br>
+<p> <br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><h2>Example</h2>
+      <p>The following program displays the raw data file <strong>Month1.dat</strong>, 
+        which is stored in the <strong>C:\data</strong> directory in the Windows 
+        environment. PROC FSLIST displays the raw data file in browse mode.</p>
+      <pre><font color="#003399">     proc fslist file='c:\data\month1.dat';
+     run;</font>
+</pre></td>
+  </tr>
+</table>
+<p align="center"><img src="images/m55_2s1.gif" alt="FSLIST window" width="381" height="288"></p>
+<p> <br>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><p>Several commands make it easier to obtain the file layout for the fields 
+        in the raw data file.</p>
+      <ul>
+        <li>To display column numbers in the FSLIST window, enter the <strong>COLS</strong> 
+          command in the command bar or on a command line.<br>
+          <br>
+        </li>
+        <li>To display line numbers in the FSLIST window, enter the <strong>NUMS</strong> 
+          command in the command bar or on a command line.</li>
+      </ul></td>
+  </tr>
+</table>
+<div align="center"><img src="images/m55_2s2.gif" alt="FSLIST window" width="500" height="329"><br>
+  <br>
+  <br>
+</div>
+<table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><p>You can also browse a raw data file by using a fileref for the file 
+        specification in a PROC FSLIST statement. The following program displays 
+        the raw data file referenced by the fileref <strong>Month2</strong>:</p>
+      <pre><font color="#003399">     proc fslist file=<strong>month2</strong>;
+     run;</font></pre></td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+  <tr> 
+    <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+    <td valign="top">You can also use the FSLIST command to browse the contents 
+      of a raw data file. To use the FSLIST command, enter the keyword <strong>FSLIST</strong>, 
+      followed by a file specification or a fileref, in the command bar or on 
+      a command line. For example, you enter the following code to browse the 
+      contents of the raw data file that is referenced by the fileref <strong>Month2</strong>:<br> 
+      <pre><font color="#003399">     fslist month2</font></pre></td>
+  </tr>
+</table>
+<br>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

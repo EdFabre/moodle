@@ -1,0 +1,580 @@
+<HTML><!-- InstanceBegin template="/Templates/quizQuestions.dwt" codeOutsideHTMLIsLocked="false" -->
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+setPageTitle();
+setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+ 
+var userAns = new Array(10);
+userAns[0] = "";
+userAns[1] = "";
+userAns[2] = "";
+userAns[3] = "";
+userAns[4] = "";
+userAns[5] = "";
+userAns[6] = "";
+userAns[7] = "";
+userAns[8] = "";
+userAns[9] = "";
+</SCRIPT>
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+      
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong>
+      <script>document.write(quizTitle)</script>
+      </strong></font>
+	  
+<script>writeinformationObjectTopNav2();</script>
+
+<FORM NAME="form1">
+  <TABLE cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+    <TR>
+      <TD colspan="2">
+        <P><EM><script>document.write(quizDirections);</script></EM> 
+        <OL>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q1text" --> Which of the following is false? 
+            <!-- InstanceEndEditable -->
+	    <P>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques1" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q1a" -->A <nobr>%MACRO</nobr> statement must always 
+                  be paired with a <nobr>%MEND</nobr> statement. <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques1" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q1b" -->A macro definition can include 
+                  macro variable references, but it cannot include SAS language 
+                  statements. <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques1" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q1c" --> Only macro language statements 
+                  are checked for syntax errors when the macro is compiled. <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques1" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q1d" -->Compiled macros are stored in 
+                  a temporary SAS catalog by default. <!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE>
+	    <P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q2text" -->Which of the following 
+            examples correctly defines a macro named <strong>Print</strong> that 
+            includes parameters named <code>vars</code> and <code>total</code>?<!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques2" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q2a" --><font color="#003399"> 
+                  <pre>%macro print(vars, total);
+   proc print data=classes;
+      var vars;
+      sum total;
+   run;
+%mend print;</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques2" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q2b" --><font color="#003399"> 
+                  <pre>%macro print('vars', 'total');
+   proc print data=classes;
+      var &vars;
+      sum &total;
+   run;
+%mend print;</pre>
+                  </font> <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques2" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q2c" --><font color="#003399"> 
+                  <pre>%macro print(vars, total);
+   proc print data=classes;
+      var &vars;
+      sum &total;
+   run;
+%mend print;</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques2" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q2d" --><font color="#003399"> 
+                  <pre>%macro print(vars, total);
+   proc print data=classes;
+      var :vars;
+      sum :total;
+   run;
+%mend print;</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE>
+	    <P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q3text" -->Which of the following correctly 
+            references the macro named <strong>Printdsn</strong> as shown here: 
+            <P> 
+            <font color="#003399"> 
+            <pre>%macro printdsn(dsn,vars);
+   %if &vars= %then %do;
+      proc print data=&dsn;
+      title "Full Listing of %upcase(&dsn) data set";
+      run;
+   %end;
+   %else %do;
+      proc print data=&dsn;
+         var &vars;
+      title "Listing of %upcase(&dsn) data set";
+      run;
+   %end;
+%mend;</pre>
+            </font><!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques3" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q3a" --><font color="#003399"> 
+                  <pre>%printdsn(sasuser.courses, course_title days);</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques3" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q3b" --><font color="#003399"> 
+                  <pre>%printdsn(dsn=sasuser.courses, vars=course_title days)</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques3" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q3c" --><font color="#003399"> 
+                  <pre>%printdsn(sasuser.courses, course_title days)</pre>
+                  </font> <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques3" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q3d" --><font color="#003399"> 
+                  <pre>%printdsn(sasuser.courses, course_title, days)</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE><P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q4text" --> If you use a mixed parameter list 
+            in your macro program definition, which of the following is false? 
+            <!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques4" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q4a" -->You must list positional parameters 
+                  before any keyword parameters.<!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques4" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q4b" -->Values for both positional and 
+                  keyword parameters are stored in a local symbol table. <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques4" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q4c" --> Default values for keyword parameters 
+                  are the values that are assigned in the macro definition, whereas 
+                  positional parameters have a default value of null.<!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques4" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q4d" -->You can assign a null value to 
+                  a keyword parameter in a call to the macro by omitting the parameter 
+                  from the call.<!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE><P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q5text" --> Which of the following is false?<!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques5" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q5a" -->A macro program is compiled when 
+                  you submit the macro definition. <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques5" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q5b" -->A macro program is executed when 
+                  you call it (<code><font color="#003399"><nobr>%macro-name<nobr></font></code>).<!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques5" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q5c" -->A macro program is stored in 
+                  a SAS catalog entry only after it is executed. <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques5" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q5d" -->A macro program is available 
+                  for execution throughout the SAS session in which it is compiled.<!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE><P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q6text" -->When you use an <nobr>%IF-%THEN</nobr> 
+            statement in your macro program, <!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques6" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q6a" -->you must place <nobr>%DO</nobr> and <nobr>%END</nobr> statements 
+                  around code that describes the conditional action, if that code 
+                  contains multiple statements.<!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques6" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q6b" -->the <nobr>%ELSE</nobr> statement 
+                  is optional.<!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques6" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q6c" -->you cannot refer to DATA step 
+                  variables in the logical expression of the <nobr>%IF</nobr> statement.<!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques6" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q6d" -->all of the above.<!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE><P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q7text" -->Which of the following can be placed 
+            onto the input stack?<!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques7" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q7a" -->only whole steps. 
+                  <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques7" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q7b" -->only whole steps 
+                  or whole statements. <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques7" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q7c" -->only whole statements 
+                  or pieces of text within a statement.<!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques7" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q7d" -->whole steps, whole statements, 
+                  or pieces of text within statements.<!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE><P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q8text" -->Which of the following 
+            will create a macro variable named <code>class</code> in a local symbol 
+            table?<!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques8" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q8a" --><font color="#003399"> 
+                  <pre>data _null_;
+   set sasuser.courses;
+   %let class=course_title;
+run;</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques8" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q8b" --><font color="#003399"> 
+                  <pre>data _null_;
+   set sasuser.courses;
+   call symput('class', course_title);
+run;</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques8" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q8c" --><font color="#003399"> 
+                  <pre>%macro sample(dsn);
+   %local class;
+   %let class=course_title;
+   data_null_;
+      set &dsn;
+   run;
+%mend;
+</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques8" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q8d" --><font color="#003399"> 
+                  <pre>%global class;
+%macro sample(dsn);
+   %let class=course_title;
+   data _null_;
+      set &dsn;
+   run;
+%mend;</pre>
+                  </font> <!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE><P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q9text" -->Which of the following examples 
+            correctly defines the macro program <strong>Hex</strong>?<!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques9" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q9a" --> <font color="#003399"> 
+                  <pre>%macro hex(start=1, stop=10, incr=1);
+   %local i;
+   data _null_;
+   %do i=&start to &stop by &incr;
+      value=&i;
+      put "Hexadecimal form of &i is " value hex6.;
+   %end;
+   run;
+%mend hex;</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques9" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q9b" --><font color="#003399"> 
+                  <pre>%macro hex(start=1, stop=10, incr=1);
+   %local i;
+   data _null_;
+   %do i=&start %to &stop %by &incr;
+      value=&i;
+      put "Hexadecimal form of &i is " value hex6.;
+   %end;
+   run;
+%mend hex;</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques9" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q9c" --><font color="#003399"> 
+                  <pre>%macro hex(start=1, stop=10, incr=1);
+   %local i;
+   data _null_;
+   %do i=&start to &stop by &incr;
+      value=&i;
+      put "Hexadecimal form of &i is " value hex6.;
+   run;
+%mend hex;</pre>
+                  </font> <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques9" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q9d" --><font color="#003399"> 
+                  <pre>%macro hex(start=1, stop=10, incr=1);
+   %local i;
+   data _null_;
+   %do i=&start to &stop by &incr
+      value=&i;
+      put "Hexadeciaml form of &i is " value hex6.;
+   %end
+   run;
+%mend hex;</pre>
+                  </font><!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE><P>
+	  <LI>
+	    <!-- InstanceBeginEditable name="q10text" -->When you submit a call to a compiled 
+            macro, what happens? <!-- InstanceEndEditable -->
+	    <p>
+	    <TABLE border="0">
+	      <TR valign="top">
+		<TD >
+		  <INPUT type="radio" name="ques10" value="a">
+                   </TD>
+                <TD>&nbsp;<em>a.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q10a" --> 
+                  <ul>
+                    <li>First, the macro processor checks all macro programming 
+                      statements in the macro for syntax errors. 
+                    <li>Then the macro processor executes all statements in the 
+                      macro. 
+                  </ul>
+                  <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques10" value="b">
+                   </TD>
+                <TD>&nbsp;<em>b.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q10b" --> 
+                  <ul>
+                    <li>The macro processor executes compiled macro programming 
+                      statements. 
+                    <li>Then any SAS programming language statements are executed 
+                      by the macro processor. 
+                  </ul>
+                  <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques10" value="c">
+                   </TD>
+                <TD>&nbsp;<em>c.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q10c" --> 
+                  <ul>
+                    <li>First, all compiled macro programming statements are executed 
+                      by the macro processor. 
+                    <li>After all macro statements have been processed, any SAS 
+                      language statements are passed back to the input stack in 
+                      order to be passed to the compiler and then executed. 
+                  </ul>
+                  <!-- InstanceEndEditable --></TD>
+              </TR>
+	      <TR valign="top">
+		<TD>
+		  <INPUT type="radio" name="ques10" value="d">
+                   </TD>
+                <TD>&nbsp;<em>d.</em>&nbsp;&nbsp;</TD>
+                <TD><!-- InstanceBeginEditable name="q10d" --> 
+                  <ul>
+                    <li>The macro processor executes compiled macro statements. 
+                    <li>If any SAS language statements are encountered, they are 
+                      passed back to the input stack. 
+                    <li>The macro processor pauses while those statements are 
+                      passed to the compiler and then executed. 
+                    <li>Then the macro processor continues to repeat these steps 
+                      until it reaches the <nobr>%MEND</nobr> statement. 
+                  </ul>
+                  <!-- InstanceEndEditable --></TD>
+              </TR>
+	    </TABLE><P>
+	</OL>
+	<P align="center">
+	  <HR>
+        <center>
+
+<script>writequizSubmitButtons();</script>
+        </center>
+        <hr>
+      </TD>
+    </TR>
+  </TABLE>
+  <p> <script>writeNav_regular_bottom();</script>
+ 
+  <p> 
+</form></body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,139 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Assigning 
+      Values Conditionally<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Providing an Alternative Action</strong> </p>
+      <p> Now suppose you want to assign a value to <code>TestLength</code> based 
+        on the other possible values of <code>TotalTime</code>. One way to do 
+        this is to add IF-THEN statements for the other two conditions, as shown 
+        below. 
+      <pre>     <font color="#003399">if totaltime&gt;800 then TestLength='Long';</font>
+     <font color="#003399">if 750<=totaltime<=800 then TestLength='Normal';</font>
+     <font color="#003399">if totaltime&lt;750 then TestLength='Short';</font></pre>
+      However, when the DATA step executes, each IF statement is evaluated in 
+      order, even if the first condition is true. This wastes system resources 
+      and slows the processing of your program. 
+      <p> Instead of using a series of IF-THEN statements, you can use the <strong>ELSE</strong> 
+        statement to specify an alternative action to be performed when the condition 
+        in an IF-THEN statement is false. As shown below, you can write multiple 
+        ELSE statements to specify a series of mutually exclusive conditions. 
+      <pre>     <font color="#003399">if totaltime&gt;800 then TestLength='Long';</font>
+     <font color="#003399"><strong>else</strong> if 750<=totaltime<=800 then TestLength='Normal';</font>
+     <font color="#003399"><strong>else</strong> if totaltime&lt;750 then TestLength='Short';</font></pre>
+      The ELSE statement must immediately follow the IF-THEN statement in your 
+      program. An ELSE statement executes only if the previous IF-THEN/ELSE statement 
+      is false.</td>
+  </tr>
+</table>
+<p align="center"><br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, ELSE statement ">
+    <tr> 
+      <td><strong>General form, ELSE statement:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>ELSE</strong><em> statement</em><strong>;</strong></nobr></font> 
+        </blockquote>
+        where <font color="#003399"><em>statement</em></font> is any executable 
+        SAS statement, including another IF-THEN statement.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"><br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">So, to assign a value to <code>TestLength</code> when the 
+        condition in your IF-THEN statement is false, you can add the ELSE statement 
+        to your DATA step, as shown below: 
+          <pre><font color="#003399">    data clinic.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       retain SumSec 5400;</font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">       if totaltime&gt;800 then TestLength='Long';</font>
+       <font color="#003399"><strong>else if 750<=totaltime<=800 then TestLength='Normal';</strong></font>
+       <font color="#003399"><strong>else if totaltime&lt;750 then TestLength='Short';</strong></font>
+<font color="#003399">    run;</font></pre>
+      </td>
+    </tr>
+  </table>
+  <table width="85%" border="0" cellspacing="0" cellpadding="2" align="center">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:"></td>
+      <td>Using ELSE statements with IF-THEN statements can save resources: 
+        <ul>
+          <li>Using IF-THEN statements <strong>without</strong> the ELSE statement 
+            causes SAS to evaluate all IF-THEN statements. <br>
+            <br>
+          <li>Using IF-THEN statements <strong>with</strong> the ELSE statement 
+            causes SAS to execute IF-THEN statements until it encounters the first 
+            true statement. Subsequent IF-THEN statements are not evaluated.
+        </ul>
+        For greater efficiency, construct your IF-THEN/ELSE statements with conditions 
+        of decreasing probability.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellspacing="0" cellpadding="2" align="center">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:"></td>
+      <td> 
+        <p>Remember that you can use PUT statements to test your conditional logic. 
+        </p>
+          <pre><font color="#003399">    data clinic.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       retain SumSec 5400;</font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">       if totaltime&gt;800 then TestLength='Long';</font>
+       <font color="#003399">else if 750<=totaltime<=800 then TestLength='Normal';</font>
+       <font color="#003399"><strong>else put 'NOTE: Check this Length: 'totaltime=;</strong></font>
+<font color="#003399">    run;</font></pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

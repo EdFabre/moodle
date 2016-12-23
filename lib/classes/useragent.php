@@ -120,12 +120,7 @@ class core_useragent {
     protected function __construct($forceuseragent = null) {
         global $CFG;
         if (!empty($CFG->devicedetectregex)) {
-            $this->devicetypecustoms = json_decode($CFG->devicedetectregex, true);
-        }
-        if ($this->devicetypecustoms === null) {
-            // This shouldn't happen unless you're hardcoding the config value.
-            debugging('Config devicedetectregex is not valid JSON object');
-            $this->devicetypecustoms = array();
+            $this->devicetypecustoms = json_decode($CFG->devicedetectregex);
         }
         if ($forceuseragent !== null) {
             $this->useragent = $forceuseragent;
@@ -176,12 +171,12 @@ class core_useragent {
             }
         }
         if ($this->is_useragent_mobile()) {
-            $this->devicetype = self::DEVICETYPE_MOBILE;
+            $this->devicetype = 'mobile';
         } else if ($this->is_useragent_tablet()) {
-            $this->devicetype = self::DEVICETYPE_TABLET;
-        } else if (self::check_ie_version('0') && !self::check_ie_version('7.0')) {
-            // IE 6 and before are considered legacy.
-            $this->devicetype = self::DEVICETYPE_LEGACY;
+            $this->devicetype = 'tablet';
+        } else if (substr($this->useragent, 0, 34) === 'Mozilla/4.0 (compatible; MSIE 6.0;') {
+            // Safe way to check for IE6 and not get false positives for some IE 7/8 users.
+            $this->devicetype = 'legacy';
         } else {
             $this->devicetype = self::DEVICETYPE_DEFAULT;
         }
@@ -756,7 +751,7 @@ class core_useragent {
         if ($useragent === false) {
             return false;
         }
-        if (strpos($useragent, 'Android') === false) {
+        if (strpos($useragent, 'Linux; U; Android') === false) {
             return false;
         }
         if (empty($version)) {
@@ -806,25 +801,6 @@ class core_useragent {
             }
         }
         return false;
-    }
-
-    /**
-     * Checks if the user agent is MS Word.
-     * Not perfect, as older versions of Word use standard IE6/7 user agents without any identifying traits.
-     *
-     * @return bool true if user agent could be identified as MS Word.
-     */
-    public static function is_msword() {
-        $useragent = self::get_user_agent_string();
-        if (!preg_match('/(\bWord\b|ms-office|MSOffice|Microsoft Office)/i', $useragent)) {
-            return false;
-        } else if (strpos($useragent, 'Outlook') !== false) {
-            return false;
-        } else if (strpos($useragent, 'Meridio') !== false) {
-            return false;
-        }
-        // It's Office, not Outlook and not Meridio - so it's probably Word, but we can't really be sure in most cases.
-        return true;
     }
 
     /**
@@ -884,7 +860,7 @@ class core_useragent {
             if ($instance->useragent === false) {
                 // Can't be sure, just say no.
                 $instance->supportssvg = false;
-            } else if (self::check_ie_version('0') and !self::check_ie_version('9')) {
+            } else if (self::is_ie() and !self::check_ie_version('9')) {
                 // IE < 9 doesn't support SVG. Say no.
                 $instance->supportssvg = false;
             } else if (self::is_ie() and !self::check_ie_version('10') and self::check_ie_compatibility_view()) {
@@ -911,7 +887,7 @@ class core_useragent {
      */
     public static function supports_json_contenttype() {
         // Modern browsers other than IE correctly supports 'application/json' media type.
-        if (!self::check_ie_version('0')) {
+        if (!self::is_ie()) {
             return true;
         }
 

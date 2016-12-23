@@ -1,0 +1,131 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Controlling 
+      HBAR Statistics<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>In addition to adding titles, footnotes, formats, and labels to your 
+        SAS/GRAPH output, you can enhance specific types of graphs. If you completed 
+        the lesson 
+        <!--lesson reference--><strong><script>document.write(m7title);</script></strong>, you saw that you can control 
+        which statistics are displayed on the right side of a horizontal bar chart. 
+        You can also assign descriptive labels to the statistics in the HBAR statement 
+        (or in the HBAR3D statement, for three-dimensional charts) so that your 
+        graphics will be easier to interpret.</p>
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" width="85%" title="General form, HBAR and HBAR3D statements">
+    <tr> 
+      <td align="left"><strong>General form, HBAR and HBAR3D statements:</strong> 
+        <blockquote> <nobr><font color="#003399"><strong>HBAR | HBAR3D</strong> 
+          <em>chart-variable</em> <strong>/</strong> <em>&lt;options&gt;</em> 
+          <br>
+          </font>&nbsp; &nbsp; &nbsp; &nbsp; <font color="#003399"><strong>&nbsp; 
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </strong><em>statistic</em></font></nobr><br>
+          <nobr>&nbsp; &nbsp; &nbsp; &nbsp; <font color="#003399"><strong>&nbsp; 
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </strong><em>statistic-label</em><strong>='</strong><em>label-text</em><strong>';</strong></font></nobr> 
+        </blockquote>
+        <p> where 
+        <ul>
+          <li> <font color="#003399"><em>statistic</em></font> specifies which 
+            statistic or statistics are displayed on the right side of the bars.<br>
+            <br>
+          <li> <font color="#003399"><em>statistic-label</em></font> is a keyword 
+            that includes the name of the statistic whose default label you want 
+            to replace. Valid keywords&nbsp;are FREQLABEL=, CFREQLABEL=, PERCENTLABEL=, 
+            CPERCENTLABEL=, SUMLABEL=, and MEANLABEL=.<br>
+            <br>
+          <li> <font color="#003399">'<em>label-text</em>'</font> specifies the 
+            text that will be used for the label. You can use either single or 
+            double quotation marks. Labels are limited to 32 characters. 
+        </ul>
+        <table cellspacing="0" cellpadding="2">
+          <tr valign="Top"> 
+            <td width="24"><img src="../navimages/note.gif" alt="NOTE:" width="20" height="20" border="0"></td>
+            <td>You can use multiple statistic labels for one graph.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>For example, in the PROC GCHART step below, the HBAR statement specifies 
+        that only the statistic <strong>FREQ</strong> (frequency) be displayed. 
+        It also specifies that the FREQ label be replaced with the more descriptive 
+        wording <strong>Number of People</strong>. Notice that the label is automatically 
+        wrapped in order to conserve space. 
+        <pre><font color="#003399">        proc gchart data=clinic.admit;</font>
+<font color="#003399">           hbar sex / group=actlevel</font>
+                <font color="#003399">patternid=group <strong>freq</strong></font>
+<font color="#003399">                <strong>freqlabel='Number of People'</strong>;</font>
+<font color="#003399">        run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m8e1s2.gif" alt="Example of specifying and labeling HBAR statistics."
+    width="400" height="305"> 
+<p> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>In contrast, the example below shows the default statistics and labels 
+        for a horizontal bar chart. 
+        <pre><font color="#003399">        proc gchart data=clinic.admit;</font>
+<font color="#003399">           hbar sex / group=actlevel</font>
+<font color="#003399">                patternid=group;</font>
+<font color="#003399">        run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m8e1s1.gif" width="400" height="255" alt="Default statistics for HBAR charts."> 
+<p> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

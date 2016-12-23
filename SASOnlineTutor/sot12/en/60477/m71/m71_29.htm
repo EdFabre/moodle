@@ -1,0 +1,128 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      In-Line Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Introducing In-Line Views</h2>
+        <p> Sometimes, you might want to specify an <strong>in-line view</strong> 
+          rather than a table as the source of data for a PROC SQL query. An in-line 
+          view is a nested query that is specified in the outer query's <strong>FROM 
+          clause</strong>. (You should already be familiar with a subquery, a 
+          nested query that is specified in a WHERE clause.) An in-line view selects 
+          data from one or more tables to produce a temporary (or virtual) table 
+          that the outer query then uses to select data for output. </p>
+        <p> For example, the following FROM clause specifies an in-line view:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     from <strong>(select flightnumber, date,
+                  boarded/passengercapacity*100 
+                  as pctfull
+                  format=4.1 label=&#8217;Percent Full&#8217;
+             from sasuser.marchflights)</strong></font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>This in-line view selects two existing columns (<code>FlightNumber</code> 
+          and <code>Date</code>) and defines the new column <code>PctFull</code> 
+          based on the table <strong>Sasuser.Marchflights</strong>.</p>
+        <p> Unlike a table, an in-line view exists only during query execution. 
+          Because it is temporary, an in-line view can be referenced only in the 
+          query in which it is defined. In addition, an in-line view can be assigned 
+          an alias but not a permanent name.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">In a FROM clause, you can also specify a PROC SQL view, 
+        which is a query that has been created (using the CREATE statement) and 
+        stored. You can learn more about creating PROC SQL views in the lesson 
+        <!--lesson reference-->
+        <strong><script>document.write(m75title);</script></strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">Unlike other queries, an in-line view cannot contain an 
+        ORDER BY clause.</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>There are two potential advantages to using an in-line view rather 
+          than a table in a PROC SQL query:</p>
+        <ul>
+          <li> The complexity of the code is usually reduced, so that the code 
+            is easier to write and understand.<br>
+            <br>
+          </li>
+          <li> In some cases, PROC SQL might be able to process the code more 
+            efficiently.</li>
+        </ul>
+        <h2><br>
+          <a name="withothers"></a>Referencing an In-Line View with Other Views 
+          or Tables</h2>
+        <p> The preceding FROM clause is from a simple PROC SQL query that references 
+          just one data source: the in-line view. However, a PROC SQL query can 
+          join multiple tables and in-line views. For example, the FROM clause 
+          shown below specifies both a table (<strong>Sasuser.Flightschedule</strong>) 
+          and an in-line view.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">     from <strong>sasuser.flightschedule,
+          (select flightnumber, date,
+                  boarded/passengercapacity*100 
+                  as pctfull
+                  format=4.1 label=&#8217;Percent Full&#8217;
+             from sasuser.marchflights)</strong></font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

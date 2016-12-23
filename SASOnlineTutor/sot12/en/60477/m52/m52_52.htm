@@ -1,0 +1,135 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+solutionText='<ol><li>Copy the program and paste it into the code editing window.<br><br> ';
+solutionText+='<li>Modify the macro as follows:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='%macro printlib(lib=SASUSER,obs=5);<br>';
+solutionText+='   %let lib=%upcase(&lib);<br>';
+solutionText+='   data _null_;<br>';
+solutionText+='      set sashelp.vstabvw end=final;<br>';
+solutionText+='      where libname="&lib";<br>';
+solutionText+='      call symput(\'dsname\'||left(_n_),trim(memname));<br>';
+solutionText+='      if final then call symput(\'totaldsn\',_n_);<br>';
+solutionText+='   run;<br>';
+solutionText+='   %local i;<br>';
+solutionText+='   %do i=1 %to &totaldsn;<br>';
+solutionText+='      proc print data=&lib..&&dsname&i (obs=&obs);<br>';
+solutionText+='        title "Listing of &lib..&&dsname&i Data Set";<br>';
+solutionText+='      run;<br>';
+solutionText+='   %end;<br>';
+solutionText+='%mend printlib;</pre></font>';
+solutionText+='Submit the macro to compile it.<br><br> ';
+solutionText+='<li>Submit the following code:';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='options mprint;<br>';
+solutionText+='%printlib(lib=work,obs=5)</pre></font>';
+solutionText+='Examine the output as well as any messages that are written to the SAS log. ';
+solutionText+='You should see the first five observations of each data set in your <strong>Work</strong> ';
+solutionText+='library as output. In the SAS log, you should see MPRINT messages listing the text of the macro as well as ';
+solutionText+='text for each of the five PROC PRINT steps that executed.</ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            a macro loop to generate data-dependent SAS code that is based on 
+            information in the <a href="JavaScript: openOther('../linklib/vstabvw.htm')">Sashelp.Vstabvw</a> 
+            data view.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Copy the following program and paste it into the code editing window: 
+            <font color="#003399">
+            <PRE>
+%macro printlib(lib=SASUSER,obs=5);
+   %let lib=%upcase(&amp;lib);
+   data _null_;
+      set sashelp.vstabvw end=final;
+      where libname=&quot;&amp;lib&quot;;
+      call symput('dsname'||left(_n_),trim(memname));
+      if final then call symput('totaldsn',_n_);
+   run;
+%mend printlib;
+</pre>
+            </font> The <strong>Printlib</strong> macro creates a series of macro 
+            variables named <nobr><code>dsname1</code>-<code>dsname<em>n</em></code>.</nobr> 
+            <strong>Printlib</strong> uses the <strong>Sashelp.Vstabvw</strong> 
+            view to read the member name of each object stored in the SAS library 
+            that is specified as a value for the macro variable <code>lib</code>. 
+            <strong>Printlib</strong> then assigns each member name to one of the new macro variables. 
+            The macro also creates a macro variable named <code>totaldsn</code> 
+            and assigns a value to it of the total number of objects that are 
+            listed in the SAS library specified by <code>lib</code>.<br>
+            <br>
+			<table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        
+    <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                <td valign="top">To learn more about <strong>Sashelp</strong> 
+                  views, see the SAS documentation.</td>
+      </tr>
+    </table> 
+            <br>
+            <li>Add a loop to the macro that will print each data set in the SAS 
+            library that is specified by the macro variable <code>lib</code>. 
+            Use the macro variable <code>totaldsn</code> as the stop value for 
+            the loop. For each data set, print the number of observations that 
+            is specified by the macro variable <code>obs</code>. Print a title 
+            for each data set that says "Listing of <em>library.data-set</em> 
+            Data Set". 
+            <P>Submit the macro to compile it.<BR>
+              <BR>
+          <li> Specify the MPRINT system option. Issue a call to invoke the <strong>Printlib</strong> 
+            macro. In your call, specify <em>work</em> as the value for <code>lib</code> 
+            and 5 as the value for <code>obs</code>. Submit the call and examine 
+            the output as well as any messages that are written to the SAS log. 
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

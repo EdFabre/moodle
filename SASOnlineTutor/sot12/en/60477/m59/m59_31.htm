@@ -1,0 +1,141 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Documenting 
+      Integrity Constraints<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>To view the descriptor portion of your data, including the integrity 
+          constraints that you have placed on a data set, you can use the CONTENTS 
+          statement in the DATASETS procedure. </p></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, DATASETS procedure with the CONTENTS statement">
+    <tr> 
+      <td align="left"><strong>General form, DATASETS procedure with the CONTENTS 
+        statement:</strong> <blockquote> <font color="#003399"><nobr><strong>PROC 
+          DATASETS </strong></nobr><strong>LIB=</strong><em>libref </em>&lt;<strong>NOLIST</strong>&gt;<nobr><strong>;</strong></nobr></font><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399">&nbsp;<strong>CONTENTS 
+          DATA=</strong><em>SAS-data-set</em><strong>;</strong><br>
+          <strong> QUIT; </strong></font></blockquote>
+         where 
+        <ul>
+          <li> <font color="#003399"><em>libref</em></font> is the library in 
+            which the data set is stored 
+          <li><font color="#003399"><strong>NOLIST</strong></font> suppresses 
+            the directory listing 
+          <li> <font color="#003399"><em>SAS-data-set</em></font> is the name 
+            of the data set that you want information about. </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">The CONTENTS statement in the DATASETS procedure 
+              results in the same information as the CONTENTS procedure. </td>
+          </tr>
+        </table>
+        <h2><br>
+          Example</h2>
+        <p>The following code displays information about the <strong>Capinfo</strong> 
+          data set, including the integrity constraints that were added to this 
+          data set in the last example. Notice that the NOLIST option is used 
+          here to suppress the listing of all data sets in the Work library. With 
+          this option, only the information for the <strong>Capinfo</strong> data 
+          set is listed.</p>
+        <pre>  <font color="#003399">   proc datasets nolist;
+        contents data=capinfo;
+     quit;</font></pre>
+        <p>Only the integrity constraints portion of the output is shown below. 
+          <br>
+          <br>
+          <br>
+        </p>
+        <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC DATASETS Output">
+          <thead>
+            <TR> 
+              <TD COLSPAN=6 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Alphabetic 
+                List of Integrity Constraints</b></font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>#</b></font></TD>
+              <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Integrity 
+                Constraint</b></font></TD>
+              <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Type</b></font></TD>
+              <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Variables</b></font></TD>
+              <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>Where<br>
+                Clause</b></font></TD>
+              <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>User<br>
+                Message</b></font></TD>
+            </TR>
+          </thead>
+          <tbody>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>1</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Class1</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Check</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">(Cap1st&lt;CapBusiness) 
+                or (CapBusiness=.)</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">First 
+                Class Capacity must be less than Business Capacity</font></TD>
+            </TR>
+            <TR> 
+              <TD ALIGN=RIGHT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>2</b></font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PKIDInfo</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Primary 
+                Key</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">RouteID</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">&nbsp;</font></TD>
+              <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">You 
+                must supply a Route ID Number</font></TD>
+            </TR>
+          </tbody>
+        </TABLE>
+        
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

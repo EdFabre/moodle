@@ -1,0 +1,352 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Informats<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Reading Nonstandard Numeric Data</strong> </p>
+      <p> The COMMA<em>w.d</em> informat is used to read numeric values and to 
+        remove embedded 
+      <ul>
+        <li> blanks 
+        <li> commas 
+        <li> dashes 
+        <li> dollar signs 
+        <li> percent signs 
+        <li> right parentheses 
+        <li> left parentheses, which are converted to minus signs. 
+      </ul>
+      <p> <br>
+        The COMMA<em>w.d</em> informat has three parts:
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table border="1" cellspacing="0" cellpadding="0" width="450" title="COMMAw.d Informat">
+    <tr> 
+      <td> 
+        <table border="0" cellspacing="1" cellpadding="10" width="450" bgcolor="FFFFFF">
+          <tr> 
+            <td>1.</td>
+            <td>the informat name</td>
+            <td valign="Top"><strong>COMMA</strong></td>
+          </tr>
+          <tr> 
+            <td valign="top">2.</td>
+            <td>a value that specifies the width of the field to be read (including 
+              dollar signs, decimal places, or other special characters), followed 
+              by a period</td>
+            <td valign="Top"> 
+              <p align=Center> <strong><em>w</em>.</strong>
+            </td>
+          </tr>
+          <tr> 
+            <td valign="top">3.</td>
+            <td>an optional value that specifies the number of implied decimal 
+              places for a value (not necessary if the value already contains 
+              decimal places).</td>
+            <td valign="Top"> 
+              <p align=Center> <strong><em>d</em></strong>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">In the example below, the values for <code>Salary</code> 
+        contain commas, which means that they are nonstandard numeric values. 
+        <p> The values for <code>Salary</code> begin in column 19, so use the 
+          @<em>n</em> or +<em>n </em>pointer control to point to column 19, and 
+          then name the variable. 
+      </td>
+    </tr>
+  </table>
+  <p> 
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> 
+          <pre>     <font color="#003399">data perm.empinfo;</font>
+<font color="#003399">        infile empdata;</font>
+<font color="#003399">        input @9 FirstName $5. @1 LastName $7. +7 JobTitle 3. </font>
+<font color="#003399">              <strong>@19 Salary</strong></font>
+</pre>
+        </td>
+      </tr>
+    </table>
+    <p> 
+    <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+      <tr> 
+        <td align=CENTER bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000"><nobr>1---+---<font color="red"></font>-10---</nobr><font color="red"></font><nobr>+---</nobr><font color="red"><strong>V</strong></font><nobr>20---+---</nobr></font></td>
+      </tr>
+      <tbody> 
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">EVANS&nbsp;&nbsp;&nbsp;DONNY&nbsp;112&nbsp;29,996.63&nbsp;</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">HELMS&nbsp;&nbsp;&nbsp;LISA&nbsp;&nbsp;105&nbsp;18,567.23&nbsp;</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">HIGGINS&nbsp;JOHN&nbsp;&nbsp;111&nbsp;25,309.00&nbsp;</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">LARSON&nbsp;&nbsp;AMY&nbsp;&nbsp;&nbsp;113&nbsp;32,696.78&nbsp;</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">MOORE&nbsp;&nbsp;&nbsp;MARY&nbsp;&nbsp;112&nbsp;28,945.89&nbsp;</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">POWELL&nbsp;&nbsp;JASON&nbsp;103&nbsp;35,099.50&nbsp;</font></td>
+      </tr>
+      <tr> 
+        <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">RILEY&nbsp;&nbsp;&nbsp;JUDY&nbsp;&nbsp;111&nbsp;25,309.00&nbsp;</font></td>
+      </tr>
+      </tbody> 
+    </table>
+  </center>
+  <p>
+    <center>
+      <br>
+    </center>
+  <center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td>Now add the COMMA<em>w.d</em> informat and specify the field width. 
+          The values end in column 27, so the field width is 9 columns. Add a 
+          RUN statement to complete the DATA step.</td>
+      </tr>
+    </table>
+    <p> 
+    <center>
+      <table cellpadding=0 cellspacing=0 border=0 width="85%">
+        <tr> 
+          <td> 
+            <pre>     <font color="#003399">data perm.empinfo;</font>
+<font color="#003399">        infile empdata;</font>
+<font color="#003399">        input @9 FirstName $5. @1 LastName $7. +7 JobTitle 3. </font>
+<font color="#003399">              <strong>@19 Salary comma9.;</strong></font>
+     <font color="#003399">run;</font>
+</pre>
+          </td>
+        </tr>
+      </table>
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tr> 
+          <td><font color="Red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font face="Courier New, Courier" size="2">&nbsp;&nbsp;&nbsp;&nbsp;123456789</font></font> 
+          </td>
+        </tr>
+        <tr> 
+          <td><font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+            <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+              <tr> 
+                <td align=CENTER bgcolor="#F7f7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+---<strong><font color="red">V</font></strong>20---+-<font color="red"><strong>V</strong></font>-</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+              </tr>
+              <tbody> 
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">EVANS&nbsp;&nbsp;&nbsp;DONNY&nbsp;112&nbsp;<span style="background-color: #CCCC99">29,996.63</span>&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HELMS&nbsp;&nbsp;&nbsp;LISA&nbsp;&nbsp;105&nbsp;<span style="background-color: #CCCC99">18,567.23</span>&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">HIGGINS&nbsp;JOHN&nbsp;&nbsp;111&nbsp;<span style="background-color: #CCCC99">25,309.00</span>&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">LARSON&nbsp;&nbsp;AMY&nbsp;&nbsp;&nbsp;113&nbsp;<span style="background-color: #CCCC99">32,696.78</span>&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">MOORE&nbsp;&nbsp;&nbsp;MARY&nbsp;&nbsp;112&nbsp;<span style="background-color: #CCCC99">28,945.89</span>&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">POWELL&nbsp;&nbsp;JASON&nbsp;103&nbsp;<span style="background-color: #CCCC99">35,099.50</span>&nbsp;</font></td>
+              </tr>
+              <tr> 
+                <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">RILEY&nbsp;&nbsp;&nbsp;JUDY&nbsp;&nbsp;111&nbsp;<span style="background-color: #CCCC99">25,309.00</span>&nbsp;</font></td>
+              </tr>
+              </tbody> 
+            </table>
+            </font></font> </td>
+        </tr>
+      </table>
+      <p> <br>
+    </center>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td>If you use PROC PRINT to display the data set, the commas are removed 
+          from the values for <code>Salary</code> in the resulting output.</td>
+      </tr>
+    </table>
+    <p> 
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left"> 
+          <pre>     <font color="#003399">data perm.empinfo;</font>
+        <font color="#003399">infile empdata;</font>
+        <font color="#003399">input @9 FirstName $5. @1 LastName $7. +7 JobTitle 3.</font>
+              <font color="#003399">@19 Salary comma9.;</font>
+     <font color="#003399">run;</font>
+     <font color="#003399"><strong>proc print data=perm.empinfo;</strong></font>
+     <font color="#003399">run;</font>
+</pre>
+        </td>
+      </tr>
+    </table>
+    <p> 
+    <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+      bordercolor="#000000" title="PROC PRINT Output">
+      <thead> 
+      <tr> 
+        <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>Obs</b></font></td>
+        <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>FirstName</b></font></td>
+        <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>LastName</b></font></td>
+        <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>JobTitle</b></font></td>
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="3" color="#0033AA"><b>Salary</b></font></td>
+      </tr>
+      </thead> <tbody> 
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+          1</font></b></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">DONNY</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">EVANS</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">112</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> 29996.63</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+          2</font></b></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">ALISA </font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HELMS </font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">105</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> 18567.23</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+          3</font></b></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">JOHN</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">HIGGINS </font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">111</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">25309.00</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+          4</font></b></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">AMY</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">LARSON</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">113</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">32696.78</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+          5</font></b></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">MARY</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">MOORE</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">112</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> 28945.89</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+          6</font></b></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">JASON</font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">POWELL</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">103</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> 35099.50</font></td>
+      </tr>
+      <tr> 
+        <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399"> 
+          7</font></b></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">JUDY </font></td>
+        <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">RILEY</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000">111</font></td>
+        <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+		  size="2" color="#000000"> 25309.00</font></td>
+      </tr>
+      </tbody> 
+    </table>
+    <p> 
+    <p> <br>
+    <table cellpadding=0 cellspacing=0 border=0 width="85%">
+      <tr> 
+        <td align="left">Thus, the COMMA<em>w.d </em>informat does more than simply 
+          read the raw data values. It removes special characters such as commas 
+          from numeric data and stores only numeric values in a SAS data set.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

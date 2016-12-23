@@ -1,0 +1,164 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      Tools for Summarizing Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Using PROC MEANS to Display Summary Statistics for Combinations 
+          of Class Variables</h2>
+        <p>To produce summary statistics for <strong> combinations of class variables</strong>, 
+          you can use PROC MEANS in the following ways. These techniques differ 
+          in resource usage. 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Ways to use PROC MEANS to generate statistics for combinations of variables">
+          <tr align="center" valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">Combinations of Class Variables</font></th>
+            <th><font size="-1">Technique</font></th>
+            <th><font size="-1">Example</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td height="25"><p><strong>all possible</strong> combinations<strong>:</strong></p>
+              <p><strong>c</strong><br>
+                <strong>b</strong><br>
+                <strong>b * c</strong><br>
+                <strong>a</strong><br>
+                <strong>a * c</strong><br>
+                <strong>a * b</strong><br>
+                <strong>a * b * c</strong></p></td>
+            <td><p><strong>basic </strong>PROC MEANS step</p></td>
+            <td><pre><font color="#003399">proc means data=lib.dataset mean;
+   class <strong>a b c</strong>;
+   var salary;
+   output out=summary1 
+          mean=average;
+run;</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td><p><strong>specific</strong> combinations:</p>
+              <p><strong>a * b</strong> and <strong>a * c</strong></p></td>
+            <td><p> <strong>TYPES statement</strong> in PROC MEANS<br>
+              </p></td>
+            <td><pre><font color="#003399">proc means data=lib.dataset mean;
+   class <strong>a b c</strong>;
+   var salary;
+   <strong>types a*b a*c;</strong>
+   output out=summary2 
+          mean=average;
+run;</font></pre> 
+            </td>
+          </tr>
+          <tr valign="top"> 
+            <td><strong>specific</strong> combinations: 
+              <p><strong>a * b</strong> and <strong>a * c</strong></p></td>
+            <td><strong>NWAY option</strong> in multiple PROC MEANS steps <br> 
+            </td>
+            <td><pre><font color="#003399">proc means data=lib.dataset <strong>nway</strong>;
+   class <strong>a b</strong>;
+   var salary;
+   output out=summary3a 
+          mean=average;
+run;
+
+proc means data=lib.dataset <strong>nway</strong>;
+   class <strong>a c</strong>;
+   var salary;
+   output out=summary3b
+          mean=average;
+run;</font></pre></td>
+          </tr>
+          <tr valign="top"> 
+            <td><strong>specific</strong> combinations: 
+              <p><strong>a * b</strong> and <strong>a * c</strong></p></td>
+            <td><strong>WHERE= option</strong> in the OUTPUT statement <strong></strong>in 
+              PROC MEANS</td>
+            <td><pre><font color="#003399">proc means data=lib.dataset;
+   class <strong>a b c</strong>;
+   var salary;
+   output out=summary4
+          <strong>(where=(_type_ in (5,3)))</strong>
+          n=employees
+          mean=average;
+run;</font></pre></td>
+          </tr>
+        </table>
+		<p><br>
+        <h2><a name="compare"></a>Comparing Resource Usage across Three Techniques 
+          for Using PROC MEANS<br>
+        </h2>
+        <p>The three techniques for summarizing data for <strong>specific combinations</strong> 
+          of class variables (all but the basic PROC MEANS step) differ in resource 
+          usage as follows: 
+        <ul>
+          <li>The <strong> TYPES statement in a PROC MEANS step</strong> uses 
+            the fewest resources. <br>
+            <br>
+          </li>
+          <li>A program that contains the<strong> NWAY option in multiple PROC 
+            MEANS steps </strong> uses the most resources because SAS must read 
+            the data set separately for each PROC MEANS step. <br>
+            <br>
+          </li>
+          <li>The <strong> WHERE= data set option </strong><strong>in a PROC MEANS 
+            step </strong>uses more resources than the TYPES statement in PROC 
+            MEANS because SAS must calculate all possible combinations of class 
+            variables before subsetting. However, the WHERE= data set option in 
+            PROC MEANS uses fewer resources than the NWAY option in multiple PROC 
+            MEANS steps.</li>
+        </ul>
+        <p><br>
+          Let's take a closer look at how to use a basic PROC MEANS step and the 
+          three other techniques that are listed above. 
+        <p><br>
+        <table border="1" align="center" cellpadding="4" cellspacing="0" bgcolor="#FFFF99">
+          <tr> 
+            <td> <table cellpadding=2 cellspacing=0 border=0>
+                <tr valign="top"> 
+                  <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                  <td>If you are familiar with these techniques and with the concept 
+                    of a type, you can skip directly to a <a href="m85_40.htm"><strong>Comparative 
+                    Example</strong></a> that includes sample programs.</td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+        
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

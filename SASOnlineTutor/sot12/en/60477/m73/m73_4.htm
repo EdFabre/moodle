@@ -1,0 +1,184 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      an Empty Table by Defining Columns<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Specifying Data Types</h2>
+        <p> When you create a table by defining columns, you must specify a <strong>data 
+          type</strong> for each column, following the column name:</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><center>
+          <font color="#003399"><em>column-name <strong>data-type</strong></em> 
+          <nobr>&lt;(<em>column-width</em>)&gt;</nobr> <nobr>&lt;<em>column-modifier-1</em></nobr> 
+          <nobr>&lt; <strong>...</strong><em>column-modifier-n&gt;</em>&gt;</nobr></font></center></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>For example, the following PROC SQL step (shown also on the previous 
+          page) defines four columns: one character column (<code>Destination</code>) 
+          and three numeric columns (<code>BeginDate</code>, <code>EndDate</code>, 
+          and <code>Discount</code>):</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><pre><font color="#003399">     proc sql;
+        create table work.discount 
+               (Destination <strong>char</strong>(3),
+               BeginDate <strong>num</strong> format=date9.,
+               EndDate <strong>num</strong> format=date9.,
+               Discount <strong>num</strong>);</font></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>SAS tables use two data types: <strong>numeric</strong> and <strong>character</strong>. 
+          However, PROC SQL supports additional data types (many, but not all, 
+          of the data types that SQL-based databases support). Therefore, in the 
+          CREATE TABLE statement, you can specify any of 10 different data types. 
+          When the table is created, PROC SQL converts the supported data types 
+          that are not SAS data types to either numeric or character format.</p></td>
+    </tr>
+  </table>
+  <p><br>
+    <strong>Character Data Types Supported by PROC SQL </strong></p>
+  <table border="1" align="center" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Character Data Types Supported by PROC SQL">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th nowrap><font size="-1">Specified Data Type</font></th>
+      <th nowrap><font size="-1">SAS Data Type</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>CHARACTER</strong> (or <strong>CHAR</strong>)</td>
+      <td><strong>CHARACTER</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>VARCHAR</strong></td>
+      <td><strong>CHARACTER</strong></td>
+    </tr>
+  </table>
+  <p><br>
+    <strong>Numeric Data Types Supported by PROC SQL </strong></p>
+  <table border="1" align="center" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Numeric Data Types Supported by PROC SQL">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th nowrap><font size="-1">Specified Data Type</font></th>
+      <th><font size="-1">Description</font></th>
+      <th nowrap><font size="-1">SAS Data Type</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>NUMERIC</strong> (or <strong>NUM</strong>)</td>
+      <td width="146">floating-point</td>
+      <td><strong>NUMERIC</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>DECIMAL </strong>(or <strong>DEC</strong>)</td>
+      <td width="146">floating-point</td>
+      <td><strong>NUMERIC</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>FLOAT</strong></td>
+      <td>floating-point</td>
+      <td><strong>NUMERIC</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>REAL</strong></td>
+      <td>floating-point</td>
+      <td><strong>NUMERIC</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>DOUBLE PRECISION</strong></td>
+      <td>floating-point</td>
+      <td><strong>NUMERIC</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>INTEGER</strong> (or <strong>INT</strong>)</td>
+      <td>integer</td>
+      <td><strong>NUMERIC</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SMALLINT</strong></td>
+      <td>integer</td>
+      <td><strong>NUMERIC</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>DATE</strong></td>
+      <td>date</td>
+      <td><strong>NUMERIC</strong> with a <strong>DATE.7</strong> informat and 
+        format</td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>The following PROC SQL step is very similar to the previous example. 
+          The only difference is that this step specifies three supported data 
+          types other than CHAR and NUM: VARCHAR, DATE, and FLOAT.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><pre><font color="#003399">     proc sql;
+        create table work.discount2 
+               (Destination <strong>varchar</strong>(3),
+               BeginDate <strong>date</strong>,
+               EndDate <strong>date</strong>,
+               Discount <strong>float</strong>);</font></pre></td>
+    </tr>
+  </table>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p> PROC SQL will convert these data types to either character or numeric, 
+          as indicated in the charts above. Therefore, the table <strong>Work.Discount2</strong> 
+          (created by this PROC SQL step) and <strong>Work.Discount</strong> (created 
+          by the previous PROC SQL step) will contain identical columns.</p>
+        <p>By supporting data types other than SAS data types, PROC SQL can save 
+          you time. In many cases, you can copy native code from an implementation 
+          of SQL that is external to SAS without having to modify the data types.<br>
+        </p></td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

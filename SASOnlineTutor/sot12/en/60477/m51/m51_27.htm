@@ -1,0 +1,204 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Creating 
+      Macro Variables During PROC SQL Step Execution<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td height="151"> 
+        <h2>The INTO Clause and the NOPRINT Option</h2> 
+        <P> You've seen how to create macro variables during DATA step execution. 
+          You can also create or update macro variables during the execution of 
+          a<strong> PROC SQL step</strong>. Remember that the SELECT statement 
+          in a PROC SQL step retrieves and displays data. The INTO clause in a 
+          SELECT statement enables you to create or update macro variables. 
+        <p>When you create or update macro variables during execution of a PROC 
+          SQL step, you might not want any output to be displayed. The PRINT | 
+          NOPPRINT option specifies whether a SELECT statement's results are displayed 
+          in output. PRINT is the default setting.</p></td></tr></table>
+<P><BR>
+
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, PROC SQL with the NOPRINT option and the  INTO clause">
+    <tr> 
+      <td align="left"><STRONG>General form, PROC SQL with the NOPRINT option 
+        and the INTO clause:</STRONG> <FONT COLOR="#003399"> 
+        <BLOCKQUOTE>
+	    <dl><dt><strong>PROC SQL NOPRINT</strong>;</dt>
+            <dt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<STRONG>SELECT</STRONG> <em>column1</em><,<em>column2</em>,...> 
+              <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<nobr><strong>INTO</strong> <strong>:</strong><em>macro-variable-1</em><, 
+              <strong>:</strong><em>macro-variable-2</em>,...></nobr></dt>
+		    <dd>&nbsp;&nbsp;<strong>FROM</strong> <em>table-1 | view-1</em>
+            </dd>
+		    <dd>&nbsp;&nbsp;&lt;<strong>WHERE</strong> <em>expression</em>&gt' 
+            </dd>
+		<dd>&nbsp;&nbsp;<em>&lt;other clauses</em>&gt;<strong>;</strong></dd>
+	<dt><font color="#003399"><strong>QUIT;</strong></font></dt></dl>
+	  </BLOCKQUOTE>
+        </FONT> <P>where 
+        <ul>
+          <li><font color="#003399"><em>column-1, column-2,...</em></font> specifies 
+            one or more columns of the SQL table specified by <font color="#003399"><em>table-1 
+            | view-1</em></font> 
+          <li><font color="#003399"><em>:macro-variable-1, :macro-variable-2,...</em></font> 
+            names the macro variables to create
+			
+          <li><font color="#003399"><em>expression</em></font> produces a value 
+            that is used to subset the data
+          <li><font color="#003399"><em>other clauses</em></font> are other valid 
+            clauses that group, subset or order the data. 
+        </ul>
+        <table cellpadding="2">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+          <td>Macro variable names are preceded by a colon.</td>
+        </tr>
+      </table>
+	<table cellpadding="2">
+        <tr valign="Top"> 
+            <td width="24" valign="top"><img border="0" width="20" height="20" src="../navimages/note.gif" alt="Note:"></td>
+          <td>For more information about PROC SQL see the <!--doc reference--> SAS Documentation.</td>
+        </tr>
+      </table>
+      </td>
+    </tr>
+  </table>
+
+ 
+   
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td>This form of the INTO clause does not trim leading or trailing blanks. 
+        Also, the INTO clause cannot be used when you create a table or a view. 
+        <P><BR>
+<h2>Example</h2>
+        <P> You can create a macro variable named <code>totalfee</code> that contains 
+          the total of all course fees, and use this macro variable in a later 
+          step. You use the NOPRINT option to suppress the output from the PROC 
+          SQL step. 
+        <pre><font color="#003399">    proc sql noprint;
+       select sum(fee) format=dollar10. <strong>into :totalfee</strong>
+          from sasuser.all;
+    quit;
+    %let totalfee=&amp;totalfee;
+
+    proc means data=sasuser.all sum maxdec=0;
+       class course_title;
+       var fee;
+       title &quot;Grand Total for All Courses Is <strong>&amp;totalfee</strong>&quot;;
+    run;
+</font></pre>
+<table border="0" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">This form of the INTO clause does not trim leading or trailing 
+              blanks, but the <nobr>%LET</nobr> statement removes any leading or trailing blanks 
+              that are stored in the value of <code>totalfee</code>.</td>
+    </tr>
+  </table><P>
+<BR>The output from this PROC MEANS step shows the sum of all course fees in the DOLLAR10. format.<P><BR>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>Grand Total for All Courses Is $354,380</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=1 rules=NONE frame=VOID border=0 width=100% bgcolor="#FFFFF0">
+<TR>
+ <TD ALIGN=CENTER bgcolor="#FFFFF0"><font  face="Arial, Helvetica, Helv" size="4" color="#002288"><b><i>The MEANS Procedure</i></b></font></TD>
+</TR>
+</TABLE>
+</font></CENTER>
+<P>
+<CENTER>
+<font  face="Arial, Helvetica, Helv" size="2" color="#002288"> 
+<TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFFF" bordercolor="#000000" title="SAS output">
+<thead>
+<TR>
+ <TD COLSPAN=3 ALIGN=CENTER VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Analysis Variable : Fee Course Fee</b></font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Description</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>N Obs</b></font></TD>
+ <TD ALIGN=RIGHT VALIGN=BOTTOM bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Sum</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Artificial Intelligence</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">71</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">28400</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Basic Telecommunications</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">69</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">54855</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Computer Aided Design</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">66</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">105600</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Database Design</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">77</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">28875</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Local Area Networks</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">74</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">48100</font></TD>
+</TR>
+<TR>
+ <TD ALIGN=LEFT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">Structured Query Language</font></TD>
+ <TD ALIGN=RIGHT VALIGN=TOP bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">77</font></TD>
+ <TD ALIGN=RIGHT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">88550</font></TD>
+</TR>
+</tbody>
+</TABLE>
+</font></CENTER>
+<P>
+    </td>
+  </tr>
+</table>
+<br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

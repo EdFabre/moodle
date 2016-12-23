@@ -111,8 +111,7 @@ function report_stats_report($course, $report, $mode, $user, $roleid, $time) {
 
         list($sort, $moreparams) = users_order_by_sql('u');
         $moreparams['courseid'] = $course->id;
-        $fields = user_picture::fields('u', array('idnumber'));
-        $sql = "SELECT DISTINCT $fields
+        $sql = "SELECT DISTINCT u.id, u.firstname, u.lastname, u.idnumber
                   FROM {stats_user_{$param->table}} s
                   JOIN {user} u ON u.id = s.userid
                  WHERE courseid = :courseid";
@@ -129,8 +128,9 @@ function report_stats_report($course, $report, $mode, $user, $roleid, $time) {
         if (!$us = $DB->get_records_sql($sql, array_merge($param->params, $moreparams))) {
             print_error('nousers');
         }
+
         foreach ($us as $u) {
-            $users[$u->id] = fullname($u, true);
+            $users[$u->userid] = fullname($u, true);
         }
 
         $table->align = array('left','left','left','left','left','left','left','left');
@@ -161,11 +161,7 @@ function report_stats_report($course, $report, $mode, $user, $roleid, $time) {
     echo '</div>';
     echo '</form>';
 
-    // Display the report if:
-    //  - A report has been selected.
-    //  - A time frame has been provided
-    //  - If the mode is not detailed OR a valid user has been selected.
-    if (!empty($report) && !empty($time) && ($mode !== STATS_MODE_DETAILED || !empty($userid))) {
+    if (!empty($report) && !empty($time)) {
         if ($report == STATS_REPORT_LOGINS && $course->id != SITEID) {
             print_error('reportnotavailable');
         }

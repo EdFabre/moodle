@@ -1,0 +1,177 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Testing 
+      and Evaluating Performance<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p><strong>Writing Timing Information for Each Statement</strong></p>
+        <p>The PROC SQL option <strong>STIMER | NOSTIMER</strong> specifies whether 
+          PROC SQL writes timing information for each statement to the SAS log, 
+          instead of writing a cumulative value for the entire procedure. NOSTIMER 
+          is the default. </p>
+        <p>In order to use the STIMER option in PROC SQL, the <strong>SAS system 
+          option</strong> STIMER (the default) must also be in effect. Some host 
+          operating environments require that you specify the SAS system option 
+          STIMER when you invoke SAS. The STIMER system option controls the printing 
+          of performance statistics in the SAS log. If you use the system option 
+          alone, the results will contain timing information for the entire procedure, 
+          not on a statement-by-statement basis. </p>
+        <p>You can use the OPTIONS procedure to list the current settings of SAS 
+          system options. To find out if the SAS system STIMER option is enabled 
+          on your operating environment, submit the following program:</p>
+        <pre><font color="#003399">     proc options option=stimer value;
+     run;</font></pre>
+        <font color="#000000">The results are displayed in the SAS log.</font></font></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>Option Value Information For SAS Option STIMER<br>    Option Value: STIMER<br>    Option Scope: SAS Session<br>    How option value set:  Shipped Default<br></pre></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">PROC OPTIONS produces additional information that is 
+          specific to the operating environment under which you are running SAS. 
+          For more information about this and for descriptions of host-specific 
+          options, see the 
+          <!--doc reference-->
+          SAS documentation for your operating environment.</td>
+      </tr>
+    </table>
+  </div>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p><strong>Example</strong></p>
+        <p>Both of the queries in the following PROC SQL step list the name, address, 
+          city, state, and zip code of customers listed in the <strong>Sasuser.FrequentFlyers 
+          </strong>table. However, the second query only lists this information 
+          for customers who have earned more than 7000 points and used less than 
+          3000 points.</p>
+        <p>When the PROC SQL statement is submitted without the STIMER option, 
+          timing information for both queries is written to the SAS log as a cumulative 
+          value for the entire procedure.</p>
+        <pre><font color="#003399">     proc sql;<br>        select name, address, city, state, zipcode 
+           from sasuser.frequentflyers;<br>        select name, address, city, state, zipcode 
+           from sasuser.frequentflyers<br>           where pointsearned gt 7000 and pointsused lt 3000;
+     quit;<br></font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Timing information for a PROC SQL step is not written to 
+        the SAS log until a QUIT statement is submitted or another PROC or DATA 
+        step is started.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <div align="center">SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>28 proc sql;<br>29 select name, address, city, state, zipcode 
+     from sasuser.frequentflyers;<br>
+30 select name, address, city, state, zipcode 
+     from sasuser.frequentflyers<br>31   where pointsearned gt 7000 and pointsused lt 3000;<br>32 quit;<br><strong>NOTE: PROCEDURE SQL used (Total process time):<br>      real time 0.34 seconds<br>      cpu time 0.30 seconds</strong><br></pre></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <br>
+    <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td> <p>When the PROC SQL statement is submitted with the STIMER option, 
+            timing information is written to the SAS log for each SELECT statement.</p>
+          <pre><font color="#003399">     proc sql <strong>stimer</strong>;<br>        select name, address, city, state, zipcode 
+           from sasuser.frequentflyers;<br>        select name, address, city, state, zipcode 
+           from sasuser.frequentflyers<br>           where pointsearned gt 7000 and pointsused lt 3000;
+     quit;<br></font></pre></td>
+      </tr>
+    </table>
+    SAS Log<br>
+    <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+      <tr> 
+        <td> <pre>33   proc sql stimer;<br>NOTE: SQL Statement used (Total process time):<br>      real time           0.00 seconds<br>      cpu time            0.00 seconds
+       
+34 select name, address, city, state, zipcode 
+     from sasuser.frequentflyers;
+<strong>NOTE: SQL Statement used (Total process time):<br>      real time 0.22 seconds<br>      cpu time 0.17 seconds</strong><strong>
+</strong>
+35 select name, address, city, state, zipcode
+    from sasuser.frequentflyers<br>36  where pointsearned gt 7000 and pointsused lt 3000;<br><strong>NOTE: SQL Statement used (Total process time):<br>      real time 0.08 seconds
+      cpu time 0.25 seconds</strong>
+
+37 quit;
+NOTE: PROCEDURE SQL used (Total process time):<br>      real time 0.03 seconds<br>      cpu time 0.29 seconds</pre></td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table width="85%" border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+        <td valign="top">When the STIMER option is used in PROC SQL, the exact 
+          wording of the Notes that are written to the SAS log may vary for different 
+          versions of SAS.</td>
+      </tr>
+    </table>
+    <div align="center"></div>
+  </div>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">The STIMER option in PROC SQL is useful when an operation 
+        can be accomplished in more than one way and you are benchmarking each 
+        technique. Although factors such as code readability and maintenance come 
+        into consideration, you might also want to know which PROC SQL step runs 
+        the fastest. 
+        <!--add reference to benchmarking lesson -->
+      </td>
+    </tr>
+  </table>
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,135 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Macro Parameters<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p> You have seen the basic form for a macro definition. Your macros will often 
+          contain macro variables. To make your macros more dynamic, you could 
+          use the <nobr>%LET</nobr> statement to update the values of the macro 
+          variables that are used within the macros. However, <strong>parameter 
+          lists</strong> in your macro definitions enable you to update the macro 
+          variables within your macro programs more conveniently. A parameter 
+          list is an optional part of the <nobr>%MACRO</nobr> statement that names 
+          one or more macro variables whose values you specify when you call the 
+          macro. 
+        <P><BR>
+<strong>Example</strong>
+        <P> Suppose the compiled macro <strong>Printdsn</strong> contains references 
+          to the macro variables <code>dsn</code> (which records a data set name) 
+          and <code>vars</code> (which records a list of data set variables), 
+          as follows: <font color="#003399"> 
+      <PRE>    %macro printdsn;
+       proc print data=<strong>&amp;dsn</strong>;
+          var <strong>&amp;vars</strong>;
+       title &quot;Listing of %upcase(<strong>&amp;dsn</strong>) data set&quot;;
+       run;
+    %mend;
+</pre>
+        </font> You could modify the behavior of <strong>Printdsn</strong> by 
+        changing the value of macro variable <code>dsn</code> or <code>vars</code> 
+        with a <nobr>%LET</nobr> statement before you call the macro. For example, 
+        you could substitute <em>sasuser.courses</em> for <code>dsn</code> and 
+        <em>course_code course_title days</em> for <code>vars</code> at macro 
+        execution, as follows:<font color="#003399"> 
+        <PRE>    %let dsn=sasuser.courses;
+    %let vars=course_code course_title days;
+    %printdsn</pre>
+      </font> If the MPRINT system option is turned on when this code is submitted, 
+      the following messages are written to the SAS log. Notice that the values 
+      that you provided in the <nobr>%LET</nobr> statements have been substituted into the 
+      macro when it appears in the SAS log. 
+      <P><BR>
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+7    options mprint;
+8    %let dsn=sasuser.courses;
+9    %let vars=course_code course_title days;
+10   %printdsn
+NOTE: Writing HTML Body file: sashtm.htm
+MPRINT(PRINTDSN):   proc print data=<strong>sasuser.courses</strong>;
+MPRINT(PRINTDSN):   var <strong>course_code course_title days</strong>;
+MPRINT(PRINTDSN):   title "Listing of <strong>SASUSER.COURSES</strong> data set";
+MPRINT(PRINTDSN):   run;
+NOTE: There were 6 observations read from the data set 
+      SASUSER.COURSES.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           6.59 seconds
+      cpu time            0.28 seconds
+</pre></td></tr>
+</table> </div><P><BR>
+          Then you could submit new <nobr>%LET</nobr> statements in order to change the value 
+          of <code>dsn</code> to <em>sasuser.schedule</em> and to change the value 
+          of <code>vars</code> to<em> course_code location begin_date</em> when 
+          the macro executes, as follows:<font color="#003399">
+        <PRE>    %let dsn=sasuser.schedule;
+    %let vars=course_code location begin_date;
+    %printdsn</pre>
+        </font>
+<P>The messages that are written to the SAS log when this code is submitted show that the 
+        new values have been substituted for the macro variable references in 
+        the macro. 
+      <P><BR>
+        <div align="center"> SAS Log 
+          <table border="1" cellspacing="0" cellpadding="10" title="SAS log" bgcolor="#F7F7DE">
+<tr><td><pre>
+11   %let dsn=sasuser.schedule;
+12   %let vars=course_code location begin_date;
+13   %printdsn
+MPRINT(PRINTDSN):   proc print data=<strong>sasuser.schedule</strong>;
+MPRINT(PRINTDSN):   var <strong>course_code location begin_date</strong>;
+MPRINT(PRINTDSN):   title "Listing of <strong>SASUSER.SCHEDULE</strong> data set";
+MPRINT(PRINTDSN):   run;
+NOTE: Writing HTML Body file: sashtm1.htm
+NOTE: There were 18 observations read from the data set 
+      SASUSER.SCHEDULE.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.76 seconds
+      cpu time            0.08 seconds
+</pre></td></tr>
+</table></div>
+<P><BR>
+        You can make these macro variables easier to update by using parameters 
+        in the macro definition to create the macro variables. Then you can pass values 
+	to the macro variables each time you call the macro rather than using separate <nobr>%LET</nobr> statements. 
+	The next few pages will show you how to use various types of parameters to create macro variables. </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

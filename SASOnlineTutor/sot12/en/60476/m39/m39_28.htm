@@ -1,0 +1,216 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Assigning 
+      Values Conditionally Using SELECT Groups<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>Earlier in this lesson, you learned to assign values conditionally 
+          using IF-THEN/ELSE statements. You can also use <strong>SELECT groups</strong> 
+          in DATA steps to perform conditional processing. A SELECT group contains 
+          these statements:</p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF">
+    <tr> 
+      <td bgcolor="#f7f7de"><strong>This statement...</strong></td>
+      <td bgcolor="#f7f7de"><strong>Performs this action...</strong></td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>SELECT</strong></td>
+      <td>begins a SELECT group.</td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>WHEN</strong></td>
+      <td>identifies SAS statements that are executed when a particular condition 
+        is true.</td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>OTHERWISE</strong> (optional)</td>
+      <td>specifies a statement to be executed if no WHEN condition is met. </td>
+    </tr>
+    <tr valign="top"> 
+      <td><strong>END</strong></td>
+      <td>ends a SELECT group. </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>You can decide whether to use IF-THEN/ELSE statements or SELECT 
+          groups based on the following criteria:</p>
+        <ul>
+          <li>When you have a <strong>long series</strong> of mutually exclusive 
+            conditions and the comparison is numeric, using a SELECT group is 
+            slightly more efficient than using a series of IF-THEN or IF-THEN/ELSE 
+            statements because CPU time is reduced. SELECT groups also make the 
+            program easier to read and debug. <br>
+            <br>
+          </li>
+          <li>For programs with <strong>few conditions</strong>, use IF-THEN/ELSE 
+            statements.</li>
+        </ul></td>
+    </tr>
+  </table>
+  <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, IF-THEN statement ">
+    <tr> 
+      <td align="left"><strong>General form, SELECT group:</strong> <blockquote> 
+          <font color="#003399"><nobr><strong>SELECT &lt;(</strong><em>select-expression</em><strong>)&gt;;</strong></nobr></font><br>
+          <font color="#003399"><nobr><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN</strong>-1<strong> 
+          (</strong><em>when-expression-1</em><strong> </strong>&lt;..., <em>when-expression-n</em>&gt;<strong>) 
+          </strong><em>statement</em><strong>;</strong></nobr></font><br>
+          <font color="#003399"><nobr><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN</strong>-<em>n</em><strong> 
+          (</strong><em>when-expression-1</em><strong> </strong>&lt;..., <em>when-expression-n</em>&gt;<strong>) 
+          </strong><em>statement</em><strong>;</strong></nobr></font><br>
+          <font color="#003399"><nobr><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;&nbsp;&lt;<strong>OTHERWISE 
+          </strong><em>statement</em><strong>;</strong>&gt;</nobr></font><br>
+          <font color="#003399"><nobr><strong>END</strong><strong>;</strong></nobr></font> 
+        </blockquote>
+        <p> where 
+        <ul>
+          <li><font color="#003399"><strong>SELECT</strong></font> begins a SELECT 
+            group. 
+          <li> the optional <font color="#003399"><em>select-expression</em></font> 
+            specifies any SAS expression that evaluates to a single value. 
+          <li><font color="#003399"><strong>WHEN</strong></font> identifes SAS 
+            statements that are executed when a particular condition is true. 
+          <li><font color="#003399"><em>when-expression</em></font> specifies 
+            any SAS expression, including a compound expression. You must specify 
+            at least one <font color="#003399"><em>when-expression</em></font>. 
+          <li> <font color="#003399"><em>statement</em></font> is any executable 
+            SAS statement. You must specify the <font color="#003399"><em>statement</em></font> 
+            argument. 
+          <li>the optional <font color="#003399"><strong>OTHERWISE</strong></font> 
+            statement specifies a statement to be executed if no WHEN condition 
+            is met. 
+          <li><font color="#003399"><strong>END</strong><strong></strong></font> 
+            ends a SELECT group. </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p><strong>Example: Basic SELECT Group</strong></p>
+        <p>The following code is a simple example of a SELECT group. Notice that 
+          the variable <code>a</code> is specified in the SELECT statement, and 
+          various values to compare to <code>a</code> are specified in the WHEN 
+          statements. When the value of the variable <code>a</code> is </p>
+        <ul>
+          <li><em>1</em>, <code>x</code> is multiplied by 10</li>
+          <li><em>3</em>,<em> 4</em>, or<em> 5</em>, <code>x</code> is multiplied 
+            by 100</li>
+          <li><em>2</em> or any other value, nothing happens.</li>
+        </ul>
+        <pre>    <font color="#003399"> select (<font color="#FF0000"><strong>a</strong></font>);
+        when (<font color="#FF0000"><strong>1</strong></font>) x=x*10;
+        when (<font color="#FF0000"><strong>3</strong></font>,<font color="#FF0000"><strong>4</strong></font>,<font color="#FF0000"><strong>5</strong></font>) x=x*100;
+        otherwise;
+     end;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td><strong>Example: SELECT Group in a DATA Step</strong> <p> Now let's 
+          look at a SELECT group in context. In the DATA step below, the SELECT 
+          group assign values to the variable <code>Group</code> based on values 
+          of the variable <code>JobCode</code>. Most of the assignments are one-to-one 
+          correspondences, but ticket agents (the <code>JobCode</code> values 
+          <em>TA1</em>, <em>TA2</em>, and <em>TA3</em>) are grouped together, 
+          as are values in the <em>Other</em> category. 
+        <pre><font color="#003399">     data emps(keep=salary group);
+        set sasuser.payrollmaster;
+        length Group $ 20;
+        select(jobcode);
+           when ("FA1") group="Flight Attendant I";
+           when ("FA2") group="Flight Attendant II";
+           when ("FA3") group="Flight Attendant III";
+           when ("ME1") group="Mechanic I";
+           when ("ME2") group="Mechanic II";
+           when ("ME3") group="Mechanic III";
+           when ("NA1") group="Navigator I";
+           when ("NA2") group="Navigator II";
+           when ("NA3") group="Navigator III";
+           when ("NA1") group="Navigator I";
+           when ("NA2") group="Navigator II";
+           when ("NA3") group="Navigator III";
+           when ("PT1") group="Pilot I";
+           when ("PT2") group="Pilot II";
+           when ("PT3") group="Pilot III";
+           when ("TA1","TA2","TA3") group="Ticket Agents";
+           otherwise group="Other";
+        end;
+     run;</font></pre>
+        Notice that in this case the SELECT statement does contain a <em>select-expression</em>. 
+        You are checking values of a single variable, so here using <code><font color="#003399"><strong>select(jobcode)</strong></font></code> 
+        and only the <code>JobCode</code> value in each WHEN statement is more 
+        concise than eliminating the <em>select-expression</em> and repeating 
+        the variable in each <em>when-expression</em>, as in <strong><code><font color="#003399">when(jobcode=&quot;FA1&quot;)</font></code></strong>.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Notice that the LENGTH statement in the DATA step above 
+        specifies a length of 20 for <code>Group</code>. Remember that without 
+        the LENGTH statement, values for <code>Group</code> might be truncated, 
+        as the first value for <code>Group</code> (<em>Flight Attendant I</em>) 
+        is not the longest possible value.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr valign="top"> 
+      <td width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Alert!"></td>
+      <td>When you are comparing values in the <em>when-expression</em>, be sure 
+        to express the values exactly as they are coded in the data. For example, 
+        the <em>when-expression</em> below would be evaluated as false because 
+        the values for <code>JobCode</code> in <strong>Sasuser.Payrollmaster</strong> 
+        are stored in uppercase letters. 
+        <pre><font color="#003399"><font color="#003399">when ("<strong>fa1</strong>") group="Flight Attendant I";</font></font></pre>
+        In this case, given the SELECT group above, <code>Group</code> would be 
+        assigned the value <em>Other</em>.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

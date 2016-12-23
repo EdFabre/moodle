@@ -302,11 +302,6 @@ class behat_base extends Behat\MinkExtension\Context\RawMinkContext {
             $loops = $timeout;
         }
 
-        // DOM will never change on non-javascript case; do not wait or try again.
-        if (!$this->running_javascript()) {
-            $loops = 1;
-        }
-
         for ($i = 0; $i < $loops; $i++) {
             // We catch the exception thrown by the step definition to execute it again.
             try {
@@ -325,12 +320,10 @@ class behat_base extends Behat\MinkExtension\Context\RawMinkContext {
                 continue;
             }
 
-            if ($this->running_javascript()) {
-                if ($microsleep) {
-                    usleep(100000);
-                } else {
-                    sleep(1);
-                }
+            if ($microsleep) {
+                usleep(100000);
+            } else {
+                sleep(1);
             }
         }
 

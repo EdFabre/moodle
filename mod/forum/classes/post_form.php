@@ -162,29 +162,16 @@ class mod_forum_post_form extends moodleform {
             $mform->setConstants(array('timestart'=> 0, 'timeend'=>0));
         }
 
-        if ($groupmode = groups_get_activity_groupmode($cm, $course)) { // hack alert
+        if (groups_get_activity_groupmode($cm, $course)) { // hack alert
             $groupdata = groups_get_activity_allowed_groups($cm);
             $groupcount = count($groupdata);
-            $groupinfo = array();
             $modulecontext = context_module::instance($cm->id);
-
-            // Check whether the user has access to all groups in this forum from the accessallgroups cap.
-            if ($groupmode == VISIBLEGROUPS || has_capability('moodle/site:accessallgroups', $modulecontext)) {
-                // Only allow posting to all groups if the user has access to all groups.
-                $groupdata[] = (object) array('id' => 0, 'name' => get_string('allparticipants'));
-                $groupcount++;
-            }
-
-            $contextcheck = has_capability('mod/forum:movediscussions', $modulecontext) && empty($post->parent) && $groupcount > 1;
+            $contextcheck = has_capability('mod/forum:movediscussions', $modulecontext) && empty($post->parent) && $groupcount;
             if ($contextcheck) {
+                $groupinfo = array('0' => get_string('allparticipants'));
                 foreach ($groupdata as $grouptemp) {
-                    if (!forum_user_can_post_discussion($forum, $grouptemp->id, -1, $cm, $modcontext)) {
-                        continue;
-                    }
                     $groupinfo[$grouptemp->id] = $grouptemp->name;
                 }
-            }
-            if (count($groupinfo) > 1) {
                 $mform->addElement('select','groupinfo', get_string('group'), $groupinfo);
                 $mform->setDefault('groupinfo', $post->groupid);
                 $mform->setType('groupinfo', PARAM_INT);

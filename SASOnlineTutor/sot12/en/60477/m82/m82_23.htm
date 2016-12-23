@@ -1,0 +1,105 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      SAS DATA Step Views to Conserve Data Storage Space<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td>Remember that although data views conserve data storage space, processing 
+        them can require more resources than processing a data file. Let's 
+	look at a few situations where using a data view can adversely affect 
+        processing efficiency. 
+        <P><BR>
+        <h2>Referencing a Data View Multiple Times in One Program</h2>
+        <p>SAS executes a view each time it is referenced, even within one program. 
+          Therefore, if data is used many times in one program, it is more efficient 
+          to create and reference a temporary SAS data file than to create and 
+          reference a view. </p>
+        <p><br>
+		<h2>Example</h2>
+		<em>Select buttons below to see how SAS processes a program that has multiple 
+        references to a SAS data view. You can also see a <a href="JavaScript: openOther('m82_23a.htm')">text-only 
+        version</a> of the information.</em> 
+        <P><BR>
+        <table border="2" cellpadding="2" cellspacing="0" align="center">
+    <tr> 
+      <td> <script language="JavaScript">
+	  <!-- Specify the number of animation graphics -->
+	  var totalanim=7; 
+  	  <!-- Specify the width and height of the images -->
+	  var imageWidth=414;
+	  var imageHeight=272;
+	  <!-- Don't edit the rest of the script or the form -->
+	  if (document.images) document.write('<img width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" name="animation" alt="Animation frame"></a>');else
+	  document.write('<iframe name="animation" width="'+imageWidth+'" height="'+imageHeight+'" marginheight="0" marginwidth="0" border="0" src="images/'+myName+'a1.gif" scrolling=no frameborder="0"></iframe>');</script> 
+      </td>
+    </tr>
+    <tr valign="Top"> 
+      <td> <table cellspacing="0" cellpadding="0">
+          <tr valign="Top"> 
+            <td align="center"> <form name="frameplay" onSubmit="return false">
+                <input type="button" name="back" value="Back" onClick="scroll('back',totalanim);return false">
+                <input type="text" name="page" value="Start" size="7">
+                <input type="button" name="next" value="Next" onClick="scroll('next',totalanim);return false">
+              </form>
+              <script>document.frameplay.page.value=" 1 of "+totalanim;</script> 
+            </td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+        
+        <p>Instead of referencing the data view in each of the three steps in 
+          the program, you could add a DATA step to the beginning of the program 
+          to create a temporary data file and read the data view into it. Then 
+          you could reference the temporary data set in each of the subsequent 
+          steps. By referencing the temporary data file rather than the data view 
+          in each of the PROC steps, you enable SAS to execute the data view only 
+          once instead of three times. 
+        <p>There are other reasons why extracting data to a temporary data file 
+          is a good idea. Suppose you submit this code and it takes a long time 
+          to run. If someone changes the flat file while your code is running, 
+          you will have inconsistent results unless you have created a SAS data 
+          file before submitting the PROC PRINT, PROC FREQ, and PROC MEANS steps, 
+          and you use the data file in your program. </td>
+    </tr>
+  </table>
+
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

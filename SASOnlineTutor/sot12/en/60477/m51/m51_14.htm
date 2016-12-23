@@ -1,0 +1,205 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_oldstyle.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Create 
+            macro variables with the SYMPUT routine, using the <a href="JavaScript: openOther('../linklib/courses.htm')">Sasuser.Courses</a> 
+            data set.</strong><!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+          <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <li>Submit an OPTIONS statement to reset the system option DATE | NODATE 
+            to NODATE, and to activate the SYMBOLGEN option.<br>
+          <br>
+          <li>Write a DATA step that creates a macro variable named <code>date</code>. 
+            This macro variable's value should be today's date in the MMDDYY10. 
+            format. 
+            <p>
+<table border="0" cellpadding="2" cellspacing="0" width="85%">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">The TODAY function returns today's date as a SAS date value.</td>
+        </tr>
+      </table>
+<BR>
+
+          <LI>Write a PROC PRINT step that prints data in the <strong>Sasuser.Courses</strong> 
+            data set. Precede this step with a TITLE statement that prints the 
+            following title on the report, substituting the value of the macro 
+            variable <code>date</code> for the Xs: 
+            <p>
+"Courses Offered as of XXXXXX"<p>
+Submit the program and examine the output.<BR><BR>
+            <LI>Modify the DATA step so that value of the macro variable <code>date</code> 
+              is written using the WORDDATE20. format (month dd, year). Submit 
+              the program and examine the output. 
+          </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="v89_v91" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <li>Submit an OPTIONS statement to reset the system option DATE | NODATE 
+            to NODATE, and to activate the SYMBOLGEN option.<br>
+          <br>
+          <li>Write a DATA step that creates a macro variable named <code>date</code>. 
+            This macro variable's value should be today's date in the MMDDYY10. 
+            format. 
+            <p>
+<table border="0" cellpadding="2" cellspacing="0" width="85%">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top">The TODAY function returns today's date as a SAS date value.</td>
+        </tr>
+      </table>
+<BR>
+
+          <LI>Write a PROC PRINT step that prints data in the <strong>Sasuser.Courses</strong> 
+            data set. Precede this step with a TITLE statement that prints the 
+            following title on the report, substituting the value of the macro 
+            variable <code>date</code> for the Xs: 
+            <p>
+"Courses Offered as of XXXXXX"<p>
+Submit the program and examine the output.<BR><BR>
+          <LI>Modify the DATA step so that value of the macro variable <code>date</code> 
+            is written using the WORDDATE20. format (month dd, year). Submit the 
+            program and examine the output.<BR><BR>
+			<LI>If you are using listing output, make sure there are no blanks in the title.    </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+<!-- InstanceEndEditable -->
+      
+</center>
+<center>
+<script>writeoldstylePracticeSolutionLink();</script>
+
+<!-- InstanceBeginEditable name="task_solutions" -->
+<div id="le1_le2_eg1_eg2_eg3_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <li>Submit the following OPTIONS statements:
+<font color="#003399">
+              <pre>
+options nodate symbolgen;</pre>
+              </font>
+<li>Write the following DATA step:
+<font color="#003399">
+              <pre>data _null_;
+call symput('date',put(today(),mmddyy10.));
+run;</pre>
+              </font>
+<li>Add the following statements to your program:
+<font color="#003399">
+              <pre>title "Courses Offered as of &date";
+proc print data=sasuser.courses;
+run;</pre>
+              </font>
+Submit the program and examine the output. Remember that you must enclose 
+your title in double quotation marks in order for the macro variable reference to resolve.<br><br>
+<li>Modify the call to the SYMPUT routine as follows:
+<font color="#003399">
+              <pre>call symput('date',put(today(),worddate20.));</pre>
+              </font>
+Submit the program again and examine the output.<br><br>
+
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+<div id="v89_v91_solution" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <li>Submit the following OPTIONS statement:
+<font color="#003399">
+              <pre>
+options nodate symbolgen;</pre>
+              </font>
+<li>Write the following DATA step:
+<font color="#003399">
+              <pre>data _null_;
+call symput('date',put(today(),mmddyy10.));
+run;</pre>
+              </font>
+<li>Add the following statements to your program:
+<font color="#003399">
+              <pre>title "Courses Offered as of &date";
+proc print data=sasuser.courses;
+run;</pre>
+              </font>
+Submit the program and examine the output. Remember that you must enclose 
+your title in double quotation marks in order for the macro variable reference to resolve.<br><br>
+<li>Modify the call to the SYMPUT routine as follows:
+<font color="#003399">
+              <pre>call symput('date',put(today(),worddate20.));</pre>
+              </font>
+Submit the program again and examine the output. The data in the output should be the same 
+as the last report, but date in the title should be in a different format.<br><br>
+<li>If you are using list output, modify the call to the SYMPUT routine as follows:
+<font color="#003399">
+              <pre>call symput('date',<br>     trim(left(put(today(),worddate20.))));</pre></font>
+Submit the program and examine the output. There should be no extra blanks in the title.</ol>
+
+      
+       </td>
+  </tr>
+</table>
+</div>
+<!-- InstanceEndEditable -->
+  
+</center>
+<script>writeNav_regular_bottom();</script>
+
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Arithmetic and Logical Expressions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> You have seen that the <nobr>%EVAL</nobr> function generates ERROR 
+        messages in the log when it encounters an expression that contains non-integer 
+        values. In order to avoid these ERROR messages, you can use the <nobr><strong>%SYSEVALF</strong></nobr><strong> 
+        function</strong>. The <nobr>%SYSEVALF</nobr> function evaluates arithmetic 
+        and logical expressions using floating-point arithmetic.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, %SYSEVALF function">
+            <tr> 
+              
+      <td align="left"><strong>General form, %SYSEVALF function:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>%SYSEVALF(</strong><em>expression&lt;, 
+          conversion-type&gt;</em><strong>);</strong></nobr></font> </blockquote>
+             where<ul>
+			 
+          <li><font color="#003399"><em>expression</em></font> is an arithmetic or logical expression to evaluate. 
+          <li> <font color="#003399"><em>conversion-type</em></font> optionally converts the value returned by <nobr>%SYSEVALF</nobr> 
+            to the type of value specified. Conversion-type can be BOOLEAN, CEIL, 
+            FLOOR, or INTEGER.
+</ul></td>
+            </tr>
+          </table><P><BR>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>The <nobr>%SYSEVALF</nobr> function performs floating-point arithmetic and returns 
+          a value that is formatted using the BEST32. format. The result of the 
+          evaluation is always text.<P><BR>
+		  <h2>Example</h2>
+	The macro in the following example performs all types of conversions for values 
+        in the <nobr>%SYSEVALF</nobr> function:<font color="#003399"> 
+        <pre>     %macro figureit(a,b);
+        %let y=%sysevalf(&amp;a+&amp;b);
+        %put The result with SYSEVALF is: &amp;y;
+        %put BOOLEAN conversion: %sysevalf(&ampa +&amp;b, boolean);
+        %put CEIL conversion: %sysevalf(&ampa +&amp;b, ceil);
+        %put FLOOR conversion: %sysevalf(&amp;a +&amp;b, floor);
+        %put INTEGER conversion: %sysevalf(&amp;a +&amp;b, integer);
+     %mend figureit;
+	 
+     %figureit(100,1.59)</pre>
+        </font> Executing this program writes the following lines to the SAS log.</td>
+    </tr></table><P><BR>
+	 <div align="center">SAS Log<br>
+  <table bgcolor="#F7F7DE" border="1" cellpadding="10" cellspacing="0" title="SAS Log">
+    <tr> 
+      <td> <pre>The result with SYSEVALF is: 101.59
+BOOLEAN conversion: 1
+CEIL conversion: 102
+FLOOR conversion: 101
+INTEGER conversion: 101</pre> 
+      </td>
+    </tr>
+  </table>
+</div>
+  <P><BR>
+      <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <h2>Automatic Evaluation</h2> <nobr>%SYSEVALF</nobr> is the <strong>only</strong> macro function that can evaluate 
+          logical expressions that contain floating point or missing values. Specifying 
+          a conversion type can prevent problems when <nobr>%SYSEVALF</nobr> returns missing 
+          or floating point values to macro expressions or macro variables that 
+          are used in other macro expressions that require an integer value. 
+        <P>Keep in mind that any macro language function or statement that requires 
+          a numeric or logical expression automatically invokes the <nobr>%EVAL</nobr> 
+          function. This includes the %SCAN function, the <nobr>%SUBSTR<nobr> 
+          function, the <nobr>%IF</nobr>-<nobr>%THEN</nobr> statement, and more. 
+      </td>
+    </tr>
+  </table>
+  <p><br>
+
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

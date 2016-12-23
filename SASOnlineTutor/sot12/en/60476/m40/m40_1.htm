@@ -1,0 +1,359 @@
+<html><!-- InstanceBegin template="/Templates/eg_overview.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="writeEG_div()">
+<script>writeinformationObjectTopNav1();</script>
+	
+      <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><script>document.write(overviewTitle)</script></strong></font>
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+
+<p> 
+ <!-- InstanceBeginEditable name="overview" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <p><strong>Introduction</strong></p>
+      <p>List and summary reports are often created from SAS data. To produce 
+        a variety of reports using a single report-writing tool, you can use <strong>PROC 
+        REPORT</strong>. In addition to creating list reports, PROC REPORT enables 
+        you to </p>
+      <ul>
+        <li>create custom reports</li>
+        <li>request separate subtotals and grand totals</li>
+        <li>calculate columns</li>
+        <li>create and store report definitions.</li>
+      </ul>
+      <p>You can use PROC REPORT in three ways: 
+      <ul>
+          <li>in windowing mode with a prompting facility that guides you as you 
+            build a report</li>
+          <li> in windowing mode without the prompting facility</li>
+          <li> in nonwindowing mode. In this case, you submit a series of statements 
+            with the PROC REPORT statement, just as you do in other SAS procedures.</li>
+      </ul>
+	  
+	  
+	 <div id="v89_v91" class="eg_div">
+	 </div>
+	  	  <div id="le1_le2_eg1_eg2_eg3" class="eg_div">
+<p><table width="85%" border="0" cellspacing="0" cellpadding="2">
+<tr valign="top"><td width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note:"></td>
+<td>In SAS Enterprise Guide, you work with PROC REPORT in nonwindowing mode. You can access 
+PROC REPORT in windowing mode only through the SAS programming interface.</td></tr></table><p> 
+	  </div>
+	  
+      <p>This lesson shows you how to use PROC REPORT by submitting SAS statements. 
+        Although PROC REPORT enables you to create highly customized reports, 
+        we'll focus on basic statements and will add a few enhancements. By the 
+        end of the lesson, you'll create a list report and a summary report. </p>
+    </td>
+  </tr>
+</table>
+<br>
+<!-- InstanceEndEditable -->
+  <!-- InstanceBeginEditable name="overview_graphic" --> 
+<p align="center"><br>
+  PROC REPORT List Report 
+<center>
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC REPORT List Report ">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Number</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Origin</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Destination</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Mail 
+        /<br>
+        Pounds</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Freight 
+        /<br>
+        Pounds</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Revenue</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        403</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        209</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $150,634.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        345</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        243</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $150,634.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        248</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        307</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $193,930.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        391</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        395</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $167,772.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        219</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        368</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $183,106.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        389</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        479</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $169,576.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        448</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        282</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $143,561.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        403</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        209</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $170,766.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        345</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        243</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $129,560.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        248</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        307</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $196,736.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        391</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        395</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $125,344.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        219</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        368</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $166,543.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2">LON</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        389</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        479</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $129,745.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <br>
+  PROC REPORT Summary Report<br>
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC REPORT Summary Report">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Number</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Origin</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Destination</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Mail 
+        /<br>
+        Pounds</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Freight 
+        /<br>
+        Pounds</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Total<br>
+        Revenue</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">821</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LON</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        4,438</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        4,284</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$2,077,907.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">271</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">PAR</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        5,050</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        4,421</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$1,969,201.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">219</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LGA</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">LON</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        2,700</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+        2,513</font></td>
+      <td align=CENTER bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2" color="#000000">$1,111,647.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+<!-- InstanceEndEditable -->
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewTimeToComplete)</script></h2>
+      <!-- InstanceBeginEditable name="time_to_complete" -->This lesson contains 
+        <script>document.write(eval(myModule))</script>
+        pages and takes approximately 1 hour to complete.<!-- InstanceEndEditable -->
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewObjectives)</script></h2>
+      <!-- InstanceBeginEditable name="objectives" --> 
+      <p>In this lesson, you learn to </p>
+      <ul>
+          <li> invoke the REPORT procedure 
+          <li>select columns for your report 
+        <li>define the usage for columns 
+        <li>specify attributes, options, and justification for columns 
+        <li>specify features of column headings, including split characters, underlining, 
+          and blank lines. 
+      </ul>
+      <!-- InstanceEndEditable --></td>
+  </tr>
+</table>
+<br>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <h2><script>document.write(overviewPrerequisites)</script></h2>
+      <!-- InstanceBeginEditable name="prerequisites_leadin" -->Before taking 
+        this lesson, you should complete the following lessons:<!-- InstanceEndEditable -->
+      <ul><!-- InstanceBeginEditable name="prerequisites" --> 
+        <li><strong><script>document.write(m1title);</script></strong></li>
+        <li><strong><script>document.write(m3title);</script></strong></li>
+        <li><strong><script>document.write(m16title);</script></strong></li>
+        <li><strong><script>document.write(m2title);</script></strong></li>
+        <li><strong><script>document.write(m4title);</script></strong></li>
+        <li><strong><script>document.write(m12title);</script></strong></li>
+        <li><strong><script>document.write(m22title);</script></strong>.</li>
+        <!-- InstanceEndEditable -->
+      </ul>
+    </td>
+  </tr>
+</table>
+
+  <br>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

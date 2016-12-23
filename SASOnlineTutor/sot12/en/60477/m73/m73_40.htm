@@ -1,0 +1,112 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Updating 
+      Values in Existing Table Rows<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Updating Rows by Using Different Expressions</h2>
+        <p>Sometimes you want to use different expressions to modify values for 
+          different subsets of rows within a column. </p>
+        <p>For example, instead of only raising the salary of level-1 employees 
+          by 5%, you might also want to raise the salaries of level-2 employees 
+          by 10%, and so on, using a different percentage increase for each group 
+          of employees. </p>
+        <p>There are two possible ways to use different expressions to update 
+          different subsets of rows.</p></td>
+    </tr>
+  </table>
+  <p><br>
+  <table width="85%" border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Methods of Updating Existing Rows in a Table by Using SQL">
+    <tr valign="top" bgcolor="#F7F7DE"> 
+      <th width="46%"><font size="-1"> Method&nbsp;of Updating Table</font></th>
+      <th width="54%"><font size="-1">Example</font></th>
+    </tr>
+    <tr valign="top"> 
+      <td><p>use <strong>multiple UPDATE statements</strong>, one for each subset 
+          of rows</p>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top"><p>A single UPDATE statement can contain only a single 
+                WHERE clause, so multiple UPDATE statements are needed to specify 
+                expressions for multiple subsets of rows.</p></td>
+          </tr>
+        </table>
+        <p>&nbsp;</p></td>
+      <td> <pre><font color="#003399">proc sql;
+   <strong>update</strong> work.payrollmaster_new
+      set salary=salary*1.05
+         where substr(jobcode,3,1)='1';
+<strong>   update</strong> work.payrollmaster_new
+      set salary=salary*1.10
+         where substr(jobcode,3,1)='2';
+<strong>   update</strong> work.payrollmaster_new
+      set salary=salary*1.15
+         where substr(jobcode,3,1)='3';</font></pre></td>
+    </tr>
+    <tr valign="top"> 
+      <td>use a <strong>single UPDATE statement</strong> that contains a <strong>CASE 
+        expression</strong></td>
+      <td> <pre><font color="#003399">proc sql;
+   <strong>update</strong> work.payrollmaster_new 
+      set salary=salary*
+         <strong>case</strong> 
+              when substr(jobcode,3,1)='1'
+                 then 1.05
+              when substr(jobcode,3,1)='2'
+                 then 1.10
+              when substr(jobcode,3,1)='3'
+                 then 1.15
+              else 1.08
+         end;</font></pre></td>
+    </tr>
+  </table>
+  <p> <br>
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><p>The first method, which requires the use of multiple UPDATE statements, 
+          is cumbersome because the SET statement and expression must be repeated 
+          in each UPDATE statement. In this example, the first method is inefficient 
+          because the table <strong>Work.Payrollmaster_New</strong> must be read 
+          three times.</p>
+        <p>The second method, which uses conditional processing (the CASE expression) 
+          is recommended. Let's take a look at the second method now. </p>
+        </td>
+    </tr>
+  </table>
+  <p><br><!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

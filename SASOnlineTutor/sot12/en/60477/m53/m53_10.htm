@@ -1,0 +1,99 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Storing 
+      Macro Definitions in Catalog SOURCE Entries<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>The CATALOG Access Method</h2>
+        <P> If you store a macro definition in a SOURCE entry of a SAS catalog, 
+          you can use the CATALOG access method in a FILENAME statement in conjunction 
+          with the <nobr>%INCLUDE</nobr> statement to insert the macro definition 
+          into a SAS program. </td></tr></table>
+      <P><BR>
+	<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, CATALOG access method to reference a single SOURCE entry">
+  <tr> 
+    <td align="left"><strong>General form, CATALOG access method to reference a single SOURCE entry:</strong> 
+      <blockquote> 
+        <dl>
+          <dt><font color="#003399"><strong>FILENAME</strong> <em>fileref</em></font></dt>
+                <dt><font color="#003399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>CATALOG</strong> <em>'libref.catalog.entry-name.entry-type'</em><strong>;</strong></font></dd>
+                <dt><font color="#003399"><strong>%INCLUDE</strong> <em>fileref</em><strong>;</strong></font></dt>
+        </dl>
+      </blockquote>
+	where <ul>
+	<li><font color="#003399"><em>fileref</em></font> is a valid fileref
+	      <li><font color="#003399"><em>libref.catalog.entry-name.entry-type</em></font> 
+            is a four-level SAS catalog entry name 
+          <li><font color="#003399"><em>entry-type</em></font> is SOURCE.
+	</ul>
+      </td>
+  </tr>
+</table>
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Example</h2>
+      <P> Suppose you have stored the following macro definition as a SOURCE entry 
+          in the SAS catalog <strong>Sasuser.Mymacs</strong>:<font color="#003399">
+        <pre>    %macro prtlast;
+       %if &syslast ne _NULL_ %then %do;
+          proc print data=&syslast(obs=5);
+             title "Listing of &syslast data set";
+          run;
+       %end
+       %else
+          %put No data set has been created yet.;
+    %mend;</pre>
+      </font> You can use the CATALOG access method along with the <nobr>%INCLUDE</nobr> statement 
+      to compile the macro <strong>Prtlast</strong>. Then you can reference the 
+      macro later in the program. <font color="#003399"> 
+        <pre>    <strong>filename prtlast catalog 'sasuser.mymacs.prtlast.source';
+    %include prtlast;</strong>
+    proc sort data=sasuser.courses out=bydays;
+       by days;
+    run;
+    <strong>%prtlast</strong>
+</pre>
+      </font> 
+     
+   </td>
+  </tr>
+</table><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

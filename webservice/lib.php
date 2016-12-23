@@ -422,16 +422,6 @@ class webservice {
     }
 
     /**
-     * Delete all the tokens belonging to a user.
-     *
-     * @param int $userid the user id whose tokens must be deleted
-     */
-    public static function delete_user_ws_tokens($userid) {
-        global $DB;
-        $DB->delete_records('external_tokens', array('userid' => $userid));
-    }
-
-    /**
      * Delete a service
      * Also delete function references and authorised user references.
      *
@@ -1323,9 +1313,9 @@ class '.$classname.' {
                         }
                     }
                 } else if ($keydesc->required == VALUE_OPTIONAL) {
-                    // It does not make sense to declare a parameter VALUE_OPTIONAL.
-                    // VALUE_OPTIONAL is used only for array/object key.
-                    throw new moodle_exception('erroroptionalparamarray', 'webservice', '', $name);
+                    //it does make sens to declare a parameter VALUE_OPTIONAL
+                    //VALUE_OPTIONAL is used only for array/object key
+                    throw new moodle_exception('parametercannotbevalueoptional');
                 }
             } else { //for the moment we do not support default for other structure types
                  if ($keydesc->required == VALUE_DEFAULT) {

@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      a Single Data Set<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+    <tr valign="top"> 
+      <td>Suppose you want to create a small data set, <strong>Lab23.Drug1H</strong>, 
+        from the <strong>Research.CLTrials</strong> data set, which contains information 
+        on treadmill test time and relative tolerance levels. 
+        <p> To create the data set, you must first reference the library in 
+        which <strong>CLTrials</strong> is stored and then the library in which 
+        you want to store <strong>Drug1H</strong>. Then you write a DATA step 
+        to read your data and create a new data set. 
+    </td>
+  </tr>
+</table>
+<p> <br>
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, basic DATA step for reading a single data set ">
+    <tr> 
+      <td align="left"><strong>General form, basic DATA step for reading a single 
+        data set:</strong> 
+        <blockquote> 
+          <dl> 
+            <dt><font color="#003399"><strong>DATA</strong> <em>SAS-data-set</em><strong>;</strong> 
+              </font> 
+            <dd><font color="#003399"><strong>SET</strong> <em>SAS-data-set</em><strong>;</strong></font> 
+            <dt><font color="#003399"><strong>RUN;</strong></font> 
+          </dl>
+        </blockquote>
+        where <font color="#003399"><em></em></font> 
+        <ul>
+          <li> <font color="#003399"><em>SAS-data-set</em></font><font color="Green"><em> 
+            </em></font>in the DATA statement is the name (<em>libref.filename</em>) 
+            of the SAS data set to be created 
+          <li> <font color="#003399"><em>SAS-data-set</em></font><font color="Green"><em> 
+            </em></font>in the SET statement is the name (<em>libref.filename</em>) 
+            of the SAS data set to be read. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">After you write a DATA step to name the SAS data set to 
+        be created, you specify the data set that will be read in the SET statement. 
+        The DATA statement below creates the permanent SAS data set <strong>Drug1H</strong>, 
+        which will be stored in a SAS data library to which the libref <strong>Lab23 
+        </strong>has been assigned. The SET statement below reads the permanent 
+        SAS data set <strong>Research.CLTrials</strong>. 
+        <pre><font color="#003399">     libname lab23 'c:\drug\allergy\labtests';</font>
+<font color="#003399">     libname research 'c:\drug\allergy';</font>
+<font color="#003399">     data <strong>lab23.drug1h</strong>;</font>
+<font color="#003399">        set<strong> research.cltrials</strong>;</font>
+<font color="#003399">     run;</font>
+</pre>
+        The DATA step above reads all observations and variables from the existing 
+        data set into the new data set. When you submit this DATA step, the following 
+        messages appear in the log, confirming that the new data set was created:</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+  SAS Log 
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" bgcolor="#F7F7DE" title="SAS Log">
+    <tr> 
+      <td> 
+        <pre> 8  data lab23.drug1h;
+ 9     set research.cltrials;
+10  run;    
+ 
+NOTE: The data set LAB23.DRUG1H has 21 
+      observations and 8 variables.</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p> <br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

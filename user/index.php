@@ -363,12 +363,7 @@ if ($mode === MODE_BRIEF && !isset($hiddenfields['country'])) {
 }
 if (!isset($hiddenfields['lastaccess'])) {
     $tablecolumns[] = 'lastaccess';
-    if ($course->id == SITEID) {
-        // Exception case for viewing participants on site home.
-        $tableheaders[] = get_string('lastsiteaccess');
-    } else {
-        $tableheaders[] = get_string('lastcourseaccess');
-    }
+    $tableheaders[] = get_string('lastaccess');
 }
 
 if ($bulkoperations && $mode === MODE_USERDETAILS) {
@@ -652,6 +647,7 @@ if ($mode === MODE_USERDETAILS) {    // Print simple listing.
                     $row->cells[1]->text .= get_string('role').get_string('labelsep', 'langconfig').$user->role.'<br />';
                 }
                 if ($user->maildisplay == 1 or ($user->maildisplay == 2 and ($course->id != SITEID) and !isguestuser()) or
+                            has_capability('moodle/course:viewhiddenuserfields', $context) or
                             in_array('email', $extrafields) or ($user->id == $USER->id)) {
                     $row->cells[1]->text .= get_string('email').get_string('labelsep', 'langconfig').html_writer::link("mailto:$user->email", $user->email) . '<br />';
                 }
@@ -695,7 +691,7 @@ if ($mode === MODE_USERDETAILS) {    // Print simple listing.
 
                 $links = array();
 
-                if ($CFG->enableblogs && ($CFG->bloglevel != BLOG_USER_LEVEL || $USER->id == $user->id)) {
+                if ($CFG->bloglevel > 0) {
                     $links[] = html_writer::link(new moodle_url('/blog/index.php?userid='.$user->id), get_string('blogs', 'blog'));
                 }
 

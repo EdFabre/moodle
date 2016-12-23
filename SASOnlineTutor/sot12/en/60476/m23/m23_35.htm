@@ -1,0 +1,350 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Mixing 
+      Input Styles<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>Evaluating your raw data and choosing the most appropriate input style 
+        is a very important task. You have already worked with three input styles 
+        for reading raw data.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<div align="center"> 
+  <table width="450" border="1" cellspacing="0" cellpadding="2" title="Input Styles">
+    <tr bgcolor="#F7f7DE"> 
+      <th width="20%"><font size="-1"><nobr>Input Style</nobr></font></th>
+      <th><font size="-1">Reads</font></th>
+    </tr>
+    <tr> 
+      <td bgcolor="#FFFFFF" width="20%">Column</td>
+      <td bgcolor="#FFFFFF">standard data values in fixed fields</td>
+    </tr>
+    <tr> 
+      <td bgcolor="#FFFFFF" width="20%">Formatted</td>
+      <td bgcolor="#FFFFFF">nonstandard data values in fixed fields</td>
+    </tr>
+    <tr> 
+      <td bgcolor="#FFFFFF" valign="top" width="20%">List</td>
+      <td bgcolor="#FFFFFF">data values that are not arranged in fixed fields, 
+        but are separated by blanks or other delimiters</td>
+    </tr>
+  </table>
+</div>
+<p align="center"> <br>
+<div align="center"> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">With some file layouts, you might need to mix input styles 
+        in the same INPUT statement in order to read the data correctly. 
+        <p> Look at the raw data file below and think about how to combine input 
+          styles to read these values.
+      </td>
+    </tr>
+  </table>
+</div>
+<p align="center"> <br>
+<div align="center"> <font  face="Courier New, Courier" size="2" color="#000000"><font  face="Courier New, Courier" size="2" color="#000000"> 
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE"><font  face="Courier New, Courier" size="2" color="#000000"><nobr>1---+----10---+----20---+----30---+----40-</nobr></font><font  face="Verdana, Arial, Helvetica" size="2" color="#000000">&nbsp;</font></td>
+    </tr>
+    <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">209-20-3721&nbsp;07JAN78&nbsp;41,983&nbsp;SALES&nbsp;2896&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">223-96-8933&nbsp;03MAY86&nbsp;27,356&nbsp;EDUCATION&nbsp;2344&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">232-18-3485&nbsp;17AUG81&nbsp;33,167&nbsp;MARKETING&nbsp;2674&nbsp;</font></td>
+    </tr>
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font  face="Courier New, Courier" size="2" color="#000000">251-25-9392&nbsp;08SEP84&nbsp;34,033&nbsp;RESEARCH&nbsp;2956&nbsp;</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  </font></font></div>
+<p align="center"> <br>
+<div align="center"> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <ul>
+          <li> Column input is an appropriate choice for the first field because 
+            the values can be read as standard character values and are located 
+            in fixed columns.<br>
+            <br>
+          <li> The next two fields are also located in fixed columns, but the 
+            values require an informat. So, formatted input is a good choice here.<br>
+            <br>
+          <li> Values in the fourth field begin in column 28 but do not end in 
+            the same column. List input is appropriate here, but notice that some 
+            values are longer than eight characters. You need to use the <strong>: 
+            </strong>format modifier with an informat to read these values.<br>
+            <br>
+          <li> The last field does not always begin or end in the same column, 
+            so list input is the best input style for those values. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p align="center"> 
+<div align="center"> 
+  <table BORDER cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Fields and Input Styles">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE" > 
+        <p align=Left> <strong>Field Description</strong>
+      </td>
+      <td align=CENTER bgcolor="#F7F7DE" > 
+        <p align=Left> <strong>Starting Column</strong>
+      </td>
+      <td align=RIGHT bgcolor="#F7F7DE" > 
+        <p align=Left> <strong>Field Width</strong>
+      </td>
+      <td bgcolor="#F7F7DE"><strong>Data Type</strong></td>
+      <td align=CENTER bgcolor="#F7F7DE" > 
+        <p align=Left> <strong>Input Style</strong>
+      </td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF"> 
+        <p align=Left> <nobr>Social Security #</nobr><font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          </font>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Center> 1
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Center> 11
+      </td>
+      <td>character<tt> </tt></td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Left> column
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Left> Date of Hire<font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          </font>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Center> 13
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Center> 7
+      </td>
+      <td>date</td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Left> formatted
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Left> Annual Salary<font face="Arial, Helvetica, Helv" size="2" color="#000000"> 
+          </font>
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Center> 21
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Center> 6
+      </td>
+      <td>numeric</td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Left> formatted
+      </td>
+    </tr>
+    <tr> 
+      <td bgcolor="#FFFFFF">Department</td>
+      <td bgcolor="#FFFFFF"> 
+        <p align=Center> 28
+      </td>
+      <td bgcolor="#FFFFFF"> 
+        <p align=Center> 5 to 9
+      </td>
+      <td bgcolor="#FFFFFF">character</td>
+      <td bgcolor="#FFFFFF">list</td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Left> Phone Extension
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Center> ??
+      </td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Center> 4
+      </td>
+      <td>numeric</td>
+      <td align=RIGHT bgcolor="#FFFFFF" > 
+        <p align=Left> list
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+</div>
+<p align="center"> <br>
+<div align="center"> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">The INPUT statement to read the data should look like this:</td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p align="center"> 
+<div align="center"> 
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"> 
+        <pre><font color="#003399">     data perm.mixed;</font>
+<font color="#003399">        infile rawdata;</font>
+<font color="#003399">        <strong>input SSN $ 1-11 @13 HireDate date7. <br>              @21 Salary comma6.</strong></font> <strong><font color="#003399">Department : $9. Phone;</font></strong>
+<font color="#003399">     run;</font>
+<font color="#003399">     proc print data=perm.mixed;</font>
+<font color="#003399">     run; </font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">When you submit the PRINT procedure, the output displays 
+        values for each variable.</td>
+    </tr>
+  </table>
+  <br>
+</div>
+<p align="center"> 
+<div align="center"> 
+  <table border=1 cellpadding=2 cellspacing=1 rules=GROUPS frame=BOX bgcolor="#FFFFF0"
+  bordercolor="#000000" title="PROC PRINT Output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Obs</b></font></td>
+      <td align=LEFT bgcolor="#CCCCCC" bordercolor="#000000"> 
+        <p align=Center> <font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>SSN</b></font> 
+      </td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>HireDate</b></font></td>
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Salary</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Department</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Phone</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        1</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">209-20-3721</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">6581</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">41983</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000">SALES</font> 
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">2896</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        2</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">223-96-8933</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">9619</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> 27356</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000">EDUCATION</font> 
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">2344</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        3</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"><nobr>232-18-3485</nobr></font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">7899</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">33167</font></td>
+      <td align=left bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"><nobr>MARKETING</nobr></font></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">2674</font> 
+      </td>
+    </tr>
+    <tr> 
+      <td align=RIGHT bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"> 
+        4</font></b></td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">251-25-9392</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">9017</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">34033</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Left> <font face="Arial, Helvetica, Helv" size="2" color="#000000">RESEARCH</font> 
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF" bordercolor="#000000"> 
+        <p align=Right> <font face="Arial, Helvetica, Helv" size="2" color="#000000">2956</font> 
+      </td>
+    </tr>
+    </tbody> 
+  </table>
+</div>
+<p align="center"> <br>
+  <br>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

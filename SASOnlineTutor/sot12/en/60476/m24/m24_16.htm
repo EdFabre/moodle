@@ -1,0 +1,155 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      Dates and Times with Informats<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>YEARCUTOFF= SAS System Option</strong> </p>
+      <p> Recall from the lesson <!--lesson reference--><strong><script>document.write(m16title);</script></strong> 
+        that the value of the YEARCUTOFF= system option affects only <strong>two-digit 
+        year values</strong>. A date value that contains a four-digit year value 
+        will be interpreted correctly even if it does not fall within the 100-year 
+        span set by the YEARCUTOFF= system option. </td>
+  </tr>
+</table>
+<p align="center"> <br>
+<center>
+  <table cellpadding="3" cellspacing="0" border="1" bgcolor="#FFFFFF" title="Date Expressions Interpreted Using the DATEw. Informat">
+    <tr bgcolor="#F7F7DE"> 
+      <td nowrap width="33%"><b>&nbsp;Date Expression&nbsp;</b></td>
+      <td nowrap width="34%"><b>&nbsp;SAS Date Informat&nbsp;</b></td>
+      <td nowrap width="33%"><b>&nbsp;Interpreted As&nbsp;</b></td>
+    </tr>
+    <tr> 
+      <td width="33%">&nbsp;06Oct59</td>
+      <td width="34%"><tt><font color="#003399">&nbsp;date7.</font></tt></td>
+      <td width="33%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;06Oct1959</td>
+    </tr>
+    <tr> 
+      <td>&nbsp;17Mar1783</td>
+      <td><tt><font color="#003399">&nbsp;date9.</font> </tt></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17Mar1783</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellspacing="0" cellpadding="0" border="0" width="85%">
+    <tr> 
+      <td>However, if you specify an inappropriate field width, you will receive 
+        incorrect results. Notice that the date expression in the table below 
+        contains a four-digit year value. The informat specifies a <em><strong>w</strong></em> 
+        value that is too small to read the entire value, so the last two digits 
+        of the year are truncated.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="3" cellspacing="0" border="1" bgcolor="#FFFFFF" title="Date Expression Interpreted Using the DATEw. Informat">
+    <tr bgcolor="#F7F7DE"> 
+      <td nowrap width="33%"><b>&nbsp;Date Expression&nbsp;</b></td>
+      <td nowrap width="34%"><b>&nbsp;SAS Date Informat&nbsp;</b></td>
+      <td nowrap width="33%"><b>&nbsp;Interpreted As&nbsp;</b></td>
+    </tr>
+    <tr> 
+      <td width="33%">&nbsp;17Mar1783</td>
+      <td width="34%"><tt><font color="#003399">&nbsp;date7.</font></tt></td>
+      <td width="33%">&nbsp;&nbsp;&nbsp;&nbsp;17Mar1917</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>Another problem arises if you use the wrong informat to read a date 
+        or time expression. The SAS log displays an invalid data message, and 
+        the variable's values are set to missing.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table  border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File" width="85">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#F7F7DE" nowrap><font face="Courier New, Courier" size="2" color="#000000">1---+----10</font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">03/23/98</font></td>
+    </tr>
+    </tbody> 
+  </table>
+</center>
+<p align="center"> <br>
+  SAS Log 
+<center>
+  <table cellpadding="10" cellspacing="0" border="1" bgcolor="#F7F7DE" title="SAS Log">
+    <tr> 
+      <td> 
+        <pre>3  input birthday date8.;
+4  run;
+<strong>NOTE: Invalid data for BIRTHDAY in line 3 1-8.</strong>
+RULE: ----+----1----+----3----+----4----+----5
+3     03/23/98
+<strong>BIRTHDAY=. _ERROR_=1 _N_=1</strong>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>When you work with date and time values, 
+        <ul>
+          <li>check the default value of the YEARCUTOFF= system option, and change 
+            it if necessary. The default YEARCUTOFF= value is 1920. 
+          <li>specify the proper informat for reading a date value. 
+          <li>specify the correct field width so that the entire date value is 
+            read. 
+        </ul>
+      </td>
+    </tr>
+  </table>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

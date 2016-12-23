@@ -1,0 +1,145 @@
+<html><!-- InstanceBegin template="/Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>Creating 
+      Custom Formats with PROC FORMAT</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->Creating 
+      Custom Formats with PROC FORMAT<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <table  border="1" align="center" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, PROC FORMAT step with a VALUE 
+            statement">
+        <tr> 
+          <td align="left"><strong>General form, PROC FORMAT step with a VALUE 
+            statement:</strong> <blockquote> <font color="#003399"><nobr></nobr><strong>PROC 
+              FORMAT LIBRARY</strong><em>=libref</em><strong>;</strong><br>
+              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<strong>VALUE</strong> <em>format-name</em> 
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em> 
+              range1 = 'label1'<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range2 
+              = 'label2'<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rangen 
+              = 'labeln'</em><strong>;</strong><br>
+              <strong>RUN;</strong></font> </blockquote>
+            <p> where </p>
+            <ul>
+              <li><font color="#003399"><strong>LIBRARY</strong>=<em>libref</em></font> 
+                specifies a SAS library in which user-defined formats are stored. 
+                If <font color="#003399"><strong>LIBRARY=</strong><em>libref</em></font> is not specified, formats are temporarily 
+                stored in the <strong>Work</strong> library. 
+              <li> <font color="#003399"><em>format-name</em></font> is the name 
+                of the character or numeric format that is being created. 
+              <li><font color="#003399"><em>range</em></font> is the individual 
+                value or range of values you want to label. 
+              <li><em><font color="#003399">label</font></em> is a text string 
+                that you want to apply to the range.</ul></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <p>Custom format names cannot duplicate SAS format names (such as DOLLAR 
+        and SSN) and must follow these naming rules:</p>
+      <ul>
+        <li>Character format names must begin with a $, must be 8 characters or 
+          fewer including the $, and must not end in a number.</li><br><br>
+        <li>Numeric format names must be 8 characters or fewer and must not end 
+          in a number.</li>
+      </ul>
+      <p>A VALUE statement is required for each format you wish to define. The 
+        VALUE range specifies </p>
+      <ul>
+        <li>a <strong>single value</strong>, such as <em>24</em> or '<em>S</em>' 
+        <li>a <strong>range of numeric values</strong>, such as <em>0-1500</em> 
+        <li>a <strong>range of character values</strong> enclosed in quotation 
+          marks, such as '<em>A</em>'-'<em>M</em>' 
+        <li>a <strong>list of unique values</strong> separated by commas, such 
+          as <em>90,180,270</em> or '<em>B</em>','<em>D</em>','<em>F</em>'. 
+      </ul>
+      When the specified values are <strong>character values</strong>, they must 
+      be enclosed in quotation marks and must match the case of the variable's 
+      values. When the specified values are <strong>numeric values</strong>, they 
+      are not enclosed in quotation marks.<font color="#003399">&nbsp;</font> 
+      <p>In a VALUE statement, you can use keywords in place of values, as follows:</p>
+      <ul>
+        <li> <strong>OTHER </strong>is used to label the missing values and values 
+          that are not specifically listed in a range.</li><br><br>
+        <li> <strong>HIGH </strong>is used in a range to specify the upper limit 
+          of a variable's value range.</li><br><br>
+        <li> <strong>LOW</strong> is used in a range to specify the lower limit 
+          of a variable's value range (not including missing values).</li>
+      </ul>
+      <p>You can also specify a noninclusive range of numeric values by using 
+        the less than operator (<strong>&lt;</strong>) next to the number that 
+        you do not want included in the range. For example, the range</p>
+      <ul>
+        <li>1-&lt;50 would include the values 1 through 49</li>
+        <li>1&lt;-50 would include all values 2 through 50.</li>
+      </ul>
+<br>
+      <h2>How Formats Are Stored</h2>
+      <p>When the LIBRARY= option is not specified, formats are stored in the 
+        <strong>Work.Formats</strong> catalog and exist for the duration of the 
+        SAS session. If the LIBRARY= option specifies only a libref, formats are 
+        stored permanently in <em>libref</em>.formats. If the LIBRARY= option specifies 
+        <em>libref.catalog</em>, formats are stored permanently in that catalog. 
+      </p>
+      <p>Formats are stored as SAS catalog entries. The type for a character format 
+        is <strong>FORMATC</strong> and the type for a numeric format is <strong>FORMAT</strong>.</p>
+      <h2><br>
+        How Formats Are Used<a name="ref"></a></h2>
+      <p>After you have created and permanently stored a custom format, you can 
+        use it in later SAS sessions or jobs:</p>
+      <ul>
+        <li>In a <strong>DATA step</strong>, you can use the ATTRIB or FORMAT 
+          statement to permanently associate a format with a variable. You can 
+          also use the PUT function or PUT statement to associate the format with 
+          the variable only for the duration of the DATA step. <br>
+          <br>
+        </li>
+        <li>In a <strong>PROC step</strong>, you can use the ATTRIB statement 
+          or the FORMAT statement to associate formats with variables. If you 
+          use these statements in procedures that do not produce an output data 
+          set or modify an existing data set, the statement associates the format 
+          with the variable only for the duration of the PROC step. If the procedure 
+          produces an output data set, the format is permanently associated with 
+          the variable in the output data set. </li>
+      </ul>
+      <table border="0" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+          <td valign="top"> For information about referencing formats using these 
+            statements or functions, see the <font size="-1" face="Arial, Helvetica, sans-serif"> 
+            <!--doc reference-->
+            SAS documentation</font>.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  </table>
+   <!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

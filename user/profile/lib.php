@@ -210,7 +210,7 @@ class profile_field_base {
      */
     public function edit_field_set_required($mform) {
         global $USER;
-        if ($this->is_required() && ($this->userid == $USER->id || isguestuser())) {
+        if ($this->is_required() && ($this->userid == $USER->id)) {
             $mform->addRule($this->inputname, get_string('required'), 'required', null, 'client');
         }
     }
@@ -551,10 +551,9 @@ function profile_signup_fields($mform) {
 /**
  * Returns an object with the custom profile fields set for the given user
  * @param integer $userid
- * @param bool $onlyinuserobject True if you only want the ones in $USER.
  * @return stdClass
  */
-function profile_user_record($userid, $onlyinuserobject = true) {
+function profile_user_record($userid) {
     global $CFG, $DB;
 
     $usercustomfields = new stdClass();
@@ -564,7 +563,7 @@ function profile_user_record($userid, $onlyinuserobject = true) {
             require_once($CFG->dirroot.'/user/profile/field/'.$field->datatype.'/field.class.php');
             $newfield = 'profile_field_'.$field->datatype;
             $formfield = new $newfield($field->id, $userid);
-            if (!$onlyinuserobject || $formfield->is_user_object_data()) {
+            if ($formfield->is_user_object_data()) {
                 $usercustomfields->{$field->shortname} = $formfield->data;
             }
         }

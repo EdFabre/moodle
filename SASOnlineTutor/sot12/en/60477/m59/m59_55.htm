@@ -1,0 +1,133 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Processing 
+      Generation Data Sets<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> You have learned that you use PROC DATASETS to initiate generation 
+        data sets on an existing SAS data set. Once you have created generation 
+        data sets, you can use PROC DATASETS to perform management tasks such 
+        as 
+        <ul>
+          <li>deleting all or some of the generations</li>
+          <li>renaming an entire generation group or any member of the group to 
+            a new base name.</li>
+        </ul>
+        </td>
+    </tr>
+  </table>
+  <p></p>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, PROC DATASETS with the 
+        CHANGE and DELETE statements">
+    <tr> 
+      <td height="299" align="left"><strong>General form, PROC DATASETS with the 
+        CHANGE and DELETE statements:</strong> 
+        <blockquote> <font color="#003399"><nobr><strong>PROC DATASETS LIB=</strong><em>libref 
+          </em>&lt;<strong>NOLIST</strong>&gt;<em> </em><strong>;</strong></nobr></font> 
+          <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#003399"><strong>CHANGE</strong> 
+          <em>SAS-data-set</em>&lt;(<strong>GENNUM</strong>=<em>n</em>)&gt;=<em>new-data-set-name</em><strong>;</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>DELETE</strong> <em>SAS-data-set</em>&lt;(<strong>GENNUM</strong>=<em>n</em> 
+          | <strong>HIST</strong> | <strong>ALL</strong>)&gt;<strong>;</strong><br>
+          <strong> QUIT; </strong></font></blockquote>
+        <p> where </p>
+        <ul>
+          <li> <font color="#003399"><em>libref</em></font> is the library that 
+            contains the data you want to modify 
+          <li><font color="#003399"><strong>NOLIST</strong></font> suppresses 
+            the directory listing 
+          <li> <font color="#003399"><em>SAS-data-set </em></font> is the name 
+            of the SAS data set you want to change or delete 
+          <li> <font color="#003399"><em>new-data-set-name</em></font> is the 
+            new name for the SAS data set in the <font color="#003399"><strong>CHANGE</strong></font> 
+            statement 
+          <li><font color="#003399"><em>n</em></font> is the absolute or relative 
+            reference to a generation number 
+          <li> <font color="#003399"><strong>HIST</strong></font> refers to all 
+            generations except the base version 
+          <li><font color="#003399"><strong>ALL</strong></font> refers to the 
+            base version and all generations. </ul></td>
+    </tr>
+  </table>
+  <p><br>
+  </p>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2>Examples</h2>
+        <p>The following code uses the CHANGE statement to rename the data set 
+          <strong>SalesData</strong> to <strong>Sales</strong>. If generations 
+          have been created, the base name of all generations will be renamed.</p>
+        <pre>   <font color="#003399">  proc datasets library=quarter1 nolist;
+        <strong>change salesData=sales;</strong>
+     quit;</font></pre> 
+        <p>The following code uses the GENNUM= option to rename only the second 
+          historical data set:</p>
+        <pre>    <font color="#003399"> proc datasets library=quarter1 nolist;
+        change sales<strong>(gennum=2)</strong>=newsales;
+     quit;</font></pre>
+        <p>The following 
+          code deletes one historical version. This may leave a hole in the generation 
+          group.</p>
+        <pre>    <font color="#003399"> proc datasets library=quarter1 nolist;
+        delete newsales<strong>(gennum=-1)</strong>;
+     quit;</font></pre> 
+        <p>When you use the GENNUM= option with the DELETE statement, you can 
+          use the HIST and ALL keywords. The following code uses the <strong>HIST</strong> 
+          keyword to delete all of the historical versions:</p>
+        <pre>    <font color="#003399"> proc datasets library=quarter1 nolist;
+        delete newsales(gennum=<strong>HIST</strong>);
+     quit;</font></pre> 
+        <p>The following code uses the <strong>ALL</strong> keyword in the GENNUM= 
+          option to delete all of the SAS data sets in a generation group:</p>
+        <pre> <font color="#003399">    proc datasets library=quarter1 nolist;
+        delete newsales(gennum=<strong>ALL</strong>);
+     quit;</font></pre>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/tip.gif" width="20" height="20" alt="More Information"></td>
+            <td valign="top">For more information about using the DATASETS procedure 
+              to process data, see the 
+              <!--doc reference-->
+              SAS documentation.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p> 
+  <p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

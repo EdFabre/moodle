@@ -1,0 +1,211 @@
+<html><!-- InstanceBegin template="/Templates/eg_practice_inline.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice(); writeEG_div()" onUnload="resizePage()">
+<script>writeeg_practiceTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_desc" -->Use 
+            a the Query Builder to generate SQL code and then edit the code.<!-- InstanceEndEditable -->
+			
+<script>writeeg_practiceTopNav2();</script>
+
+<center>
+<p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+<!-- InstanceEndEditable -->
+<p> 
+<!-- InstanceBeginEditable name="task_steps" --> 
+<div id="le2_eg2" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+        <td> <ol>
+            <li>Start a query on the <strong>Houses</strong> data, which is located 
+              in the SAS Enterprise Guide sample data folder. <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Select <strong>Tools<img src="../navimages/arrow.gif" width="14" height="10" alt="arrow">Query<img src="../navimages/arrow.gif" width="14" height="10" alt="arrow">Create 
+                  Empty</strong>.</li>
+                <li>Click <strong>Add Data</strong>. </li>
+                <li>Navigate to the sample data directory and double-click <strong>Houses.sd2</strong>.</li>
+              </ul>
+              <br>
+              <br>
+              </span> 
+            <li>Replace values of the STYLE column so that both TWOSTORY and SPLIT 
+              are replaced by <font color="#003399" face="Verdana, Arial, Helvetica, sans-serif">Multi-level</font>.<br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Click the <strong>Select and Sort</strong> tab.</li>
+                <li>Select the <strong>STYLE</strong> column and click <strong>Properties</strong>.</li>
+                <li>Click the <strong>Replace Values</strong> tab.</li>
+                <li>From the <strong>Replace</strong> drop-down list, select <strong>TWOSTORY</strong>.</li>
+                <li>In the <strong>Replace with </strong>box, type <font face="Verdana, Arial, Helvetica, sans-serif">Multi-Level</font>.</li>
+                <li>Click <strong>Add to list</strong>.</li>
+                <li>From the Replace drop-down list, select <strong>SPLIT</strong>.</li>
+                <li>Click <strong>Add to list</strong>.</li>
+                <li>Click <strong>OK</strong>.</li>
+              </ul>
+              <br>
+              <br>
+              </span> 
+            <li>Run the query. Be sure to close the output data set from the query. 
+              <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Click <strong>Run Query</strong>.</li>
+                <li>Close the output data set.</li>
+              </ul>
+              <br>
+              <br>
+              </span> 
+            <li>Edit the query code to add <font face="Courier New, Courier, mono">else 
+              houses.style</font> to the CASE statement so that current values 
+              of the <strong>STYLE</strong> column are used when the value is 
+              not replaced. <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>In the Project window, right-click<strong> Query1</strong> 
+                  and select <strong>Add as Code Template</strong>.</li>
+                <li>Add <font face="Courier New, Courier, mono">else houses.style</font> 
+                  to the CASE statement as follows: 
+                  <pre><font size="2">(CASE Houses.STYLE 
+   WHEN 'TWOSTORY' THEN 'Multi-Level'
+   WHEN 'SPLIT   ' THEN 'Multi-Level'
+   else houses.style
+ END) AS _STYLE_minus_,</font></pre>
+                </li>
+              </ul>
+              </span> 
+            <li>Run the query code. <br>
+              <br>
+              <span class="eg2_le2"> 
+              <ul type="square">
+                <li>Press F3.</li>
+                <li>Notice that the data now includes the values for CONDO and 
+                  RANCH in the <strong>_STYLE_minus_</strong> column.</li>
+              </ul>
+              <br>
+              <br>
+              </span> </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+  
+<span id="divider" class="eg_div"><hr width="85%"><br></span>
+  
+<div id="eg3" class="eg_div">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+        <td> <ol>
+            <li>Start a query on the <strong>Houses</strong> data, which is located 
+              in the SAS Enterprise Guide sample data folder. <br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>Select <strong>Data</strong><img src="../navimages/arrow.gif" width="14" height="10" alt="arrow"><strong>Create 
+                  New Empty Query</strong>.</li>
+                <li>Click <strong>Add Data</strong>. </li>
+                <li>Navigate to the sample data directory and double-click <strong>Houses.sd2</strong>.</li>
+              </ul>
+              <br>
+              <br>
+              </span> 
+            <li>Keep only the <strong>BEDROOMS</strong> and <strong>PRICE</strong> 
+              columns in the query results.<br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>Click the <strong>Select and Sort</strong> tab.</li>
+                <li>Press Ctrl and select <strong>STYLE</strong>, <strong>SQFEET</strong>, 
+                  and <strong>BATHS</strong>. </li>
+                <li>Click <strong>Delete</strong>.</li>
+              </ul>
+              <br>
+              <br>
+              </span> 
+            <li>Run the query and view the results.<br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>Click <strong>Run Query</strong>.</li>
+                <li>Take a look at the results. Suppose you want to add a note 
+                  to any home that has only one bathroom. </li>
+              </ul>
+              <br>
+              <br>
+              </span> 
+            <li>Edit the query code to add a <strong>Notes</strong> column that 
+              contains a message when the home has only one bathroom. Use the 
+              following line of code: <br>
+              <br>
+              <code>(CASE Houses.baths WHEN 1 THEN 'Warning: single-bath house' 
+              END) AS Notes</code> <br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>In the Project window, right-click <strong>Query1 </strong>and 
+                  select <strong>Add as Code Template</strong>.</li>
+                <li>Add a comma after <code><br>
+                  Houses.PRICE FORMAT=DOLLAR12.</code><br>
+                  and then add the CASE statement shown above.<br>
+                  <br>
+                </li>
+              </ul>
+              </span> 
+            <li>Run the query code. <br>
+              <br>
+              <span class="eg3"> 
+              <ul type="square">
+                <li>Right-click <strong>Code for Query1 for Houses</strong> and 
+                  select <strong>Run on Local</strong> from the popup menu.</li>
+                <li>Notice that the Notes column contains a message for every 
+                  home that has only one bathroom.<br>
+                </li>
+              </ul>
+              </span> </ol>
+      
+       </td>
+  </tr>
+</table>
+</div>
+
+<!-- InstanceEndEditable --> 
+<script>writeinlinePracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

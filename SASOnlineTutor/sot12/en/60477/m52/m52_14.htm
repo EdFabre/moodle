@@ -1,0 +1,90 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Developing 
+      and Debugging Macros<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Comments in Macro Programs</h2>
+        <P> As with any other programs, your macro programs might benefit from 
+          comments. Comments can be especially helpful if you plan to save your 
+          macros permanently or to share them with other users. You can place 
+          comments within a macro definition by using the macro comment statement. 
+      </td></tr></table>
+<P><BR>
+<table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" align="center" title="General form, the macro comment statement">
+    <tr> 
+      <td align="left"><STRONG>General form, macro comment statement:</STRONG>
+	  <BLOCKQUOTE>
+	    <FONT COLOR="#003399"><STRONG>%* </STRONG> <em>comment</em><strong>;</strong></FONT>
+	  </BLOCKQUOTE>
+	  <P>
+	  where  <FONT COLOR="#003399"><em>comment</em></FONT> can be any message. Like other SAS statements, each macro comment statement ends with a semicolon.<BR>
+	   
+      </td>
+    </tr>
+  </table>
+
+<P><BR>
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<h2>Example</h2>
+        <P> The following code uses macro comments to describe the functionality 
+          of the macro:
+<P>
+<font color="#003399"><PRE>    %macro printit;
+       <strong>%* The value of &amp;syslast will be substituted appropriately ;
+       %* as long as a data set has been created during this session. ;</strong>
+       proc print data=&amp;syslast(obs=5);
+     <strong>  /* Print only the first 5 observations */</strong>
+       title &quot;Last Created Data Set Is &amp;syslast&quot;;
+       run;
+    %mend;
+</pre></font>
+<table border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+          <td valign="top" width="24"><img src="../navimages/note.gif"  alt="Note:" width="20" height="20"></td>
+      <td valign="top">You can also use the comment symbols <strong>/*</strong> and <strong>*/</strong> inside a macro. When these symbols appear, the macro processor ignores the text within the comment. </td>
+    </tr>
+  </table>
+
+    </td>
+  </tr>
+</table><P><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

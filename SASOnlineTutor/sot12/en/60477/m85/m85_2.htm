@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using an Index for Efficient WHERE Processing<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>When processing a WHERE expression, SAS determines which of the 
+          following access methods is likely to be most efficient: 
+        <p><br>
+        <table width="85%" align="center" cellpadding="10">
+          <tr> 
+            <td><img src="images/m85_2a.gif" alt="sequential access" width="264" height="148"> 
+              <!--These two images are also used on m54_19.htm. -->
+            </td>
+            <td>SAS searches through all observations sequentially (in the order 
+              in which they are stored in the data file).</td>
+          </tr>
+          <tr> 
+            <td><img src="images/m85_2b.gif" alt="direct access" width="261" height="146"></td>
+            <td>SAS uses an <strong>index</strong> to access specific observations 
+              directly. Using an index to process a WHERE expression is referred 
+              to as <strong>optimizing</strong> the WHERE expression.</td>
+          </tr>
+        </table>
+        <p><br>
+          Using an index to process a WHERE expression improves performance in 
+          some situations but not in others. For example, it is more efficient 
+          to use an index to select a small subset than a large subset. In addition, 
+          an index conserves some resources at the expense of others. 
+        <p>By deciding whether to create an index, you also play a role in determining 
+          which access method SAS can use. When your program contains a WHERE 
+          expression, you should determine which access method is likely to be 
+          more efficient. If direct access is likely to be more efficient, you 
+          can make sure that an index is available by creating a new index or 
+          by maintaining an existing index. 
+        <p>To help you make a more effective decision about whether to create 
+          an index, this topic and the next few topics provide you with a closer 
+          look at the following: 
+        <ul>
+          <li>steps that SAS performs for sequential access and direct access</li>
+          <li> benefits and costs of index usage</li>
+          <li>steps that SAS performs to determine which access method is most 
+            efficient</li>
+          <li>factors affecting resource usage for indexed access</li>
+          <li>guidelines for deciding whether to create, use, and maintain an 
+            index. </li>
+        </ul>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You should already know how to create and maintain 
+              indexes by using the INDEX= data set option in the DATA statement, 
+              the DATASETS procedure, and the SQL procedure. To review these SAS 
+              elements, see the lessons 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m74title);</script>
+              </strong> and 
+              <!--lesson reference-->
+              <strong> 
+              <script>document.write(m54title);</script></strong>.</td>
+          </tr>
+        </table>
+        <br> <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">SAS can also use an index to process a BY statement. 
+              BY processing enables you to process observations in a specific 
+              order according to the values of one or more variables that are 
+              specified in a BY statement. Indexing a data file enables you to 
+              use a BY statement without sorting the data file. When you specify 
+              a BY statement, SAS checks the value of the Sorted flag. If the 
+              Sorted flag is set to <em>NO</em>, then SAS looks for an appropriate 
+              index. If an appropriate index exists, the software automatically 
+              retrieves the observations from the data file in indexed order. 
+              Using an index to process a BY statement might not always be more 
+              efficient than simply sorting the data file. Therefore, using an 
+              index for a BY statement is generally for convenience, not for performance.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+<p><br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -104,24 +104,14 @@ class blog_association_created extends base {
     protected function validate_data() {
         parent::validate_data();
 
-        if (!isset($this->relateduserid)) {
-            throw new \coding_exception('The \'relateduserid\' must be set.');
-        }
-
         if (empty($this->other['associatetype']) || ($this->other['associatetype'] !== 'course'
                 && $this->other['associatetype'] !== 'coursemodule')) {
             throw new \coding_exception('The \'associatetype\' value must be set in other and be a valid type.');
-        }
-
-        if (!isset($this->other['blogid'])) {
+        } else if (!isset($this->other['blogid'])) {
             throw new \coding_exception('The \'blogid\' value must be set in other.');
-        }
-
-        if (!isset($this->other['associateid'])) {
+        } else if (!isset($this->other['associateid'])) {
             throw new \coding_exception('The \'associateid\' value must be set in other.');
-        }
-
-        if (!isset($this->other['subject'])) {
+        } else if (!isset($this->other['subject'])) {
             throw new \coding_exception('The \'subject\' value must be set in other.');
         }
     }

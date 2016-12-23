@@ -1,0 +1,758 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Defining 
+      Variable Usage<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Using Order Variables</strong></p>
+      <p>An order variable orders the detail rows in a report according to their 
+        formatted values. For example, suppose you want to see values in your 
+        list report ordered by flight number. To use <code>Flight</code> as an 
+        order variable, you specify the <strong>ORDER</strong> usage option in 
+        the DEFINE statement, as shown below.</p>
+    </td>
+  </tr>
+</table>
+<center>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">proc report data=flights.europe nowd headline headskip;
+        where dest in ('LON','PAR'); 
+        column flight orig dest mail freight revenue;
+        define revenue / format=dollar15.2;
+        define flight / <strong>order</strong> 'Flight/Number' width=6 center;
+        define orig / width=6 spacing=5 'Flight/Origin' center;
+        define dest / width=11 spacing=5 'Flight/Destination' <br>                      center;
+     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>This is your ordered output. Notice that PROC REPORT displays only 
+          the first occurrence of each value of an order variable in a set of 
+          rows that have the same value for all order variables.</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <font face="Arial, Helvetica, Helv" size="2" color="#002288"><br>
+  </font> 
+  <table  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC REPORT output">
+    <thead> 
+    <tr> 
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Number</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Origin</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Flight<br>
+        Destination</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Mail</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Freight</b></font></td>
+      <td align=CENTER bgcolor="#CCCCCC"><font face="Arial, Helvetica, Helv" size="3" color="#0033AA"><b>Revenue</b></font></td>
+    </tr>
+    </thead> <tbody> 
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">219</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        331</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        376</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $189,065.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        485</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        267</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $197,456.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        388</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        298</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $162,343.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        421</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        356</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $134,520.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        447</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        299</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $106,753.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        356</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        547</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $122,766.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        272</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        370</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $198,744.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">271</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        492</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        308</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $156,804.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        366</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        498</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $190,098.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        353</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        205</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $166,470.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        366</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        279</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $163,248.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        357</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        282</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $170,766.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        415</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        463</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $195,468.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        352</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        351</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $123,456.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        492</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        308</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $125,632.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        366</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        498</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $128,972.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        353</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        205</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $153,423.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        366</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        279</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $133,345.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        357</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        282</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $126,543.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">PAR</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        415</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        463</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $134,976.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">821</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        403</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        209</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $150,634.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        345</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        243</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $150,634.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        248</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        307</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $193,930.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        391</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        395</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $167,772.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        219</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        368</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $183,106.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        389</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        479</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $169,576.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        448</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        282</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $143,561.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        403</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        209</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $170,766.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        345</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        243</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $129,560.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        248</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        307</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $196,736.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        391</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        395</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $125,344.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        219</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        368</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $166,543.00</font></td>
+    </tr>
+    <tr> 
+      <td align=CENTER bgcolor="#FFFF99"><font face="Arial, Helvetica, Helv" size="2">&nbsp;</font></td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LGA</font> 
+        </center>
+      </td>
+      <td align=LEFT bgcolor="#EFEFEF"> 
+        <center>
+          <font face="Arial, Helvetica, Helv" size="2">LON</font> 
+        </center>
+      </td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        389</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        479</font></td>
+      <td align=RIGHT bgcolor="#EFEFEF"><font face="Arial, Helvetica, Helv" size="2"> 
+        $129,745.00</font></td>
+    </tr>
+    </tbody> 
+  </table>
+  <font face="Arial, Helvetica, Helv" size="2" color="#002288"><br>
+  <br>
+  </font> 
+</center>
+<p align="center"> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <p>By default, the order is ascending, but you can change it with the 
+          <strong>DESCENDING option</strong> in the DEFINE statement:</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td> 
+        <pre>     <font color="#003399">proc report data=flights.europe nowd headline headskip;
+        where dest in ('LON','PAR'); 
+        column flight orig dest mail freight revenue;
+        define revenue / format=dollar15.2;
+        define flight / order<strong> descending</strong> 'Flight/Number' width=6 
+                        center;
+        define orig / width=6 spacing=5 'Flight/Origin' center;
+        define dest / width=11 spacing=5 'Flight/Destination' 
+                      center;
+     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

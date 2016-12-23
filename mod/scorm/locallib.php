@@ -286,12 +286,11 @@ function scorm_parse($scorm, $full) {
             }
         } else {
             require_once("$CFG->dirroot/mod/scorm/datamodels/aicclib.php");
-            $result = scorm_parse_aicc($scorm);
-            if (!$result) {
+            // AICC
+            if (!scorm_parse_aicc($scorm)) {
                 $scorm->version = 'ERROR';
-            } else {
-                $scorm->version = 'AICC';
             }
+            $scorm->version = 'AICC';
         }
 
     } else if ($scorm->scormtype === SCORM_TYPE_EXTERNAL and $cfg_scorm->allowtypeexternal) {
@@ -304,14 +303,11 @@ function scorm_parse($scorm, $full) {
 
     } else if ($scorm->scormtype === SCORM_TYPE_AICCURL  and $cfg_scorm->allowtypeexternalaicc) {
         require_once("$CFG->dirroot/mod/scorm/datamodels/aicclib.php");
-        // AICC.
-        $result = scorm_parse_aicc($scorm);
-        if (!$result) {
+        // AICC
+        if (!scorm_parse_aicc($scorm)) {
             $scorm->version = 'ERROR';
-        } else {
-            $scorm->version = 'AICC';
         }
-
+        $scorm->version = 'AICC';
     } else {
         // sorry, disabled type
         return;
@@ -640,11 +636,8 @@ function scorm_get_sco_runtime($scormid, $scoid, $userid, $attempt=1) {
     global $DB;
 
     $timedata = new stdClass();
-    $params = array('userid' => $userid, 'scormid' => $scormid, 'attempt' => $attempt);
-    if (!empty($scoid)) {
-        $params['scoid'] = $scoid;
-    }
-    $tracks = $DB->get_records('scorm_scoes_track', $params, "timemodified ASC");
+    $sql = !empty($scoid) ? "userid=$userid AND scormid=$scormid AND scoid=$scoid AND attempt=$attempt" : "userid=$userid AND scormid=$scormid AND attempt=$attempt";
+    $tracks = $DB->get_records_select('scorm_scoes_track', "$sql ORDER BY timemodified ASC");
     if ($tracks) {
         $tracks = array_values($tracks);
     }
@@ -840,7 +833,7 @@ function scorm_get_all_attempts($scormid, $userid) {
 function scorm_view_display ($user, $scorm, $action, $cm) {
     global $CFG, $DB, $PAGE, $OUTPUT, $COURSE;
 
-    if ($scorm->updatefreq == SCORM_UPDATE_EVERYTIME) {
+    if ($scorm->scormtype != SCORM_TYPE_LOCAL && $scorm->updatefreq == SCORM_UPDATE_EVERYTIME) {
         scorm_parse($scorm, false);
     }
 
@@ -941,7 +934,7 @@ function scorm_simple_play($scorm, $user, $context, $cmid) {
         return $result;
     }
 
-    if ($scorm->updatefreq == SCORM_UPDATE_EVERYTIME) {
+    if ($scorm->scormtype != SCORM_TYPE_LOCAL && $scorm->updatefreq == SCORM_UPDATE_EVERYTIME) {
         scorm_parse($scorm, false);
     }
     $scoes = $DB->get_records_select('scorm_scoes', 'scorm = ? AND '.
@@ -1410,8 +1403,7 @@ function scorm_format_duration($duration) {
 function scorm_get_toc_object($user, $scorm, $currentorg='', $scoid='', $mode='normal', $attempt='', $play=false, $organizationsco=null) {
     global $CFG, $DB, $PAGE, $OUTPUT;
 
-    // Always pass the mode even if empty as that is what is done elsewhere and the urls have to match.
-    $modestr = '&mode=';
+    $modestr = '';
     if ($mode != 'normal') {
         $modestr = '&mode='.$mode;
     }
@@ -1761,8 +1753,14 @@ function scorm_format_toc_for_droplist($scorm, $scoes, $usertracks, $currentorg=
                 }
             }
 
-            if ($sco->scormtype == 'sco') {
-                $tocmenus[$sco->id] = scorm_repeater('&minus;', $level) . '&gt;' . format_string($sco->title);
+            if ($sco->prereq) {
+                if ($sco->scormtype == 'sco') {
+                    $tocmenus[$sco->id] = scorm_repeater('&minus;', $level) . '&gt;' . format_string($sco->title);
+                }
+            } else {
+                if ($sco->scormtype == 'sco') {
+                    $tocmenus[$sco->id] = scorm_repeater('&minus;', $level) . '&gt;' . format_string($sco->title);
+                }
             }
 
             if (!empty($sco->children)) {
@@ -1815,13 +1813,7 @@ function scorm_get_toc($user, $scorm, $cmid, $toclink=TOCJSLINK, $currentorg='',
     }
 
     if (empty($scoid)) {
-        // If this is a normal package with an org sco and child scos get the first child.
-        if (!empty($scoes['scoes'][0]->children)) {
-            $result->sco = $scoes['scoes'][0]->children[0];
-        } else { // This package only has one sco - it may be a simple external AICC package.
-            $result->sco = $scoes['scoes'][0];
-        }
-
+        $result->sco = $scoes['scoes'][0]->children[0];
     } else {
         $result->sco = scorm_get_sco($scoid);
     }
@@ -1934,90 +1926,4 @@ function scorm_check_url($url) {
     }
 
     return true;
-}
-
-/**
- * Check if the current sco is launchable
- * If not, find the next launchable sco
- *
- * @param stdClass $scorm Scorm object
- * @param integer $scoid id of scorm_scoes record.
- * @return integer scoid of correct sco to launch or empty if one cannot be found, which will trigger first sco.
- */
-function scorm_check_launchable_sco($scorm, $scoid) {
-    global $DB;
-    if ($sco = scorm_get_sco($scoid, SCO_ONLY)) {
-        if ($sco->launch == '') {
-            // This scoid might be a top level org that can't be launched, find the first launchable sco after this sco.
-            $scoes = $DB->get_records_select('scorm_scoes',
-                                             'scorm = ? AND '.$DB->sql_isnotempty('scorm_scoes', 'launch', false, true).
-                                             ' AND id > ?', array($scorm->id, $sco->id), 'sortorder, id', 'id', 0, 1);
-            if (!empty($scoes)) {
-                $sco = reset($scoes); // Get first item from the list.
-                return $sco->id;
-            }
-        } else {
-            return $sco->id;
-        }
-    }
-    // Returning 0 will cause default behaviour which will find the first launchable sco in the package.
-    return 0;
-}
-
-/**
- * Check if a SCORM is available for the current user.
- *
- * @param  stdClass  $scorm            SCORM record
- * @param  boolean $checkviewreportcap Check the scorm:viewreport cap
- * @param  stdClass  $context          Module context, required if $checkviewreportcap is set to true
- * @return array                       status (available or not and possible warnings)
- */
-function scorm_get_availability_status($scorm, $checkviewreportcap = false, $context = null) {
-    $open = true;
-    $closed = false;
-    $warnings = array();
-
-    $timenow = time();
-    if (!empty($scorm->timeopen) and $scorm->timeopen > $timenow) {
-        $open = false;
-    }
-    if (!empty($scorm->timeclose) and $timenow > $scorm->timeclose) {
-        $closed = true;
-    }
-
-    if (!$open or $closed) {
-        if ($checkviewreportcap and !empty($context) and has_capability('mod/scorm:viewreport', $context)) {
-            return array(true, $warnings);
-        }
-
-        if (!$open) {
-            $warnings['notopenyet'] = userdate($scorm->timeopen);
-        }
-        if ($closed) {
-            $warnings['expired'] = userdate($scorm->timeclose);
-        }
-        return array(false, $warnings);
-    }
-
-    // Scorm is available.
-    return array(true, $warnings);
-}
-
-/**
- * Requires a SCORM package to be available for the current user.
- *
- * @param  stdClass  $scorm            SCORM record
- * @param  boolean $checkviewreportcap Check the scorm:viewreport cap
- * @param  stdClass  $context          Module context, required if $checkviewreportcap is set to true
- * @throws moodle_exception
- */
-function scorm_require_available($scorm, $checkviewreportcap = false, $context = null) {
-
-    list($available, $warnings) = scorm_get_availability_status($scorm, $checkviewreportcap, $context);
-
-    if (!$available) {
-        $reason = current(array_keys($warnings));
-        throw new moodle_exception($reason, 'scorm', '', $warnings[$reason]);
-    }
-
 }

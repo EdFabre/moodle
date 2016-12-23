@@ -1,0 +1,172 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+<!--STEP 1-->
+solutionText='<ol><li>Write the following DATA step: ';
+solutionText+='<font color="#003399"><pre>data empdata_new;<br>';
+solutionText+='   set sasuser.empdata;<br>';
+solutionText+='   if empid=\'E00001\' then Birthdate=\'24SEP1962\';<br>';
+solutionText+='   else if empid=\'E00002\' then Birthdate=\'09JAN1981\';<br>';
+solutionText+='   else if empid=\'E00003\' then Birthdate=\'17JUL1945\';<br>';
+solutionText+='   else if empid=\'E00004\' then Birthdate=\'30NOV1975\';<br>';
+solutionText+='   else if empid=\'E00005\' then Birthdate=\'06AUG1976\';<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='Submit the program.<br><br>';
+<!--STEP 2-->
+solutionText+='<li>Write the following program: ';
+solutionText+='<font color="#003399"><pre>proc format;<br>';
+solutionText+='   value $bdate \'E00001\'=\'24SEP1962\'<br>';
+solutionText+='                \'E00002\'=\'09JAN1981\'<br>';
+solutionText+='                \'E00003\'=\'17JUL1945\'<br>';
+solutionText+='                \'E00004\'=\'30NOV1975\'<br>';
+solutionText+='                \'E00005\'=\'06AUG1976\';<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='<font color="#003399"><pre>data empdata_new2;<br>';
+solutionText+='   set sasuser.empdata(obs=5);<br>';
+solutionText+='   Birthdate=put(empID,$bdate.);<br>';
+solutionText+='run;<br></pre></font>';
+solutionText+='Submit the program. <br><br>';
+<!--STEP 3-->
+solutionText+='<li>Here is one example of a program that uses the ARRAY statement ';
+solutionText+='to combine the lookup values with the first five observations of <strong>Sasuser.Empdata</strong>: ';
+solutionText+='<font color="#003399"><pre>data empdata_new3;<br>';
+solutionText+='   array birthdates{5} $ 9 _temporary_ ("24SEP1962"<br>';
+solutionText+='         "09JAN1981" "17JUL1945" "30NOV1975"<br>';
+solutionText+='         "06AUG1976");<br>';
+solutionText+='   set sasuser.empdata(obs=5);<br>';
+solutionText+='   Birthdate=birthdates(_N_);<br>';
+solutionText+='run;<br></pre></font><br><br>';
+<!--STEP 4-->
+solutionText+='<li>Submit the following PROC steps:';
+solutionText+='<font color="#003399"><pre>proc print data=empdata_new (obs=5);<br>';
+solutionText+='run;<br>';
+solutionText+='proc print data=empdata_new2 (obs=5);<br>';
+solutionText+='run;<br>';
+solutionText+='proc print data=empdata_new3 (obs=5);<br>run;<br></pre></font>';
+solutionText+='The output from each of these PROC PRINT steps should be identical.';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Combine 
+            the first five observations in the <a href="JavaScript: openOther('../linklib/empdata.htm')">Sasuser.Empdata</a> 
+            data set with a list of lookup values that are not stored in a data 
+            set.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write a program that uses the IF-THEN/ELSE statement to combine 
+            the employee birthdates that are recorded in the list below with the 
+            first five observations of the <strong>Sasuser.Empdata</strong> data 
+            set. Create a temporary data set named <strong>Empdata_new</strong> 
+            to contain the combined observations. In <strong>Empdata_new</strong>, 
+            record the lookup values in a character variable named <code>Birthdate</code>. 
+            Submit the program. 
+            <p> <table border="0" cellpadding="2" cellspacing="0">
+      <tr> 
+        <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+                <td valign="top">In the list below, employees' birthdates are 
+                  listed according to their identification numbers.</td>
+      </tr>
+    </table><P>
+            <table align="center" border=1 cellspacing=0 cellpadding=0 rules=NONE frame=BOX bgcolor="#CCCCCC" title="Raw Data File">
+              <tbody>
+                <tr> 
+                  <td align=LEFT bgcolor="#F7F7DE"><font face="Courier New, Courier" size="2" color="#000000">Employee 
+                    Birthdates </font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">E0001</font><font face="Courier New, Courier" size="2" color="#000000">&nbsp; 
+                    24SEP1962</font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">E0002&nbsp; 
+                    09JAN1981</font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">E0003&nbsp; 
+                    17JUL1945</font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">E0004 
+                    &nbsp;30NOV1975</font></td>
+                </tr>
+                <tr> 
+                  <td align=LEFT bgcolor="#FFFFFF"><font face="Courier New, Courier" size="2" color="#000000">E0005 
+                    &nbsp;06AUG1976</font></td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+            <br>
+          <li>Write a program that uses the FORMAT procedure to combine the employee 
+            birthdates that are recorded in the list above with the first five 
+            observations of the <strong>Sasuser.Empdata</strong> data set. Create 
+            a temporary data set named <strong>Empdata_new2</strong> to contain 
+            the combined observations. Create and use a format named $BIRTHDATE 
+            to record the lookup values in a character variable named <code>Birthdate</code>. 
+            Submit the program.<br>
+            <br>
+          <li>Write a program that uses the ARRAY statement to combine the employee 
+            birthdates that are recorded in the list above with the first five 
+            observations of the <strong>Sasuser.Empdata</strong> data set. Create 
+            a temporary data set named <strong>Empdata_new3</strong> to contain 
+            the combined observations. Create and use a temporary array named 
+            <code>birthdates</code> to record the lookup values in a character 
+            variable named <code>Birthdate</code>. Be sure to specify that the 
+            <code>birthdates</code> array is character and that the values in 
+            the array have a length of 9. Submit the program.<br>
+            <br>
+			
+          <li>Submit PROC PRINT steps to print the first five observations from 
+            each of the three temporary data sets that you created in the previous 
+            steps. Compare the output from each. <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

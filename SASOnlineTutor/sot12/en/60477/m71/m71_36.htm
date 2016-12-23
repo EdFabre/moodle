@@ -1,0 +1,206 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Joining 
+      Multiple Tables and Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <h2>Example: Technique 3 (Traditional SAS Programming)<br>
+        </h2></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="1" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF" title="Query Specifications: Task and Data">
+    <tr valign="top"> 
+      <th width="63" align="left" bgcolor="#F7F7DE"><font size="-1">Task</font></th>
+      <td width="595">List the names of supervisors for the crew on the flight 
+        to Copenhagen on March 4, 2000. </td>
+    </tr>
+    <tr valign="top"> 
+      <th width="63" align="left" bgcolor="#F7F7DE"><font size="-1">Data</font></th>
+      <td width="595"><p><strong><a href="JavaScript: openOther('../linklib/fltsched.htm')">Sasuser.Flightschedule</a></strong> 
+          (<code>EmpID, Date, Destination</code>) </p>
+        <p> <strong><a href="JavaScript: openOther2('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a></strong> 
+          (<code>EmpID, FirstName, LastName, State</code>) </p>
+        <p><strong><a href="JavaScript: openOther3('../linklib/payrmstr.htm')">Sasuser.Payrollmaster</a></strong> 
+          (<code>EmpID, JobCode</code>)</p>
+        <p><strong><a href="JavaScript: openOther4('../linklib/suprvisr.htm')">Sasuser.Supervisors</a></strong> 
+          (<code>EmpID, State, JobCategory</code>) </p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Supervisors live in the same state as the employees they 
+        supervise. There is one supervisor for each state and job category.</td>
+    </tr>
+  </table>
+  <br>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><p>For comparison, look at the traditional SAS programming that can 
+          be used to solve this problem. The code is shown below, followed by 
+          the output.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre><font color="#003399">/* Find the crew for the flight. */
+
+proc sort data=sasuser.flightschedule (drop=flightnumber)
+          out=crew (keep=empid);
+   where destination='CPH' and date='04MAR2000'd;
+   by empid;
+run;
+
+/* Find the State and job code for the crew. */
+
+proc sort data=sasuser.payrollmaster
+               (keep=empid jobcode)
+          out=payroll;
+   by empid;
+run;
+
+proc sort data=sasuser.staffmaster
+             (keep=empid state firstname lastname)
+          out=staff;
+   by empid;
+run;
+
+data st_cat (keep=state jobcategory);
+   merge crew (in=c)
+         staff
+         payroll;
+   by empid;
+   if c;
+   jobcategory=substr(jobcode,1,2);
+run;
+
+/* Find the supervisor IDs. */
+
+proc sort
+     data=st_cat;
+        by jobcategory state;
+run;
+
+proc sort data=sasuser.supervisors
+          out=superv;
+   by jobcategory state;
+run;
+
+data super (keep=empid);
+   merge st_cat(in=s)
+         superv;
+   by jobcategory state;
+   if s;
+run;
+
+/* Find the names of the supervisors. */
+
+proc sort data=super;
+   by empid;
+run;
+
+data names(drop=empid);
+   merge super (in=super)
+         staff (keep=empid firstname lastname);
+   by empid;
+   if super;
+run;
+
+proc print data=names noobs uniform;
+run;</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <TABLE  cellspacing=1 cellpadding=2 rules=GROUPS frame=BOX border=1 bgcolor="#FFFFF0" bordercolor="#000000" title="PROC SQL Output">
+    <thead>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>LastName</b></font></TD>
+        <TD ALIGN=CENTER bgcolor="#CCCCCC"><font  face="Arial, Helvetica, Helv" size="3" color="#003399"><b>FirstName</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">MARSHBURN</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">JASPER</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DENNIS</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">ROGER</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">RIVERS</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">SIMON</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">YOUNG</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DEBORAH</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DEAN</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">SHARON</font></TD>
+      </TR>
+      <TR> 
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">DEAN</font></TD>
+        <TD ALIGN=LEFT bgcolor="#EFEFEF"><font  face="Arial, Helvetica, Helv" size="2">SHARON</font></TD>
+      </TR>
+    </tbody>
+  </TABLE>
+  <p> <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><p>This output is <strong>not</strong> identical to the output of the 
+          PROC SQL approaches (Techniques 1 and 2). The SQL queries eliminated 
+          the duplicate names that are seen here. When you use Technique 3, you 
+          can eliminate duplicates by adding the NODUPKEY option to the last PROC 
+          SORT statement, as shown below:</p>
+        <pre>     <font color="#003399">proc sort data=super <strong>nodupkey</strong>;</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Based on a mainframe benchmark in batch mode, the SQL queries 
+        use less CPU time, but more I/O operations, than this non-SQL program.</td>
+    </tr>
+  </table>
+  <p> <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

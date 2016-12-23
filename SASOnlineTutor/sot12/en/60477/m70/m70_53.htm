@@ -1,0 +1,161 @@
+<html><!-- InstanceBegin template="/Templates/mcQuestion_3.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+
+// Set feedback and identify correct answer ----------------------------
+
+correctAnswer = 3;
+
+salute  = "<strong>Correct.</strong><p>";
+
+correct = "Only the third PROC SQL query contains a correlated subquery <strong>and</strong> " +
+          "has valid syntax. The subquery is correlated because the outer query must pass values of  " +
+          "<code>Flightschedule.EmpID</code> to the subquery.";
+
+choice1 = "<strong>Incorrect.</strong><p>"+
+          "The PROC SQL query you selected contains a <strong>noncorrelated</strong> subquery. " +
+          "Also, this subquery generates multiple values but is not used with an " +
+          "appropriate operator, so the query will fail.";
+
+choice2 = "<strong>Incorrect.</strong><p>"+
+          "This PROC SQL query contains a correlated subquery but the syntax is " +
+          "invalid. The subsetting condition that references <code>JobCode</code> (the second to last line in the entire query) should be contained " +
+          "within the subquery. Instead, it is outside the parentheses and, thus, part of the outer query. ";
+		  
+choice3 = salute + correct;
+
+// don't edit the following lines ------------------
+message = "The correct answer is selected. <p>";		  
+correctButton = correctAnswer - 1;  
+
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Subsetting 
+      Data by Using Correlated Subqueries<!-- InstanceEndEditable --></strong></font> 
+      <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center> <FORM NAME="form1">
+  
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="top"> 
+        <td width="100"> 
+          <div align="left"><img border="0" align="Top" src="../navimages/question.gif"
+	      width="89" height="60" alt="?"></div>
+        </td>
+        <td colspan="2"><!-- InstanceBeginEditable name="content" --> 
+          <p>You are writing a PROC SQL query to create a list of flight assignments 
+            for level-3 pilots. The data you need is stored in the following tables:</p>
+          <ul>
+            <li><strong>Sasuser.Flightschedule</strong> contains the <code>EmpID</code> 
+              for all employees who have been assigned to flights, along with 
+              data about the flights. However, this table does not contain a <code>JobCode</code> 
+              column.<br>
+              <br>
+            </li>
+            <li><strong>Sasuser.Payrollmaster</strong> contains the <code>JobCode</code> 
+              for all employees. </li>
+          </ul>
+          <p>Your query should contain a correlated subquery. Results will be 
+            sorted by <code>EmpID</code>, <code>Date</code>, and <code>FlightNumber</code>. 
+          </p>
+          <p>Which of the following queries fits the stated requirements and will 
+            produce the output that you want?<br>
+          </p>
+          <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+    <table cellpadding=5 cellspacing=0 border="0" width="85%">
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value1" onClick="openAnswer(choice1)">
+        </td>
+        <td width="94%"><!-- InstanceBeginEditable name="choice1" --> 
+          <pre><font color="#003399">proc sql;
+title 'Flight Assignments for Level 3 Pilots';
+   select empid, date, flightnumber, 
+          destination
+      from sasuser.flightschedule
+      where empid =
+         (select empid
+            from sasuser.payrollmaster
+            where jobcode='PT3')
+      order by empid, date, flightnumber;</font></pre>
+          <!-- InstanceEndEditable --></td>
+        <td rowspan="3"><!-- InstanceBeginEditable name="figure" --><!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value2" onClick="openAnswer(choice2)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice2" --> 
+          <pre><font color="#003399">proc sql;
+title 'Flight Assignments for Level 3 Pilots';
+   select empid, date, flightnumber, 
+          destination
+      from sasuser.flightschedule
+      where empid in
+         (select empid
+            from sasuser.payrollmaster
+            where payrollmaster.empid=
+                  flightschedule.empid)
+          and jobcode='PT3'
+      order by empid, date, flightnumber;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      <tr valign="Top">
+        <td width="6%">
+          <input type="radio" name="answer" value="value3" onClick="openAnswer(choice3)">
+        </td>
+        <td width="94%"> <!-- InstanceBeginEditable name="choice3" --> 
+          <pre><font color="#003399">proc sql;
+title 'Flight Assignments for Level 3 Pilots';
+   select empid, date, flightnumber, 
+          destination
+      from sasuser.flightschedule
+      where empid in
+         (select empid
+            from sasuser.payrollmaster
+            where payrollmaster.empid=
+                  flightschedule.empid
+                  and jobcode='PT3')
+      order by empid, date, flightnumber;</font></pre>
+          <!-- InstanceEndEditable --></td>
+      </tr>
+      
+      <tr> 
+        <td colspan="3"> 
+          <script>writeshowCorrectAnswerButton();</script>
+        </td>
+      </tr>
+    </table>
+  </form>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

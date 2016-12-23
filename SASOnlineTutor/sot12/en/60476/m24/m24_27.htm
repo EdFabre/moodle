@@ -1,0 +1,301 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      Date and Time Formats<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>The WORDDATE<em>w</em>. Format</strong></p>
+    </td>
+  </tr>
+</table>
+<p align="center"> 
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+        <td>The WORDDATE<em>w</em>. format is similar to the WEEKDATE<em>w</em>. 
+          format, but it does not display the day of the week or the two-digit 
+          year values.</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<p align="center"> 
+<center>
+  <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, WORDDATEw. format">
+    <tr> 
+      <td><strong>General form, WORDDATE<em>w</em>. format:</strong> 
+        <blockquote> <nobr> <font color="#003399"><strong>WORDDATE</strong><em>w.</em></font></nobr> 
+        </blockquote>
+        <p>The WORDDATE<em>w</em>. format writes date values in the form <em>month-name 
+          dd</em>, <em>yyyy</em>.</p>
+        <p>where </p>
+        <ul>
+          <li><font color="#003399"><em>dd</em></font> is an integer between 01 
+            and 31, representing the day 
+          <li><font color="#003399"><em>yyyy</em></font> is an integer that represents 
+            the year. 
+        </ul>
+        <p>If the <em>w</em> value is too small to write the complete month, SAS 
+          abbreviates as needed.</p>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <center>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td> 
+          <pre><font color="#003399">     proc print data=perm.aprbills;</font>
+        <strong><font color="#003399">format datein dateout worddate12.;</font></strong>
+<font color="#003399">     run;</font></pre>
+        </td>
+      </tr>
+    </table>
+  </center>
+  <p align="center"> 
+  <center>
+    <table border="1" cellpadding="2" cellspacing="1" rules="GROUPS" frame="BOX"
+  bgcolor="#FFFFF0" bordercolor="#000000" title="PROC PRINT Output">
+      <thead> 
+      <tr> 
+        <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Obs</b></font></td>
+        <td align="left" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>LastName</b></font></td>
+        <td align="right" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>DateIn</b></font></td>
+        <td align="right" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>DateOut</b></font></td>
+        <td align="right" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>RoomRate</b></font></td>
+        <td align="right" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>EquipCost</b></font></td>
+        <td align="right" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Days</b></font></td>
+        <td align="right" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>RoomCharge</b></font></td>
+        <td align="right" bgcolor="#CCCCCC" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="3" color="#0033AA"><b>Total</b></font></td>
+      </tr>
+      </thead> <tbody> 
+      <tr> 
+        <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">1</font></b></td>
+        <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Akron</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> Apr 5, 1999</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Apr 9, 1999</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">175</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">298.45</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">5</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">875</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">1173.45</font></td>
+      </tr>
+      <tr> 
+        <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">2</font></b></td>
+        <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Brown</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Apr 12, 1999</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">May 1, 1999</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">125</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">326.78</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">20</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">2500</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">2826.78</font></td>
+      </tr>
+      <tr> 
+        <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">3</font></b></td>
+        <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Carnes</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Apr 27,1999</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> Apr 29, 1999</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">125</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">174.24</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">3</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">375</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">549.24</font></td>
+      </tr>
+      <tr> 
+        <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">4</font></b></td>
+        <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Denison</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"><nobr>Apr 11, 1999</nobr></font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"><nobr>Apr 12, 1999</nobr></font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">175</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">87.41</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">2</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">350</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">437.41</font></td>
+      </tr>
+      <tr> 
+        <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">5</font></b></td>
+        <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Fields</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> Apr 15, 1999</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Apr 22, 1999</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">175</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">378.96</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">8</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">1400</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">1778.96</font></td>
+      </tr>
+      <tr> 
+        <td align="center" bgcolor="#CCCCCC" bordercolor="#000000"><b><font face="Arial, Helvetica, Helv" size="3" color="#003399">6</font></b></td>
+        <td align="left" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Jamison</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000"> Apr 16, 1999</font></td>
+        <td align="right" bgcolor="#FFFF9C" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">Apr 23, 1999</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">125</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">346.28</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">8</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">1000</font></td>
+        <td align="right" bgcolor="#EFEFEF" bordercolor="#000000"><font face="Arial, Helvetica, Helv"
+              size="2" color="#000000">1346.28</font></td>
+      </tr>
+      </tbody> 
+    </table>
+    <br>
+    <br>
+  </center>
+  <center>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td>You can vary the results by changing the <em>w</em> value in the format.</td>
+      </tr>
+    </table>
+    <br>
+    <br>
+    <table cellpadding="3" cellspacing="0" border="1" bgcolor="#FFFFFF" title="FORMAT Statements and Results">
+      <tr bgcolor="#F7F7DE"> 
+        <td><nobr><b>&nbsp;FORMAT Statement</b></nobr></td>
+        <td><nobr><b>&nbsp;Result&nbsp;</b></nobr></td>
+      </tr>
+      <tr> 
+        <td width="57%"> <code><font color="#003399">format datein worddate3.;</font></code></td>
+        <td width="43%"> 
+          <p>&nbsp; Apr</p>
+        </td>
+      </tr>
+      <tr> 
+        <td width="57%"> <code><font color="#003399">format datein worddate5.;</font></code></td>
+        <td width="43%"> 
+          <p>&nbsp;April</p>
+        </td>
+      </tr>
+      <tr> 
+        <td width="57%"> <code><font color="#003399"> format datein worddate14.;</font></code></td>
+        <td width="43%"> 
+          <p><nobr>&nbsp;April 15, 1999</nobr></p>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <br>
+  </center>
+  <center>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td>Remember that you can permanently assign a format to variable values 
+          by including a FORMAT statement in the DATA step.</td>
+      </tr>
+    </table>
+    <br>
+    <table cellpadding="0" cellspacing="0" border="0" width="85%">
+      <tr> 
+        <td> 
+          <pre><font color="#003399">     </font><font color="#003399">options yearcutoff=1920;</font>
+     <font color="#003399">data work.aprbills;</font>
+<font color="#003399">        infile aprdata;</font>
+<font color="#003399">        input LastName $8. @10 DateIn mmddyy8. +1 DateOut</font>
+<font color="#003399">           mmddyy8. +1 RoomRate 6. @35 EquipCost 6.;</font>
+<font color="#003399">        Days=dateout-datein+1;</font>
+<font color="#003399">        RoomCharge=days*roomrate;</font>
+<font color="#003399">        Total=roomcharge+equipcost;</font>
+<strong><font color="#003399">        format datein dateout worddate12.;</font></strong>
+<font color="#003399">     run;
+    </font><font color="#003399"> proc print data=work.aprbills;</font>
+<font color="#003399">     run;</font></pre>
+        </td>
+      </tr>
+    </table>
+  </center>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

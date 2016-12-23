@@ -1,0 +1,114 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+<!--STEP 1------------------------------------------>
+solutionText='<ol><li>Write and submit the following PROC SQL inner join: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql outobs=20;<br>';
+solutionText+="title 'Flight and Crew Schedule';<br>";
+solutionText+='   select f.flightnumber as FltNum,<br>';
+solutionText+='          f.date,<br>';
+solutionText+='          firstname format=$10.,<br>';
+solutionText+='          lastname format=$10.,<br>';
+solutionText+='          f.empid,<br>';
+solutionText+='          departuretime as DepTime,<br>';
+solutionText+='          f.destination as Dest<br>';
+solutionText+='      from sasuser.staffmaster as s,<br>';
+solutionText+='           sasuser.flightschedule as f,<br>';
+solutionText+='           sasuser.marchflights as m<br>';
+solutionText+='      where s.empid=f.empid<br>';
+solutionText+='            and f.flightnumber=<br>';
+solutionText+='                m.flightnumber<br>';
+solutionText+='            and f.date=m.date<br>';
+solutionText+='      order by 1, 2, 4, 3;<br>';
+solutionText+='quit;<br></pre></font>';
+solutionText+='The expected output is linked from step 1 in this practice. The 20 rows displayed are all for the same flight: 132. If the OUTOBS= option were removed, the output would display the full flight schedule, listing several different flights.<br><br>';
+<!--STEP 2------------------------------------------>
+solutionText+='<li>Submit the following statement:<br>';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='title;</pre></font></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Use 
+            a PROC SQL join to combine the tables <a href="JavaScript: openOther('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a>, 
+            <a href="JavaScript: openOther2('../linklib/fltsched.htm')">Sasuser.Flightschedule</a>, 
+            and <a href="JavaScript: openOther3('../linklib/marchflt.htm')">Sasuser.Marchflights</a>.</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" --><table cellpadding="2" align="Center" width="85%">
+    <tr valign="top"> 
+      <td width="24"><img src="../navimages/tip.gif" alt="Tip: " width="20" height="20"></td>
+      <td>To view the expected PROC SQL output, click the related link in the 
+        text for each step.</td>
+  </tr>
+</table><!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Write a PROC SQL query that combines data from the three tables 
+            and displays a flight and employee schedule. The schedule (output) 
+            should list the following data: <br>
+            <br>
+            <ul>
+              <li><code>FlightNumber</code> (specify the alias <code>FltNum</code>) 
+              <li><code>Date</code> 
+              <li><code>FirstName</code> (specify a 10-character format) 
+              <li><code>LastName</code> (specify a 10-character format) 
+              <li><code>EmpID</code> 
+              <li><code>DepartureTime</code> (specify the alias <code>DepTime</code>) 
+              <li><code>Destination</code> (specify the alias <code>Dest</code>). 
+            </ul>
+            <br>
+            Sort the output by <code>FlightNumber</code>, <code>Date</code>, <code>LastName</code>, 
+            and <code>FirstName</code>. Specify the title <strong>Flight and Crew 
+            Schedule</strong>. Limit the output to 20 rows. Add a QUIT statement 
+            to the query. Submit the query and view the <a href="JavaScript: openOther('m71_37a.htm')">output</a>.<br>
+            <br>
+          <li>Submit a null TITLE statement to cancel titles.<!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

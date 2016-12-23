@@ -36,15 +36,14 @@ Feature: We can change the visibility of categories in the management interface.
 
     And I log in as "admin"
     And I go to the courses management page
-    And I start watching to see if a new page loads
     And I should see the "Course categories" management page
     And I should see "Cat 1" in the "#category-listing ul.ml" "css_element"
     And category in management listing should be visible "CAT1"
     And I toggle visibility of category "CAT1" in management listing
-    And a new page should not have loaded since I started watching
+    # AJAX updated.
     And category in management listing should be dimmed "CAT1"
     And I toggle visibility of category "CAT1" in management listing
-    And a new page should not have loaded since I started watching
+    # AJAX updated.
     And category in management listing should be visible "CAT1"
 
   # Tests hiding and then showing a subcategory.
@@ -92,21 +91,20 @@ Feature: We can change the visibility of categories in the management interface.
 
     And I log in as "admin"
     And I go to the courses management page
-    And I start watching to see if a new page loads
     And I should see the "Course categories" management page
     And I should see "Cat 1" in the "#category-listing ul.ml" "css_element"
     And I should not see "Cat 2" in the "#category-listing ul.ml" "css_element"
     And category in management listing should be visible "CAT1"
     And I click to expand category "CAT1" in the management interface
-    And a new page should not have loaded since I started watching
+    # AJAX loads sub category.
     And category in management listing should be visible "CAT1"
     And category in management listing should be visible "CAT2"
     And I toggle visibility of category "CAT2" in management listing
-    And a new page should not have loaded since I started watching
+    # AJAX hides the subcategory.
     And category in management listing should be visible "CAT1"
     And category in management listing should be dimmed "CAT2"
     And I toggle visibility of category "CAT2" in management listing
-    And a new page should not have loaded since I started watching
+    # AJAX reveals the subcategory.
     And category in management listing should be visible "CAT1"
     And category in management listing should be visible "CAT2"
 
@@ -201,11 +199,9 @@ Feature: We can change the visibility of categories in the management interface.
 
     And I log in as "admin"
     And I go to the courses management page
-    And I start watching to see if a new page loads
     And I should see the "Course categories" management page
     And I click on category "Cat 1" in the management interface
-    And a new page should have loaded since I started watching
-    And I start watching to see if a new page loads
+    # Redirect.
     And I should see the "Course categories and courses" management page
     And I should see "Cat 1" in the "#category-listing ul.ml" "css_element"
     And I should see "Cat 2" in the "#category-listing ul.ml" "css_element"
@@ -222,13 +218,13 @@ Feature: We can change the visibility of categories in the management interface.
     And course in management listing should be visible "C2"
     And course in management listing should be visible "C3"
     And I toggle visibility of course "C2" in management listing
-    And a new page should not have loaded since I started watching
+    # AJAX action - no redirect.
     And I should see "Cat 3" in the "#category-listing ul.ml" "css_element"
     And course in management listing should be visible "C1"
     And course in management listing should be dimmed "C2"
     And course in management listing should be visible "C3"
     And I toggle visibility of category "CAT3" in management listing
-    And a new page should not have loaded since I started watching
+    # AJAX action - no redirect.
     And category in management listing should be visible "CAT1"
     And category in management listing should be visible "CAT2"
     And category in management listing should be dimmed "CAT3"
@@ -237,7 +233,7 @@ Feature: We can change the visibility of categories in the management interface.
     And course in management listing should be dimmed "C2"
     And course in management listing should be visible "C3"
     And I toggle visibility of category "CAT1" in management listing
-    And a new page should not have loaded since I started watching
+    # AJAX action - no redirect.
     And category in management listing should be dimmed "CAT1"
     And category in management listing should be visible "CAT2"
     And category in management listing should be dimmed "CAT3"
@@ -246,7 +242,7 @@ Feature: We can change the visibility of categories in the management interface.
     And course in management listing should be dimmed "C2"
     And course in management listing should be dimmed "C3"
     And I toggle visibility of category "CAT1" in management listing
-    And a new page should not have loaded since I started watching
+    # AJAX action - no redirect.
     And category in management listing should be visible "CAT1"
     And category in management listing should be visible "CAT2"
     And category in management listing should be dimmed "CAT3"
@@ -268,50 +264,46 @@ Feature: We can change the visibility of categories in the management interface.
 
       And I log in as "admin"
       And I go to the courses management page
-      And I start watching to see if a new page loads
       And I should see the "Course categories" management page
       And I click on category "Cat 1" in the management interface
-      And a new page should have loaded since I started watching
-      And I start watching to see if a new page loads
+      # Redirect
       And I should see the "Course categories and courses" management page
       And I click on category "Cat 2" in the management interface
-      And a new page should have loaded since I started watching
-      And I start watching to see if a new page loads
+      # Redirect
       And I should see the "Course categories and courses" management page
       And I click on category "Cat 3" in the management interface
-      And a new page should have loaded since I started watching
-      And I start watching to see if a new page loads
+      # Redirect
       And I should see the "Course categories and courses" management page
       And category in management listing should be visible "CAT1"
       And category in management listing should be visible "CAT2"
       And category in management listing should be visible "CAT3"
       And course in management listing should be visible "C1"
       And I toggle visibility of category "CAT1" in management listing
-      And a new page should not have loaded since I started watching
+      # AJAX action - no redirect.
       And category in management listing should be dimmed "CAT1"
       And category in management listing should be dimmed "CAT2"
       And category in management listing should be dimmed "CAT3"
       And course in management listing should be dimmed "C1"
       And I toggle visibility of category "CAT1" in management listing
-      And a new page should not have loaded since I started watching
+      # AJAX action - no redirect.
       And category in management listing should be visible "CAT1"
       And category in management listing should be visible "CAT2"
       And category in management listing should be visible "CAT3"
       And course in management listing should be visible "C1"
       And I toggle visibility of course "C1" in management listing
-      And a new page should not have loaded since I started watching
+      # AJAX action - no redirect.
       And category in management listing should be visible "CAT1"
       And category in management listing should be visible "CAT2"
       And category in management listing should be visible "CAT3"
       And course in management listing should be dimmed "C1"
       And I toggle visibility of category "CAT1" in management listing
-      And a new page should not have loaded since I started watching
+      # AJAX action - no redirect.
       And category in management listing should be dimmed "CAT1"
       And category in management listing should be dimmed "CAT2"
       And category in management listing should be dimmed "CAT3"
       And course in management listing should be dimmed "C1"
       And I toggle visibility of category "CAT1" in management listing
-      And a new page should not have loaded since I started watching
+      # AJAX action - no redirect.
       And category in management listing should be visible "CAT1"
       And category in management listing should be visible "CAT2"
       And category in management listing should be visible "CAT3"

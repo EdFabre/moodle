@@ -1,0 +1,98 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Attaching 
+      Links to the Primary Chart<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p><strong>Checking Your Progress</strong> </p>
+      <p> Your program has now progressed far enough to generate an HTML page 
+        and chart. The chart's links lead to pages that do not yet exist, but 
+        you can check on the appearance of your work to this point. 
+      <p> Following the RUN statement that completes your PROC GCHART step, add 
+        a QUIT statement and close ODS HTML. 
+      <pre><font color="#003399">     quit;</font>
+<font color="#003399">     ods html close;</font>
+<font color="#003399">     ods listing;</font>
+</pre>
+      <p> In our example, these modifications result in the interim program below. 
+        The program creates an HTML page, <strong>totsales.html</strong>, which 
+        displays the GIF image that follows. (Because the secondary files haven't 
+        been created yet, the links from the chart bars below have been removed.) 
+    </td>
+  </tr>
+</table>
+<center>
+  <p> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>
+        <pre><font color="#003399">     data work.saletrnd;</font>
+<font color="#003399">        set finance.prdsal2;</font>
+<font color="#003399">        length PriDrill $ 40;</font>
+<font color="#003399">        if year=1995 then pridrill='HREF="sales95.html"';</font>
+<font color="#003399">        if year=1996 then pridrill='HREF="sales96.html"';</font>
+<font color="#003399">        if year=1997 then pridrill='HREF="sales97.html"';</font>
+<font color="#003399">        if year=1998 then pridrill='HREF="sales98.html"';</font>
+<font color="#003399">        format actual dollar10.0;</font>
+<font color="#003399">     run;</font>
+
+<font color="#003399">     ods listing close;</font>
+<font color="#003399">     ods html path='c:\data\sales\reports'</font>
+<font color="#003399">         body='totsales.html';</font>
+<font color="#003399">     goptions device=gif xpixels=480 ypixels=360;</font>
+<font color="#003399">     title 'Total Sales by Year';</font>
+<font color="#003399">     proc gchart data=work.saletrnd;</font>
+<font color="#003399">        vbar year / subgroup=prodtype discrete</font>
+<font color="#003399">             sumvar=actual html=pridrill;</font>
+<font color="#003399">     run;</font>
+<font color="#003399"></font>
+<font color="#003399">     <strong>quit;</strong></font>
+<font color="#003399">     <strong>ods html close;</strong></font>
+<font color="#003399">     <strong>ods listing;</strong></font>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <p> <img src="images/m9e2s1.gif" width=480 height=360 border="1" alt="Primary Bar Chart"><br>
+    <br>
+    <br>
+  
+</center>
+<p> 
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

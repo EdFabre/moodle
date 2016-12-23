@@ -1,0 +1,98 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Comparing 
+      DATA Step Match-Merges and PROC SQL Joins<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <P><strong>Many-to-many matches</strong> produce <strong>different 
+          results</strong> depending on whether the data sets are merged in a 
+          DATA step or joined in a PROC SQL step. Suppose the values of <code>X</code> 
+          are not unique in either <strong>Data1</strong> or in <strong>Data2</strong>. 
+        <P>When the data sets are merged in a DATA step, the observations are 
+          matched and combined sequentially. That is, an observation from the 
+          first input data set will be combined with the first observation from 
+          the second input data set that has a matching value for the BY variable. 
+          Although there might be additional observations in the second input 
+          data set that match the observation from the first input data set, these 
+          will not be included in the output data set. 
+        <P>In the example below, <strong>Data3</strong> will contain the same 
+          number of observations as the larger of the two input sets. In cases 
+          where there is a many-to-many match on the values of the BY variable, 
+          a DATA step match-merge probably does not produce the desired output 
+          because the output data set will not contain all of the possible combinations 
+          of matching observations. 
+        <P>When the data sets are joined in a PROC SQL step, each match appears 
+          as a separate observation in the output data set. In the example below, 
+          the first observation that has a value of <em>1</em> for <code>X</code> 
+          in <strong>Data1</strong> is matched and combined with each observation 
+          from <strong>Data2</strong> that has a value of <em>1</em> for <code>X</code>. 
+          Then, the second observation that has a value of <em>1</em> for <code>X</code> 
+          in <strong>Data1</strong> is matched and combined with each observation 
+          from <strong>Data2</strong> that has a value of <em>1</em> for <code>X</code>, 
+          and so on. </td>
+    </tr>
+  </table>
+  <P>
+    <img src="images/m56_20a.gif" width="319" height="384" alt="Combining many-to-many matches"> 
+
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <strong>Nonmatching data</strong> between the data sets produces <strong>different 
+        results</strong> depending on whether the data sets are merged in a DATA 
+        step or combined by using a PROC SQL inner join. 
+        <P>When data sets that contain nonmatching values for the BY variable 
+          are merged in a DATA step, the observations in each are processed sequentially. 
+          <strong>Data3</strong> will contain one observation for each unique 
+          value of <code>X</code> that appears in either <strong>Data1</strong> 
+          or <strong>Data2</strong>. For those values that have a nonmatching 
+          value for <code>X</code>, the observation in <strong>Data3</strong> 
+          will have a missing value for the variable that is taken from the other 
+          input data set. 
+        <P>When data sets that contain nonmatching values for the BY variable 
+          are joined in a PROC SQL step, the output data set will contain only 
+          those observations that have matching values for the BY variable. In 
+          the example below, <strong>Data3</strong> does not have any observations 
+          with missing values, because any observation from <strong>Data1</strong> 
+          or from <strong>Data2</strong> that contains a nonmatching value for 
+          <code>X</code> is not included in <strong>Data3</strong>. </td>
+    </tr>
+  </table>
+  <P>
+    <img src="images/m56_20b.gif" width="318" height="372" alt="Combining nonmatching data"> 
+
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

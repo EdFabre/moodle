@@ -1,0 +1,152 @@
+<html><!-- InstanceBegin template="../Templates/popup.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<link rel="stylesheet" href="../tut.css">
+
+<!-- InstanceBeginEditable name="title" --><TITLE>LOWCASE Function</TITLE><!-- InstanceEndEditable -->
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+<body bgcolor="#FFFFF0" topmargin="0" leftmargin="0" onLoad="self.focus()">
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td><br>
+      <strong><font size="3" color="#003399"><!-- InstanceBeginEditable name="popup_title" -->LOWCASE 
+      Function<!-- InstanceEndEditable --></font></strong> </td>
+</tr>
+</table><p> 
+<!-- InstanceBeginEditable name="contents" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> <p>The <STRONG>LOWCASE</STRONG> function converts all letters in a character 
+        expression to lowercase.</p></td>
+  </tr>
+</table>
+<br>
+<br>
+<TABLE width="85%" BORDER="1" CELLPADDING="10" CELLSPACING="0" bgcolor="#F7F7DE" title="General form, LOWCASE function" align="center">
+  <TR> 
+    <TD align="left"><STRONG>General form, LOWCASE function:</STRONG> <BLOCKQUOTE> 
+        <FONT color="#003399"><NOBR><STRONG>LOWCASE(</STRONG><EM>argument</EM><STRONG>)</STRONG></NOBR></FONT> 
+      </BLOCKQUOTE>
+      <P> where <FONT color="#003399"><EM>argument</EM></FONT> can be any SAS 
+        expression, such as a character variable or constant.</TD>
+  </TR>
+</table>
+<br>
+<br><br>
+<TABLE cellpadding="0" cellspacing="0" border="0" width="85%" align="center">
+  <TR> 
+    <TD>
+<h2>Example </h2>
+      <P>In the SAS data set <STRONG>Work.Temp</STRONG>, the values of the variable 
+        <CODE>Contact</CODE> appear in uppercase letters. </TD>
+  </TR>
+</TABLE>
+<br>
+<P align="center">SAS Data Set Work.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR valign="top" bgcolor="#F7F7DE"> 
+        <TD align="center" bgcolor="#F7F7DE"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Job</b></font></TD>
+        <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Contact</b></font></TD>
+        <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Dept</b></font></TD>
+        <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+      </TR>
+    </thead>
+    <tbody>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">word 
+          processing</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><STRONG>WORD 
+          PROCESSOR</STRONG></font></TD>
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">DP</font></TD>
+        <TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">26</font></TD>
+      </TR>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">filing, 
+          administrative duties</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><STRONG>ADMIN. 
+          ASST.</STRONG></font></TD>
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">PURH</font></TD>
+        <TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">57</font></TD>
+      </TR>
+      <TR valign="top"> 
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">organizational 
+          dev. specialist</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><STRONG>CONSULTANT</STRONG></font></TD>
+        <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">PERS</font></TD>
+        <TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">34</font></TD>
+      </TR>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="85%">
+    <TR> 
+      <TD> The assignment statement in the following DATA step uses the LOWCASE 
+        function to convert the values of the variable <CODE>Contact</CODE> to 
+        lowercase:<br>
+        <PRE>     <FONT color="#003399">data work.newtemp;</FONT>
+    <FONT color="#003399">    set work.temp;</FONT>
+    <FONT color="#003399">    Contact=lowcase(contact);</FONT>
+    <FONT color="#003399"> run;</FONT></PRE> 
+        
+          After this DATA step is executed, the new data set is created. Notice 
+          the converted values of the variable <CODE>Contact</CODE>. </TD>
+    </TR>
+  </TABLE>
+  <br>
+  <P align="center">SAS Data Set Work.Newtemp 
+  <center>
+    <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+      <thead>
+        <TR valign="top" bgcolor="#F7F7DE"> 
+          <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Job</b></font></TD>
+          <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Contact</b></font></TD>
+          <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Dept</b></font></TD>
+          <TD align="center"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><b>Site</b></font></TD>
+        </TR>
+      </thead>
+      <tbody>
+        <TR valign="top"> 
+          <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">word 
+            processing</font></TD>
+          <TD align="left" bgcolor="#CCCC99"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><STRONG>word 
+            processor</STRONG></font></TD>
+          <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">DP</font></TD>
+          <TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">26</font></TD>
+        </TR>
+        <TR valign="top"> 
+          <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">filing, 
+            administrative duties</font></TD>
+          <TD align="left" bgcolor="#CCCC99"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><STRONG>admin. 
+            asst.</STRONG></font></TD>
+          <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">PURH</font></TD>
+          <TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">57</font></TD>
+        </TR>
+        <TR valign="top"> 
+          <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">organizational 
+            dev. specialist</font></TD>
+          <TD align="left" bgcolor="#CCCC99"><font face="Verdana,Arial,Helvetica" size="2" color="#000000"><STRONG>consultant</STRONG></font></TD>
+          <TD align="left" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">PERS</font></TD>
+          <TD align="right" bgcolor="#FFFFFF"><font face="Verdana,Arial,Helvetica" size="2" color="#000000">34</font></TD>
+        </TR>
+      </tbody>
+    </table>
+  </center>
+</center><P>
+<!-- InstanceEndEditable -->
+<center><table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">   
+  <tr valign="top"> 
+    <td> 
+      <p><br><center>
+        <script>writecloseButton();</script></center>
+</td></tr></table>
+    
+<script>writeNav_popup_bottom();</script></center>
+    </body>
+<!-- InstanceEnd --></html>

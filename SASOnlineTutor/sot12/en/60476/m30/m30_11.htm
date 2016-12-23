@@ -1,0 +1,194 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Converting 
+      Data with Functions<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+      <td> 
+        <p><strong>Explicit Character-to-Numeric Conversion</strong> </p>
+      <p> In order to avoid the problems we have seen, use the <strong>INPUT</strong> 
+        function to convert character data values to numeric values. To learn 
+        how to use this function, let's examine one of the data set modifications 
+        needed for <strong>Hrd.Temp</strong>. As mentioned earlier, you need to 
+        calculate employee salaries by multiplying the character variable <code>PayRate</code> 
+        by the numeric variable <code>Hours</code>. 
+    </td>
+  </tr>
+</table>
+<p align="center"> <br>
+  SAS Data Set Hrd.Temp 
+<center>
+  <TABLE align="center" bgcolor="#CCCCCC" border="1" cellpadding="3" cellspacing="0" frame="box" title="SAS Data Set">
+    <thead>
+      <TR bgcolor="#F7F7DE"> 
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>City</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>State</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Zip</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Phone</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>StartDate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>EndDate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>PayRate</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Days</b></font></TD>
+        <TD align="center"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><b>Hours</b></font></TD>
+</TR>
+</thead>
+<tbody>
+<TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6224549</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14567</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14621</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>10</STRONG></font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">11</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>88</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CARY</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27513</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6223251</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14524</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14565</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>8</STRONG></font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">25</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>200</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">CHAPEL HILL</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27514</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">9974749</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14570</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14608</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>40</STRONG></font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">26</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>208</STRONG></font></TD>
+</TR><TR>
+<TD nowrap align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">RALEIGH</font></TD>
+<TD align="left" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">NC</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">27612</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">6970450</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14516</font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">14527</font></TD>
+        <TD align="left" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>15</STRONG></font></TD>
+<TD align="right" bgcolor="#FFFFFF"><font face="Verdana, Arial, Helvetica" size="2" color="#000000">10</font></TD>
+        <TD align="right" bgcolor="#CCCC99"><font face="Verdana, Arial, Helvetica" size="2" color="#000000"><STRONG>80</STRONG></font></TD>
+</TR>
+</tbody>
+</table></center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>To calculate salaries, you write the following DATA step. It creates 
+        a new data set, <strong>Hrd.Newtemp</strong>, to contain the original 
+        data plus the new variable <code>Salary</code>. 
+        <pre><font color="#003399">     data hrd.newtemp;</font>
+        <font color="#003399">set hrd.temp;</font>
+        <font color="#003399">Salary=payrate*hours;</font>
+     <font color="#003399">run;</font>
+</pre>
+        <p> However, you know that submitting this DATA step would cause an automatic 
+          character-<wbr>to-<wbr>numeric conversion, because the character variable 
+          <code>PayRate</code> is used in a numeric context. You can explicitly 
+          convert the character values of <code>PayRate</code> to numeric values 
+          by using the INPUT function. 
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table width="85%" border="1" cellpadding="10" cellspacing="0" bgcolor="#F7F7DE" title="General form, INPUT function">
+    <tr> 
+      <td align="left"><strong>General form, INPUT function:</strong> <blockquote> 
+          <font color="#003399"><nobr><strong>INPUT(</strong><em>source,informat</em><strong>)</strong></nobr></font> 
+        </blockquote>
+        <p> where <font color="#003399"><em></em></font> 
+        <ul>
+          <li><font color="#003399"><em>source</em></font> indicates the character 
+            variable, constant, or expression to be converted to a numeric value 
+          <li>a numeric <font color="#003399"><em>informat</em></font> must also 
+            be specified, as in this example: 
+            <pre><font color="#003399">input(payrate,2.)</font></pre>
+        </ul></td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td>When choosing the informat, be sure to select a numeric informat that 
+        can read the form of the values.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <TABLE align="center" bgcolor="#FFFFFF" border="1" cellpadding="2" cellspacing="0" title="Character Values and Informats">
+    <TR bgcolor="#F7F7DE" valign="top"> 
+      <TD width="50%" nowrap><div align="center"><strong>Character Value</strong></div></TD>
+      <TD width="50%" nowrap><div align="center"><strong>Informat</strong></div></TD>
+    </TR>
+    <TR valign="top"> 
+      <TD align="right"><TT>2115233</TT></TD>
+      <TD align="right"><TT>7.</TT></TD>
+    </TR>
+    <TR valign="top"> 
+      <TD align="right"><TT>2,115,233</TT></TD>
+      <TD align="right"><TT>COMMA9.</TT></TD>
+    </TR>
+  </table></center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td><strong>Example</strong> 
+        <p> Here's an example of the INPUT function: 
+        <pre><font color="#003399">     Test=input(saletest,comma9.);</font>
+</pre>
+        <p> The function uses the numeric informat COMMA9. to read the values 
+          of the character variable <code>SaleTest</code>. Then the resulting 
+          numeric values are stored in the variable <code>Test</code>. 
+        <p> 
+      </td>
+    </tr>
+  </table>
+  </center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

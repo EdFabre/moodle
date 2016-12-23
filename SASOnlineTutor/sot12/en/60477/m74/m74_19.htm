@@ -1,0 +1,127 @@
+<html><!-- InstanceBegin template="/Templates/practice.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+ checkPracticeCookie();
+ checkVersion();
+ 
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+solutionTitle='<strong>Solution to guided practice:</strong><p>';
+
+<!--STEP 1-->
+solutionText='<ol><li>Write and submit the following step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='options msglevel=i;<br>';
+solutionText+='proc sql;<br>';
+solutionText+='   select *<br>';
+solutionText+='      from work.staffmaster<br>';
+solutionText+="      where lastname contains 'AR';<br>";
+solutionText+='quit;</pre></font>';
+solutionText+='The SAS log displays the following message:';
+solutionText+='<pre>INFO: Index LastName selected for WHERE clause <br>'; 
+solutionText+='optimization.</pre>';
+solutionText+='Note: In SAS Version 8, this informational message is not displayed.<br><br>';
+<!--STEP 2-->
+solutionText+='<li>Write and submit the following step: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='proc sql;<br>';
+solutionText+='   select *<br>';
+solutionText+='      from work.staffmaster (idxwhere=no)<br>';
+solutionText+="      where lastname contains 'AR';<br>";
+solutionText+='quit;</pre></font>';
+solutionText+='The SAS log displays the following message:<br>';
+solutionText+='<pre>INFO: Data set option (IDXWHERE=NO) forced a <br>'; 
+solutionText+='sequential pass of the data rather than use of <br>'; 
+solutionText+='an index for where-clause processing.</pre>';
+<!--STEP 3-->
+solutionText+='<li>Write and submit the following statement: ';
+solutionText+='<font color="#003399"><pre>';
+solutionText+='options msglevel=n;</pre></font></ol>';
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0" onLoad="sizePractice()" onUnload="resizePage()">
+<script>writepracticeTopNav1();</script>
+		  
+		  <!-- InstanceBeginEditable name="task_description" --><strong>Monitor 
+            and control the use of the index LastName on the temporary table Work.Staffmaster 
+            (which is a copy of <a href="JavaScript: openOther('../linklib/stafmstr.htm')">Sasuser.Staffmaster</a>).</strong><!-- InstanceEndEditable -->
+			
+<script>writepracticeTopNav2();</script>
+
+<center>
+ <p>
+<!-- InstanceBeginEditable name="optionalNote" -->  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="41"><img src="../navimages/alert.gif" width="37" height="32" alt="Caution"></td>
+      <td valign="top">You must complete the <a href="m74_12.htm" onClick="suggestBack()">previous practice</a> 
+        before you can do this practice.</td>
+    </tr>
+  </table>
+
+<!-- InstanceEndEditable -->
+<p> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td> 
+      <ol>
+        <!-- InstanceBeginEditable name="task_steps" --> 
+          <li>Paste the following PROC SQL query into your code editing window. 
+            Add a statement that contains the SAS option that will display informational 
+            notes about index usage in the SAS log. Submit the program and view 
+            the SAS log to see whether the index <strong>LastName</strong> was 
+            used to process your query.<br>
+            <br>
+            <pre><font color="#003399">proc sql;
+   select *
+      from work.staffmaster
+      where lastname contains 'AR';
+quit;</font>
+</pre>
+          <li>Modify the previous query as follows:<br>
+            <br>
+            <ul>
+              <li>Remove the statement that contains the SAS option that displays 
+                informational messages in the SAS log.<br>
+                <br>
+              <li>Add a SAS data set option to force PROC SQL to process the query 
+                without using the index.<br>
+                <br>
+            </ul>
+            Submit this modified query and view the SAS log to verify that SAS 
+            did <strong>not</strong> use the index in processing.<br>
+            <br>
+          <li>Submit a statement that resets the SAS option MSGLEVEL= to the default 
+            setting. (By default, the SAS log displays notes, warnings, and error 
+            messages only.)<br>
+          <!-- InstanceEndEditable -->
+      </ol>
+      
+       </td>
+  </tr>
+</table>
+</center>
+<center>
+<script>writepracticeSolutionLink();</script>
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

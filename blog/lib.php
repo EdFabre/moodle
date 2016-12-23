@@ -181,11 +181,9 @@ function blog_sync_external_entries($externalblog) {
             $filtertags = array_map('trim', $filtertags);
             $filtertags = array_map('strtolower', $filtertags);
 
-            if (!empty($categories)) {
-                foreach ($categories as $category) {
-                    if (in_array(trim(strtolower($category->term)), $filtertags)) {
-                        $containsfiltertag = true;
-                    }
+            foreach ($categories as $category) {
+                if (in_array(trim(strtolower($category->term)), $filtertags)) {
+                    $containsfiltertag = true;
                 }
             }
 

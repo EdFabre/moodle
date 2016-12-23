@@ -1,0 +1,106 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Using 
+      In-Line Views<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td> <h2> <a name="multiple"></a>Referencing Multiple Tables in an In-Line 
+          View</h2>
+        <p> You can specify more than one table in the FROM clause of an in-line 
+          view, as shown in the following example:</p>
+        </td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre>     <font color="#003399">from (select marchflights.flightnumber, 
+                  marchflights.date,
+                  boarded/passengercapacity*100 
+                  as pctfull
+                  format=4.1 label=&#8217;Percent Full&#8217;,
+                  delay
+              from <strong>sasuser.marchflights</strong>, <strong>
+                   sasuser.flightdelays</strong>
+              where marchflights.flightnumber=
+                    flightdelays.flightnumber
+                    and marchflights.date=
+                    flightdelays.date)</font></pre></td>
+    </tr>
+  </table>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td>In other words, you can base an in-line view on a join.</td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top">Remember that each table that is referenced in an in-line 
+        view counts toward the 32-table limit for an inner join.</td>
+    </tr>
+  </table>
+  <p>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><h2><a name="alias"></a>Assigning an Alias to an In-Line View</h2>
+        <p> You can assign an alias to an in-line view just as you can to a table. 
+          In the following example, the alias <strong><code>f</code></strong> 
+          has been added in the first FROM clause to reference the table <strong>Sasuser.Flightschedule</strong> 
+          and the alias <code><strong>m</strong></code> has been added in the 
+          second FROM clause to reference the in-line view. After the main FROM 
+          clause, a WHERE clause that uses both of the aliases has been added.</p></td>
+    </tr>
+  </table>
+  <br>
+  <table width="85%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr> 
+      <td><pre>     <font color="#003399">from sasuser.flightschedule as f,
+          (select flightnumber, date
+                  boarded/passengercapacity*100 
+                  as pctfull
+                  format=4.1 label=&#8217;Percent Full&#8217;
+              from sasuser.marchflights) <strong>as m</strong>
+     where m.flightnumber=f.flightnumber
+           and m.date=f.date</font></pre></td>
+    </tr>
+  </table>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

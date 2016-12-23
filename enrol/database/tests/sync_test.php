@@ -54,9 +54,14 @@ class enrol_database_testcase extends advanced_testcase {
             set_config('dbhost', $CFG->dbhost.':'.$CFG->dboptions['dbport'], 'enrol_database');
         }
 
-        switch ($DB->get_dbfamily()) {
+        switch (get_class($DB)) {
+            case 'mssql_native_moodle_database':
+                set_config('dbtype', 'mssql_n', 'enrol_database');
+                set_config('dbsybasequoting', '1', 'enrol_database');
+                break;
 
-            case 'mysql':
+            case 'mariadb_native_moodle_database':
+            case 'mysqli_native_moodle_database':
                 set_config('dbtype', 'mysqli', 'enrol_database');
                 set_config('dbsetupsql', "SET NAMES 'UTF-8'", 'enrol_database');
                 set_config('dbsybasequoting', '0', 'enrol_database');
@@ -69,12 +74,12 @@ class enrol_database_testcase extends advanced_testcase {
                 }
                 break;
 
-            case 'oracle':
+            case 'oci_native_moodle_database':
                 set_config('dbtype', 'oci8po', 'enrol_database');
                 set_config('dbsybasequoting', '1', 'enrol_database');
                 break;
 
-            case 'postgres':
+            case 'pgsql_native_moodle_database':
                 set_config('dbtype', 'postgres7', 'enrol_database');
                 $setupsql = "SET NAMES 'UTF-8'";
                 if (!empty($CFG->dboptions['dbschema'])) {
@@ -95,12 +100,8 @@ class enrol_database_testcase extends advanced_testcase {
                 }
                 break;
 
-            case 'mssql':
-                if (get_class($DB) == 'mssql_native_moodle_database') {
-                    set_config('dbtype', 'mssql_n', 'enrol_database');
-                } else {
-                    set_config('dbtype', 'mssqlnative', 'enrol_database');
-                }
+            case 'sqlsrv_native_moodle_database':
+                set_config('dbtype', 'mssqlnative', 'enrol_database');
                 set_config('dbsybasequoting', '1', 'enrol_database');
                 break;
 

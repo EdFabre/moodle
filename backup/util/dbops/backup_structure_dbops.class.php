@@ -103,18 +103,7 @@ abstract class backup_structure_dbops extends backup_dbops {
         }
     }
 
-    /**
-     * Adds backup id database record for all files in the given file area.
-     *
-     * @param string $backupid Backup ID
-     * @param int $contextid Context id
-     * @param string $component Component
-     * @param string $filearea File area
-     * @param int $itemid Item id
-     * @param \core\progress\base $progress
-     */
-    public static function annotate_files($backupid, $contextid, $component, $filearea, $itemid,
-            \core\progress\base $progress = null) {
+    public static function annotate_files($backupid, $contextid, $component, $filearea, $itemid) {
         global $DB;
         $sql = 'SELECT id
                   FROM {files}
@@ -131,18 +120,9 @@ abstract class backup_structure_dbops extends backup_dbops {
             $sql .= ' AND itemid = ?';
             $params[] = $itemid;
         }
-        if ($progress) {
-            $progress->start_progress('');
-        }
         $rs = $DB->get_recordset_sql($sql, $params);
         foreach ($rs as $record) {
-            if ($progress) {
-                $progress->progress();
-            }
             self::insert_backup_ids_record($backupid, 'file', $record->id);
-        }
-        if ($progress) {
-            $progress->end_progress();
         }
         $rs->close();
     }

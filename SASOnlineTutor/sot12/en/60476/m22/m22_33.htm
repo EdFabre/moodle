@@ -1,0 +1,118 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Debugging 
+      a DATA Step<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>The second line in each note (excluding the RULE line) displays the raw 
+        data record. Notice that the second field displays the values for <code>IDnum</code>, 
+        which are obviously character values.</p>
+    </td>
+  </tr>
+</table>
+<p align="center"> SAS Log 
+<center>
+  <table bgcolor="#F7F7DE" border="1" cellspacing="0" cellpadding="10" title="SAS Log">
+    <tr> 
+      <td> 
+        <pre>NOTE: Invalid data for IDnum in line 7 15-19.
+RULE: ----+----1----+----2----+----3----+----4--
+<strong>07    Crystal Vase  AQ672 27 0</strong>
+Item=Crystal Vase IDnum=. InStock=27 BackOrd=0
+Total=27 _ERROR_=1 _N_=7
+NOTE: Invalid data for IDnum in line 8 15-19.
+<strong>08    Picnic Basket LS930 21 0</strong>
+Item=Picnic Basket IDnum=. InStock=21 BackOrd=0
+Total=21 _ERROR_=1 _N_=8
+NOTE: Invalid data for IDnum in line 9 15-19.
+<strong>09    Brass Clock   AN910 2 10</strong>
+Item=Brass Clock IDnum=. InStock=2 BackOrd=10
+Total=12 _ERROR_=1 _N_=9
+
+NOTE: 9 records were read from the infile INVENT.
+NOTE: The data set PERM.UPDATE has 9 observations
+      and 5 variables.
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+<center>
+  <table cellpadding="0" cellspacing="0" border="0" width="85%">
+    <tr> 
+      <td>The third and fourth lines display the values that are stored in the 
+        program data vector. Here, the values for <code>IDnum</code> are missing, 
+        although the other values have been correctly assigned to their respective 
+        variables. Notice that _ERROR_ has a value of <em>1</em>, indicating that 
+        an error has occurred.</td>
+    </tr>
+  </table>
+</center>
+<p align="center"> <br>
+  SAS Log 
+<center>
+  <table bgcolor="#F7F7DE" border="1" cellspacing="0" cellpadding="10" title="SAS Log">
+    <tr> 
+      <td> 
+        <pre>NOTE: Invalid data for IDnum in line 7 15-19.
+RULE: ----+----1----+----2----+----3----+----4--
+07    Crystal Vase  AQ672 27 0
+<strong>Item=Crystal Vase IDnum=. InStock=27 BackOrd=0</strong>
+<strong>Total=27 _ERROR_=1 _N_=7</strong>
+NOTE: Invalid data for IDnum in line 8 15-19.
+08    Picnic Basket LS930 21 0
+<strong>Item=Picnic Basket IDnum=. InStock=21 BackOrd=0</strong>
+<strong>Total=21 _ERROR_=1 _N_=8</strong>
+NOTE: Invalid data for IDnum in line 9 15-19.
+09    Brass Clock   AN910 2 10
+<strong>Item=Brass Clock IDnum=. InStock=2 BackOrd=10</strong>
+<strong>Total=12 _ERROR_=1 _N_=9</strong>
+
+NOTE: 9 records were read from the infile INVENT.
+NOTE: The data set PERM.UPDATE has 9 observations
+      and 5 variables.
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

@@ -1,0 +1,99 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Combining 
+      Macro Variable References with Text<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+  <td>
+<p>We can extend this example and further modify the previous program to include 
+          a macro variable that is used to define the libref: 
+        <PRE><font color="#003399">    <B>%let lib=sasuser</B>;
+    %let graphics=g;
+    %let year=02;
+    %let month=jan;
+    %let var=sale;
+    libname &amp;lib 'SAS-data-library';
+    proc &amp;graphics.chart data=<B>&amp;lib</B>.y&amp;year&amp;month;
+       hbar week / sumvar=&amp;var;
+    run;
+    proc &amp;graphics.plot data=<B>&amp;lib</B>.y&amp;year&amp;month;
+       plot &amp;var*day;
+    run;
+</font></PRE>
+Notice, however, that this code does not perform the desired substitutions.
+<P><BR><center>
+Code After Substitution
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Code After Substitution">
+<tr bgcolor="#F7F7DE"><td>
+<PRE><font color="#003399">
+libname <B>sasuser</B> 'SAS-data-library';
+proc gchart data=<B>sasuser</B>y02jan;
+   hbar week / sumvar=sale;
+run;
+proc gplot data=<B>sasuser</B>y02jan;
+   plot sale*day;
+run;
+</font></PRE></td></tr>
+</table></center>
+<P><BR>
+          The period after <code>&amp;lib</code> is interpreted as a delimiter. 
+          You need to use a second period after the delimiter period to supply 
+          the necessary token: 
+        <PRE><font color="#003399">    <B>%let lib=sasuser</B>;
+    ...
+    libname <B>&amp;lib</B> 'SAS-data-library';
+    proc &amp;graphics.chart data=<strong>&amp;lib..</strong>y&amp;year&amp;month;
+    ...
+    proc &amp;graphics.plot data=<strong>&amp;lib..</strong>y&amp;year&amp;month;
+</font></PRE>
+The first period is treated as a delimiter, and the second period is treated as text. 
+<P><BR><center>
+Code After Substitution
+<table border="1" cellspacing="0" cellpadding="2" bgcolor="#FFFFFF" title="Code After Substitution">
+<tr bgcolor="#F7F7DE"><td>
+<PRE><font color="#003399">
+proc gchart data=sasuser.y02jan;
+...
+proc gplot data=sasuser.y02jan;
+</font></PRE></td></tr>
+</table></center>
+
+    </td>
+  </tr>
+</table><BR><BR>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

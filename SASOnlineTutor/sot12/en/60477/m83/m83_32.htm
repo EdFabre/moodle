@@ -1,0 +1,169 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Reading 
+      and Writing Only Essential Data<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td><p>In addition to subsetting observations, you can subset variables 
+          by using statements or options that efficiently read and write only 
+          essential data.</p>
+        <p>Before viewing two comparative examples that illustrate how to best 
+          limit which variables are read and processed, let's review how these 
+          useful statements and options work.</p>
+       <p><br>
+        <h2>Subsetting Variables with the KEEP= and DROP= Statements and Options</h2>
+                
+        <p>To subset variables, you can use</p>
+        <ul>
+          <li>the DROP and KEEP statements</li>
+          <li>the DROP= and KEEP= data set options.</li>
+        </ul>
+		<p><br><center>
+            <img src="images/m83_32g1.gif" width="418" height="199" alt="Illustration of dropping and keeping variables">
+</center><p><br>
+        <table border="0" cellpadding="2" cellspacing="0">
+          <tr> 
+            <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+            <td valign="top">You cannot use the DROP and KEEP statements and the 
+              DROP= and KEEP= output data set options in the same step.</td>
+          </tr>
+        </table>
+        <p>Use of the KEEP= data set option and the DROP= data set option can 
+          affect resource usage, depending on whether they are used in a SET or 
+          MERGE statement or in a DATA statement. </p>
+        <p>The following figure shows how options in these statements process 
+          data.</p>
+        <p><br><center>
+            <img src="images/m83_32g2.gif" width="510" height="304" alt="Illustration of how options and statements work"> 
+          </center>
+        <p><br>
+          When used in the SET or MERGE statement, the KEEP= and DROP= data set 
+          options affect which variables are read into the program data vector. 
+          Reading only the variables that need to be processed in the DATA step 
+          can improve efficiency.</p>
+        <p> When used in the DATA statement, these same options put drop flags 
+          on variables to be excluded and affect which variables are written to 
+          the output data set. </p>
+        <p>The DROP and KEEP statements work just like the KEEP= or DROP= options 
+          in the DATA statement.</p>
+        <p>The following table describes differences in how the KEEP statement 
+          and the KEEP= data set option write variables to SAS data sets.</p>
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Differences in how statements and options write variables">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">KEEP Statement</font></th>
+            <th><font size="-1">KEEP= Output Data Set Option</font></th>
+            <th><font size="-1">KEEP= Input Data Set Option</font></th>
+          </tr>
+          <tr valign="top"> 
+            <td>Causes a DATA step to write only the variables listed in the KEEP 
+              statement to one or more data sets.</td>
+            <td>Causes a DATA step to write only the variables listed in the KEEP= 
+              variable list to the output data set.</td>
+            <td>In the absence of a KEEP=/DROP= output data set option, causes 
+              the DATA step to write only the variables listed in the KEEP= variable 
+              list.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>In the absence of a KEEP=/DROP= input data set option, enables 
+              the DATA step to process all of the variables.</td>
+            <td>In the absense of a KEEP=/DROP= input data set option, enables 
+              the DATA step to process all of the variables.</td>
+            <td>Enables processing of only the variables listed in the KEEP= variable 
+              list.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>Applies to all data sets that are created within the same DATA 
+              step.</td>
+            <td>Can write different variables to different data sets.</td>
+            <td>In the absence of a KEEP=/DROP= output data set option or KEEP/DROP 
+              statement, enables processing of only the variables listed in the 
+              KEEP= variable list.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>Available only in the DATA step.</td>
+            <td>Available in the DATA step or in a PROC step.</td>
+            <td>Available in the DATA step or in a PROC step.</td>
+          </tr>
+        </table>
+        <p><br>
+          The following table describes differences in how the DROP statement 
+          and the DROP= data set option write variables to SAS data sets. 
+        <p><br>
+        <table border="1" align="center" cellpadding="2" cellspacing="0" bgcolor="#FFFFFF" title="Differences in how statements and options write variables">
+          <tr valign="top" bgcolor="#F7F7DE"> 
+            <th><font size="-1">DROP Statement</font></th>
+            <th><font size="-1">DROP= Output Data Set Option</font></th>
+            <th><font size="-1">DROP= Input Data Set Option</th>
+          </tr>
+          <tr valign="top"> 
+            <td>Causes a DATA step to write only the variables not listed in the 
+              DROP statement to one or more data sets.</td>
+            <td>Causes a DATA step to write only the variables not listed in the 
+              DROP= variable list to the output data set.</td>
+            <td>In the absence of a KEEP=/DROP= output data set option, enables 
+              processing of only the variables not listed in the DROP= variable 
+              list. </td>
+          </tr>
+          <tr valign="top"> 
+            <td>In the absence of a KEEP=/DROP= input data set option, enables 
+              the DATA step to process all of the variables.</td>
+            <td>In the absence of a KEEP=/DROP= input data set option, enables 
+              the DATA step to process all of the variables.</td>
+            <td>Enables processing of only the variables not listed in the DROP= 
+              variable list.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>Applies to all data sets created within the same DATA step.</td>
+            <td>Can write different variables to different data sets.</td>
+            <td>In the absence of a KEEP=/DROP= output data set option or KEEP/DROP 
+              statement, enables processing of only the variables not listed in 
+              the DROP= variable list.</td>
+          </tr>
+          <tr valign="top"> 
+            <td>Available only in the DATA step.</td>
+            <td>Available in the DATA step or in a PROC step.</td>
+            <td>Available in the DATA step or in a PROC step.</td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+  <p><br>
+
+  
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

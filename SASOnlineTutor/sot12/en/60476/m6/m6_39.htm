@@ -1,0 +1,127 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" --> 
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Additional 
+      Features<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><font color="#003399" size="3" face="Arial, Helvetica, sans-serif">(continued)</font><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+<table width="85%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr valign="top"> 
+    <td>
+<p>The <strong>CAXIS= </strong>and<strong> CTEXT= </strong>options enable 
+        you to specify color for axes and text in plots.<br>
+      </p>
+      <pre><font color="#003399">     symbol1 color=green interpol=spline value=none;</font>
+<font color="#003399">     symbol2 color=blue interpol=spline value=none;</font>
+<font color="#003399">     proc gplot data=air.airqual;</font>
+<font color="#003399">        plot avgtsp*month=state<strong> </strong>/ vminor=3</font>
+<font color="#003399">             hminor=0 <strong>ctext=brown caxis=red</strong>;</font>
+<font color="#003399">        where state in ("AL" , "NY");</font>
+<font color="#003399">     run;</font></pre>
+    </td>
+  </tr>
+</table>
+<center>
+</center>
+<p> 
+<p align=Center> <img src="images/m6j2s1.gif" width="400" height="305" alt="Display plot showing axes and text color."> 
+<p align=Center> 
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left">You can use the <strong>AREAS=</strong> option to fill 
+        the areas below plotted lines, <strong>PATTERN</strong> statements to 
+        define the fill colors, and <strong>NOTE</strong> statements to identify 
+        the data. In this example, the legend has been suppressed with a <strong>NOLEGEND</strong> 
+        option because the NOTE statement identifies the data. 
+        <pre><font color="#003399">     proc gplot data=air.airqual;</font>
+<font color="#003399">        plot avgtsp*month=state<strong> </strong>/</font>
+<font color="#003399">             vminor=3 hminor=0 <strong>areas=2 nolegend;</strong></font>
+<font color="#003399">        <strong>pattern1 color=red;</strong></font>
+<font color="#003399">        <strong>pattern2 color=blue;</strong></font>
+<font color="#003399">        <strong>note move=(10, 19) color=red 'Alabama';</strong></font>
+<font color="#003399">        <strong>note move=(10, 20) color=blue 'California';</strong></font>
+<font color="#003399">        symbol1 c=red i=spline v=none;</font>
+<font color="#003399">        symbol2 c=blue i=spline v=none;</font>
+<font color="#003399">        where state in ("CA" , "AL");</font>
+<font color="#003399">     run;</font>
+</pre>
+      </td>
+    </tr>
+  </table>
+</center>
+<p align=Center> <img src="images/m6j2s2.gif" width="395" height="305" alt="Display plot showing AREAS= option"> 
+ 
+  <a name="activex"></a><P><BR>
+<table cellpadding=0 cellspacing=0 border=0 width="85%" align="center">
+  <tr> 
+    <td align="left">
+	You can use the <strong>SAS/GRAPH control for ActiveX</strong> 
+      to embed interactive &quot;live&quot; plots and other graphs in Web pages 
+      and in OLE documents. When the graph is displayed, you can point and click 
+      to rotate, change, or further investigate the graph. 
+      <p></p>
+      <pre><font color="#003399">     <strong>ods html body='plot.htm';</strong><br>     goptions reset=global gunit=pct border cback=white<br>              colors=(blue red) ctext=black<br>              ftitle=swissb ftext=swiss htitle=6 htext=4<br>              <strong>device=activex</strong>; <br>     proc gplot data=stocks;<br>        plot dowjoneslow*year <br>             dowjoneshigh*year / overlay<br>                                 haxis=axis1<br>                                 hminor=4<br>                                 vaxis=axis2<br>                                 vminor=1<br>                                 caxis=black<br>                                 areas=2;<br>        symbol1 interpol=join;<br>        axis1 order=(1955 to 1995 by 5) offset=(2,2)<br>              label=none<br>              major=(height=2)<br>              minor=(height=1);<br>        axis2 order=(0 to 6000 by 1000) offset=(0,0)<br>              label=none<br>              major=(height=2)<br>              minor=(height=1);<br>     run;<br>     quit;<br>     <strong>ods html close;</strong></font></pre>
+      For more information about using the SAS/GRAPH control for ActiveX, see 
+      the lesson <!--lesson reference--><strong><script>document.write(m8title);</script></strong>.</td>
+  </tr>
+</table>
+<br>
+<br>
+<p align=Center><img src="images/m6_39.gif" width="480" height="360" alt="Display plot"> 
+<p> <br>
+<center>
+  <table cellpadding=0 cellspacing=0 border=0 width="85%">
+    <tr> 
+      <td align="left"><strong>Other SAS/GRAPH Features</strong> 
+        <p> In addition to the capabilities of the GPLOT procedure, SAS/GRAPH 
+          software enables you to 
+        <ul>
+          <li> create HTML output using the SAS Output Delivery System (ODS) 
+          <li> create custom fonts and custom legends 
+          <li> display data or geographic maps using GMAP 
+          <li> manage catalogs of graphics output using PROC GREPLAY 
+          <li> use PROC GREPLAY to display two or more graphs in one output file 
+          <li> customize graphics output using the ANNOTATE facility 
+          <li> create three-dimensional surface plots using PROC G3D 
+        </ul>
+        <p> and much more. 
+      </td>
+    </tr>
+  </table>
+  <br>
+  <br>
+</center>
+<!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>

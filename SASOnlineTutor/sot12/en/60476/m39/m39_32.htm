@@ -1,0 +1,166 @@
+<html><!-- InstanceBegin template="/Templates/informationObject.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<SCRIPT LANGUAGE="JavaScript" SRC="../tut.js"></SCRIPT>
+<script language="JavaScript" src="../nav.js"></script>
+<SCRIPT LANGUAGE="JavaScript">
+ setPageTitle();
+ setCookie();
+  
+// Drop down menu link- © Dynamic Drive (www.dynamicdrive.com)
+// For full source code and 100's more DHTML scripts, visit http://www.dynamicdrive.com
+// Credit MUST stay intact for use -->
+
+</SCRIPT>
+
+<!-- InstanceBeginEditable name="extrascript" -->
+<SCRIPT LANGUAGE="JavaScript">
+</SCRIPT>
+<!-- InstanceEndEditable -->
+
+<link rel="stylesheet" href="../tut.css">
+
+
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+</HEAD>
+
+<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" rightmargin="0" bgcolor="#FFFFF0">
+<script>writeinformationObjectTopNav1();</script>
+	  
+	  <font color="#003399" size="3" face="Arial, Helvetica, sans-serif"><strong><!-- InstanceBeginEditable name="TopicTitle" -->Grouping 
+      Statements Using DO Groups<!-- InstanceEndEditable --></strong></font> <!-- InstanceBeginEditable name="continued" --><!-- InstanceEndEditable -->
+	  
+<script>writeinformationObjectTopNav2();</script>
+<br>
+<center>
+  <!-- InstanceBeginEditable name="content" --> 
+  <table width="85%" border="0" cellpadding="0" cellspacing="0">
+    <tr valign="top"> 
+      <td> <p>So far in this lesson, you've seen examples of conditional processing 
+          (IF-THEN/ELSE statements and SELECT groups) that execute only a single 
+          SAS statement when a condition is true. However, you can also execute 
+          a group of statements as a unit by using <strong>DO groups</strong>.</p>
+        <p>To construct a DO group, you use the DO and END statements along with 
+          other SAS statements. </p>
+        <br> <table border="1" cellspacing="0" cellpadding="10" width="85%" bgcolor="#F7F7DE" title="General form, simple iterative DO loop">
+          <tr> 
+            <td><strong>General form, simple DO group:</strong> <blockquote> <nobr><font color="#003399"><strong>DO</strong><strong>;</strong></font></nobr> 
+                <font color="#003399"><em><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAS statements</em></font> <font color="#003399"><strong><br>
+                END;</strong></font> </blockquote>
+              <p> where 
+              <ul>
+                <li>the <font color="#003399"><strong>DO</strong><strong></strong></font> 
+                  statement begins DO group processing</li>
+                <li><font color="#003399"><em>SAS statements</em></font> between 
+                  the DO and END statements are called a DO group and execute 
+                  as a unit</li>
+                <li>the <font color="#003399"><strong>END</strong></font> statement 
+                  terminates DO group processing.</li>
+              </ul>
+              <table cellpadding="2" cellspacing="0" border="0">
+                <tr valign="top"> 
+                  <td width="24"><img src="../navimages/note.gif" border="0" height="20" width="20" alt="Note:"></td>
+                  <td>You can nest DO statements within DO groups. </td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+        <p><br>
+          You can use DO groups in IF-THEN/ELSE statements and SELECT groups to 
+          perform many statements as part of the conditional action. </p>
+        <p><br>
+          <strong>Examples</strong></p>
+        <p>In this simple DO group, the statements between DO and END are performed 
+          only when <code>TotalTime</code> is greater than 800. If <code>TotalTime</code> 
+          is less than or equal to 800, statements in the DO group do not execute, 
+          and the program continues with the assignment statement that follows 
+          the appropriate ELSE statement. </p>
+        <pre><font color="#003399">    data clinic.stress;</font>
+<font color="#003399">       infile tests;</font>
+<font color="#003399">       input ID $ 1-4 Name $ 6-25 RestHR 27-29 MaxHR 31-33</font>
+<font color="#003399">             RecHR 35-37 TimeMin 39-40 TimeSec 42-43</font>
+<font color="#003399">             Tolerance $ 45;</font>
+<font color="#003399">       TotalTime=(timemin*60)+timesec;</font>
+<font color="#003399">       retain SumSec 5400;</font>
+<font color="#003399">       sumsec+totaltime;</font>
+<font color="#003399">       length TestLength $ 6 Message $ 20</font>;
+<font color="#003399">       if totaltime&gt;800 then </font><font color="#003399">
+          <strong>do;
+             testlength='Long';</strong></font>
+<strong><font color="#003399">             message='Run blood panel';
+          end;</font></strong>
+<font color="#003399">       else if 750<=totaltime<=800 then testlength='Normal';</font>
+       <font color="#003399">else if totaltime&lt;750 then TestLength='Short';</font>
+<font color="#003399">    run;</font></pre> 
+        <p>In the SELECT group below, the statements between DO and END are performed 
+          only when the value of <code>Payclass</code> is <em>hourly</em>. Notice 
+          that an IF-THEN statement appears in the DO group; the PUT statement 
+          executes only when <code>Hours</code> is greater than 40. The second 
+          END statement in the program closes the SELECT group.</p>
+        <pre><font color="#003399">     data payroll;
+        set salaries;
+        select(payclass);
+        when ('monthly') amt=salary;
+        when ('hourly')
+<strong>           do;
+              amt=hrlywage*min(hrs,40);
+              if hrs&gt;40 then put 'CHECK TIMECARD'; 
+           end;     </strong>
+        otherwise put 'PROBLEM OBSERVATION';
+        end;       
+     run;</font></pre> <p><br>
+          <strong>Indenting and Nesting DO Groups</strong></p>
+        <p> You can nest DO groups to any level, just like you nest IF-THEN/ELSE 
+          statements. (The memory capabilities of your system may limit the number 
+          of nested DO statements you can use. For details, see the SAS documentation 
+          about how many levels of nested DO statements your system's memory can 
+          support.)</p>
+        <p>The following is an example of nested DO groups: </p>
+        <pre><font color="#003399">     do;
+        <em>statements</em>;
+           do;
+              <em>statements</em>;
+                 do;
+                    <em>statements</em>;
+                 end;
+           end;
+     end; </font>
+          </pre> <p>It 
+          is good practice to indent the statements in DO groups, as shown in 
+          the preceding statements, so that their position indicates the levels 
+          of nesting.</p></td>
+    </tr>
+  </table>
+  <br>
+  <p></p><br>
+
+  <table width="85%" border="0" cellpadding="2" cellspacing="0">
+    <tr> 
+      <td valign="top" width="24"><img src="../navimages/note.gif" width="20" height="20" alt="Note"></td>
+      <td valign="top"><p>There are three other forms of the DO statement: </p>
+        <ul>
+          <li> The <strong>iterative DO statement</strong> executes statements 
+            between DO and END statements repetitively based on the value of an 
+            index variable. The iterative DO statement can contain a WHILE or 
+            UNTIL clause.<br>
+            <br>
+          </li>
+          <li>The <strong>DO UNTIL statement</strong> executes statements in a 
+            DO loop repetitively until a condition is true, checking the condition 
+            after each iteration of the DO loop.<br>
+            <br>
+          </li>
+          <li>The <strong>DO WHILE statement</strong> executes statements in a 
+            DO loop repetitively while a condition is true, checking the condition 
+            before each iteration of the DO loop.</li>
+        </ul>
+        <p>You can learn about these forms of the DO statement in the lesson <strong><script>document.write(m34title)</script></strong>.</p></td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <!-- InstanceEndEditable --> 
+</center>
+<script>writeNav_regular_bottom();</script>
+</body>
+<!-- InstanceEnd --></html>
